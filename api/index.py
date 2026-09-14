@@ -100,10 +100,20 @@ def proxy_to_backend(path):
 # =========================================================================
 @app.route("/", methods=["GET"])
 @app.route("/index.html", methods=["GET"])
+@app.route("/api/index.py", methods=["GET"])
 def serve_index():
-    index_file = BASE_DIR / "index.html"
-    if index_file.exists():
-        return send_file(str(index_file), mimetype="text/html")
+    for candidate in [BASE_DIR / "public" / "index.html", BASE_DIR / "index.html"]:
+        if candidate.exists():
+            return send_file(str(candidate), mimetype="text/html")
+    return "<h1>BioRAG - TRƯỜNG THCS HUỲNH BÁ CHÁNH</h1>", 200
+
+@app.errorhandler(404)
+def handle_404(e):
+    if request.path.startswith("/api/"):
+        return jsonify({"error": f"API endpoint {request.path} not found"}), 404
+    for candidate in [BASE_DIR / "public" / "index.html", BASE_DIR / "index.html"]:
+        if candidate.exists():
+            return send_file(str(candidate), mimetype="text/html")
     return "<h1>BioRAG - TRƯỜNG THCS HUỲNH BÁ CHÁNH</h1>", 200
 
 @app.route("/api/health", methods=["GET"])
