@@ -3,19 +3,12 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
+      "destination": "/api/index.py?__route__=$1"
+    },
+    {
+      "source": "/api",
       "destination": "/api/index.py"
-    },
-    {
-      "source": "/assets/(.*)",
-      "destination": "/assets/$1"
-    },
-    {
-      "source": "/web_assets/(.*)",
-      "destination": "/web_assets/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
     }
   ]
 }
+
