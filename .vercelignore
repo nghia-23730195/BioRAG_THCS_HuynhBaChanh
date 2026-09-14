@@ -1,0 +1,13 @@
+.git
+.github
+*.bat
+*.xlsx
+*.zip
+*.log
+*.docx
+Dockerfile
+requirements_docker.txt
+HUONG_DAN_*.md
+src/test/
+src/etl/
+src/rag/
