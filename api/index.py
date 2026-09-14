@@ -13,6 +13,7 @@ Optimized for Vercel Serverless environment:
 - Grounded AI Chat with Gemini API
 """
 
+import html
 import io
 import json
 import os
@@ -163,6 +164,18 @@ except Exception:
         extract_text_from_docx = None
         parse_exam_text = None
 
+# 5. Textbook Renderer (Vector SVG & HTML for Vercel Serverless)
+try:
+    from api._textbook_renderer import find_lesson_by_source_and_page, render_textbook_page_svg, render_textbook_reader_html
+except Exception:
+    try:
+        from _textbook_renderer import find_lesson_by_source_and_page, render_textbook_page_svg, render_textbook_reader_html
+    except Exception as exc:
+        print(f"Textbook renderer import error: {exc}")
+        find_lesson_by_source_and_page = None
+        render_textbook_page_svg = None
+        render_textbook_reader_html = None
+
 # =========================================================================
 # LEARNING LESSONS BUNDLE (195 LESSONS FOR GRADES 6, 7, 8, 9)
 # =========================================================================
@@ -311,18 +324,34 @@ def api_lesson_textbook_pages(lesson_id):
     lesson = get_lesson_by_id(lesson_id)
     if not lesson:
         return jsonify({"error": "Không tìm thấy bài học."}), 404
-    start_page = int(lesson.get("order") or 1) * 4
-    end_page = start_page + 3
+    
+    sl = lesson.get("source_label", "")
+    m = re.search(r'Trang\s+(\d+)(?:[–\-](\d+))?', sl, re.IGNORECASE)
+    if m:
+        start_page = int(m.group(1))
+        end_page = int(m.group(2)) if m.group(2) else start_page
+    else:
+        start_page = int(lesson.get("order") or 1) * 4
+        end_page = start_page + 3
+    
+    if end_page < start_page:
+        end_page = start_page + 3
+    elif end_page - start_page > 10:
+        end_page = start_page + 10
+
+    grade = lesson.get("grade", 7)
+    source_name = f"SGK KHTN {grade} KNTT.pdf"
+
     return jsonify({
         "lesson_id": lesson_id,
         "resolved_textbook_pages": [
-            {"page": p, "source": f"KHTN {lesson.get('grade', 7)} KNTT"}
+            {"page": p, "source": source_name, "printed_start": p, "printed_end": p}
             for p in range(start_page, end_page + 1)
         ],
         "textbook_range": {
             "start_page": start_page,
             "end_page": end_page,
-            "method": "title_match"
+            "method": "source_label_match"
         }
     })
 
@@ -361,6 +390,97 @@ def api_lesson_study_aids(lesson_id):
 def api_lesson_study_aids_generate(lesson_id):
     if request.method == "OPTIONS": return jsonify({"status": "ok"})
     return api_lesson_study_aids(lesson_id)
+
+# =========================================================================
+# TEXTBOOK VIEWER & PDF ENDPOINTS (SVG & HTML RENDERER FOR VERCEL)
+# =========================================================================
+@app.route("/api/learning/textbook-page", methods=["GET"])
+@app.route("/learning/textbook-page", methods=["GET"])
+def api_learning_textbook_page():
+    res = proxy_to_backend("api/learning/textbook-page")
+    if res: return res
+    
+    source = request.args.get("source", "")
+    page_arg = request.args.get("page", "1")
+    try:
+        page = int(page_arg)
+    except (ValueError, TypeError):
+        page = 1
+
+    # Check local PDF if available
+    pdf_path = BASE_DIR / "datasources" / "sgk" / source if source else None
+    if pdf_path and pdf_path.exists():
+        try:
+            import fitz
+            doc = fitz.open(str(pdf_path))
+            p_idx = max(0, min(len(doc) - 1, page - 1))
+            pix = doc[p_idx].get_pixmap(dpi=150)
+            img_bytes = pix.tobytes("png")
+            return Response(img_bytes, mimetype="image/png", headers={"Cache-Control": "public, max-age=86400"})
+        except Exception:
+            pass
+
+    # High-quality Vector SVG textbook page
+    lessons = get_all_lessons()
+    lesson, start_p, end_p = find_lesson_by_source_and_page(lessons, source, page) if callable(find_lesson_by_source_and_page) else ({}, 1, 4)
+    svg_data = render_textbook_page_svg(lesson, page, start_p, end_p) if callable(render_textbook_page_svg) else "<svg></svg>"
+    
+    response = Response(svg_data, mimetype="image/svg+xml")
+    response.headers["Content-Type"] = "image/svg+xml; charset=utf-8"
+    response.headers["Cache-Control"] = "public, max-age=86400"
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    return response
+
+
+@app.route("/api/learning/textbook-pdf", methods=["GET"])
+@app.route("/learning/textbook-pdf", methods=["GET"])
+def api_learning_textbook_pdf():
+    res = proxy_to_backend("api/learning/textbook-pdf")
+    if res: return res
+    
+    source = request.args.get("source", "")
+    page_arg = request.args.get("page_hint") or request.args.get("page", "1")
+    try:
+        page = int(page_arg)
+    except (ValueError, TypeError):
+        page = 1
+
+    # Check local PDF if available
+    pdf_path = BASE_DIR / "datasources" / "sgk" / source if source else None
+    if pdf_path and pdf_path.exists():
+        return send_file(pdf_path, mimetype="application/pdf", as_attachment=False, download_name=pdf_path.name)
+
+    # Standalone HTML textbook reader
+    lessons = get_all_lessons()
+    lesson, start_p, end_p = find_lesson_by_source_and_page(lessons, source, page) if callable(find_lesson_by_source_and_page) else ({}, 1, 4)
+    source_name = source or f"SGK KHTN {lesson.get('grade', 7)} KNTT.pdf"
+    html_content = render_textbook_reader_html(lesson, page, start_p, end_p, source_name) if callable(render_textbook_reader_html) else "<html><body>Trang SGK</body></html>"
+    response = Response(html_content, mimetype="text/html")
+    response.headers["Content-Type"] = "text/html; charset=utf-8"
+    return response
+
+
+@app.route("/api/learning/source-pdf", methods=["GET"])
+@app.route("/learning/source-pdf", methods=["GET"])
+def api_learning_source_pdf():
+    res = proxy_to_backend("api/learning/source-pdf")
+    if res: return res
+    
+    source = request.args.get("source", "")
+    role = request.args.get("role", "sgk").strip().lower()
+    folder = "sgv" if role == "sgv" else "sgk"
+    pdf_path = BASE_DIR / "datasources" / folder / source if source else None
+    if pdf_path and pdf_path.exists():
+        return send_file(pdf_path, mimetype="application/pdf", as_attachment=False, download_name=pdf_path.name)
+    
+    # Fallback to HTML textbook reader
+    lessons = get_all_lessons()
+    lesson, start_p, end_p = find_lesson_by_source_and_page(lessons, source, 1) if callable(find_lesson_by_source_and_page) else ({}, 1, 4)
+    source_name = source or f"SGK KHTN {lesson.get('grade', 7)} KNTT.pdf"
+    html_content = render_textbook_reader_html(lesson, start_p, start_p, end_p, source_name) if callable(render_textbook_reader_html) else "<html><body>Trang SGK</body></html>"
+    response = Response(html_content, mimetype="text/html")
+    response.headers["Content-Type"] = "text/html; charset=utf-8"
+    return response
 
 # =========================================================================
 # 2. QUIZ BANK (CURATED QUESTIONS & EXAMS)
