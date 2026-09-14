@@ -164,17 +164,26 @@ except Exception:
         extract_text_from_docx = None
         parse_exam_text = None
 
-# 5. Textbook Renderer (Vector SVG & HTML for Vercel Serverless)
+# 5. Textbook Renderer, Smart RAG & Direct Gemini REST
 try:
-    from api._textbook_renderer import find_lesson_by_source_and_page, render_textbook_page_svg, render_textbook_reader_html
+    from api._textbook_renderer import (
+        find_lesson_by_source_and_page, render_textbook_page_svg, render_textbook_reader_html,
+        search_best_lesson, format_local_rag_answer, call_gemini_rest
+    )
 except Exception:
     try:
-        from _textbook_renderer import find_lesson_by_source_and_page, render_textbook_page_svg, render_textbook_reader_html
+        from _textbook_renderer import (
+            find_lesson_by_source_and_page, render_textbook_page_svg, render_textbook_reader_html,
+            search_best_lesson, format_local_rag_answer, call_gemini_rest
+        )
     except Exception as exc:
         print(f"Textbook renderer import error: {exc}")
         find_lesson_by_source_and_page = None
         render_textbook_page_svg = None
         render_textbook_reader_html = None
+        search_best_lesson = None
+        format_local_rag_answer = None
+        call_gemini_rest = None
 
 # =========================================================================
 # LEARNING LESSONS BUNDLE (195 LESSONS FOR GRADES 6, 7, 8, 9)
@@ -786,56 +795,87 @@ def api_chat():
 
     data = request.get_json(silent=True) or {}
     question = str(data.get("question") or data.get("message") or "").strip()
-    grade = data.get("grade", 7)
 
     if not question:
         return jsonify({"error": "Câu hỏi không được để trống"}), 400
 
-    client = get_gemini_client()
-    if not client:
-        # Provide clean educational response with instructions
-        default_answer = f"""Chào bạn! Mình là Trợ lý AI Khoa học Tự nhiên của **Trường THCS Huỳnh Bá Chánh**.
+    raw_grade = data.get("grade")
+    preferred_grade = int(raw_grade) if raw_grade and str(raw_grade).isdigit() else None
 
-Hệ thống đang hoạt động ở chế độ Vercel Serverless.
-Để kích hoạt trí tuệ nhân tạo Gemini phản hồi theo thời gian thực:
-- Hãy cấu hình biến môi trường `GEMINI_API_KEY` trong bảng điều khiển Vercel Settings > Environment Variables.
+    all_lessons = get_all_lessons()
+    matched_lesson = None
+    if callable(search_best_lesson) and all_lessons:
+        matched_lesson, _ = search_best_lesson(all_lessons, question, preferred_grade)
 
-**Kiến thức SGK KHTN Lớp {grade} (Kết nối tri thức):**
-- Danh sách 195 bài học và đề thi chuẩn đã sẵn sàng trong mục **"Kiểm tra kiến thức"** và **"Học tập"**.
-- Các mô phỏng tương tác 3D trực quan đang hoạt động tại mục **"Thí nghiệm ảo"**!"""
-        return jsonify({
-            "answer": default_answer,
-            "sources": [{"title": f"SGK Khoa học Tự nhiên {grade} - KNTT", "page": 1, "source": f"KHTN {grade} KNTT"}],
-            "grounded": True,
-            "grade": grade,
-            "meta": {"grounded": True, "grade": grade}
-        })
+    resolved_grade = preferred_grade or (matched_lesson.get("grade") if matched_lesson else 7)
+    source_title = f"SGK KHTN {resolved_grade} (Kết nối tri thức)"
+    source_label = matched_lesson.get("source_label") if matched_lesson else f"SGK KHTN {resolved_grade} KNTT"
+    source_item = {
+        "title": f"{matched_lesson.get('number', '')} {matched_lesson.get('title', source_title)}".strip(),
+        "page": 1,
+        "source": source_label
+    }
+    m_page = re.search(r'Trang\s+(\d+)', source_label)
+    if m_page:
+        try:
+            source_item["page"] = int(m_page.group(1))
+        except Exception:
+            pass
 
-    prompt = f"""Bạn là Trợ lý AI Khoa học Tự nhiên chính thức của Trường THCS Huỳnh Bá Chánh.
-Chương trình: Khoa học Tự nhiên Lớp {grade} (Bộ sách Kết nối tri thức với cuộc sống).
-Câu hỏi của học sinh/giáo viên: {question}
+    api_key = str(data.get("api_key") or os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY") or "").strip()
 
-Yêu cầu:
-1. Giải thích chính xác, khoa học, dễ hiểu, bám sát sách giáo khoa KHTN {grade}.
-2. Trích dẫn rõ ràng tên bài học hoặc khái niệm liên quan trong SGK Kết nối tri thức.
-3. Giọng văn sư phạm, khuyến khích học tập tích cực."""
+    if api_key and callable(call_gemini_rest):
+        lesson_context = ""
+        if matched_lesson:
+            terms_text = ', '.join([t.get('term', '') + ': ' + t.get('definition', '') for t in matched_lesson.get('terms', [])])
+            lesson_context = f"""
+KIẾN THỨC BÀI HỌC THAM KHẢO TỪ SGK KNTT:
+- Bài: {matched_lesson.get('number', '')} - {matched_lesson.get('title', '')} (Lớp {matched_lesson.get('grade')})
+- Nguồn: {matched_lesson.get('source_label', '')}
+- Mục tiêu: {', '.join(matched_lesson.get('objectives', []))}
+- Thuật ngữ: {terms_text}
+- Tóm tắt: {', '.join(matched_lesson.get('summary', []))}
+- Nội dung: {matched_lesson.get('content', '')}
+"""
+        prompt = f"""Bạn là Trợ lý AI Khoa học Tự nhiên chính thức của Trường THCS Huỳnh Bá Chánh.
+Chương trình: Khoa học Tự nhiên Lớp {resolved_grade} (Bộ sách Kết nối tri thức với cuộc sống).
+{lesson_context}
 
-    try:
-        resp = client.generate_content(prompt)
-        return jsonify({
-            "answer": resp.text,
-            "sources": [{"title": f"SGK Khoa học Tự nhiên {grade} - KNTT", "page": 1, "source": f"KHTN {grade} KNTT"}],
-            "grounded": True,
-            "grade": grade,
-            "meta": {"grounded": True, "grade": grade}
-        })
-    except Exception as exc:
-        return jsonify({
-            "answer": f"Đã có lỗi khi xử lý câu hỏi qua Gemini: {str(exc)}",
-            "sources": [],
-            "grounded": False,
-            "grade": grade
-        })
+Câu hỏi của học sinh: {question}
+
+Yêu cầu trả lời:
+1. Giải thích chính xác, khoa học, dễ hiểu, bám sát nội dung SGK KHTN {resolved_grade} (Bộ sách Kết nối tri thức).
+2. Nêu rõ định nghĩa, bản chất hiện tượng và ví dụ thực tế liên quan.
+3. Trích dẫn rõ ràng tên bài học và số trang trong SGK Kết nối tri thức.
+4. Giọng điệu sư phạm, tích cực, truyền cảm hứng học tập."""
+
+        ai_answer, model_used = call_gemini_rest(prompt, api_key)
+        if ai_answer:
+            return jsonify({
+                "answer": ai_answer,
+                "sources": [source_item],
+                "grounded": True,
+                "grade": resolved_grade,
+                "meta": {"grounded": True, "grade": resolved_grade, "model": model_used}
+            })
+
+    local_answer = format_local_rag_answer(question, matched_lesson) if callable(format_local_rag_answer) else ""
+    if not local_answer or len(local_answer) < 30:
+        local_answer = f"""Chào bạn! Mình là Trợ lý AI Khoa học Tự nhiên của **Trường THCS Huỳnh Bá Chánh**.
+
+Hiện tại bạn đang hỏi về: **{question}**.
+Kho tri thức SGK KHTN Lớp {resolved_grade} (Kết nối tri thức) đã tích hợp đầy đủ 195 bài học, bài tập trắc nghiệm và mô phỏng 3D tại các mục tương ứng trên hệ thống."""
+
+    if not api_key:
+        local_answer += "\n\n💡 *Gợi ý: Để kích hoạt thêm trí tuệ nhân tạo Gemini đàm thoại mở rộng theo thời gian thực, bạn có thể cấu hình biến `GEMINI_API_KEY` trong bảng điều khiển Vercel Settings > Environment Variables.*"
+
+    return jsonify({
+        "answer": local_answer,
+        "sources": [source_item],
+        "grounded": True,
+        "grade": resolved_grade,
+        "meta": {"grounded": True, "grade": resolved_grade, "mode": "local_rag"}
+    })
 
 @app.route("/api/feedback", methods=["POST", "OPTIONS"])
 @app.route("/feedback", methods=["POST", "OPTIONS"])

@@ -3,6 +3,7 @@ import html
 import json
 import re
 import sys
+import urllib.request
 from pathlib import Path
 
 def wrap_text(text, max_chars=68):
@@ -494,10 +495,147 @@ def render_textbook_reader_html(lesson, current_page, start_page, end_page, sour
 </body>
 </html>"""
 
-if __name__ == "__main__":
-    data = json.load(open('api/data/learning_lessons.json', encoding='utf-8'))['lessons']
-    l, s, e = find_lesson_by_source_and_page(data, 'KHTN 7 KNTT', 40)
-    html_content = render_textbook_reader_html(l, 40, s, e, 'SGK KHTN 7 KNTT.pdf')
-    out_html = Path("scratch/test_reader.html")
-    out_html.write_text(html_content, encoding="utf-8")
-    print(f"Generated HTML length: {len(html_content)} bytes written to {out_html}")
+def search_best_lesson(lessons_or_question, question_or_grade=None, preferred_grade=None):
+    if isinstance(lessons_or_question, list):
+        lessons = lessons_or_question
+        question = question_or_grade or ""
+    else:
+        lessons = None
+        question = lessons_or_question or ""
+        preferred_grade = question_or_grade
+
+    if lessons is None:
+        try:
+            from api.index import get_all_lessons
+            lessons = get_all_lessons()
+        except Exception:
+            lessons = []
+
+    stop_words = {'là', 'gì', 'thế', 'nào', 'sao', 'hãy', 'cho', 'biết', 'của', 'và', 'các', 'những', 'trong', 'với', 'tìm', 'hiểu', 'về', 'hỏi', 'giúp'}
+    words = [w.lower() for w in re.findall(r'[\w]+', question) if len(w) > 1 and w.lower() not in stop_words]
+    
+    best_lesson = None
+    best_score = 0
+    
+    for l in lessons:
+        score = 0
+        l_grade = int(l.get("grade") or 0)
+        if preferred_grade and l_grade == preferred_grade:
+            score += 5
+            
+        title = l.get("title", "").lower()
+        topic = l.get("topic", "").lower()
+        content = l.get("content", "").lower()
+        objectives = " ".join(l.get("objectives", [])).lower()
+        sections = " ".join([" ".join(s.get("paragraphs", [])) for s in l.get("sections", [])]).lower()
+        terms = " ".join([t.get("term", "") + " " + t.get("definition", "") for t in l.get("terms", [])]).lower()
+        summary = " ".join(l.get("summary", [])).lower()
+        
+        full_text = f"{title} {topic} {terms} {summary} {objectives} {sections} {content}"
+        
+        # Check phrase match
+        q_phrase = " ".join(words)
+        if q_phrase and q_phrase in title:
+            score += 60
+        elif q_phrase and q_phrase in terms:
+            score += 45
+        elif q_phrase and q_phrase in full_text:
+            score += 30
+            
+        for w in words:
+            if w in title:
+                score += 16
+            elif w in terms:
+                score += 14
+            elif w in topic:
+                score += 8
+            elif w in summary:
+                score += 6
+            elif w in full_text:
+                score += 3
+                
+        if score > best_score:
+            best_score = score
+            best_lesson = l
+            
+    return best_lesson, best_score
+
+def format_local_rag_answer(question, lesson):
+    if not lesson:
+        return "Xin lỗi, hiện tại mình chưa tìm thấy thông tin phù hợp trong 195 bài học SGK KHTN 6–9."
+    
+    grade = lesson.get("grade", 7)
+    number = lesson.get("number", "Bài học")
+    title = lesson.get("title", "")
+    source_label = lesson.get("source_label", f"SGK KHTN {grade} KNTT")
+    
+    lines = [f"Chào bạn! Dưới đây là kiến thức chuẩn từ **{source_label}**:\n"]
+    lines.append(f"### 📖 {number}: {title}\n")
+    
+    # Check if there are specific matching terms
+    terms = lesson.get("terms", [])
+    matching_terms = []
+    q_lower = question.lower()
+    for t in terms:
+        if t.get("term", "").lower() in q_lower or any(w in t.get("term", "").lower() for w in q_lower.split()):
+            matching_terms.append(f"- **{t.get('term')}**: {t.get('definition')}")
+            
+    if matching_terms:
+        lines.append("**Khái niệm trọng tâm:**")
+        lines.extend(matching_terms)
+        lines.append("")
+        
+    # Check sections
+    sections = lesson.get("sections", [])
+    if sections:
+        for s in sections[:2]:
+            lines.append(f"**{s.get('title')}:**")
+            for p in s.get("paragraphs", [])[:2]:
+                lines.append(p)
+            if s.get("note"):
+                lines.append(f"*Lưu ý:* {s.get('note')}")
+            lines.append("")
+    elif lesson.get("content") and "Đọc đầy đủ" not in lesson.get("content"):
+        lines.append(lesson.get("content"))
+        lines.append("")
+        
+    # Summary
+    summary = lesson.get("summary", [])
+    if summary:
+        lines.append("**Ghi nhớ:**")
+        for sm in summary[:3]:
+            lines.append(f"✓ {sm}")
+        lines.append("")
+        
+    # Objectives if little content
+    if not sections and not matching_terms:
+        objs = lesson.get("objectives", [])
+        if objs:
+            lines.append("**Mục tiêu và yêu cầu cần đạt:**")
+            for o in objs:
+                lines.append(f"- {o}")
+            lines.append("")
+            
+    lines.append(f"\n📚 *Nguồn trích dẫn: {source_label} · Trường THCS Huỳnh Bá Chánh*")
+    return "\n".join(lines)
+
+def call_gemini_rest(prompt, api_key):
+    models = ["gemini-3.6-flash", "gemini-2.5-flash", "gemini-1.5-flash"]
+    for m in models:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={api_key}"
+        payload = json.dumps({
+            "contents": [{"parts": [{"text": prompt}]}],
+            "generationConfig": {
+                "temperature": 0.3,
+                "maxOutputTokens": 1024
+            }
+        }).encode("utf-8")
+        req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"}, method="POST")
+        try:
+            with urllib.request.urlopen(req, timeout=12) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                text = data["candidates"][0]["content"]["parts"][0]["text"]
+                return text.strip(), m
+        except Exception as e:
+            continue
+    return None, None
