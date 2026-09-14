@@ -1,0 +1,240 @@
+"""Thử nghiệm mù: RAG so với cùng LLM không có ngữ cảnh truy xuất.
+
+Chạy sinh câu trả lời:
+    python -m src.test.blind_rag_comparison run \
+      --questions bo_cau_hoi_phan_loai_hoan_chinh.xlsx \
+      --out results/blind_rag
+
+Sau khi hai giám khảo điền phiếu ``phieu_cham_mu.csv``:
+    python -m src.test.blind_rag_comparison score \
+      --blind results/blind_rag/phieu_cham_mu.csv \
+      --key results/blind_rag/khoa_giai_ma.csv \
+      --out results/blind_rag
+
+Tệp ``khoa_giai_ma.csv`` phải được giữ kín cho đến khi chấm xong.
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import random
+from pathlib import Path
+from typing import TYPE_CHECKING, Iterable
+
+import pandas as pd
+
+if TYPE_CHECKING:
+    from src.app.dependencies import AppServices
+
+
+CRITERIA = ("chinh_xac", "bam_nguon", "dung_trong_tam")
+ABSTAIN = "Thông tin này không được đề cập trong sách giáo khoa."
+
+
+def _read_table(path: Path) -> pd.DataFrame:
+    if path.suffix.lower() in {".xlsx", ".xls"}:
+        workbook = pd.ExcelFile(path)
+        # Workbook đã tạo cho dự án có sheet "Cau hoi"; tệp khác dùng sheet đầu.
+        sheet = "Cau hoi" if "Cau hoi" in workbook.sheet_names else workbook.sheet_names[0]
+        return pd.read_excel(path, sheet_name=sheet)
+    return pd.read_csv(path)
+
+
+def _first(row: pd.Series, names: Iterable[str], default=""):
+    for name in names:
+        if name in row and pd.notna(row[name]):
+            value = str(row[name]).strip()
+            if value:
+                return value
+    return default
+
+
+def load_questions(path: Path) -> list[dict]:
+    df = _read_table(path)
+    aliases = {
+        "Mã câu": "question_id", "Câu hỏi": "question",
+        "Đáp án chuẩn": "ground_truth", "Nhóm câu hỏi": "nhom_cau_hoi",
+        "Sách nguồn": "source_book", "Trang nguồn": "source_page",
+    }
+    df = df.rename(columns=aliases)
+    if "question" not in df.columns:
+        raise ValueError("Tệp câu hỏi phải có cột 'question' hoặc 'Câu hỏi'.")
+    rows = []
+    for i, row in df.iterrows():
+        question = _first(row, ("question",))
+        if not question:
+            continue
+        rows.append({
+            "question_id": _first(row, ("question_id", "id"), str(i + 1)),
+            "question": question,
+            "ground_truth": _first(row, ("ground_truth", "dap_an_chuan")),
+            "nhom_cau_hoi": _first(row, ("nhom_cau_hoi", "nhom"), "Chưa phân loại"),
+            "source_book": _first(row, ("source_book", "nguon_sach")),
+            "source_page": _first(row, ("source_page", "trang")),
+        })
+    if not rows:
+        raise ValueError("Không có câu hỏi hợp lệ.")
+    return rows
+
+
+def _stable_code(seed: int, question_id: str, config: str) -> str:
+    raw = f"{seed}|{question_id}|{config}".encode("utf-8")
+    return "PA-" + hashlib.sha256(raw).hexdigest()[:10].upper()
+
+
+def _answer(services: "AppServices", question: str, use_rag: bool,
+            generation_seed: int) -> tuple[str, str, str]:
+    contexts, metadata = [], []
+    if use_rag:
+        result = services.hybrid_retriever.search(question)
+        docs = result.text_docs
+        contexts = [d.page_content for d in docs if getattr(d, "page_content", None)]
+        metadata = [getattr(d, "metadata", {}) or {} for d in docs]
+
+    # Cùng một prompt, parser, LLM và tham số sinh. Chỉ context khác nhau.
+    context = "\n\n".join(contexts)
+    prompt = services.rag.prompt.format(context=context, question=question)
+    # Đưa hai cấu hình về cùng trạng thái ngẫu nhiên trước mỗi lần sinh.
+    from transformers import set_seed
+    set_seed(generation_seed)
+    raw = services.llm.invoke(prompt)
+
+    raw_content = getattr(raw, "content", raw)
+
+    if isinstance(raw_content, list):
+        text_parts = []
+
+        for block in raw_content:
+            if isinstance(block, dict):
+                block_text = block.get("text", "")
+            else:
+                block_text = str(block)
+
+            if block_text:
+                text_parts.append(block_text)
+
+        raw_content = " ".join(text_parts)
+
+    answer = services.rag.answer_parser.parse(
+        raw_content
+    )
+    return answer or ABSTAIN, context, json.dumps(metadata, ensure_ascii=False)
+
+
+def run_experiment(questions: Path, out: Path, seed: int, limit: int = 0) -> None:
+    from src.app.dependencies import AppServices
+
+    rows = load_questions(questions)
+    if limit:
+        rows = rows[:limit]
+    out.mkdir(parents=True, exist_ok=True)
+    services = AppServices.get_instance()
+    rng = random.Random(seed)
+    raw_rows, blind_rows, key_rows = [], [], []
+
+    for position, item in enumerate(rows, 1):
+        pair_code = f"CH-{position:04d}"
+        pair = []
+        generation_seed = seed + position
+        for config, use_rag in (("RAG", True), ("KHONG_RAG", False)):
+            answer, context, metadata = _answer(
+                services, item["question"], use_rag, generation_seed
+            )
+            code = _stable_code(seed, item["question_id"], config)
+            raw_rows.append({**item, "pair_code": pair_code, "response_code": code,
+                             "config": config, "answer": answer, "context": context,
+                             "retrieval_metadata": metadata})
+            key_rows.append({"response_code": code, "pair_code": pair_code,
+                             "question_id": item["question_id"], "config": config})
+            pair.append({**item, "pair_code": pair_code, "response_code": code,
+                         "answer": answer})
+        rng.shuffle(pair)
+        blind_rows.extend(pair)
+
+    rng.shuffle(blind_rows)
+    for row in blind_rows:
+        for criterion in CRITERIA:
+            row[f"{criterion}_gk1"] = ""
+            row[f"{criterion}_gk2"] = ""
+            row[f"{criterion}_chuyen_mon"] = ""
+        row["ghi_chu"] = ""
+
+    pd.DataFrame(raw_rows).to_csv(out / "ket_qua_day_du.csv", index=False, encoding="utf-8-sig")
+    pd.DataFrame(key_rows).to_csv(out / "khoa_giai_ma.csv", index=False, encoding="utf-8-sig")
+    pd.DataFrame(blind_rows).to_csv(out / "phieu_cham_mu.csv", index=False, encoding="utf-8-sig")
+    (out / "cau_hinh_thu_nghiem.json").write_text(json.dumps({
+        "seed": seed, "so_cau_hoi": len(rows), "so_cau_tra_loi": len(blind_rows),
+        "model": str(getattr(services.llm, "model_id", "theo cau hinh du an")),
+        "nguyen_tac": "Cùng prompt/LLM/tham số; chỉ khác context RAG.",
+    }, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"Đã tạo {len(blind_rows)} câu trả lời tại: {out}")
+    print("Giữ kín khoa_giai_ma.csv và ket_qua_day_du.csv cho đến khi chấm xong.")
+
+
+def _numeric_score(df: pd.DataFrame, column: str) -> pd.Series:
+    values = pd.to_numeric(df[column], errors="coerce")
+    invalid = values.notna() & ~values.between(1, 5)
+    if invalid.any():
+        raise ValueError(f"Cột {column} có điểm ngoài thang 1-5.")
+    return values
+
+
+def score_experiment(blind: Path, key: Path, out: Path) -> None:
+    scores, keys = pd.read_csv(blind), pd.read_csv(key)
+    merged = scores.merge(keys[["response_code", "config"]], on="response_code",
+                          how="left", validate="one_to_one")
+    if merged["config"].isna().any():
+        raise ValueError("Có mã câu trả lời không tồn tại trong khóa giải mã.")
+
+    pending = []
+    final_columns = []
+    for criterion in CRITERIA:
+        a = _numeric_score(merged, f"{criterion}_gk1")
+        b = _numeric_score(merged, f"{criterion}_gk2")
+        adjudicated = _numeric_score(merged, f"{criterion}_chuyen_mon")
+        missing = a.isna() | b.isna()
+        disagreement = a.notna() & b.notna() & (a != b) & adjudicated.isna()
+        pending.append(missing | disagreement)
+        final = adjudicated.where(adjudicated.notna(), a.where(a == b))
+        name = f"{criterion}_cuoi"
+        merged[name] = final
+        final_columns.append(name)
+
+    merged["can_xu_ly"] = pd.concat(pending, axis=1).any(axis=1)
+    merged["diem_trung_binh"] = merged[final_columns].mean(axis=1)
+    completed = merged[~merged["can_xu_ly"]].copy()
+    summary = (completed.groupby("config")[final_columns + ["diem_trung_binh"]]
+               .mean().reset_index())
+    counts = completed.groupby("config").size().rename("so_cau_da_chot").reset_index()
+    summary = summary.merge(counts, on="config", how="left")
+
+    out.mkdir(parents=True, exist_ok=True)
+    merged.to_csv(out / "ket_qua_cham_da_mo_ma.csv", index=False, encoding="utf-8-sig")
+    summary.to_csv(out / "bang_so_sanh_hai_he_thong.csv", index=False, encoding="utf-8-sig")
+    print(summary.to_string(index=False))
+    print(f"Câu trả lời còn chờ chấm/đối soát: {int(merged['can_xu_ly'].sum())}")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    sub = parser.add_subparsers(dest="command", required=True)
+    run = sub.add_parser("run", help="Sinh hai cấu hình và tạo phiếu chấm mù")
+    run.add_argument("--questions", type=Path, required=True)
+    run.add_argument("--out", type=Path, default=Path("results/blind_rag"))
+    run.add_argument("--seed", type=int, default=20260901)
+    run.add_argument("--limit", type=int, default=0, help="Chạy thử N câu; 0 = toàn bộ")
+    score = sub.add_parser("score", help="Mở mã và tổng hợp điểm")
+    score.add_argument("--blind", type=Path, required=True)
+    score.add_argument("--key", type=Path, required=True)
+    score.add_argument("--out", type=Path, default=Path("results/blind_rag"))
+    args = parser.parse_args()
+    if args.command == "run":
+        run_experiment(args.questions, args.out, args.seed, args.limit)
+    else:
+        score_experiment(args.blind, args.key, args.out)
+
+
+if __name__ == "__main__":
+    main()

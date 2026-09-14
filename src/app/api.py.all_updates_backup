@@ -1,0 +1,592 @@
+"""Flask API Server for Biology RAG"""
+
+import json
+import logging
+import os
+import threading
+import torch
+from flask import Flask, request, jsonify, send_from_directory, Response, stream_with_context
+from flask_cors import CORS
+from transformers import TextIteratorStreamer
+from werkzeug.utils import secure_filename
+
+from src.config import DATA_DIR, IMAGES_DIR, LLM_MAX_NEW_TOKENS, LLM_TEMPERATURE, LLM_TOP_P
+from src.app.dependencies import AppServices
+from src.etl.image_review import ImageReviewManager
+
+logger = logging.getLogger(__name__)
+
+app = Flask(__name__)
+CORS(app)
+
+# In-memory status tracker for ETL polling
+etl_status = {}
+
+# BIORAG_WEB_UI_ROUTE
+@app.route("/", methods=["GET"])
+def web_ui():
+    """Serve the BioRAG web interface."""
+    project_root = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "..", "..")
+    )
+    return send_from_directory(project_root, "index.html")
+
+
+@app.route("/favicon.ico", methods=["GET"])
+def web_favicon():
+    return ("", 204)
+
+
+
+def sse_event(event, payload):
+    return f"event: {event}\ndata: {json.dumps(payload, ensure_ascii=False, default=str)}\n\n"
+
+
+def build_gallery_items(image_docs):
+    gallery_items = []
+    for doc in image_docs:
+        if hasattr(doc, "metadata"):
+            raw_image_path = doc.metadata.get("image_path", "")
+            image_path = (
+                os.path.relpath(raw_image_path, str(IMAGES_DIR)).replace(chr(92), "/")
+                if raw_image_path
+                else ""
+            )
+            page = doc.metadata.get("page_number", "?")
+            pdf = doc.metadata.get("pdf_filename", "Sách Giáo Khoa")
+
+            caption = doc.metadata.get("caption") or ""
+            figure_caption = doc.metadata.get("figure_caption") or ""
+            figure_label = doc.metadata.get("figure_label") or ""
+            context_text = doc.metadata.get("context_text") or ""
+            fallback_text = (doc.page_content or "").splitlines()[0] if doc.page_content else ""
+            label_text = figure_caption or figure_label or caption or context_text or fallback_text
+
+            label = f"{label_text[:80]}... (Trang {page}, {pdf})" if label_text else f"Trang {page} - {pdf}"
+
+            gallery_items.append({
+                "image_path": image_path,
+                "label": label,
+                "metadata": doc.metadata
+            })
+    return gallery_items
+
+
+def prepare_chat_payload(question, top_k=None):
+    services = AppServices.get_instance()
+    result = services.hybrid_retriever.search(question, text_k=top_k)
+    text_docs = result.text_docs
+    image_docs = result.image_docs
+    image_only_query = result.image_only_query
+    gallery_items = build_gallery_items(image_docs)
+
+    if not text_docs and not image_docs:
+        if image_only_query:
+            return {
+                "mode": "static",
+                "answer": "Không tìm thấy hình ảnh liên quan trong cơ sở dữ liệu ảnh.",
+                "images": gallery_items,
+                "services": services,
+            }
+        return {
+            "mode": "static",
+            "answer": "Hệ thống chưa tìm thấy tài liệu nào liên quan đến câu hỏi này.",
+            "images": gallery_items,
+            "services": services,
+        }
+
+    if image_only_query:
+        return {
+            "mode": "static",
+            "answer": f"Mình tìm thấy {len(image_docs)} hình ảnh liên quan trong cơ sở dữ liệu ảnh.",
+            "images": gallery_items,
+            "services": services,
+        }
+
+    if not text_docs:
+        return {
+            "mode": "static",
+            "answer": "Không tìm thấy thông tin dạng văn bản liên quan. Vui lòng thử câu hỏi khác.",
+            "images": gallery_items,
+            "services": services,
+        }
+
+    context_texts = [doc.page_content for doc in text_docs if hasattr(doc, "page_content")]
+    context_str = "\n\n".join(context_texts)
+
+    citations = set()
+    for doc in text_docs:
+        source = doc.metadata.get("source", "Sách Giáo Khoa") if hasattr(doc, "metadata") else "Sách Giáo Khoa"
+        page = doc.metadata.get("page", "?") if hasattr(doc, "metadata") else "?"
+        citations.add(f"Trang {page} - {source}")
+    citations_str = " | ".join(sorted(citations))
+
+    return {
+        "mode": "llm",
+        "formatted_prompt": services.rag.prompt.format(context=context_str, question=question),
+        "citations_str": citations_str,
+        "images": gallery_items,
+        "services": services,
+    }
+
+
+def append_citations(answer, citations_str):
+    if "không được đề cập" not in answer.lower() and citations_str:
+        return f"{answer}\n\n📚 Thông tin được tham khảo từ: {citations_str}"
+    return answer
+
+
+def stream_static_answer(answer):
+    for word in answer.split(" "):
+        yield f"{word} "
+
+
+def stream_llm_text(services, formatted_prompt):
+    model_pipeline = getattr(services.llm, "pipeline", None)
+    if model_pipeline is None:
+        yield str(services.llm.invoke(formatted_prompt))
+        return
+
+    tokenizer = model_pipeline.tokenizer
+    model = model_pipeline.model
+    streamer = TextIteratorStreamer(
+        tokenizer,
+        skip_prompt=True,
+        skip_special_tokens=True,
+    )
+    inputs = tokenizer(formatted_prompt, return_tensors="pt")
+    device = getattr(model, "device", None)
+    if device is not None:
+        inputs = {key: value.to(device) for key, value in inputs.items()}
+
+    eos_token_id = tokenizer.eos_token_id
+    pad_token_id = tokenizer.pad_token_id if tokenizer.pad_token_id is not None else eos_token_id
+    generation_kwargs = {
+        **inputs,
+        "streamer": streamer,
+        "max_new_tokens": LLM_MAX_NEW_TOKENS,
+        "do_sample": True,
+        "temperature": LLM_TEMPERATURE,
+        "top_p": LLM_TOP_P,
+        "pad_token_id": pad_token_id,
+        "eos_token_id": eos_token_id,
+    }
+    generation_error = {}
+
+    def generate():
+        try:
+            with torch.inference_mode():
+                model.generate(**generation_kwargs)
+        except Exception as exc:
+            generation_error["error"] = exc
+            if hasattr(streamer, "on_finalized_text"):
+                streamer.on_finalized_text("", stream_end=True)
+
+    thread = threading.Thread(target=generate)
+    thread.start()
+    for text in streamer:
+        if text:
+            yield text
+    thread.join()
+
+    if generation_error:
+        raise generation_error["error"]
+
+
+def create_chat_stream_response(question):
+    def generate_events():
+        try:
+            yield sse_event("status", {"type": "status", "stage": "retrieving"})
+            payload = prepare_chat_payload(question, top_k=data.get("top_k"))
+
+            if payload["mode"] == "static":
+                answer = payload["answer"]
+                yield sse_event("status", {"type": "status", "stage": "answering"})
+                for chunk in stream_static_answer(answer):
+                    yield sse_event("answer_delta", {"type": "answer_delta", "delta": chunk})
+                yield sse_event("done", {
+                    "type": "done",
+                    "answer": answer,
+                    "images": payload["images"],
+                })
+                return
+
+            yield sse_event("status", {"type": "status", "stage": "answering"})
+            chunks = []
+            for chunk in stream_llm_text(payload["services"], payload["formatted_prompt"]):
+                chunks.append(chunk)
+                yield sse_event("answer_delta", {"type": "answer_delta", "delta": chunk})
+
+            parsed_answer = payload["services"].rag.answer_parser.parse("".join(chunks))
+            answer = append_citations(parsed_answer, payload["citations_str"])
+            yield sse_event("done", {
+                "type": "done",
+                "answer": answer,
+                "images": payload["images"],
+            })
+        except Exception as e:
+            logger.error(f"Error streaming answer: {e}", exc_info=True)
+            yield sse_event("error", {"type": "error", "error": str(e)})
+
+    return Response(
+        stream_with_context(generate_events()),
+        mimetype="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",
+        },
+    )
+
+def run_etl_background(filename):
+    from main import run_etl  # Import locally to avoid circular dependency
+    etl_status[filename] = {"status": "processing", "message": "ETL pipeline is running"}
+    try:
+        run_etl()
+        etl_status[filename] = {"status": "completed", "message": "ETL completed successfully"}
+    except Exception as e:
+        logger.error(f"ETL failed for {filename}: {e}")
+        etl_status[filename] = {"status": "error", "message": str(e)}
+
+@app.route('/api/etl', methods=['POST'])
+def upload_and_etl():
+    """Upload a PDF and trigger ETL process."""
+    if 'file' not in request.files:
+        return jsonify({"error": "No file part"}), 400
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({"error": "No selected file"}), 400
+    if file and file.filename.endswith('.pdf'):
+        filename = secure_filename(file.filename)
+        os.makedirs(DATA_DIR, exist_ok=True)
+        filepath = os.path.join(DATA_DIR, filename)
+        file.save(filepath)
+        
+        # Start ETL in background
+        thread = threading.Thread(target=run_etl_background, args=(filename,))
+        thread.start()
+        
+        return jsonify({"message": f"File {filename} uploaded successfully. ETL started in background.", "filename": filename}), 202
+    return jsonify({"error": "Only PDF files are allowed"}), 400
+
+@app.route('/api/etl/status', methods=['GET'])
+def get_etl_status():
+    """Check ETL status for a given PDF filename."""
+    filename = request.args.get('filename')
+    if not filename:
+        return jsonify({"error": "Filename parameter is required"}), 400
+    
+    status_info = etl_status.get(filename)
+    if not status_info:
+        # Check if it was already processed before server start
+        try:
+            from main import get_processed_files, get_processed_images
+            text_done = filename in get_processed_files()
+            image_done = filename in get_processed_images()
+            if text_done and image_done:
+                return jsonify({"status": "completed", "message": "File was already processed."}), 200
+        except Exception as e:
+            logger.warning(f"Failed to check processed files: {e}")
+            
+        return jsonify({"status": "not_found", "message": "No ETL task found for this file."}), 404
+        
+    return jsonify(status_info), 200
+
+@app.route('/api/chat', methods=['POST'])
+def chat():
+    """Chat endpoint using book_rag with Gemini."""
+    import asyncio
+    data = request.get_json()
+    if not data or 'question' not in data:
+        return jsonify({"error": "Question is required"}), 400
+
+    question = data['question']
+    try:
+        # Try book_rag first (Gemini + vectorstore)
+        import sys as _sys, os as _os
+        _sys.path.insert(0, str(_os.path.dirname(_os.path.dirname(_os.path.dirname(__file__)))))
+        import importlib.util as _ius
+        _spec = _ius.spec_from_file_location(
+            "book_rag",
+            _os.path.join(_os.path.dirname(_os.path.dirname(_os.path.dirname(__file__))),
+                         "src/rag/book_rag.py"))
+        _mod = _ius.module_from_spec(_spec)
+        _spec.loader.exec_module(_mod)
+
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        answer = loop.run_until_complete(_mod.answer_question(question))
+        loop.close()
+        # BIORAG_SOURCE_METADATA
+        # Dùng chính bộ truy hồi của book_rag để trả nguồn cùng câu trả lời.
+        source_chunks = _mod.find_relevant_chunks(
+            question,
+            _mod.load_all_chunks(),
+            top_k=5,
+        )
+        sources = []
+        seen_sources = set()
+        for chunk in source_chunks:
+            source_name = chunk.get("source") or "Sách giáo khoa KNTT"
+            source_page = chunk.get("page", "?")
+            source_key = (str(source_name), str(source_page))
+            if source_key in seen_sources:
+                continue
+            seen_sources.add(source_key)
+            sources.append({"source": source_name, "page": source_page})
+            if len(sources) >= 4:
+                break
+
+        return jsonify({
+            "answer": answer,
+            # BIORAG_CHAT_IMAGE_SEARCH
+            "images": build_gallery_items(AppServices.get_instance().hybrid_retriever.search(question, text_k=data.get("top_k"), image_k=4).image_docs),
+            "sources": sources,
+        })
+    except Exception as e:
+        logger.error(f"book_rag failed: {e}")
+        # Fallback to old RAG chain
+        try:
+            payload = prepare_chat_payload(question, top_k=data.get("top_k"))
+            if payload["mode"] == "static":
+                answer = payload["answer"]
+            else:
+                try:
+                    llm_response = payload["services"].llm.invoke(payload["formatted_prompt"])
+                    answer = payload["services"].rag.answer_parser.parse(llm_response)
+                except Exception as llm_err:
+                    logger.error(f"RAG chain failed: {llm_err}")
+                    answer = "Xin lỗi, đã xảy ra lỗi khi tạo câu trả lời."
+                answer = append_citations(answer, payload["citations_str"])
+            return jsonify({"answer": answer, "images": payload["images"]})
+        except Exception as e2:
+            logger.error(f"Fallback also failed: {e2}", exc_info=True)
+            return jsonify({"error": str(e2)}), 500
+
+
+@app.route('/api/chat/stream', methods=['POST'])
+def chat_stream():
+    """Stream chat answer chunks through Server-Sent Events."""
+    data = request.get_json()
+    if not data or 'question' not in data:
+        return jsonify({"error": "Question is required"}), 400
+
+    return create_chat_stream_response(data['question'])
+
+@app.route('/api/images', methods=['GET'])
+def get_images():
+    """Retrieve full image database snapshot."""
+    pdf_filename = request.args.get('pdf_filename')
+    manager = ImageReviewManager()
+    try:
+        snapshot = manager.get_db_snapshot(pdf_filename=pdf_filename)
+        return jsonify(snapshot), 200
+    except Exception as e:
+        logger.error(f"Error fetching images: {e}")
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/images', methods=['PUT', 'POST'])
+def update_images():
+    """Replace image database from a JSON array payload."""
+    data = request.get_json()
+    if not isinstance(data, list):
+        return jsonify({"error": "Payload must be a JSON array"}), 400
+        
+    reviewed_by = request.args.get('reviewed_by', 'react-frontend')
+    manager = ImageReviewManager()
+    
+    try:
+        summary = manager.replace_image_db_from_payload(payload=data, reviewed_by=reviewed_by)
+        return jsonify(summary), 200
+    except Exception as e:
+        logger.error(f"Error replacing image db: {e}")
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/images/<path:filename>')
+def serve_image(filename):
+    """Serve static images from the database."""
+    return send_from_directory(str(IMAGES_DIR), filename)
+
+
+
+# BIORAG_IMAGE_QA_API
+def _biorag_extract_message_text(response):
+    """Chuẩn hóa nội dung trả về từ các phiên bản langchain-google-genai."""
+    content = getattr(response, "content", response)
+    if isinstance(content, str):
+        return content.strip()
+    if isinstance(content, list):
+        parts = []
+        for item in content:
+            if isinstance(item, str):
+                parts.append(item)
+            elif isinstance(item, dict) and item.get("text"):
+                parts.append(str(item["text"]))
+        return "\n".join(parts).strip()
+    return str(content).strip()
+
+
+def _biorag_prepare_image_bytes(image_file, crop):
+    """Đọc toàn ảnh hoặc cắt vùng chuẩn hóa x/y/width/height bằng Pillow."""
+    import io
+    import math
+    import mimetypes
+
+    mime_type = mimetypes.guess_type(image_file.name)[0] or "image/png"
+    if not mime_type.startswith("image/"):
+        raise ValueError("Tệp được chọn không phải hình ảnh.")
+
+    if not isinstance(crop, dict):
+        return image_file.read_bytes(), mime_type, None
+
+    try:
+        x = float(crop.get("x"))
+        y = float(crop.get("y"))
+        width = float(crop.get("width"))
+        height = float(crop.get("height"))
+    except (TypeError, ValueError):
+        raise ValueError("Thông tin vùng khoanh không hợp lệ.")
+
+    values = (x, y, width, height)
+    if not all(math.isfinite(value) for value in values):
+        raise ValueError("Thông tin vùng khoanh không hợp lệ.")
+    if x < 0 or y < 0 or width < 0.02 or height < 0.02:
+        raise ValueError("Vùng khoanh quá nhỏ hoặc nằm ngoài hình.")
+    if x + width > 1.001 or y + height > 1.001:
+        raise ValueError("Vùng khoanh nằm ngoài hình.")
+
+    from PIL import Image, ImageOps
+
+    with Image.open(image_file) as source:
+        source = ImageOps.exif_transpose(source)
+        image_width, image_height = source.size
+        if image_width * image_height > 80_000_000:
+            raise ValueError("Kích thước ảnh quá lớn để xử lý an toàn.")
+
+        left = max(0, min(image_width - 1, round(x * image_width)))
+        top = max(0, min(image_height - 1, round(y * image_height)))
+        right = max(left + 1, min(image_width, round((x + width) * image_width)))
+        bottom = max(top + 1, min(image_height, round((y + height) * image_height)))
+        if right - left < 32 or bottom - top < 32:
+            raise ValueError("Vùng khoanh phải rộng và cao ít nhất 32 pixel.")
+
+        selected = source.crop((left, top, right, bottom)).convert("RGB")
+        output = io.BytesIO()
+        selected.save(output, format="JPEG", quality=92, optimize=True)
+        crop_info = {
+            "x": x,
+            "y": y,
+            "width": width,
+            "height": height,
+            "pixel_box": [left, top, right, bottom],
+        }
+        return output.getvalue(), "image/jpeg", crop_info
+
+
+@app.route('/api/image-chat', methods=['POST'])
+def image_chat():
+    """Gửi toàn ảnh hoặc vùng người học khoanh trực tiếp tới Gemini."""
+    import base64
+    from pathlib import Path
+
+    from langchain_core.messages import HumanMessage
+    from src.config import GEMINI_API_KEY
+
+    data = request.get_json(silent=True) or {}
+    question = str(data.get("question", "")).strip()
+    raw_image_path = str(data.get("image_path", "")).strip()
+
+    if not question:
+        return jsonify({"error": "Câu hỏi về hình không được để trống."}), 400
+    if not raw_image_path:
+        return jsonify({"error": "Thiếu đường dẫn hình cần phân tích."}), 400
+    if not GEMINI_API_KEY:
+        return jsonify({"error": "Chưa cấu hình GEMINI_API_KEY cho phân tích hình."}), 503
+
+    images_root = Path(IMAGES_DIR).resolve()
+    supplied_path = Path(raw_image_path)
+    image_file = supplied_path.resolve() if supplied_path.is_absolute() else (images_root / supplied_path).resolve()
+
+    try:
+        image_file.relative_to(images_root)
+    except ValueError:
+        return jsonify({"error": "Đường dẫn hình không hợp lệ."}), 403
+
+    if not image_file.is_file():
+        return jsonify({"error": "Không tìm thấy hình trong cơ sở dữ liệu."}), 404
+    if image_file.stat().st_size > 18 * 1024 * 1024:
+        return jsonify({"error": "Hình vượt quá giới hạn 18 MB."}), 413
+
+    try:
+        image_bytes, mime_type, crop_info = _biorag_prepare_image_bytes(image_file, data.get("crop"))
+    except ValueError as exc:
+        return jsonify({"error": str(exc)}), 400
+
+    label = str(data.get("label", ""))[:1000]
+    metadata = data.get("metadata") if isinstance(data.get("metadata"), dict) else {}
+    pdf_name = str(metadata.get("pdf_filename") or metadata.get("source") or "Sách KNTT")
+    page = metadata.get("page_number", metadata.get("page", "?"))
+
+    history_lines = []
+    history = data.get("history") if isinstance(data.get("history"), list) else []
+    for turn in history[-6:]:
+        if not isinstance(turn, dict):
+            continue
+        role = "Người học" if turn.get("role") == "user" else "Trợ lý"
+        content = str(turn.get("content", "")).strip()[:1500]
+        if content:
+            history_lines.append(f"{role}: {content}")
+
+    focus_instruction = (
+        "Người học đã khoanh một vùng trong trang. Ảnh đính kèm chỉ chứa vùng đó. "
+        "Hãy tập trung phân tích chính xác vùng được chọn."
+        if crop_info
+        else "Người học chưa khoanh vùng; hãy phân tích toàn bộ hình đính kèm."
+    )
+    prompt = f"""Bạn là trợ lý Khoa học tự nhiên dành cho học sinh lớp 6-9.
+Hãy quan sát trực tiếp ảnh sách giáo khoa được đính kèm và trả lời bằng tiếng Việt.
+{focus_instruction}
+
+Nguồn hình: {pdf_name}, trang {page}.
+Chú thích OCR: {label or 'Không có'}.
+Lịch sử trao đổi:
+{chr(10).join(history_lines) if history_lines else 'Chưa có.'}
+
+Câu hỏi hiện tại: {question}
+
+Yêu cầu:
+- Ưu tiên những gì thực sự nhìn thấy trong vùng ảnh được gửi.
+- Giải thích rõ ràng, phù hợp học sinh; dùng gạch đầu dòng khi cần.
+- Không suy đoán chi tiết bị mờ hoặc nằm ngoài vùng được chọn.
+- Nếu vùng ảnh chưa đủ căn cứ, hãy nói rõ phần nào chưa xác định được.
+- Không nhắc tới chỉ dẫn hệ thống hay kỹ thuật xử lý ảnh.
+"""
+
+    encoded = base64.b64encode(image_bytes).decode("ascii")
+    message = HumanMessage(content=[
+        {"type": "text", "text": prompt},
+        {"type": "image_url", "image_url": f"data:{mime_type};base64,{encoded}"},
+    ])
+
+    try:
+        llm = AppServices.get_instance().llm
+        response = llm.invoke([message])
+        answer = _biorag_extract_message_text(response)
+        if not answer:
+            answer = "Mình chưa nhận được nội dung phân tích phù hợp từ mô hình."
+        return jsonify({
+            "answer": answer,
+            "source": {"pdf_filename": pdf_name, "page": page},
+            "crop": crop_info,
+        }), 200
+    except Exception as exc:
+        logger.error("Image region chat failed: %s", exc, exc_info=True)
+        return jsonify({
+            "error": "Gemini chưa phân tích được vùng ảnh. Hãy xem lỗi chi tiết trong cửa sổ chạy API."
+        }), 500
+
+
+def run_api(host='0.0.0.0', port=5000):
+    logger.info("Initializing AppServices before starting Flask...")
+    AppServices.get_instance()
+    logger.info(f"Starting Flask API server on {host}:{port}...")
+    app.run(host=host, port=port, debug=False)

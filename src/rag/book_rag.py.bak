@@ -1,0 +1,73 @@
+STOP_WORDS = {
+    "la", "gi", "tai", "sao", "nhu", "the", "nao",
+    "hay", "cho", "biet", "duoc", "mot", "cac",
+    "va", "cua", "trong", "voi", "ve"
+}
+
+
+def normalize_text(text: str) -> str:
+    """Bỏ dấu, chuyển chữ thường và chuẩn hóa ký tự."""
+    text = no_accent(text.lower())
+    text = re.sub(r"[^a-z0-9]+", " ", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def find_relevant_chunks(
+    question: str,
+    chunks: list,
+    top_k: int = 10
+) -> list[dict]:
+    """
+    Tìm kiếm từ khóa có xét:
+    - Cụm từ đầy đủ
+    - Cặp từ liên tiếp
+    - Từ nguyên vẹn, không khớp nhầm 'sac' với 'sach'
+    """
+    question_normalized = normalize_text(question)
+
+    question_words = [
+        word for word in question_normalized.split()
+        if len(word) > 1 and word not in STOP_WORDS
+    ]
+
+    if not question_words:
+        return []
+
+    important_phrase = " ".join(question_words)
+
+    bigrams = [
+        f"{question_words[i]} {question_words[i + 1]}"
+        for i in range(len(question_words) - 1)
+    ]
+
+    ranked_chunks = []
+
+    for chunk in chunks:
+        text_normalized = normalize_text(chunk["text"])
+        text_words = set(text_normalized.split())
+
+        score = 0
+
+        # Ưu tiên rất cao khi có toàn bộ cụm từ
+        if important_phrase and important_phrase in text_normalized:
+            score += 200
+
+        # Ưu tiên các cụm hai từ: "tán sắc", "ánh sáng"
+        for bigram in bigrams:
+            if bigram in text_normalized:
+                score += 40
+
+        # Chỉ so sánh từ nguyên vẹn
+        matched_words = sum(
+            1 for word in question_words
+            if word in text_words
+        )
+        score += matched_words * 10
+
+        # Phải khớp ít nhất hai từ quan trọng
+        if score > 0 and (matched_words >= 2 or important_phrase in text_normalized):
+            ranked_chunks.append((score, chunk))
+
+    ranked_chunks.sort(key=lambda item: item[0], reverse=True)
+
+    return [chunk for _, chunk in ranked_chunks[:top_k]]
