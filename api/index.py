@@ -99,6 +99,13 @@ def proxy_to_backend(path):
 # API ROUTES
 # =========================================================================
 @app.route("/", methods=["GET"])
+@app.route("/index.html", methods=["GET"])
+def serve_index():
+    index_file = BASE_DIR / "index.html"
+    if index_file.exists():
+        return send_file(str(index_file), mimetype="text/html")
+    return "<h1>BioRAG - TRƯỜNG THCS HUỲNH BÁ CHÁNH</h1>", 200
+
 @app.route("/api/health", methods=["GET"])
 def health():
     return jsonify({
@@ -107,6 +114,22 @@ def health():
         "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH",
         "backend_proxy": bool(BACKEND_URL)
     })
+
+@app.route("/assets/three/<path:filename>")
+@app.route("/web_assets/three/<path:filename>")
+def serve_three_assets(filename):
+    f = BASE_DIR / "web_assets" / "three" / filename
+    if f.exists():
+        return send_file(str(f), mimetype="application/javascript")
+    return jsonify({"error": "not found"}), 404
+
+@app.route("/assets/pdfjs/<path:filename>")
+@app.route("/web_assets/pdfjs/<path:filename>")
+def serve_pdfjs_assets(filename):
+    f = BASE_DIR / "web_assets" / "pdfjs" / filename
+    if f.exists():
+        return send_file(str(f))
+    return jsonify({"error": "not found"}), 404
 
 # 1. LAB EXPERIMENTS
 @app.route("/api/lab/experiments", methods=["GET"])

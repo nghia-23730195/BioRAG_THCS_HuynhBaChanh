@@ -2,20 +2,8 @@
   "version": 2,
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/index.py"
-    },
-    {
-      "source": "/assets/pdfjs/(.*)",
-      "destination": "/web_assets/pdfjs/$1"
-    },
-    {
-      "source": "/assets/three/(.*)",
-      "destination": "/web_assets/three/$1"
-    },
-    {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/api/index.py"
     }
   ]
 }
