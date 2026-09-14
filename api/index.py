@@ -4,12 +4,12 @@
 Optimized for Vercel Serverless environment:
 - Ultra-lightweight (pure Python & standard libs, no heavy PyTorch/CUDA)
 - Sub-second cold starts
+- Self-contained imports and bundled lesson data (195 lessons for KHTN 6, 7, 8, 9)
 - Robust WSGI path routing that handles Vercel internal rewrites seamlessly
 - 100% JSON API responses (never serves unexpected HTML for API requests)
 - Full Curated Quiz Bank (Grades 6, 7, 8, 9)
 - Full 3D Science Lab Experiments & Docx Report Generator
 - Full Exam 3280 Matrix/Specification Generator & Docx Exporter
-- Full Learning Lesson Catalog
 - Grounded AI Chat with Gemini API
 """
 
@@ -22,10 +22,12 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlencode
 from flask import Flask, request, jsonify, send_file, Response
 
-# Add project root to sys.path
+# Add project root and local directories to sys.path
 BASE_DIR = Path(__file__).resolve().parent.parent
-if str(BASE_DIR) not in sys.path:
-    sys.path.insert(0, str(BASE_DIR))
+current_dir = Path(__file__).resolve().parent
+for p in [current_dir, BASE_DIR, Path.cwd(), Path("/var/task")]:
+    if p.exists() and str(p) not in sys.path:
+        sys.path.insert(0, str(p))
 
 # Load .env if present
 try:
@@ -112,53 +114,102 @@ def handle_500(e):
     }), 500
 
 # =========================================================================
-# IMPORTS FROM APPLICATION CORE
+# IMPORTS: SELF-CONTAINED WITH FAIL-SAFE FALLBACKS
 # =========================================================================
+# 1. Curated Quizzes
 try:
-    from src.app.curated_quizzes import get_curated_exams_by_grade, get_curated_exam_by_id, CURATED_EXAM_BANK
-except Exception as exc:
-    print(f"Curated quiz import error: {exc}")
-    get_curated_exams_by_grade = lambda g=None: []
-    get_curated_exam_by_id = lambda x: None
-    CURATED_EXAM_BANK = []
+    from api._curated_quizzes import get_curated_exams_by_grade, get_curated_exam_by_id, CURATED_EXAM_BANK
+except Exception:
+    try:
+        from src.app.curated_quizzes import get_curated_exams_by_grade, get_curated_exam_by_id, CURATED_EXAM_BANK
+    except Exception as exc:
+        print(f"Curated quiz import error: {exc}")
+        get_curated_exams_by_grade = lambda g=None: []
+        get_curated_exam_by_id = lambda x: None
+        CURATED_EXAM_BANK = []
 
+# 2. Exam 3280 Builder
 try:
-    from src.app.exam_3280_builder import build_exam_package_3280_bytes, lesson_to_exam_data
-except Exception as exc:
-    print(f"Exam 3280 builder import error: {exc}")
-    lesson_to_exam_data = None
-    build_exam_package_3280_bytes = None
+    from api._exam_3280_builder import build_exam_package_3280_bytes, lesson_to_exam_data
+except Exception:
+    try:
+        from src.app.exam_3280_builder import build_exam_package_3280_bytes, lesson_to_exam_data
+    except Exception as exc:
+        print(f"Exam 3280 builder import error: {exc}")
+        lesson_to_exam_data = None
+        build_exam_package_3280_bytes = None
 
+# 3. Science Experiments (3D Lab)
 try:
-    from src.app.science_experiments import EXPERIMENT_CATALOG, list_experiments, get_experiment_by_id, generate_lab_report_docx
-except Exception as exc:
-    print(f"Science experiments import error: {exc}")
-    EXPERIMENT_CATALOG = []
-    list_experiments = lambda *args, **kwargs: []
-    get_experiment_by_id = lambda x: None
-    generate_lab_report_docx = None
+    from api._science_experiments import EXPERIMENT_CATALOG, list_experiments, get_experiment_by_id, generate_lab_report_docx
+except Exception:
+    try:
+        from src.app.science_experiments import EXPERIMENT_CATALOG, list_experiments, get_experiment_by_id, generate_lab_report_docx
+    except Exception as exc:
+        print(f"Science experiments import error: {exc}")
+        EXPERIMENT_CATALOG = []
+        list_experiments = lambda *args, **kwargs: []
+        get_experiment_by_id = lambda x: None
+        generate_lab_report_docx = None
 
+# 4. Exam Upload Parser
 try:
-    from src.app.learning_catalog import list_lessons
-    def get_lesson_by_id(lesson_id):
-        try:
-            for l in list_lessons():
-                if l.get("id") == lesson_id:
-                    return l
-        except Exception:
-            pass
-        return None
-except Exception as exc:
-    print(f"Learning catalog import error: {exc}")
-    list_lessons = lambda: []
-    get_lesson_by_id = lambda x: None
+    from api._exam_upload_parser import extract_text_from_docx, parse_exam_text
+except Exception:
+    try:
+        from src.app.exam_upload_parser import extract_text_from_docx, parse_exam_text
+    except Exception as exc:
+        print(f"Exam parser import error: {exc}")
+        extract_text_from_docx = None
+        parse_exam_text = None
 
-try:
-    from src.app.exam_upload_parser import extract_text_from_docx, parse_exam_text
-except Exception as exc:
-    print(f"Exam parser import error: {exc}")
-    extract_text_from_docx = None
-    parse_exam_text = None
+# =========================================================================
+# LEARNING LESSONS BUNDLE (195 LESSONS FOR GRADES 6, 7, 8, 9)
+# =========================================================================
+LESSONS_CACHE = None
+
+def get_all_lessons(grade=None):
+    global LESSONS_CACHE
+    if LESSONS_CACHE is None:
+        data_candidates = [
+            Path(__file__).resolve().parent / "data" / "learning_lessons.json",
+            BASE_DIR / "src" / "app" / "data" / "learning_lessons.json",
+            BASE_DIR / "database_kntt" / "learning_lessons.json",
+            Path.cwd() / "api" / "data" / "learning_lessons.json",
+        ]
+        for dp in data_candidates:
+            if dp.exists():
+                try:
+                    with open(dp, "r", encoding="utf-8-sig") as f:
+                        d = json.load(f)
+                        raw_list = d.get("lessons", [])
+                        if raw_list:
+                            raw_list.sort(key=lambda x: (int(x.get("grade") or 0), int(x.get("order") or 0), x.get("title") or ""))
+                            LESSONS_CACHE = raw_list
+                            break
+                except Exception as e:
+                    print(f"Error reading lessons from {dp}: {e}")
+        if LESSONS_CACHE is None:
+            # Fallback to learning_catalog if available
+            try:
+                from src.app.learning_catalog import list_lessons
+                LESSONS_CACHE = list_lessons()
+            except Exception:
+                LESSONS_CACHE = []
+
+    if grade is None:
+        return LESSONS_CACHE
+    try:
+        g = int(grade)
+        return [item for item in LESSONS_CACHE if int(item.get("grade") or 0) == g]
+    except Exception:
+        return LESSONS_CACHE
+
+def get_lesson_by_id(lesson_id):
+    for l in get_all_lessons():
+        if l.get("id") == lesson_id:
+            return l
+    return None
 
 BACKEND_URL = os.environ.get("BACKEND_URL", "").strip().rstrip("/")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY") or ""
@@ -197,7 +248,7 @@ def proxy_to_backend(path):
         return None
 
 # =========================================================================
-# ROOT & HEALTH CHECK ENDPOINTS
+# ROOT, HEALTH & DIAGNOSTIC ENDPOINTS
 # =========================================================================
 @app.route("/", methods=["GET"])
 @app.route("/api", methods=["GET"])
@@ -210,11 +261,55 @@ def health():
         "service": "BioRAG Vercel Serverless",
         "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH",
         "backend_proxy": bool(BACKEND_URL),
-        "version": "2.0.0"
+        "lessons_available": len(get_all_lessons()),
+        "exams_available": len(CURATED_EXAM_BANK),
+        "experiments_available": len(EXPERIMENT_CATALOG),
+        "version": "2.1.0"
+    })
+
+@app.route("/api/debug", methods=["GET"])
+@app.route("/debug", methods=["GET"])
+def api_debug():
+    return jsonify({
+        "status": "ok",
+        "lessons_count": len(get_all_lessons()),
+        "curated_exams_count": len(CURATED_EXAM_BANK),
+        "experiments_count": len(EXPERIMENT_CATALOG),
+        "exam_builder": bool(lesson_to_exam_data and build_exam_package_3280_bytes),
+        "file": str(Path(__file__).resolve()),
+        "cwd": str(Path.cwd()),
+        "sys_path": sys.path[:5]
     })
 
 # =========================================================================
-# 1. QUIZ BANK (CURATED QUESTIONS & EXAMS)
+# 1. LEARNING LESSONS (195 LESSONS FOR GRADES 6, 7, 8, 9)
+# =========================================================================
+@app.route("/api/learning/lessons", methods=["GET"])
+@app.route("/learning/lessons", methods=["GET"])
+def api_learning_lessons():
+    res = proxy_to_backend("api/learning/lessons")
+    if res: return res
+    grade = request.args.get("grade")
+    lessons = get_all_lessons(grade)
+    return jsonify({"lessons": lessons, "total": len(lessons)})
+
+@app.route("/api/learning/lessons/<lesson_id>/study-aids", methods=["GET"])
+@app.route("/learning/lessons/<lesson_id>/study-aids", methods=["GET"])
+def api_lesson_study_aids(lesson_id):
+    res = proxy_to_backend(f"api/learning/lessons/{lesson_id}/study-aids")
+    if res: return res
+    lesson = get_lesson_by_id(lesson_id)
+    if not lesson:
+        return jsonify({"error": "Không tìm thấy bài học"}), 404
+    return jsonify({
+        "lesson_id": lesson_id,
+        "title": lesson.get("title", ""),
+        "summary": lesson.get("summary", "") or lesson.get("content", ""),
+        "key_concepts": lesson.get("key_concepts", []) or lesson.get("objectives", [])
+    })
+
+# =========================================================================
+# 2. QUIZ BANK (CURATED QUESTIONS & EXAMS)
 # =========================================================================
 @app.route("/api/quiz/bank", methods=["GET"])
 @app.route("/quiz/bank", methods=["GET"])
@@ -230,7 +325,10 @@ def api_quiz_bank():
         exams = get_curated_exams_by_grade(grade) if callable(get_curated_exams_by_grade) else []
     except Exception as exc:
         print(f"Error fetching curated exams: {exc}")
-        exams = []
+        exams = [e for e in CURATED_EXAM_BANK if grade is None or e.get("grade") == grade]
+
+    if not exams and CURATED_EXAM_BANK:
+        exams = [e for e in CURATED_EXAM_BANK if grade is None or e.get("grade") == grade]
 
     result = []
     for e in exams:
@@ -259,17 +357,25 @@ def api_quiz_bank_detail(exam_id):
     res = proxy_to_backend(f"api/quiz/bank/{exam_id}")
     if res: return res
 
-    try:
-        exam = get_curated_exam_by_id(exam_id) if callable(get_curated_exam_by_id) else None
-    except Exception:
-        exam = None
+    exam = None
+    if callable(get_curated_exam_by_id):
+        try:
+            exam = get_curated_exam_by_id(exam_id)
+        except Exception:
+            pass
+
+    if not exam and CURATED_EXAM_BANK:
+        for e in CURATED_EXAM_BANK:
+            if e.get("id") == exam_id:
+                exam = e
+                break
 
     if not exam:
         return jsonify({"error": f"Không tìm thấy đề thi với mã: {exam_id}"}), 404
     return jsonify(exam)
 
 # =========================================================================
-# 2. QUIZ UPLOAD, GENERATE & ANALYZE
+# 3. QUIZ UPLOAD, GENERATE & ANALYZE
 # =========================================================================
 @app.route("/api/quiz/upload", methods=["POST", "OPTIONS"])
 @app.route("/quiz/upload", methods=["POST", "OPTIONS"])
@@ -381,32 +487,6 @@ def api_quiz_analyze():
     })
 
 # =========================================================================
-# 3. LEARNING LESSONS & CATALOG
-# =========================================================================
-@app.route("/api/learning/lessons", methods=["GET"])
-@app.route("/learning/lessons", methods=["GET"])
-def api_learning_lessons():
-    res = proxy_to_backend("api/learning/lessons")
-    if res: return res
-    lessons = list_lessons() if callable(list_lessons) else []
-    return jsonify({"lessons": lessons, "total": len(lessons)})
-
-@app.route("/api/learning/lessons/<lesson_id>/study-aids", methods=["GET"])
-@app.route("/learning/lessons/<lesson_id>/study-aids", methods=["GET"])
-def api_lesson_study_aids(lesson_id):
-    res = proxy_to_backend(f"api/learning/lessons/{lesson_id}/study-aids")
-    if res: return res
-    lesson = get_lesson_by_id(lesson_id) if callable(get_lesson_by_id) else None
-    if not lesson:
-        return jsonify({"error": "Không tìm thấy bài học"}), 404
-    return jsonify({
-        "lesson_id": lesson_id,
-        "title": lesson.get("title", ""),
-        "summary": lesson.get("summary", ""),
-        "key_concepts": lesson.get("key_concepts", [])
-    })
-
-# =========================================================================
 # 4. SCIENCE EXPERIMENTS (3D LAB)
 # =========================================================================
 @app.route("/api/lab/experiments", methods=["GET"])
@@ -431,6 +511,11 @@ def api_lab_experiment_detail(exp_id):
     res = proxy_to_backend(f"api/lab/experiments/{exp_id}")
     if res: return res
     exp = get_experiment_by_id(exp_id) if callable(get_experiment_by_id) else None
+    if not exp and EXPERIMENT_CATALOG:
+        for item in EXPERIMENT_CATALOG:
+            if item.get("id") == exp_id:
+                exp = item
+                break
     if not exp:
         return jsonify({"error": "Không tìm thấy bài thí nghiệm"}), 404
     return jsonify(exp)
@@ -444,6 +529,11 @@ def api_lab_export_report():
     if not exp_id:
         return jsonify({"error": "Thiếu exp_id"}), 400
     exp = get_experiment_by_id(exp_id) if callable(get_experiment_by_id) else None
+    if not exp and EXPERIMENT_CATALOG:
+        for item in EXPERIMENT_CATALOG:
+            if item.get("id") == exp_id:
+                exp = item
+                break
     student_info = {
         "school": data.get("school_name") or "TRƯỜNG THCS HUỲNH BÁ CHÁNH",
         "student_name": data.get("student_name") or "Học sinh THCS Huỳnh Bá Chánh",
@@ -534,11 +624,11 @@ def api_chat():
 
 Hệ thống đang hoạt động ở chế độ Vercel Serverless.
 Để kích hoạt trí tuệ nhân tạo Gemini phản hồi theo thời gian thực:
-- Hãy cấu hình biến môi trường `GEMINI_API_KEY` trong bảng điều khiển Vercel.
+- Hãy cấu hình biến môi trường `GEMINI_API_KEY` trong bảng điều khiển Vercel Settings > Environment Variables.
 
 **Kiến thức SGK KHTN Lớp {grade} (Kết nối tri thức):**
-- Bài học và đề trắc nghiệm chuẩn đã sẵn sàng trong mục **"Kiểm tra kiến thức"** và **"Học tập"**.
-- Bạn cũng có thể trải nghiệm các mô phỏng tương tác 3D tại mục **"Thí nghiệm ảo"**!"""
+- Danh sách 195 bài học và đề thi chuẩn đã sẵn sàng trong mục **"Kiểm tra kiến thức"** và **"Học tập"**.
+- Các mô phỏng tương tác 3D trực quan đang hoạt động tại mục **"Thí nghiệm ảo"**!"""
         return jsonify({
             "answer": default_answer,
             "sources": [{"title": f"SGK Khoa học Tự nhiên {grade} - KNTT", "page": 1, "source": f"KHTN {grade} KNTT"}],
