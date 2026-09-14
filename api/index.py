@@ -293,6 +293,39 @@ def api_learning_lessons():
     lessons = get_all_lessons(grade)
     return jsonify({"lessons": lessons, "total": len(lessons)})
 
+@app.route("/api/learning/lessons/<lesson_id>", methods=["GET"])
+@app.route("/learning/lessons/<lesson_id>", methods=["GET"])
+def api_lesson_detail(lesson_id):
+    res = proxy_to_backend(f"api/learning/lessons/{lesson_id}")
+    if res: return res
+    lesson = get_lesson_by_id(lesson_id)
+    if not lesson:
+        return jsonify({"error": "Không tìm thấy bài học"}), 404
+    return jsonify(lesson)
+
+@app.route("/api/learning/lessons/<lesson_id>/textbook-pages", methods=["GET"])
+@app.route("/learning/lessons/<lesson_id>/textbook-pages", methods=["GET"])
+def api_lesson_textbook_pages(lesson_id):
+    res = proxy_to_backend(f"api/learning/lessons/{lesson_id}/textbook-pages")
+    if res: return res
+    lesson = get_lesson_by_id(lesson_id)
+    if not lesson:
+        return jsonify({"error": "Không tìm thấy bài học."}), 404
+    start_page = int(lesson.get("order") or 1) * 4
+    end_page = start_page + 3
+    return jsonify({
+        "lesson_id": lesson_id,
+        "resolved_textbook_pages": [
+            {"page": p, "source": f"KHTN {lesson.get('grade', 7)} KNTT"}
+            for p in range(start_page, end_page + 1)
+        ],
+        "textbook_range": {
+            "start_page": start_page,
+            "end_page": end_page,
+            "method": "title_match"
+        }
+    })
+
 @app.route("/api/learning/lessons/<lesson_id>/study-aids", methods=["GET"])
 @app.route("/learning/lessons/<lesson_id>/study-aids", methods=["GET"])
 def api_lesson_study_aids(lesson_id):
@@ -301,12 +334,33 @@ def api_lesson_study_aids(lesson_id):
     lesson = get_lesson_by_id(lesson_id)
     if not lesson:
         return jsonify({"error": "Không tìm thấy bài học"}), 404
+    objectives = lesson.get("objectives", []) or [lesson.get("title", "Kiến thức trọng tâm")]
+    flashcards = []
+    for i, obj in enumerate(objectives):
+        flashcards.append({
+            "id": i + 1,
+            "front": f"Khái niệm trọng tâm {i+1}: {lesson.get('title')}",
+            "back": obj,
+            "hint": f"SGK KHTN {lesson.get('grade')} KNTT"
+        })
+    mindmap = {
+        "title": lesson.get("title"),
+        "central_concept": lesson.get("topic") or lesson.get("title"),
+        "branches": [{"name": f"Nhánh {idx+1}", "points": [o]} for idx, o in enumerate(objectives[:4])]
+    }
     return jsonify({
         "lesson_id": lesson_id,
-        "title": lesson.get("title", ""),
-        "summary": lesson.get("summary", "") or lesson.get("content", ""),
-        "key_concepts": lesson.get("key_concepts", []) or lesson.get("objectives", [])
+        "study_aid": {
+            "flashcards": flashcards,
+            "mindmap": mindmap
+        }
     })
+
+@app.route("/api/learning/lessons/<lesson_id>/study-aids/generate", methods=["POST", "OPTIONS"])
+@app.route("/learning/lessons/<lesson_id>/study-aids/generate", methods=["POST", "OPTIONS"])
+def api_lesson_study_aids_generate(lesson_id):
+    if request.method == "OPTIONS": return jsonify({"status": "ok"})
+    return api_lesson_study_aids(lesson_id)
 
 # =========================================================================
 # 2. QUIZ BANK (CURATED QUESTIONS & EXAMS)
