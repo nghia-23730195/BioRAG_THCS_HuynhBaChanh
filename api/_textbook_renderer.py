@@ -177,34 +177,51 @@ def render_textbook_page_svg(lesson, page, start_page, end_page):
 ''')
     
     para_y = 66
-    svg_parts.append(f'''    <text x="24" y="{para_y}" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0f172a">1. Khái niệm và Hiện tượng Khoa học</text>''')
-    para_y += 24
-    
-    body_lines = wrap_text(content_str, max_chars=74)
-    for line in body_lines[:4]:
-        svg_parts.append(f'''    <text x="24" y="{para_y}" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="400" fill="#334155">{html.escape(line)}</text>''')
-        para_y += 20
+    sections = lesson.get("sections", [])
+    current_sec = None
+    if sections:
+        sec_idx = min(page_index, len(sections) - 1)
+        current_sec = sections[sec_idx]
 
-    para_y += 10
-    svg_parts.append(f'''    <text x="24" y="{para_y}" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0f172a">2. Hoạt động Khám phá &amp; Quan sát</text>''')
+    sec_title = current_sec.get("title", "1. Nội dung trọng tâm bài học") if current_sec else "1. Nội dung trọng tâm bài học"
+    sec_paras = current_sec.get("paragraphs", []) if current_sec else []
+    sec_bullets = current_sec.get("bullets", []) if current_sec else []
+
+    svg_parts.append(f'''    <text x="24" y="{para_y}" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0f172a">{html.escape(sec_title[:75])}</text>''')
     para_y += 24
-    
-    guide_lines = [
-        f"Trong bài học '{title_str}', học sinh quan sát hình ảnh, làm thí nghiệm và rút ra kết luận.",
-        f"Hãy đối chiếu các hiện tượng quan sát được với các định luật khoa học đã học.",
-        f"Thảo luận cùng bạn bè và ghi chép các số liệu hoặc đặc điểm nổi bật vào vở thực hành."
-    ]
-    for gl in guide_lines:
-        for line in wrap_text(gl, max_chars=74):
+
+    if not sec_paras and content_str:
+        sec_paras = [content_str]
+
+    rendered_paras = 0
+    for p in sec_paras:
+        p_lines = wrap_text(p, max_chars=74)
+        for line in p_lines[:3]:
             svg_parts.append(f'''    <text x="24" y="{para_y}" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="400" fill="#334155">{html.escape(line)}</text>''')
             para_y += 20
+        para_y += 6
+        rendered_paras += 1
+        if para_y > 220 or rendered_paras >= 2:
+            break
 
-    para_y += 10
-    svg_parts.append(f'''
-    <rect x="24" y="{para_y}" width="702" height="110" rx="6" fill="{tc['light']}" stroke="{tc['border']}" stroke-dasharray="4,4"/>
-    <text x="375" y="{para_y + 35}" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="{tc['dark']}" text-anchor="middle">🔬 SƠ ĐỒ / HÌNH MINH HỌA BÀI HỌC</text>
-    <text x="375" y="{para_y + 60}" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">Xem chi tiết tại thẻ '✦ Nội dung hỗ trợ' hoặc thẻ '3D Thí nghiệm ảo'</text>
-    <text x="375" y="{para_y + 80}" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="{tc['primary']}" text-anchor="middle">Trường THCS Huỳnh Bá Chánh · Phòng Thí nghiệm Khoa học Tự nhiên</text>
+    if sec_bullets:
+        para_y += 4
+        svg_parts.append(f'''    <text x="24" y="{para_y}" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="{tc['dark']}">Chi tiết và số liệu quan trọng:</text>''')
+        para_y += 20
+        for b in sec_bullets[:2]:
+            b_lines = wrap_text(f"• {b}", max_chars=74)
+            for bl in b_lines[:2]:
+                svg_parts.append(f'''    <text x="24" y="{para_y}" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#334155">{html.escape(bl)}</text>''')
+                para_y += 18
+            if para_y > 280:
+                break
+
+    card_h = min(100, 390 - para_y)
+    if card_h > 40:
+        svg_parts.append(f'''
+    <rect x="24" y="{para_y + 10}" width="702" height="{card_h}" rx="6" fill="{tc['light']}" stroke="{tc['border']}" stroke-dasharray="4,4"/>
+    <text x="375" y="{para_y + 35}" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="{tc['dark']}" text-anchor="middle">🔬 BẢNG DỮ LIỆU &amp; HÌNH MINH HỌA SGK TRANG {page}</text>
+    <text x="375" y="{para_y + 55}" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">Chi tiết đầy đủ tại thẻ '✦ Nội dung hỗ trợ' · Mô phỏng 2D tại '🧪 Thí nghiệm ảo'</text>
 ''')
 
     svg_parts.append('  </g>\n')
@@ -215,17 +232,29 @@ def render_textbook_page_svg(lesson, page, start_page, end_page):
   <g transform="translate(50, 838)">
     <rect x="0" y="0" width="750" height="260" rx="8" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5"/>
     <rect x="18" y="14" width="190" height="24" rx="4" fill="#d97706"/>
-    <text x="26" y="30" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#ffffff">💡 EM CÓ BIẾT &amp; GHI NHỚ</text>
-    
-    <text x="24" y="66" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#92400e">Câu hỏi gợi ý thảo luận:</text>
-    <text x="24" y="88" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#78350f">1. Em hãy nêu ý nghĩa thực tiễn của kiến thức trong bài học này đối với cuộc sống hàng ngày?</text>
-    <text x="24" y="108" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#78350f">2. Vận dụng kiến thức đã học để giải thích một hiện tượng tự nhiên quen thuộc xung quanh em.</text>
-    
-    <line x1="24" y1="130" x2="726" y2="130" stroke="#fde68a" stroke-width="1"/>
-    <text x="24" y="152" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#92400e">Tự đánh giá sau bài học:</text>
-    <text x="38" y="174" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#78350f">☑ Đã đọc và nắm vững các mục tiêu cần đạt của bài học.</text>
-    <text x="38" y="194" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#78350f">☑ Đã hoàn thành các câu hỏi luyện tập và bài tập trắc nghiệm trong BioRAG.</text>
-    <text x="38" y="214" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#78350f">☑ Có thể trình bày lại sơ đồ tư duy tóm tắt kiến thức của bài.</text>
+    <text x="26" y="30" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#ffffff">💡 EM ĐÃ HỌC &amp; GHI NHỚ</text>
+''')
+    sum_y = 66
+    summaries = lesson.get("summary", [])
+    if not summaries:
+        summaries = [
+            f"Nắm vững các khái niệm và hiện tượng khoa học trong bài học {title_str}.",
+            f"Vận dụng kiến thức bài học để giải thích hiện tượng tự nhiên và ứng dụng trong đời sống."
+        ]
+    for s_item in summaries[:3]:
+        s_lines = wrap_text(f"• {s_item}", max_chars=74)
+        for sl in s_lines[:2]:
+            svg_parts.append(f'''    <text x="24" y="{sum_y}" font-family="'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="500" fill="#78350f">{html.escape(sl)}</text>''')
+            sum_y += 18
+        sum_y += 4
+        if sum_y > 170:
+            break
+
+    svg_parts.append(f'''
+    <line x1="24" y1="{max(sum_y, 160)}" x2="726" y2="{max(sum_y, 160)}" stroke="#fde68a" stroke-width="1"/>
+    <text x="24" y="{max(sum_y + 22, 182)}" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#92400e">Mục tiêu củng cố bài học:</text>
+    <text x="38" y="{max(sum_y + 40, 200)}" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#78350f">☑ Nắm chắc khái niệm: Nhấn '✦ Tạo flashcard &amp; Sơ đồ tư duy' ở thẻ bên để tự kiểm tra.</text>
+    <text x="38" y="{max(sum_y + 58, 218)}" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#78350f">☑ Làm bài tập: Nhấn '⚡ Làm bài kiểm tra' hoặc '✓ Câu hỏi luyện tập' để đánh giá năng lực.</text>
   </g>
 ''')
 

@@ -403,31 +403,52 @@ def api_lesson_study_aids_generate(lesson_id):
 # =========================================================================
 # TEXTBOOK VIEWER & PDF ENDPOINTS (SVG & HTML RENDERER FOR VERCEL)
 # =========================================================================
+@app.route("/sgk/<path:filename>", methods=["GET"])
+def serve_sgk_file(filename):
+    import os, re
+    from urllib.parse import unquote
+    clean_name = unquote(os.path.basename(filename)).strip()
+    clean_name = re.sub(r'khtn\s*(\d)', r'KHTN \1', clean_name, flags=re.I)
+    if not clean_name.lower().endswith(".pdf"):
+        clean_name += ".pdf"
+    for folder in [BASE_DIR / "public" / "sgk", BASE_DIR / "datasources" / "sgk"]:
+        fpath = folder / clean_name
+        if fpath.exists():
+            return send_file(fpath, mimetype="application/pdf", as_attachment=False, download_name=fpath.name)
+    return jsonify({"error": "PDF not found", "file": clean_name}), 404
+
+
 @app.route("/api/learning/textbook-page", methods=["GET"])
 @app.route("/learning/textbook-page", methods=["GET"])
 def api_learning_textbook_page():
     res = proxy_to_backend("api/learning/textbook-page")
     if res: return res
     
-    source = request.args.get("source", "")
+    source = request.args.get("source", "").strip()
     page_arg = request.args.get("page", "1")
     try:
         page = int(page_arg)
     except (ValueError, TypeError):
         page = 1
 
+    clean_name = re.sub(r'khtn\s*(\d)', r'KHTN \1', source, flags=re.I)
+    if clean_name and not clean_name.lower().endswith(".pdf"):
+        clean_name += ".pdf"
+
     # Check local PDF if available
-    pdf_path = BASE_DIR / "datasources" / "sgk" / source if source else None
-    if pdf_path and pdf_path.exists():
-        try:
-            import fitz
-            doc = fitz.open(str(pdf_path))
-            p_idx = max(0, min(len(doc) - 1, page - 1))
-            pix = doc[p_idx].get_pixmap(dpi=150)
-            img_bytes = pix.tobytes("png")
-            return Response(img_bytes, mimetype="image/png", headers={"Cache-Control": "public, max-age=86400"})
-        except Exception:
-            pass
+    for folder in [BASE_DIR / "public" / "sgk", BASE_DIR / "datasources" / "sgk"]:
+        pdf_path = folder / clean_name if clean_name else None
+        if pdf_path and pdf_path.exists():
+            try:
+                import fitz
+                doc = fitz.open(str(pdf_path))
+                p_idx = max(0, min(len(doc) - 1, page - 1))
+                pix = doc[p_idx].get_pixmap(dpi=150)
+                img_bytes = pix.tobytes("png")
+                return Response(img_bytes, mimetype="image/png", headers={"Cache-Control": "public, max-age=86400"})
+            except Exception:
+                pass
+            break
 
     # High-quality Vector SVG textbook page
     lessons = get_all_lessons()
@@ -447,17 +468,26 @@ def api_learning_textbook_pdf():
     res = proxy_to_backend("api/learning/textbook-pdf")
     if res: return res
     
-    source = request.args.get("source", "")
+    source = request.args.get("source", "").strip()
     page_arg = request.args.get("page_hint") or request.args.get("page", "1")
     try:
         page = int(page_arg)
     except (ValueError, TypeError):
         page = 1
 
+    clean_name = re.sub(r'khtn\s*(\d)', r'KHTN \1', source, flags=re.I)
+    if clean_name and not clean_name.lower().endswith(".pdf"):
+        clean_name += ".pdf"
+
     # Check local PDF if available
-    pdf_path = BASE_DIR / "datasources" / "sgk" / source if source else None
-    if pdf_path and pdf_path.exists():
-        return send_file(pdf_path, mimetype="application/pdf", as_attachment=False, download_name=pdf_path.name)
+    for folder in [BASE_DIR / "public" / "sgk", BASE_DIR / "datasources" / "sgk"]:
+        pdf_path = folder / clean_name if clean_name else None
+        if pdf_path and pdf_path.exists():
+            return send_file(pdf_path, mimetype="application/pdf", as_attachment=False, download_name=pdf_path.name)
+
+    if clean_name:
+        from urllib.parse import quote
+        return redirect(f"/sgk/{quote(clean_name)}#page={page}")
 
     # Standalone HTML textbook reader
     lessons = get_all_lessons()

@@ -21,6 +21,7 @@ scratch/
 *.log
 *.docx
 *.pdf
+!public/sgk/*.pdf
 test_*.docx
 _BACKUP*/
 

@@ -1519,8 +1519,12 @@
     }
     function selectedLearningLesson(){return learningLessons.find(item=>item.id===selectedLessonId)||learningLessons[0]||null}
     function textbookPageUrl(source,page){return "/api/learning/textbook-page?source="+encodeURIComponent(source)+"&page="+encodeURIComponent(page)}
-    function textbookPdfUrl(source,page){const pageNumber=Math.max(1,Number(page)||1);return "/api/learning/textbook-pdf?source="+
-      encodeURIComponent(source)+"&page_hint="+encodeURIComponent(pageNumber)+"#page="+encodeURIComponent(pageNumber)+"&zoom=page-width"}
+    function textbookPdfUrl(source,page){
+      const pageNumber=Math.max(1,Number(page)||1);
+      let name=String(source||"").trim().replace(/khtn\s*(\d)/i,"KHTN $1");
+      if(!name.toLowerCase().endsWith(".pdf"))name+=".pdf";
+      return "/sgk/"+encodeURIComponent(name)+"#page="+encodeURIComponent(pageNumber)+"&zoom=page-width";
+    }
     function freshTextbookPdfUrl(url){const parts=String(url||"").split("#"),separator=parts[0].includes("?")?"&":"?";
       return parts[0]+separator+"viewer_reload="+Date.now()+"-"+Math.random().toString(16).slice(2)+(parts[1]?"#"+parts.slice(1).join("#"):"")}
     function textbookPagesFromSourceLabel(label){
@@ -1875,10 +1879,10 @@
       }
       async function showPage(page){
         const targetPage=Number(page)||currentPage;
-        if(image){
-          renderImagePage(currentSource,targetPage);
-        }else if(documentRef){
+        if(documentRef&&!currentVirtual){
           await renderCanvasPage(targetPage);
+        }else{
+          renderImagePage(currentSource,targetPage);
         }
       }
       async function openPdf(url,page,source){
@@ -1897,6 +1901,7 @@
           }
           if(!reader.isConnected)return;
           total.textContent="/ "+documentRef.numPages;
+          await renderCanvasPage(currentPage);
         }catch(error){
           console.warn("PDF.js không tải được, tiếp tục dùng bộ kết xuất ảnh máy chủ:",error);
         }
