@@ -54,9 +54,8 @@ def find_lesson_by_source_and_page(lessons, source, page):
         if m:
             s_print = int(m.group(1))
             e_print = int(m.group(2)) if m.group(2) else s_print
-            offset = 2 if grade == 8 else (1 if grade in (6, 7) else 0)
-            s = s_print + offset if grade != 9 else (s_print // 2) + 2
-            e = e_print + offset if grade != 9 else (e_print // 2) + 2
+            s = s_print + 1
+            e = e_print + 1
             if s <= page <= e:
                 return l, s, e
             diff = min(abs(page - s), abs(page - e))

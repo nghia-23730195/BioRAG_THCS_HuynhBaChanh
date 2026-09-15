@@ -328,12 +328,7 @@ def _biorag_textbook_uses_two_page_spreads(pdf_path, hints=None):
 
 def _biorag_lesson_pdf_hints(pdf_path, printed_hints):
     """Đổi số trang in sang trang PDF theo bố cục thật của từng bản sách."""
-    if not _biorag_textbook_uses_two_page_spreads(pdf_path, printed_hints):
-        normalized_name = _biorag_textbook_normalize(Path(pdf_path).name)
-        if normalized_name == "sgk khtn 7 kntt pdf":
-            return sorted({int(page) + 1 for page in printed_hints if int(page) > 0})
-        return list(printed_hints)
-    return sorted({max(1, (int(page) + 4) // 2) for page in printed_hints})
+    return sorted({int(page) + 1 for page in printed_hints if int(page) > 0})
 
 
 def _biorag_estimated_lesson_pdf_hint(lesson, lesson_number, page_count):
@@ -356,19 +351,10 @@ def _biorag_estimated_lesson_pdf_hint(lesson, lesson_number, page_count):
 
 def _biorag_printed_pages_for_pdf_page(pdf_path, pdf_page):
     """Trả về cặp trang in tương ứng để giao diện ghi nhãn rõ ràng."""
-    normalized_name = _biorag_textbook_normalize(Path(pdf_path).name)
-    if not _biorag_textbook_uses_two_page_spreads(pdf_path):
-        if normalized_name in ("sgk khtn 6 kntt pdf", "sgk khtn 7 kntt pdf") and int(pdf_page) > 1:
-            printed = int(pdf_page) - 1
-            return (printed, printed)
-        if normalized_name == "sgk khtn 8 kntt pdf" and int(pdf_page) > 2:
-            printed = int(pdf_page) - 2
-            return (printed, printed)
-        return None
-    start = int(pdf_page) * 2 - 4
-    if start < 1:
-        return None
-    return (start, start + 1)
+    if int(pdf_page) > 1:
+        printed = int(pdf_page) - 1
+        return (printed, printed)
+    return None
 
 
 def _biorag_resolved_textbook_page_row(pdf_path, page):

@@ -364,20 +364,10 @@ def api_lesson_textbook_pages(lesson_id):
     grade = int(lesson.get("grade") or 7)
     source_name = f"SGK KHTN {grade} KNTT.pdf"
 
-    resolved_pages = []
-    for p in range(start_print, end_print + 1):
-        if grade in (6, 7):
-            pdf_p = p + 1
-            resolved_pages.append({"page": pdf_p, "source": source_name, "printed_start": p, "printed_end": p, "virtual": False})
-        elif grade == 8:
-            pdf_p = p + 2
-            resolved_pages.append({"page": pdf_p, "source": source_name, "printed_start": p, "printed_end": p, "virtual": False})
-        elif grade == 9:
-            pdf_p = (p // 2) + 2
-            p1 = (pdf_p - 2) * 2
-            resolved_pages.append({"page": pdf_p, "source": source_name, "printed_start": p1, "printed_end": p1 + 1, "virtual": True})
-        else:
-            resolved_pages.append({"page": p, "source": source_name, "printed_start": p, "printed_end": p, "virtual": False})
+    resolved_pages = [
+        {"page": p + 1, "source": source_name, "printed_start": p, "printed_end": p, "virtual": False}
+        for p in range(start_print, end_print + 1)
+    ]
 
     seen_pages = set()
     final_pages = []
