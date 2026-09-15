@@ -620,7 +620,7 @@ def format_local_rag_answer(question, lesson):
     return "\n".join(lines)
 
 def call_gemini_rest(prompt, api_key):
-    models = ["gemini-3.6-flash", "gemini-2.5-flash", "gemini-1.5-flash"]
+    models = ["gemini-3.1-flash-lite", "gemini-3.5-flash", "gemini-3.6-flash", "gemma-4-26b-a4b-it"]
     for m in models:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={api_key}"
         payload = json.dumps({
@@ -634,8 +634,15 @@ def call_gemini_rest(prompt, api_key):
         try:
             with urllib.request.urlopen(req, timeout=12) as resp:
                 data = json.loads(resp.read().decode("utf-8"))
-                text = data["candidates"][0]["content"]["parts"][0]["text"]
-                return text.strip(), m
-        except Exception as e:
+                candidate = data.get("candidates", [{}])[0]
+                parts = candidate.get("content", {}).get("parts", [])
+                texts = [p.get("text", "") for p in parts if not p.get("thought") and p.get("text")]
+                if not texts:
+                    texts = [p.get("text", "") for p in parts if p.get("text")]
+                text = "\n".join(texts).strip()
+                if text:
+                    return text, m
+        except Exception:
             continue
     return None, None
+
