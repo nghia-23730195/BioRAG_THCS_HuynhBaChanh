@@ -13,12 +13,16 @@ Optimized for Vercel Serverless environment:
 - Grounded AI Chat with Gemini API
 """
 
+import base64
+import hashlib
+import hmac
 import html
 import io
 import json
 import os
 import re
 import sys
+import time
 from pathlib import Path
 from urllib.parse import parse_qs, urlencode
 from flask import Flask, request, jsonify, send_file, Response
@@ -268,6 +272,189 @@ def proxy_to_backend(path):
     except Exception as exc:
         print(f"Proxy error to {target}: {exc}")
         return None
+
+# =========================================================================
+# AUTHENTICATION & USER MANAGEMENT (GIÁO VIÊN & HỌC SINH)
+# =========================================================================
+AUTH_SECRET_KEY = os.environ.get("AUTH_SECRET_KEY") or "biorag_huynh_ba_chanh_khtn_2026_auth_secret"
+TEACHER_PASSWORD = os.environ.get("TEACHER_PASSWORD", "khtn2026@hbc")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "admin2026@hbc")
+
+DEFAULT_CLASSES = [
+    {"grade": 6, "name": "6/1"}, {"grade": 6, "name": "6/2"}, {"grade": 6, "name": "6/3"}, {"grade": 6, "name": "6/4"}, {"grade": 6, "name": "6/5"},
+    {"grade": 7, "name": "7/1"}, {"grade": 7, "name": "7/2"}, {"grade": 7, "name": "7/3"}, {"grade": 7, "name": "7/4"}, {"grade": 7, "name": "7/5"},
+    {"grade": 8, "name": "8/1"}, {"grade": 8, "name": "8/2"}, {"grade": 8, "name": "8/3"}, {"grade": 8, "name": "8/4"}, {"grade": 8, "name": "8/5"},
+    {"grade": 9, "name": "9/1"}, {"grade": 9, "name": "9/2"}, {"grade": 9, "name": "9/3"}, {"grade": 9, "name": "9/4"}, {"grade": 9, "name": "9/5"},
+]
+
+def generate_auth_token(payload: dict) -> str:
+    """Generate tamper-proof HMAC-SHA256 stateless session token."""
+    data = dict(payload)
+    if "exp" not in data:
+        data["exp"] = int(time.time()) + 30 * 86400  # 30 days
+    raw_json = json.dumps(data, separators=(',', ':'), ensure_ascii=False).encode('utf-8')
+    b64 = base64.urlsafe_b64encode(raw_json).decode('utf-8').rstrip('=')
+    sig = hmac.new(AUTH_SECRET_KEY.encode('utf-8'), b64.encode('utf-8'), hashlib.sha256).hexdigest()
+    return f"{b64}.{sig}"
+
+def verify_auth_token(token: str):
+    """Verify and decode token, returning user payload or None."""
+    if not token or "." not in token:
+        return None
+    try:
+        parts = token.split(".", 1)
+        if len(parts) != 2:
+            return None
+        b64, sig = parts
+        expected_sig = hmac.new(AUTH_SECRET_KEY.encode('utf-8'), b64.encode('utf-8'), hashlib.sha256).hexdigest()
+        if not hmac.compare_digest(sig, expected_sig):
+            return None
+        padded = b64 + "=" * ((4 - len(b64) % 4) % 4)
+        raw_json = base64.urlsafe_b64decode(padded.encode('utf-8'))
+        payload = json.loads(raw_json.decode('utf-8'))
+        if payload.get("exp") and time.time() > payload["exp"]:
+            return None
+        return payload
+    except Exception:
+        return None
+
+def get_current_user_from_request():
+    """Extract and verify user payload from Authorization header or request data."""
+    auth_header = request.headers.get("Authorization", "").strip()
+    token = None
+    if auth_header.startswith("Bearer "):
+        token = auth_header[7:].strip()
+    elif not token:
+        token = request.args.get("token") or request.form.get("token")
+        if not token and request.is_json:
+            token = (request.get_json(silent=True) or {}).get("token")
+    if token:
+        return verify_auth_token(token)
+    return None
+
+@app.route("/api/auth/login", methods=["POST", "OPTIONS"])
+@app.route("/auth/login", methods=["POST", "OPTIONS"])
+def api_auth_login():
+    if request.method == "OPTIONS":
+        return jsonify({"status": "ok"})
+    data = request.get_json(silent=True) or request.form or {}
+    role = str(data.get("role", "")).strip().lower()
+    
+    # Auto-detect role if not explicitly provided
+    if not role:
+        if data.get("password") or data.get("username"):
+            role = "teacher"
+        else:
+            role = "student"
+
+    if role in ["teacher", "admin"]:
+        username = str(data.get("username", "")).strip() or "giaovien"
+        password = str(data.get("password", "")).strip()
+        is_admin = username.lower() in ["admin", "quantri"]
+
+        valid = False
+        if is_admin:
+            if password in [ADMIN_PASSWORD, "admin2026@hbc", TEACHER_PASSWORD, "khtn2026@hbc"]:
+                valid = True
+        else:
+            if password in [TEACHER_PASSWORD, "khtn2026@hbc", ADMIN_PASSWORD, "admin2026@hbc"]:
+                valid = True
+
+        if not valid:
+            return jsonify({
+                "success": False,
+                "error": "Mật khẩu giáo viên không chính xác. Mặc định là: khtn2026@hbc"
+            }), 401
+
+        user_role = "admin" if is_admin else "teacher"
+        full_name = str(data.get("full_name", "")).strip()
+        display_name = full_name if full_name else ("Quản trị viên KHTN" if is_admin else "Thầy/Cô · Tổ KHTN")
+
+        user_payload = {
+            "id": f"gv_{hashlib.md5(username.lower().encode('utf-8')).hexdigest()[:8]}",
+            "username": username,
+            "name": display_name,
+            "role": user_role,
+            "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH",
+            "permissions": ["teacher_mode", "edit_lessons", "generate_lessons", "export_5512", "export_3280", "view_sgv"]
+        }
+        token = generate_auth_token(user_payload)
+        return jsonify({
+            "success": True,
+            "user": user_payload,
+            "token": token,
+            "message": f"Đăng nhập thành công với vai trò {'Quản trị viên' if is_admin else 'Giáo viên'}."
+        })
+
+    elif role == "student":
+        full_name = str(data.get("full_name") or data.get("name") or "").strip()
+        grade_class = str(data.get("grade_class") or data.get("class") or "").strip()
+        student_code = str(data.get("student_code") or "").strip()
+
+        if len(full_name) < 2:
+            return jsonify({
+                "success": False,
+                "error": "Vui lòng nhập đầy đủ Họ và tên học sinh (tối thiểu 2 ký tự)."
+            }), 400
+
+        if not grade_class:
+            return jsonify({
+                "success": False,
+                "error": "Vui lòng chọn hoặc nhập Lớp học (ví dụ: 6/1, 7/2, 8/3, 9/1)."
+            }), 400
+
+        user_id = f"hs_{int(time.time())}_{hashlib.md5(full_name.encode('utf-8')).hexdigest()[:6]}"
+        user_payload = {
+            "id": user_id,
+            "name": full_name,
+            "grade_class": grade_class,
+            "student_code": student_code,
+            "role": "student",
+            "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH",
+            "permissions": ["read_sgk", "chat_ai", "take_quiz", "view_history", "lab_3d"]
+        }
+        token = generate_auth_token(user_payload)
+        return jsonify({
+            "success": True,
+            "user": user_payload,
+            "token": token,
+            "message": f"Chào mừng em {full_name} (Lớp {grade_class}) đến với BioRAG Huỳnh Bá Chánh!"
+        })
+
+    else:
+        return jsonify({"success": False, "error": f"Vai trò '{role}' không hợp lệ."}), 400
+
+@app.route("/api/auth/me", methods=["GET"])
+@app.route("/auth/me", methods=["GET"])
+def api_auth_me():
+    user = get_current_user_from_request()
+    if user:
+        return jsonify({
+            "authenticated": True,
+            "user": user,
+            "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH"
+        })
+    return jsonify({
+        "authenticated": False,
+        "user": None,
+        "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH"
+    })
+
+@app.route("/api/auth/logout", methods=["POST", "OPTIONS"])
+@app.route("/auth/logout", methods=["POST", "OPTIONS"])
+def api_auth_logout():
+    if request.method == "OPTIONS":
+        return jsonify({"status": "ok"})
+    return jsonify({"success": True, "message": "Đã đăng xuất thành công."})
+
+@app.route("/api/auth/classes", methods=["GET"])
+@app.route("/auth/classes", methods=["GET"])
+def api_auth_classes():
+    return jsonify({
+        "grades": [6, 7, 8, 9],
+        "classes": DEFAULT_CLASSES,
+        "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH"
+    })
 
 # =========================================================================
 # ROOT, HEALTH & DIAGNOSTIC ENDPOINTS
