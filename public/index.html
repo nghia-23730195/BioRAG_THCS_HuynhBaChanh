@@ -922,7 +922,7 @@
       <header><button class="menu" id="menu" aria-label="Mở điều hướng">☰</button>
         <div class="title"><small id="pageEyebrow">Trường THCS Huỳnh Bá Chánh</small><h1 id="pageHeading">Khoa học tự nhiên</h1></div>
         <div style="display:flex;align-items:center;gap:8px">
-          <button class="api-key-btn" id="apiKeyBtn" type="button" title="Cài đặt Google Gemini API Key">🔑 <span id="apiKeyLabel">Cài đặt API Key</span></button>
+          <button class="api-key-btn" id="apiKeyBtn" type="button" onclick="openApiKeyModal()" title="Cài đặt Google Gemini API Key">🔑 <span id="apiKeyLabel">Cài đặt API Key</span></button>
           <div class="status" id="status"><span class="dot"></span><span id="statusText">API cục bộ</span></div>
         </div>
       </header>
@@ -1139,8 +1139,10 @@
         </div>
       </div>
     </section>
+  </div>
+
   <div class="api-key-modal" id="apiKeyModal" role="dialog" aria-modal="true" aria-label="Cài đặt API Key" hidden>
-    <div class="api-key-overlay" id="apiKeyOverlay"></div>
+    <div class="api-key-overlay" id="apiKeyOverlay" onclick="closeApiKeyModal()"></div>
     <div class="api-key-box">
       <div class="api-key-header">
         <div style="display:flex;align-items:center;gap:8px">
@@ -1150,7 +1152,7 @@
             <small style="color:#64748b;font-size:11px">Kích hoạt AI đàm thoại & giải thích SGK KNTT thời gian thực</small>
           </div>
         </div>
-        <button type="button" id="apiKeyClose" class="api-key-close" aria-label="Đóng">×</button>
+        <button type="button" id="apiKeyClose" class="api-key-close" onclick="closeApiKeyModal()" aria-label="Đóng">×</button>
       </div>
       <div class="api-key-body">
         <p style="font-size:13px;color:#334155;line-height:1.6;margin:0 0 14px">
@@ -1158,12 +1160,12 @@
         </p>
         <div style="position:relative;margin-bottom:12px">
           <input type="password" id="apiKeyInput" placeholder="Dán API Key (AQ.Ab8... hoặc AIzaSy...)" style="width:100%;box-sizing:border-box;padding:10px 42px 10px 12px;border:1.5px solid #cbd5e1;border-radius:8px;font-family:monospace;font-size:13px;outline:none">
-          <button type="button" id="apiKeyToggleVis" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:16px;color:#64748b" title="Hiện/Ẩn Key">👁️</button>
+          <button type="button" id="apiKeyToggleVis" onclick="toggleApiKeyVisibility()" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:16px;color:#64748b" title="Hiện/Ẩn Key">👁️</button>
         </div>
         <div id="apiKeyNotice" style="font-size:12px;font-weight:600;color:#059669;margin-bottom:14px;display:none">✓ Đã lưu API Key an toàn trên trình duyệt này!</div>
         <div style="display:flex;gap:8px;justify-content:flex-end">
-          <button type="button" id="apiKeyClear" style="padding:8px 14px;border:1px solid #e2e8f0;background:#f8fafc;color:#64748b;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">Xóa Key</button>
-          <button type="button" id="apiKeySave" style="padding:8px 18px;border:none;background:#2563eb;color:#fff;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer">Lưu & Kích hoạt</button>
+          <button type="button" id="apiKeyClear" onclick="clearApiKeyFromModal()" style="padding:8px 14px;border:1px solid #e2e8f0;background:#f8fafc;color:#64748b;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">Xóa Key</button>
+          <button type="button" id="apiKeySave" onclick="saveApiKeyFromModal()" style="padding:8px 18px;border:none;background:#2563eb;color:#fff;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer">Lưu & Kích hoạt</button>
         </div>
         <div style="margin-top:16px;padding:12px;background:#f1f5f9;border-radius:8px;font-size:11.5px;color:#475569;line-height:1.6;border-left:3px solid #3b82f6">
           💡 <strong>Dành cho Giáo viên & Quản trị viên Vercel:</strong> Bạn có thể thêm biến môi trường <code>GEMINI_API_KEY</code> trong <strong>Vercel Project Settings &gt; Environment Variables</strong> để toàn bộ giáo viên và học sinh đều tự động có AI mà không cần nhập key thủ công.
@@ -1226,19 +1228,73 @@
   </div>
 
   <script>
-    const API="/api/chat/grounded", PHOTO_API="/api/chat/photo", IMAGE_API="/api/image-chat", IMAGE_EXPORT_API="/api/image-chat/export", QUIZ_API="/api/quiz/generate", QUIZ_BANK_API="/api/quiz/bank", LEARNING_API="/api/learning/lessons", LEARNING_GENERATE_API="/api/learning/generate", FEEDBACK_API="/api/feedback", LAB_API="/api/lab/experiments", LAB_REPORT_API="/api/lab/export-report", STORE="biorag-kntt-messages", GRADE_STORE="biorag-kntt-chat-grade", API_KEY_STORE="biorag-gemini-api-key";
-    const apiKeyBtn=document.getElementById("apiKeyBtn"),apiKeyLabel=document.getElementById("apiKeyLabel"),apiKeyModal=document.getElementById("apiKeyModal"),apiKeyOverlay=document.getElementById("apiKeyOverlay"),apiKeyClose=document.getElementById("apiKeyClose"),apiKeyInput=document.getElementById("apiKeyInput"),apiKeyToggleVis=document.getElementById("apiKeyToggleVis"),apiKeySave=document.getElementById("apiKeySave"),apiKeyClear=document.getElementById("apiKeyClear"),apiKeyNotice=document.getElementById("apiKeyNotice");
-    function getActiveApiKey(){try{return (localStorage.getItem(API_KEY_STORE)||"").trim()}catch{return ""}}
+    const API="/api/chat/grounded", PHOTO_API="/api/chat/photo", IMAGE_API="/api/image-chat", IMAGE_EXPORT_API="/api/image-chat/export", QUIZ_API="/api/quiz/generate", QUIZ_BANK_API="/api/quiz/bank", LEARNING_API="/api/learning/lessons", LEARNING_GENERATE_API="/api/learning/generate", FEEDBACK_API="/api/feedback", LAB_API="/api/lab/experiments", LAB_REPORT_API="/api/lab/export-report", STORE="biorag-kntt-messages", GRADE_STORE="biorag-kntt-chat-grade";
+    const API_KEY_STORE="biorag-gemini-api-key";
+    function getActiveApiKey(){try{return (localStorage.getItem(API_KEY_STORE)||"").trim()}catch(e){return ""}}
     function updateApiKeyUI(){
       const k=getActiveApiKey();
+      const lbl=document.getElementById("apiKeyLabel");
+      const btn=document.getElementById("apiKeyBtn");
       if(k){
-        if(apiKeyLabel)apiKeyLabel.textContent="Gemini: Bật";
-        if(apiKeyBtn)apiKeyBtn.classList.add("has-key");
+        if(lbl)lbl.textContent="Gemini: Bật";
+        if(btn)btn.classList.add("has-key");
       }else{
-        if(apiKeyLabel)apiKeyLabel.textContent="Cài đặt API Key";
-        if(apiKeyBtn)apiKeyBtn.classList.remove("has-key");
+        if(lbl)lbl.textContent="Cài đặt API Key";
+        if(btn)btn.classList.remove("has-key");
       }
     }
+    function openApiKeyModal(){
+      const modal=document.getElementById("apiKeyModal");
+      const inp=document.getElementById("apiKeyInput");
+      const noti=document.getElementById("apiKeyNotice");
+      if(!modal)return;
+      modal.hidden=false;
+      const cur=getActiveApiKey();
+      if(inp)inp.value=cur;
+      if(noti){
+        noti.style.display=cur?"block":"none";
+        noti.textContent=cur?("✓ Đã cấu hình Key: "+cur.slice(0,8)+"••••••••"+cur.slice(-4)):"";
+      }
+      if(inp)setTimeout(()=>{try{inp.focus()}catch(e){}},50);
+    }
+    function closeApiKeyModal(){
+      const modal=document.getElementById("apiKeyModal");
+      if(modal)modal.hidden=true;
+    }
+    function saveApiKeyFromModal(){
+      const inp=document.getElementById("apiKeyInput");
+      const noti=document.getElementById("apiKeyNotice");
+      const val=inp?inp.value.trim():"";
+      if(val){
+        try{localStorage.setItem(API_KEY_STORE,val)}catch(e){}
+        if(noti){
+          noti.style.display="block";
+          noti.textContent="✓ Đã lưu và kích hoạt API Key thành công!";
+        }
+      }else{
+        try{localStorage.removeItem(API_KEY_STORE)}catch(e){}
+        if(noti)noti.style.display="none";
+      }
+      updateApiKeyUI();
+      setTimeout(closeApiKeyModal,600);
+    }
+    function clearApiKeyFromModal(){
+      const inp=document.getElementById("apiKeyInput");
+      const noti=document.getElementById("apiKeyNotice");
+      try{localStorage.removeItem(API_KEY_STORE)}catch(e){}
+      if(inp)inp.value="";
+      if(noti)noti.style.display="none";
+      updateApiKeyUI();
+      closeApiKeyModal();
+    }
+    function toggleApiKeyVisibility(){
+      const inp=document.getElementById("apiKeyInput");
+      const tog=document.getElementById("apiKeyToggleVis");
+      if(!inp)return;
+      inp.type=inp.type==="password"?"text":"password";
+      if(tog)tog.textContent=inp.type==="password"?"👁️":"🙈";
+    }
+    try{updateApiKeyUI()}catch(e){}
     const makeId=()=>Date.now()+"-"+Math.random().toString(16).slice(2);
     const welcome={id:"welcome",role:"assistant",content:"Xin chào! Mình là trợ lý Khoa học tự nhiên, được xây dựng từ sách Kết nối tri thức lớp 6–9. Bạn muốn tìm hiểu nội dung nào hôm nay?"};
     const suggestions=["Tán sắc ánh sáng là gì?","Lăng kính là gì?","Quang hợp có vai trò như thế nào?","Hô hấp tế bào là gì?"];
@@ -3098,6 +3154,7 @@
       messages.push({id:makeId(),role:"user",content:q});input.value="";input.style.height="auto";
       loading=true;send.disabled=true;closeSidebar();render();
       const controller=new AbortController();activeChatController=controller;const timeout=setTimeout(()=>controller.abort(),90000);
+      try{
         const userApiKey=getActiveApiKey();
         const res=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},signal:controller.signal,
           body:JSON.stringify({question:q,grade:grade||null,top_k:10,request_id:makeId(),history,api_key:userApiKey})});
@@ -3155,7 +3212,7 @@
     quizGenerate.onclick=generateQuiz;
     if(quizTabBank)quizTabBank.onclick=()=>switchQuizTab("bank");
     if(quizTabGenerate)quizTabGenerate.onclick=()=>switchQuizTab("generate");
-    initQuizUploadListeners();
+    if(typeof initQuizUploadListeners==="function")initQuizUploadListeners();
     if(quizQuitExam)quizQuitExam.onclick=exitExamRoom;
     renderQuizBankGradeChips();
     studyTeacherToggle.onclick=()=>{teacherMode=!teacherMode;if(!teacherMode){closeStudyEditor();closeStudyGenerator()}renderLearning()};
@@ -3176,54 +3233,8 @@
       renderQuiz();
     });
     quizTopic.addEventListener("input",renderQuiz);quizTopic.addEventListener("keydown",event=>{if(event.key==="Enter"){event.preventDefault();generateQuiz()}});
-    function openApiKeyModal(){
-      if(!apiKeyModal)return;
-      apiKeyModal.hidden=false;
-      const cur=getActiveApiKey();
-      if(apiKeyInput)apiKeyInput.value=cur;
-      if(apiKeyNotice){
-        apiKeyNotice.style.display=cur?"block":"none";
-        apiKeyNotice.textContent=cur?("✓ Đã cấu hình Key: "+cur.slice(0,8)+"••••••••"+cur.slice(-4)):"";
-      }
-      if(apiKeyInput)apiKeyInput.focus();
-    }
-    function closeApiKeyModal(){if(apiKeyModal)apiKeyModal.hidden=true}
-    if(apiKeyBtn)apiKeyBtn.onclick=openApiKeyModal;
-    if(apiKeyClose)apiKeyClose.onclick=closeApiKeyModal;
-    if(apiKeyOverlay)apiKeyOverlay.onclick=closeApiKeyModal;
-    if(apiKeyToggleVis&&apiKeyInput){
-      apiKeyToggleVis.onclick=()=>{
-        apiKeyInput.type=apiKeyInput.type==="password"?"text":"password";
-        apiKeyToggleVis.textContent=apiKeyInput.type==="password"?"👁️":"🙈";
-      };
-    }
-    if(apiKeySave&&apiKeyInput){
-      apiKeySave.onclick=()=>{
-        const val=apiKeyInput.value.trim();
-        if(val){
-          try{localStorage.setItem(API_KEY_STORE,val)}catch{}
-          if(apiKeyNotice){
-            apiKeyNotice.style.display="block";
-            apiKeyNotice.textContent="✓ Đã lưu và kích hoạt API Key thành công!";
-          }
-        }else{
-          try{localStorage.removeItem(API_KEY_STORE)}catch{}
-          if(apiKeyNotice)apiKeyNotice.style.display="none";
-        }
-        updateApiKeyUI();
-        setTimeout(closeApiKeyModal,600);
-      };
-    }
-    if(apiKeyClear&&apiKeyInput){
-      apiKeyClear.onclick=()=>{
-        try{localStorage.removeItem(API_KEY_STORE)}catch{}
-        apiKeyInput.value="";
-        if(apiKeyNotice)apiKeyNotice.style.display="none";
-        updateApiKeyUI();
-        closeApiKeyModal();
-      };
-    }
-    updateApiKeyUI();
+    const apiKeyBtnEl=document.getElementById("apiKeyBtn");
+    if(apiKeyBtnEl)apiKeyBtnEl.onclick=openApiKeyModal;
     document.getElementById("menu").onclick=()=>{sidebar.classList.add("open");overlay.classList.add("show")};
     document.getElementById("modalClose").onclick=closeImage;
     imageModal.onclick=closeImage;modalPanel.onclick=e=>e.stopPropagation();
