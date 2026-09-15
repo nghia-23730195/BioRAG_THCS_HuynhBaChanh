@@ -37,6 +37,13 @@ def find_lesson_by_source_and_page(lessons, source, page):
     if not candidates:
         candidates = lessons
 
+    # 1. Match directly against generation_sources (which has exact PDF page numbers)
+    for l in candidates:
+        for gen in l.get("generation_sources", []):
+            if gen.get("page") == page:
+                pages = [g.get("page") for g in l.get("generation_sources", []) if g.get("page")]
+                return l, min(pages) if pages else page, max(pages) if pages else page
+
     best_lesson = None
     best_range = (1, 4)
     best_diff = 99999
@@ -45,8 +52,11 @@ def find_lesson_by_source_and_page(lessons, source, page):
         sl = l.get('source_label', '')
         m = re.search(r'Trang\s+(\d+)(?:[–\-](\d+))?', sl, re.IGNORECASE)
         if m:
-            s = int(m.group(1))
-            e = int(m.group(2)) if m.group(2) else s
+            s_print = int(m.group(1))
+            e_print = int(m.group(2)) if m.group(2) else s_print
+            offset = 2 if grade == 8 else (1 if grade in (6, 7) else 0)
+            s = s_print + offset if grade != 9 else (s_print // 2) + 2
+            e = e_print + offset if grade != 9 else (e_print // 2) + 2
             if s <= page <= e:
                 return l, s, e
             diff = min(abs(page - s), abs(page - e))

@@ -358,8 +358,11 @@ def _biorag_printed_pages_for_pdf_page(pdf_path, pdf_page):
     """Trả về cặp trang in tương ứng để giao diện ghi nhãn rõ ràng."""
     normalized_name = _biorag_textbook_normalize(Path(pdf_path).name)
     if not _biorag_textbook_uses_two_page_spreads(pdf_path):
-        if normalized_name == "sgk khtn 7 kntt pdf" and int(pdf_page) > 1:
+        if normalized_name in ("sgk khtn 6 kntt pdf", "sgk khtn 7 kntt pdf") and int(pdf_page) > 1:
             printed = int(pdf_page) - 1
+            return (printed, printed)
+        if normalized_name == "sgk khtn 8 kntt pdf" and int(pdf_page) > 2:
+            printed = int(pdf_page) - 2
             return (printed, printed)
         return None
     start = int(pdf_page) * 2 - 4
@@ -4511,6 +4514,17 @@ def get_learning_lesson_textbook_pages(lesson_id):
                 "lesson_id": lesson_id,
                 "source_status": source_status,
             }), 409
+        gen_sources = lesson.get("generation_sources")
+        if gen_sources and isinstance(gen_sources, list) and len(gen_sources) > 0:
+            return jsonify({
+                "lesson_id": lesson_id,
+                "resolved_textbook_pages": gen_sources,
+                "textbook_range": {
+                    "start_page": gen_sources[0].get("page", 1),
+                    "end_page": gen_sources[-1].get("page", 1),
+                    "method": "generation_sources_verified",
+                },
+            }), 200
         resolved = _biorag_resolve_lesson_pdf_pages(lesson)
         if not resolved:
             return jsonify({

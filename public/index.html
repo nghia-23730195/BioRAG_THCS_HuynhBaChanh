@@ -1545,23 +1545,54 @@
     }
     function textbookPrintedPage(source,pdfPage){
       const key=String(source||"").replace(/\\/g,"/").split("/").pop().toLowerCase();
-      if(key==="sgk khtn 6 kntt.pdf"&&pdfPage>1)return pdfPage-1;return null
+      const p=Number(pdfPage)||1;
+      if(key.includes("6")&&p>1)return p-1;
+      if(key.includes("7")&&p>1)return p-1;
+      if(key.includes("8")&&p>2)return p-2;
+      if(key.includes("9")&&p>2){
+        const p1=(p-2)*2;
+        return p1+"–"+(p1+1);
+      }
+      return null;
     }
     function lessonTextbookPages(lesson){
       const rows=Array.isArray(lesson&&lesson.generation_sources)?lesson.generation_sources:[];
       const seen=new Set(),pages=[];
-      function add(source,page,printedStart,printedEnd,isVirtual){source=String(source||"").trim();page=Number(page);if(!source||page<1)return;
-        const key=source.toLowerCase()+"::"+page;if(seen.has(key))return;seen.add(key);printedStart=Number(printedStart)||0;printedEnd=Number(printedEnd)||printedStart;
-        pages.push({source,page,printedPage:textbookPrintedPage(source,page),printedStart,printedEnd,virtual:!!isVirtual})}
+      function add(source,page,printedStart,printedEnd,isVirtual){
+        source=String(source||"").trim();page=Number(page);if(!source||page<1)return;
+        const key=source.toLowerCase()+"::"+page;if(seen.has(key))return;seen.add(key);
+        printedStart=Number(printedStart)||0;printedEnd=Number(printedEnd)||printedStart;
+        if(!printedStart){
+          const p=textbookPrintedPage(source,page);
+          if(typeof p==="number"){printedStart=p;printedEnd=p;}
+        }
+        pages.push({source,page,printedPage:textbookPrintedPage(source,page),printedStart,printedEnd,virtual:!!isVirtual});
+      }
       const resolvedRows=Array.isArray(lesson&&lesson.resolved_textbook_pages)?lesson.resolved_textbook_pages:[];
-      if(resolvedRows.length){resolvedRows.forEach(item=>add(item&&item.source,item&&item.page,item&&item.printed_start,item&&item.printed_end,item&&item.virtual));
-        return pages.sort((left,right)=>left.source.localeCompare(right.source,"vi")||left.page-right.page).slice(0,12)}
+      if(resolvedRows.length){
+        resolvedRows.forEach(item=>add(item&&item.source,item&&item.page,item&&item.printed_start,item&&item.printed_end,item&&item.virtual));
+        return pages.sort((left,right)=>left.source.localeCompare(right.source,"vi")||left.page-right.page).slice(0,12);
+      }
       const primarySource=textbookSourceFromLesson(lesson,rows);
-      rows.forEach(item=>{if(!item||!item.source)return;const match=String(item.page||"").match(/\d+/);if(!match)return;
-        const page=Number(match[0]),source=primarySource||textbookPdfName(item.source);if(!source||page<1)return;
-        add(source,page)});
-      textbookPagesFromSourceLabel(lesson&&lesson.source_label).forEach(page=>add(primarySource,page));
-      return pages.sort((left,right)=>left.source.localeCompare(right.source,"vi")||left.page-right.page).slice(0,12)
+      if(rows.length){
+        rows.forEach(item=>{
+          if(!item||!item.source)return;
+          const match=String(item.page||"").match(/\d+/);if(!match)return;
+          const page=Number(match[0]),source=primarySource||textbookPdfName(item.source);
+          if(!source||page<1)return;
+          add(source,page,item.printed_start,item.printed_end,item.virtual);
+        });
+        return pages.sort((left,right)=>left.source.localeCompare(right.source,"vi")||left.page-right.page).slice(0,12);
+      }
+      const key=String(primarySource||"").toLowerCase();
+      textbookPagesFromSourceLabel(lesson&&lesson.source_label).forEach(printed=>{
+        let pdfPage=printed;
+        if(key.includes("6")||key.includes("7"))pdfPage=printed+1;
+        else if(key.includes("8"))pdfPage=printed+2;
+        else if(key.includes("9"))pdfPage=Math.floor(printed/2)+2;
+        add(primarySource,pdfPage,printed,printed,key.includes("9"));
+      });
+      return pages.sort((left,right)=>left.source.localeCompare(right.source,"vi")||left.page-right.page).slice(0,12);
     }
     function renderStudyGrades(){
       studyGrades.innerHTML="";[6,7,8,9].forEach(grade=>{const button=document.createElement("button");
@@ -1699,10 +1730,10 @@
         '<button class="lesson-illustration" type="button" data-lesson-illustration="'+index+'"><img loading="lazy" src="'+escapeHtml(imageUrl(item.image_path))+'" alt="'+escapeHtml(item.caption||item.label||"Hình minh họa bài học")+'"><strong>'+escapeHtml(item.caption||"Hình minh họa bài học")+'</strong><small>Trang '+escapeHtml(item.page||"?")+' · '+escapeHtml(displaySource(item.source||"SGK KNTT"))+'</small></button>').join("")+'</div></section>':"";
       const textbookPagesHtml=textbookResolution==="loading"?'<div class="lesson-empty-pane">✦ Đang OCR và xác minh đúng tiêu đề '+escapeHtml(lesson.number||"bài học")+'…<br><small>Danh sách bài vẫn sử dụng được trong khi hệ thống chỉ xử lý bài đang mở.</small></div>':
         textbookResolution==="failed"?'<div class="lesson-empty-pane">Chưa xác minh được tiêu đề bài trong PDF. Hệ thống không hiển thị dải trang cũ để tránh học nhầm bài.</div>':
-        textbookPages.length?(()=>{const pdfLinkPage=item=>item.virtual?Math.max(1,Math.ceil(item.page/2)):item.page,
+        textbookPages.length?(()=>{const pdfLinkPage=item=>item.page,
           first=textbookPages[0],firstPdfUrl=textbookPdfUrl(first.source,pdfLinkPage(first));
         return '<div class="lesson-pdf-toolbar"><div><strong>Toàn bộ SGK · bắt đầu tại trang đang học</strong><div class="lesson-pdf-pages">'+textbookPages.map((item,index)=>
-          '<button class="lesson-pdf-page'+(index===0?' active':'')+'" type="button" data-lesson-pdf-page="'+index+'" data-lesson-pdf-page-number="'+item.page+'" data-lesson-virtual="'+(item.virtual?"1":"0")+'" data-lesson-source="'+escapeHtml(item.source)+'" data-lesson-pdf-url="'+escapeHtml(textbookPdfUrl(item.source,pdfLinkPage(item)))+'">'+(item.virtual?'Trang '+(item.printedStart||item.page):'PDF '+item.page+(item.printedStart?' / trang in '+item.printedStart+(item.printedEnd>item.printedStart?'–'+item.printedEnd:''):(item.printedPage?' / trang in '+item.printedPage:'')))+'</button>').join('')+
+          '<button class="lesson-pdf-page'+(index===0?' active':'')+'" type="button" data-lesson-pdf-page="'+index+'" data-lesson-pdf-page-number="'+item.page+'" data-lesson-virtual="'+(item.virtual?"1":"0")+'" data-lesson-source="'+escapeHtml(item.source)+'" data-lesson-pdf-url="'+escapeHtml(textbookPdfUrl(item.source,pdfLinkPage(item)))+'">'+('Trang '+(item.printedStart||item.printedPage||item.page)+(item.printedEnd>item.printedStart?'–'+item.printedEnd:'')+' (PDF '+item.page+')')+'</button>').join('')+
           '</div></div><div><button type="button" data-lesson-pdf-fullscreen>⛶ Toàn màn hình</button><a href="'+escapeHtml(firstPdfUrl)+'" target="_blank" rel="noopener" data-lesson-pdf-open>Mở tab riêng</a></div></div>'+
           '<div class="lesson-pdf-frame-wrap" data-lesson-pdf-wrap><div class="lesson-pdfjs-controls"><button type="button" data-pdfjs-action="previous">←</button><input type="number" min="1" value="'+first.page+'" aria-label="Trang PDF" data-pdfjs-page><span class="lesson-pdfjs-total" data-pdfjs-total>/ …</span><button type="button" data-pdfjs-action="next">→</button><button type="button" data-pdfjs-action="zoom-out">−</button><span class="lesson-pdfjs-zoom" data-pdfjs-zoom>Vừa trang</span><button type="button" data-pdfjs-action="zoom-in">＋</button><button type="button" data-pdfjs-action="fit">Vừa chiều rộng</button><span class="lesson-pdfjs-status" data-pdfjs-status>Đang mở PDF…</span></div><div class="lesson-pdfjs-stage" data-pdfjs-stage><canvas class="lesson-pdfjs-canvas" aria-label="Trang sách giáo khoa" data-pdfjs-canvas style="display:none"></canvas><img class="lesson-pdfjs-image" aria-label="Trang sách giáo khoa" data-pdfjs-image alt="Trang sách giáo khoa" style="display:block;margin:0 auto;background:#fff;box-shadow:0 3px 16px rgba(0,0,0,.18);border-radius:4px;max-width:none"></div></div>'+
           '<p class="lesson-pdf-fallback">Trình đọc cục bộ mở chính xác trang bài học. Chọn “Mở tab riêng” để tìm kiếm, in hoặc tải toàn bộ sách.</p>'})():
@@ -1785,7 +1816,7 @@
       // thật, nên khi mở "Mở tab riêng" (trình đọc PDF gốc của trình duyệt)
       // phải đổi lại đúng số trang PDF thật, và không nạp pdf.js/documentRef
       // (vốn thao tác trên số trang PDF thật) để tránh lệch trang khi zoom.
-      function pdfLinkPageFor(page){return currentVirtual?Math.max(1,Math.ceil(Number(page)/2)):Number(page)||1}
+      function pdfLinkPageFor(page){return Number(page)||1}
       if(!currentSource&&pageButtons[0].dataset.lessonPdfUrl){
         try{currentSource=new URL(pageButtons[0].dataset.lessonPdfUrl,window.location.origin).searchParams.get("source")||"";}catch(e){}
       }

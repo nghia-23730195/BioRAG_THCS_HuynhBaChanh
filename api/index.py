@@ -334,33 +334,65 @@ def api_lesson_textbook_pages(lesson_id):
     if not lesson:
         return jsonify({"error": "Không tìm thấy bài học."}), 404
     
+    # Prioritize pre-calculated verified generation_sources
+    gen_sources = lesson.get("generation_sources")
+    if gen_sources and isinstance(gen_sources, list) and len(gen_sources) > 0:
+        return jsonify({
+            "lesson_id": lesson_id,
+            "resolved_textbook_pages": gen_sources,
+            "textbook_range": {
+                "start_page": gen_sources[0].get("page", 1),
+                "end_page": gen_sources[-1].get("page", 1),
+                "method": "generation_sources_verified"
+            }
+        })
+
     sl = lesson.get("source_label", "")
     m = re.search(r'Trang\s+(\d+)(?:[–\-](\d+))?', sl, re.IGNORECASE)
     if m:
-        start_page = int(m.group(1))
-        end_page = int(m.group(2)) if m.group(2) else start_page
+        start_print = int(m.group(1))
+        end_print = int(m.group(2)) if m.group(2) else start_print
     else:
-        start_page = int(lesson.get("order") or 1) * 4
-        end_page = start_page + 3
+        start_print = int(lesson.get("order") or 1) * 4
+        end_print = start_print + 3
     
-    if end_page < start_page:
-        end_page = start_page + 3
-    elif end_page - start_page > 10:
-        end_page = start_page + 10
+    if end_print < start_print:
+        end_print = start_print + 3
+    elif end_print - start_print > 10:
+        end_print = start_print + 10
 
-    grade = lesson.get("grade", 7)
+    grade = int(lesson.get("grade") or 7)
     source_name = f"SGK KHTN {grade} KNTT.pdf"
+
+    resolved_pages = []
+    for p in range(start_print, end_print + 1):
+        if grade in (6, 7):
+            pdf_p = p + 1
+            resolved_pages.append({"page": pdf_p, "source": source_name, "printed_start": p, "printed_end": p, "virtual": False})
+        elif grade == 8:
+            pdf_p = p + 2
+            resolved_pages.append({"page": pdf_p, "source": source_name, "printed_start": p, "printed_end": p, "virtual": False})
+        elif grade == 9:
+            pdf_p = (p // 2) + 2
+            p1 = (pdf_p - 2) * 2
+            resolved_pages.append({"page": pdf_p, "source": source_name, "printed_start": p1, "printed_end": p1 + 1, "virtual": True})
+        else:
+            resolved_pages.append({"page": p, "source": source_name, "printed_start": p, "printed_end": p, "virtual": False})
+
+    seen_pages = set()
+    final_pages = []
+    for row in resolved_pages:
+        if row["page"] not in seen_pages:
+            seen_pages.add(row["page"])
+            final_pages.append(row)
 
     return jsonify({
         "lesson_id": lesson_id,
-        "resolved_textbook_pages": [
-            {"page": p, "source": source_name, "printed_start": p, "printed_end": p}
-            for p in range(start_page, end_page + 1)
-        ],
+        "resolved_textbook_pages": final_pages,
         "textbook_range": {
-            "start_page": start_page,
-            "end_page": end_page,
-            "method": "source_label_match"
+            "start_page": final_pages[0]["page"] if final_pages else 1,
+            "end_page": final_pages[-1]["page"] if final_pages else 1,
+            "method": "source_label_matched"
         }
     })
 
