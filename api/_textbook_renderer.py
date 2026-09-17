@@ -122,7 +122,7 @@ def render_textbook_page_svg(lesson, page, start_page, end_page):
     <rect x="0" y="0" width="34" height="34" rx="7" fill="{tc['primary']}"/>
     <text x="17" y="23" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="900" fill="#ffffff" text-anchor="middle">HBC</text>
     
-    <text x="44" y="16" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="{tc['dark']}" letter-spacing="1">TRƯỜNG THCS HUỲNH BÁ CHÁNH · ĐÀ NẴNG</text>
+    <text x="44" y="16" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="{tc['dark']}" letter-spacing="1">TRƯỜNG THCS HUỲNH BÁ CHÁNH · TPHCM</text>
     <text x="44" y="32" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="500" fill="#64748b">BỘ GIÁO DỤC VÀ ĐÀO TẠO · KHOA HỌC TỰ NHIÊN {grade} (KẾT NỐI TRI THỨC)</text>
 
     <rect x="630" y="0" width="120" height="32" rx="16" fill="{tc['light']}" stroke="{tc['border']}" stroke-width="1.5"/>

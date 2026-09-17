@@ -1,0 +1,32 @@
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment variables & secrets
+.env
+.env.local
+
+# Vercel deployment folder
+.vercel/
+
+# Temporary & build outputs
+scratch/
+*.log
+*.docx
+*.pdf
+!public/sgk/*.pdf
+test_*.docx
+_BACKUP*/
+
+# Heavy local databases & raw PDF data (kept local, not needed on Vercel)
+database_kntt/
+database_kntt_v2/
+datasources/
+datasources_kntt8_fix/
