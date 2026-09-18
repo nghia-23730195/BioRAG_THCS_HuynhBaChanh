@@ -144,6 +144,16 @@ except Exception:
         lesson_to_exam_data = None
         build_exam_package_3280_bytes = None
 
+# 2b. Plan 5512 Builder
+try:
+    from api._plan_5512_builder import build_lesson_plan_5512_bytes
+except Exception:
+    try:
+        from src.app.plan_5512_builder import build_lesson_plan_5512_bytes
+    except Exception as exc:
+        print(f"Plan 5512 builder import error: {exc}")
+        build_lesson_plan_5512_bytes = None
+
 # 3. Science Experiments (3D Lab)
 try:
     from api._science_experiments import EXPERIMENT_CATALOG, list_experiments, get_experiment_by_id, generate_lab_report_docx
@@ -1323,6 +1333,75 @@ def api_exam_generate_3280():
         }, target_mcq_count=count)
         return jsonify({"exam": exam, "exam_data": exam})
     return jsonify({"error": "Builder unavailable"}), 500
+
+@app.route("/api/exam/lessons/<lesson_id>/export-3280", methods=["GET", "OPTIONS"])
+@app.route("/exam/lessons/<lesson_id>/export-3280", methods=["GET", "OPTIONS"])
+def api_export_lesson_exam_3280(lesson_id):
+    if request.method == "OPTIONS": return jsonify({"status": "ok"})
+    lesson = get_lesson_by_id(lesson_id)
+    if not lesson:
+        return jsonify({"error": f"Không tìm thấy bài học '{lesson_id}'"}), 404
+    exam_type = request.args.get("exam_type", "ĐỊNH KỲ").strip()
+    try:
+        duration = int(request.args.get("duration", 45))
+    except Exception:
+        duration = 45
+    if lesson_to_exam_data and build_exam_package_3280_bytes:
+        exam_data = lesson_to_exam_data(lesson, exam_type=exam_type, duration=duration)
+        buf = build_exam_package_3280_bytes(exam_data)
+        grade = lesson.get("grade", 7)
+        raw_title = str(lesson.get("title") or "Bai_hoc")
+        title_slug = re.sub(r"[^\w\d_-]+", "_", raw_title).strip("_")[:40]
+        filename = f"De_kiem_tra_3280_KHTN{grade}_{title_slug}.docx"
+        return send_file(
+            buf,
+            mimetype="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            as_attachment=True,
+            download_name=filename
+        )
+    return jsonify({"error": "Export service unavailable"}), 500
+
+@app.route("/api/learning/lessons/<lesson_id>/export-5512", methods=["GET", "OPTIONS"])
+@app.route("/learning/lessons/<lesson_id>/export-5512", methods=["GET", "OPTIONS"])
+def api_export_lesson_plan_5512(lesson_id):
+    if request.method == "OPTIONS": return jsonify({"status": "ok"})
+    lesson = get_lesson_by_id(lesson_id)
+    if not lesson:
+        return jsonify({"error": f"Không tìm thấy bài học '{lesson_id}'"}), 404
+    if build_lesson_plan_5512_bytes:
+        buf = build_lesson_plan_5512_bytes(lesson)
+        grade = lesson.get("grade", 7)
+        raw_title = str(lesson.get("title") or "Bai_hoc")
+        title_slug = re.sub(r"[^\w\d_-]+", "_", raw_title).strip("_")[:40]
+        filename = f"Giao_an_5512_KHTN{grade}_{title_slug}.docx"
+        return send_file(
+            buf,
+            mimetype="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            as_attachment=True,
+            download_name=filename
+        )
+    return jsonify({"error": "Export service unavailable"}), 500
+
+@app.route("/api/learning/export-5512", methods=["POST", "OPTIONS"])
+@app.route("/learning/export-5512", methods=["POST", "OPTIONS"])
+def api_export_custom_plan_5512():
+    if request.method == "OPTIONS": return jsonify({"status": "ok"})
+    data = request.get_json(silent=True) or {}
+    if not data:
+        return jsonify({"error": "Dữ liệu bài học không hợp lệ"}), 400
+    if build_lesson_plan_5512_bytes:
+        buf = build_lesson_plan_5512_bytes(data)
+        grade = data.get("grade", 7)
+        raw_title = str(data.get("title") or "Bai_hoc")
+        title_slug = re.sub(r"[^\w\d_-]+", "_", raw_title).strip("_")[:40]
+        filename = f"Giao_an_5512_KHTN{grade}_{title_slug}.docx"
+        return send_file(
+            buf,
+            mimetype="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            as_attachment=True,
+            download_name=filename
+        )
+    return jsonify({"error": "Export service unavailable"}), 500
 
 @app.route("/api/exam/export-3280", methods=["POST", "OPTIONS"])
 @app.route("/exam/export-3280", methods=["POST", "OPTIONS"])
