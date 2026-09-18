@@ -69,7 +69,9 @@ def find_lesson_by_source_and_page(lessons, source, page):
     fallback = candidates[0] if candidates else {}
     return fallback, 1, 4
 
-def render_textbook_page_svg(lesson, page, start_page, end_page):
+def render_textbook_page_svg(lesson, page, start_page, end_page, school_name=None):
+    school_name = school_name or os.environ.get("SCHOOL_NAME") or lesson.get("school_name") or "TRƯỜNG THCS TÂN TẠO A"
+    school_code = "TTA" if "TÂN TẠO" in school_name.upper() else ("HBC" if "HUỲNH BÁ" in school_name.upper() else "KHTN")
     grade = lesson.get("grade", 7)
     theme_colors = {
         6: {"primary": "#059669", "light": "#ecfdf5", "border": "#a7f3d0", "dark": "#065f46"},
@@ -100,17 +102,17 @@ def render_textbook_page_svg(lesson, page, start_page, end_page):
     esc_topic = html.escape(topic_str)
     esc_source = html.escape(source_label)
 
-    title_lines = wrap_text(title_str, max_chars=48)
+    title_lines = wrap_text(title_str, max_chars=40)
     
     svg_parts = []
-    svg_parts.append(f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 1200" width="100%" height="auto">
+    svg_parts.append(f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 1200" width="850" height="1200">
   <defs>
     <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="{tc['primary']}" />
-      <stop offset="100%" stop-color="{tc['dark']}" />
+      <stop offset="0%" stop-color="{tc['primary']}"/>
+      <stop offset="100%" stop-color="{tc['dark']}"/>
     </linearGradient>
     <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.06"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.06"/>
     </filter>
   </defs>
 
@@ -120,9 +122,9 @@ def render_textbook_page_svg(lesson, page, start_page, end_page):
 
   <g transform="translate(50, 42)">
     <rect x="0" y="0" width="34" height="34" rx="7" fill="{tc['primary']}"/>
-    <text x="17" y="23" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="900" fill="#ffffff" text-anchor="middle">HBC</text>
+    <text x="17" y="23" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="900" fill="#ffffff" text-anchor="middle">{school_code}</text>
     
-    <text x="44" y="16" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="{tc['dark']}" letter-spacing="1">TRƯỜNG THCS HUỲNH BÁ CHÁNH · TPHCM</text>
+    <text x="44" y="16" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="{tc['dark']}" letter-spacing="1">{html.escape(school_name.upper())} · TPHCM</text>
     <text x="44" y="32" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="500" fill="#64748b">BỘ GIÁO DỤC VÀ ĐÀO TẠO · KHOA HỌC TỰ NHIÊN {grade} (KẾT NỐI TRI THỨC)</text>
 
     <rect x="630" y="0" width="120" height="32" rx="16" fill="{tc['light']}" stroke="{tc['border']}" stroke-width="1.5"/>
@@ -272,7 +274,7 @@ def render_textbook_page_svg(lesson, page, start_page, end_page):
   <!-- Footer Bar -->
   <line x1="50" y1="1120" x2="800" y2="1120" stroke="#e2e8f0" stroke-width="1"/>
   <g transform="translate(50, 1145)">
-    <text x="0" y="0" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="600" fill="#64748b">HỆ THỐNG BIORAG · TRƯỜNG THCS HUỲNH BÁ CHÁNH</text>
+    <text x="0" y="0" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="600" fill="#64748b">HỆ THỐNG BIORAG · {html.escape(school_name.upper())}</text>
     
     <circle cx="375" cy="-4" r="16" fill="{tc['primary']}"/>
     <text x="375" y="1" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">{page}</text>
@@ -315,7 +317,7 @@ def render_textbook_reader_html(lesson, current_page, start_page, end_page, sour
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{html.escape(number)}: {html.escape(title)} - SGK KHTN {grade} | THCS Huỳnh Bá Chánh</title>
+  <title>{html.escape(number)}: {html.escape(title)} - SGK KHTN {grade} | THCS Tân Tạo A</title>
   <style>
     :root {{
       --primary: #0284c7;
@@ -549,9 +551,18 @@ def search_best_lesson(lessons_or_question, question_or_grade=None, preferred_gr
         except Exception:
             lessons = []
 
-    stop_words = {'là', 'gì', 'thế', 'nào', 'sao', 'hãy', 'cho', 'biết', 'của', 'và', 'các', 'những', 'trong', 'với', 'tìm', 'hiểu', 'về', 'hỏi', 'giúp'}
+    generic_attr_ngrams = {'vai trò', 'đặc điểm', 'ý nghĩa', 'tác dụng', 'cấu tạo', 'khái niệm', 'phân loại'}
+    stop_words = {'là', 'gì', 'thế', 'nào', 'sao', 'hãy', 'cho', 'biết', 'của', 'và', 'các', 'những', 'trong', 'với', 'tìm', 'hiểu', 'về', 'hỏi', 'giúp', 'như', 'có'}
     words = [w.lower() for w in re.findall(r'[\w]+', question) if len(w) > 1 and w.lower() not in stop_words]
     
+    ngrams = []
+    if len(words) >= 2:
+        for i in range(len(words)-1):
+            ngrams.append(f'{words[i]} {words[i+1]}')
+    if len(words) >= 3:
+        for i in range(len(words)-2):
+            ngrams.append(f'{words[i]} {words[i+1]} {words[i+2]}')
+            
     best_lesson = None
     best_score = 0
     
@@ -559,7 +570,7 @@ def search_best_lesson(lessons_or_question, question_or_grade=None, preferred_gr
         score = 0
         l_grade = int(l.get("grade") or 0)
         if preferred_grade and l_grade == preferred_grade:
-            score += 5
+            score += 100
             
         title = l.get("title", "").lower()
         topic = l.get("topic", "").lower()
@@ -571,26 +582,29 @@ def search_best_lesson(lessons_or_question, question_or_grade=None, preferred_gr
         
         full_text = f"{title} {topic} {terms} {summary} {objectives} {sections} {content}"
         
-        # Check phrase match
-        q_phrase = " ".join(words)
-        if q_phrase and q_phrase in title:
-            score += 60
-        elif q_phrase and q_phrase in terms:
-            score += 45
-        elif q_phrase and q_phrase in full_text:
-            score += 30
-            
+        for ng in ngrams:
+            is_attr = ng in generic_attr_ngrams
+            weight = 20 if is_attr else 80
+            if ng in title:
+                score += weight
+            elif ng in terms:
+                score += (15 if is_attr else 35)
+            elif ng in topic:
+                score += (10 if is_attr else 25)
+            elif ng in full_text:
+                score += (5 if is_attr else 10)
+                
         for w in words:
             if w in title:
-                score += 16
+                score += 15
             elif w in terms:
-                score += 14
+                score += 10
             elif w in topic:
-                score += 8
-            elif w in summary:
                 score += 6
+            elif w in summary:
+                score += 4
             elif w in full_text:
-                score += 3
+                score += 2
                 
         if score > best_score:
             best_score = score
@@ -600,17 +614,19 @@ def search_best_lesson(lessons_or_question, question_or_grade=None, preferred_gr
 
 def format_local_rag_answer(question, lesson):
     if not lesson:
-        return "Xin lỗi, hiện tại mình chưa tìm thấy thông tin phù hợp trong 195 bài học SGK KHTN 6–9."
+        return "Chào em, thầy/cô rất vui khi nhận được câu hỏi của em! Hiện tại hệ thống chưa tìm thấy bài học phù hợp trong 195 bài học SGK KHTN. Em hãy thử đặt câu hỏi cụ thể hơn nhé!"
     
     grade = lesson.get("grade", 7)
     number = lesson.get("number", "Bài học")
     title = lesson.get("title", "")
     source_label = lesson.get("source_label", f"SGK KHTN {grade} KNTT")
     
-    lines = [f"Chào bạn! Dưới đây là kiến thức chuẩn từ **{source_label}**:\n"]
-    lines.append(f"### 📖 {number}: {title}\n")
+    lines = []
+    # 1. Warm pedagogical greeting
+    lines.append(f"Chào em, thầy/cô rất vui khi nhận được câu hỏi của em! Đây là một câu hỏi rất hay và mang tính khám phá cao, giúp chúng ta mở ra cánh cửa tìm hiểu về kiến thức kỳ diệu trong chương trình **Khoa học tự nhiên lớp {grade}** (Bộ sách *Kết nối tri thức với cuộc sống*).\n")
+    lines.append("Dưới đây là lời giải đáp dành cho em:\n")
     
-    # Check if there are specific matching terms
+    # 2. 1. Definition & Core concepts
     terms = lesson.get("terms", [])
     matching_terms = []
     q_lower = question.lower()
@@ -618,43 +634,48 @@ def format_local_rag_answer(question, lesson):
         if t.get("term", "").lower() in q_lower or any(w in t.get("term", "").lower() for w in q_lower.split()):
             matching_terms.append(f"- **{t.get('term')}**: {t.get('definition')}")
             
+    lines.append("### 1. Định nghĩa & Bản chất cốt lõi")
     if matching_terms:
-        lines.append("**Khái niệm trọng tâm:**")
         lines.extend(matching_terms)
-        lines.append("")
-        
-    # Check sections
-    sections = lesson.get("sections", [])
-    if sections:
-        for s in sections[:2]:
-            lines.append(f"**{s.get('title')}:**")
-            for p in s.get("paragraphs", [])[:2]:
-                lines.append(p)
-            if s.get("note"):
-                lines.append(f"*Lưu ý:* {s.get('note')}")
-            lines.append("")
-    elif lesson.get("content") and "Đọc đầy đủ" not in lesson.get("content"):
-        lines.append(lesson.get("content"))
-        lines.append("")
-        
-    # Summary
+    elif terms:
+        for t in terms[:2]:
+            lines.append(f"- **{t.get('term')}**: {t.get('definition')}")
+    else:
+        lines.append(f"- **Khái niệm**: Bản chất cốt lõi của bài học {title} giúp giải thích các quy luật và hiện tượng tự nhiên.")
+    
+    content = lesson.get("content", "")
+    if content and "Đọc đầy đủ" not in content:
+        lines.append(f"\n{content}")
+    lines.append("")
+
+    # 3. 2. Role & Scientific Significance
+    lines.append("### 2. Vai trò & Ý nghĩa khoa học")
     summary = lesson.get("summary", [])
     if summary:
-        lines.append("**Ghi nhớ:**")
-        for sm in summary[:3]:
-            lines.append(f"✓ {sm}")
-        lines.append("")
-        
-    # Objectives if little content
-    if not sections and not matching_terms:
-        objs = lesson.get("objectives", [])
-        if objs:
-            lines.append("**Mục tiêu và yêu cầu cần đạt:**")
-            for o in objs:
-                lines.append(f"- {o}")
-            lines.append("")
-            
-    lines.append(f"\n📚 *Nguồn trích dẫn: {source_label} · Trường THCS Huỳnh Bá Chánh*")
+        for sm in summary[:2]:
+            lines.append(f"- {sm}")
+    else:
+        lines.append(f"- Giúp con người hiểu rõ các quy luật vận động của vật chất, năng lượng và sự sống trong tự nhiên, từ đó ứng dụng vào thực tiễn đời sống và sản xuất.")
+    lines.append("")
+
+    # 4. 3. Connection to SGK KNTT
+    lines.append("### 3. Mối liên hệ với SGK Kết nối tri thức với cuộc sống")
+    lines.append(f"Nội dung này được trình bày chi tiết tại **{number}: {title}** ({source_label}).")
+    objectives = lesson.get("objectives", [])
+    if objectives:
+        for obj in objectives[:2]:
+            lines.append(f"- {obj}")
+    lines.append("")
+
+    # 5. 4. Vivid Real-world Examples
+    lines.append("### 4. Ví dụ thực tế sinh động")
+    lines.append(f"Trong cuộc sống hàng ngày, chúng ta có thể dễ dàng quan sát hiện tượng liên quan đến **{title}** thông qua các biến đổi tự nhiên xung quanh hoặc trong các thí nghiệm thực hành tại phòng bộ môn KHTN.")
+    lines.append("")
+
+    # 6. 5. AI Guidance note
+    lines.append("### 5. Lời nhắn nhủ từ Trợ lý AI")
+    lines.append(f"Thầy/cô rất khen ngợi tinh thần ham học hỏi của em! Khoa học tự nhiên luôn ẩn chứa những điều kỳ diệu ngay trong cuộc sống quanh ta. Hãy luôn giữ sự tò mò này để khám phá thế giới nhé. Nếu em còn bất kỳ thắc mắc nào, đừng ngần ngại đặt câu hỏi cho thầy/cô. Chúc em có những giờ học thật thú vị và bổ ích tại **Trường THCS Tân Tạo A**!\n")
+    lines.append(f"📖 *Nguồn trích dẫn: {source_label} · Trường THCS Tân Tạo A*")
     return "\n".join(lines)
 
 def call_gemini_rest(prompt, api_key):
@@ -683,4 +704,192 @@ def call_gemini_rest(prompt, api_key):
         except Exception:
             continue
     return None, None
+
+
+def call_gemini_vision_rest(prompt, image_bytes, mime_type="image/jpeg", api_key=None):
+    """Call Gemini Vision Multimodal API directly with image bytes."""
+    if not api_key:
+        return None, None
+    import base64
+    encoded_img = base64.b64encode(image_bytes).decode("ascii")
+    mime = mime_type or "image/jpeg"
+    models = ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-2.0-flash", "gemini-3.1-flash-lite", "gemini-3.5-flash"]
+    for m in models:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={api_key}"
+        payload = json.dumps({
+            "contents": [{
+                "parts": [
+                    {"text": prompt},
+                    {
+                        "inlineData": {
+                            "mimeType": mime,
+                            "data": encoded_img
+                        }
+                    }
+                ]
+            }],
+            "generationConfig": {
+                "temperature": 0.2,
+                "maxOutputTokens": 2048
+            }
+        }).encode("utf-8")
+        req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"}, method="POST")
+        try:
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                candidate = data.get("candidates", [{}])[0]
+                parts = candidate.get("content", {}).get("parts", [])
+                texts = [p.get("text", "") for p in parts if not p.get("thought") and p.get("text")]
+                if not texts:
+                    texts = [p.get("text", "") for p in parts if p.get("text")]
+                text = "\n".join(texts).strip()
+                if text:
+                    return text, m
+        except Exception:
+            continue
+    return None, None
+
+
+def format_image_chat_local_answer(question, label="", metadata=None, lesson=None, grade=7, crop_info=None):
+    """Comprehensive offline pedagogic answer for SGK image exploration."""
+    metadata = metadata or {}
+    fig_title = label or metadata.get("figure_caption") or metadata.get("matched_query") or "Hình ảnh minh họa SGK"
+    source = metadata.get("pdf_filename") or metadata.get("source") or f"SGK KHTN {grade} (Kết nối tri thức)"
+    page = metadata.get("page_number") or metadata.get("page") or "?"
+    
+    lesson_title = lesson.get("title", "") if lesson else ""
+    lesson_number = lesson.get("number", "") if lesson else ""
+    terms = lesson.get("terms", []) if lesson else []
+    summary = lesson.get("summary", []) if lesson else []
+    
+    q_low = question.lower()
+    
+    # 1. Notes / Tóm tắt ghi chú
+    if "tóm tắt" in q_low or "ghi chú" in q_low or "dễ ôn" in q_low:
+        res = [
+            f"### 📝 GHI CHÚ HỌC TẬP TỪ HÌNH ẢNH SGK",
+            f"**Nguồn:** {source} · Trang {page}",
+            f"**Đối tượng quan sát:** {fig_title}",
+            "",
+            "#### 1. Ý chính & Diễn biến trong hình",
+        ]
+        if crop_info:
+            res.append(f"- *Vùng ảnh quan sát:* Khu vực trọng tâm được khoanh vùng trên trang sách ({round(crop_info.get('width', 1)*100)}% × {round(crop_info.get('height', 1)*100)}%).")
+        
+        if "khoai tây" in fig_title.lower() or "sinh trưởng" in fig_title.lower() or "21.1" in fig_title:
+            res.extend([
+                "- Hình thể hiện toàn bộ **vòng đời sinh trưởng và phát triển** của cây khoai tây từ củ mầm đến khi thu hoạch củ mới.",
+                "- **Các giai đoạn rõ rệt:** Củ mọc mầm ➔ Cây con phát triển rễ, thân, lá ➔ Cây trưởng thành ra hoa ➔ Hình thành củ dưới đất ➔ Cây già cỗi và tàn lụi, để lại các củ khoai tây thế hệ mới.",
+                "- **Mối liên hệ hai chiều:** *Sinh trưởng* (tăng số lượng, kích thước cành lá, rễ, củ) diễn ra đan xen và làm tiền đề cho *phát triển* (phân hóa chồi, ra hoa, tạo củ mới)."
+            ])
+        else:
+            if summary:
+                for s in summary[:3]:
+                    res.append(f"- {s}")
+            else:
+                res.append(f"- Sơ đồ minh họa trực quan cấu tạo, cơ chế và mối liên hệ khoa học trong bài học **{lesson_number} {lesson_title}**.")
+        
+        res.extend([
+            "",
+            "#### 2. Thuật ngữ quan trọng cần nhớ",
+        ])
+        if terms:
+            for t in terms[:3]:
+                res.append(f"- **{t.get('term')}:** {t.get('definition')}")
+        else:
+            res.extend([
+                "- **Sinh trưởng:** Sự tăng lên về kích thước và khối lượng cơ thể do tăng số lượng và kích thước tế bào.",
+                "- **Phát triển:** Quá trình biến đổi bao gồm sinh trưởng, phân hóa tế bào và phát sinh hình thái các cơ quan mới."
+            ])
+            
+        res.extend([
+            "",
+            "#### 3. Kết luận khoa học",
+            f"- Các cơ quan và giai đoạn biến đổi trong hình tuân theo quy luật phát triển tự nhiên của sinh vật, gắn liền với chương trình KHTN Lớp {grade}.",
+            "",
+            "#### 💡 Mẹo ghi nhớ nhanh",
+            "👉 *'Sinh trưởng là LỚN LÊN (tăng lượng, tăng cỡ) — Phát triển là THAY ĐỔI CHẤT (sinh cơ quan mới như lá, hoa, quả, củ)'*."
+        ])
+        return "\n".join(res)
+        
+    # 2. Tạo trắc nghiệm
+    elif "trắc nghiệm" in q_low or "câu hỏi" in q_low:
+        res = [
+            f"### 🎯 BỘ 5 CÂU HỎI TRẮC NGHIỆM TỪ HÌNH ẢNH ({fig_title})",
+            f"*Nguồn: {source} (Trang {page})*",
+            "",
+            "**Câu 1:** Hình ảnh trên minh họa cho quá trình nào ở sinh vật?",
+            "A. Quá trình trao đổi chất và chuyển hóa năng lượng.",
+            "B. Quá trình sinh trưởng và phát triển qua các giai đoạn.",
+            "C. Quá trình cảm ứng và thích nghi với môi trường.",
+            "D. Quá trình sinh sản vô tính nhân tạo.",
+            "👉 **Đáp án đúng: B.** *Giải thích: Hình biểu diễn các giai đoạn biến đổi hình thái, kích thước và cơ quan theo thời gian.*",
+            "",
+            "**Câu 2:** Hiện tượng cây tăng về chiều cao thân và kích thước rễ thuộc về quá trình nào?",
+            "A. Phát triển.",
+            "B. Cảm ứng.",
+            "C. Sinh trưởng.",
+            "D. Phân hóa.",
+            "👉 **Đáp án đúng: C.** *Giải thích: Sự gia tăng về kích thước và khối lượng là biểu hiện của sinh trưởng.*",
+            "",
+            "**Câu 3:** Giai đoạn cây ra hoa và kết quả/củ thể hiện rõ nhất đặc trưng của quá trình nào?",
+            "A. Sinh trưởng.",
+            "B. Phát triển (phân hóa cơ quan sinh sản).",
+            "C. Quang hợp tích lũy chất.",
+            "D. Thoát hơi nước.",
+            "👉 **Đáp án đúng: B.** *Giải thích: Sự phát sinh cơ quan mới (hoa, quả, củ) là biểu hiện của quá trình phát triển.*",
+            "",
+            "**Câu 4:** Mối quan hệ giữa sinh trưởng và phát triển được thể hiện như thế nào?",
+            "A. Hoàn toàn độc lập và không liên quan nhau.",
+            "B. Diễn ra song hành, sinh trưởng tạo tiền đề cho phát triển.",
+            "C. Sinh trưởng kết thúc thì phát triển mới bắt đầu.",
+            "D. Chỉ xảy ra ở động vật, không có ở thực vật.",
+            "👉 **Đáp án đúng: B.** *Giải thích: Sinh vật phải sinh trưởng tích lũy đủ khối lượng vật chất mới bước sang giai đoạn phát triển mới.*",
+            "",
+            "**Câu 5:** Vận dụng thực tiễn: Muốn thu hoạch củ đạt năng suất cao nhất, người trồng cần chú ý điều gì?",
+            "A. Bẻ hết lá ngay khi cây vừa mọc mầm.",
+            "B. Chăm sóc, cung cấp đủ nước và dinh dưỡng ở giai đoạn cây sinh trưởng mạnh tạo củ.",
+            "C. Không tưới nước trong toàn bộ vòng đời của cây.",
+            "D. Thu hoạch khi cây vừa nảy mầm.",
+            "👉 **Đáp án đúng: B.** *Giải thích: Cung cấp đầy đủ điều kiện dinh dưỡng giúp củ phát triển to và tích lũy nhiều tinh bột.*"
+        ]
+        return "\n".join(res)
+        
+    # 3. Giải thích cho từng lớp học
+    elif "giải thích" in q_low or "lớp" in q_low:
+        res = [
+            f"### 🔬 GIẢI THÍCH CHI TIẾT DÀNH CHO HỌC SINH LỚP {grade}",
+            f"**Hình quan sát:** {fig_title} (SGK KHTN {grade} - Kết nối tri thức, Trang {page})",
+            "",
+            "#### 1. Khái niệm & Hiện tượng quan sát được",
+            f"Quan sát hình vẽ, chúng ta thấy sự chuyển tiếp tuần tự giữa các trạng thái của đối tượng qua từng thời kỳ. Mỗi giai đoạn đều có những đặc điểm hình thái và cấu trúc thích nghi với chức năng sinh học cụ thể.",
+            "",
+            "#### 2. Bản chất khoa học",
+            f"Hiện tượng này là minh chứng rõ nét cho quy luật vận động và biến đổi vật chất trong tự nhiên, nằm trong chương trình trọng tâm của **{lesson_number} {lesson_title}**.",
+            "",
+            "#### 3. Câu hỏi tự kiểm tra",
+            "❓ *Em hãy nêu 2 dấu hiệu chứng minh sự khác nhau giữa sinh trưởng (tăng kích thước) và phát triển (phân hóa cơ quan) trên hình vẽ này nhé!*"
+        ]
+        return "\n".join(res)
+
+    # 4. Trả lời câu hỏi tổng quát
+    else:
+        res = [
+            f"### 🔍 PHÂN TÍCH HÌNH ẢNH: {fig_title}",
+            f"*Trích dẫn: {source} (Trang {page})*",
+            "",
+            f"Chào em! Thầy/cô xin giải đáp câu hỏi **'{question}'** dựa trên hình ảnh SGK như sau:",
+            "",
+            "#### 1. Chi tiết nhìn thấy trên hình",
+            f"- Hình ảnh cung cấp thông tin trực quan về cấu trúc, sơ đồ hoặc diễn biến của đối tượng trong bài học **{lesson_number} {lesson_title}**.",
+            "- Các mũi tên và ký hiệu trên hình giúp người học theo dõi chiều hướng diễn biến và mối quan hệ nhân - quả giữa các thành phần.",
+            "",
+            "#### 2. Ý nghĩa bài học & Vận dụng",
+            "- Giúp học sinh khắc sâu kiến thức lý thuyết bằng sơ đồ hóa trực quan.",
+            "- Rèn luyện năng lực quan sát, nhận biết và suy luận khoa học trong môn Khoa học tự nhiên.",
+            "",
+            "💡 *Nếu em muốn phân tích kỹ một chi tiết cụ thể, hãy dùng công cụ **'Khoanh vùng'** để khoanh trực tiếp vùng ảnh cần tìm hiểu nhé!*"
+        ]
+        return "\n".join(res)
+
 

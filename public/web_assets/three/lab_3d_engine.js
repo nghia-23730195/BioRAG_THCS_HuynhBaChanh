@@ -45,6 +45,8 @@
       this.container = container;
       this.currentExp = exp;
       this.currentSimType = (exp && exp.simulation ? exp.simulation.sim_type : '') || (exp && exp.simulation_type ? exp.simulation_type : '') || '';
+      this.currentSimState = state || window.labSimState || {};
+      window.labSimState = this.currentSimState;
 
       var width = container.clientWidth || 640;
       var height = container.clientHeight || 390;
@@ -634,7 +636,8 @@
 
       var dropY = 0.95;
       this.updateFns.push(function(st, t) {
-        if (st.stage === 1) {
+        var activeStage = (st && st.stage !== undefined) ? st.stage : 1;
+        if (activeStage === 1) {
           dropY -= 0.024;
           if (dropY <= 0.42) {
             dropY = 0.95;
@@ -811,8 +814,8 @@
       // Evaporation loop hook
       var evapProgress = 0;
       this.updateFns.push(function(st, t) {
-        var burnerLvl = st.burner !== undefined ? st.burner : 0;
-        var activeStage = st.stage || 1;
+        var activeStage = (st && st.stage !== undefined) ? st.stage : 1;
+        var burnerLvl = (st && st.burner !== undefined) ? st.burner : (activeStage === 2 ? 2 : 0);
 
         if (burnerLvl > 0 && activeStage === 2) {
           flameGroup.visible = true;
@@ -1007,10 +1010,14 @@
       });
 
       this.updateFns.push(function(st, t) {
-        compassNeedles.forEach(function(cmp) {
+        var str = (st && st.fieldStrength !== undefined) ? (st.fieldStrength / (st.fieldStrength > 5 ? 100 : 1)) : 1.0;
+        var showC = (st && st.showCompass !== undefined) ? st.showCompass : ((st && st.showCompasses !== undefined) ? st.showCompasses : true);
+        compassNeedles.forEach(function(cmp, idx) {
+          cmp.group.visible = !!showC;
           var p = cmp.pos;
           var angle = Math.atan2(p[2], p[0] - 0.6) - Math.atan2(p[2], p[0] + 0.6);
-          cmp.group.rotation.y = angle * 0.5 + Math.PI / 2;
+          var wobble = Math.sin(t * 3.5 + idx) * 0.08 * (1.2 - Math.min(1.0, str * 0.5));
+          cmp.group.rotation.y = (angle * 0.5 + Math.PI / 2) * str + wobble;
         });
       });
 
@@ -1041,15 +1048,25 @@
       rMesh.position.set(0, 0.3, -0.7);
       cGroup.add(rMesh);
 
-      // Ammeter A
+      // Ammeter A with needle
       var aMeter = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 0.3, 32), new THREE.MeshStandardMaterial({ color: 0xdbeafe }));
       aMeter.position.set(1.3, 0.3, -0.7);
       cGroup.add(aMeter);
 
-      // Voltmeter V
+      var aNeedle = new THREE.Mesh(new THREE.ConeGeometry(0.02, 0.28, 8), new THREE.MeshBasicMaterial({ color: 0xef4444 }));
+      aNeedle.position.set(1.3, 0.46, -0.7);
+      aNeedle.rotation.x = Math.PI / 2;
+      cGroup.add(aNeedle);
+
+      // Voltmeter V with needle
       var vMeter = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 0.3, 32), new THREE.MeshStandardMaterial({ color: 0xdbeafe }));
       vMeter.position.set(0, 0.3, 0.6);
       cGroup.add(vMeter);
+
+      var vNeedle = new THREE.Mesh(new THREE.ConeGeometry(0.02, 0.28, 8), new THREE.MeshBasicMaterial({ color: 0xef4444 }));
+      vNeedle.position.set(0, 0.46, 0.6);
+      vNeedle.rotation.x = Math.PI / 2;
+      cGroup.add(vNeedle);
 
       // Interactive Knife Switch (Công tắc K)
       var switchBase = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.08, 0.4), new THREE.MeshStandardMaterial({ color: 0x475569 }));
@@ -1062,13 +1079,28 @@
       cGroup.add(switchArm);
 
       self.registerInteractive(switchBase, 'Công tắc K: Nhấp chuột để Đóng/Ngắt mạch', function(st) {
-        st.switch_closed = !st.switch_closed;
+        var closed = (st.switchOn !== undefined) ? !st.switchOn : !st.switch_closed;
+        st.switchOn = closed;
+        st.switch_closed = closed;
         self.playSwitchSound();
+        if (typeof window.syncControlsFromState === 'function') {
+          window.syncControlsFromState('circuit_ohm');
+        }
       });
 
       this.updateFns.push(function(st, t) {
-        var isClosed = !!st.switch_closed;
+        var isClosed = (st.switchOn !== undefined) ? !!st.switchOn : (st.switch_closed !== undefined ? !!st.switch_closed : true);
         switchArm.rotation.z = isClosed ? 0.0 : 0.55;
+        var u = (st.voltage_v !== undefined) ? st.voltage_v : ((st.voltage !== undefined) ? st.voltage : ((st.U !== undefined) ? st.U : 12.0));
+        var r = (st.resistance_ohm !== undefined) ? st.resistance_ohm : ((st.resistance !== undefined) ? st.resistance : ((st.R !== undefined) ? st.R : 20.0));
+        var currentI = isClosed ? (u / (r || 1)) : 0.0;
+        var currentU = isClosed ? u : 0.0;
+        var maxI = 2.4;
+        var maxU = 24.0;
+        var targetRotA = -0.7 + (currentI / maxI) * 1.4;
+        var targetRotV = -0.7 + (currentU / maxU) * 1.4;
+        aNeedle.rotation.z += (targetRotA - aNeedle.rotation.z) * 0.15;
+        vNeedle.rotation.z += (targetRotV - vNeedle.rotation.z) * 0.15;
       });
 
       group.add(cGroup);
@@ -1375,8 +1407,18 @@
       aGroup.add(brassBlock);
 
       this.updateFns.push(function(st, t) {
-        var depth = st.submerged_depth || 0.5;
-        brassBlock.position.y = 1.2 - depth * 0.7;
+        var depth = 0.5;
+        if (st && st.submerged !== undefined) {
+          depth = st.submerged;
+        } else if (st && st.submerged_depth !== undefined) {
+          depth = st.submerged_depth;
+        } else if (st && st.matDensity && st.liqDensity) {
+          var ratio = st.matDensity / st.liqDensity;
+          depth = ratio < 1.0 ? ratio : 1.0;
+        }
+        var bob = Math.sin(t * 2.5) * 0.02;
+        brassBlock.position.y = 1.2 - depth * 0.7 + bob;
+        liq.scale.y = 1.0 + depth * 0.08;
       });
 
       group.add(aGroup);
@@ -1384,9 +1426,6 @@
 
     // =========================================================================
     // 8. LENS CONVEX (Thấu kính hội tụ)
-    // =========================================================================
-        // =========================================================================
-    // 8. LENS CONVEX (Thấu kính hội tụ - KHTN 9 Bài 6)
     // =========================================================================
     buildLensConvex: function(group, state) {
       var self = this;
@@ -1484,9 +1523,6 @@
 
     // =========================================================================
     // 9. LIGHT REFLECTION (Phản xạ ánh sáng)
-    // =========================================================================
-        // =========================================================================
-    // 9. LIGHT REFLECTION (Phản xạ ánh sáng - KHTN 7 Bài 16)
     // =========================================================================
     buildLightReflection: function(group, state) {
       var self = this;
@@ -1841,7 +1877,8 @@
 
       var tiltAng = 0;
       this.updateFns.push(function(st, t) {
-        if (st.reacted) {
+        var isReacted = !!st.reacted || (st.step !== undefined && st.step >= 2) || (st.mixProgress !== undefined && st.mixProgress > 0);
+        if (isReacted) {
           precipMat.opacity = Math.min(0.92, precipMat.opacity + 0.04);
           innerTubeGroup.rotation.z = 1.1;
         } else {
@@ -1955,12 +1992,16 @@
       var dropY = 0.7;
       var pinkFactor = 0;
       this.updateFns.push(function(st, t) {
-        if (st.dripping) {
-          dropY -= 0.02;
+        var isDrip = !!st.dripping || !!st.buretteFlow || (st.addedMl !== undefined && st.addedMl > 0);
+        if (st.addedMl !== undefined) {
+          pinkFactor = Math.min(1.0, st.addedMl / 20.0);
+        }
+        if (isDrip) {
+          dropY -= 0.024;
           if (dropY <= 0.42) {
             dropY = 0.7;
             self.playDripSound();
-            pinkFactor = Math.min(1.0, pinkFactor + 0.05);
+            if (st.addedMl === undefined) pinkFactor = Math.min(1.0, pinkFactor + 0.05);
           }
           dropMesh.position.y = dropY;
           dropMesh.visible = true;
@@ -2162,8 +2203,15 @@
       });
 
       this.updateFns.push(function(st, t) {
-        var tilt = st.leverBalanced ? 0 : Math.sin(t * 1.5) * 0.12;
-        beamGroup.rotation.z = tilt;
+        var tilt = 0;
+        if (st.m1 !== undefined && st.d1 !== undefined && st.m2 !== undefined && st.d2 !== undefined) {
+          var torqueDiff = (st.m1 * st.d1) - (st.m2 * st.d2);
+          tilt = Math.max(-0.25, Math.min(0.25, -torqueDiff * 0.00012));
+          if (torqueDiff === 0) tilt += Math.sin(t * 2.0) * 0.01;
+        } else {
+          tilt = st.leverBalanced ? 0 : Math.sin(t * 1.5) * 0.12;
+        }
+        beamGroup.rotation.z += (tilt - beamGroup.rotation.z) * 0.1;
       });
 
       lGroup.add(beamGroup);
@@ -2215,10 +2263,11 @@
       });
 
       this.updateFns.push(function(st, t) {
-        var depth = st.probeDepth || 1;
-        probe.position.y = 1.9 - depth * 0.45;
-        leftCol.scale.y = 1.0 - depth * 0.15;
-        rightCol.scale.y = 1.0 + depth * 0.25;
+        var depthVal = (st.depth !== undefined) ? (st.depth / 6.0) : (st.probeDepth || 1);
+        var clampedD = Math.max(0.2, Math.min(3.0, depthVal));
+        probe.position.y = 1.9 - clampedD * 0.45;
+        leftCol.scale.y = Math.max(0.1, 1.0 - clampedD * 0.15);
+        rightCol.scale.y = 1.0 + clampedD * 0.25;
       });
 
       group.add(lpGroup);
@@ -2274,7 +2323,8 @@
       });
 
       this.updateFns.push(function(st, t) {
-        if (st.displaced) {
+        var isDisplaced = !!st.displaced || (st.reactTime !== undefined && st.reactTime > 2) || (st.time !== undefined && st.time > 2);
+        if (isDisplaced) {
           cuCoating.material.opacity = Math.min(0.95, cuCoating.material.opacity + 0.03);
           solMat.color.lerp(new THREE.Color(0x86efac), 0.02);
         } else {
@@ -2289,9 +2339,6 @@
 
     // =========================================================================
     // 17. LIGHT REFRACTION (Khúc xạ ánh sáng & Phản xạ toàn phần)
-    // =========================================================================
-        // =========================================================================
-    // 17. LIGHT REFRACTION (Khúc xạ ánh sáng & Phản xạ toàn phần - KHTN 9 Bài 5)
     // =========================================================================
     buildLightRefraction: function(group, state) {
       var self = this;
@@ -2549,7 +2596,8 @@
       });
 
       this.updateFns.push(function(st, t) {
-        if (st.airBurned) {
+        var isBurned = !!st.airBurned || (st.phase === "running" || st.phase === 3 || st.phase === 4) || (st.burnProgress !== undefined && st.burnProgress > 0);
+        if (isBurned) {
           flame.scale.set(0.001, 0.001, 0.001);
           riseLiq.scale.y = Math.min(1.0, riseLiq.scale.y + 0.02);
           riseLiq.position.y = 0.35 + riseLiq.scale.y * 0.16;
@@ -2598,7 +2646,8 @@
       });
 
       this.updateFns.push(function(st, t) {
-        if (st.bromineDecolorized) {
+        var isDecolor = !!st.bromineDecolorized || (st.isFlowing && st.gas === "C2H4") || (st.colorFactor !== undefined && st.colorFactor < 0.5);
+        if (isDecolor) {
           b2Mat.color.lerp(new THREE.Color(0xdbeafe), 0.03);
           b2Mat.opacity = Math.max(0.35, b2Mat.opacity - 0.02);
         } else {
@@ -2640,10 +2689,14 @@
       });
 
       this.updateFns.push(function(st, t) {
-        if (st.sliding) {
+        var isMoving = !!st.sliding || !!st.isPulling;
+        if (isMoving) {
           var xOff = Math.sin(t * 3) * 0.4;
           block.position.x = -0.6 + xOff;
           dyna.position.x = 0.7 + xOff;
+        } else {
+          block.position.x += (-0.6 - block.position.x) * 0.1;
+          dyna.position.x += (0.7 - dyna.position.x) * 0.1;
         }
       });
 
@@ -2713,9 +2766,10 @@
           self.controls.update();
         }
 
+        var activeState = self.currentSimState || window.labSimState || {};
         for (var i = 0; i < self.updateFns.length; i++) {
           try {
-            self.updateFns[i](window.labSimState || {}, t);
+            self.updateFns[i](activeState, t);
           } catch (e) {}
         }
 
@@ -2728,9 +2782,14 @@
     },
 
     update: function(state, t) {
+      if (state) {
+        this.currentSimState = state;
+        window.labSimState = state;
+      }
+      var activeState = this.currentSimState || window.labSimState || {};
       for (var i = 0; i < this.updateFns.length; i++) {
         try {
-          this.updateFns[i](state, t);
+          this.updateFns[i](activeState, t !== undefined ? t : (performance.now() * 0.001));
         } catch (e) {}
       }
     },
@@ -2794,10 +2853,7 @@
         this.tooltipEl.parentNode.removeChild(this.tooltipEl);
         this.tooltipEl = null;
       }
-            var rHud = document.getElementById('lab3DRunStatusHUD');
-      if (rHud && rHud.parentNode) {
-        rHud.parentNode.removeChild(rHud);
-      }
+      var rHud = document.getElementById('lab3DRunStatusHUD'); if (rHud && rHud.parentNode) rHud.parentNode.removeChild(rHud);
       var sHud = document.getElementById('lab3DSpringHUD');
       if (sHud && sHud.parentNode) {
         sHud.parentNode.removeChild(sHud);

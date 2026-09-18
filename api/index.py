@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Vercel Serverless Function entry point for BioRAG (TRƯỜNG THCS HUỲNH BÁ CHÁNH).
+"""Vercel Serverless Function entry point for BioRAG (TRƯỜNG THCS TÂN TẠO A).
 
 Optimized for Vercel Serverless environment:
 - Ultra-lightweight (pure Python & standard libs, no heavy PyTorch/CUDA)
@@ -107,7 +107,7 @@ def handle_404(e):
     return jsonify({
         "error": f"API endpoint {request.path} not found",
         "status": 404,
-        "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH"
+        "school": "TRƯỜNG THCS TÂN TẠO A"
     }), 404
 
 @app.errorhandler(500)
@@ -172,13 +172,15 @@ except Exception:
 try:
     from api._textbook_renderer import (
         find_lesson_by_source_and_page, render_textbook_page_svg, render_textbook_reader_html,
-        search_best_lesson, format_local_rag_answer, call_gemini_rest
+        search_best_lesson, format_local_rag_answer, call_gemini_rest,
+        call_gemini_vision_rest, format_image_chat_local_answer
     )
 except Exception:
     try:
         from _textbook_renderer import (
             find_lesson_by_source_and_page, render_textbook_page_svg, render_textbook_reader_html,
-            search_best_lesson, format_local_rag_answer, call_gemini_rest
+            search_best_lesson, format_local_rag_answer, call_gemini_rest,
+            call_gemini_vision_rest, format_image_chat_local_answer
         )
     except Exception as exc:
         print(f"Textbook renderer import error: {exc}")
@@ -188,6 +190,8 @@ except Exception:
         search_best_lesson = None
         format_local_rag_answer = None
         call_gemini_rest = None
+        call_gemini_vision_rest = None
+        format_image_chat_local_answer = None
 
 # =========================================================================
 # LEARNING LESSONS BUNDLE (195 LESSONS FOR GRADES 6, 7, 8, 9)
@@ -237,6 +241,143 @@ def get_lesson_by_id(lesson_id):
             return l
     return None
 
+IMAGE_CATALOG_CACHE = None
+
+def get_image_catalog():
+    global IMAGE_CATALOG_CACHE
+    if IMAGE_CATALOG_CACHE is None:
+        cat_candidates = [
+            Path(__file__).resolve().parent / "data" / "image_catalog.json",
+            BASE_DIR / "api" / "data" / "image_catalog.json",
+            BASE_DIR / "src" / "app" / "data" / "image_catalog.json",
+            Path.cwd() / "api" / "data" / "image_catalog.json",
+        ]
+        for cp in cat_candidates:
+            if cp.exists():
+                try:
+                    with open(cp, "r", encoding="utf-8-sig") as f:
+                        IMAGE_CATALOG_CACHE = json.load(f)
+                        break
+                except Exception as e:
+                    print(f"Error loading image catalog: {e}")
+        if IMAGE_CATALOG_CACHE is None:
+            IMAGE_CATALOG_CACHE = []
+    return IMAGE_CATALOG_CACHE
+
+def get_relevant_images_for_query(question, matched_lesson=None, grade=None, limit=2):
+    """Retrieve 1-3 best SGK diagrams or illustrations matching the lesson or question."""
+    results = []
+    seen = set()
+    
+    # 1. From matched_lesson illustrations if present
+    if matched_lesson and isinstance(matched_lesson.get("illustrations"), list):
+        for ill in matched_lesson.get("illustrations", []):
+            p = ill.get("image_path") or ill.get("image_url")
+            if p and p not in seen:
+                seen.add(p)
+                clean_p = p.replace('\\', '/').lstrip('/')
+                if 'images/' in clean_p:
+                    clean_p = clean_p.split('images/')[-1]
+                from urllib.parse import quote
+                img_url = f"/api/images/{quote(clean_p, safe='/')}"
+                results.append({
+                    "image_url": img_url,
+                    "image_path": clean_p,
+                    "label": ill.get("label") or f"Hình minh họa (Trang {ill.get('page', '?')}, SGK KHTN {matched_lesson.get('grade', grade or 7)})",
+                    "caption": ill.get("caption") or ill.get("label") or "Hình minh họa từ SGK",
+                    "page": ill.get("page", 1),
+                    "source": ill.get("source") or f"SGK KHTN {matched_lesson.get('grade', grade or 7)} KNTT.pdf",
+                    "metadata": {
+                        "page_number": ill.get("page", 1),
+                        "pdf_filename": ill.get("source") or f"SGK KHTN {matched_lesson.get('grade', grade or 7)} KNTT.pdf",
+                        "figure_caption": ill.get("caption", ""),
+                        "matched_query": question
+                    }
+                })
+                if len(results) >= limit:
+                    return results
+
+    # 2. Match from image_catalog using keywords, grade, or page
+    catalog = get_image_catalog()
+    resolved_grade = int(grade or (matched_lesson.get("grade") if matched_lesson else 7) or 7)
+    q_low = question.lower()
+    
+    scored = []
+    for item in catalog:
+        if item.get("grade") and int(item.get("grade")) != resolved_grade:
+            continue
+        score = 0
+        cap_low = (item.get("caption") or "").lower()
+        key_low = (item.get("keywords") or "").lower()
+        lbl_low = (item.get("label") or "").lower()
+        combined = f"{cap_low} {key_low} {lbl_low}"
+        
+        for word in q_low.split():
+            if len(word) > 2 and word in combined:
+                score += 3
+        if matched_lesson:
+            t_low = (matched_lesson.get("title") or "").lower()
+            num_low = (matched_lesson.get("number") or "").lower()
+            if t_low and t_low in combined: score += 5
+            if num_low and num_low in combined: score += 5
+            pages = {s.get("page") for s in matched_lesson.get("generation_sources", []) if s.get("page")}
+            if item.get("page") in pages:
+                score += 10
+        if score > 0:
+            scored.append((score, item))
+            
+    scored.sort(key=lambda x: x[0], reverse=True)
+    for _, item in scored:
+        p = item.get("image_path")
+        if p and p not in seen:
+            seen.add(p)
+            clean_p = p.replace('\\', '/').lstrip('/')
+            if 'images/' in clean_p:
+                clean_p = clean_p.split('images/')[-1]
+            from urllib.parse import quote
+            img_url = f"/api/images/{quote(clean_p, safe='/')}"
+            results.append({
+                "image_url": img_url,
+                "image_path": clean_p,
+                "label": item.get("label") or f"Hình minh họa (Trang {item.get('page', '?')}, SGK KHTN {resolved_grade})",
+                "caption": item.get("caption") or item.get("label") or "Hình minh họa từ SGK",
+                "page": item.get("page", 1),
+                "source": item.get("source") or f"SGK KHTN {resolved_grade} KNTT.pdf",
+                "metadata": {
+                    "page_number": item.get("page", 1),
+                    "pdf_filename": item.get("source") or f"SGK KHTN {resolved_grade} KNTT.pdf",
+                    "figure_caption": item.get("caption", ""),
+                    "matched_query": question
+                }
+            })
+            if len(results) >= limit:
+                break
+                
+    # 3. Fallback: If no image found, generate a page preview image from matched_lesson source
+    if not results and matched_lesson:
+        p_num = 1
+        sources = matched_lesson.get("generation_sources", [])
+        if sources and sources[0].get("page"):
+            p_num = sources[0].get("page")
+        fallback_path = f"SGK KHTN {resolved_grade} KNTT/page_{p_num}_img_0.png"
+        from urllib.parse import quote
+        results.append({
+            "image_url": f"/api/images/{quote(fallback_path, safe='/')}",
+            "image_path": fallback_path,
+            "label": f"Sơ đồ SGK: {matched_lesson.get('number', '')} {matched_lesson.get('title', '')}".strip(),
+            "caption": f"Trang kiến thức SGK KHTN {resolved_grade} - Trang {p_num}",
+            "page": p_num,
+            "source": f"SGK KHTN {resolved_grade} KNTT.pdf",
+            "metadata": {
+                "page_number": p_num,
+                "pdf_filename": f"SGK KHTN {resolved_grade} KNTT.pdf",
+                "figure_caption": matched_lesson.get('title', ''),
+                "matched_query": question
+            }
+        })
+        
+    return results
+
 BACKEND_URL = os.environ.get("BACKEND_URL", "").strip().rstrip("/")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY") or ""
 
@@ -276,9 +417,9 @@ def proxy_to_backend(path):
 # =========================================================================
 # AUTHENTICATION & USER MANAGEMENT (GIÁO VIÊN & HỌC SINH)
 # =========================================================================
-AUTH_SECRET_KEY = os.environ.get("AUTH_SECRET_KEY") or "biorag_huynh_ba_chanh_khtn_2026_auth_secret"
-TEACHER_PASSWORD = os.environ.get("TEACHER_PASSWORD", "khtn2026@hbc")
-ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "admin2026@hbc")
+AUTH_SECRET_KEY = os.environ.get("AUTH_SECRET_KEY") or "biorag_tan_tao_a_khtn_2026_auth_secret"
+TEACHER_PASSWORD = os.environ.get("TEACHER_PASSWORD", "khtn2026@tta")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "admin2026@tta")
 
 DEFAULT_CLASSES = [
     {"grade": 6, "name": "6/1"}, {"grade": 6, "name": "6/2"}, {"grade": 6, "name": "6/3"}, {"grade": 6, "name": "6/4"}, {"grade": 6, "name": "6/5"},
@@ -354,16 +495,16 @@ def api_auth_login():
 
         valid = False
         if is_admin:
-            if password in [ADMIN_PASSWORD, "admin2026@hbc", TEACHER_PASSWORD, "khtn2026@hbc"]:
+            if password in [ADMIN_PASSWORD, "admin2026@tta", TEACHER_PASSWORD, "khtn2026@tta"]:
                 valid = True
         else:
-            if password in [TEACHER_PASSWORD, "khtn2026@hbc", ADMIN_PASSWORD, "admin2026@hbc"]:
+            if password in [TEACHER_PASSWORD, "khtn2026@tta", ADMIN_PASSWORD, "admin2026@tta"]:
                 valid = True
 
         if not valid:
             return jsonify({
                 "success": False,
-                "error": "Mật khẩu giáo viên không chính xác. Mặc định là: khtn2026@hbc"
+                "error": "Mật khẩu giáo viên không chính xác. Mặc định là: khtn2026@tta"
             }), 401
 
         user_role = "admin" if is_admin else "teacher"
@@ -375,7 +516,7 @@ def api_auth_login():
             "username": username,
             "name": display_name,
             "role": user_role,
-            "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH",
+            "school": "TRƯỜNG THCS TÂN TẠO A",
             "permissions": ["teacher_mode", "edit_lessons", "generate_lessons", "export_5512", "export_3280", "view_sgv"]
         }
         token = generate_auth_token(user_payload)
@@ -410,7 +551,7 @@ def api_auth_login():
             "grade_class": grade_class,
             "student_code": student_code,
             "role": "student",
-            "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH",
+            "school": "TRƯỜNG THCS TÂN TẠO A",
             "permissions": ["read_sgk", "chat_ai", "take_quiz", "view_history", "lab_3d"]
         }
         token = generate_auth_token(user_payload)
@@ -418,7 +559,7 @@ def api_auth_login():
             "success": True,
             "user": user_payload,
             "token": token,
-            "message": f"Chào mừng em {full_name} (Lớp {grade_class}) đến với BioRAG Huỳnh Bá Chánh!"
+            "message": f"Chào mừng em {full_name} (Lớp {grade_class}) đến với BioRAG Tân Tạo A!"
         })
 
     else:
@@ -432,12 +573,12 @@ def api_auth_me():
         return jsonify({
             "authenticated": True,
             "user": user,
-            "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH"
+            "school": "TRƯỜNG THCS TÂN TẠO A"
         })
     return jsonify({
         "authenticated": False,
         "user": None,
-        "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH"
+        "school": "TRƯỜNG THCS TÂN TẠO A"
     })
 
 @app.route("/api/auth/logout", methods=["POST", "OPTIONS"])
@@ -453,7 +594,7 @@ def api_auth_classes():
     return jsonify({
         "grades": [6, 7, 8, 9],
         "classes": DEFAULT_CLASSES,
-        "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH"
+        "school": "TRƯỜNG THCS TÂN TẠO A"
     })
 
 # =========================================================================
@@ -468,7 +609,7 @@ def health():
     return jsonify({
         "status": "ok",
         "service": "BioRAG Vercel Serverless",
-        "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH",
+        "school": "TRƯỜNG THCS TÂN TẠO A",
         "backend_proxy": bool(BACKEND_URL),
         "lessons_available": len(get_all_lessons()),
         "exams_available": len(CURATED_EXAM_BANK),
@@ -640,35 +781,185 @@ def api_learning_textbook_page():
     except (ValueError, TypeError):
         page = 1
 
-    clean_name = re.sub(r'khtn\s*(\d)', r'KHTN \1', source, flags=re.I)
-    if clean_name and not clean_name.lower().endswith(".pdf"):
-        clean_name += ".pdf"
+    grade_arg = request.args.get("grade")
+    m_grade = re.search(r'([6-9])', source or "")
+    grade = int(grade_arg) if grade_arg and str(grade_arg).isdigit() else (int(m_grade.group(1)) if m_grade else 7)
+    clean_stem = f"SGK KHTN {grade} KNTT"
 
-    # Check local PDF if available
+    # 1. First priority: Pre-rendered authentic scanned textbook page
+    page_candidates = [
+        Path(__file__).resolve().parent / "data" / "textbook_pages" / clean_stem / f"page_{page}.jpg",
+        Path(__file__).resolve().parent / "data" / "textbook_pages" / clean_stem / f"page_{page}.png",
+        BASE_DIR / "api" / "data" / "textbook_pages" / clean_stem / f"page_{page}.jpg",
+        BASE_DIR / "public" / "textbook_pages" / clean_stem / f"page_{page}.jpg",
+        Path.cwd() / "api" / "data" / "textbook_pages" / clean_stem / f"page_{page}.jpg",
+        Path("/var/task") / "api" / "data" / "textbook_pages" / clean_stem / f"page_{page}.jpg",
+    ]
+    for pc in page_candidates:
+        if pc.exists() and pc.is_file():
+            try:
+                with open(pc, "rb") as f_img:
+                    img_data = f_img.read()
+                mime = "image/jpeg" if pc.suffix.lower() == ".jpg" else "image/png"
+                resp = Response(img_data, mimetype=mime)
+                resp.headers["Content-Type"] = mime
+                resp.headers["Cache-Control"] = "public, max-age=86400"
+                return resp
+            except Exception as e:
+                print(f"Error reading {pc}: {e}")
+
+    # 2. Second priority: Render from local PDF using fitz on the fly
     for folder in [BASE_DIR / "public" / "sgk", BASE_DIR / "datasources" / "sgk"]:
-        pdf_path = folder / clean_name if clean_name else None
+        pdf_path = folder / f"{clean_stem}.pdf"
         if pdf_path and pdf_path.exists():
             try:
                 import fitz
                 doc = fitz.open(str(pdf_path))
                 p_idx = max(0, min(len(doc) - 1, page - 1))
-                pix = doc[p_idx].get_pixmap(dpi=150)
+                pix = doc[p_idx].get_pixmap(dpi=140)
                 img_bytes = pix.tobytes("png")
-                return Response(img_bytes, mimetype="image/png", headers={"Cache-Control": "public, max-age=86400"})
+                resp = Response(img_bytes, mimetype="image/png")
+                resp.headers["Content-Type"] = "image/png"
+                resp.headers["Cache-Control"] = "public, max-age=86400"
+                return resp
             except Exception:
                 pass
             break
 
-    # High-quality Vector SVG textbook page
-    lessons = get_all_lessons()
-    lesson, start_p, end_p = find_lesson_by_source_and_page(lessons, source, page) if callable(find_lesson_by_source_and_page) else ({}, 1, 4)
-    svg_data = render_textbook_page_svg(lesson, page, start_p, end_p) if callable(render_textbook_page_svg) else "<svg></svg>"
+    # 3. Fallback to closest available scanned page in directory (ALWAYS authentic scan, NO SVG!)
+    dir_candidates = [
+        Path(__file__).resolve().parent / "data" / "textbook_pages" / clean_stem,
+        BASE_DIR / "api" / "data" / "textbook_pages" / clean_stem,
+        Path.cwd() / "api" / "data" / "textbook_pages" / clean_stem,
+        Path("/var/task") / "api" / "data" / "textbook_pages" / clean_stem,
+    ]
+    for d in dir_candidates:
+        if d.exists() and d.is_dir():
+            files = list(d.glob("page_*.jpg")) or list(d.glob("page_*.png"))
+            if files:
+                files.sort(key=lambda f: abs(int(re.search(r'page_(\d+)', f.name).group(1) if re.search(r'page_(\d+)', f.name) else 0) - page))
+                best_file = files[0]
+                with open(best_file, "rb") as f_img:
+                    img_data = f_img.read()
+                mime = "image/jpeg" if best_file.suffix.lower() == ".jpg" else "image/png"
+                resp = Response(img_data, mimetype=mime)
+                resp.headers["Content-Type"] = mime
+                resp.headers["Cache-Control"] = "public, max-age=86400"
+                return resp
+
+    return jsonify({"error": f"Page {page} of {clean_stem} not found"}), 404
+
+@app.route("/api/images/<path:image_path>", methods=["GET", "OPTIONS"])
+@app.route("/images/<path:image_path>", methods=["GET", "OPTIONS"])
+def api_serve_image(image_path):
+    if request.method == "OPTIONS": return jsonify({"status": "ok"})
+    from urllib.parse import unquote
+    raw_path = unquote(image_path)
+    clean_rel = raw_path.replace("\\", "/").lstrip("/")
+    if "images/" in clean_rel:
+        clean_rel = clean_rel.split("images/")[-1]
     
-    response = Response(svg_data, mimetype="image/svg+xml")
-    response.headers["Content-Type"] = "image/svg+xml; charset=utf-8"
-    response.headers["Cache-Control"] = "public, max-age=86400"
-    response.headers["X-Content-Type-Options"] = "nosniff"
-    return response
+    m_grade = re.search(r'([6-9])', clean_rel)
+    grade = int(m_grade.group(1)) if m_grade else 7
+    book_stem = f"SGK KHTN {grade} KNTT"
+    clean_filename = Path(clean_rel).name
+
+    # 1. Look for static PNG/JPG cropped figure file on local disk or bundled in api/data/images
+    candidates = [
+        Path(__file__).resolve().parent / "data" / "images" / clean_rel,
+        BASE_DIR / "api" / "data" / "images" / clean_rel,
+        BASE_DIR / "images" / clean_rel,
+        BASE_DIR / "public" / "images" / clean_rel,
+        BASE_DIR / "database_kntt" / "images" / clean_rel,
+        Path.cwd() / "api" / "data" / "images" / clean_rel,
+        Path.cwd() / "images" / clean_rel,
+        Path("/var/task") / "api" / "data" / "images" / clean_rel,
+        Path(__file__).resolve().parent / "data" / "images" / book_stem / clean_filename,
+        BASE_DIR / "api" / "data" / "images" / book_stem / clean_filename,
+        Path.cwd() / "api" / "data" / "images" / book_stem / clean_filename,
+        Path("/var/task") / "api" / "data" / "images" / book_stem / clean_filename,
+    ]
+    for c in candidates:
+        if c.exists() and c.is_file():
+            try:
+                with open(c, "rb") as f_img:
+                    img_data = f_img.read()
+                ext = c.suffix.lower()
+                mime = "image/png" if ext == ".png" else "image/jpeg" if ext in [".jpg", ".jpeg"] else "image/webp" if ext == ".webp" else "application/octet-stream"
+                resp = Response(img_data, mimetype=mime)
+                resp.headers["Content-Type"] = mime
+                resp.headers["Cache-Control"] = "public, max-age=86400"
+                return resp
+            except Exception:
+                pass
+
+    # 2. If specific cropped figure is not found, serve the AUTHENTIC scanned textbook page!
+    m_page = re.search(r'page_(\d+)', clean_rel)
+    page = int(m_page.group(1)) if m_page else 1
+    
+    real_page_candidates = [
+        Path(__file__).resolve().parent / "data" / "textbook_pages" / book_stem / f"page_{page}.jpg",
+        Path(__file__).resolve().parent / "data" / "textbook_pages" / book_stem / f"page_{page}.png",
+        BASE_DIR / "api" / "data" / "textbook_pages" / book_stem / f"page_{page}.jpg",
+        BASE_DIR / "textbook_pages" / book_stem / f"page_{page}.jpg",
+        BASE_DIR / "public" / "textbook_pages" / book_stem / f"page_{page}.jpg",
+        Path.cwd() / "api" / "data" / "textbook_pages" / book_stem / f"page_{page}.jpg",
+        Path.cwd() / "textbook_pages" / book_stem / f"page_{page}.jpg",
+        Path("/var/task") / "api" / "data" / "textbook_pages" / book_stem / f"page_{page}.jpg",
+    ]
+    for rpc in real_page_candidates:
+        if rpc.exists() and rpc.is_file():
+            try:
+                with open(rpc, "rb") as f_img:
+                    img_data = f_img.read()
+                mime = "image/jpeg" if rpc.suffix.lower() == ".jpg" else "image/png"
+                resp = Response(img_data, mimetype=mime)
+                resp.headers["Content-Type"] = mime
+                resp.headers["Cache-Control"] = "public, max-age=86400"
+                return resp
+            except Exception:
+                pass
+
+    # 3. Render from PDF if available
+    for folder in [BASE_DIR / "public" / "sgk", BASE_DIR / "datasources" / "sgk", Path(__file__).resolve().parent / "datasources" / "sgk"]:
+        pdf_path = folder / f"{book_stem}.pdf"
+        if pdf_path and pdf_path.exists():
+            try:
+                import fitz
+                doc = fitz.open(str(pdf_path))
+                p_idx = max(0, min(len(doc) - 1, page - 1))
+                pix = doc[p_idx].get_pixmap(dpi=140)
+                img_bytes = pix.tobytes("png")
+                resp = Response(img_bytes, mimetype="image/png")
+                resp.headers["Content-Type"] = "image/png"
+                resp.headers["Cache-Control"] = "public, max-age=86400"
+                return resp
+            except Exception:
+                pass
+            break
+
+    # 4. Fallback to closest authentic scanned page (ALWAYS authentic scan, NO SVG!)
+    dir_candidates = [
+        Path(__file__).resolve().parent / "data" / "textbook_pages" / book_stem,
+        BASE_DIR / "api" / "data" / "textbook_pages" / book_stem,
+        Path.cwd() / "api" / "data" / "textbook_pages" / book_stem,
+        Path("/var/task") / "api" / "data" / "textbook_pages" / book_stem,
+    ]
+    for d in dir_candidates:
+        if d.exists() and d.is_dir():
+            files = list(d.glob("page_*.jpg")) or list(d.glob("page_*.png"))
+            if files:
+                files.sort(key=lambda f: abs(int(re.search(r'page_(\d+)', f.name).group(1) if re.search(r'page_(\d+)', f.name) else 0) - page))
+                best_file = files[0]
+                with open(best_file, "rb") as f_img:
+                    img_data = f_img.read()
+                mime = "image/jpeg" if best_file.suffix.lower() == ".jpg" else "image/png"
+                resp = Response(img_data, mimetype=mime)
+                resp.headers["Content-Type"] = mime
+                resp.headers["Cache-Control"] = "public, max-age=86400"
+                return resp
+
+    return jsonify({"error": f"Image {clean_rel} not found"}), 404
 
 
 @app.route("/api/learning/textbook-pdf", methods=["GET"])
@@ -861,7 +1152,7 @@ def api_quiz_generate():
             "grade": grade,
             "topic": topic,
             "title": topic,
-            "school_name": "TRƯỜNG THCS HUỲNH BÁ CHÁNH"
+            "school_name": "TRƯỜNG THCS TÂN TẠO A"
         }, target_mcq_count=count)
         mcqs = exam_synth.get("multiple_choice", [])[:count]
         if mcqs:
@@ -957,8 +1248,8 @@ def api_lab_export_report():
                 exp = item
                 break
     student_info = {
-        "school": data.get("school_name") or "TRƯỜNG THCS HUỲNH BÁ CHÁNH",
-        "student_name": data.get("student_name") or "Học sinh THCS Huỳnh Bá Chánh",
+        "school": data.get("school_name") or "TRƯỜNG THCS TÂN TẠO A",
+        "student_name": data.get("student_name") or "Học sinh THCS Tân Tạo A",
         "class": data.get("class_name") or f"Lớp {exp.get('grade', 7) if exp else 7}",
         "group": data.get("group") or "Nhóm thực hành KHTN",
         "date": data.get("date") or ""
@@ -995,7 +1286,7 @@ def api_exam_generate_3280():
             "grade": grade,
             "topic": topic,
             "title": f"ĐỀ KIỂM TRA ĐỊNH KỲ KHTN {grade}",
-            "school_name": "TRƯỜNG THCS HUỲNH BÁ CHÁNH"
+            "school_name": "TRƯỜNG THCS TÂN TẠO A"
         }, target_mcq_count=count)
         return jsonify({"exam": exam, "exam_data": exam})
     return jsonify({"error": "Builder unavailable"}), 500
@@ -1061,6 +1352,9 @@ def api_chat():
         except Exception:
             pass
 
+    # Retrieve relevant SGK illustrations/diagrams
+    images = get_relevant_images_for_query(question, matched_lesson, resolved_grade, limit=2)
+
     api_key = str(data.get("api_key") or os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY") or "").strip()
 
     if api_key and callable(call_gemini_rest):
@@ -1076,22 +1370,25 @@ KIẾN THỨC BÀI HỌC THAM KHẢO TỪ SGK KNTT:
 - Tóm tắt: {', '.join(matched_lesson.get('summary', []))}
 - Nội dung: {matched_lesson.get('content', '')}
 """
-        prompt = f"""Bạn là Trợ lý AI Khoa học Tự nhiên chính thức của Trường THCS Huỳnh Bá Chánh.
+        prompt = f"""Bạn là Trợ lý AI Khoa học Tự nhiên chính thức của Trường Thcs Tân Tạo A.
 Chương trình: Khoa học Tự nhiên Lớp {resolved_grade} (Bộ sách Kết nối tri thức với cuộc sống).
 {lesson_context}
 
 Câu hỏi của học sinh: {question}
 
-Yêu cầu trả lời:
-1. Giải thích chính xác, khoa học, dễ hiểu, bám sát nội dung SGK KHTN {resolved_grade} (Bộ sách Kết nối tri thức).
-2. Nêu rõ định nghĩa, bản chất hiện tượng và ví dụ thực tế liên quan.
-3. Trích dẫn rõ ràng tên bài học và số trang trong SGK Kết nối tri thức.
-4. Giọng điệu sư phạm, tích cực, truyền cảm hứng học tập."""
+HÃY TRẢ LỜI ĐẦY ĐỦ, CHUẨN MỰC SƯ PHẠM THEO CẤU TRÚC SAU:
+1. LỜI CHÀO MỞ ĐẦU: Thân thiện, ấm áp, truyền cảm hứng và khen ngợi câu hỏi hay của học sinh (ví dụ: "Chào em, thầy/cô rất vui khi nhận được câu hỏi của em! Đây là một câu hỏi rất hay, giúp chúng ta hiểu rõ hơn về...").
+2. ĐỊNH NGHĨA & BẢN CHẤT CỐT LÕI: Giải thích khái niệm, định nghĩa và hiện tượng một cách chính xác, kèm phương trình tổng quát hoặc công thức khoa học (nếu có).
+3. VAI TRÒ & Ý NGHĨA KHOA HỌC: Phân tích vai trò đối với sinh giới, cơ thể sinh vật hoặc thực tiễn tự nhiên.
+4. MỐI LIÊN HỆ VỚI SGK KẾT NỐI TRI THỨC: Nêu rõ mối liên hệ với bài học ({matched_lesson.get('number', '')} {matched_lesson.get('title', '')}) và các bài học liên quan trong chương trình SGK KHTN KNTT, trích dẫn chính xác số trang SGK.
+5. VÍ DỤ THỰC TẾ SINH ĐỘNG: Đưa ra ví dụ hoặc ứng dụng thực tế gần gũi với đời sống học sinh THCS.
+6. LỜI NHẮN NHỦ TỪ TRỢ LÝ AI: Động viên tinh thần học tập, khích lệ tình yêu thiên nhiên, nhắc nhở học sinh thoải mái hỏi tiếp nếu còn thắc mắc."""
 
         ai_answer, model_used = call_gemini_rest(prompt, api_key)
         if ai_answer:
             return jsonify({
                 "answer": ai_answer,
+                "images": images,
                 "sources": [source_item],
                 "grounded": True,
                 "grade": resolved_grade,
@@ -1100,7 +1397,7 @@ Yêu cầu trả lời:
 
     local_answer = format_local_rag_answer(question, matched_lesson) if callable(format_local_rag_answer) else ""
     if not local_answer or len(local_answer) < 30:
-        local_answer = f"""Chào bạn! Mình là Trợ lý AI Khoa học Tự nhiên của **Trường THCS Huỳnh Bá Chánh**.
+        local_answer = f"""Chào bạn! Mình là Trợ lý AI Khoa học Tự nhiên của **Trường Thcs Tân Tạo A**.
 
 Hiện tại bạn đang hỏi về: **{question}**.
 Kho tri thức SGK KHTN Lớp {resolved_grade} (Kết nối tri thức) đã tích hợp đầy đủ 195 bài học, bài tập trắc nghiệm và mô phỏng 3D tại các mục tương ứng trên hệ thống."""
@@ -1110,10 +1407,50 @@ Kho tri thức SGK KHTN Lớp {resolved_grade} (Kết nối tri thức) đã tí
 
     return jsonify({
         "answer": local_answer,
+        "images": images,
         "sources": [source_item],
         "grounded": True,
         "grade": resolved_grade,
         "meta": {"grounded": True, "grade": resolved_grade, "mode": "local_rag"}
+    })
+
+@app.route("/api/chat/photo", methods=["POST", "OPTIONS"])
+@app.route("/chat/photo", methods=["POST", "OPTIONS"])
+def api_chat_photo():
+    if request.method == "OPTIONS": return jsonify({"status": "ok"})
+    res = proxy_to_backend("api/chat/photo")
+    if res: return res
+
+    question = ""
+    grade = 7
+    if request.files and "photo" in request.files:
+        f = request.files["photo"]
+        grade = int(request.form.get("grade", 7) or 7)
+        question = request.form.get("question") or f"Giải đáp câu hỏi trong hình ảnh SGK KHTN {grade}"
+    else:
+        d = request.get_json(silent=True) or {}
+        question = d.get("question") or "Giải đáp hình ảnh bài tập KHTN"
+        grade = int(d.get("grade", 7) or 7)
+
+    all_lessons = get_all_lessons()
+    matched_lesson = None
+    if callable(search_best_lesson) and all_lessons:
+        matched_lesson, _ = search_best_lesson(all_lessons, question, grade)
+
+    images = get_relevant_images_for_query(question, matched_lesson, grade, limit=2)
+    local_ans = format_local_rag_answer(question, matched_lesson) if callable(format_local_rag_answer) else f"Phân tích hình ảnh câu hỏi môn KHTN {grade} dựa trên SGK Kết nối tri thức."
+
+    return jsonify({
+        "answer": local_ans,
+        "images": images,
+        "sources": [{
+            "title": matched_lesson.get("title", f"SGK KHTN {grade}") if matched_lesson else f"SGK KHTN {grade}",
+            "page": 1,
+            "source": matched_lesson.get("source_label", f"SGK KHTN {grade} KNTT") if matched_lesson else f"SGK KHTN {grade} KNTT"
+        }],
+        "grounded": True,
+        "grade": grade,
+        "meta": {"mode": "photo_rag"}
     })
 
 @app.route("/api/feedback", methods=["POST", "OPTIONS"])
@@ -1122,8 +1459,320 @@ def api_feedback():
     if request.method == "OPTIONS": return jsonify({"status": "ok"})
     return jsonify({"status": "ok"})
 
+# =========================================================================
+# 7. IMAGE CHAT & MULTIMODAL REGION EXPLORATION
+# =========================================================================
+def resolve_image_bytes_and_crop(raw_image_path="", raw_image_url="", metadata=None, label="", crop=None):
+    """Resolve image bytes from local disk, URL, or scanned pages, and apply crop if provided."""
+    metadata = metadata or {}
+    img_bytes = None
+    mime_type = "image/png"
+    
+    from urllib.parse import unquote, urlparse, parse_qs
+    candidates = []
+    
+    for candidate in [raw_image_path, raw_image_url]:
+        if not candidate: continue
+        clean = unquote(candidate).replace('\\', '/').strip()
+        if "/api/images/" in clean:
+            clean = clean.split("/api/images/", 1)[1]
+        if clean.startswith("/"):
+            clean = clean.lstrip("/")
+        if clean:
+            candidates.extend([
+                Path(__file__).resolve().parent / "data" / "images" / clean,
+                Path(__file__).resolve().parent / "data" / "textbook_pages" / clean,
+                BASE_DIR / "api" / "data" / "images" / clean,
+                BASE_DIR / "api" / "data" / "textbook_pages" / clean,
+                BASE_DIR / "public" / "images" / clean,
+                BASE_DIR / "public" / "textbook_pages" / clean,
+            ])
+            
+    pdf_name = metadata.get("pdf_filename") or metadata.get("source") or ""
+    page = metadata.get("page_number") or metadata.get("page")
+    if raw_image_url and ("page=" in raw_image_url or "source=" in raw_image_url):
+        try:
+            parsed = urlparse(raw_image_url)
+            qs = parse_qs(parsed.query)
+            if "source" in qs and not pdf_name: pdf_name = qs["source"][0]
+            if "page" in qs and not page: page = qs["page"][0]
+        except Exception:
+            pass
+            
+    if not page and label:
+        m_p = re.search(r'Trang\s+(\d+)', label, re.I)
+        if m_p: page = int(m_p.group(1))
+    if not pdf_name and label:
+        m_g = re.search(r'KHTN\s*(\d)', label, re.I)
+        if m_g: pdf_name = f"SGK KHTN {m_g.group(1)} KNTT.pdf"
+
+    if page:
+        try:
+            p_num = int(page)
+            grade = 7
+            if pdf_name:
+                m_g = re.search(r'KHTN\s*(\d)', str(pdf_name), re.I)
+                if m_g: grade = int(m_g.group(1))
+            book_stem = f"SGK KHTN {grade} KNTT"
+            candidates.extend([
+                Path(__file__).resolve().parent / "data" / "textbook_pages" / book_stem / f"page_{p_num}.jpg",
+                Path(__file__).resolve().parent / "data" / "textbook_pages" / book_stem / f"page_{p_num}.png",
+                BASE_DIR / "api" / "data" / "textbook_pages" / book_stem / f"page_{p_num}.jpg",
+                BASE_DIR / "api" / "data" / "textbook_pages" / book_stem / f"page_{p_num}.png",
+                BASE_DIR / "textbook_pages" / book_stem / f"page_{p_num}.jpg",
+            ])
+        except Exception:
+            pass
+
+    for cp in candidates:
+        if cp.exists() and cp.is_file():
+            try:
+                with open(cp, "rb") as f:
+                    img_bytes = f.read()
+                mime_type = "image/jpeg" if cp.suffix.lower() in [".jpg", ".jpeg"] else "image/png"
+                break
+            except Exception:
+                pass
+
+    if not img_bytes and pdf_name and page:
+        try:
+            p_num = int(page)
+            for folder in [BASE_DIR / "public" / "sgk", BASE_DIR / "datasources" / "sgk"]:
+                pdf_file = folder / pdf_name
+                if pdf_file.exists():
+                    import fitz
+                    doc = fitz.open(str(pdf_file))
+                    pix = doc[max(0, min(len(doc)-1, p_num-1))].get_pixmap(dpi=140)
+                    img_bytes = pix.tobytes("png")
+                    mime_type = "image/png"
+                    break
+        except Exception:
+            pass
+
+    if not img_bytes and page:
+        try:
+            p_num = int(page)
+            for d in [Path(__file__).resolve().parent / "data" / "textbook_pages", BASE_DIR / "api" / "data" / "textbook_pages"]:
+                if d.exists():
+                    matched = list(d.rglob(f"page_{p_num}.*"))
+                    if matched:
+                        with open(matched[0], "rb") as f:
+                            img_bytes = f.read()
+                        mime_type = "image/jpeg" if matched[0].suffix.lower() in [".jpg", ".jpeg"] else "image/png"
+                        break
+        except Exception:
+            pass
+
+    crop_info = None
+    if img_bytes and crop and isinstance(crop, dict) and "x" in crop and "y" in crop and "width" in crop and "height" in crop:
+        try:
+            from PIL import Image
+            with Image.open(io.BytesIO(img_bytes)) as im:
+                w, h = im.size
+                left = max(0, min(w - 1, int(float(crop["x"]) * w)))
+                top = max(0, min(h - 1, int(float(crop["y"]) * h)))
+                right = max(left + 1, min(w, int((float(crop["x"]) + float(crop["width"])) * w)))
+                bottom = max(top + 1, min(h, int((float(crop["y"]) + float(crop["height"])) * h)))
+                cropped_im = im.crop((left, top, right, bottom))
+                buf = io.BytesIO()
+                cropped_im.save(buf, format="PNG")
+                img_bytes = buf.getvalue()
+                mime_type = "image/png"
+                crop_info = {"x": crop["x"], "y": crop["y"], "width": crop["width"], "height": crop["height"]}
+        except Exception as e:
+            print(f"Error applying crop: {e}")
+
+    return img_bytes, mime_type, crop_info
+
+
+def build_image_notes_docx(image_bytes, question, answer, source_name, page, crop_info=None, school_name="TRƯỜNG THCS TÂN TẠO A"):
+    """Generate Word (.docx) study note document with embedded image and pedagogic answer."""
+    import io, re
+    try:
+        from docx import Document
+        from docx.shared import Inches, Pt, RGBColor
+        from docx.enum.text import WD_ALIGN_PARAGRAPH
+        
+        doc = Document()
+        
+        header = doc.add_paragraph()
+        header.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        r_sch = header.add_run(f"SỞ GIÁO DỤC VÀ ĐÀO TẠO · {school_name.upper()}\n")
+        r_sch.bold = True
+        r_sch.font.size = Pt(11)
+        r_sch.font.color.rgb = RGBColor(0x16, 0x65, 0x34)
+        
+        title = doc.add_heading("PHIẾU HỌC TẬP & GHI CHÚ TỪ HÌNH ẢNH SGK", level=1)
+        title.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        
+        meta_p = doc.add_paragraph()
+        meta_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        r_meta = meta_p.add_run(f"Nguồn trích dẫn: {source_name} · Trang {page}")
+        r_meta.italic = True
+        r_meta.font.size = Pt(10)
+        
+        if crop_info:
+            c_p = doc.add_paragraph()
+            c_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            c_p.add_run("(*) Nội dung được trích xuất từ vùng quan sát trọng tâm trên trang sách.").italic = True
+            
+        if image_bytes:
+            try:
+                img_stream = io.BytesIO(image_bytes)
+                doc.add_picture(img_stream, width=Inches(5.5))
+                doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
+            except Exception:
+                pass
+                
+        doc.add_heading("1. Câu hỏi tìm hiểu", level=2)
+        p_q = doc.add_paragraph(question)
+        if p_q.runs:
+            p_q.runs[0].bold = True
+        
+        doc.add_heading("2. Nội dung giải đáp & Ghi chú học tập", level=2)
+        for raw_line in str(answer or "").splitlines():
+            line = raw_line.strip()
+            if not line:
+                continue
+            if line.startswith("###") or line.startswith("####"):
+                clean_h = re.sub(r"^#+\s*", "", line)
+                doc.add_heading(clean_h, level=3)
+            elif line.startswith("-") or line.startswith("*"):
+                clean_b = re.sub(r"^[-*]\s*", "", line)
+                clean_b = re.sub(r"\*\*([^*]+)\*\*", r"\1", clean_b)
+                doc.add_paragraph(clean_b, style="List Bullet")
+            else:
+                clean_t = re.sub(r"\*\*([^*]+)\*\*", r"\1", line)
+                doc.add_paragraph(clean_t)
+                
+        footer = doc.sections[0].footer.paragraphs[0]
+        footer.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        footer.add_run(f"Hệ thống Trợ lý AI Khoa học Tự nhiên · {school_name}")
+        
+        buf = io.BytesIO()
+        doc.save(buf)
+        buf.seek(0)
+        return buf.getvalue()
+    except Exception as e:
+        print(f"Error building docx: {e}")
+        return None
+
+
+@app.route("/api/image-chat", methods=["POST", "OPTIONS"])
+@app.route("/image-chat", methods=["POST", "OPTIONS"])
+def api_image_chat():
+    if request.method == "OPTIONS": return jsonify({"status": "ok"})
+    res = proxy_to_backend("api/image-chat")
+    if res: return res
+
+    data = request.get_json(silent=True) or {}
+    question = str(data.get("question") or "").strip()
+    raw_image_path = str(data.get("image_path") or "").strip()
+    raw_image_url = str(data.get("image_url") or "").strip()
+    label = str(data.get("label") or "").strip()
+    metadata = data.get("metadata") if isinstance(data.get("metadata"), dict) else {}
+    crop = data.get("crop")
+    
+    if not question:
+        return jsonify({"error": "Câu hỏi về hình ảnh không được để trống."}), 400
+
+    img_bytes, mime_type, crop_info = resolve_image_bytes_and_crop(raw_image_path, raw_image_url, metadata, label, crop)
+    
+    grade = 7
+    if metadata.get("page_number"):
+        try:
+            m_g = re.search(r'khtn\s*(\d)', str(metadata.get("pdf_filename") or metadata.get("source") or label), re.I)
+            if m_g: grade = int(m_g.group(1))
+        except Exception:
+            pass
+    elif label:
+        m_g = re.search(r'khtn\s*(\d)', label, re.I)
+        if m_g: grade = int(m_g.group(1))
+
+    all_lessons = get_all_lessons(grade)
+    matched_lesson = None
+    if callable(search_best_lesson) and all_lessons:
+        search_query = f"{label} {question}"
+        matched_lesson, _ = search_best_lesson(all_lessons, search_query, grade)
+
+    api_key = str(data.get("api_key") or os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY") or "").strip()
+    
+    if img_bytes and api_key and callable(call_gemini_vision_rest):
+        focus_desc = "Người học đã KHOANH MỘT VÙNG TRỌNG TÂM trên hình. Ảnh đính kèm là vùng đã khoanh." if crop_info else "Người học đang quan sát toàn bộ hình ảnh SGK."
+        prompt = f"""Bạn là Trợ lý AI Khoa học Tự nhiên của Trường THCS Tân Tạo A.
+Bộ sách: SGK Khoa học Tự nhiên Lớp {grade} (Kết nối tri thức với cuộc sống).
+Nguồn hình: {metadata.get('pdf_filename') or metadata.get('source') or label or 'SGK KHTN'}.
+Chú thích hình: {label or metadata.get('figure_caption') or 'Hình minh họa SGK'}.
+{focus_desc}
+
+Câu hỏi của học sinh: {question}
+
+YÊU CẦU TRẢ LỜI:
+- Quan sát kỹ các chi tiết, màu sắc, ký hiệu, mũi tên và chữ viết có trong hình ảnh/vùng ảnh đính kèm.
+- Trả lời bằng tiếng Việt chuẩn mực sư phạm, rõ ràng, dễ hiểu cho học sinh THCS.
+- Nếu học sinh yêu cầu tóm tắt/ghi chú, hãy cung cấp đầy đủ Tiêu đề, Ý chính, Thuật ngữ quan trọng, Kết luận và Mẹo ghi nhớ.
+- Nếu học sinh yêu cầu tạo câu hỏi trắc nghiệm, hãy tạo 5 câu hỏi 4 lựa chọn (A, B, C, D) kèm đáp án đúng và lời giải thích.
+- Giữ tinh thần khích lệ, thân thiện và truyền cảm hứng yêu khoa học."""
+
+        ai_ans, model_used = call_gemini_vision_rest(prompt, img_bytes, mime_type, api_key)
+        if ai_ans:
+            return jsonify({
+                "answer": ai_ans,
+                "source": {"pdf_filename": metadata.get("pdf_filename") or f"SGK KHTN {grade} KNTT.pdf", "page": metadata.get("page_number") or 1},
+                "crop": crop_info,
+                "meta": {"grounded": True, "grade": grade, "model": model_used}
+            })
+
+    local_ans = format_image_chat_local_answer(question, label, metadata, matched_lesson, grade, crop_info) if callable(format_image_chat_local_answer) else "Đang phân tích hình ảnh SGK."
+
+    return jsonify({
+        "answer": local_ans,
+        "source": {"pdf_filename": metadata.get("pdf_filename") or f"SGK KHTN {grade} KNTT.pdf", "page": metadata.get("page_number") or 1},
+        "crop": crop_info,
+        "meta": {"grounded": True, "grade": grade, "mode": "local_vision_rag"}
+    })
+
+
+@app.route("/api/image-chat/export", methods=["POST", "OPTIONS"])
+@app.route("/image-chat/export", methods=["POST", "OPTIONS"])
+def api_image_chat_export():
+    if request.method == "OPTIONS": return jsonify({"status": "ok"})
+    res = proxy_to_backend("api/image-chat/export")
+    if res: return res
+
+    data = request.get_json(silent=True) or {}
+    export_format = str(data.get("format", "docx")).strip().lower()
+    question = str(data.get("question", "Tìm hiểu hình ảnh SGK")).strip()
+    answer = str(data.get("answer", "")).strip()
+    raw_image_path = str(data.get("image_path") or "").strip()
+    raw_image_url = str(data.get("image_url") or "").strip()
+    label = str(data.get("label") or "").strip()
+    metadata = data.get("metadata") if isinstance(data.get("metadata"), dict) else {}
+    crop = data.get("crop")
+
+    img_bytes, mime_type, crop_info = resolve_image_bytes_and_crop(raw_image_path, raw_image_url, metadata, label, crop)
+    
+    source_name = metadata.get("pdf_filename") or metadata.get("source") or label or "SGK KHTN KNTT"
+    page = metadata.get("page_number") or metadata.get("page") or 1
+    
+    docx_bytes = build_image_notes_docx(img_bytes, question, answer, source_name, page, crop_info, school_name="TRƯỜNG THCS TÂN TẠO A")
+    
+    if docx_bytes:
+        buf = io.BytesIO(docx_bytes)
+        safe_p = re.sub(r'[^0-9A-Za-z_-]+', '_', str(page))
+        return send_file(
+            buf,
+            mimetype="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            as_attachment=True,
+            download_name=f"Ghi_chu_hoc_tap_trang_{safe_p}_THCS_TanTaoA.docx"
+        )
+        
+    return jsonify({"error": "Không thể xuất tài liệu Word lúc này."}), 500
+
+
 # Export WSGI callable for Vercel
 app_handler = app
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
+

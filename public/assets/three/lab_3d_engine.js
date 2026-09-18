@@ -45,6 +45,8 @@
       this.container = container;
       this.currentExp = exp;
       this.currentSimType = (exp && exp.simulation ? exp.simulation.sim_type : '') || (exp && exp.simulation_type ? exp.simulation_type : '') || '';
+      this.currentSimState = state || window.labSimState || {};
+      window.labSimState = this.currentSimState;
 
       var width = container.clientWidth || 640;
       var height = container.clientHeight || 390;
@@ -530,124 +532,112 @@
     // =========================================================================
     buildFiltrationEvaporation: function(group, state) {
       var self = this;
-      var ironMat = this.getMetalMaterial(0.45, 0x1e293b);
-      var chromeMat = this.getMetalMaterial(0.2, 0xe2e8f0);
-      var glassMat = this.getGlassMaterial(0xdbeafe, 0.3);
+      var ironMat = this.getMetalMaterial(0.4, 0x334155);
+      var glassMat = this.getGlassMaterial(0xdbeafe, 0.28);
 
-      // STAGE 1: Filtration Stand (left side)
+      // STAGE 1: Filtration Stand (left side at x = -1.4)
       var s1Group = new THREE.Group();
       s1Group.position.set(-1.4, 0, 0);
 
-      var baseGeo = new THREE.BoxGeometry(1.6, 0.12, 1.2);
-      var base1 = new THREE.Mesh(baseGeo, ironMat);
+      var base1 = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.12, 1.2), ironMat);
       base1.position.set(0, 0.06, 0);
       base1.castShadow = true;
-      base1.receiveShadow = true;
       s1Group.add(base1);
 
-      var rod1 = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 3.4, 16), chromeMat);
-      rod1.position.set(-0.55, 1.76, -0.35);
+      var rod1 = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 3.2, 16), ironMat);
+      rod1.position.set(-0.45, 1.66, -0.35);
       rod1.castShadow = true;
       s1Group.add(rod1);
 
-      var ring1 = new THREE.Mesh(new THREE.TorusGeometry(0.44, 0.035, 16, 32), ironMat);
-      ring1.rotation.x = Math.PI / 2;
-      ring1.position.set(0, 2.1, 0);
-      s1Group.add(ring1);
+      var clamp1 = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.07, 0.07), ironMat);
+      clamp1.position.set(-0.2, 1.95, -0.35);
+      s1Group.add(clamp1);
 
-      var arm1 = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.7, 12), ironMat);
-      arm1.rotation.z = Math.PI / 2;
-      arm1.position.set(-0.28, 2.1, -0.17);
-      s1Group.add(arm1);
+      var ring1 = new THREE.Mesh(new THREE.TorusGeometry(0.38, 0.03, 16, 32), ironMat);
+      ring1.rotation.x = Math.PI / 2;
+      ring1.position.set(0, 1.95, 0);
+      s1Group.add(ring1);
 
       // Glass Funnel
       var funnelGroup = new THREE.Group();
-      funnelGroup.position.set(0, 2.1, 0);
-      var coneGeo = new THREE.ConeGeometry(0.45, 0.7, 32, 1, true);
-      coneGeo.rotateX(Math.PI);
-      var funnelCone = new THREE.Mesh(coneGeo, glassMat);
-      funnelCone.position.set(0, 0, 0);
-      funnelGroup.add(funnelCone);
+      funnelGroup.position.set(0, 1.95, 0);
 
-      var stemGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.8, 16, 1, true);
-      var funnelStem = new THREE.Mesh(stemGeo, glassMat);
-      funnelStem.position.set(0, -0.7, 0);
-      funnelGroup.add(funnelStem);
+      var coneMesh = new THREE.Mesh(new THREE.ConeGeometry(0.38, 0.55, 32, 1, true), glassMat);
+      coneMesh.rotation.x = Math.PI;
+      coneMesh.position.set(0, -0.05, 0);
+      funnelGroup.add(coneMesh);
 
-      // Filter Paper
+      var stemMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.75, 16, 1, true), glassMat);
+      stemMesh.position.set(0, -0.68, 0);
+      funnelGroup.add(stemMesh);
+
+      // Filter Paper Cone (4-layer folded filter paper)
       var paperMat = new THREE.MeshStandardMaterial({
-        color: 0xf8fafc,
-        roughness: 0.85,
+        color: 0xf1f5f9,
+        roughness: 0.88,
         side: THREE.DoubleSide
       });
-      var paperGeo = new THREE.ConeGeometry(0.43, 0.65, 24, 1, true);
-      paperGeo.rotateX(Math.PI);
-      var paperMesh = new THREE.Mesh(paperGeo, paperMat);
-      paperMesh.position.set(0, 0.02, 0);
+      var paperMesh = new THREE.Mesh(new THREE.ConeGeometry(0.35, 0.48, 28), paperMat);
+      paperMesh.rotation.x = Math.PI;
+      paperMesh.position.set(0, -0.04, 0);
       funnelGroup.add(paperMesh);
 
-      // Sand inside filter
-      var sandMat = new THREE.MeshStandardMaterial({
-        color: 0xd97706,
-        roughness: 0.95,
-        bumpScale: 0.05
-      });
-      var sandGeo = new THREE.ConeGeometry(0.38, 0.45, 20);
-      sandGeo.rotateX(Math.PI);
-      var sandMesh = new THREE.Mesh(sandGeo, sandMat);
-      sandMesh.position.set(0, -0.05, 0);
-      funnelGroup.add(sandMesh);
+      // Sand Particles inside filter paper (golden-brown SiO2)
+      var sandMat = new THREE.MeshStandardMaterial({ color: 0xb45309, roughness: 0.95 });
+      var sandGroup = new THREE.Group();
+      sandGroup.position.set(0, -0.15, 0);
+      for (var sp = 0; sp < 45; sp++) {
+        var sRad = Math.random() * 0.22;
+        var sAng = Math.random() * Math.PI * 2;
+        var sMesh = new THREE.Mesh(new THREE.DodecahedronGeometry(0.02 + Math.random() * 0.025), sandMat);
+        sMesh.position.set(Math.cos(sAng) * sRad, (Math.random() - 0.5) * 0.05, Math.sin(sAng) * sRad);
+        sandGroup.add(sMesh);
+      }
+      funnelGroup.add(sandGroup);
       s1Group.add(funnelGroup);
 
-      // Receiver Beaker
-      var beakerMat = this.getGlassMaterial(0xdbeafe, 0.28);
-      var beakerGeo = new THREE.CylinderGeometry(0.4, 0.4, 0.9, 32, 1, true);
-      var beaker = new THREE.Mesh(beakerGeo, beakerMat);
-      beaker.position.set(0, 0.51, 0);
-      beaker.castShadow = true;
-      s1Group.add(beaker);
+      // Receiving Beaker below (catching clear salt water)
+      var beakerMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 0.95, 32, 1, true), glassMat);
+      beakerMesh.position.set(0, 0.60, 0);
+      beakerMesh.castShadow = true;
+      s1Group.add(beakerMesh);
 
-      var bBottom = new THREE.Mesh(new THREE.CircleGeometry(0.4, 32), beakerMat);
-      bBottom.rotation.x = -Math.PI / 2;
-      bBottom.position.set(0, 0.065, 0);
-      s1Group.add(bBottom);
+      // Filtered liquid level in beaker
+      var beakerLiqMat = this.getLiquidMaterial(0x38bdf8, 0.55);
+      var beakerLiq = new THREE.Mesh(new THREE.CylinderGeometry(0.40, 0.40, 0.52, 32), beakerLiqMat);
+      beakerLiq.position.set(0, 0.38, 0);
+      s1Group.add(beakerLiq);
 
-      var filtrateMat = this.getLiquidMaterial(0x38bdf8, 0.7);
-      var filtrateMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.38, 0.38, 0.35, 32), filtrateMat);
-      filtrateMesh.position.set(0, 0.24, 0);
-      s1Group.add(filtrateMesh);
-
-      // Dripping Water
-      var dropMat = this.getLiquidMaterial(0x38bdf8, 0.9);
-      var dropGeo = new THREE.SphereGeometry(0.04, 12, 12);
-      var dropMesh = new THREE.Mesh(dropGeo, dropMat);
-      dropMesh.position.set(0, 0.95, 0);
+      // Dripping Droplet from funnel stem
+      var dropGeo = new THREE.SphereGeometry(0.032, 12, 12);
+      dropGeo.scale(1, 1.5, 1);
+      var dropMesh = new THREE.Mesh(dropGeo, beakerLiqMat);
+      dropMesh.position.set(0, 1.25, 0);
       s1Group.add(dropMesh);
 
-      // Ripple Ring
-      var rippleMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0 });
-      var rippleGeo = new THREE.RingGeometry(0.04, 0.07, 24);
+      // Surface Ripple
+      var rippleGeo = new THREE.RingGeometry(0.04, 0.28, 24);
+      var rippleMat = new THREE.MeshBasicMaterial({ color: 0xbae6fd, transparent: true, opacity: 0, side: THREE.DoubleSide });
       var rippleMesh = new THREE.Mesh(rippleGeo, rippleMat);
       rippleMesh.rotation.x = -Math.PI / 2;
-      rippleMesh.position.set(0, 0.42, 0);
+      rippleMesh.position.set(0, 0.642, 0);
       s1Group.add(rippleMesh);
 
-      var dropY = 0.95;
+      // Animated Dripping Loop
+      var dripY = 1.25;
       this.updateFns.push(function(st, t) {
-        if (st.stage === 1) {
-          dropY -= 0.024;
-          if (dropY <= 0.42) {
-            dropY = 0.95;
-            self.playDripSound();
-            rippleMesh.scale.set(1, 1, 1);
-            rippleMat.opacity = 0.8;
-          }
-          dropMesh.position.y = dropY;
+        var activeStage = (st && st.stage !== undefined) ? st.stage : 1;
+        if (activeStage === 1) {
           dropMesh.visible = true;
-
+          dripY -= 0.028;
+          if (dripY < 0.65) {
+            dripY = 1.25;
+            rippleMat.opacity = 0.85;
+            self.playDripSound();
+          }
+          dropMesh.position.y = dripY;
           if (rippleMat.opacity > 0) {
-            rippleMesh.scale.multiplyScalar(1.06);
-            rippleMat.opacity -= 0.04;
+            rippleMat.opacity -= 0.035;
           }
         } else {
           dropMesh.visible = false;
@@ -657,12 +647,11 @@
 
       group.add(s1Group);
 
-      // STAGE 2: Evaporation Stand (right side)
+      // STAGE 2: Evaporation Stand (right side at x = 1.4)
       var s2Group = new THREE.Group();
       s2Group.position.set(1.4, 0, 0);
 
-      var tripodMat = ironMat;
-      var tripodRing = new THREE.Mesh(new THREE.TorusGeometry(0.55, 0.04, 16, 32), tripodMat);
+      var tripodRing = new THREE.Mesh(new THREE.TorusGeometry(0.55, 0.04, 16, 32), ironMat);
       tripodRing.rotation.x = Math.PI / 2;
       tripodRing.position.set(0, 1.25, 0);
       tripodRing.castShadow = true;
@@ -670,7 +659,7 @@
 
       for (var legIdx = 0; legIdx < 3; legIdx++) {
         var angle = (legIdx * 2 * Math.PI) / 3;
-        var leg = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 1.35, 16), tripodMat);
+        var leg = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 1.35, 16), ironMat);
         var legR = 0.52;
         leg.position.set(Math.cos(angle) * legR, 0.62, Math.sin(angle) * legR);
         leg.rotation.z = -Math.cos(angle) * 0.18;
@@ -679,12 +668,7 @@
         s2Group.add(leg);
       }
 
-      var gauzeMat = new THREE.MeshStandardMaterial({
-        color: 0x94a3b8,
-        wireframe: true,
-        roughness: 0.7
-      });
-      var gauze = new THREE.Mesh(new THREE.PlaneGeometry(1.0, 1.0, 16, 16), gauzeMat);
+      var gauze = new THREE.Mesh(new THREE.PlaneGeometry(1.0, 1.0, 16, 16), new THREE.MeshStandardMaterial({ color: 0x94a3b8, wireframe: true, roughness: 0.7 }));
       gauze.rotation.x = -Math.PI / 2;
       gauze.position.set(0, 1.29, 0);
       s2Group.add(gauze);
@@ -694,30 +678,16 @@
       circleAmiang.position.set(0, 1.292, 0);
       s2Group.add(circleAmiang);
 
-      // Realistic Porcelain Dish (LatheGeometry)
-      var porcelainMat = new THREE.MeshStandardMaterial({
-        color: 0xf8fafc,
-        roughness: 0.15,
-        metalness: 0.05,
-        side: THREE.DoubleSide
-      });
+      // Porcelain Evaporating Dish (Bát sứ tráng men chịu nhiệt)
+      var porcelainMat = new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.15, metalness: 0.05, side: THREE.DoubleSide });
       var dishPoints = [
-        new THREE.Vector2(0.001, 0.00),
-        new THREE.Vector2(0.25, 0.01),
-        new THREE.Vector2(0.38, 0.05),
-        new THREE.Vector2(0.52, 0.15),
-        new THREE.Vector2(0.66, 0.32),
-        new THREE.Vector2(0.72, 0.44),
-        new THREE.Vector2(0.75, 0.47),
-        new THREE.Vector2(0.73, 0.47),
-        new THREE.Vector2(0.64, 0.31),
-        new THREE.Vector2(0.50, 0.15),
-        new THREE.Vector2(0.36, 0.05),
-        new THREE.Vector2(0.22, 0.02),
+        new THREE.Vector2(0.001, 0.00), new THREE.Vector2(0.25, 0.01), new THREE.Vector2(0.38, 0.05),
+        new THREE.Vector2(0.52, 0.15), new THREE.Vector2(0.66, 0.32), new THREE.Vector2(0.72, 0.44),
+        new THREE.Vector2(0.75, 0.47), new THREE.Vector2(0.73, 0.47), new THREE.Vector2(0.64, 0.31),
+        new THREE.Vector2(0.50, 0.15), new THREE.Vector2(0.36, 0.05), new THREE.Vector2(0.22, 0.02),
         new THREE.Vector2(0.001, 0.015)
       ];
-      var dishGeo = new THREE.LatheGeometry(dishPoints, 40);
-      var porcelainDish = new THREE.Mesh(dishGeo, porcelainMat);
+      var porcelainDish = new THREE.Mesh(new THREE.LatheGeometry(dishPoints, 40), porcelainMat);
       porcelainDish.position.set(0, 1.295, 0);
       porcelainDish.castShadow = true;
       s2Group.add(porcelainDish);
@@ -729,34 +699,29 @@
       dishLiq.position.set(0, 1.48, 0);
       s2Group.add(dishLiq);
 
-      // Salt Crystals
+      // White Salt Crystals (Tinh thể muối ăn NaCl)
       var saltGroup = new THREE.Group();
       saltGroup.position.set(0, 1.32, 0);
-      var saltMat = new THREE.MeshStandardMaterial({
-        color: 0xffffff,
-        roughness: 0.25,
-        metalness: 0.1
-      });
-      for (var s = 0; s < 48; s++) {
-        var ang = Math.random() * Math.PI * 2;
-        var rad = Math.random() * 0.42;
-        var cSize = 0.02 + Math.random() * 0.035;
+      var saltMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.2, metalness: 0.15 });
+      for (var s = 0; s < 60; s++) {
+        var sAng = Math.random() * Math.PI * 2;
+        var sRad = Math.random() * 0.46;
+        var cSize = 0.025 + Math.random() * 0.04;
         var crystal = new THREE.Mesh(new THREE.BoxGeometry(cSize, cSize, cSize), saltMat);
-        crystal.position.set(Math.cos(ang) * rad, 0.01 + Math.random() * 0.02, Math.sin(ang) * rad);
+        crystal.position.set(Math.cos(sAng) * sRad, 0.01 + Math.random() * 0.025, Math.sin(sAng) * sRad);
         crystal.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
         saltGroup.add(crystal);
       }
       saltGroup.scale.set(0.01, 0.01, 0.01);
       s2Group.add(saltGroup);
 
-      // Alcohol Lamp
+      // Alcohol Lamp (Đèn cồn)
       var lampGroup = new THREE.Group();
       lampGroup.position.set(0, 0, 0);
 
       var lampBody = new THREE.Mesh(new THREE.SphereGeometry(0.38, 24, 20), this.getGlassMaterial(0xc7d2fe, 0.4));
       lampBody.position.set(0, 0.36, 0);
       lampBody.scale.set(1.15, 0.85, 1.15);
-      lampBody.castShadow = true;
       lampGroup.add(lampBody);
 
       var alcoholLiq = new THREE.Mesh(new THREE.SphereGeometry(0.35, 20, 16), this.getLiquidMaterial(0x818cf8, 0.45));
@@ -772,7 +737,7 @@
       wick.position.set(0, 0.82, 0);
       lampGroup.add(wick);
 
-      // Flame
+      // Flame with Dual Colors (Lõi xanh & Vỏ vàng cam)
       var flameGroup = new THREE.Group();
       flameGroup.position.set(0, 0.92, 0);
 
@@ -787,32 +752,36 @@
       flameGroup.add(flameLight);
       lampGroup.add(flameGroup);
 
-      // Make Lamp interactive
       self.registerInteractive(lampBody, 'Đèn cồn: Nhấp chuột để Bật/Tắt lửa', function(st) {
         st.burner = (st.burner === 0 || !st.burner) ? 2 : 0;
         self.playSwitchSound();
       });
-
       s2Group.add(lampGroup);
 
-      // Boiling Bubbles
+      // Boiling Bubbles & Steam
       var bubbleGroup = new THREE.Group();
       bubbleGroup.position.set(0, 1.48, 0);
       var bubbles = [];
-      var bMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.7 });
-      for (var b = 0; b < 16; b++) {
-        var bMesh = new THREE.Mesh(new THREE.SphereGeometry(0.02 + Math.random() * 0.025, 8, 8), bMat);
-        bMesh.position.set((Math.random() - 0.5) * 0.5, 0, (Math.random() - 0.5) * 0.5);
+      var bMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.75 });
+      for (var b = 0; b < 20; b++) {
+        var bMesh = new THREE.Mesh(new THREE.SphereGeometry(0.02 + Math.random() * 0.03, 8, 8), bMat);
+        bMesh.position.set((Math.random() - 0.5) * 0.52, 0, (Math.random() - 0.5) * 0.52);
         bubbleGroup.add(bMesh);
-        bubbles.push({ mesh: bMesh, speed: 0.01 + Math.random() * 0.02 });
+        bubbles.push({ mesh: bMesh, speed: 0.012 + Math.random() * 0.025 });
       }
       s2Group.add(bubbleGroup);
 
       // Evaporation loop hook
       var evapProgress = 0;
       this.updateFns.push(function(st, t) {
-        var burnerLvl = st.burner !== undefined ? st.burner : 0;
-        var activeStage = st.stage || 1;
+        var activeStage = (st && st.stage !== undefined) ? st.stage : 1;
+        var burnerLvl = (st && st.burner !== undefined) ? st.burner : (activeStage === 2 ? 2 : 0);
+
+        if (activeStage === 1) {
+          evapProgress = 0;
+        } else if (activeStage === 2 && burnerLvl > 0) {
+          evapProgress = Math.min(1.0, evapProgress + 0.0025 * burnerLvl);
+        }
 
         if (burnerLvl > 0 && activeStage === 2) {
           flameGroup.visible = true;
@@ -820,34 +789,30 @@
           flameGroup.scale.set(flicker, flicker * 1.1, flicker);
           flameLight.intensity = (burnerLvl === 1 ? 1.0 : 2.2) * flicker;
 
-          bubbleGroup.visible = true;
+          bubbleGroup.visible = (evapProgress < 0.95);
           bubbles.forEach(function(bObj) {
             bObj.mesh.position.y += bObj.speed;
-            if (bObj.mesh.position.y > 0.08) bObj.mesh.position.y = 0;
+            if (bObj.mesh.position.y > 0.10) bObj.mesh.position.y = 0;
           });
           self.playBoilSound();
-
-          evapProgress = Math.min(1.0, evapProgress + 0.0018 * burnerLvl);
         } else {
           flameGroup.visible = false;
           flameLight.intensity = 0;
           bubbleGroup.visible = false;
         }
 
-        var liqScale = Math.max(0.01, 1.0 - evapProgress);
+        var liqScale = Math.max(0.001, 1.0 - evapProgress);
         dishLiq.scale.set(liqScale, liqScale, liqScale);
         dishLiq.position.y = 1.34 + 0.14 * liqScale;
+        dishLiq.visible = (evapProgress < 0.98);
 
-        var saltScale = Math.min(1.0, evapProgress * 1.25);
+        var saltScale = Math.min(1.0, evapProgress * 1.35);
         saltGroup.scale.set(saltScale, saltScale, saltScale);
       });
 
       group.add(s2Group);
     },
 
-    // =========================================================================
-    // 2. ATOMIC STRUCTURE (Mô hình Bohr)
-    // =========================================================================
     buildAtomicStructure: function(group, state) {
       var self = this;
       var aGroup = new THREE.Group();
@@ -1007,10 +972,14 @@
       });
 
       this.updateFns.push(function(st, t) {
-        compassNeedles.forEach(function(cmp) {
+        var str = (st && st.fieldStrength !== undefined) ? (st.fieldStrength / (st.fieldStrength > 5 ? 100 : 1)) : 1.0;
+        var showC = (st && st.showCompass !== undefined) ? st.showCompass : ((st && st.showCompasses !== undefined) ? st.showCompasses : true);
+        compassNeedles.forEach(function(cmp, idx) {
+          cmp.group.visible = !!showC;
           var p = cmp.pos;
           var angle = Math.atan2(p[2], p[0] - 0.6) - Math.atan2(p[2], p[0] + 0.6);
-          cmp.group.rotation.y = angle * 0.5 + Math.PI / 2;
+          var wobble = Math.sin(t * 3.5 + idx) * 0.08 * (1.2 - Math.min(1.0, str * 0.5));
+          cmp.group.rotation.y = (angle * 0.5 + Math.PI / 2) * str + wobble;
         });
       });
 
@@ -1041,15 +1010,25 @@
       rMesh.position.set(0, 0.3, -0.7);
       cGroup.add(rMesh);
 
-      // Ammeter A
+      // Ammeter A with needle
       var aMeter = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 0.3, 32), new THREE.MeshStandardMaterial({ color: 0xdbeafe }));
       aMeter.position.set(1.3, 0.3, -0.7);
       cGroup.add(aMeter);
 
-      // Voltmeter V
+      var aNeedle = new THREE.Mesh(new THREE.ConeGeometry(0.02, 0.28, 8), new THREE.MeshBasicMaterial({ color: 0xef4444 }));
+      aNeedle.position.set(1.3, 0.46, -0.7);
+      aNeedle.rotation.x = Math.PI / 2;
+      cGroup.add(aNeedle);
+
+      // Voltmeter V with needle
       var vMeter = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 0.3, 32), new THREE.MeshStandardMaterial({ color: 0xdbeafe }));
       vMeter.position.set(0, 0.3, 0.6);
       cGroup.add(vMeter);
+
+      var vNeedle = new THREE.Mesh(new THREE.ConeGeometry(0.02, 0.28, 8), new THREE.MeshBasicMaterial({ color: 0xef4444 }));
+      vNeedle.position.set(0, 0.46, 0.6);
+      vNeedle.rotation.x = Math.PI / 2;
+      cGroup.add(vNeedle);
 
       // Interactive Knife Switch (Công tắc K)
       var switchBase = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.08, 0.4), new THREE.MeshStandardMaterial({ color: 0x475569 }));
@@ -1062,13 +1041,28 @@
       cGroup.add(switchArm);
 
       self.registerInteractive(switchBase, 'Công tắc K: Nhấp chuột để Đóng/Ngắt mạch', function(st) {
-        st.switch_closed = !st.switch_closed;
+        var closed = (st.switchOn !== undefined) ? !st.switchOn : !st.switch_closed;
+        st.switchOn = closed;
+        st.switch_closed = closed;
         self.playSwitchSound();
+        if (typeof window.syncControlsFromState === 'function') {
+          window.syncControlsFromState('circuit_ohm');
+        }
       });
 
       this.updateFns.push(function(st, t) {
-        var isClosed = !!st.switch_closed;
+        var isClosed = (st.switchOn !== undefined) ? !!st.switchOn : (st.switch_closed !== undefined ? !!st.switch_closed : true);
         switchArm.rotation.z = isClosed ? 0.0 : 0.55;
+        var u = (st.voltage_v !== undefined) ? st.voltage_v : ((st.voltage !== undefined) ? st.voltage : ((st.U !== undefined) ? st.U : 12.0));
+        var r = (st.resistance_ohm !== undefined) ? st.resistance_ohm : ((st.resistance !== undefined) ? st.resistance : ((st.R !== undefined) ? st.R : 20.0));
+        var currentI = isClosed ? (u / (r || 1)) : 0.0;
+        var currentU = isClosed ? u : 0.0;
+        var maxI = 2.4;
+        var maxU = 24.0;
+        var targetRotA = -0.7 + (currentI / maxI) * 1.4;
+        var targetRotV = -0.7 + (currentU / maxU) * 1.4;
+        aNeedle.rotation.z += (targetRotA - aNeedle.rotation.z) * 0.15;
+        vNeedle.rotation.z += (targetRotV - vNeedle.rotation.z) * 0.15;
       });
 
       group.add(cGroup);
@@ -1375,8 +1369,18 @@
       aGroup.add(brassBlock);
 
       this.updateFns.push(function(st, t) {
-        var depth = st.submerged_depth || 0.5;
-        brassBlock.position.y = 1.2 - depth * 0.7;
+        var depth = 0.5;
+        if (st && st.submerged !== undefined) {
+          depth = st.submerged;
+        } else if (st && st.submerged_depth !== undefined) {
+          depth = st.submerged_depth;
+        } else if (st && st.matDensity && st.liqDensity) {
+          var ratio = st.matDensity / st.liqDensity;
+          depth = ratio < 1.0 ? ratio : 1.0;
+        }
+        var bob = Math.sin(t * 2.5) * 0.02;
+        brassBlock.position.y = 1.2 - depth * 0.7 + bob;
+        liq.scale.y = 1.0 + depth * 0.08;
       });
 
       group.add(aGroup);
@@ -1384,9 +1388,6 @@
 
     // =========================================================================
     // 8. LENS CONVEX (Thấu kính hội tụ)
-    // =========================================================================
-        // =========================================================================
-    // 8. LENS CONVEX (Thấu kính hội tụ - KHTN 9 Bài 6)
     // =========================================================================
     buildLensConvex: function(group, state) {
       var self = this;
@@ -1484,9 +1485,6 @@
 
     // =========================================================================
     // 9. LIGHT REFLECTION (Phản xạ ánh sáng)
-    // =========================================================================
-        // =========================================================================
-    // 9. LIGHT REFLECTION (Phản xạ ánh sáng - KHTN 7 Bài 16)
     // =========================================================================
     buildLightReflection: function(group, state) {
       var self = this;
@@ -1742,25 +1740,24 @@
       var mGroup = new THREE.Group();
       mGroup.position.set(0, 0, 0);
 
-      // Digital Analytical Balance Housing
-      var scaleBase = new THREE.Mesh(new THREE.BoxGeometry(2.5, 0.32, 2.2), new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.35 }));
-      scaleBase.position.set(0, 0.16, 0);
+      // Digital Analytical Balance Housing (Cân phân tích điện tử)
+      var scaleBase = new THREE.Mesh(new THREE.BoxGeometry(2.6, 0.35, 2.2), new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.35 }));
+      scaleBase.position.set(0, 0.175, 0);
       scaleBase.castShadow = true;
       mGroup.add(scaleBase);
 
-      // Stainless Steel Weighing Pan
-      var panMat = self.getMetalMaterial(0.15, 0xe2e8f0);
-      var pan = new THREE.Mesh(new THREE.CylinderGeometry(0.85, 0.85, 0.06, 40), panMat);
-      pan.position.set(0, 0.35, 0);
+      // Stainless Steel Weighing Pan (Đĩa cân inox sáng bóng)
+      var panMat = self.getMetalMaterial(0.12, 0xf1f5f9);
+      var pan = new THREE.Mesh(new THREE.CylinderGeometry(0.95, 0.95, 0.06, 40), panMat);
+      pan.position.set(0, 0.38, 0);
       pan.castShadow = true;
       mGroup.add(pan);
 
       // Glowing Green LED Readout Panel
-      var ledPanel = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.22, 0.02), new THREE.MeshBasicMaterial({ color: 0x052e16 }));
-      ledPanel.position.set(0, 0.18, 1.11);
+      var ledPanel = new THREE.Mesh(new THREE.BoxGeometry(1.3, 0.24, 0.02), new THREE.MeshBasicMaterial({ color: 0x052e16 }));
+      ledPanel.position.set(0, 0.19, 1.11);
       mGroup.add(ledPanel);
 
-      // LED Canvas Text for 158.45 g
       var canvas = document.createElement('canvas');
       canvas.width = 256;
       canvas.height = 64;
@@ -1774,89 +1771,152 @@
       ctx.fillText('158.45 g', 128, 32);
 
       var ledTex = new THREE.CanvasTexture(canvas);
-      var ledMesh = new THREE.Mesh(new THREE.PlaneGeometry(1.1, 0.18), new THREE.MeshBasicMaterial({ map: ledTex, transparent: true }));
-      ledMesh.position.set(0, 0.18, 1.122);
+      var ledMesh = new THREE.Mesh(new THREE.PlaneGeometry(1.2, 0.20), new THREE.MeshBasicMaterial({ map: ledTex, transparent: true }));
+      ledMesh.position.set(0, 0.19, 1.122);
       mGroup.add(ledMesh);
 
       // Glass Draft Shield Cover
-      var shield = new THREE.Mesh(new THREE.CylinderGeometry(0.95, 0.95, 1.6, 32, 1, true), self.getGlassMaterial(0xdbeafe, 0.15));
-      shield.position.set(0, 1.15, 0);
+      var shield = new THREE.Mesh(new THREE.CylinderGeometry(1.02, 1.02, 1.7, 32, 1, true), self.getGlassMaterial(0xdbeafe, 0.15));
+      shield.position.set(0, 1.25, 0);
       mGroup.add(shield);
 
-      // Erlenmeyer Flask sitting on pan
-      var flaskGroup = new THREE.Group();
-      flaskGroup.position.set(0, 0.38, 0);
+      var glassMat = self.getGlassMaterial(0xdbeafe, 0.32);
 
-      var flaskPoints = [
-        new THREE.Vector2(0.001, 0.0),
-        new THREE.Vector2(0.55, 0.02),
-        new THREE.Vector2(0.58, 0.12),
-        new THREE.Vector2(0.24, 0.85),
-        new THREE.Vector2(0.18, 1.15),
-        new THREE.Vector2(0.20, 1.18),
-        new THREE.Vector2(0.16, 1.18),
-        new THREE.Vector2(0.16, 0.85),
-        new THREE.Vector2(0.52, 0.12),
-        new THREE.Vector2(0.001, 0.02)
-      ];
-      var flaskGeo = new THREE.LatheGeometry(flaskPoints, 32);
-      var flaskMesh = new THREE.Mesh(flaskGeo, self.getGlassMaterial(0xdbeafe, 0.28));
-      flaskMesh.castShadow = true;
-      flaskGroup.add(flaskMesh);
+      // Beaker A (BaCl2 Solution - Left) - Capable of full tilting & pouring kinematics
+      var beakerA = new THREE.Group();
+      beakerA.position.set(-0.45, 0.41, 0);
 
-      // Rubber Stopper
-      var stopper = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.14, 0.2, 20), new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.8 }));
-      stopper.position.set(0, 1.25, 0);
-      flaskGroup.add(stopper);
+      var bAGlass = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.32, 0.9, 28, 1, true), glassMat);
+      bAGlass.position.set(0, 0.45, 0);
+      beakerA.add(bAGlass);
 
-      // Na2SO4 Solution in Flask
-      var liqNa2SO4 = new THREE.Mesh(new THREE.CylinderGeometry(0.48, 0.54, 0.3, 32), self.getLiquidMaterial(0x38bdf8, 0.45));
-      liqNa2SO4.position.set(0, 0.16, 0);
-      flaskGroup.add(liqNa2SO4);
+      var bALiqMat = self.getLiquidMaterial(0x93c5fd, 0.55);
+      var bALiq = new THREE.Mesh(new THREE.CylinderGeometry(0.30, 0.30, 0.45, 28), bALiqMat);
+      bALiq.position.set(0, 0.23, 0);
+      beakerA.add(bALiq);
+      mGroup.add(beakerA);
 
-      // Small Inner Test Tube with BaCl2
-      var innerTubeGroup = new THREE.Group();
-      innerTubeGroup.position.set(0.14, 0.32, 0);
-      innerTubeGroup.rotation.z = 0.35;
+      // Pouring Stream Mesh (Dòng chất lỏng rót từ cốc A sang cốc B)
+      var pourStreamMat = self.getLiquidMaterial(0x93c5fd, 0.75);
+      var pourStream = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.045, 0.85, 12), pourStreamMat);
+      pourStream.position.set(0.12, 1.05, 0);
+      pourStream.rotation.z = -0.45;
+      pourStream.visible = false;
+      mGroup.add(pourStream);
 
-      var iTube = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.65, 16, 1, true), self.getGlassMaterial(0xdbeafe, 0.35));
-      innerTubeGroup.add(iTube);
+      // Beaker B (Na2SO4 Solution -> White BaSO4 Precipitate - Right)
+      var beakerB = new THREE.Group();
+      beakerB.position.set(0.45, 0.41, 0);
 
-      var iTubeLiq = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, 0.4, 16), self.getLiquidMaterial(0x93c5fd, 0.6));
-      iTubeLiq.position.set(0, -0.1, 0);
-      innerTubeGroup.add(iTubeLiq);
-      flaskGroup.add(innerTubeGroup);
+      var bBGlass = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.34, 0.95, 28, 1, true), glassMat);
+      bBGlass.position.set(0, 0.48, 0);
+      beakerB.add(bBGlass);
 
-      // Milky White Precipitate (BaSO4)
-      var precipMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.7, transparent: true, opacity: 0 });
-      var precipMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.49, 0.55, 0.32, 32), precipMat);
-      precipMesh.position.set(0, 0.17, 0);
-      flaskGroup.add(precipMesh);
+      var bBLiqMat = self.getLiquidMaterial(0x93c5fd, 0.55);
+      var bBLiq = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.32, 0.48, 28), bBLiqMat);
+      bBLiq.position.set(0, 0.24, 0);
+      beakerB.add(bBLiq);
 
-      // Register interactive click to tilt flask & react
-      self.registerInteractive(flaskMesh, 'Bình tam giác: Nhấp chuột để Lắc trộn dung dịch', function(st) {
+      // Dense White Milky Precipitate (BaSO4 kết tủa trắng đục)
+      var pptMat = new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        roughness: 0.95,
+        transparent: true,
+        opacity: 0
+      });
+      var pptMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.318, 0.318, 0.65, 28), pptMat);
+      pptMesh.position.set(0, 0.33, 0);
+      beakerB.add(pptMesh);
+
+      // Precipitate Flakes
+      var flakesGroup = new THREE.Group();
+      flakesGroup.position.set(0, 0.35, 0);
+      var flakeMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0 });
+      var flakes = [];
+      for (var f = 0; f < 30; f++) {
+        var fl = new THREE.Mesh(new THREE.DodecahedronGeometry(0.015 + Math.random() * 0.02), flakeMat);
+        fl.position.set((Math.random() - 0.5) * 0.45, (Math.random() - 0.5) * 0.4, (Math.random() - 0.5) * 0.45);
+        flakesGroup.add(fl);
+        flakes.push(fl);
+      }
+      beakerB.add(flakesGroup);
+      mGroup.add(beakerB);
+
+      self.registerInteractive(scaleBase, 'Cân điện tử: Nhấp chuột để Trộn 2 dung dịch BaCl2 & Na2SO4', function(st) {
         st.reacted = !st.reacted;
+        st.step = st.reacted ? 2 : 1;
         self.playBellSound();
       });
 
-      var tiltAng = 0;
+      // Kinematic Pouring & Reacting Animation
+      var animTime = 0;
       this.updateFns.push(function(st, t) {
-        if (st.reacted) {
-          precipMat.opacity = Math.min(0.92, precipMat.opacity + 0.04);
-          innerTubeGroup.rotation.z = 1.1;
+        var isReacted = !!st.reacted || (st.step !== undefined && st.step >= 2) || (st.mixProgress !== undefined && st.mixProgress > 0);
+        if (isReacted) {
+          animTime = Math.min(1.0, animTime + 0.025);
+
+          // Phase 1 (0 -> 0.4): Lift Beaker A and move over Beaker B
+          // Phase 2 (0.4 -> 0.8): Tilt Beaker A and pour stream
+          // Phase 3 (0.8 -> 1.0): Rotate back and return to pan
+          if (animTime < 0.35) {
+            var p1 = animTime / 0.35;
+            beakerA.position.set(
+              THREE.MathUtils.lerp(-0.45, 0.15, p1),
+              THREE.MathUtils.lerp(0.41, 1.45, p1),
+              0
+            );
+            beakerA.rotation.z = 0;
+            pourStream.visible = false;
+          } else if (animTime < 0.75) {
+            var p2 = (animTime - 0.35) / 0.40;
+            beakerA.position.set(0.15, 1.45, 0);
+            beakerA.rotation.z = THREE.MathUtils.lerp(0, 1.15, p2);
+            pourStream.visible = (p2 > 0.2 && p2 < 0.9);
+            bALiq.scale.y = Math.max(0.001, 1.0 - p2 * 1.2);
+            bALiq.visible = (bALiq.scale.y > 0.05);
+
+            // Beaker B reacts
+            bBLiq.scale.y = 1.0 + p2 * 0.45;
+            bBLiq.position.y = 0.24 + p2 * 0.11;
+            pptMat.opacity = Math.min(0.95, p2 * 1.2);
+            flakeMat.opacity = Math.min(0.9, p2 * 1.2);
+          } else {
+            var p3 = (animTime - 0.75) / 0.25;
+            beakerA.rotation.z = THREE.MathUtils.lerp(1.15, 0, p3);
+            beakerA.position.set(
+              THREE.MathUtils.lerp(0.15, -0.45, p3),
+              THREE.MathUtils.lerp(1.45, 0.41, p3),
+              0
+            );
+            pourStream.visible = false;
+            bALiq.visible = false;
+            pptMat.opacity = 0.95;
+            flakeMat.opacity = 0.9;
+          }
+
+          // Swirling precipitate flakes in Beaker B
+          flakes.forEach(function(fl, idx) {
+            fl.position.y -= 0.004;
+            if (fl.position.y < -0.25) fl.position.y = 0.25;
+            fl.rotation.x += 0.03 * (idx % 2 === 0 ? 1 : -1);
+          });
         } else {
-          precipMat.opacity = Math.max(0, precipMat.opacity - 0.04);
-          innerTubeGroup.rotation.z = 0.35;
+          animTime = 0;
+          beakerA.position.set(-0.45, 0.41, 0);
+          beakerA.rotation.z = 0;
+          bALiq.scale.y = 1.0;
+          bALiq.visible = true;
+          pourStream.visible = false;
+          bBLiq.scale.y = 1.0;
+          bBLiq.position.y = 0.24;
+          pptMat.opacity = 0;
+          flakeMat.opacity = 0;
         }
       });
 
-      mGroup.add(flaskGroup);
       group.add(mGroup);
     },
 
-    // =========================================================================
-    // 11. ACID-BASE NEUTRALIZATION (Chuẩn độ Acid - Base có phenolphtalein)
-    // =========================================================================
     buildAcidBaseNeutralization: function(group, state) {
       var self = this;
       var nGroup = new THREE.Group();
@@ -1866,209 +1926,262 @@
       var chromeMat = this.getMetalMaterial(0.2, 0xe2e8f0);
       var glassMat = this.getGlassMaterial(0xdbeafe, 0.28);
 
-      // Retort Stand
-      var base = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.12, 1.4), ironMat);
+      // Retort Stand with White Porcelain Base
+      var base = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.12, 1.4), new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.2 }));
       base.position.set(0, 0.06, 0);
+      base.castShadow = true;
       nGroup.add(base);
 
       var rod = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 3.8, 16), chromeMat);
       rod.position.set(-0.6, 1.96, -0.4);
+      rod.castShadow = true;
       nGroup.add(rod);
 
-      // Burette Clamp
       var clamp = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.08, 0.08), ironMat);
       clamp.position.set(-0.3, 2.4, -0.4);
       nGroup.add(clamp);
 
-      // Glass Burette (50ml)
+      // Glass Burette 50ml
       var buretGroup = new THREE.Group();
       buretGroup.position.set(0, 2.2, 0);
 
-      var buretTube = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.09, 2.6, 24, 1, true), glassMat);
+      var buretTube = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 2.4, 20, 1, true), glassMat);
+      buretTube.position.set(0, 0, 0);
       buretGroup.add(buretTube);
 
-      // Graduation lines
-      for (var g = -1.1; g <= 1.1; g += 0.2) {
-        var ring = new THREE.Mesh(new THREE.RingGeometry(0.091, 0.096, 16), new THREE.MeshBasicMaterial({ color: 0x94a3b8, side: THREE.DoubleSide }));
-        ring.rotation.x = Math.PI / 2;
-        ring.position.set(0, g, 0);
-        buretGroup.add(ring);
-      }
+      var buretTip = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.02, 0.4, 16, 1, true), glassMat);
+      buretTip.position.set(0, -1.4, 0);
+      buretGroup.add(buretTip);
 
-      // Stopcock Valve (Khóa buret)
-      var stopcock = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.35, 12), self.getMetalMaterial(0.2, 0xd97706));
-      stopcock.rotation.z = Math.PI / 2;
-      stopcock.position.set(0, -1.35, 0);
-      buretGroup.add(stopcock);
+      var valve = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.22, 12), new THREE.MeshStandardMaterial({ color: 0x0284c7, roughness: 0.3 }));
+      valve.rotation.z = Math.PI / 2;
+      valve.position.set(0, -1.2, 0);
+      buretGroup.add(valve);
 
-      // Buret Tip
-      var tip = new THREE.Mesh(new THREE.ConeGeometry(0.08, 0.3, 16, 1, true), glassMat);
-      tip.rotation.x = Math.PI;
-      tip.position.set(0, -1.5, 0);
-      buretGroup.add(tip);
-
-      // NaOH Liquid in Burette
-      var naohLiq = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.085, 1.8, 24), self.getLiquidMaterial(0x93c5fd, 0.45));
-      naohLiq.position.set(0, -0.2, 0);
-      buretGroup.add(naohLiq);
-
-      self.registerInteractive(stopcock, 'Khóa Buret: Nhấp chuột để Mở/Khóa nhỏ giọt NaOH', function(st) {
-        st.dripping = !st.dripping;
-        self.playSwitchSound();
-      });
+      var buretLiqMat = self.getLiquidMaterial(0x93c5fd, 0.65);
+      var buretLiq = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.075, 2.2, 16), buretLiqMat);
+      buretLiq.position.set(0, 0.05, 0);
+      buretGroup.add(buretLiq);
 
       nGroup.add(buretGroup);
 
-      // Magnetic Stirrer Plate Base
-      var stirrer = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.28, 1.4), new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.4 }));
-      stirrer.position.set(0, 0.14, 0);
-      nGroup.add(stirrer);
+      // Erlenmeyer Flask sitting below
+      var flaskGroup = new THREE.Group();
+      flaskGroup.position.set(0, 0.12, 0);
 
-      // Conical Flask on Stirrer
       var flaskPoints = [
-        new THREE.Vector2(0.001, 0.0),
-        new THREE.Vector2(0.48, 0.02),
-        new THREE.Vector2(0.50, 0.1),
-        new THREE.Vector2(0.18, 0.7),
-        new THREE.Vector2(0.14, 0.95),
-        new THREE.Vector2(0.16, 0.98),
-        new THREE.Vector2(0.13, 0.98),
-        new THREE.Vector2(0.13, 0.7),
-        new THREE.Vector2(0.44, 0.1),
+        new THREE.Vector2(0.001, 0.0), new THREE.Vector2(0.62, 0.02), new THREE.Vector2(0.65, 0.15),
+        new THREE.Vector2(0.28, 0.95), new THREE.Vector2(0.18, 1.25), new THREE.Vector2(0.20, 1.28),
+        new THREE.Vector2(0.16, 1.28), new THREE.Vector2(0.16, 0.95), new THREE.Vector2(0.60, 0.15),
         new THREE.Vector2(0.001, 0.02)
       ];
-      var flask = new THREE.Mesh(new THREE.LatheGeometry(flaskPoints, 32), glassMat);
-      flask.position.set(0, 0.28, 0);
-      nGroup.add(flask);
+      var flaskGeo = new THREE.LatheGeometry(flaskPoints, 32);
+      var flask = new THREE.Mesh(flaskGeo, glassMat);
+      flask.position.set(0, 0, 0);
+      flask.castShadow = true;
+      flaskGroup.add(flask);
 
-      // Dynamic Color Liquid (HCl + Phenolphthalein turning pink)
-      var flaskLiqMat = self.getLiquidMaterial(0x38bdf8, 0.4);
-      var flaskLiq = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.46, 0.24, 32), flaskLiqMat);
-      flaskLiq.position.set(0, 0.41, 0);
-      nGroup.add(flaskLiq);
+      // Flask Solution
+      var flaskSolMat = new THREE.MeshStandardMaterial({
+        color: 0xdbeafe,
+        transparent: true,
+        opacity: 0.35,
+        roughness: 0.15
+      });
+      var flaskLiqPoints = [
+        new THREE.Vector2(0.001, 0.01), new THREE.Vector2(0.58, 0.02), new THREE.Vector2(0.59, 0.15),
+        new THREE.Vector2(0.38, 0.65), new THREE.Vector2(0.001, 0.65)
+      ];
+      var flaskLiqGeo = new THREE.LatheGeometry(flaskLiqPoints, 32);
+      var flaskLiq = new THREE.Mesh(flaskLiqGeo, flaskSolMat);
+      flaskLiq.position.set(0, 0, 0);
+      flaskGroup.add(flaskLiq);
 
-      // Dripping drop
-      var dropMesh = new THREE.Mesh(new THREE.SphereGeometry(0.03, 12, 12), self.getLiquidMaterial(0x38bdf8, 0.8));
-      dropMesh.position.set(0, 0.7, 0);
-      nGroup.add(dropMesh);
+      var stirBar = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.22, 12), new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.2 }));
+      stirBar.rotation.z = Math.PI / 2;
+      stirBar.position.set(0, 0.04, 0);
+      flaskGroup.add(stirBar);
 
-      var dropY = 0.7;
-      var pinkFactor = 0;
+      var dropMat = self.getLiquidMaterial(0x93c5fd, 0.85);
+      var drop = new THREE.Mesh(new THREE.SphereGeometry(0.025, 10, 10), dropMat);
+      drop.scale.set(1, 1.4, 1);
+      drop.position.set(0, 0.78, 0);
+      drop.visible = false;
+      nGroup.add(drop);
+
+      var ripGeo = new THREE.RingGeometry(0.02, 0.22, 20);
+      var ripMat = new THREE.MeshBasicMaterial({ color: 0xf472b6, transparent: true, opacity: 0, side: THREE.DoubleSide });
+      var ripMesh = new THREE.Mesh(ripGeo, ripMat);
+      ripMesh.rotation.x = -Math.PI / 2;
+      ripMesh.position.set(0, 0.652, 0);
+      flaskGroup.add(ripMesh);
+
+      nGroup.add(flaskGroup);
+
+      self.registerInteractive(valve, 'Khóa buret: Nhấp chuột để Mở/Khóa nhỏ giọt NaOH', function(st) {
+        st.buretteFlow = (st.buretteFlow === 0 || !st.buretteFlow) ? 1 : 0;
+        self.playSwitchSound();
+      });
+
+      var dropY = 0.78;
       this.updateFns.push(function(st, t) {
-        if (st.dripping) {
-          dropY -= 0.02;
-          if (dropY <= 0.42) {
-            dropY = 0.7;
+        var flow = (st && st.buretteFlow !== undefined) ? st.buretteFlow : 0;
+        var addedMl = (st && st.addedMl !== undefined) ? st.addedMl : 0;
+
+        if (flow > 0) {
+          drop.visible = true;
+          dropY -= 0.032 * flow;
+          if (dropY < 0.65) {
+            dropY = 0.78;
+            ripMat.opacity = 0.85;
             self.playDripSound();
-            pinkFactor = Math.min(1.0, pinkFactor + 0.05);
           }
-          dropMesh.position.y = dropY;
-          dropMesh.visible = true;
+          drop.position.y = dropY;
+          if (ripMat.opacity > 0) ripMat.opacity -= 0.04;
+          valve.rotation.x = Math.PI / 2;
         } else {
-          dropMesh.visible = false;
+          drop.visible = false;
+          ripMat.opacity = 0;
+          valve.rotation.x = 0;
         }
 
-        // Lerp color from clear blue to vibrant fuchsia pink
-        var r = 0.22 + pinkFactor * 0.74; // 0x38 -> 0xf4
-        var g = 0.74 - pinkFactor * 0.49; // 0xbd -> 0x3f
-        var b = 0.97 - pinkFactor * 0.60; // 0xf8 -> 0x5e
-        flaskLiqMat.color.setRGB(r, g, b);
+        stirBar.rotation.y += 0.25;
+
+        var buretScale = Math.max(0.05, 1.0 - (addedMl / 25.0));
+        buretLiq.scale.y = buretScale;
+        buretLiq.position.y = -1.1 + 1.15 * buretScale;
+
+        if (addedMl < 9.8) {
+          flaskSolMat.color.lerp(new THREE.Color(0xdbeafe), 0.08);
+          flaskSolMat.opacity = THREE.MathUtils.lerp(flaskSolMat.opacity, 0.28, 0.08);
+        } else if (addedMl <= 10.2) {
+          flaskSolMat.color.lerp(new THREE.Color(0xf472b6), 0.12);
+          flaskSolMat.opacity = THREE.MathUtils.lerp(flaskSolMat.opacity, 0.78, 0.12);
+        } else {
+          flaskSolMat.color.lerp(new THREE.Color(0xdb2777), 0.08);
+          flaskSolMat.opacity = THREE.MathUtils.lerp(flaskSolMat.opacity, 0.92, 0.08);
+        }
       });
 
       group.add(nGroup);
     },
 
-    // =========================================================================
-    // 12. METAL + ACID (Zn + HCl -> ZnCl2 + H2 ^)
-    // =========================================================================
     buildMetalAcid: function(group, state) {
       var self = this;
       var maGroup = new THREE.Group();
       maGroup.position.set(0, 0, 0);
 
-      var ironMat = this.getMetalMaterial(0.45, 0x1e293b);
+      var woodMat = new THREE.MeshStandardMaterial({ color: 0x92400e, roughness: 0.75 });
       var glassMat = this.getGlassMaterial(0xdbeafe, 0.28);
 
-      // Stand
-      var base = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.12, 1.2), ironMat);
-      base.position.set(-0.6, 0.06, 0);
-      maGroup.add(base);
+      var rackBase = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.12, 1.2), woodMat);
+      rackBase.position.set(0, 0.06, 0);
+      maGroup.add(rackBase);
 
-      var rod = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 3.2, 16), ironMat);
-      rod.position.set(-1.1, 1.66, -0.3);
-      maGroup.add(rod);
+      var rackTop = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.08, 1.2), woodMat);
+      rackTop.position.set(0, 1.1, 0);
+      maGroup.add(rackTop);
 
-      // Test Tube on clamp
-      var tubeGroup = new THREE.Group();
-      tubeGroup.position.set(-0.6, 1.4, 0);
-      tubeGroup.rotation.z = -0.25;
-
-      var tube = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, 1.6, 24, 1, true), glassMat);
-      tubeGroup.add(tube);
-
-      var tubeLiq = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.8, 24), self.getLiquidMaterial(0x93c5fd, 0.5));
-      tubeLiq.position.set(0, -0.35, 0);
-      tubeGroup.add(tubeLiq);
-
-      // Zinc Granules (Zn)
-      var znMat = self.getMetalMaterial(0.4, 0x64748b);
-      for (var z = 0; z < 5; z++) {
-        var zn = new THREE.Mesh(new THREE.DodecahedronGeometry(0.05 + Math.random() * 0.03), znMat);
-        zn.position.set((Math.random() - 0.5) * 0.15, -0.7 + Math.random() * 0.08, (Math.random() - 0.5) * 0.15);
-        tubeGroup.add(zn);
+      for (var p = -1.6; p <= 1.6; p += 3.2) {
+        var post = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 1.1, 12), woodMat);
+        post.position.set(p, 0.58, 0);
+        maGroup.add(post);
       }
 
-      // Stopper with Delivery Tube
-      var stopper = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.14, 0.2, 16), new THREE.MeshStandardMaterial({ color: 0x334155 }));
-      stopper.position.set(0, 0.8, 0);
-      tubeGroup.add(stopper);
+      var metalConfigs = [
+        { name: "Mg (Magie)", x: -1.2, color: 0xe2e8f0, bubbleCount: 24, bubbleSpeed: 0.035, tint: 0x93c5fd },
+        { name: "Zn (Kẽm)",   x: -0.4, color: 0x94a3b8, bubbleCount: 16, bubbleSpeed: 0.020, tint: 0x93c5fd },
+        { name: "Fe (Sắt)",   x:  0.4, color: 0x475569, bubbleCount: 8,  bubbleSpeed: 0.008, tint: 0x86efac },
+        { name: "Cu (Đồng)",  x:  1.2, color: 0xea580c, bubbleCount: 0,  bubbleSpeed: 0,     tint: 0x93c5fd }
+      ];
 
-      maGroup.add(tubeGroup);
+      var tubesData = [];
+      metalConfigs.forEach(function(cfg) {
+        var tGroup = new THREE.Group();
+        tGroup.position.set(cfg.x, 0.8, 0);
 
-      // Water Trough for Gas Collection (right side)
-      var trough = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.7, 1.1), glassMat);
-      trough.position.set(1.1, 0.35, 0);
-      maGroup.add(trough);
+        var tube = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, 1.4, 24, 1, true), glassMat);
+        tGroup.add(tube);
 
-      var troughLiq = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.45, 1.0), self.getLiquidMaterial(0x38bdf8, 0.6));
-      troughLiq.position.set(1.1, 0.26, 0);
-      maGroup.add(troughLiq);
+        var liqMat = self.getLiquidMaterial(cfg.tint, 0.5);
+        var liq = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.75, 24), liqMat);
+        liq.position.set(0, -0.3, 0);
+        tGroup.add(liq);
 
-      // Inverted Test Tube collecting H2
-      var colTube = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, 1.2, 20, 1, true), glassMat);
-      colTube.position.set(1.1, 0.75, 0);
-      maGroup.add(colTube);
+        var metalMesh;
+        if (cfg.name.indexOf("Cu") !== -1) {
+          metalMesh = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.35, 0.02), new THREE.MeshStandardMaterial({ color: cfg.color, metalness: 0.85, roughness: 0.2 }));
+        } else if (cfg.name.indexOf("Fe") !== -1) {
+          metalMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, 0.4, 12), new THREE.MeshStandardMaterial({ color: cfg.color, metalness: 0.7, roughness: 0.3 }));
+        } else {
+          metalMesh = new THREE.Mesh(new THREE.DodecahedronGeometry(0.06), new THREE.MeshStandardMaterial({ color: cfg.color, metalness: 0.8, roughness: 0.25 }));
+        }
+        metalMesh.position.set(0, -0.6, 0);
+        tGroup.add(metalMesh);
 
-      // Rising H2 Bubbles
-      var bGroup = new THREE.Group();
-      bGroup.position.set(-0.6, 0.9, 0);
-      var bMeshes = [];
-      for (var b = 0; b < 18; b++) {
-        var bM = new THREE.Mesh(new THREE.SphereGeometry(0.018 + Math.random() * 0.02, 8, 8), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.8 }));
-        bM.position.set((Math.random() - 0.5) * 0.16, Math.random() * 0.5, (Math.random() - 0.5) * 0.16);
-        bGroup.add(bM);
-        bMeshes.push(bM);
-      }
-      maGroup.add(bGroup);
+        var bubbleList = [];
+        var bMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.8 });
+        for (var b = 0; b < cfg.bubbleCount; b++) {
+          var bMesh = new THREE.Mesh(new THREE.SphereGeometry(0.015 + Math.random() * 0.02, 8, 8), bMat);
+          bMesh.position.set((Math.random() - 0.5) * 0.18, -0.6 + Math.random() * 0.6, (Math.random() - 0.5) * 0.18);
+          tGroup.add(bMesh);
+          bubbleList.push({ mesh: bMesh, speed: cfg.bubbleSpeed * (0.8 + Math.random() * 0.4) });
+        }
 
-      // Burning splint test trigger
-      self.registerInteractive(colTube, 'Ống thu khí H2: Nhấp chuột để Thử que đóm cháy (Tiếng nổ Pop)', function(st) {
-        self.playPopSound();
+        maGroup.add(tGroup);
+        tubesData.push({ config: cfg, bubbles: bubbleList, liqMat: liqMat });
+      });
+
+      var splintGroup = new THREE.Group();
+      splintGroup.position.set(-0.4, 2.1, 0);
+
+      var splintStick = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.8, 8), new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.8 }));
+      splintStick.rotation.z = 0.5;
+      splintGroup.add(splintStick);
+
+      var splintFlame = new THREE.Mesh(new THREE.ConeGeometry(0.04, 0.16, 12), new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.9 }));
+      splintFlame.position.set(0.18, -0.38, 0);
+      splintGroup.add(splintFlame);
+      splintGroup.visible = false;
+      maGroup.add(splintGroup);
+
+      self.registerInteractive(rackBase, 'Giá ống nghiệm: Nhấp chuột để Thử que đóm kiểm tra khí H2', function(st) {
+        st.splintTest = !st.splintTest;
+        if (st.splintTest) self.playPopSound();
       });
 
       this.updateFns.push(function(st, t) {
-        bMeshes.forEach(function(bm) {
-          bm.position.y += 0.012;
-          if (bm.position.y > 0.55) bm.position.y = 0;
+        var isReacting = (st && st.acidConc !== "none");
+        var activeMetal = (st && st.metal) ? st.metal : "Zn";
+        var isSplint = !!(st && st.splintTest);
+
+        tubesData.forEach(function(td) {
+          var isThisActive = (td.config.name.indexOf(activeMetal) !== -1);
+          td.bubbles.forEach(function(bObj) {
+            if (isReacting && (isThisActive || activeMetal === "all")) {
+              bObj.mesh.visible = true;
+              bObj.mesh.position.y += bObj.speed;
+              if (bObj.mesh.position.y > 0.05) {
+                bObj.mesh.position.y = -0.6;
+              }
+            } else {
+              bObj.mesh.visible = false;
+            }
+          });
         });
+
+        if (isSplint) {
+          splintGroup.visible = true;
+          var flicker = 1.0 + Math.sin(t * 25) * 0.25;
+          splintFlame.scale.set(flicker, flicker * 1.3, flicker);
+        } else {
+          splintGroup.visible = false;
+        }
       });
 
       group.add(maGroup);
     },
 
-    // =========================================================================
-    // 13. PH INDICATOR (Thang đo pH & Bảng màu chỉ thị)
-    // =========================================================================
     buildPhIndicator: function(group, state) {
       var self = this;
       var phGroup = new THREE.Group();
@@ -2078,50 +2191,158 @@
       var woodMat = new THREE.MeshStandardMaterial({ color: 0xb45309, roughness: 0.75 });
 
       // Wooden Rack Base & Upper tier
-      var rackBase = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.12, 1.2), woodMat);
+      var rackBase = new THREE.Mesh(new THREE.BoxGeometry(3.8, 0.12, 1.2), woodMat);
       rackBase.position.set(0, 0.06, 0);
       phGroup.add(rackBase);
 
-      var rackTop = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.08, 1.2), woodMat);
+      var rackTop = new THREE.Mesh(new THREE.BoxGeometry(3.8, 0.08, 1.2), woodMat);
       rackTop.position.set(0, 1.1, 0);
       phGroup.add(rackTop);
 
-      for (var p = -1.6; p <= 1.6; p += 3.2) {
+      for (var p = -1.7; p <= 1.7; p += 3.4) {
         var post = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 1.1, 12), woodMat);
         post.position.set(p, 0.58, 0);
         phGroup.add(post);
       }
 
-      // 5 pH Test Tubes: pH 1 (Red), pH 4 (Orange), pH 7 (Green), pH 10 (Cyan), pH 13 (Purple)
-      var phColors = [0xef4444, 0xf59e0b, 0x10b981, 0x06b6d4, 0x8b5cf6];
-      var phLabels = ['pH 1 (Acid mạnh)', 'pH 4 (Giấm ăn)', 'pH 7 (Nước cất)', 'pH 10 (Xà phòng)', 'pH 13 (Xút NaOH)'];
+      // 5 Real-world Samples with Positions
+      var sampleData = [
+        { name: "Chanh",     ph: 2.2, color: 0xef4444, liqColor: 0xfef08a, x: -1.4 },
+        { name: "Giấm",      ph: 3.0, color: 0xf97316, liqColor: 0xffedd5, x: -0.7 },
+        { name: "Nước cất",  ph: 7.0, color: 0x22c55e, liqColor: 0xbae6fd, x:  0.0 },
+        { name: "Xà phòng", ph: 9.5, color: 0x0ea5e9, liqColor: 0xe0f2fe, x:  0.7 },
+        { name: "NaOH",      ph: 13.0, color: 0x7c3aed, liqColor: 0xdbeafe, x:  1.4 }
+      ];
 
-      phColors.forEach(function(col, idx) {
-        var posX = -1.4 + idx * 0.7;
-        var tMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, 1.4, 24, 1, true), glassMat);
-        tMesh.position.set(posX, 0.82, 0);
-        phGroup.add(tMesh);
+      var strips = [];
+      sampleData.forEach(function(smp) {
+        var tGroup = new THREE.Group();
+        tGroup.position.set(smp.x, 0.8, 0);
 
-        var liqMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.85, 24), self.getLiquidMaterial(col, 0.85));
-        liqMesh.position.set(posX, 0.55, 0);
-        phGroup.add(liqMesh);
+        var tube = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, 1.4, 20, 1, true), glassMat);
+        tGroup.add(tube);
 
-        self.registerInteractive(tMesh, phLabels[idx] + ': Nhấp chuột để nhỏ chỉ thị', function(st) {
-          self.playDripSound();
-        });
+        var liq = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.8, 20), self.getLiquidMaterial(smp.liqColor, 0.65));
+        liq.position.set(0, -0.28, 0);
+        tGroup.add(liq);
+
+        // Watch glass with pH paper strip in front
+        var watchGlass = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.22, 0.04, 20), glassMat);
+        watchGlass.position.set(smp.x, 0.14, 0.85);
+        phGroup.add(watchGlass);
+
+        var stripMat = new THREE.MeshStandardMaterial({ color: 0xfef08a, roughness: 0.8 });
+        var strip = new THREE.Mesh(new THREE.BoxGeometry(0.10, 0.01, 0.32), stripMat);
+        strip.position.set(smp.x, 0.165, 0.85);
+        phGroup.add(strip);
+
+        strips.push({ sample: smp, stripMat: stripMat });
+        phGroup.add(tGroup);
       });
 
-      // 3D Standing pH Scale Strip
-      var strip = new THREE.Mesh(new THREE.BoxGeometry(3.4, 0.35, 0.04), new THREE.MeshStandardMaterial({ color: 0x1e293b }));
-      strip.position.set(0, 1.45, -0.4);
-      phGroup.add(strip);
+      // Animated Glass Stirring Rod (Đũa thủy tinh chấm thử pH thực tế)
+      var rodGroup = new THREE.Group();
+      rodGroup.position.set(0, 1.6, 0.4);
+
+      var rod = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 1.2, 12), glassMat);
+      rod.rotation.z = 0.25;
+      rodGroup.add(rod);
+
+      // Droplet at rod tip
+      var tipDropMat = self.getLiquidMaterial(0xfef08a, 0.85);
+      var tipDrop = new THREE.Mesh(new THREE.SphereGeometry(0.028, 10, 10), tipDropMat);
+      tipDrop.position.set(0.15, -0.58, 0);
+      tipDrop.visible = false;
+      rodGroup.add(tipDrop);
+
+      phGroup.add(rodGroup);
+
+      self.registerInteractive(rackBase, 'Bảng so màu pH: Nhấp chuột để Chấm đũa thủy tinh thử pH các mẫu', function(st) {
+        st.samplePh = (st.samplePh === 7.0 || !st.samplePh) ? 2.2 : (st.samplePh === 2.2 ? 13.0 : 7.0);
+        self.playBellSound();
+      });
+
+      // Action loop: Dip rod -> Lift -> Dab on strip -> Color spread
+      var rodAnimProgress = 0;
+      var lastTargetPh = 7.0;
+
+      this.updateFns.push(function(st, t) {
+        var curPh = (st && st.samplePh !== undefined) ? st.samplePh : 7.0;
+
+        // Find matching sample
+        var activeSample = sampleData[2]; // Default neutral
+        for (var i = 0; i < sampleData.length; i++) {
+          if (Math.abs(sampleData[i].ph - curPh) < 1.5) {
+            activeSample = sampleData[i];
+            break;
+          }
+        }
+
+        if (curPh !== lastTargetPh) {
+          lastTargetPh = curPh;
+          rodAnimProgress = 0; // Trigger dab animation
+        }
+
+        rodAnimProgress = Math.min(1.0, rodAnimProgress + 0.02);
+
+        // Rod Motion Kinematics:
+        // 0.0 -> 0.3: Move over tube and dip down into solution
+        // 0.3 -> 0.6: Lift out with liquid drop on tip
+        // 0.6 -> 0.85: Move forward over watch glass and dab down on paper
+        // 0.85 -> 1.0: Lift back up
+        var targetX = activeSample.x;
+        if (rodAnimProgress < 0.3) {
+          var p1 = rodAnimProgress / 0.3;
+          rodGroup.position.set(
+            targetX,
+            THREE.MathUtils.lerp(1.6, 0.85, p1),
+            THREE.MathUtils.lerp(0.4, 0, p1)
+          );
+          tipDrop.visible = false;
+        } else if (rodAnimProgress < 0.6) {
+          var p2 = (rodAnimProgress - 0.3) / 0.3;
+          rodGroup.position.set(
+            targetX,
+            THREE.MathUtils.lerp(0.85, 1.55, p2),
+            THREE.MathUtils.lerp(0, 0.4, p2)
+          );
+          tipDrop.visible = true;
+          tipDropMat.color.set(activeSample.liqColor);
+        } else if (rodAnimProgress < 0.85) {
+          var p3 = (rodAnimProgress - 0.6) / 0.25;
+          rodGroup.position.set(
+            targetX,
+            THREE.MathUtils.lerp(1.55, 0.75, p3),
+            THREE.MathUtils.lerp(0.4, 0.85, p3)
+          );
+          if (p3 > 0.85) {
+            tipDrop.visible = false;
+            self.playDripSound();
+          }
+        } else {
+          var p4 = (rodAnimProgress - 0.85) / 0.15;
+          rodGroup.position.set(
+            targetX,
+            THREE.MathUtils.lerp(0.75, 1.5, p4),
+            THREE.MathUtils.lerp(0.85, 0.4, p4)
+          );
+        }
+
+        // Color strips
+        strips.forEach(function(sObj) {
+          if (Math.abs(sObj.sample.ph - curPh) < 1.5 || curPh === "all") {
+            if (rodAnimProgress > 0.75) {
+              sObj.stripMat.color.lerp(new THREE.Color(sObj.sample.color), 0.08);
+            }
+          } else {
+            sObj.stripMat.color.lerp(new THREE.Color(0xfef08a), 0.06);
+          }
+        });
+      });
 
       group.add(phGroup);
     },
 
-    // =========================================================================
-    // 14. LEVER BALANCE (Đòn bẩy & quy tắc mô men lực)
-    // =========================================================================
     buildLeverBalance: function(group, state) {
       var self = this;
       var lGroup = new THREE.Group();
@@ -2162,8 +2383,15 @@
       });
 
       this.updateFns.push(function(st, t) {
-        var tilt = st.leverBalanced ? 0 : Math.sin(t * 1.5) * 0.12;
-        beamGroup.rotation.z = tilt;
+        var tilt = 0;
+        if (st.m1 !== undefined && st.d1 !== undefined && st.m2 !== undefined && st.d2 !== undefined) {
+          var torqueDiff = (st.m1 * st.d1) - (st.m2 * st.d2);
+          tilt = Math.max(-0.25, Math.min(0.25, -torqueDiff * 0.00012));
+          if (torqueDiff === 0) tilt += Math.sin(t * 2.0) * 0.01;
+        } else {
+          tilt = st.leverBalanced ? 0 : Math.sin(t * 1.5) * 0.12;
+        }
+        beamGroup.rotation.z += (tilt - beamGroup.rotation.z) * 0.1;
       });
 
       lGroup.add(beamGroup);
@@ -2215,10 +2443,11 @@
       });
 
       this.updateFns.push(function(st, t) {
-        var depth = st.probeDepth || 1;
-        probe.position.y = 1.9 - depth * 0.45;
-        leftCol.scale.y = 1.0 - depth * 0.15;
-        rightCol.scale.y = 1.0 + depth * 0.25;
+        var depthVal = (st.depth !== undefined) ? (st.depth / 6.0) : (st.probeDepth || 1);
+        var clampedD = Math.max(0.2, Math.min(3.0, depthVal));
+        probe.position.y = 1.9 - clampedD * 0.45;
+        leftCol.scale.y = Math.max(0.1, 1.0 - clampedD * 0.15);
+        rightCol.scale.y = 1.0 + clampedD * 0.25;
       });
 
       group.add(lpGroup);
@@ -2233,66 +2462,90 @@
       mdGroup.position.set(0, 0, 0);
 
       var glassMat = this.getGlassMaterial(0xdbeafe, 0.3);
+      var woodMat = new THREE.MeshStandardMaterial({ color: 0x78350f, roughness: 0.8 });
 
-      // Beaker
-      var beaker = new THREE.Mesh(new THREE.CylinderGeometry(0.65, 0.65, 1.4, 32, 1, true), glassMat);
-      beaker.position.set(0, 0.75, 0);
-      mdGroup.add(beaker);
+      var stand = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.12, 1.0), woodMat);
+      stand.position.set(0, 0.06, 0);
+      mdGroup.add(stand);
 
-      // CuSO4 Solution (turns from deep blue to pale green)
-      var solMat = self.getLiquidMaterial(0x0284c7, 0.8);
-      var solution = new THREE.Mesh(new THREE.CylinderGeometry(0.63, 0.63, 1.0, 32), solMat);
-      solution.position.set(0, 0.55, 0);
-      mdGroup.add(solution);
+      // TUBE 1: Fe nail in CuSO4 solution
+      var t1Group = new THREE.Group();
+      t1Group.position.set(-0.65, 0, 0);
 
-      // Glass rod across beaker
-      var rod = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 1.6, 12), glassMat);
-      rod.rotation.z = Math.PI / 2;
-      rod.position.set(0, 1.46, 0);
-      mdGroup.add(rod);
+      var beaker1 = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 1.3, 28, 1, true), glassMat);
+      beaker1.position.set(0, 0.72, 0);
+      t1Group.add(beaker1);
 
-      // Iron Nail (Fe)
+      var solMat1 = self.getLiquidMaterial(0x0284c7, 0.85);
+      var sol1 = new THREE.Mesh(new THREE.CylinderGeometry(0.40, 0.40, 0.85, 28), solMat1);
+      sol1.position.set(0, 0.52, 0);
+      t1Group.add(sol1);
+
       var nailGroup = new THREE.Group();
-      nailGroup.position.set(0, 0.8, 0);
+      nailGroup.position.set(0, 0.75, 0);
 
-      var nailBody = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.9, 16), self.getMetalMaterial(0.3, 0x94a3b8));
-      nailGroup.add(nailBody);
+      var feNail = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.9, 16), self.getMetalMaterial(0.2, 0x64748b));
+      nailGroup.add(feNail);
 
-      var nailTip = new THREE.Mesh(new THREE.ConeGeometry(0.06, 0.2, 16), self.getMetalMaterial(0.3, 0x94a3b8));
-      nailTip.position.set(0, -0.55, 0);
-      nailTip.rotation.x = Math.PI;
-      nailGroup.add(nailTip);
-
-      // Red Copper Coating (Cu)
-      var cuCoating = new THREE.Mesh(new THREE.CylinderGeometry(0.068, 0.068, 0.6, 16), new THREE.MeshStandardMaterial({ color: 0xb45309, roughness: 0.6, transparent: true, opacity: 0 }));
-      cuCoating.position.set(0, -0.2, 0);
+      var cuCoatingMat = new THREE.MeshStandardMaterial({ color: 0xc2410c, metalness: 0.85, roughness: 0.25, transparent: true, opacity: 0 });
+      var cuCoating = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.65, 16), cuCoatingMat);
+      cuCoating.position.set(0, -0.12, 0);
       nailGroup.add(cuCoating);
+      t1Group.add(nailGroup);
+      mdGroup.add(t1Group);
 
-      self.registerInteractive(beaker, 'Cốc dung dịch: Nhấp chuột để kích hoạt phản ứng thế Fe + CuSO4', function(st) {
+      // TUBE 2: Cu wire spiral in AgNO3 solution
+      var t2Group = new THREE.Group();
+      t2Group.position.set(0.65, 0, 0);
+
+      var beaker2 = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 1.3, 28, 1, true), glassMat);
+      beaker2.position.set(0, 0.72, 0);
+      t2Group.add(beaker2);
+
+      var solMat2 = self.getLiquidMaterial(0xdbeafe, 0.4);
+      var sol2 = new THREE.Mesh(new THREE.CylinderGeometry(0.40, 0.40, 0.85, 28), solMat2);
+      sol2.position.set(0, 0.52, 0);
+      t2Group.add(sol2);
+
+      var wireGroup = new THREE.Group();
+      wireGroup.position.set(0, 0.75, 0);
+
+      var cuWire = new THREE.Mesh(new THREE.TorusGeometry(0.18, 0.025, 12, 32), new THREE.MeshStandardMaterial({ color: 0xea580c, metalness: 0.85, roughness: 0.2 }));
+      cuWire.rotation.x = Math.PI / 2;
+      wireGroup.add(cuWire);
+
+      var agMat = new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.9, roughness: 0.1, transparent: true, opacity: 0 });
+      var agCrystals = new THREE.Mesh(new THREE.TorusGeometry(0.185, 0.038, 12, 32), agMat);
+      agCrystals.rotation.x = Math.PI / 2;
+      wireGroup.add(agCrystals);
+
+      t2Group.add(wireGroup);
+      mdGroup.add(t2Group);
+
+      self.registerInteractive(stand, 'Giá phản ứng: Nhấp chuột để Bắt đầu phản ứng kim loại đẩy muối', function(st) {
         st.displaced = !st.displaced;
         self.playBellSound();
       });
 
       this.updateFns.push(function(st, t) {
-        if (st.displaced) {
-          cuCoating.material.opacity = Math.min(0.95, cuCoating.material.opacity + 0.03);
-          solMat.color.lerp(new THREE.Color(0x86efac), 0.02);
+        var isDisplaced = !!st.displaced || (st.reactTime !== undefined && st.reactTime > 2) || (st.time !== undefined && st.time > 2);
+        if (isDisplaced) {
+          cuCoatingMat.opacity = Math.min(0.95, cuCoatingMat.opacity + 0.025);
+          solMat1.color.lerp(new THREE.Color(0x86efac), 0.02);
+
+          agMat.opacity = Math.min(0.95, agMat.opacity + 0.025);
+          solMat2.color.lerp(new THREE.Color(0x38bdf8), 0.02);
         } else {
-          cuCoating.material.opacity = Math.max(0, cuCoating.material.opacity - 0.03);
-          solMat.color.lerp(new THREE.Color(0x0284c7), 0.02);
+          cuCoatingMat.opacity = Math.max(0, cuCoatingMat.opacity - 0.025);
+          solMat1.color.lerp(new THREE.Color(0x0284c7), 0.02);
+          agMat.opacity = Math.max(0, agMat.opacity - 0.025);
+          solMat2.color.lerp(new THREE.Color(0xdbeafe), 0.02);
         }
       });
 
-      mdGroup.add(nailGroup);
       group.add(mdGroup);
     },
 
-    // =========================================================================
-    // 17. LIGHT REFRACTION (Khúc xạ ánh sáng & Phản xạ toàn phần)
-    // =========================================================================
-        // =========================================================================
-    // 17. LIGHT REFRACTION (Khúc xạ ánh sáng & Phản xạ toàn phần - KHTN 9 Bài 5)
-    // =========================================================================
     buildLightRefraction: function(group, state) {
       var self = this;
       var lrGroup = new THREE.Group();
@@ -2510,52 +2763,90 @@
 
       var glassMat = this.getGlassMaterial(0xdbeafe, 0.3);
 
-      // Water Basin
+      // Glass Water Basin with Red Colored Water (Chậu nước pha màu đỏ)
       var basin = new THREE.Mesh(new THREE.CylinderGeometry(1.2, 1.2, 0.5, 32, 1, true), glassMat);
       basin.position.set(0, 0.25, 0);
       aoGroup.add(basin);
 
-      var basinLiq = new THREE.Mesh(new THREE.CylinderGeometry(1.18, 1.18, 0.35, 32), self.getLiquidMaterial(0x38bdf8, 0.6));
+      var basinLiqMat = self.getLiquidMaterial(0xf43f5e, 0.65);
+      var basinLiq = new THREE.Mesh(new THREE.CylinderGeometry(1.18, 1.18, 0.35, 32), basinLiqMat);
       basinLiq.position.set(0, 0.18, 0);
       aoGroup.add(basinLiq);
 
-      // Floating Candle
-      var candleFloat = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.25, 0.08, 20), new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.8 }));
+      // Floating Cork Disk with Candle (Đế nổi và cây nến trắng)
+      var candleFloat = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.26, 0.08, 20), new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.8 }));
       candleFloat.position.set(0, 0.36, 0);
       aoGroup.add(candleFloat);
 
-      var candle = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.25, 16), new THREE.MeshStandardMaterial({ color: 0xf8fafc }));
-      candle.position.set(0, 0.52, 0);
+      var candle = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.28, 16), new THREE.MeshStandardMaterial({ color: 0xf8fafc }));
+      candle.position.set(0, 0.54, 0);
       aoGroup.add(candle);
 
-      var flame = new THREE.Mesh(new THREE.ConeGeometry(0.045, 0.16, 12), new THREE.MeshBasicMaterial({ color: 0xf59e0b }));
-      flame.position.set(0, 0.72, 0);
+      var flame = new THREE.Mesh(new THREE.ConeGeometry(0.05, 0.18, 12), new THREE.MeshBasicMaterial({ color: 0xf59e0b }));
+      flame.position.set(0, 0.76, 0);
       aoGroup.add(flame);
 
-      // Inverted Graduated Bell Jar
-      var bellJar = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 1.6, 24, 1, true), glassMat);
-      bellJar.position.set(0, 1.1, 0);
-      aoGroup.add(bellJar);
+      var flameLight = new THREE.PointLight(0xf59e0b, 1.5, 3.0);
+      flameLight.position.set(0, 0.76, 0);
+      aoGroup.add(flameLight);
 
-      // Water Rising Column inside jar (rises to 1/5)
-      var riseLiq = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 0.32, 24), self.getLiquidMaterial(0x38bdf8, 0.8));
-      riseLiq.position.set(0, 0.48, 0);
-      riseLiq.scale.set(1, 0.1, 1);
+      // Inverted Graduated Measuring Cylinder (Ống đong thủy tinh 5 vạch chia mức 1/5)
+      var bellJarGroup = new THREE.Group();
+      bellJarGroup.position.set(0, 2.3, 0); // Starts suspended above
+
+      var bellJar = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 1.7, 28, 1, true), glassMat);
+      bellJar.position.set(0, 0, 0);
+      bellJarGroup.add(bellJar);
+
+      for (var r = 1; r <= 5; r++) {
+        var tickRing = new THREE.Mesh(new THREE.RingGeometry(0.422, 0.432, 24), new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide }));
+        tickRing.rotation.x = Math.PI / 2;
+        tickRing.position.set(0, -0.8 + r * 0.28, 0);
+        bellJarGroup.add(tickRing);
+      }
+      aoGroup.add(bellJarGroup);
+
+      // Rising Red Water Column inside cylinder (rises to exactly 1/5)
+      var riseLiqMat = self.getLiquidMaterial(0xf43f5e, 0.85);
+      var riseLiq = new THREE.Mesh(new THREE.CylinderGeometry(0.40, 0.40, 0.35, 24), riseLiqMat);
+      riseLiq.position.set(0, 0.35, 0);
+      riseLiq.scale.set(1, 0.001, 1);
       aoGroup.add(riseLiq);
 
-      self.registerInteractive(bellJar, 'Chuông thủy tinh: Nhấp chuột để Úp chuông kín và đốt cháy O2', function(st) {
+      self.registerInteractive(basin, 'Ống đong: Nhấp chuột để Úp ống đong và đốt cháy O2', function(st) {
         st.airBurned = !st.airBurned;
         self.playBellSound();
       });
 
+      // Kinematic Lowering of Cylinder and Water Rise
+      var lowerAnim = 0;
       this.updateFns.push(function(st, t) {
-        if (st.airBurned) {
-          flame.scale.set(0.001, 0.001, 0.001);
-          riseLiq.scale.y = Math.min(1.0, riseLiq.scale.y + 0.02);
-          riseLiq.position.y = 0.35 + riseLiq.scale.y * 0.16;
+        var isBurned = !!st.airBurned || (st.phase === "running" || st.phase === 3 || st.phase === 4 || st.phase === 5) || (st.burnProgress !== undefined && st.burnProgress > 0);
+        if (isBurned) {
+          lowerAnim = Math.min(1.0, lowerAnim + 0.02);
+
+          // Lower cylinder over the candle
+          bellJarGroup.position.y = THREE.MathUtils.lerp(2.3, 1.15, lowerAnim);
+
+          // Once cylinder is fully down (lowerAnim > 0.8), flame dims and water rises
+          if (lowerAnim > 0.7) {
+            var flameFade = Math.max(0.001, 1.0 - (lowerAnim - 0.7) / 0.3);
+            flame.scale.set(flameFade, flameFade, flameFade);
+            flameLight.intensity = 1.5 * flameFade;
+
+            // Water rises to 1/5
+            riseLiq.scale.y = Math.min(1.0, (lowerAnim - 0.7) / 0.3);
+            riseLiq.position.y = 0.35 + riseLiq.scale.y * 0.175;
+          }
         } else {
-          flame.scale.set(1, 1, 1);
-          riseLiq.scale.y = Math.max(0.1, riseLiq.scale.y - 0.02);
+          lowerAnim = Math.max(0, lowerAnim - 0.02);
+          bellJarGroup.position.y = THREE.MathUtils.lerp(1.15, 2.3, 1.0 - lowerAnim);
+
+          var flicker = 1.0 + Math.sin(t * 20) * 0.15;
+          flame.scale.set(flicker, flicker * 1.1, flicker);
+          flameLight.intensity = 1.5 * flicker;
+
+          riseLiq.scale.y = 0.001;
           riseLiq.position.y = 0.35;
         }
       });
@@ -2563,9 +2854,6 @@
       group.add(aoGroup);
     },
 
-    // =========================================================================
-    // 19. HYDROCARBON BROMINE (Phân biệt CH4 và C2H4 bằng Br2)
-    // =========================================================================
     buildHydrocarbonBromine: function(group, state) {
       var self = this;
       var hbGroup = new THREE.Group();
@@ -2573,24 +2861,57 @@
 
       var glassMat = this.getGlassMaterial(0xdbeafe, 0.3);
 
-      // Bottle 1: CH4 (Methane - remains orange)
-      var b1 = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 1.3, 24, 1, true), glassMat);
-      b1.position.set(-0.9, 0.75, 0);
-      hbGroup.add(b1);
+      // Bottle 1: CH4
+      var b1Group = new THREE.Group();
+      b1Group.position.set(-0.9, 0, 0);
 
-      var b1Liq = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 0.85, 24), self.getLiquidMaterial(0xd97706, 0.85));
-      b1Liq.position.set(-0.9, 0.55, 0);
-      hbGroup.add(b1Liq);
+      var b1 = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 1.4, 24, 1, true), glassMat);
+      b1.position.set(0, 0.75, 0);
+      b1Group.add(b1);
 
-      // Bottle 2: C2H4 (Ethylene - decolorizes Br2)
-      var b2 = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 1.3, 24, 1, true), glassMat);
-      b2.position.set(0.9, 0.75, 0);
-      hbGroup.add(b2);
+      var b1Liq = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 0.85, 24), self.getLiquidMaterial(0xea580c, 0.85));
+      b1Liq.position.set(0, 0.55, 0);
+      b1Group.add(b1Liq);
 
-      var b2Mat = self.getLiquidMaterial(0xd97706, 0.85);
+      var tube1 = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 1.6, 12), glassMat);
+      tube1.position.set(0, 1.0, 0);
+      b1Group.add(tube1);
+
+      var bubbles1 = [];
+      var bMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.75 });
+      for (var b = 0; b < 12; b++) {
+        var bm1 = new THREE.Mesh(new THREE.SphereGeometry(0.02 + Math.random() * 0.02, 8, 8), bMat);
+        bm1.position.set((Math.random() - 0.5) * 0.25, 0.2 + Math.random() * 0.6, (Math.random() - 0.5) * 0.25);
+        b1Group.add(bm1);
+        bubbles1.push({ mesh: bm1, speed: 0.015 + Math.random() * 0.02 });
+      }
+      hbGroup.add(b1Group);
+
+      // Bottle 2: C2H4
+      var b2Group = new THREE.Group();
+      b2Group.position.set(0.9, 0, 0);
+
+      var b2 = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 1.4, 24, 1, true), glassMat);
+      b2.position.set(0, 0.75, 0);
+      b2Group.add(b2);
+
+      var b2Mat = self.getLiquidMaterial(0xea580c, 0.85);
       var b2Liq = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 0.85, 24), b2Mat);
-      b2Liq.position.set(0.9, 0.55, 0);
-      hbGroup.add(b2Liq);
+      b2Liq.position.set(0, 0.55, 0);
+      b2Group.add(b2Liq);
+
+      var tube2 = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 1.6, 12), glassMat);
+      tube2.position.set(0, 1.0, 0);
+      b2Group.add(tube2);
+
+      var bubbles2 = [];
+      for (var b = 0; b < 16; b++) {
+        var bm2 = new THREE.Mesh(new THREE.SphereGeometry(0.02 + Math.random() * 0.02, 8, 8), bMat);
+        bm2.position.set((Math.random() - 0.5) * 0.25, 0.2 + Math.random() * 0.6, (Math.random() - 0.5) * 0.25);
+        b2Group.add(bm2);
+        bubbles2.push({ mesh: bm2, speed: 0.020 + Math.random() * 0.02 });
+      }
+      hbGroup.add(b2Group);
 
       self.registerInteractive(b2, 'Bình sục khí C2H4: Nhấp chuột để Sục khí làm mất màu nước Brom', function(st) {
         st.bromineDecolorized = !st.bromineDecolorized;
@@ -2598,21 +2919,37 @@
       });
 
       this.updateFns.push(function(st, t) {
-        if (st.bromineDecolorized) {
-          b2Mat.color.lerp(new THREE.Color(0xdbeafe), 0.03);
-          b2Mat.opacity = Math.max(0.35, b2Mat.opacity - 0.02);
+        var isFlowing = !!(st && st.isFlowing);
+        var isDecolor = !!st.bromineDecolorized || (st.isFlowing && st.gas === "C2H4") || (st.colorFactor !== undefined && st.colorFactor < 0.5);
+
+        if (isFlowing) {
+          bubbles1.forEach(function(bObj) {
+            bObj.mesh.visible = true;
+            bObj.mesh.position.y += bObj.speed;
+            if (bObj.mesh.position.y > 0.95) bObj.mesh.position.y = 0.2;
+          });
+          bubbles2.forEach(function(bObj) {
+            bObj.mesh.visible = true;
+            bObj.mesh.position.y += bObj.speed;
+            if (bObj.mesh.position.y > 0.95) bObj.mesh.position.y = 0.2;
+          });
         } else {
-          b2Mat.color.lerp(new THREE.Color(0xd97706), 0.03);
-          b2Mat.opacity = Math.min(0.85, b2Mat.opacity + 0.02);
+          bubbles1.forEach(function(bObj) { bObj.mesh.visible = false; });
+          bubbles2.forEach(function(bObj) { bObj.mesh.visible = false; });
+        }
+
+        if (isDecolor) {
+          b2Mat.color.lerp(new THREE.Color(0xdbeafe), 0.035);
+          b2Mat.opacity = Math.max(0.28, b2Mat.opacity - 0.025);
+        } else {
+          b2Mat.color.lerp(new THREE.Color(0xea580c), 0.035);
+          b2Mat.opacity = Math.min(0.85, b2Mat.opacity + 0.025);
         }
       });
 
       group.add(hbGroup);
     },
 
-    // =========================================================================
-    // 20. FRICTION FORCE (Lực ma sát trượt và lăn)
-    // =========================================================================
     buildFrictionForce: function(group, state) {
       var self = this;
       var fGroup = new THREE.Group();
@@ -2640,10 +2977,14 @@
       });
 
       this.updateFns.push(function(st, t) {
-        if (st.sliding) {
+        var isMoving = !!st.sliding || !!st.isPulling;
+        if (isMoving) {
           var xOff = Math.sin(t * 3) * 0.4;
           block.position.x = -0.6 + xOff;
           dyna.position.x = 0.7 + xOff;
+        } else {
+          block.position.x += (-0.6 - block.position.x) * 0.1;
+          dyna.position.x += (0.7 - dyna.position.x) * 0.1;
         }
       });
 
@@ -2713,9 +3054,10 @@
           self.controls.update();
         }
 
+        var activeState = self.currentSimState || window.labSimState || {};
         for (var i = 0; i < self.updateFns.length; i++) {
           try {
-            self.updateFns[i](window.labSimState || {}, t);
+            self.updateFns[i](activeState, t);
           } catch (e) {}
         }
 
@@ -2728,9 +3070,14 @@
     },
 
     update: function(state, t) {
+      if (state) {
+        this.currentSimState = state;
+        window.labSimState = state;
+      }
+      var activeState = this.currentSimState || window.labSimState || {};
       for (var i = 0; i < this.updateFns.length; i++) {
         try {
-          this.updateFns[i](state, t);
+          this.updateFns[i](activeState, t !== undefined ? t : (performance.now() * 0.001));
         } catch (e) {}
       }
     },
@@ -2794,10 +3141,7 @@
         this.tooltipEl.parentNode.removeChild(this.tooltipEl);
         this.tooltipEl = null;
       }
-            var rHud = document.getElementById('lab3DRunStatusHUD');
-      if (rHud && rHud.parentNode) {
-        rHud.parentNode.removeChild(rHud);
-      }
+      var rHud = document.getElementById('lab3DRunStatusHUD'); if (rHud && rHud.parentNode) rHud.parentNode.removeChild(rHud);
       var sHud = document.getElementById('lab3DSpringHUD');
       if (sHud && sHud.parentNode) {
         sHud.parentNode.removeChild(sHud);

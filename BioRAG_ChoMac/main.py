@@ -44,6 +44,13 @@ def mark_image_as_processed(filename: str):
         f.write(f"{filename}\n")
 
 
+def get_pdf_files():
+    """Find all PDF files in DATA_DIR and its subdirectories."""
+    import glob
+    files = set(glob.glob(f"{DATA_DIR}/**/*.pdf", recursive=True) + glob.glob(f"{DATA_DIR}/*.pdf"))
+    return sorted(list(files))
+
+
 def run_etl_text_only(ocr_strategy: str = "hybrid"):
     """Run ETL pipeline for text only: PDF loading, OCR, chunking, and storing to ChromaDB."""
     logger.info(f"Starting ETL pipeline (TEXT ONLY, strategy={ocr_strategy})...")
@@ -62,9 +69,7 @@ def run_etl_text_only(ocr_strategy: str = "hybrid"):
     text_vdb = VectorDB()
     text_db = text_vdb.db
 
-    import glob
-
-    pdf_files = glob.glob(f"{DATA_DIR}/*.pdf")
+    pdf_files = get_pdf_files()
 
     if not pdf_files:
         logger.error(f"No PDF files found in {DATA_DIR}")
@@ -146,9 +151,7 @@ def run_etl_image_only():
 
     image_vdb = ImageVectorDB()
 
-    import glob
-
-    pdf_files = glob.glob(f"{DATA_DIR}/*.pdf")
+    pdf_files = get_pdf_files()
 
     if not pdf_files:
         logger.error(f"No PDF files found in {DATA_DIR}")
@@ -240,9 +243,7 @@ def run_etl(ocr_strategy: str = "hybrid"):
     text_vdb = VectorDB()
     image_vdb = ImageVectorDB()
 
-    import glob
-
-    pdf_files = glob.glob(f"{DATA_DIR}/*.pdf")
+    pdf_files = get_pdf_files()
 
     if not pdf_files:
         logger.error(f"No PDF files found in {DATA_DIR}")

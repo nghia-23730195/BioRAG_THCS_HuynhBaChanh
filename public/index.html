@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#176b4d">
-  <title>BioRAG — Trường THCS Huỳnh Bá Chánh</title>
+  <title>BioRAG — Trường THCS Tân Tạo A</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <style>
@@ -211,17 +211,17 @@
     .typing b:nth-child(3){animation-delay:.26s}.typing em{margin-left:7px;color:#75837c;
       font-size:11px;font-style:normal}
     @keyframes pulse{0%,70%,100%{opacity:.3;transform:translateY(0)}35%{opacity:1;transform:translateY(-3px)}}
-    .images{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+    .images{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:14px}
     .images figure{overflow:hidden;margin:0;border:1px solid var(--line);border-radius:12px;background:#fff;
-      transition:border-color .18s,box-shadow .18s,transform .18s}
-    .images figure:hover{border-color:#a7c4b4;box-shadow:0 10px 26px rgba(23,75,55,.11);transform:translateY(-1px)}
-    .image-open{position:relative;display:block;width:100%;overflow:hidden;border:0;background:#f5f7f4;
-      cursor:zoom-in;padding:0}.image-open img{display:block;width:100%;max-height:230px;object-fit:contain;background:#f5f7f4}
-    .image-open span{position:absolute;right:9px;bottom:9px;display:grid;width:28px;height:28px;
-      place-items:center;border-radius:8px;background:rgba(15,54,40,.78);color:#fff;font-size:15px;
+      transition:border-color .18s,box-shadow .18s,transform .18s;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+    .images figure:hover{border-color:#0284c7;box-shadow:0 10px 26px rgba(2,132,199,.15);transform:translateY(-2px)}
+    .image-open{position:relative;display:block;width:100%;overflow:hidden;border:0;background:#fafbfc;
+      cursor:zoom-in;padding:6px}.image-open img{display:block;width:100%;height:220px;max-height:260px;object-fit:contain;background:#fafbfc}
+    .image-open span{position:absolute;right:10px;bottom:10px;display:grid;width:30px;height:30px;
+      place-items:center;border-radius:8px;background:rgba(2,132,199,.85);color:#fff;font-size:16px;
       opacity:0;transform:translateY(4px);transition:.18s}.image-open:hover span,.image-open:focus-visible span{
       opacity:1;transform:translateY(0)}
-    .images figcaption{padding:9px 11px;color:var(--muted);font-size:10px;line-height:1.45}
+    .images figcaption{padding:10px 12px;color:#1e293b;font-size:12px;font-weight:600;line-height:1.45;background:#ffffff;border-top:1px solid #f1f5f9}
     .image-modal{position:fixed;z-index:100;inset:0;display:none;place-items:center;background:rgba(6,19,14,.88);
       padding:24px;backdrop-filter:blur(8px)}.image-modal.open{display:grid}.modal-panel{position:relative;
       display:flex;width:min(1240px,96vw);height:min(820px,92vh);max-height:92vh;flex-direction:column;overflow:hidden;
@@ -873,6 +873,147 @@
         height:calc(100vh - 218px);min-height:460px}.lesson-pdfjs-status{flex-basis:100%;text-align:left}
       .lab-grid{grid-template-columns:1fr}.lab-wb-header{flex-direction:column;align-items:flex-start}.lab-wb-actions{width:100%;justify-content:space-between}
     }
+  
+    /* 3D LAB FULLSCREEN & FLOATING STEPPER HUD */
+    .lab-canvas-card {
+      border: 1px solid #d6e4dc;
+      border-radius: 18px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(20,60,45,.06);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .lab-canvas-card:fullscreen,
+    .lab-canvas-card:-webkit-full-screen {
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: 100vw !important;
+      max-height: 100vh !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border-radius: 0 !important;
+      border: none !important;
+      background: #070d14 !important;
+      position: relative !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      box-sizing: border-box !important;
+    }
+    .lab-canvas-card:fullscreen .lab-canvas-topbar,
+    .lab-canvas-card:-webkit-full-screen .lab-canvas-topbar {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      z-index: 50 !important;
+      background: rgba(11, 19, 30, 0.88) !important;
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+      color: #f1f5f9 !important;
+      padding: 10px 20px !important;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
+    }
+    .lab-canvas-card:fullscreen .lab-canvas-wrap,
+    .lab-canvas-card:-webkit-full-screen .lab-canvas-wrap {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: 100vw !important;
+      max-height: 100vh !important;
+      aspect-ratio: auto !important;
+      z-index: 1 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .lab-canvas-card:fullscreen #lab3DContainer,
+    .lab-canvas-card:-webkit-full-screen #lab3DContainer {
+      width: 100% !important;
+      height: 100% !important;
+    }
+    .lab-canvas-card:fullscreen #lab3DContainer canvas,
+    .lab-canvas-card:-webkit-full-screen #lab3DContainer canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block !important;
+    }
+    .lab-canvas-card:fullscreen #lab3DHint,
+    .lab-canvas-card:-webkit-full-screen #lab3DHint {
+      position: absolute !important;
+      top: 60px !important;
+      right: 20px !important;
+      bottom: auto !important;
+      left: auto !important;
+      z-index: 40 !important;
+      background: rgba(15, 23, 42, 0.78) !important;
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      border-radius: 10px !important;
+      padding: 6px 14px !important;
+      color: #cbd5e1 !important;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4) !important;
+    }
+    .lab-canvas-card:fullscreen .lab-stepper-wrap,
+    .lab-canvas-card:-webkit-full-screen .lab-stepper-wrap {
+      position: absolute !important;
+      bottom: 20px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: min(95%, 1220px) !important;
+      max-width: 1220px !important;
+      z-index: 60 !important;
+      background: rgba(15, 23, 42, 0.94) !important;
+      backdrop-filter: blur(18px) !important;
+      -webkit-backdrop-filter: blur(18px) !important;
+      border: 1px solid rgba(56, 189, 248, 0.45) !important;
+      border-radius: 18px !important;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 25px rgba(14, 165, 233, 0.25) !important;
+      padding: 12px 18px !important;
+      margin: 0 !important;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      animation: slideUpHUD 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .lab-canvas-card:fullscreen .lab-stepper-wrap.collapsed,
+    .lab-canvas-card:-webkit-full-screen .lab-stepper-wrap.collapsed {
+      bottom: 14px !important;
+      width: min(90%, 820px) !important;
+      padding: 8px 16px !important;
+      background: rgba(15, 23, 42, 0.85) !important;
+    }
+    .lab-stepper-wrap.collapsed .lab-stepper-controls,
+    .lab-stepper-wrap.collapsed .lab-stepper-grid,
+    .lab-stepper-wrap.collapsed .lab-step-desc-box {
+      display: none !important;
+    }
+    .lab-hud-toggle-btn {
+      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(51, 65, 85, 0.8);
+      color: #e2e8f0;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .lab-hud-toggle-btn:hover {
+      background: #0284c7;
+      color: #fff;
+      border-color: #38bdf8;
+    }
+    @keyframes slideUpHUD {
+      from { opacity: 0; transform: translate(-50%, 20px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+    
   </style>
 <style>
 /* BIORAG_IMAGE_AI_SIZE_FIX */
@@ -948,6 +1089,72 @@
     #lab3DContainer:active{cursor:grabbing}
     #lab3DHint{position:absolute;bottom:8px;left:10px;background:rgba(15,23,42,0.82);backdrop-filter:blur(6px);color:#94a3b8;font-size:11px;padding:4px 10px;border-radius:6px;pointer-events:none;display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,0.08);z-index:5}
 
+    /* INTERACTIVE HANDS-ON EXPERIMENT ACTION BUTTONS */
+    .lab-actions-section {
+      background: #0b1120;
+      border: 1.5px solid #1e293b;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-top: 10px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    }
+    .lab-actions-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .lab-actions-title {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lab-actions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 7px;
+    }
+    .lab-action-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 8px 11px;
+      color: #f1f5f9;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      line-height: 1.35;
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    }
+    .lab-action-btn:hover {
+      background: #2563eb;
+      border-color: #60a5fa;
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+    }
+    .lab-action-btn.active {
+      background: linear-gradient(135deg, #059669, #10b981);
+      border-color: #34d399;
+      color: #fff;
+      font-weight: 700;
+      box-shadow: 0 0 12px rgba(52, 211, 153, 0.4);
+    }
+    .lab-action-btn .btn-icon {
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
 </style>
   <!-- Three.js & 3D Interactive Lab Engine (Local + CDN fallback) -->
   <script src="/assets/three/three.min.js"></script>
@@ -964,8 +1171,8 @@
   <div class="app">
     <button class="overlay" id="overlay" aria-label="Đóng điều hướng"></button>
     <aside id="sidebar">
-      <div class="brand"><div class="logo">HBC</div><div class="brand-copy">
-        <strong>THCS Huỳnh Bá Chánh</strong><span>BioRAG KHTN 6–9</span></div></div>
+      <div class="brand"><div class="logo">TTA</div><div class="brand-copy">
+        <strong>THCS Tân Tạo A</strong><span>BioRAG KHTN 6–9</span></div></div>
       <button class="new-chat" id="newChat"><b>＋</b>Cuộc trò chuyện mới</button>
       <section class="side-section"><div class="label">Dữ liệu học tập</div>
         <div class="library"><div class="book">▤</div><div class="library-copy">
@@ -990,12 +1197,12 @@
       <section class="side-section history-wrap"><div class="label">Câu hỏi gần đây</div>
         <div class="history" id="history"></div></section>
       <div class="local"><div class="local-icon">◇</div><div class="local-copy">
-        <strong>Hệ thống BioRAG</strong><span>Trường THCS Huỳnh Bá Chánh</span></div></div>
+        <strong>Hệ thống BioRAG</strong><span>Trường THCS Tân Tạo A</span></div></div>
     </aside>
 
     <section class="main">
       <header><button class="menu" id="menu" aria-label="Mở điều hướng">☰</button>
-        <div class="title"><small id="pageEyebrow">Trường THCS Huỳnh Bá Chánh</small><h1 id="pageHeading">Khoa học tự nhiên</h1></div>
+        <div class="title"><small id="pageEyebrow">Trường THCS Tân Tạo A</small><h1 id="pageHeading">Khoa học tự nhiên</h1></div>
         <div style="display:flex;align-items:center;gap:8px" class="header-right-actions">
           <div class="auth-container" id="authContainer">
             <button class="auth-header-btn" id="authHeaderBtn" type="button" onclick="openAuthModal()" title="Đăng nhập hệ thống BioRAG">
@@ -1015,7 +1222,7 @@
                 <div class="user-dropdown-info">
                   <div class="user-dropdown-name" id="dropdownName">Thầy/Cô · Tổ KHTN</div>
                   <div class="user-dropdown-role" id="dropdownRole">Giáo viên KHTN</div>
-                  <div class="user-dropdown-school">THCS Huỳnh Bá Chánh</div>
+                  <div class="user-dropdown-school">THCS Tân Tạo A</div>
                 </div>
               </div>
               <div class="user-dropdown-divider"></div>
@@ -1262,7 +1469,7 @@
           <span style="font-size:22px">🏫</span>
           <div>
             <strong style="font-size:15px;display:block;color:#0f172a">Đăng nhập BioRAG</strong>
-            <small style="color:#64748b;font-size:11px">Trường THCS Huỳnh Bá Chánh · KHTN 6–9</small>
+            <small style="color:#64748b;font-size:11px">Trường THCS Tân Tạo A · KHTN 6–9</small>
           </div>
         </div>
         <button type="button" id="authClose" class="auth-close" onclick="closeAuthModal()" aria-label="Đóng">×</button>
@@ -1296,7 +1503,7 @@
             <span>🔑</span> Đăng nhập Giáo viên
           </button>
           <div class="auth-hint">
-            💡 <strong>Mật khẩu mặc định:</strong> <code>khtn2026@hbc</code> (hoặc <code>admin2026@hbc</code> cho Quản trị viên). Giáo viên đăng nhập để kích hoạt Chế độ giáo viên, biên soạn bài dạy, xuất đề 3280 và KHDH 5512.
+            💡 <strong>Mật khẩu mặc định:</strong> <code>khtn2026@tta</code> (hoặc <code>admin2026@hbc</code> cho Quản trị viên). Giáo viên đăng nhập để kích hoạt Chế độ giáo viên, biên soạn bài dạy, xuất đề 3280 và KHDH 5512.
           </div>
         </div>
 
@@ -1366,7 +1573,7 @@
         <div id="profileModalAvatar" class="user-avatar" style="width:54px;height:54px;font-size:20px;margin:0 auto 12px">GV</div>
         <h3 id="profileModalName" style="margin:0 0 4px;font-size:16px;color:#0f172a">Thầy/Cô</h3>
         <div id="profileModalRole" style="font-size:12px;font-weight:700;color:#0284c7;margin-bottom:6px">Giáo viên KHTN</div>
-        <div style="font-size:12px;color:#64748b;margin-bottom:18px">Trường THCS Huỳnh Bá Chánh · TPHCM</div>
+        <div style="font-size:12px;color:#64748b;margin-bottom:18px">Trường THCS Tân Tạo A · TPHCM</div>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px;text-align:left;font-size:12px;color:#475569;margin-bottom:18px;line-height:1.6">
           <div id="profileModalClassRow"><strong>Lớp học:</strong> <span id="profileModalClass">-</span></div>
           <div id="profileModalCodeRow"><strong>Mã số:</strong> <span id="profileModalCode">-</span></div>
@@ -1731,7 +1938,7 @@
       if (!password) {
         if (alertEl) {
           alertEl.className = "auth-alert error";
-          alertEl.textContent = "Vui lòng nhập mật khẩu giáo viên (mặc định: khtn2026@hbc).";
+          alertEl.textContent = "Vui lòng nhập mật khẩu giáo viên (mặc định: khtn2026@tta).";
           alertEl.style.display = "block";
         }
         return;
@@ -1765,14 +1972,14 @@
         }
       } catch (err) {
         console.error("Login error:", err);
-        if (password === "khtn2026@hbc" || password === "admin2026@hbc") {
+        if (password === "khtn2026@tta" || password === "admin2026@hbc") {
           const isAdm = username.toLowerCase().includes("admin");
           const localUser = {
             id: isAdm ? "gv_admin" : "gv_teacher",
             username: username,
             name: isAdm ? "Quản trị viên KHTN" : "Thầy/Cô · Tổ KHTN",
             role: isAdm ? "admin" : "teacher",
-            school: "TRƯỜNG THCS HUỲNH BÁ CHÁNH",
+            school: "TRƯỜNG THCS TÂN TẠO A",
             permissions: ["teacher_mode", "edit_lessons", "generate_lessons", "export_5512", "export_3280", "view_sgv"]
           };
           setCurrentUser(localUser);
@@ -1852,12 +2059,12 @@
           grade_class: gradeClass,
           student_code: code,
           role: "student",
-          school: "TRƯỜNG THCS HUỲNH BÁ CHÁNH",
+          school: "TRƯỜNG THCS TÂN TẠO A",
           permissions: ["read_sgk", "chat_ai", "take_quiz", "view_history", "lab_3d"]
         };
         setCurrentUser(localUser);
         closeAuthModal();
-        alert(`Chào mừng em ${name} (Lớp ${gradeClass}) đến với BioRAG THCS Huỳnh Bá Chánh!`);
+        alert(`Chào mừng em ${name} (Lớp ${gradeClass}) đến với BioRAG THCS Tân Tạo A!`);
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
@@ -2273,7 +2480,7 @@
       finally{imageAiLoading=false;renderImageAi();imageAiQuestion.focus()}
     }
     function selectedLearningLesson(){return learningLessons.find(item=>item.id===selectedLessonId)||learningLessons[0]||null}
-    function textbookPageUrl(source,page){return "/api/learning/textbook-page?source="+encodeURIComponent(source)+"&page="+encodeURIComponent(page)}
+    function textbookPageUrl(source,page){return "/api/learning/textbook-page?source="+encodeURIComponent(source)+"&page="+encodeURIComponent(page)+"&v=tta_2026_1"}
     function textbookPdfUrl(source,page){
       const pageNumber=Math.max(1,Number(page)||1);
       let name=String(source||"").trim().replace(/khtn\s*(\d)/i,"KHTN $1");
@@ -3664,7 +3871,7 @@
       if(quizSubmitted){
         const rank=Number(score10)>=8.5?"Xuất sắc!":Number(score10)>=7.0?"Hoàn thành tốt":Number(score10)>=5.0?"Đạt yêu cầu":"Hãy củng cố thêm kiến thức";
         const currentU = getCurrentUser();
-        const candHtml = currentU ? ('<div style="font-size:12px;color:#0369a1;margin:4px 0 6px;font-weight:600">👤 Thí sinh: '+escapeHtml(currentU.name)+(currentU.grade_class?' · Lớp '+escapeHtml(currentU.grade_class):'')+' · THCS Huỳnh Bá Chánh</div>') : '';
+        const candHtml = currentU ? ('<div style="font-size:12px;color:#0369a1;margin:4px 0 6px;font-weight:600">👤 Thí sinh: '+escapeHtml(currentU.name)+(currentU.grade_class?' · Lớp '+escapeHtml(currentU.grade_class):'')+' · THCS Tân Tạo A</div>') : '';
         html+='<div class="quiz-result">'+
           '<div>'+
             '<strong>'+rank+' ('+score10+'/10 điểm)</strong>'+
@@ -4272,7 +4479,7 @@
         '</header>' +
         '<div class="lab-wb-body">' +
           '<div class="lab-sim-column">' +
-            '<div class="lab-canvas-card">' +
+            '<div class="lab-canvas-card" id="labCanvasCard">' +
               '<div class="lab-canvas-topbar">' +
                 '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">' +
                   '<span>MÔ PHỎNG TƯƠNG TÁC THỜI GIAN THỰC</span>' +
@@ -4301,12 +4508,12 @@
                   '<span>✋ <b>Di chuyển:</b> Giữ chuột phải</span>' +
                 '</div>' +
               '</div>' +
-            '</div>' +
             '<div class="lab-stepper-wrap" id="labStepperWrap" style="display:none;">' +
               '<div class="lab-stepper-header">' +
                 '<div style="display:flex;align-items:center;gap:8px;">' +
                   '<span style="font-size:12px;font-weight:800;color:#94a3b8;letter-spacing:0.04em;">TIẾN TRÌNH THỰC HÀNH (SGK KNTT)</span>' +
                   '<span id="labStepProgressText" style="color:#34d399;font-weight:800;background:rgba(52,211,153,0.12);padding:3px 10px;border-radius:6px;border:1px solid rgba(52,211,153,0.3);font-size:11px;">Bước 1/5 (20%)</span>' +
+                  '<button id="labToggleStepperHUD" type="button" class="lab-hud-toggle-btn" title="Ẩn/Hiện bảng chi tiết tiến trình thực hành"><span id="labToggleHUDIcon">👁️</span> <span id="labToggleHUDText">Thu gọn</span></button>' +
                 '</div>' +
                 '<div style="display:flex;align-items:center;gap:6px;">' +
                   '<button id="labStepPrevBtn" type="button" class="lab-toolbar-btn" style="padding:5px 12px;font-size:11.5px;background:#334155;color:#fff;border:none;border-radius:6px;cursor:pointer;transition:all 0.15s;" title="Quay lại bước trước">⬅️ Trước</button>' +
@@ -4336,6 +4543,7 @@
               '</div>' +
               '<div class="lab-stepper-grid" id="labStepperBar"></div>' +
               '<div id="labStepHintBox" style="margin-top:8px;padding:9px 14px;background:rgba(30,41,59,0.75);border-radius:8px;font-size:12px;color:#e2e8f0;line-height:1.5;border-left:3px solid #38bdf8;display:flex;align-items:flex-start;gap:8px;"></div>' +
+            '</div>' +
             '</div>' +
             '<div class="lab-controls-panel" id="labControlsPanel"></div>' +
             '<div class="lab-readout-card">' +
@@ -4394,8 +4602,8 @@
       });
 
       switchLabTab(labActiveTab);
-      renderLabStepper(exp);
       initSimulationEngine(exp);
+      renderLabStepper(exp);
     }
 
         let labSimDimension = "3d";
@@ -4452,17 +4660,59 @@
     }
 
     function toggleLabFullscreen() {
-      const wrap = document.getElementById("labCanvasWrap");
-      if (!wrap) return;
-      if (!document.fullscreenElement) {
-        wrap.requestFullscreen().then(() => {
-          if (window.Lab3DEngine) setTimeout(() => window.Lab3DEngine.resize(), 150);
-        }).catch(e => console.warn(e));
+      const card = document.getElementById("labCanvasCard") || document.getElementById("labCanvasWrap");
+      if (!card) return;
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        const req = card.requestFullscreen || card.webkitRequestFullscreen || card.mozRequestFullScreen || card.msRequestFullscreen;
+        if (req) {
+          req.call(card).then(() => {
+            syncLabFullscreenBtn(true);
+            if (window.Lab3DEngine) {
+              setTimeout(() => window.Lab3DEngine.resize(), 80);
+              setTimeout(() => window.Lab3DEngine.resize(), 250);
+            }
+          }).catch(e => console.warn(e));
+        }
       } else {
-        document.exitFullscreen().then(() => {
-          if (window.Lab3DEngine) setTimeout(() => window.Lab3DEngine.resize(), 150);
-        }).catch(e => console.warn(e));
+        const exit = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
+        if (exit) {
+          exit.call(document).then(() => {
+            syncLabFullscreenBtn(false);
+            if (window.Lab3DEngine) {
+              setTimeout(() => window.Lab3DEngine.resize(), 80);
+              setTimeout(() => window.Lab3DEngine.resize(), 250);
+            }
+          }).catch(e => console.warn(e));
+        }
       }
+    }
+
+    function syncLabFullscreenBtn(isFull) {
+      const btn = document.getElementById("labFullscreenBtn");
+      if (!btn) return;
+      if (isFull) {
+        btn.innerHTML = "🗗 Thu nhỏ";
+        btn.title = "Thu nhỏ màn hình (Esc)";
+        btn.classList.add("active");
+      } else {
+        btn.innerHTML = "⛶ Toàn màn hình";
+        btn.title = "Mở rộng toàn màn hình để trình chiếu";
+        btn.classList.remove("active");
+      }
+    }
+
+    if (!window._labFullscreenListenersAttached) {
+      window._labFullscreenListenersAttached = true;
+      const onFullChange = () => {
+        const isFull = !!(document.fullscreenElement || document.webkitFullscreenElement);
+        syncLabFullscreenBtn(isFull);
+        if (window.Lab3DEngine && window.Lab3DEngine.isInitialized) {
+          setTimeout(() => window.Lab3DEngine.resize(), 80);
+          setTimeout(() => window.Lab3DEngine.resize(), 250);
+        }
+      };
+      document.addEventListener("fullscreenchange", onFullChange);
+      document.addEventListener("webkitfullscreenchange", onFullChange);
     }
 
     const LAB_EQUIPMENT_DATA = {
@@ -4532,66 +4782,66 @@
       const EXPERIMENT_STEPPERS = {
         "filtration_evaporation": [
           { num: 1, label: "1. Hòa tan cát & muối", hint: "Cho hỗn hợp vào cốc, thêm 40ml nước cất, khuấy đều cho muối tan hết; cát không tan lắng xuống đáy.", action: function(st) { st.stage = 1; st.burner = 0; if (window.Lab3DEngine && window.Lab3DEngine.focusOnStage) window.Lab3DEngine.focusOnStage(1); } },
-          { num: 2, label: "2. Gấp & Đặt giấy lọc", hint: "Gấp giấy lọc hình nón 4 lớp, đặt vào phễu, thấm ướt vài giọt nước để giấy áp sát thành phễu.", action: function(st) { st.stage = 1; if (window.Lab3DEngine && window.Lab3DEngine.focusOnStage) window.Lab3DEngine.focusOnStage(1); } },
-          { num: 3, label: "3. Rót lọc lấy nước muối", hint: "Rót từ từ dọc đũa thủy tinh vào phễu. Cát giữ lại trên giấy lọc; nước muối trong suốt chảy xuống cốc hứng.", action: function(st) { st.stage = 1; if (window.Lab3DEngine && window.Lab3DEngine.focusOnStage) window.Lab3DEngine.focusOnStage(1); } },
+          { num: 2, label: "2. Gấp & Đặt giấy lọc", hint: "Gấp giấy lọc hình nón 4 lớp, đặt vào phễu, thấm ướt vài giọt nước để giấy áp sát thành phễu.", action: function(st) { st.stage = 1; st.burner = 0; if (window.Lab3DEngine && window.Lab3DEngine.focusOnStage) window.Lab3DEngine.focusOnStage(1); } },
+          { num: 3, label: "3. Rót lọc lấy nước muối", hint: "Rót từ từ dọc đũa thủy tinh vào phễu. Cát giữ lại trên giấy lọc; nước muối trong suốt chảy xuống cốc hứng.", action: function(st) { st.stage = 1; st.burner = 0; if (window.Lab3DEngine && window.Lab3DEngine.focusOnStage) window.Lab3DEngine.focusOnStage(1); } },
           { num: 4, label: "4. Đun sôi bay hơi nước", hint: "Chuyển nước muối sang bát sứ, đặt lên kiềng có lưới amiăng, châm lửa đèn cồn đun sôi bốc hơi.", action: function(st) { st.stage = 2; st.burner = 1; if (window.Lab3DEngine && window.Lab3DEngine.focusOnStage) window.Lab3DEngine.focusOnStage(2); } },
           { num: 5, label: "5. Thu nhận muối tinh thể", hint: "Nước bay hơi hết, những hạt muối ăn trắng lấp lánh đọng lại trong lòng bát sứ.", action: function(st) { st.stage = 2; st.burner = 2; if (window.Lab3DEngine && window.Lab3DEngine.focusOnStage) window.Lab3DEngine.focusOnStage(2); } }
         ],
         "circuit_ohm": [
-          { num: 1, label: "1. Bố trí mạch & Kiểm tra K", hint: "Nối dây dẫn theo sơ đồ: nguồn điện, ampe kế, vôn kế song song với điện trở R, mở công tắc K.", action: function(st) { st.switchOn = false; st.U = 0; } },
-          { num: 2, label: "2. Đóng K & Đặt U = 2.0V", hint: "Đóng công tắc K, điều chỉnh nguồn điện U = 2.0V, đọc số chỉ ampe kế I = 0.10A (với R = 20Ω).", action: function(st) { st.switchOn = true; st.U = 2.0; } },
-          { num: 3, label: "3. Tăng U lên 4.0V", hint: "Tăng hiệu điện thế lên U = 4.0V, quan sát dòng điện I tăng tỉ lệ thuận lên 0.20A.", action: function(st) { st.switchOn = true; st.U = 4.0; } },
-          { num: 4, label: "4. Tăng U lên 6.0V", hint: "Tăng tiếp U lên 6.0V, dòng điện I đạt 0.30A. Ghi lại các cặp giá trị (U, I) vào bảng số liệu.", action: function(st) { st.switchOn = true; st.U = 6.0; } },
-          { num: 5, label: "5. Kiểm chứng định luật Ohm", hint: "Tính tỉ số U/I = 20 Ohm = hằng số R. Đồ thị I-U là đường thẳng đi qua gốc tọa độ O.", action: function(st) { st.switchOn = true; st.U = 8.0; } }
+          { num: 1, label: "1. Bố trí mạch & Kiểm tra K", hint: "Nối dây dẫn theo sơ đồ: nguồn điện, ampe kế, vôn kế song song với điện trở R, mở công tắc K.", action: function(st) { st.switchOn = false; st.switch_closed = false; st.U = 0; st.voltage = 0; st.voltage_v = 0; st.R = 20; st.resistance = 20; st.resistance_ohm = 20; } },
+          { num: 2, label: "2. Đóng K & Đặt U = 2.0V", hint: "Đóng công tắc K, điều chỉnh nguồn điện U = 2.0V, đọc số chỉ ampe kế I = 0.10A (với R = 20Ω).", action: function(st) { st.switchOn = true; st.switch_closed = true; st.U = 2.0; st.voltage = 2.0; st.voltage_v = 2.0; st.R = 20; st.resistance = 20; st.resistance_ohm = 20; } },
+          { num: 3, label: "3. Tăng U lên 4.0V", hint: "Tăng hiệu điện thế lên U = 4.0V, quan sát dòng điện I tăng tỉ lệ thuận lên 0.20A.", action: function(st) { st.switchOn = true; st.switch_closed = true; st.U = 4.0; st.voltage = 4.0; st.voltage_v = 4.0; st.R = 20; st.resistance = 20; st.resistance_ohm = 20; } },
+          { num: 4, label: "4. Tăng U lên 6.0V", hint: "Tăng tiếp U lên 6.0V, dòng điện I đạt 0.30A. Ghi lại các cặp giá trị (U, I) vào bảng số liệu.", action: function(st) { st.switchOn = true; st.switch_closed = true; st.U = 6.0; st.voltage = 6.0; st.voltage_v = 6.0; st.R = 20; st.resistance = 20; st.resistance_ohm = 20; } },
+          { num: 5, label: "5. Kiểm chứng định luật Ohm", hint: "Tính tỉ số U/I = 20 Ohm = hằng số R. Đồ thị I-U là đường thẳng đi qua gốc tọa độ O.", action: function(st) { st.switchOn = true; st.switch_closed = true; st.U = 8.0; st.voltage = 8.0; st.voltage_v = 8.0; st.R = 20; st.resistance = 20; st.resistance_ohm = 20; } }
         ],
         "archimedes": [
-          { num: 1, label: "1. Đo trọng lượng P ngoài kk", hint: "Treo vật kim loại vào lực kế trong không khí, đọc số chỉ trọng lượng P = 3.82 N.", action: function(st) { st.volume = 50; st.submerged = 0; } },
-          { num: 2, label: "2. Chuẩn bị bình tràn đầy nước", hint: "Đổ nước vào bình tràn đến ngang miệng vòi tràn, đặt cốc hứng rỗng dưới vòi tràn.", action: function(st) { st.submerged = 0; } },
-          { num: 3, label: "3. Nhúng chìm 1/2 vật vào nước", hint: "Hạ từ từ vật xuống chìm 1/2 thể tích; nước tràn ra cốc hứng; lực kế giảm còn P1 = 3.33 N.", action: function(st) { st.submerged = 0.5; } },
-          { num: 4, label: "4. Nhúng chìm hoàn toàn vật", hint: "Hạ vật chìm hoàn toàn trong nước nhưng không chạm đáy; lực kế chỉ P2 = 2.84 N.", action: function(st) { st.submerged = 1.0; } },
-          { num: 5, label: "5. Cân nước tràn & So sánh FA", hint: "Lực đẩy Archimedes FA = P - P2 = 0.49 N bằng đúng trọng lượng lượng nước bị vật chiếm chỗ.", action: function(st) { st.submerged = 1.0; } }
+          { num: 1, label: "1. Đo trọng lượng P ngoài kk", hint: "Treo vật kim loại vào lực kế trong không khí, đọc số chỉ trọng lượng P = 3.82 N.", action: function(st) { st.volume = 100; st.vol = 100; st.submerged = 0.0; st.submerged_depth = 0.0; st.matDensity = 2700; st.matName = "Nhôm"; st.liqDensity = 1000; st.liqName = "Nước ngọt"; } },
+          { num: 2, label: "2. Chuẩn bị bình tràn đầy nước", hint: "Đổ nước vào bình tràn đến ngang miệng vòi tràn, đặt cốc hứng rỗng dưới vòi tràn.", action: function(st) { st.volume = 100; st.vol = 100; st.submerged = 0.0; st.submerged_depth = 0.0; } },
+          { num: 3, label: "3. Nhúng chìm 1/2 vật vào nước", hint: "Hạ từ từ vật xuống chìm 1/2 thể tích; nước tràn ra cốc hứng; lực kế giảm còn P1 = 3.33 N.", action: function(st) { st.volume = 100; st.vol = 100; st.submerged = 0.5; st.submerged_depth = 0.5; } },
+          { num: 4, label: "4. Nhúng chìm hoàn toàn vật", hint: "Hạ vật chìm hoàn toàn trong nước nhưng không chạm đáy; lực kế chỉ P2 = 2.84 N.", action: function(st) { st.volume = 100; st.vol = 100; st.submerged = 1.0; st.submerged_depth = 1.0; } },
+          { num: 5, label: "5. Cân nước tràn & So sánh FA", hint: "Lực đẩy Archimedes FA = P - P2 = 0.49 N bằng đúng trọng lượng lượng nước bị vật chiếm chỗ.", action: function(st) { st.volume = 100; st.vol = 100; st.submerged = 1.0; st.submerged_depth = 1.0; } }
         ],
         "mass_conservation": [
-          { num: 1, label: "1. Đặt dụng cụ lên cân điện tử", hint: "Đặt bình nón chứa dung dịch Na2SO4 và ống nghiệm chứa BaCl2 lên mặt cân điện tử kỹ thuật số.", action: function(st) { st.step = 1; st.mixProgress = 0; } },
-          { num: 2, label: "2. Đọc khối lượng tổng ban đầu", hint: "Đọc và ghi nhận khối lượng tổng các chất ban đầu m_trước = 158.45 g.", action: function(st) { st.step = 1; st.mixProgress = 0; } },
-          { num: 3, label: "3. Nghiêng bình trộn lẫn 2 chất", hint: "Lắc nghiêng nhẹ bình nón để dung dịch BaCl2 trong ống nghiệm đổ ra tiếp xúc với dung dịch Na2SO4.", action: function(st) { st.step = 2; st.mixProgress = 0.5; } },
-          { num: 4, label: "4. Quan sát kết tủa trắng BaSO4", hint: "Xuất hiện kết tủa trắng đục BaSO4 không tan: BaCl2 + Na2SO4 -> BaSO4 v + 2NaCl.", action: function(st) { st.step = 3; st.mixProgress = 1.0; } },
-          { num: 5, label: "5. Kiểm chứng bảo toàn khối lượng", hint: "Khối lượng sau phản ứng trên màn hình cân vẫn là m_sau = 158.45 g -> Định luật được kiểm chứng tuyệt đối.", action: function(st) { st.step = 3; st.mixProgress = 1.0; } }
+          { num: 1, label: "1. Đặt dụng cụ lên cân điện tử", hint: "Đặt bình nón chứa dung dịch Na2SO4 và ống nghiệm chứa BaCl2 lên mặt cân điện tử kỹ thuật số.", action: function(st) { st.step = 1; st.mixProgress = 0; st.reacted = false; } },
+          { num: 2, label: "2. Đọc khối lượng tổng ban đầu", hint: "Đọc và ghi nhận khối lượng tổng các chất ban đầu m_trước = 158.45 g.", action: function(st) { st.step = 1; st.mixProgress = 0; st.reacted = false; } },
+          { num: 3, label: "3. Nghiêng bình trộn lẫn 2 chất", hint: "Lắc nghiêng nhẹ bình nón để dung dịch BaCl2 trong ống nghiệm đổ ra tiếp xúc với dung dịch Na2SO4.", action: function(st) { st.step = 2; st.mixProgress = 0.5; st.reacted = true; } },
+          { num: 4, label: "4. Quan sát kết tủa trắng BaSO4", hint: "Xuất hiện kết tủa trắng đục BaSO4 không tan: BaCl2 + Na2SO4 -> BaSO4 v + 2NaCl.", action: function(st) { st.step = 3; st.mixProgress = 1.0; st.reacted = true; } },
+          { num: 5, label: "5. Kiểm chứng bảo toàn khối lượng", hint: "Khối lượng sau phản ứng trên màn hình cân vẫn là m_sau = 158.45 g -> Định luật được kiểm chứng tuyệt đối.", action: function(st) { st.step = 3; st.mixProgress = 1.0; st.reacted = true; } }
         ],
         "acid_base_neutralization": [
-          { num: 1, label: "1. Lấy HCl & nhỏ phenolphtalein", hint: "Rót dung dịch HCl vào bình nón, thêm 2 giọt phenolphtalein; dung dịch giữ nguyên không màu.", action: function(st) { st.addedMl = 0; st.buretteFlow = 0; } },
-          { num: 2, label: "2. Nạp dung dịch NaOH vào buret", hint: "Rót dung dịch chuẩn NaOH 0.1M vào buret 50ml, điều chỉnh vạch khum về mức 0.00 ml.", action: function(st) { st.addedMl = 0; st.buretteFlow = 0; } },
-          { num: 3, label: "3. Mở khóa buret nhỏ giọt", hint: "Đặt bình nón lên máy khuấy từ, mở khóa buret cho từng giọt NaOH rơi từ từ vào bình nón.", action: function(st) { st.buretteFlow = 1; st.addedMl = 5; } },
-          { num: 4, label: "4. Quan sát vệt hồng thoáng qua", hint: "Mỗi giọt NaOH rơi xuống tạo vệt màu hồng rồi biến mất ngay khi dung dịch được khuấy đều.", action: function(st) { st.buretteFlow = 1; st.addedMl = 15; } },
-          { num: 5, label: "5. Điểm tương đương hóa học", hint: "Khi 1 giọt NaOH làm toàn bộ dung dịch chuyển sang màu hồng nhạt bền vững trong 30s, khóa ngay buret.", action: function(st) { st.buretteFlow = 0; st.addedMl = 20; } }
+          { num: 1, label: "1. Lấy HCl & nhỏ phenolphtalein", hint: "Rót dung dịch HCl vào bình nón, thêm 2 giọt phenolphtalein; dung dịch giữ nguyên không màu.", action: function(st) { st.addedMl = 0.0; st.buretteFlow = 0; } },
+          { num: 2, label: "2. Nạp dung dịch NaOH vào buret", hint: "Rót dung dịch chuẩn NaOH 0.1M vào buret 50ml, điều chỉnh vạch khum về mức 0.00 ml.", action: function(st) { st.addedMl = 0.0; st.buretteFlow = 0; } },
+          { num: 3, label: "3. Mở khóa buret nhỏ giọt", hint: "Đặt bình nón lên máy khuấy từ, mở khóa buret cho từng giọt NaOH rơi từ từ vào bình nón.", action: function(st) { st.addedMl = 10.0; st.buretteFlow = 1; } },
+          { num: 4, label: "4. Quan sát vệt hồng thoáng qua", hint: "Mỗi giọt NaOH rơi xuống tạo vệt màu hồng rồi biến mất ngay khi dung dịch được khuấy đều.", action: function(st) { st.addedMl = 19.5; st.buretteFlow = 1; } },
+          { num: 5, label: "5. Điểm tương đương hóa học", hint: "Khi 1 giọt NaOH làm toàn bộ dung dịch chuyển sang màu hồng nhạt bền vững trong 30s, khóa ngay buret.", action: function(st) { st.addedMl = 20.0; st.buretteFlow = 0; } }
         ],
         "metal_acid": [
           { num: 1, label: "1. Cho viên kẽm Zn vào ống nghiệm", hint: "Cho 3-4 viên kẽm Zn sạch vào đáy ống nghiệm khô đặt trên giá kẹp.", action: function(st) { st.metal = "Zn"; st.acidConc = 0; st.splintTest = false; } },
           { num: 2, label: "2. Rót acid HCl vào ống nghiệm", hint: "Dùng ống hút nhỏ giọt lấy khoảng 3ml dung dịch HCl rót vào ống nghiệm ngập các viên kẽm.", action: function(st) { st.metal = "Zn"; st.acidConc = 1; st.splintTest = false; } },
           { num: 3, label: "3. Đậy nút có ống dẫn khí", hint: "Đậy chặt nút cao su gắn ống dẫn khí cong; bọt khí H2 sủi bọt mãnh liệt thoát ra: Zn + 2HCl -> ZnCl2 + H2 ^.", action: function(st) { st.metal = "Zn"; st.acidConc = 2; st.splintTest = false; } },
           { num: 4, label: "4. Thu khí H2 đẩy nước", hint: "Đưa đầu ống dẫn khí vào ống nghiệm úp ngược chứa đầy nước trong chậu; khí H2 đẩy nước xuống.", action: function(st) { st.metal = "Zn"; st.acidConc = 2; st.splintTest = false; } },
-          { num: 5, label: "5. Thử que đóm cháy (Nổ Pop)", hint: "Đưa que đóm đang cháy lại gần miệng ống nghiệm thu khí, có tiếng nổ 'pốp' nhỏ chứng minh là khí H2.", action: function(st) { st.splintTest = true; if (window.Lab3DEngine && window.Lab3DEngine.playPopSound) window.Lab3DEngine.playPopSound(); } }
+          { num: 5, label: "5. Thử que đóm cháy (Nổ Pop)", hint: "Đưa que đóm đang cháy lại gần miệng ống nghiệm thu khí, có tiếng nổ 'pốp' nhỏ chứng minh là khí H2.", action: function(st) { st.metal = "Zn"; st.acidConc = 2; st.splintTest = true; if (window.Lab3DEngine && window.Lab3DEngine.playPopSound) window.Lab3DEngine.playPopSound(); } }
         ],
         "ph_indicator": [
-          { num: 1, label: "1. Bố trí mẫu Acid dạ dày (pH 1)", hint: "Ống 1 chứa Acid dạ dày (pH 1); nhỏ 2 giọt chỉ thị vạn năng dung dịch chuyển sang màu đỏ tươi.", action: function(st) { st.sampleName = "gastric_juice"; st.samplePh = 1; if (window.Lab3DEngine && window.Lab3DEngine.playDripSound) window.Lab3DEngine.playDripSound(); } },
-          { num: 2, label: "2. Thử nghiệm Giấm ăn (pH 4)", hint: "Ống 2 chứa Giấm ăn (pH 4); nhỏ chất chỉ thị màu chuyển sang màu cam vàng ấm.", action: function(st) { st.sampleName = "vinegar"; st.samplePh = 4; if (window.Lab3DEngine && window.Lab3DEngine.playDripSound) window.Lab3DEngine.playDripSound(); } },
-          { num: 3, label: "3. Thử nghiệm Nước cất (pH 7)", hint: "Ống 3 chứa Nước cất tinh khiết (pH 7); chỉ thị màu chuyển sang màu xanh lá cây trung tính.", action: function(st) { st.sampleName = "distilled_water"; st.samplePh = 7; if (window.Lab3DEngine && window.Lab3DEngine.playDripSound) window.Lab3DEngine.playDripSound(); } },
-          { num: 4, label: "4. Thử nghiệm Xà phòng (pH 10)", hint: "Ống 4 chứa Dung dịch xà phòng (pH 10); chuyển sang màu xanh lam ngọc kiềm tính.", action: function(st) { st.sampleName = "soap"; st.samplePh = 10; if (window.Lab3DEngine && window.Lab3DEngine.playDripSound) window.Lab3DEngine.playDripSound(); } },
-          { num: 5, label: "5. Nước vôi (pH 13) & Kết luận", hint: "Ống 5 chứa Nước vôi trong (pH 13); chuyển sang màu tím thẫm. Kết luận dải màu chuẩn acid - kiềm.", action: function(st) { st.sampleName = "limewater"; st.samplePh = 13; if (window.Lab3DEngine && window.Lab3DEngine.playDripSound) window.Lab3DEngine.playDripSound(); } }
+          { num: 1, label: "1. Bố trí mẫu Acid dạ dày (pH 1)", hint: "Ống 1 chứa Acid dạ dày (pH 1); nhỏ 2 giọt chỉ thị vạn năng dung dịch chuyển sang màu đỏ tươi.", action: function(st) { st.sampleName = "Acid dạ dày (HCl 0.1M)"; st.samplePh = 1.0; st.indicator = "universal"; if (window.Lab3DEngine && window.Lab3DEngine.playDripSound) window.Lab3DEngine.playDripSound(); } },
+          { num: 2, label: "2. Thử nghiệm Giấm ăn (pH 4)", hint: "Ống 2 chứa Giấm ăn (pH 3-4); nhỏ chất chỉ thị màu chuyển sang màu cam vàng ấm.", action: function(st) { st.sampleName = "Giấm ăn (CH₃COOH)"; st.samplePh = 3.0; st.indicator = "universal"; if (window.Lab3DEngine && window.Lab3DEngine.playDripSound) window.Lab3DEngine.playDripSound(); } },
+          { num: 3, label: "3. Thử nghiệm Nước cất (pH 7)", hint: "Ống 3 chứa Nước cất tinh khiết (pH 7); chỉ thị màu chuyển sang màu xanh lá cây trung tính.", action: function(st) { st.sampleName = "Nước tinh khiết"; st.samplePh = 7.0; st.indicator = "universal"; if (window.Lab3DEngine && window.Lab3DEngine.playDripSound) window.Lab3DEngine.playDripSound(); } },
+          { num: 4, label: "4. Thử nghiệm Xà phòng (pH 10)", hint: "Ống 4 chứa Dung dịch xà phòng (pH 9.5-10); chuyển sang màu xanh lam ngọc kiềm tính.", action: function(st) { st.sampleName = "Dung dịch xà phòng"; st.samplePh = 9.5; st.indicator = "universal"; if (window.Lab3DEngine && window.Lab3DEngine.playDripSound) window.Lab3DEngine.playDripSound(); } },
+          { num: 5, label: "5. Nước vôi (pH 12-13) & Kết luận", hint: "Ống 5 chứa Nước vôi trong (pH 12-13); chuyển sang màu tím thẫm. Kết luận dải màu chuẩn acid - kiềm.", action: function(st) { st.sampleName = "Nước vôi trong Ca(OH)₂"; st.samplePh = 12.0; st.indicator = "universal"; if (window.Lab3DEngine && window.Lab3DEngine.playDripSound) window.Lab3DEngine.playDripSound(); } }
         ],
         "atomic_structure": [
-          { num: 1, label: "1. Nguyên tử Carbon (Z = 6)", hint: "Lựa chọn nguyên tố Carbon (Z=6); hạt nhân có 6 proton và 6 neutron, lớp vỏ có 6 electron.", action: function(st) { st.element = "C"; } },
-          { num: 2, label: "2. Khảo sát Lớp electron K", hint: "Lớp K trong cùng gần hạt nhân nhất, chứa tối đa 2 electron chuyển động tròn đều.", action: function(st) { st.element = "C"; } },
-          { num: 3, label: "3. Khảo sát Lớp electron L", hint: "Lớp L bên ngoài chứa 4 electron còn lại. Tổng số hạt: 6e = 6p (nguyên tử trung hòa điện).", action: function(st) { st.element = "C"; } },
-          { num: 4, label: "4. Nguyên tử Sodium (Z = 11)", hint: "Sodium có 11e phân bố trên 3 lớp (K: 2e, L: 8e, M: 1e); có 1 electron hóa trị ở lớp ngoài cùng.", action: function(st) { st.element = "Na"; } },
-          { num: 5, label: "5. Nguyên tử Chlorine (Z = 17)", hint: "Chlorine có 17e trên 3 lớp (2, 8, 7); lớp ngoài cùng có 7 electron (phi kim điển hình).", action: function(st) { st.element = "Cl"; } }
+          { num: 1, label: "1. Nguyên tử Carbon (Z = 6)", hint: "Lựa chọn nguyên tố Carbon (Z=6); hạt nhân có 6 proton và 6 neutron, lớp vỏ có 6 electron.", action: function(st) { st.element = "C"; st.showOrbitals = true; st.animateElectrons = true; } },
+          { num: 2, label: "2. Khảo sát Lớp electron K", hint: "Lớp K trong cùng gần hạt nhân nhất, chứa tối đa 2 electron chuyển động tròn đều.", action: function(st) { st.element = "C"; st.showOrbitals = true; st.animateElectrons = true; } },
+          { num: 3, label: "3. Khảo sát Lớp electron L", hint: "Lớp L bên ngoài chứa 4 electron còn lại. Tổng số hạt: 6e = 6p (nguyên tử trung hòa điện).", action: function(st) { st.element = "C"; st.showOrbitals = true; st.animateElectrons = true; } },
+          { num: 4, label: "4. Nguyên tử Sodium (Z = 11)", hint: "Sodium có 11e phân bố trên 3 lớp (K: 2e, L: 8e, M: 1e); có 1 electron hóa trị ở lớp ngoài cùng.", action: function(st) { st.element = "Na"; st.showOrbitals = true; st.animateElectrons = true; } },
+          { num: 5, label: "5. Nguyên tử Chlorine (Z = 17)", hint: "Chlorine có 17e trên 3 lớp (2, 8, 7); lớp ngoài cùng có 7 electron (phi kim điển hình).", action: function(st) { st.element = "Cl"; st.showOrbitals = true; st.animateElectrons = true; } }
         ],
         "spring_stretch": [
-          { num: 1, label: "1. Đo chiều dài tự nhiên l0", hint: "Treo lò xo thẳng đứng vào giá, đọc kim chỉ thị chiều dài tự nhiên ban đầu l0 = 12.0 cm trên thước.", action: function(st) { st.mass = st.mass_g = 0; } },
-          { num: 2, label: "2. Móc 1 quả nặng 50g (0.5N)", hint: "Móc 1 quả nặng 50g vào đầu dưới lò xo; lò xo dãn ra chiều dài l1 = 14.0 cm; độ dãn delta_l1 = 2.0 cm.", action: function(st) { st.mass = st.mass_g = 50; } },
-          { num: 3, label: "3. Móc thêm quả nặng 100g (1.0N)", hint: "Treo tổng khối lượng 100g (2 quả); chiều dài l2 = 16.0 cm; độ dãn delta_l2 = 4.0 cm.", action: function(st) { st.mass = st.mass_g = 100; } },
-          { num: 4, label: "4. Tăng tải lên 150g (1.5N)", hint: "Treo 3 quả nặng 150g; chiều dài lò xo dãn ra l3 = 18.0 cm; độ dãn delta_l3 = 6.0 cm.", action: function(st) { st.mass = st.mass_g = 150; } },
-          { num: 5, label: "5. Tải 200g & Kết luận F_đh", hint: "Treo 4 quả nặng 200g; l4 = 20.0 cm; delta_l4 = 8.0 cm. Kết luận: Độ dãn tỉ lệ thuận với khối lượng quả nặng (delta_l ~ m).", action: function(st) { st.mass = st.mass_g = 200; } }
+          { num: 1, label: "1. Đo chiều dài tự nhiên l0", hint: "Treo lò xo thẳng đứng vào giá, đọc kim chỉ thị chiều dài tự nhiên ban đầu l0 = 12.0 cm trên thước.", action: function(st) { st.mass = 0; st.mass_g = 0; st.k = 25; st.l0 = 12; } },
+          { num: 2, label: "2. Móc 1 quả nặng 50g (0.5N)", hint: "Móc 1 quả nặng 50g vào đầu dưới lò xo; lò xo dãn ra chiều dài l1 = 14.0 cm; độ dãn delta_l1 = 2.0 cm.", action: function(st) { st.mass = 50; st.mass_g = 50; st.k = 25; st.l0 = 12; } },
+          { num: 3, label: "3. Móc thêm quả nặng 100g (1.0N)", hint: "Treo tổng khối lượng 100g (2 quả); chiều dài l2 = 16.0 cm; độ dãn delta_l2 = 4.0 cm.", action: function(st) { st.mass = 100; st.mass_g = 100; st.k = 25; st.l0 = 12; } },
+          { num: 4, label: "4. Tăng tải lên 150g (1.5N)", hint: "Treo 3 quả nặng 150g; chiều dài lò xo dãn ra l3 = 18.0 cm; độ dãn delta_l3 = 6.0 cm.", action: function(st) { st.mass = 150; st.mass_g = 150; st.k = 25; st.l0 = 12; } },
+          { num: 5, label: "5. Tải 200g & Kết luận F_đh", hint: "Treo 4 quả nặng 200g; l4 = 20.0 cm; delta_l4 = 8.0 cm. Kết luận: Độ dãn tỉ lệ thuận với khối lượng quả nặng (delta_l ~ m).", action: function(st) { st.mass = 200; st.mass_g = 200; st.k = 25; st.l0 = 12; } }
         ],
         "lever_balance": [
           { num: 1, label: "1. Cân bằng đòn bẩy ban đầu", hint: "Điều chỉnh hai ốc điều chỉnh ở hai đầu để thanh đòn bẩy nằm ngang thăng bằng.", action: function(st) { st.m1 = 200; st.d1 = 20; st.m2 = 200; st.d2 = 20; } },
@@ -4601,74 +4851,74 @@
           { num: 5, label: "5. Khẳng định quy tắc mômen", hint: "Đòn bẩy cân bằng khi: F1 * d1 = F2 * d2 (Tổng mômen quay ngược chiều kim đồng hồ bằng cùng chiều).", action: function(st) { st.m1 = 100; st.d1 = 40; st.m2 = 200; st.d2 = 20; } }
         ],
         "lens_convex": [
-          { num: 1, label: "1. Bố trí giá quang học & nến", hint: "Lắp ngọn nến sáng, thấu kính hội tụ (tiêu cự f = 10cm) và màn hứng ảnh thẳng hàng trên giá.", action: function(st) { st.d = 30; st.f = 10; } },
-          { num: 2, label: "2. Đặt vật ở vị trí d > 2f (30cm)", hint: "Dịch chuyển màn hứng thu được ảnh thật, ngược chiều và nhỏ hơn vật (d' = 15cm).", action: function(st) { st.d = 30; st.f = 10; } },
-          { num: 3, label: "3. Đặt vật tại d = 2f (20cm)", hint: "Thu được ảnh thật, ngược chiều và có kích thước bằng đúng kích thước của vật (d' = 20cm).", action: function(st) { st.d = 20; st.f = 10; } },
-          { num: 4, label: "4. Đặt vật trong f < d < 2f (15cm)", hint: "Thu được ảnh thật, ngược chiều và lớn hơn vật rõ rệt trên màn hứng (d' = 30cm).", action: function(st) { st.d = 15; st.f = 10; } },
-          { num: 5, label: "5. Đặt vật trong tiêu cự d < f (8cm)", hint: "Không thu được ảnh trên màn; nhìn qua thấu kính thấy ảnh ảo, cùng chiều và lớn hơn vật.", action: function(st) { st.d = 8; st.f = 10; } }
+          { num: 1, label: "1. Bố trí giá quang học & nến", hint: "Lắp ngọn nến sáng, thấu kính hội tụ (tiêu cự f = 10cm) và màn hứng ảnh thẳng hàng trên giá.", action: function(st) { st.d = 35; st.f = 10; st.h = 10; } },
+          { num: 2, label: "2. Đặt vật ở vị trí d > 2f (30cm)", hint: "Dịch chuyển màn hứng thu được ảnh thật, ngược chiều và nhỏ hơn vật (d' = 15cm).", action: function(st) { st.d = 30; st.f = 10; st.h = 10; } },
+          { num: 3, label: "3. Đặt vật tại d = 2f (20cm)", hint: "Thu được ảnh thật, ngược chiều và có kích thước bằng đúng kích thước của vật (d' = 20cm).", action: function(st) { st.d = 20; st.f = 10; st.h = 10; } },
+          { num: 4, label: "4. Đặt vật trong f < d < 2f (15cm)", hint: "Thu được ảnh thật, ngược chiều và lớn hơn vật rõ rệt trên màn hứng (d' = 30cm).", action: function(st) { st.d = 15; st.f = 10; st.h = 10; } },
+          { num: 5, label: "5. Đặt vật trong tiêu cự d < f (8cm)", hint: "Không thu được ảnh trên màn; nhìn qua thấu kính thấy ảnh ảo, cùng chiều và lớn hơn vật.", action: function(st) { st.d = 8; st.f = 10; st.h = 10; } }
         ],
         "light_reflection": [
-          { num: 1, label: "1. Đặt gương phẳng tại điểm tới O", hint: "Đặt mặt phản xạ của gương phẳng vuông góc với mặt phẳng đĩa tròn chia độ tại vạch số 0 (pháp tuyến).", action: function(st) { st.angle = 0; st.laserOn = false; } },
-          { num: 2, label: "2. Chiếu chùm tia tới i = 30°", hint: "Bật nguồn laser chiếu tia sáng là là trên mặt đĩa với góc tới i = 30°; quan sát tia phản xạ.", action: function(st) { st.angle = 30; st.laserOn = true; } },
-          { num: 3, label: "3. Đọc góc phản xạ i' = 30°", hint: "Đọc số đo góc phản xạ trên cung độ: i' = 30° (tia phản xạ đối xứng với tia tới qua pháp tuyến).", action: function(st) { st.angle = 30; st.laserOn = true; } },
-          { num: 4, label: "4. Thay đổi góc tới i = 45°", hint: "Khi tăng góc tới lên 45°, tia phản xạ lệch góc tương ứng i' = 45° đối xứng hoàn hảo.", action: function(st) { st.angle = 45; st.laserOn = true; } },
-          { num: 5, label: "5. Góc tới i = 60° & Kết luận i' = i", hint: "Tia phản xạ nằm trong mặt phẳng tới và góc phản xạ luôn bằng góc tới: i' = i với mọi góc tới.", action: function(st) { st.angle = 60; st.laserOn = true; } }
+          { num: 1, label: "1. Đặt gương phẳng tại điểm tới O", hint: "Đặt mặt phản xạ của gương phẳng vuông góc với mặt phẳng đĩa tròn chia độ tại vạch số 0 (pháp tuyến).", action: function(st) { st.angle = 0; st.angle_deg = 0; st.laserOn = false; st.color = "red"; } },
+          { num: 2, label: "2. Chiếu chùm tia tới i = 30°", hint: "Bật nguồn laser chiếu tia sáng là là trên mặt đĩa với góc tới i = 30°; quan sát tia phản xạ.", action: function(st) { st.angle = 30; st.angle_deg = 30; st.laserOn = true; st.color = "red"; } },
+          { num: 3, label: "3. Đọc góc phản xạ i' = 30°", hint: "Đọc số đo góc phản xạ trên cung độ: i' = 30° (tia phản xạ đối xứng với tia tới qua pháp tuyến).", action: function(st) { st.angle = 30; st.angle_deg = 30; st.laserOn = true; st.color = "red"; } },
+          { num: 4, label: "4. Thay đổi góc tới i = 45°", hint: "Khi tăng góc tới lên 45°, tia phản xạ lệch góc tương ứng i' = 45° đối xứng hoàn hảo.", action: function(st) { st.angle = 45; st.angle_deg = 45; st.laserOn = true; st.color = "red"; } },
+          { num: 5, label: "5. Góc tới i = 60° & Kết luận i' = i", hint: "Tia phản xạ nằm trong mặt phẳng tới và góc phản xạ luôn bằng góc tới: i' = i với mọi góc tới.", action: function(st) { st.angle = 60; st.angle_deg = 60; st.laserOn = true; st.color = "red"; } }
         ],
         "liquid_pressure": [
-          { num: 1, label: "1. Đặt đầu dò ở mặt thoáng", hint: "Đặt màng cao su của đầu dò ở sát mặt thoáng chất lỏng, độ sâu h = 0cm, độ chênh áp kế bằng 0.", action: function(st) { st.depth = 2; } },
-          { num: 2, label: "2. Hạ đầu dò xuống độ sâu h1 = 5cm", hint: "Hạ đầu dò xuống độ sâu h = 5cm; áp suất chất lỏng ép màng cao su, cột chất lỏng áp kế dâng lên.", action: function(st) { st.depth = 5; } },
-          { num: 3, label: "3. Hạ đầu dò xuống độ sâu h2 = 10cm", hint: "Hạ sâu hơn xuống h = 10cm; độ chênh lệch cột chất lỏng áp kế tăng gấp đôi -> Áp suất tăng theo độ sâu.", action: function(st) { st.depth = 10; } },
-          { num: 4, label: "4. Hạ đầu dò xuống độ sâu h3 = 18cm", hint: "Đưa đầu dò xuống sát đáy h = 18cm; áp suất đạt giá trị cực đại trên áp kế.", action: function(st) { st.depth = 18; } },
-          { num: 5, label: "5. Kết luận quy luật p = d * h", hint: "Chất lỏng gây áp suất theo mọi phương lên đáy bình và thành bình; áp suất tỉ lệ thuận với độ sâu.", action: function(st) { st.depth = 18; } }
+          { num: 1, label: "1. Đặt đầu dò ở mặt thoáng", hint: "Đặt màng cao su của đầu dò ở sát mặt thoáng chất lỏng, độ sâu h = 0cm, độ chênh áp kế bằng 0.", action: function(st) { st.depth = 2; st.liquid = "water"; } },
+          { num: 2, label: "2. Hạ đầu dò xuống độ sâu h1 = 5cm", hint: "Hạ đầu dò xuống độ sâu h = 5cm; áp suất chất lỏng ép màng cao su, cột chất lỏng áp kế dâng lên.", action: function(st) { st.depth = 5; st.liquid = "water"; } },
+          { num: 3, label: "3. Hạ đầu dò xuống độ sâu h2 = 10cm", hint: "Hạ sâu hơn xuống h = 10cm; độ chênh lệch cột chất lỏng áp kế tăng gấp đôi -> Áp suất tăng theo độ sâu.", action: function(st) { st.depth = 10; st.liquid = "water"; } },
+          { num: 4, label: "4. Hạ đầu dò xuống độ sâu h3 = 18cm", hint: "Đưa đầu dò xuống sát đáy h = 18cm; áp suất đạt giá trị cực đại trên áp kế.", action: function(st) { st.depth = 18; st.liquid = "water"; } },
+          { num: 5, label: "5. Kết luận quy luật p = d * h", hint: "Chất lỏng gây áp suất theo mọi phương lên đáy bình và thành bình; áp suất tỉ lệ thuận với độ sâu.", action: function(st) { st.depth = 18; st.liquid = "salt_water"; } }
         ],
         "light_refraction": [
-          { num: 1, label: "1. Chiếu tia vuông góc mặt phân cách", hint: "Chiếu tia laser theo phương pháp tuyến i = 0°; tia sáng đi thẳng không bị bẻ gãy khúc xạ.", action: function(st) { st.angle_i = 0; st.direction = "air_to_glass"; } },
-          { num: 2, label: "2. Chiếu từ không khí vào thủy tinh i = 30°", hint: "Tia sáng bị gãy khúc tại mặt phân cách; góc khúc xạ r ≈ 19.5° nhỏ hơn góc tới i (r < i).", action: function(st) { st.angle_i = 30; st.direction = "air_to_glass"; } },
-          { num: 3, label: "3. Tăng góc tới lên i = 45°", hint: "Khi i = 45°, góc khúc xạ r ≈ 28.1°. Định luật khúc xạ n1*sin(i) = n2*sin(r) được kiểm chứng.", action: function(st) { st.angle_i = 45; st.direction = "air_to_glass"; } },
-          { num: 4, label: "4. Chiếu từ thủy tinh ra không khí i = 30°", hint: "Đổi chiều truyền từ thủy tinh ra không khí; tia khúc xạ lệch xa pháp tuyến hơn: r ≈ 48.6° (r > i).", action: function(st) { st.angle_i = 30; st.direction = "glass_to_air"; } },
-          { num: 5, label: "5. Hiện tượng Phản xạ toàn phần (i = 50°)", hint: "Khi góc tới i = 50° vượt quá góc giới hạn igh ≈ 41.8°, tia khúc xạ biến mất, toàn bộ tia phản xạ lại vào thủy tinh.", action: function(st) { st.angle_i = 50; st.direction = "glass_to_air"; } }
+          { num: 1, label: "1. Chiếu tia vuông góc mặt phân cách", hint: "Chiếu tia laser theo phương pháp tuyến i = 0°; tia sáng đi thẳng không bị bẻ gãy khúc xạ.", action: function(st) { st.angle_i = 0; st.angle = 0; st.direction = "air_to_glass"; st.n = 1.5; } },
+          { num: 2, label: "2. Chiếu từ không khí vào thủy tinh i = 30°", hint: "Tia sáng bị gãy khúc tại mặt phân cách; góc khúc xạ r ≈ 19.5° nhỏ hơn góc tới i (r < i).", action: function(st) { st.angle_i = 30; st.angle = 30; st.direction = "air_to_glass"; st.n = 1.5; } },
+          { num: 3, label: "3. Tăng góc tới lên i = 45°", hint: "Khi i = 45°, góc khúc xạ r ≈ 28.1°. Định luật khúc xạ n1*sin(i) = n2*sin(r) được kiểm chứng.", action: function(st) { st.angle_i = 45; st.angle = 45; st.direction = "air_to_glass"; st.n = 1.5; } },
+          { num: 4, label: "4. Chiếu từ thủy tinh ra không khí i = 30°", hint: "Đổi chiều truyền từ thủy tinh ra không khí; tia khúc xạ lệch xa pháp tuyến hơn: r ≈ 48.6° (r > i).", action: function(st) { st.angle_i = 30; st.angle = 30; st.direction = "glass_to_air"; st.n = 1.5; } },
+          { num: 5, label: "5. Hiện tượng Phản xạ toàn phần (i = 50°)", hint: "Khi góc tới i = 50° vượt quá góc giới hạn igh ≈ 41.8°, tia khúc xạ biến mất, toàn bộ tia phản xạ lại vào thủy tinh.", action: function(st) { st.angle_i = 50; st.angle = 50; st.direction = "glass_to_air"; st.n = 1.5; } }
         ],
         "air_oxygen_fraction": [
-          { num: 1, label: "1. Chuẩn bị chậu nước & chuông đo", hint: "Đổ nước màu vào chậu thủy tinh, đặt đế nổi gắn nến trên mặt nước, úp chuông thủy tinh có vạch chia 5 phần.", action: function(st) { st.phase = 1; st.burnProgress = 0; st.waterLevel = 0; } },
-          { num: 2, label: "2. Châm nến cháy trên đế nổi", hint: "Châm ngọn nến cháy sáng đều; nến sử dụng khí oxy bên trong chuông để duy trì phản ứng cháy.", action: function(st) { st.phase = 2; } },
-          { num: 3, label: "3. Úp chuông thủy tinh kín", hint: "Úp chặt chuông thủy tinh xuống đáy chậu; ngọn nến cháy yếu dần do lượng O2 cạn kiệt.", action: function(st) { st.phase = 3; st.burnProgress = 0.5; st.waterLevel = 0.5; } },
-          { num: 4, label: "4. Nến tắt & Nước dâng lên 1/5", hint: "Ngọn nến tắt hẳn; áp suất trong chuông giảm làm nước dâng lên đúng 1 vạch (khoảng 1/5 thể tích chuông).", action: function(st) { st.phase = 4; st.burnProgress = 1.0; st.waterLevel = 1.0; } },
-          { num: 5, label: "5. Kết luận thành phần không khí", hint: "Khí oxy chiếm khoảng 1/5 (khoảng 21%) thể tích không khí; 4/5 còn lại chủ yếu là khí nitơ (N2).", action: function(st) { st.phase = 4; st.burnProgress = 1.0; st.waterLevel = 1.0; } }
+          { num: 1, label: "1. Chuẩn bị chậu nước & chuông đo", hint: "Đổ nước màu vào chậu thủy tinh, đặt đế nổi gắn nến trên mặt nước, úp chuông thủy tinh có vạch chia 5 phần.", action: function(st) { st.phase = "idle"; st.burnProgress = 0; st.waterLevel = 0; st.airBurned = false; } },
+          { num: 2, label: "2. Châm nến cháy trên đế nổi", hint: "Châm ngọn nến cháy sáng đều; nến sử dụng khí oxy bên trong chuông để duy trì phản ứng cháy.", action: function(st) { st.phase = "running"; st.burnProgress = 0.25; st.waterLevel = 0.05; st.airBurned = false; } },
+          { num: 3, label: "3. Úp chuông thủy tinh kín", hint: "Úp chặt chuông thủy tinh xuống đáy chậu; ngọn nến cháy yếu dần do lượng O2 cạn kiệt.", action: function(st) { st.phase = "running"; st.burnProgress = 0.65; st.waterLevel = 0.13; st.airBurned = true; } },
+          { num: 4, label: "4. Nến tắt & Nước dâng lên 1/5", hint: "Ngọn nến tắt hẳn; áp suất trong chuông giảm làm nước dâng lên đúng 1 vạch (khoảng 1/5 thể tích chuông).", action: function(st) { st.phase = "done"; st.burnProgress = 1.0; st.waterLevel = 0.20; st.airBurned = true; } },
+          { num: 5, label: "5. Kết luận thành phần không khí", hint: "Khí oxy chiếm khoảng 1/5 (khoảng 21%) thể tích không khí; 4/5 còn lại chủ yếu là khí nitơ (N2).", action: function(st) { st.phase = "done"; st.burnProgress = 1.0; st.waterLevel = 0.20; st.airBurned = true; } }
         ],
         "metal_displacement": [
           { num: 1, label: "1. Rót dung dịch CuSO4 màu xanh lam", hint: "Rót khoảng 10ml dung dịch đồng sunfat CuSO4 trong suốt màu xanh lam ngọc vào cốc thủy tinh.", action: function(st) { st.pair = 1; st.reactTime = 0; } },
-          { num: 2, label: "2. Đánh sạch gỉ đinh sắt Fe", hint: "Dùng giấy ráp đánh sạch lớp gỉ bên ngoài đinh sắt cho ánh kim xám bóng.", action: function(st) { st.reactTime = 2; } },
-          { num: 3, label: "3. Nhúng đinh sắt vào dung dịch", hint: "Buộc sợi chỉ vào đinh sắt và thả ngập vào cốc dung dịch CuSO4; quan sát phản ứng xảy ra.", action: function(st) { st.reactTime = 5; } },
-          { num: 4, label: "4. Quan sát đồng đỏ bám ngoài đinh sắt", hint: "Lớp kim loại màu đỏ gạch (kim loại đồng Cu) bám dày đặc bên ngoài đinh sắt: Fe + CuSO4 -> FeSO4 + Cu.", action: function(st) { st.reactTime = 8; } },
-          { num: 5, label: "5. Dung dịch nhạt màu xanh", hint: "Dung dịch CuSO4 màu xanh lam nhạt dần chuyển sang màu xanh lục rất nhạt của muối sắt(II) FeSO4.", action: function(st) { st.reactTime = 10; } }
+          { num: 2, label: "2. Đánh sạch gỉ đinh sắt Fe", hint: "Dùng giấy ráp đánh sạch lớp gỉ bên ngoài đinh sắt cho ánh kim xám bóng.", action: function(st) { st.pair = 1; st.reactTime = 2; } },
+          { num: 3, label: "3. Nhúng đinh sắt vào dung dịch", hint: "Buộc sợi chỉ vào đinh sắt và thả ngập vào cốc dung dịch CuSO4; quan sát phản ứng xảy ra.", action: function(st) { st.pair = 1; st.reactTime = 5; } },
+          { num: 4, label: "4. Quan sát đồng đỏ bám ngoài đinh sắt", hint: "Lớp kim loại màu đỏ gạch (kim loại đồng Cu) bám dày đặc bên ngoài đinh sắt: Fe + CuSO4 -> FeSO4 + Cu.", action: function(st) { st.pair = 1; st.reactTime = 12; } },
+          { num: 5, label: "5. Dung dịch nhạt màu xanh", hint: "Dung dịch CuSO4 màu xanh lam nhạt dần chuyển sang màu xanh lục rất nhạt của muối sắt(II) FeSO4.", action: function(st) { st.pair = 1; st.reactTime = 25; } }
         ],
         "hydrocarbon_bromine": [
-          { num: 1, label: "1. Chuẩn bị 2 bình nước Brom màu da cam", hint: "Rót nước brom dung dịch màu vàng da cam đặc trưng vào hai bình tam giác A và B.", action: function(st) { st.bromineDecolorized = false; } },
-          { num: 2, label: "2. Sục khí Methane CH4 vào bình A", hint: "Sục khí Methane CH4 qua ống dẫn vào bình A; dung dịch nước brom giữ nguyên màu da cam (không phản ứng).", action: function(st) { st.bromineDecolorized = false; } },
-          { num: 3, label: "3. Sục khí Ethylene C2H4 vào bình B", hint: "Sục khí Ethylene C2H4 vào bình B; liên kết đôi C=C kém bền phản ứng cộng phá vỡ: C2H4 + Br2 -> C2H4Br2.", action: function(st) { st.bromineDecolorized = true; } },
-          { num: 4, label: "4. Quan sát bình B mất màu hoàn toàn", hint: "Dung dịch trong bình B chuyển từ màu da cam sang trong suốt không màu ngay tức thì.", action: function(st) { st.bromineDecolorized = true; } },
-          { num: 5, label: "5. Phân biệt Alkane và Alkene", hint: "Kết luận: Dùng dung dịch nước brom để nhận biết và phân biệt hydrocarbon no (Alkane) và không no (Alkene).", action: function(st) { st.bromineDecolorized = true; } }
+          { num: 1, label: "1. Chuẩn bị 2 bình nước Brom màu da cam", hint: "Rót nước brom dung dịch màu vàng da cam đặc trưng vào hai bình tam giác A và B.", action: function(st) { st.gas = "CH4"; st.isFlowing = false; st.colorFactor = 1.0; st.bromineDecolorized = false; } },
+          { num: 2, label: "2. Sục khí Methane CH4 vào bình A", hint: "Sục khí Methane CH4 qua ống dẫn vào bình A; dung dịch nước brom giữ nguyên màu da cam (không phản ứng).", action: function(st) { st.gas = "CH4"; st.isFlowing = true; st.colorFactor = 1.0; st.bromineDecolorized = false; } },
+          { num: 3, label: "3. Sục khí Ethylene C2H4 vào bình B", hint: "Sục khí Ethylene C2H4 vào bình B; liên kết đôi C=C kém bền phản ứng cộng phá vỡ: C2H4 + Br2 -> C2H4Br2.", action: function(st) { st.gas = "C2H4"; st.isFlowing = true; st.colorFactor = 0.5; st.bromineDecolorized = true; } },
+          { num: 4, label: "4. Quan sát bình B mất màu hoàn toàn", hint: "Dung dịch trong bình B chuyển từ màu da cam sang trong suốt không màu ngay tức thì.", action: function(st) { st.gas = "C2H4"; st.isFlowing = true; st.colorFactor = 0.0; st.bromineDecolorized = true; } },
+          { num: 5, label: "5. Phân biệt Alkane và Alkene", hint: "Kết luận: Dùng dung dịch nước brom để nhận biết và phân biệt hydrocarbon no (Alkane) và không no (Alkene).", action: function(st) { st.gas = "C2H4"; st.isFlowing = false; st.colorFactor = 0.0; st.bromineDecolorized = true; } }
         ],
         "molecule_bonding": [
-          { num: 1, label: "1. Phân tử Hydrogen H2 (Liên kết đơn)", hint: "2 nguyên tử H dùng chung 1 cặp electron tạo 1 liên kết cộng hóa trị đơn H-H bền vững.", action: function(st) { st.molecule = "H2"; } },
-          { num: 2, label: "2. Phân tử Oxygen O2 (Liên kết đôi)", hint: "2 nguyên tử O dùng chung 2 cặp electron tạo liên kết đôi O=O hoàn thiện lớp vỏ bát tử 8e.", action: function(st) { st.molecule = "O2"; } },
-          { num: 3, label: "3. Phân tử Nitrogen N2 (Liên kết ba)", hint: "2 nguyên tử N góp chung 3 cặp electron tạo liên kết ba N≡N cực kỳ bền vững.", action: function(st) { st.molecule = "N2"; } },
-          { num: 4, label: "4. Phân tử Nước H2O (Hợp chất)", hint: "Nguyên tử Oxi liên kết với 2 nguyên tử Hidro bằng 2 liên kết cộng hóa trị đơn có cực.", action: function(st) { st.molecule = "H2O"; } },
-          { num: 5, label: "5. Phân tử Muối ăn NaCl (Liên kết ion)", hint: "Nguyên tử Na nhường 1e cho Cl tạo cation Na+ và anion Cl- hút nhau bằng lực hút tĩnh điện.", action: function(st) { st.molecule = "NaCl"; } }
+          { num: 1, label: "1. Phân tử Hydrogen H2 (Liên kết đơn)", hint: "2 nguyên tử H dùng chung 1 cặp electron tạo 1 liên kết cộng hóa trị đơn H-H bền vững.", action: function(st) { st.molecule = "H2"; st.viewMode = "bohr_shared"; st.animateElectrons = true; } },
+          { num: 2, label: "2. Phân tử Oxygen O2 (Liên kết đôi)", hint: "2 nguyên tử O dùng chung 2 cặp electron tạo liên kết đôi O=O hoàn thiện lớp vỏ bát tử 8e.", action: function(st) { st.molecule = "O2"; st.viewMode = "bohr_shared"; st.animateElectrons = true; } },
+          { num: 3, label: "3. Phân tử Nitrogen N2 (Liên kết ba)", hint: "2 nguyên tử N góp chung 3 cặp electron tạo liên kết ba N≡N cực kỳ bền vững.", action: function(st) { st.molecule = "N2"; st.viewMode = "bohr_shared"; st.animateElectrons = true; } },
+          { num: 4, label: "4. Phân tử Nước H2O (Hợp chất)", hint: "Nguyên tử Oxi liên kết với 2 nguyên tử Hidro bằng 2 liên kết cộng hóa trị đơn có cực.", action: function(st) { st.molecule = "H2O"; st.viewMode = "bohr_shared"; st.animateElectrons = true; } },
+          { num: 5, label: "5. Phân tử Muối ăn NaCl (Liên kết ion)", hint: "Nguyên tử Na nhường 1e cho Cl tạo cation Na+ và anion Cl- hút nhau bằng lực hút tĩnh điện.", action: function(st) { st.molecule = "NaCl"; st.viewMode = "bohr_shared"; st.animateElectrons = true; } }
         ],
         "friction_force": [
-          { num: 1, label: "1. Đặt khối gỗ lên mặt bàn phẳng", hint: "Đặt khối gỗ nằm yên trên mặt bàn gỗ nằm ngang, móc lực kế lò xo vào móc kéo.", action: function(st) { st.surface = "wood"; st.isPulling = false; } },
-          { num: 2, label: "2. Kéo từ từ đo ma sát nghỉ cực đại", hint: "Kéo nhẹ lực kế; khi khối gỗ chưa chuyển động số chỉ tăng dần; lực ma sát nghỉ cực đại Fmsn = 1.0 N.", action: function(st) { st.surface = "wood"; st.isPulling = false; } },
-          { num: 3, label: "3. Kéo đều đo ma sát trượt", hint: "Kéo khối gỗ chuyển động thẳng đều; số chỉ lực kế ổn định ở mức F_mst = 0.8 N (nhỏ hơn F_msn).", action: function(st) { st.surface = "wood"; st.isPulling = true; } },
-          { num: 4, label: "4. Thử nghiệm trên mặt giấy nhám", hint: "Chuyển khối gỗ sang kéo trên mặt giấy nhám ráp; lực ma sát trượt tăng vọt lên 1.8 N do bề mặt gồ ghề hơn.", action: function(st) { st.surface = "sandpaper"; st.isPulling = true; } },
-          { num: 5, label: "5. Đặt con lăn đo ma sát lăn", hint: "Đặt các thanh lăn tròn dưới khối gỗ; lực kế chỉ còn 0.1 N -> Ma sát lăn nhỏ hơn ma sát trượt rất nhiều.", action: function(st) { st.surface = "rollers"; st.isPulling = true; } }
+          { num: 1, label: "1. Đặt khối gỗ lên mặt bàn phẳng", hint: "Đặt khối gỗ nằm yên trên mặt bàn gỗ nằm ngang, móc lực kế lò xo vào móc kéo.", action: function(st) { st.surface = "wood"; st.mass = 200; st.isPulling = false; } },
+          { num: 2, label: "2. Kéo từ từ đo ma sát nghỉ cực đại", hint: "Kéo nhẹ lực kế; khi khối gỗ chưa chuyển động số chỉ tăng dần; lực ma sát nghỉ cực đại Fmsn = 1.0 N.", action: function(st) { st.surface = "wood"; st.mass = 200; st.isPulling = false; } },
+          { num: 3, label: "3. Kéo đều đo ma sát trượt", hint: "Kéo khối gỗ chuyển động thẳng đều; số chỉ lực kế ổn định ở mức F_mst = 0.8 N (nhỏ hơn F_msn).", action: function(st) { st.surface = "wood"; st.mass = 200; st.isPulling = true; } },
+          { num: 4, label: "4. Thử nghiệm trên mặt giấy nhám", hint: "Chuyển khối gỗ sang kéo trên mặt giấy nhám ráp; lực ma sát trượt tăng vọt lên 1.8 N do bề mặt gồ ghề hơn.", action: function(st) { st.surface = "sandpaper"; st.mass = 200; st.isPulling = true; } },
+          { num: 5, label: "5. Đặt con lăn đo ma sát lăn", hint: "Đặt các thanh lăn tròn dưới khối gỗ; lực kế chỉ còn 0.1 N -> Ma sát lăn nhỏ hơn ma sát trượt rất nhiều.", action: function(st) { st.surface = "rollers"; st.mass = 200; st.isPulling = true; } }
         ],
         "magnetic_field": [
-          { num: 1, label: "1. Đặt thanh nam châm thẳng", hint: "Thanh nam châm có hai cực: Cực Bắc (N - sơn đỏ) và Cực Nam (S - sơn xanh).", action: function(st) { st.showFilings = false; st.showCompasses = false; st.fieldStrength = 1.0; } },
-          { num: 2, label: "2. Rắc mạt sắt tạo từ phổ", hint: "Rắc một lớp mạt sắt mịn lên tấm nhựa trên nam châm, gõ nhẹ; mạt sắt sắp xếp thành các đường cong cong.", action: function(st) { st.showFilings = true; st.showCompasses = false; } },
-          { num: 3, label: "3. Quan sát mật độ đường sức", hint: "Mạt sắt bám dày đặc nhất ở hai đầu cực của nam châm -> Từ trường ở các cực là mạnh nhất.", action: function(st) { st.showFilings = true; st.fieldStrength = 1.8; } },
-          { num: 4, label: "4. Đặt kim la bàn thử nghiệm", hint: "Đặt các kim la bàn quanh nam châm; kim tự định hướng dọc theo các tiếp tuyến của đường sức từ.", action: function(st) { st.showCompasses = true; } },
-          { num: 5, label: "5. Xác định chiều đường sức", hint: "Chiều đường sức từ tuân theo quy ước: Đi ra từ cực Bắc (North) và Đi vào ở cực Nam (South).", action: function(st) { st.showCompasses = true; st.showFilings = true; } }
+          { num: 1, label: "1. Đặt thanh nam châm thẳng", hint: "Thanh nam châm có hai cực: Cực Bắc (N - sơn đỏ) và Cực Nam (S - sơn xanh).", action: function(st) { st.fieldStrength = 1.0; st.showFilings = false; st.showCompass = false; st.showCompasses = false; } },
+          { num: 2, label: "2. Rắc mạt sắt tạo từ phổ", hint: "Rắc một lớp mạt sắt mịn lên tấm nhựa trên nam châm, gõ nhẹ; mạt sắt sắp xếp thành các đường cong cong.", action: function(st) { st.fieldStrength = 1.0; st.showFilings = true; st.showCompass = false; st.showCompasses = false; } },
+          { num: 3, label: "3. Quan sát mật độ đường sức", hint: "Mạt sắt bám dày đặc nhất ở hai đầu cực của nam châm -> Từ trường ở các cực là mạnh nhất.", action: function(st) { st.fieldStrength = 1.8; st.showFilings = true; st.showCompass = false; st.showCompasses = false; } },
+          { num: 4, label: "4. Đặt kim la bàn thử nghiệm", hint: "Đặt các kim la bàn quanh nam châm; kim tự định hướng dọc theo các tiếp tuyến của đường sức từ.", action: function(st) { st.fieldStrength = 1.8; st.showFilings = true; st.showCompass = true; st.showCompasses = true; } },
+          { num: 5, label: "5. Xác định chiều đường sức", hint: "Chiều đường sức từ tuân theo quy ước: Đi ra từ cực Bắc (North) và Đi vào ở cực Nam (South).", action: function(st) { st.fieldStrength = 1.8; st.showFilings = true; st.showCompass = true; st.showCompasses = true; } }
         ]
       };
       let steps = EXPERIMENT_STEPPERS[simType];
@@ -4731,6 +4981,14 @@
             syncControlsFromState(simType);
           }
 
+          // Force immediate 3D engine update
+          if (window.Lab3DEngine && window.Lab3DEngine.isInitialized) {
+            window.Lab3DEngine.currentSimState = labSimState;
+            if (typeof window.Lab3DEngine.update === "function") {
+              window.Lab3DEngine.update(labSimState);
+            }
+          }
+
           let hintBox = document.getElementById("labStepHintBox");
           if (hintBox) {
             hintBox.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;width:100%;flex-wrap:wrap;gap:8px;">' +
@@ -4790,6 +5048,19 @@
       bar.querySelectorAll(".lab-step-chip").forEach(chip => {
         chip.onclick = () => updateStep(parseInt(chip.dataset.step, 10));
       });
+
+      const btnToggleHUD = document.getElementById("labToggleStepperHUD");
+      if (btnToggleHUD) {
+        btnToggleHUD.onclick = () => {
+          const wrap = document.getElementById("labStepperWrap");
+          if (!wrap) return;
+          const isCollapsed = wrap.classList.toggle("collapsed");
+          const icon = document.getElementById("labToggleHUDIcon");
+          const txt = document.getElementById("labToggleHUDText");
+          if (icon) icon.textContent = isCollapsed ? "👁️‍🗨️" : "👁️";
+          if (txt) txt.textContent = isCollapsed ? "Hiện tiến trình" : "Thu gọn";
+        };
+      }
 
       const pBtn = document.getElementById("labStepPrevBtn");
       if (pBtn) pBtn.onclick = () => {
@@ -5491,7 +5762,7 @@ let labLoggedData = [];
             exp_id: exp.id,
             student_name: studentName,
             class_name: "Lớp " + exp.grade + "A",
-            school_name: "Trường THCS Huỳnh Bá Chánh",
+            school_name: "Trường THCS Tân Tạo A",
             logged_data: labLoggedData,
             quiz_answers: labQuizAnswers,
             captured_image: labCapturedImage || (window.Lab3DEngine && window.Lab3DEngine.captureScreenshot ? window.Lab3DEngine.captureScreenshot() : null),
@@ -5529,6 +5800,7 @@ let labLoggedData = [];
 
     function resetLabSim(exp) {
       initSimulationEngine(exp);
+      renderLabStepper(exp);
     }
 
     
@@ -5582,6 +5854,8 @@ let labLoggedData = [];
       this.container = container;
       this.currentExp = exp;
       this.currentSimType = (exp && exp.simulation ? exp.simulation.sim_type : '') || (exp && exp.simulation_type ? exp.simulation_type : '') || '';
+      this.currentSimState = state || window.labSimState || {};
+      window.labSimState = this.currentSimState;
 
       var width = container.clientWidth || 640;
       var height = container.clientHeight || 390;
@@ -6171,7 +6445,8 @@ let labLoggedData = [];
 
       var dropY = 0.95;
       this.updateFns.push(function(st, t) {
-        if (st.stage === 1) {
+        var activeStage = (st && st.stage !== undefined) ? st.stage : 1;
+        if (activeStage === 1) {
           dropY -= 0.024;
           if (dropY <= 0.42) {
             dropY = 0.95;
@@ -6348,8 +6623,8 @@ let labLoggedData = [];
       // Evaporation loop hook
       var evapProgress = 0;
       this.updateFns.push(function(st, t) {
-        var burnerLvl = st.burner !== undefined ? st.burner : 0;
-        var activeStage = st.stage || 1;
+        var activeStage = (st && st.stage !== undefined) ? st.stage : 1;
+        var burnerLvl = (st && st.burner !== undefined) ? st.burner : (activeStage === 2 ? 2 : 0);
 
         if (burnerLvl > 0 && activeStage === 2) {
           flameGroup.visible = true;
@@ -6544,10 +6819,14 @@ let labLoggedData = [];
       });
 
       this.updateFns.push(function(st, t) {
-        compassNeedles.forEach(function(cmp) {
+        var str = (st && st.fieldStrength !== undefined) ? (st.fieldStrength / (st.fieldStrength > 5 ? 100 : 1)) : 1.0;
+        var showC = (st && st.showCompass !== undefined) ? st.showCompass : ((st && st.showCompasses !== undefined) ? st.showCompasses : true);
+        compassNeedles.forEach(function(cmp, idx) {
+          cmp.group.visible = !!showC;
           var p = cmp.pos;
           var angle = Math.atan2(p[2], p[0] - 0.6) - Math.atan2(p[2], p[0] + 0.6);
-          cmp.group.rotation.y = angle * 0.5 + Math.PI / 2;
+          var wobble = Math.sin(t * 3.5 + idx) * 0.08 * (1.2 - Math.min(1.0, str * 0.5));
+          cmp.group.rotation.y = (angle * 0.5 + Math.PI / 2) * str + wobble;
         });
       });
 
@@ -6578,15 +6857,25 @@ let labLoggedData = [];
       rMesh.position.set(0, 0.3, -0.7);
       cGroup.add(rMesh);
 
-      // Ammeter A
+      // Ammeter A with needle
       var aMeter = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 0.3, 32), new THREE.MeshStandardMaterial({ color: 0xdbeafe }));
       aMeter.position.set(1.3, 0.3, -0.7);
       cGroup.add(aMeter);
 
-      // Voltmeter V
+      var aNeedle = new THREE.Mesh(new THREE.ConeGeometry(0.02, 0.28, 8), new THREE.MeshBasicMaterial({ color: 0xef4444 }));
+      aNeedle.position.set(1.3, 0.46, -0.7);
+      aNeedle.rotation.x = Math.PI / 2;
+      cGroup.add(aNeedle);
+
+      // Voltmeter V with needle
       var vMeter = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 0.3, 32), new THREE.MeshStandardMaterial({ color: 0xdbeafe }));
       vMeter.position.set(0, 0.3, 0.6);
       cGroup.add(vMeter);
+
+      var vNeedle = new THREE.Mesh(new THREE.ConeGeometry(0.02, 0.28, 8), new THREE.MeshBasicMaterial({ color: 0xef4444 }));
+      vNeedle.position.set(0, 0.46, 0.6);
+      vNeedle.rotation.x = Math.PI / 2;
+      cGroup.add(vNeedle);
 
       // Interactive Knife Switch (Công tắc K)
       var switchBase = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.08, 0.4), new THREE.MeshStandardMaterial({ color: 0x475569 }));
@@ -6599,13 +6888,28 @@ let labLoggedData = [];
       cGroup.add(switchArm);
 
       self.registerInteractive(switchBase, 'Công tắc K: Nhấp chuột để Đóng/Ngắt mạch', function(st) {
-        st.switch_closed = !st.switch_closed;
+        var closed = (st.switchOn !== undefined) ? !st.switchOn : !st.switch_closed;
+        st.switchOn = closed;
+        st.switch_closed = closed;
         self.playSwitchSound();
+        if (typeof window.syncControlsFromState === 'function') {
+          window.syncControlsFromState('circuit_ohm');
+        }
       });
 
       this.updateFns.push(function(st, t) {
-        var isClosed = !!st.switch_closed;
+        var isClosed = (st.switchOn !== undefined) ? !!st.switchOn : (st.switch_closed !== undefined ? !!st.switch_closed : true);
         switchArm.rotation.z = isClosed ? 0.0 : 0.55;
+        var u = (st.voltage_v !== undefined) ? st.voltage_v : ((st.voltage !== undefined) ? st.voltage : ((st.U !== undefined) ? st.U : 12.0));
+        var r = (st.resistance_ohm !== undefined) ? st.resistance_ohm : ((st.resistance !== undefined) ? st.resistance : ((st.R !== undefined) ? st.R : 20.0));
+        var currentI = isClosed ? (u / (r || 1)) : 0.0;
+        var currentU = isClosed ? u : 0.0;
+        var maxI = 2.4;
+        var maxU = 24.0;
+        var targetRotA = -0.7 + (currentI / maxI) * 1.4;
+        var targetRotV = -0.7 + (currentU / maxU) * 1.4;
+        aNeedle.rotation.z += (targetRotA - aNeedle.rotation.z) * 0.15;
+        vNeedle.rotation.z += (targetRotV - vNeedle.rotation.z) * 0.15;
       });
 
       group.add(cGroup);
@@ -6912,8 +7216,18 @@ let labLoggedData = [];
       aGroup.add(brassBlock);
 
       this.updateFns.push(function(st, t) {
-        var depth = st.submerged_depth || 0.5;
-        brassBlock.position.y = 1.2 - depth * 0.7;
+        var depth = 0.5;
+        if (st && st.submerged !== undefined) {
+          depth = st.submerged;
+        } else if (st && st.submerged_depth !== undefined) {
+          depth = st.submerged_depth;
+        } else if (st && st.matDensity && st.liqDensity) {
+          var ratio = st.matDensity / st.liqDensity;
+          depth = ratio < 1.0 ? ratio : 1.0;
+        }
+        var bob = Math.sin(t * 2.5) * 0.02;
+        brassBlock.position.y = 1.2 - depth * 0.7 + bob;
+        liq.scale.y = 1.0 + depth * 0.08;
       });
 
       group.add(aGroup);
@@ -7372,7 +7686,8 @@ let labLoggedData = [];
 
       var tiltAng = 0;
       this.updateFns.push(function(st, t) {
-        if (st.reacted) {
+        var isReacted = !!st.reacted || (st.step !== undefined && st.step >= 2) || (st.mixProgress !== undefined && st.mixProgress > 0);
+        if (isReacted) {
           precipMat.opacity = Math.min(0.92, precipMat.opacity + 0.04);
           innerTubeGroup.rotation.z = 1.1;
         } else {
@@ -7486,12 +7801,16 @@ let labLoggedData = [];
       var dropY = 0.7;
       var pinkFactor = 0;
       this.updateFns.push(function(st, t) {
-        if (st.dripping) {
-          dropY -= 0.02;
+        var isDrip = !!st.dripping || !!st.buretteFlow || (st.addedMl !== undefined && st.addedMl > 0);
+        if (st.addedMl !== undefined) {
+          pinkFactor = Math.min(1.0, st.addedMl / 20.0);
+        }
+        if (isDrip) {
+          dropY -= 0.024;
           if (dropY <= 0.42) {
             dropY = 0.7;
             self.playDripSound();
-            pinkFactor = Math.min(1.0, pinkFactor + 0.05);
+            if (st.addedMl === undefined) pinkFactor = Math.min(1.0, pinkFactor + 0.05);
           }
           dropMesh.position.y = dropY;
           dropMesh.visible = true;
@@ -7693,8 +8012,15 @@ let labLoggedData = [];
       });
 
       this.updateFns.push(function(st, t) {
-        var tilt = st.leverBalanced ? 0 : Math.sin(t * 1.5) * 0.12;
-        beamGroup.rotation.z = tilt;
+        var tilt = 0;
+        if (st.m1 !== undefined && st.d1 !== undefined && st.m2 !== undefined && st.d2 !== undefined) {
+          var torqueDiff = (st.m1 * st.d1) - (st.m2 * st.d2);
+          tilt = Math.max(-0.25, Math.min(0.25, -torqueDiff * 0.00012));
+          if (torqueDiff === 0) tilt += Math.sin(t * 2.0) * 0.01;
+        } else {
+          tilt = st.leverBalanced ? 0 : Math.sin(t * 1.5) * 0.12;
+        }
+        beamGroup.rotation.z += (tilt - beamGroup.rotation.z) * 0.1;
       });
 
       lGroup.add(beamGroup);
@@ -7746,10 +8072,11 @@ let labLoggedData = [];
       });
 
       this.updateFns.push(function(st, t) {
-        var depth = st.probeDepth || 1;
-        probe.position.y = 1.9 - depth * 0.45;
-        leftCol.scale.y = 1.0 - depth * 0.15;
-        rightCol.scale.y = 1.0 + depth * 0.25;
+        var depthVal = (st.depth !== undefined) ? (st.depth / 6.0) : (st.probeDepth || 1);
+        var clampedD = Math.max(0.2, Math.min(3.0, depthVal));
+        probe.position.y = 1.9 - clampedD * 0.45;
+        leftCol.scale.y = Math.max(0.1, 1.0 - clampedD * 0.15);
+        rightCol.scale.y = 1.0 + clampedD * 0.25;
       });
 
       group.add(lpGroup);
@@ -7805,7 +8132,8 @@ let labLoggedData = [];
       });
 
       this.updateFns.push(function(st, t) {
-        if (st.displaced) {
+        var isDisplaced = !!st.displaced || (st.reactTime !== undefined && st.reactTime > 2) || (st.time !== undefined && st.time > 2);
+        if (isDisplaced) {
           cuCoating.material.opacity = Math.min(0.95, cuCoating.material.opacity + 0.03);
           solMat.color.lerp(new THREE.Color(0x86efac), 0.02);
         } else {
@@ -8077,7 +8405,8 @@ let labLoggedData = [];
       });
 
       this.updateFns.push(function(st, t) {
-        if (st.airBurned) {
+        var isBurned = !!st.airBurned || (st.phase === "running" || st.phase === 3 || st.phase === 4) || (st.burnProgress !== undefined && st.burnProgress > 0);
+        if (isBurned) {
           flame.scale.set(0.001, 0.001, 0.001);
           riseLiq.scale.y = Math.min(1.0, riseLiq.scale.y + 0.02);
           riseLiq.position.y = 0.35 + riseLiq.scale.y * 0.16;
@@ -8126,7 +8455,8 @@ let labLoggedData = [];
       });
 
       this.updateFns.push(function(st, t) {
-        if (st.bromineDecolorized) {
+        var isDecolor = !!st.bromineDecolorized || (st.isFlowing && st.gas === "C2H4") || (st.colorFactor !== undefined && st.colorFactor < 0.5);
+        if (isDecolor) {
           b2Mat.color.lerp(new THREE.Color(0xdbeafe), 0.03);
           b2Mat.opacity = Math.max(0.35, b2Mat.opacity - 0.02);
         } else {
@@ -8168,10 +8498,14 @@ let labLoggedData = [];
       });
 
       this.updateFns.push(function(st, t) {
-        if (st.sliding) {
+        var isMoving = !!st.sliding || !!st.isPulling;
+        if (isMoving) {
           var xOff = Math.sin(t * 3) * 0.4;
           block.position.x = -0.6 + xOff;
           dyna.position.x = 0.7 + xOff;
+        } else {
+          block.position.x += (-0.6 - block.position.x) * 0.1;
+          dyna.position.x += (0.7 - dyna.position.x) * 0.1;
         }
       });
 
@@ -8241,9 +8575,10 @@ let labLoggedData = [];
           self.controls.update();
         }
 
+        var activeState = self.currentSimState || window.labSimState || {};
         for (var i = 0; i < self.updateFns.length; i++) {
           try {
-            self.updateFns[i](window.labSimState || {}, t);
+            self.updateFns[i](activeState, t);
           } catch (e) {}
         }
 
@@ -8256,9 +8591,14 @@ let labLoggedData = [];
     },
 
     update: function(state, t) {
+      if (state) {
+        this.currentSimState = state;
+        window.labSimState = state;
+      }
+      var activeState = this.currentSimState || window.labSimState || {};
       for (var i = 0; i < this.updateFns.length; i++) {
         try {
-          this.updateFns[i](state, t);
+          this.updateFns[i](activeState, t !== undefined ? t : (performance.now() * 0.001));
         } catch (e) {}
       }
     },
@@ -8352,7 +8692,7 @@ let labLoggedData = [];
 })(window);
 
 
-        function syncControlsFromState(simType) {
+    function syncControlsFromState(simType) {
       if (!simType && labActiveExp) {
         simType = (labActiveExp.simulation && labActiveExp.simulation.sim_type) || labActiveExp.simulation_type || "";
       }
@@ -8372,36 +8712,39 @@ let labLoggedData = [];
           const pMass = parseInt(btn.dataset.mass, 10);
           btn.classList.toggle("active", pMass === m);
         });
+        const sK = document.getElementById("sliderK"), vK = document.getElementById("valK");
+        if (sK && labSimState.k) sK.value = labSimState.k;
+        if (vK && labSimState.k) vK.textContent = labSimState.k + " N/m";
       } else if (simType === "circuit_ohm") {
         const u = labSimState.voltage_v !== undefined ? labSimState.voltage_v : (labSimState.voltage !== undefined ? labSimState.voltage : (labSimState.U !== undefined ? labSimState.U : 2.0));
         const r = labSimState.resistance_ohm !== undefined ? labSimState.resistance_ohm : (labSimState.resistance !== undefined ? labSimState.resistance : (labSimState.R !== undefined ? labSimState.R : 20));
         labSimState.voltage = labSimState.voltage_v = labSimState.U = u;
         labSimState.resistance = labSimState.resistance_ohm = labSimState.R = r;
-        const sU = document.getElementById("sliderVolt");
+        const sU = document.getElementById("sliderVolt") || document.getElementById("sliderU");
         if (sU) sU.value = u;
-        const vU = document.getElementById("valVolt");
+        const vU = document.getElementById("valVolt") || document.getElementById("valU");
         if (vU) vU.textContent = u.toFixed(1) + " V";
-        const sR = document.getElementById("sliderRes");
+        const sR = document.getElementById("sliderRes") || document.getElementById("sliderR");
         if (sR) sR.value = r;
-        const vR = document.getElementById("valRes");
+        const vR = document.getElementById("valRes") || document.getElementById("valR");
         if (vR) vR.textContent = r.toFixed(1) + " Ω";
-        const btnP = document.getElementById("btnCircuitPower");
+        const btnP = document.getElementById("btnCircuitPower") || document.getElementById("btnSwitch");
         if (btnP) {
           btnP.classList.toggle("active", !!labSimState.switchOn);
           btnP.textContent = labSimState.switchOn ? "⚡ Công tắc: ĐÓNG (Thông mạch)" : "⚪ Công tắc: TẮT (Ngắt mạch)";
         }
       } else if (simType === "lens_convex") {
-        const d = labSimState.d || 25;
+        const d = (labSimState.d !== undefined) ? labSimState.d : 30;
         const sD = document.getElementById("sliderD");
         if (sD) sD.value = d;
         const vD = document.getElementById("valD");
         if (vD) vD.textContent = d + " cm";
-        const f = labSimState.f || 10;
+        const f = (labSimState.f !== undefined) ? labSimState.f : 10;
         const sF = document.getElementById("sliderF");
         if (sF) sF.value = f;
         const vF = document.getElementById("valF");
         if (vF) vF.textContent = f + " cm";
-        const h = labSimState.h || 4;
+        const h = (labSimState.h !== undefined) ? labSimState.h : 10;
         const sH = document.getElementById("sliderH");
         if (sH) sH.value = h;
         const vH = document.getElementById("valH");
@@ -8423,7 +8766,7 @@ let labLoggedData = [];
         if (bRed) bRed.classList.toggle("active", labSimState.color !== "green");
         if (bGrn) bGrn.classList.toggle("active", labSimState.color === "green");
       } else if (simType === "light_refraction") {
-        const a = labSimState.angle_i !== undefined ? labSimState.angle_i : (labSimState.angle || 30);
+        const a = labSimState.angle_i !== undefined ? labSimState.angle_i : (labSimState.angle !== undefined ? labSimState.angle : 30);
         labSimState.angle_i = labSimState.angle = a;
         const sA = document.getElementById("sliderRefractAngle");
         if (sA) sA.value = a;
@@ -8432,7 +8775,7 @@ let labLoggedData = [];
         const selDir = document.getElementById("selRefractDir");
         if (selDir && labSimState.direction) selDir.value = labSimState.direction;
       } else if (simType === "liquid_pressure") {
-        const depth = labSimState.depth !== undefined ? labSimState.depth : 10;
+        const depth = (labSimState.depth !== undefined) ? labSimState.depth : 10;
         labSimState.depth = depth;
         const sDp = document.getElementById("sliderDepth");
         if (sDp) sDp.value = depth;
@@ -8456,17 +8799,18 @@ let labLoggedData = [];
         if (sD2) sD2.value = d2;
         if (vD2) vD2.textContent = d2 + " cm";
       } else if (simType === "archimedes") {
-        const vol = labSimState.vol || labSimState.volume || 100;
+        const vol = (labSimState.vol !== undefined) ? labSimState.vol : ((labSimState.volume !== undefined) ? labSimState.volume : 100);
+        labSimState.volume = labSimState.vol = vol;
         const sV = document.getElementById("sliderVol"), vV = document.getElementById("valVol");
         if (sV) sV.value = vol;
         if (vV) vV.textContent = vol + " cm³";
         const sMat = document.getElementById("selMaterial");
-        if (sMat && labSimState.material) sMat.value = labSimState.material;
+        if (sMat && labSimState.matDensity) sMat.value = labSimState.matDensity;
         const sLiq = document.getElementById("selLiquid");
-        if (sLiq && labSimState.liquid) sLiq.value = labSimState.liquid;
+        if (sLiq && labSimState.liqDensity) sLiq.value = labSimState.liqDensity;
       } else if (simType === "ph_indicator") {
         const sSamp = document.getElementById("selSample");
-        if (sSamp && labSimState.sample) sSamp.value = labSimState.sample;
+        if (sSamp && labSimState.samplePh !== undefined) sSamp.value = labSimState.samplePh.toFixed(1);
         const sInd = document.getElementById("selIndicator");
         if (sInd && labSimState.indicator) sInd.value = labSimState.indicator;
       } else if (simType === "friction_force") {
@@ -8479,48 +8823,147 @@ let labLoggedData = [];
         const btnPull = document.getElementById("btnTogglePull");
         if (btnPull) btnPull.classList.toggle("active", !!labSimState.isPulling);
       } else if (simType === "magnetic_field") {
-        const str = labSimState.fieldStrength !== undefined ? labSimState.fieldStrength : 50;
+        const str = (labSimState.fieldStrength !== undefined) ? labSimState.fieldStrength : 1.0;
         const sStr = document.getElementById("sliderFieldStr"), vStr = document.getElementById("valFieldStr");
         if (sStr) sStr.value = str;
-        if (vStr) vStr.textContent = str + "%";
+        if (vStr) vStr.textContent = (str >= 10 ? str + "%" : str.toFixed(1) + "x");
         const btnF = document.getElementById("btnToggleFilings");
         if (btnF) btnF.classList.toggle("active", labSimState.showFilings !== false);
         const btnC = document.getElementById("btnToggleCompass");
-        if (btnC) btnC.classList.toggle("active", labSimState.showCompass !== false);
+        if (btnC) btnC.classList.toggle("active", labSimState.showCompass !== false && labSimState.showCompasses !== false);
       } else if (simType === "metal_acid") {
         const selM = document.getElementById("selMetal");
         if (selM && labSimState.metal) selM.value = labSimState.metal;
         const selA = document.getElementById("selAcidConc");
-        if (selA && labSimState.acidConc) selA.value = labSimState.acidConc;
+        if (selA && labSimState.acidConc !== undefined) selA.value = labSimState.acidConc;
+        const btnSplint = document.getElementById("btnSplint");
+        if (btnSplint) btnSplint.classList.toggle("active", !!labSimState.splintTest);
       } else if (simType === "metal_displacement") {
         const selP = document.getElementById("selPair");
-        if (selP && labSimState.pair) selP.value = labSimState.pair;
+        if (selP && labSimState.pair !== undefined) selP.value = labSimState.pair;
         const sT = document.getElementById("sliderTime"), vT = document.getElementById("valTime");
-        if (sT && labSimState.time !== undefined) sT.value = labSimState.time;
-        if (vT && labSimState.time !== undefined) vT.textContent = labSimState.time + " phút";
+        const tVal = (labSimState.reactTime !== undefined) ? labSimState.reactTime : (labSimState.time !== undefined ? labSimState.time : 0);
+        if (sT) sT.value = tVal;
+        if (vT) vT.textContent = tVal + " phút";
       } else if (simType === "acid_base_neutralization") {
-        const ml = labSimState.addedMl || 0;
+        const ml = (labSimState.addedMl !== undefined) ? labSimState.addedMl : 0;
         const sMl = document.getElementById("sliderMl"), vMl = document.getElementById("valMl");
         if (sMl) sMl.value = ml;
         if (vMl) vMl.textContent = ml.toFixed(1) + " mL";
+        const b0 = document.getElementById("btnFlow0"), b1 = document.getElementById("btnFlow1"), b2 = document.getElementById("btnFlow2");
+        if (b0 && b1 && b2) {
+          const flow = labSimState.buretteFlow || 0;
+          b0.classList.toggle("active", flow === 0);
+          b1.classList.toggle("active", flow === 1);
+          b2.classList.toggle("active", flow === 2);
+        }
       } else if (simType === "atomic_structure") {
         const selEl = document.getElementById("selElement");
         if (selEl && labSimState.element) selEl.value = labSimState.element;
+        const bOrb = document.getElementById("btnToggleOrbits");
+        if (bOrb) bOrb.classList.toggle("active", labSimState.showOrbitals !== false);
+        const bAnim = document.getElementById("btnToggleElecAnim");
+        if (bAnim) bAnim.classList.toggle("active", labSimState.animateElectrons !== false);
       } else if (simType === "molecule_bonding") {
         const selM = document.getElementById("selMol");
         if (selM && labSimState.molecule) selM.value = labSimState.molecule;
+        const selV = document.getElementById("selViewMode");
+        if (selV && labSimState.viewMode) selV.value = labSimState.viewMode;
+        const bAnim = document.getElementById("btnAnimElec");
+        if (bAnim) bAnim.classList.toggle("active", labSimState.animateElectrons !== false);
       } else if (simType === "filtration_evaporation") {
         const b1 = document.getElementById("btnStage1"), b2 = document.getElementById("btnStage2");
         if (b1 && b2 && labSimState.stage) {
           b1.classList.toggle("active", labSimState.stage === 1);
           b2.classList.toggle("active", labSimState.stage === 2);
         }
+        const fCtrl = document.getElementById("flameControls");
+        if (fCtrl) fCtrl.style.display = (labSimState.stage === 2) ? "flex" : "none";
+        const f0 = document.getElementById("btnFlame0"), f1 = document.getElementById("btnFlame1"), f2 = document.getElementById("btnFlame2");
+        if (f0 && f1 && f2) {
+          const burner = (labSimState.burner !== undefined) ? labSimState.burner : (labSimState.stage === 2 ? 2 : 0);
+          f0.classList.toggle("active", burner === 0);
+          f1.classList.toggle("active", burner === 1);
+          f2.classList.toggle("active", burner === 2);
+        }
       } else if (simType === "hydrocarbon_bromine") {
         const selG = document.getElementById("selGas");
         if (selG && labSimState.gas) selG.value = labSimState.gas;
+        const bFlow = document.getElementById("btnToggleGasFlow");
+        if (bFlow) {
+          bFlow.classList.toggle("active", !!labSimState.isFlowing);
+          bFlow.textContent = labSimState.isFlowing ? "⏸ Khóa van dẫn khí" : "▶ Mở van dẫn khí";
+        }
+      } else if (simType === "mass_conservation") {
+        const step = labSimState.step || 1;
+        const bS1 = document.getElementById("btnStep1"), bS2 = document.getElementById("btnStep2"), bS3 = document.getElementById("btnStep3");
+        if (bS1 && bS2 && bS3) {
+          bS1.classList.toggle("active", step === 1);
+          bS2.classList.toggle("active", step === 2);
+          bS3.classList.toggle("active", step === 3);
+        }
+      } else if (simType === "air_oxygen_fraction") {
+        const bStart = document.getElementById("btnStartAirExp");
+        if (bStart) {
+          if (labSimState.phase === "running") {
+            bStart.disabled = true;
+            bStart.textContent = "⏳ Thí nghiệm đang tiến hành…";
+          } else if (labSimState.phase === "done" || labSimState.phase === 4 || labSimState.phase === 5) {
+            bStart.disabled = false;
+            bStart.textContent = "✓ Hoàn thành thí nghiệm (Nước dâng 1/5)";
+          } else {
+            bStart.disabled = false;
+            bStart.textContent = "🔥 Châm nến & Úp ống đong";
+          }
+        }
       }
     }
     window.syncControlsFromState = syncControlsFromState;
+
+        function executeLabAction(actionKey, meta) {
+      if (!labActiveExp || !labSimState) return;
+
+      if (meta && meta.btn) {
+        document.querySelectorAll(".lab-action-btn").forEach(b => b.classList.remove("active"));
+        meta.btn.classList.add("active");
+      }
+
+      if (meta && meta.sound && window.Lab3DEngine) {
+        if (meta.sound === "pop" && window.Lab3DEngine.playPopSound) window.Lab3DEngine.playPopSound();
+        else if (meta.sound === "drip" && window.Lab3DEngine.playDripSound) window.Lab3DEngine.playDripSound();
+        else if (meta.sound === "switch" && window.Lab3DEngine.playSwitchSound) window.Lab3DEngine.playSwitchSound();
+        else if (meta.sound === "bell" && window.Lab3DEngine.playBellSound) window.Lab3DEngine.playBellSound();
+      } else if (window.Lab3DEngine && window.Lab3DEngine.playSwitchSound) {
+        window.Lab3DEngine.playSwitchSound();
+      }
+
+      if (meta && meta.stage !== undefined && window.Lab3DEngine && window.Lab3DEngine.focusOnStage) {
+        window.Lab3DEngine.focusOnStage(meta.stage);
+      }
+
+      if (meta && meta.step) {
+        const chips = document.querySelectorAll("#labStepperBar .lab-step-chip");
+        chips.forEach((c, idx) => c.classList.toggle("active", idx + 1 === meta.step));
+        const pTxt = document.getElementById("labStepProgressText");
+        if (pTxt && chips.length > 0) pTxt.textContent = "Bước " + meta.step + "/" + chips.length + " (" + Math.round(meta.step / chips.length * 100) + "%)";
+      }
+
+      if (meta && meta.title) {
+        showLabToast("🎯 " + meta.title);
+      }
+
+      if (typeof syncControlsFromState === "function") {
+        syncControlsFromState();
+      }
+
+      if (window.Lab3DEngine && window.Lab3DEngine.isInitialized) {
+        window.Lab3DEngine.currentSimState = labSimState;
+        if (typeof window.Lab3DEngine.update === "function") {
+          window.Lab3DEngine.update(labSimState);
+        }
+      }
+    }
+    window.executeLabAction = executeLabAction;
 
     function initSimulationEngine(exp) {
       if (typeof window.labStopAutoRun === "function") {
@@ -8546,6 +8989,7 @@ let labLoggedData = [];
         t: 0,
         electrons: []
       };
+      window.labSimState = labSimState;
 
       if (simType === "circuit_ohm") {
         labSimState.U = 12;
@@ -8571,7 +9015,20 @@ let labLoggedData = [];
           '</div>' +
           '<div class="lab-ctrl-btns">' +
             '<button class="lab-ctrl-toggle active" id="btnSwitch" type="button">Công tắc: BẬT (Đóng mạch)</button>' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="ohm_1"><span class="btn-icon">🔌</span><span>1. Mở công tắc K (U = 0V)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="ohm_2"><span class="btn-icon">⚡</span><span>2. Đóng K &amp; Đặt U = 2.0V</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="ohm_3"><span class="btn-icon">⚡</span><span>3. Tăng U = 4.0V (I = 0.2A)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="ohm_4"><span class="btn-icon">⚡</span><span>4. Tăng U = 6.0V (I = 0.3A)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="ohm_5"><span class="btn-icon">🔘</span><span>5. Tăng điện trở R = 40Ω</span></button>' +
+            '</div>' +
           '</div>';
+
         const sU = document.getElementById("sliderU"), sR = document.getElementById("sliderR"), bSw = document.getElementById("btnSwitch");
         sU.oninput = () => { labSimState.U = parseFloat(sU.value); document.getElementById("valU").textContent = labSimState.U.toFixed(1) + " V"; };
         sR.oninput = () => { labSimState.R = parseFloat(sR.value); document.getElementById("valR").textContent = labSimState.R.toFixed(1) + " Ω"; };
@@ -8580,6 +9037,29 @@ let labLoggedData = [];
           bSw.classList.toggle("active", labSimState.switchOn);
           bSw.textContent = labSimState.switchOn ? "Công tắc: BẬT (Đóng mạch)" : "Công tắc: TẮT (Ngắt mạch)";
         };
+
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "ohm_1") {
+              labSimState.switchOn = false; labSimState.U = 0; labSimState.R = 20;
+              executeLabAction(act, { btn, step: 1, sound: "switch", title: "Mở mạch (U = 0V, K ngắt)" });
+            } else if (act === "ohm_2") {
+              labSimState.switchOn = true; labSimState.U = 2.0; labSimState.R = 20;
+              executeLabAction(act, { btn, step: 2, sound: "switch", title: "Đóng K & Đặt U = 2.0V (I = 0.10A)" });
+            } else if (act === "ohm_3") {
+              labSimState.switchOn = true; labSimState.U = 4.0; labSimState.R = 20;
+              executeLabAction(act, { btn, step: 3, sound: "switch", title: "Tăng U = 4.0V (I = 0.20A)" });
+            } else if (act === "ohm_4") {
+              labSimState.switchOn = true; labSimState.U = 6.0; labSimState.R = 20;
+              executeLabAction(act, { btn, step: 4, sound: "switch", title: "Tăng U = 6.0V (I = 0.30A)" });
+            } else if (act === "ohm_5") {
+              labSimState.switchOn = true; labSimState.U = 6.0; labSimState.R = 40;
+              executeLabAction(act, { btn, step: 5, sound: "switch", title: "Tăng R = 40Ω -> Dòng điện I giảm còn 0.15A" });
+            }
+          };
+        });
+
       } else if (simType === "light_reflection") {
         labSimState.angle = 45;
         labSimState.color = "red";
@@ -8596,7 +9076,20 @@ let labLoggedData = [];
             '<button class="lab-ctrl-toggle active" id="btnLaser" type="button">Tia Laser: BẬT</button>' +
             '<button class="lab-ctrl-toggle" id="btnColorRed" type="button" style="color:#ef4444;font-weight:800">● Laser Đỏ</button>' +
             '<button class="lab-ctrl-toggle" id="btnColorGreen" type="button" style="color:#22c55e;font-weight:800">● Laser Xanh</button>' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="refl_1"><span class="btn-icon">🔴</span><span>1. Chiếu Laser Đỏ góc i = 30°</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="refl_2"><span class="btn-icon">🔴</span><span>2. Tăng góc tới i = 45°</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="refl_3"><span class="btn-icon">🔴</span><span>3. Tăng góc tới i = 60°</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="refl_4"><span class="btn-icon">🟢</span><span>4. Đổi Laser Xanh (i = 45°)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="refl_5"><span class="btn-icon">📴</span><span>5. Tắt nguồn Laser</span></button>' +
+            '</div>' +
           '</div>';
+
         const sA = document.getElementById("sliderAngle");
         sA.oninput = () => { labSimState.angle = parseInt(sA.value, 10); document.getElementById("valAngle").textContent = labSimState.angle + "°"; };
         document.getElementById("btnLaser").onclick = function() {
@@ -8606,6 +9099,29 @@ let labLoggedData = [];
         };
         document.getElementById("btnColorRed").onclick = () => { labSimState.color = "red"; };
         document.getElementById("btnColorGreen").onclick = () => { labSimState.color = "green"; };
+
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "refl_1") {
+              labSimState.angle = 30; labSimState.color = "red"; labSimState.laserOn = true;
+              executeLabAction(act, { btn, step: 2, sound: "switch", title: "Bật Laser Đỏ góc tới i = 30° -> i' = 30°" });
+            } else if (act === "refl_2") {
+              labSimState.angle = 45; labSimState.color = "red"; labSimState.laserOn = true;
+              executeLabAction(act, { btn, step: 3, sound: "switch", title: "Tăng góc tới i = 45° -> i' = 45°" });
+            } else if (act === "refl_3") {
+              labSimState.angle = 60; labSimState.color = "red"; labSimState.laserOn = true;
+              executeLabAction(act, { btn, step: 4, sound: "switch", title: "Tăng góc tới i = 60° -> i' = 60°" });
+            } else if (act === "refl_4") {
+              labSimState.angle = 45; labSimState.color = "green"; labSimState.laserOn = true;
+              executeLabAction(act, { btn, step: 5, sound: "switch", title: "Đổi Laser Xanh lá góc i = 45° -> i' = 45°" });
+            } else if (act === "refl_5") {
+              labSimState.laserOn = false;
+              executeLabAction(act, { btn, step: 1, sound: "switch", title: "Đã tắt nguồn Laser" });
+            }
+          };
+        });
+
       } else if (simType === "lever_balance") {
         labSimState.m1 = 200;
         labSimState.d1 = 30;
@@ -8628,7 +9144,20 @@ let labLoggedData = [];
           '</div>' +
           '<div class="lab-ctrl-btns" style="margin-top:8px">' +
             '<button class="lab-ctrl-toggle" id="btnAutoBalance" type="button">⚡ Tự động tính vị trí cân bằng</button>' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="lev_1"><span class="btn-icon">⚖️</span><span>1. Cân bằng đòn bẩy ban đầu</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="lev_2"><span class="btn-icon">🔴</span><span>2. Móc tải m1 = 200g ở d1 = 30cm (Lệch trái)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="lev_3"><span class="btn-icon">🎯</span><span>3. Móc tải m2 = 300g ở d2 = 20cm (Cân bằng)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="lev_4"><span class="btn-icon">🔄</span><span>4. Thử cặp m1 = 100g (40cm) vs m2 = 200g (20cm)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="lev_5"><span class="btn-icon">⚖️</span><span>5. Móc thêm m2 = 500g (Lệch phải)</span></button>' +
+            '</div>' +
           '</div>';
+
         const sM1 = document.getElementById("sliderM1"), sD1 = document.getElementById("sliderD1");
         const sM2 = document.getElementById("sliderM2"), sD2 = document.getElementById("sliderD2");
         sM1.oninput = () => { labSimState.m1 = parseInt(sM1.value); document.getElementById("valM1").textContent = labSimState.m1 + "g"; };
@@ -8642,6 +9171,29 @@ let labLoggedData = [];
           sD2.value = targetD2;
           document.getElementById("valD2").textContent = targetD2 + "cm";
         };
+
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "lev_1") {
+              labSimState.m1 = 200; labSimState.d1 = 20; labSimState.m2 = 200; labSimState.d2 = 20;
+              executeLabAction(act, { btn, step: 1, sound: "switch", title: "Cân bằng đòn bẩy ban đầu" });
+            } else if (act === "lev_2") {
+              labSimState.m1 = 200; labSimState.d1 = 30; labSimState.m2 = 200; labSimState.d2 = 20;
+              executeLabAction(act, { btn, step: 2, sound: "switch", title: "Móc tải m1 = 200g (d1 = 30cm) -> Đòn bẩy nghiêng lệch trái" });
+            } else if (act === "lev_3") {
+              labSimState.m1 = 200; labSimState.d1 = 30; labSimState.m2 = 300; labSimState.d2 = 20;
+              executeLabAction(act, { btn, step: 3, sound: "bell", title: "Móc tải m2 = 300g (d2 = 20cm) -> Đòn bẩy cân bằng: 200*30 = 300*20" });
+            } else if (act === "lev_4") {
+              labSimState.m1 = 100; labSimState.d1 = 40; labSimState.m2 = 200; labSimState.d2 = 20;
+              executeLabAction(act, { btn, step: 4, sound: "bell", title: "Thử cặp tải mới: 100*40 = 200*20 -> Cân bằng hoàn hảo" });
+            } else if (act === "lev_5") {
+              labSimState.m1 = 100; labSimState.d1 = 20; labSimState.m2 = 500; labSimState.d2 = 30;
+              executeLabAction(act, { btn, step: 5, sound: "switch", title: "Móc m2 = 500g (d2 = 30cm) -> Đòn bẩy lệch mạnh sang phải" });
+            }
+          };
+        });
+
       } else if (simType === "archimedes") {
         labSimState.matDensity = 2700;
         labSimState.matName = "Nhôm";
@@ -8671,7 +9223,20 @@ let labLoggedData = [];
           '<div class="lab-ctrl-row" style="margin-top:6px">' +
             '<div class="lab-ctrl-label-wrap"><span class="lab-ctrl-label">Thể tích vật (V):</span><span class="lab-ctrl-val" id="valVol">100 cm³</span></div>' +
             '<input class="lab-ctrl-slider" id="sliderVol" type="range" min="50" max="250" step="10" value="100">' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="arch_1"><span class="btn-icon">🪨</span><span>1. Treo vật nhôm ngoài không khí</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="arch_2"><span class="btn-icon">🥛</span><span>2. Chuẩn bị bình tràn đầy nước</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="arch_3"><span class="btn-icon">💧</span><span>3. Nhúng chìm 1/2 vật vào nước</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="arch_4"><span class="btn-icon">🌊</span><span>4. Nhúng chìm hoàn toàn vật</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="arch_5"><span class="btn-icon">🪵</span><span>5. Thử khối gỗ thông (Nổi tự do)</span></button>' +
+            '</div>' +
           '</div>';
+
         document.getElementById("selMaterial").onchange = function() {
           labSimState.matDensity = parseInt(this.value);
           labSimState.matName = this.options[this.selectedIndex].dataset.name;
@@ -8682,6 +9247,29 @@ let labLoggedData = [];
         };
         const sV = document.getElementById("sliderVol");
         sV.oninput = () => { labSimState.volume = parseInt(sV.value); document.getElementById("valVol").textContent = labSimState.volume + " cm³"; };
+
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "arch_1") {
+              labSimState.matDensity = 2700; labSimState.matName = "Nhôm"; labSimState.submerged = 0.0;
+              executeLabAction(act, { btn, step: 1, sound: "switch", title: "Treo vật ngoài không khí: P = 2.70N" });
+            } else if (act === "arch_2") {
+              labSimState.liqDensity = 1000; labSimState.liqName = "Nước ngọt"; labSimState.submerged = 0.0;
+              executeLabAction(act, { btn, step: 2, sound: "drip", title: "Bình tràn đầy nước tới vòi tràn" });
+            } else if (act === "arch_3") {
+              labSimState.submerged = 0.5;
+              executeLabAction(act, { btn, step: 3, sound: "drip", title: "Nhúng chìm 1/2 vật: Lực kế giảm còn 2.21N, nước tràn ra cốc" });
+            } else if (act === "arch_4") {
+              labSimState.submerged = 1.0;
+              executeLabAction(act, { btn, step: 4, sound: "drip", title: "Nhúng chìm hoàn toàn: Lực kế chỉ 1.72N -> FA = 0.98N bằng trọng lượng nước tràn" });
+            } else if (act === "arch_5") {
+              labSimState.matDensity = 600; labSimState.matName = "Gỗ thông"; labSimState.submerged = 0.6;
+              executeLabAction(act, { btn, step: 5, sound: "drip", title: "Thả khối gỗ thông: Vật nổi tự do trên mặt nước (P = FA)" });
+            }
+          };
+        });
+
       } else if (simType === "lens_convex") {
         labSimState.f = 15;
         labSimState.d = 35;
@@ -8698,11 +9286,43 @@ let labLoggedData = [];
           '<div class="lab-ctrl-row">' +
             '<div class="lab-ctrl-label-wrap"><span class="lab-ctrl-label">Chiều cao vật (h):</span><span class="lab-ctrl-val" id="valH">10 cm</span></div>' +
             '<input class="lab-ctrl-slider" id="sliderH" type="range" min="5" max="15" step="1" value="10">' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="lens_1"><span class="btn-icon">🕯️</span><span>1. Đặt vật ở d = 35cm (d &gt; 2f) - Ảnh thật nhỏ</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="lens_2"><span class="btn-icon">🕯️</span><span>2. Đặt vật tại d = 30cm (d = 2f) - Ảnh thật bằng vật</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="lens_3"><span class="btn-icon">🕯️</span><span>3. Đặt vật ở d = 20cm (f &lt; d &lt; 2f) - Ảnh thật lớn</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="lens_4"><span class="btn-icon">🔍</span><span>4. Đặt vật tại d = 10cm (d &lt; f) - Kính lúp (Ảnh ảo lớn)</span></button>' +
+            '</div>' +
           '</div>';
+
         const sD = document.getElementById("sliderD"), sF = document.getElementById("sliderF"), sH = document.getElementById("sliderH");
         sD.oninput = () => { labSimState.d = parseInt(sD.value); document.getElementById("valD").textContent = labSimState.d + " cm"; };
         sF.oninput = () => { labSimState.f = parseInt(sF.value); document.getElementById("valF").textContent = labSimState.f + " cm"; };
         sH.oninput = () => { labSimState.h = parseInt(sH.value); document.getElementById("valH").textContent = labSimState.h + " cm"; };
+
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "lens_1") {
+              labSimState.d = 35; labSimState.f = 15;
+              executeLabAction(act, { btn, step: 2, sound: "switch", title: "Vật ở d = 35cm (d > 2f) -> Ảnh thật ngược chiều, nhỏ hơn vật" });
+            } else if (act === "lens_2") {
+              labSimState.d = 30; labSimState.f = 15;
+              executeLabAction(act, { btn, step: 3, sound: "switch", title: "Vật tại d = 2f (30cm) -> Ảnh thật ngược chiều, cao bằng vật" });
+            } else if (act === "lens_3") {
+              labSimState.d = 20; labSimState.f = 15;
+              executeLabAction(act, { btn, step: 4, sound: "switch", title: "Vật tại f < d < 2f (20cm) -> Ảnh thật ngược chiều, lớn hơn vật" });
+            } else if (act === "lens_4") {
+              labSimState.d = 10; labSimState.f = 15;
+              executeLabAction(act, { btn, step: 5, sound: "switch", title: "Vật trong tiêu cự (d < f) -> Ảnh ảo cùng chiều, phóng đại (Kính lúp)" });
+            }
+          };
+        });
+
       } else if (simType === "filtration_evaporation") {
         labSimState.stage = 1;
         labSimState.burner = 1;
@@ -8716,7 +9336,20 @@ let labLoggedData = [];
             '<button class="lab-ctrl-toggle" id="btnFlame0" type="button">Tắt lửa</button>' +
             '<button class="lab-ctrl-toggle active" id="btnFlame1" type="button">Lửa vừa</button>' +
             '<button class="lab-ctrl-toggle" id="btnFlame2" type="button">Lửa to</button>' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="filt_1"><span class="btn-icon">🧂</span><span>1. Hòa tan cát &amp; muối vào nước</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="filt_2"><span class="btn-icon">📄</span><span>2. Gấp &amp; Đặt phễu giấy lọc 4 lớp</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="filt_3"><span class="btn-icon">🧪</span><span>3. Rót lọc hỗn hợp qua phễu</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="filt_4"><span class="btn-icon">🔥</span><span>4. Châm đèn cồn đun sôi bốc hơi</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="filt_5"><span class="btn-icon">💎</span><span>5. Thu nhận tinh thể muối ăn NaCl</span></button>' +
+            '</div>' +
           '</div>';
+
         const bS1 = document.getElementById("btnStage1"), bS2 = document.getElementById("btnStage2");
         const fCtrl = document.getElementById("flameControls");
         bS1.onclick = () => {
@@ -8743,6 +9376,29 @@ let labLoggedData = [];
           [f0, f1, f2].forEach(b => b.classList.remove("active"));
           target.classList.add("active");
         }
+
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "filt_1") {
+              labSimState.stage = 1; labSimState.burner = 0;
+              executeLabAction(act, { btn, step: 1, stage: 1, sound: "drip", title: "Hòa tan hỗn hợp muối và cát vào cốc nước" });
+            } else if (act === "filt_2") {
+              labSimState.stage = 1; labSimState.burner = 0;
+              executeLabAction(act, { btn, step: 2, stage: 1, sound: "switch", title: "Gấp giấy lọc hình nón 4 lớp đặt vào phễu thủy tinh" });
+            } else if (act === "filt_3") {
+              labSimState.stage = 1; labSimState.burner = 0;
+              executeLabAction(act, { btn, step: 3, stage: 1, sound: "drip", title: "Rót lọc dọc đũa thủy tinh: Cát đọng trên giấy lọc, nước muối chảy xuống cốc" });
+            } else if (act === "filt_4") {
+              labSimState.stage = 2; labSimState.burner = 1;
+              executeLabAction(act, { btn, step: 4, stage: 2, sound: "switch", title: "Chuyển sang bát sứ & Châm đèn cồn đun sôi bốc hơi nước" });
+            } else if (act === "filt_5") {
+              labSimState.stage = 2; labSimState.burner = 2;
+              executeLabAction(act, { btn, step: 5, stage: 2, sound: "bell", title: "Nước bay hơi hết, tinh thể muối ăn NaCl trắng kết tinh đáy bát sứ" });
+            }
+          };
+        });
+
       } else if (simType === "ph_indicator") {
         labSimState.samplePh = 2.5;
         labSimState.sampleName = "Nước cốt chanh";
@@ -8771,7 +9427,20 @@ let labLoggedData = [];
                 '<option value="phenolphthalein">Dung dịch Phenolphthalein</option>' +
               '</select>' +
             '</div>' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="ph_1"><span class="btn-icon">🧪</span><span>1. Thử Acid dạ dày (pH 1.0 - Đỏ rực)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="ph_2"><span class="btn-icon">🍋</span><span>2. Thử Nước chanh tươi (pH 2.5 - Cam)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="ph_3"><span class="btn-icon">💧</span><span>3. Thử Nước cất (pH 7.0 - Xanh lá)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="ph_4"><span class="btn-icon">🧼</span><span>4. Thử Nước xà phòng (pH 9.5 - Xanh lam)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="ph_5"><span class="btn-icon">🥛</span><span>5. Thử Nước vôi trong (pH 12.0 - Tím)</span></button>' +
+            '</div>' +
           '</div>';
+
         document.getElementById("selSample").onchange = function() {
           labSimState.samplePh = parseFloat(this.value);
           labSimState.sampleName = this.options[this.selectedIndex].dataset.name;
@@ -8779,6 +9448,29 @@ let labLoggedData = [];
         document.getElementById("selIndicator").onchange = function() {
           labSimState.indicator = this.value;
         };
+
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "ph_1") {
+              labSimState.samplePh = 1.0; labSimState.sampleName = "Acid dạ dày (HCl 0.1M)"; labSimState.indicator = "universal";
+              executeLabAction(act, { btn, step: 1, sound: "drip", title: "Thử Acid dạ dày (pH 1.0) -> Chỉ thị chuyển đỏ tươi" });
+            } else if (act === "ph_2") {
+              labSimState.samplePh = 2.5; labSimState.sampleName = "Nước cốt chanh"; labSimState.indicator = "universal";
+              executeLabAction(act, { btn, step: 2, sound: "drip", title: "Thử Nước chanh tươi (pH 2.5) -> Chỉ thị chuyển màu cam" });
+            } else if (act === "ph_3") {
+              labSimState.samplePh = 7.0; labSimState.sampleName = "Nước tinh khiết"; labSimState.indicator = "universal";
+              executeLabAction(act, { btn, step: 3, sound: "drip", title: "Thử Nước cất (pH 7.0) -> Chỉ thị chuyển màu xanh lá trung tính" });
+            } else if (act === "ph_4") {
+              labSimState.samplePh = 9.5; labSimState.sampleName = "Dung dịch xà phòng"; labSimState.indicator = "universal";
+              executeLabAction(act, { btn, step: 4, sound: "drip", title: "Thử Nước xà phòng (pH 9.5) -> Chỉ thị chuyển xanh lam kiềm tính" });
+            } else if (act === "ph_5") {
+              labSimState.samplePh = 12.0; labSimState.sampleName = "Nước vôi trong Ca(OH)₂"; labSimState.indicator = "universal";
+              executeLabAction(act, { btn, step: 5, sound: "drip", title: "Thử Nước vôi trong (pH 12.0) -> Chỉ thị chuyển màu tím thẫm bazơ mạnh" });
+            }
+          };
+        });
+
       } else if (simType === "metal_acid") {
         labSimState.metal = "Zn";
         labSimState.acidConc = 1;
@@ -8804,14 +9496,52 @@ let labLoggedData = [];
           '</div>' +
           '<div class="lab-ctrl-btns" style="margin-top:8px">' +
             '<button class="lab-ctrl-toggle" id="btnSplint" type="button">🔥 Đưa que đóm / diêm lại gần miệng ống</button>' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="ma_1"><span class="btn-icon">🔩</span><span>1. Cho viên Kẽm (Zn) vào ống nghiệm</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="ma_2"><span class="btn-icon">💧</span><span>2. Rót 3ml Acid HCl vào</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="ma_3"><span class="btn-icon">💥</span><span>3. Thử que đóm cháy (Tiếng nổ Pop)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="ma_4"><span class="btn-icon">⚡</span><span>4. Đổi mẫu Nhôm (Al - Sủi cực mạnh)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="ma_5"><span class="btn-icon">🟡</span><span>5. Đổi mẫu Đồng (Cu - Không phản ứng)</span></button>' +
+            '</div>' +
           '</div>';
+
         document.getElementById("selMetal").onchange = function() { labSimState.metal = this.value; };
         document.getElementById("selAcidConc").onchange = function() { labSimState.acidConc = parseInt(this.value); };
         document.getElementById("btnSplint").onclick = function() {
           labSimState.splintTest = true;
           this.classList.add("active");
+          if (window.Lab3DEngine && window.Lab3DEngine.playPopSound) window.Lab3DEngine.playPopSound();
           setTimeout(() => { labSimState.splintTest = false; this.classList.remove("active"); }, 2000);
         };
+
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "ma_1") {
+              labSimState.metal = "Zn"; labSimState.acidConc = 0; labSimState.splintTest = false;
+              executeLabAction(act, { btn, step: 1, sound: "switch", title: "Cho 3-4 viên Kẽm Zn vào đáy ống nghiệm" });
+            } else if (act === "ma_2") {
+              labSimState.metal = "Zn"; labSimState.acidConc = 1; labSimState.splintTest = false;
+              executeLabAction(act, { btn, step: 2, sound: "drip", title: "Rót 3ml HCl vào ống nghiệm -> Bọt khí H2 sủi mãnh liệt" });
+            } else if (act === "ma_3") {
+              labSimState.metal = "Zn"; labSimState.acidConc = 2; labSimState.splintTest = true;
+              executeLabAction(act, { btn, step: 5, sound: "pop", title: "Đưa que đóm cháy vào miệng ống -> Nổ 'pốp' chứng minh khí H2" });
+              setTimeout(() => { labSimState.splintTest = false; }, 2200);
+            } else if (act === "ma_4") {
+              labSimState.metal = "Al"; labSimState.acidConc = 2; labSimState.splintTest = false;
+              executeLabAction(act, { btn, step: 3, sound: "drip", title: "Đổi sang Nhôm Al -> Sủi bọt khí H2 cực kỳ nhanh và mạnh" });
+            } else if (act === "ma_5") {
+              labSimState.metal = "Cu"; labSimState.acidConc = 2; labSimState.splintTest = false;
+              executeLabAction(act, { btn, step: 4, sound: "switch", title: "Đổi sang Đồng Cu -> Hoàn toàn không có bọt khí thoát ra (Cu sau H)" });
+            }
+          };
+        });
+
       } else if (simType === "acid_base_neutralization") {
         labSimState.addedMl = 0;
         labSimState.buretteFlow = 0;
@@ -8827,7 +9557,20 @@ let labLoggedData = [];
             '<button class="lab-ctrl-toggle active" id="btnFlow0" type="button">Khóa van (Dừng)</button>' +
             '<button class="lab-ctrl-toggle" id="btnFlow1" type="button">💧 Nhỏ giọt tự động</button>' +
             '<button class="lab-ctrl-toggle" id="btnFlow2" type="button">⚡ Chảy dòng nhanh</button>' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="ab_1"><span class="btn-icon">🧴</span><span>1. Bình NaOH + 2 giọt PP (Màu hồng)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="ab_2"><span class="btn-icon">💧</span><span>2. Nhỏ 10.0ml HCl (Hồng nhạt dần)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="ab_3"><span class="btn-icon">🧪</span><span>3. Nhỏ 24.0ml HCl (Gần tương đương)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="ab_4"><span class="btn-icon">🎯</span><span>4. Chạm điểm tương đương 25.0ml (Mất màu)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="ab_5"><span class="btn-icon">⚡</span><span>5. Nhỏ dư 30.0ml HCl (Môi trường acid)</span></button>' +
+            '</div>' +
           '</div>';
+
         const sM = document.getElementById("sliderMl");
         sM.oninput = () => {
           labSimState.addedMl = parseFloat(sM.value);
@@ -8841,6 +9584,29 @@ let labLoggedData = [];
           [b0, b1, b2].forEach(b => b.classList.remove("active"));
           target.classList.add("active");
         }
+
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "ab_1") {
+              labSimState.addedMl = 0.0; labSimState.buretteFlow = 0;
+              executeLabAction(act, { btn, step: 1, sound: "drip", title: "Bình tam giác chứa NaOH + phenolphthalein màu hồng rực" });
+            } else if (act === "ab_2") {
+              labSimState.addedMl = 10.0; labSimState.buretteFlow = 1;
+              executeLabAction(act, { btn, step: 3, sound: "drip", title: "Mở khóa buret nhỏ 10.0ml HCl -> Màu hồng nhạt dần" });
+            } else if (act === "ab_3") {
+              labSimState.addedMl = 24.0; labSimState.buretteFlow = 1;
+              executeLabAction(act, { btn, step: 4, sound: "drip", title: "Đã nhỏ 24.0ml HCl -> Dung dịch chỉ còn vệt hồng rất nhạt" });
+            } else if (act === "ab_4") {
+              labSimState.addedMl = 25.0; labSimState.buretteFlow = 0;
+              executeLabAction(act, { btn, step: 5, sound: "bell", title: "Đạt điểm tương đương 25.0ml: Dung dịch mất màu hoàn toàn (pH = 7)" });
+            } else if (act === "ab_5") {
+              labSimState.addedMl = 30.0; labSimState.buretteFlow = 0;
+              executeLabAction(act, { btn, step: 5, sound: "drip", title: "Nhỏ dư 30.0ml HCl -> Dung dịch trong suốt mang tính acid (pH < 7)" });
+            }
+          };
+        });
+
       } else if (simType === "metal_displacement") {
         labSimState.pair = 1;
         labSimState.reactTime = 0;
@@ -8859,13 +9625,41 @@ let labLoggedData = [];
               '<span class="lab-ctrl-val" id="valTime">0 phút</span>' +
             '</div>' +
             '<input class="lab-ctrl-slider" id="sliderTime" type="range" min="0" max="30" step="1" value="0">' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="md_1"><span class="btn-icon">🔩</span><span>1. Đinh Fe + dd CuSO4 (Lớp Cu đỏ bám ngoài)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="md_2"><span class="btn-icon">🪙</span><span>2. Dây Cu + dd AgNO3 (Tinh thể Ag trắng lấp lánh)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="md_3"><span class="btn-icon">⛔</span><span>3. Dây Cu + dd FeSO4 (Không phản ứng)</span></button>' +
+            '</div>' +
           '</div>';
+
         document.getElementById("selPair").onchange = function() { labSimState.pair = parseInt(this.value); };
         const sT = document.getElementById("sliderTime");
         sT.oninput = () => {
           labSimState.reactTime = parseInt(sT.value);
           document.getElementById("valTime").textContent = labSimState.reactTime + " phút";
         };
+
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "md_1") {
+              labSimState.pair = 1; labSimState.reactTime = 15;
+              executeLabAction(act, { btn, step: 1, sound: "drip", title: "Đinh sắt Fe nhúng vào CuSO4 -> Đồng đỏ bám ngoài, dd hóa xanh nhạt" });
+            } else if (act === "md_2") {
+              labSimState.pair = 2; labSimState.reactTime = 15;
+              executeLabAction(act, { btn, step: 2, sound: "bell", title: "Dây đồng Cu nhúng vào AgNO3 -> Tinh thể bạc trắng bám quanh dây đồng, dd hóa xanh lam" });
+            } else if (act === "md_3") {
+              labSimState.pair = 3; labSimState.reactTime = 15;
+              executeLabAction(act, { btn, step: 3, sound: "switch", title: "Dây đồng Cu nhúng vào FeSO4 -> Không phản ứng (Cu đứng sau Fe)" });
+            }
+          };
+        });
+
       } else if (simType === "spring_stretch") {
         labSimState.mass = (labSimState.mass !== undefined) ? labSimState.mass : 100;
         labSimState.mass_g = labSimState.mass;
@@ -8899,7 +9693,20 @@ let labLoggedData = [];
           '<div class="lab-ctrl-btns" style="margin-top:8px">' +
             '<button class="lab-ctrl-toggle" id="btnAdd50" type="button">+ Móc thêm 50g</button>' +
             '<button class="lab-ctrl-toggle" id="btnRemoveAll" type="button">↺ Tháo hết quả cân (0g)</button>' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="sp_1"><span class="btn-icon">📏</span><span>1. Đo chiều dài tự nhiên l0 = 12cm (0g)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="sp_2"><span class="btn-icon">⚖️</span><span>2. Móc 1 quả cân 50g (Δl = 2.0cm)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="sp_3"><span class="btn-icon">⚖️</span><span>3. Móc 2 quả cân 100g (Δl = 4.0cm)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="sp_4"><span class="btn-icon">⚖️</span><span>4. Móc 3 quả cân 150g (Δl = 6.0cm)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="sp_5"><span class="btn-icon">⚖️</span><span>5. Móc 4 quả cân 200g (Δl = 8.0cm)</span></button>' +
+            '</div>' +
           '</div>';
+
         const sM = document.getElementById("sliderMass"), sK = document.getElementById("sliderK");
         const updateSpringReadouts = () => {
           const m = (labSimState.mass !== undefined) ? labSimState.mass : 0;
@@ -8908,19 +9715,15 @@ let labLoggedData = [];
           if (vm) vm.textContent = m + " g (P ≈ " + force.toFixed(2) + " N)";
           const vk = document.getElementById("valK");
           if (vk) vk.textContent = labSimState.k + " N/m";
-          // Highlight matching SGK preset button
           document.querySelectorAll(".lab-preset-btn").forEach(btn => {
             const pm = parseInt(btn.dataset.mass, 10);
             btn.classList.toggle("active", pm === m);
           });
-          // Synchronize stepper step active chip if mass corresponds to a step
           const stepMap = { 0: 1, 50: 2, 100: 3, 150: 4, 200: 5 };
           if (stepMap[m] !== undefined) {
             const targetStep = stepMap[m];
             const chips = document.querySelectorAll("#labStepperBar .lab-step-chip");
-            chips.forEach((c, idx) => {
-              c.classList.toggle("active", idx + 1 === targetStep);
-            });
+            chips.forEach((c, idx) => c.classList.toggle("active", idx + 1 === targetStep));
             const pTxt = document.getElementById("labStepProgressText");
             if (pTxt && chips.length >= 5) pTxt.textContent = "Bước " + targetStep + "/5 (" + (targetStep * 20) + "%)";
           }
@@ -8932,13 +9735,9 @@ let labLoggedData = [];
           updateSpringReadouts();
         };
 
-        sM.oninput = () => {
-          setSpringMass(parseInt(sM.value, 10));
-        };
-        sK.oninput = () => {
-          labSimState.k = parseInt(sK.value, 10);
-          updateSpringReadouts();
-        };
+        sM.oninput = () => setSpringMass(parseInt(sM.value, 10));
+        sK.oninput = () => { labSimState.k = parseInt(sK.value, 10); updateSpringReadouts(); };
+
         document.querySelectorAll(".lab-preset-btn").forEach(btn => {
           btn.onclick = () => {
             setSpringMass(parseInt(btn.dataset.mass, 10));
@@ -8953,7 +9752,30 @@ let labLoggedData = [];
           setSpringMass(0);
           if (window.Lab3DEngine && window.Lab3DEngine.playSwitchSound) window.Lab3DEngine.playSwitchSound();
         };
+
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "sp_1") {
+              setSpringMass(0);
+              executeLabAction(act, { btn, step: 1, sound: "switch", title: "Đo chiều dài tự nhiên ban đầu: l0 = 12.0cm" });
+            } else if (act === "sp_2") {
+              setSpringMass(50);
+              executeLabAction(act, { btn, step: 2, sound: "switch", title: "Móc 1 quả cân 50g -> Chiều dài l1 = 14.0cm (Δl = 2.0cm)" });
+            } else if (act === "sp_3") {
+              setSpringMass(100);
+              executeLabAction(act, { btn, step: 3, sound: "switch", title: "Móc 2 quả cân 100g -> Chiều dài l2 = 16.0cm (Δl = 4.0cm)" });
+            } else if (act === "sp_4") {
+              setSpringMass(150);
+              executeLabAction(act, { btn, step: 4, sound: "switch", title: "Móc 3 quả cân 150g -> Chiều dài l3 = 18.0cm (Δl = 6.0cm)" });
+            } else if (act === "sp_5") {
+              setSpringMass(200);
+              executeLabAction(act, { btn, step: 5, sound: "bell", title: "Móc 4 quả cân 200g -> Chiều dài l4 = 20.0cm (Δl = 8.0cm) -> Kết luận: Δl ~ m" });
+            }
+          };
+        });
         updateSpringReadouts();
+
       } else if (simType === "molecule_bonding") {
         labSimState.molecule = "H2O";
         labSimState.viewMode = "bohr_shared";
@@ -8982,7 +9804,20 @@ let labLoggedData = [];
           '</div>' +
           '<div class="lab-ctrl-btns" style="margin-top:8px">' +
             '<button class="lab-ctrl-toggle active" id="btnAnimElec" type="button">⚡ Hoạt họa electron: BẬT</button>' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="mol_1"><span class="btn-icon">💧</span><span>1. Phân tử Nước (H2O - 2 LK đơn)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="mol_2"><span class="btn-icon">💨</span><span>2. Phân tử Khí Hydrogen (H2 - 1 LK đơn)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="mol_3"><span class="btn-icon">💨</span><span>3. Phân tử Khí Oxygen (O2 - 1 LK đôi)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="mol_4"><span class="btn-icon">💨</span><span>4. Phân tử Khí Nitrogen (N2 - 1 LK ba)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="mol_5"><span class="btn-icon">🧂</span><span>5. Hợp chất ion Muối ăn (Na+ Cl-)</span></button>' +
+            '</div>' +
           '</div>';
+
         const selM = document.getElementById("selMol"), selV = document.getElementById("selViewMode"), bAnim = document.getElementById("btnAnimElec");
         selM.onchange = function() { labSimState.molecule = this.value; };
         selV.onchange = function() { labSimState.viewMode = this.value; };
@@ -8991,6 +9826,29 @@ let labLoggedData = [];
           this.classList.toggle("active", labSimState.animateElectrons);
           this.textContent = labSimState.animateElectrons ? "⚡ Hoạt họa electron: BẬT" : "⚡ Hoạt họa electron: DỪNG";
         };
+
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "mol_1") {
+              labSimState.molecule = "H2O"; labSimState.viewMode = "bohr_shared";
+              executeLabAction(act, { btn, step: 1, sound: "switch", title: "Khảo sát phân tử Nước H2O: 2 liên kết cộng hóa trị phân cực" });
+            } else if (act === "mol_2") {
+              labSimState.molecule = "H2"; labSimState.viewMode = "bohr_shared";
+              executeLabAction(act, { btn, step: 2, sound: "switch", title: "Khảo sát phân tử H2: 1 cặp electron dùng chung" });
+            } else if (act === "mol_3") {
+              labSimState.molecule = "O2"; labSimState.viewMode = "bohr_shared";
+              executeLabAction(act, { btn, step: 3, sound: "switch", title: "Khảo sát phân tử O2: 2 cặp electron dùng chung (liên kết đôi)" });
+            } else if (act === "mol_4") {
+              labSimState.molecule = "N2"; labSimState.viewMode = "bohr_shared";
+              executeLabAction(act, { btn, step: 4, sound: "switch", title: "Khảo sát phân tử N2: 3 cặp electron dùng chung (liên kết ba rất bền)" });
+            } else if (act === "mol_5") {
+              labSimState.molecule = "NaCl"; labSimState.viewMode = "bohr_shared";
+              executeLabAction(act, { btn, step: 5, sound: "bell", title: "Khảo sát liên kết ion NaCl: Na nhường 1e cho Cl" });
+            }
+          };
+        });
+
       } else if (simType === "friction_force") {
         labSimState.surface = "wood";
         labSimState.mass = 200;
@@ -9018,6 +9876,18 @@ let labLoggedData = [];
           '<div class="lab-ctrl-btns" style="margin-top:8px">' +
             '<button class="lab-ctrl-toggle" id="btnTogglePull" type="button">▶ Kéo khối gỗ chuyển động đều</button>' +
             '<button class="lab-ctrl-toggle" id="btnResetFricPos" type="button">↺ Đặt lại vị trí</button>' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="fr_1"><span class="btn-icon">🪵</span><span>1. Kéo trên mặt gỗ (μ = 0.30)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="fr_2"><span class="btn-icon">📄</span><span>2. Kéo trên giấy ráp nhám (μ = 0.70)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="fr_3"><span class="btn-icon">⚙️</span><span>3. Đặt con lăn bên dưới (μ = 0.04)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="fr_4"><span class="btn-icon">⚖️</span><span>4. Tăng tải m = 400g (Fms tăng gấp đôi)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="fr_5"><span class="btn-icon">⏹️</span><span>5. Dừng kéo</span></button>' +
+            '</div>' +
           '</div>';
 
         const selSurf = document.getElementById("selSurface");
@@ -9042,6 +9912,28 @@ let labLoggedData = [];
           bPull.textContent = "▶ Kéo khối gỗ chuyển động đều";
         };
 
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "fr_1") {
+              labSimState.surface = "wood"; labSimState.mass = 200; labSimState.isPulling = true;
+              executeLabAction(act, { btn, step: 1, sound: "switch", title: "Kéo trên mặt gỗ: Fms = 0.59N" });
+            } else if (act === "fr_2") {
+              labSimState.surface = "sandpaper"; labSimState.mass = 200; labSimState.isPulling = true;
+              executeLabAction(act, { btn, step: 2, sound: "switch", title: "Kéo trên giấy ráp nhám: Fms tăng lên 1.37N" });
+            } else if (act === "fr_3") {
+              labSimState.surface = "rollers"; labSimState.mass = 200; labSimState.isPulling = true;
+              executeLabAction(act, { btn, step: 3, sound: "bell", title: "Đặt con lăn bên dưới: Fms lăn chỉ còn 0.08N (giảm hàng chục lần)" });
+            } else if (act === "fr_4") {
+              labSimState.mass = 400; labSimState.isPulling = true;
+              executeLabAction(act, { btn, step: 4, sound: "switch", title: "Tăng tải m = 400g: Lực ma sát tăng tỉ lệ thuận với áp lực" });
+            } else if (act === "fr_5") {
+              labSimState.isPulling = false;
+              executeLabAction(act, { btn, step: 1, sound: "switch", title: "Đã dừng kéo" });
+            }
+          };
+        });
+
       } else if (simType === "magnetic_field") {
         labSimState.showFilings = true;
         labSimState.showCompasses = true;
@@ -9062,6 +9954,17 @@ let labLoggedData = [];
           '</div>' +
           '<div class="lab-ctrl-btns" style="margin-top:8px">' +
             '<button class="lab-ctrl-toggle active" id="btnToggleCompass" type="button">🧭 Kim la bàn thử (8 vị trí)</button>' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="mag_1"><span class="btn-icon">🧲</span><span>1. Rắc mạt sắt quanh nam châm (Từ phổ)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="mag_2"><span class="btn-icon">🧭</span><span>2. Đặt 8 la bàn (Chiều Ra Bắc Vào Nam)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="mag_3"><span class="btn-icon">⚡</span><span>3. Tăng từ trường B = 1.8x</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="mag_4"><span class="btn-icon">🔄</span><span>4. Bật đầy đủ Mạt sắt &amp; La bàn</span></button>' +
+            '</div>' +
           '</div>';
 
         const sStr = document.getElementById("sliderFieldStr");
@@ -9080,6 +9983,25 @@ let labLoggedData = [];
           labSimState.showCompasses = !labSimState.showCompasses;
           this.classList.toggle("active", labSimState.showCompasses);
         };
+
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "mag_1") {
+              labSimState.showFilings = true; labSimState.showCompasses = false; labSimState.fieldStrength = 1.0;
+              executeLabAction(act, { btn, step: 1, sound: "switch", title: "Rắc mạt sắt tạo các đường sức từ cong khép kín quanh 2 cực" });
+            } else if (act === "mag_2") {
+              labSimState.showFilings = false; labSimState.showCompasses = true; labSimState.fieldStrength = 1.0;
+              executeLabAction(act, { btn, step: 2, sound: "bell", title: "Đặt 8 la bàn thử: Chiều đường sức từ Ra cực Bắc (N) - Vào cực Nam (S)" });
+            } else if (act === "mag_3") {
+              labSimState.fieldStrength = 1.8; labSimState.showFilings = true; labSimState.showCompasses = true;
+              executeLabAction(act, { btn, step: 3, sound: "switch", title: "Tăng độ mạnh từ trường B = 1.8x -> Mạt sắt tập trung rất dày ở hai cực" });
+            } else if (act === "mag_4") {
+              labSimState.showFilings = true; labSimState.showCompasses = true; labSimState.fieldStrength = 1.0;
+              executeLabAction(act, { btn, step: 4, sound: "switch", title: "Hiển thị đồng thời toàn bộ Từ phổ & Kim la bàn định hướng" });
+            }
+          };
+        });
 
       } else if (simType === "liquid_pressure") {
         labSimState.depth = 15;
@@ -9106,6 +10028,18 @@ let labLoggedData = [];
           '</div>' +
           '<div class="lab-ctrl-btns" style="margin-top:8px">' +
             '<button class="lab-ctrl-toggle" id="btnRotateSensor" type="button">🔄 Xoay hướng màng cao su (0°)</button>' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="lp_1"><span class="btn-icon">🌊</span><span>1. Đầu dò ở độ sâu h = 5cm</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="lp_2"><span class="btn-icon">🌊</span><span>2. Đầu dò ở độ sâu h = 15cm</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="lp_3"><span class="btn-icon">🌊</span><span>3. Đầu dò ở đáy h = 25cm (Áp suất max)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="lp_4"><span class="btn-icon">🔄</span><span>4. Xoay màng cao su (Áp suất đẳng hướng)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="lp_5"><span class="btn-icon">🧂</span><span>5. Thử Nước muối đậm đặc (d lớn hơn)</span></button>' +
+            '</div>' +
           '</div>';
 
         const selLiq = document.getElementById("selLiquid");
@@ -9121,6 +10055,28 @@ let labLoggedData = [];
           labSimState.angle = ((labSimState.angle || 0) + 90) % 360;
           this.textContent = "🔄 Xoay hướng màng cao su (" + labSimState.angle + "°)";
         };
+
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "lp_1") {
+              labSimState.depth = 5; labSimState.liquid = "water";
+              executeLabAction(act, { btn, step: 1, sound: "drip", title: "Nhúng đầu dò ở độ sâu h = 5cm -> Áp kế chênh lệch Δh = 5cm" });
+            } else if (act === "lp_2") {
+              labSimState.depth = 15; labSimState.liquid = "water";
+              executeLabAction(act, { btn, step: 2, sound: "drip", title: "Hạ đầu dò xuống h = 15cm -> Áp suất tăng: p = d*h = 1500 Pa" });
+            } else if (act === "lp_3") {
+              labSimState.depth = 25; labSimState.liquid = "water";
+              executeLabAction(act, { btn, step: 3, sound: "drip", title: "Hạ xuống đáy h = 25cm -> Áp suất cực đại p = 2500 Pa" });
+            } else if (act === "lp_4") {
+              labSimState.depth = 15; labSimState.angle = ((labSimState.angle || 0) + 90) % 360;
+              executeLabAction(act, { btn, step: 4, sound: "switch", title: "Xoay màng cao su các hướng -> Ở cùng độ sâu, áp suất theo mọi hướng như nhau" });
+            } else if (act === "lp_5") {
+              labSimState.liquid = "salt_water"; labSimState.depth = 15;
+              executeLabAction(act, { btn, step: 5, sound: "drip", title: "Đổi sang Nước muối đặc -> Trọng lượng riêng lớn hơn nên áp suất cao hơn" });
+            }
+          };
+        });
 
       } else if (simType === "light_refraction") {
         labSimState.angle_i = 30;
@@ -9146,6 +10102,18 @@ let labLoggedData = [];
           '</div>' +
           '<div class="lab-ctrl-btns" style="margin-top:8px">' +
             '<button class="lab-ctrl-toggle" id="btnPresetIgh" type="button" style="display:none">⚡ Đặt góc tới giới hạn igh (41.8°)</button>' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="rf_1"><span class="btn-icon">🔦</span><span>1. Không khí ➔ Thủy tinh (i = 30°)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="rf_2"><span class="btn-icon">🔦</span><span>2. Không khí ➔ Thủy tinh (i = 60°)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="rf_3"><span class="btn-icon">💎</span><span>3. Thủy tinh ➔ Không khí (i = 30°)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="rf_4"><span class="btn-icon">⚡</span><span>4. Góc tới giới hạn igh = 41.8°</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="rf_5"><span class="btn-icon">🌟</span><span>5. Phản xạ toàn phần 100% (i = 55°)</span></button>' +
+            '</div>' +
           '</div>';
 
         const selDir = document.getElementById("selRefractDir");
@@ -9168,6 +10136,28 @@ let labLoggedData = [];
           document.getElementById("valRefractAngle").textContent = "42° (≈ igh)";
         };
 
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "rf_1") {
+              labSimState.direction = "air_to_glass"; labSimState.angle_i = 30;
+              executeLabAction(act, { btn, step: 1, sound: "switch", title: "Chiếu Không khí -> Thủy tinh (i = 30°) -> Góc khúc xạ r = 19.5° < i" });
+            } else if (act === "rf_2") {
+              labSimState.direction = "air_to_glass"; labSimState.angle_i = 60;
+              executeLabAction(act, { btn, step: 2, sound: "switch", title: "Chiếu Không khí -> Thủy tinh (i = 60°) -> Góc khúc xạ r = 35.3°" });
+            } else if (act === "rf_3") {
+              labSimState.direction = "glass_to_air"; labSimState.angle_i = 30;
+              executeLabAction(act, { btn, step: 3, sound: "switch", title: "Chiếu Thủy tinh -> Không khí (i = 30°) -> Góc khúc xạ r = 48.6° > i" });
+            } else if (act === "rf_4") {
+              labSimState.direction = "glass_to_air"; labSimState.angle_i = 42;
+              executeLabAction(act, { btn, step: 4, sound: "bell", title: "Góc tới giới hạn igh = 41.8° -> Tia khúc xạ đi là là mặt phân cách (r = 90°)" });
+            } else if (act === "rf_5") {
+              labSimState.direction = "glass_to_air"; labSimState.angle_i = 55;
+              executeLabAction(act, { btn, step: 5, sound: "bell", title: "Góc tới i = 55° > igh -> Xảy ra Phản xạ toàn phần 100% trong khối thủy tinh" });
+            }
+          };
+        });
+
       } else if (simType === "air_oxygen_fraction") {
         labSimState.phase = "idle";
         labSimState.burnProgress = 0;
@@ -9180,6 +10170,18 @@ let labLoggedData = [];
           '<div class="lab-ctrl-btns" style="margin-top:8px">' +
             '<button class="lab-ctrl-toggle active" id="btnStartAirExp" type="button">🔥 Châm nến &amp; Úp ống đong</button>' +
             '<button class="lab-ctrl-toggle" id="btnResetAirExp" type="button">↺ Làm lại thí nghiệm</button>' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="air_1"><span class="btn-icon">🕯️</span><span>1. Thắp nến trên chậu nước màu</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="air_2"><span class="btn-icon">🥛</span><span>2. Úp ngược ống đong 100ml lên nến</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="air_3"><span class="btn-icon">💨</span><span>3. O2 cạn - Nến tắt hẳn</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="air_4"><span class="btn-icon">🌊</span><span>4. Nước dâng lên 1/5 ống đong (~20%)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="air_5"><span class="btn-icon">↺</span><span>5. Làm lại từ đầu</span></button>' +
+            '</div>' +
           '</div>';
 
         const bStart = document.getElementById("btnStartAirExp");
@@ -9199,6 +10201,28 @@ let labLoggedData = [];
           bStart.disabled = false;
           bStart.textContent = "🔥 Châm nến &amp; Úp ống đong";
         };
+
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "air_1") {
+              labSimState.phase = "light_candle"; labSimState.burnProgress = 0; labSimState.waterLevel = 0;
+              executeLabAction(act, { btn, step: 1, sound: "switch", title: "Thắp sáng ngọn nến nổi trên chậu nước màu đỏ" });
+            } else if (act === "air_2") {
+              labSimState.phase = "running"; labSimState.burnProgress = 0.2; labSimState.waterLevel = 5;
+              executeLabAction(act, { btn, step: 2, sound: "drip", title: "Úp ngược ống đong chia vạch lên ngọn nến" });
+            } else if (act === "air_3") {
+              labSimState.phase = "running"; labSimState.burnProgress = 0.6; labSimState.waterLevel = 14;
+              executeLabAction(act, { btn, step: 3, sound: "switch", title: "Oxygen cạn kiệt, ngọn nến lụi tàn rồi tắt hẳn" });
+            } else if (act === "air_4") {
+              labSimState.phase = "done"; labSimState.burnProgress = 1.0; labSimState.waterLevel = 20;
+              executeLabAction(act, { btn, step: 5, sound: "bell", title: "Nước dâng lên đúng 1 vạch (1/5 thể tích ống đong = 20% thể tích không khí)" });
+            } else if (act === "air_5") {
+              labSimState.phase = "idle"; labSimState.burnProgress = 0; labSimState.waterLevel = 0;
+              executeLabAction(act, { btn, step: 1, sound: "switch", title: "Đặt lại thí nghiệm xác định thể tích Oxygen" });
+            }
+          };
+        });
 
       } else if (simType === "atomic_structure") {
         labSimState.element = "Na";
@@ -9226,6 +10250,18 @@ let labLoggedData = [];
           '</div>' +
           '<div class="lab-ctrl-btns" style="margin-top:8px">' +
             '<button class="lab-ctrl-toggle active" id="btnToggleElecAnim" type="button">⚡ Chuyển động electron: BẬT</button>' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="atom_1"><span class="btn-icon">⚛️</span><span>1. Khảo sát Carbon (Z = 6, 2 lớp: 2, 4)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="atom_2"><span class="btn-icon">⚛️</span><span>2. Khảo sát Sodium (Z = 11, 3 lớp: 2, 8, 1)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="atom_3"><span class="btn-icon">⚛️</span><span>3. Khảo sát Chlorine (Z = 17, 3 lớp: 2, 8, 7)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="atom_4"><span class="btn-icon">⚛️</span><span>4. Khảo sát Oxygen (Z = 8, 2 lớp: 2, 6)</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="atom_5"><span class="btn-icon">⚛️</span><span>5. Khảo sát Hydrogen (Z = 1, 1 lớp: 1e)</span></button>' +
+            '</div>' +
           '</div>';
 
         const selEl = document.getElementById("selElement");
@@ -9243,6 +10279,28 @@ let labLoggedData = [];
           this.textContent = labSimState.animateElectrons ? "⚡ Chuyển động electron: BẬT" : "⚡ Chuyển động electron: DỪNG";
         };
 
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "atom_1") {
+              labSimState.element = "C"; labSimState.showOrbitals = true; labSimState.animateElectrons = true;
+              executeLabAction(act, { btn, step: 1, sound: "switch", title: "Mô hình nguyên tử Carbon (Z = 6): 6p, 6n, 6e (K: 2e, L: 4e)" });
+            } else if (act === "atom_2") {
+              labSimState.element = "Na"; labSimState.showOrbitals = true; labSimState.animateElectrons = true;
+              executeLabAction(act, { btn, step: 4, sound: "switch", title: "Mô hình nguyên tử Sodium (Z = 11): 11e (K: 2, L: 8, M: 1e hóa trị)" });
+            } else if (act === "atom_3") {
+              labSimState.element = "Cl"; labSimState.showOrbitals = true; labSimState.animateElectrons = true;
+              executeLabAction(act, { btn, step: 5, sound: "switch", title: "Mô hình nguyên tử Chlorine (Z = 17): 17e (2, 8, 7 - 7e lớp ngoài cùng)" });
+            } else if (act === "atom_4") {
+              labSimState.element = "O"; labSimState.showOrbitals = true; labSimState.animateElectrons = true;
+              executeLabAction(act, { btn, step: 2, sound: "switch", title: "Mô hình nguyên tử Oxygen (Z = 8): 8e (2, 6 - phi kim điển hình)" });
+            } else if (act === "atom_5") {
+              labSimState.element = "H"; labSimState.showOrbitals = true; labSimState.animateElectrons = true;
+              executeLabAction(act, { btn, step: 1, sound: "switch", title: "Mô hình nguyên tử Hydrogen (Z = 1): 1 proton, 1 electron lớp K" });
+            }
+          };
+        });
+
       } else if (simType === "mass_conservation") {
         labSimState.step = 1;
         labSimState.mixProgress = 0;
@@ -9255,6 +10313,17 @@ let labLoggedData = [];
             '<button class="lab-ctrl-toggle active" id="btnStep1" type="button">1. Cân trước phản ứng (m₁)</button>' +
             '<button class="lab-ctrl-toggle" id="btnStep2" type="button">2. Đổ trộn 2 dung dịch</button>' +
             '<button class="lab-ctrl-toggle" id="btnStep3" type="button">3. Cân sau phản ứng (m₂)</button>' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="mc_1"><span class="btn-icon">⚖️</span><span>1. Cân trước phản ứng: m1 = 158.45g</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="mc_2"><span class="btn-icon">🧪</span><span>2. Nghiêng bình rót BaCl2 vào Na2SO4</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="mc_3"><span class="btn-icon">⚪</span><span>3. Xuất hiện kết tủa trắng BaSO4↓</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="mc_4"><span class="btn-icon">📋</span><span>4. Cân sau phản ứng: m2 = 158.45g (Δm = 0)</span></button>' +
+            '</div>' +
           '</div>';
 
         const bS1 = document.getElementById("btnStep1");
@@ -9271,6 +10340,25 @@ let labLoggedData = [];
         bS1.onclick = () => setStep(1);
         bS2.onclick = () => setStep(2);
         bS3.onclick = () => setStep(3);
+
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "mc_1") {
+              labSimState.step = 1; labSimState.mixProgress = 0; labSimState.reacted = false;
+              executeLabAction(act, { btn, step: 1, sound: "switch", title: "Đặt hai bình dung dịch lên cân: m_trước = 158.45g" });
+            } else if (act === "mc_2") {
+              labSimState.step = 2; labSimState.mixProgress = 0.5; labSimState.reacted = true;
+              executeLabAction(act, { btn, step: 3, sound: "drip", title: "Nghiêng bình đổ dung dịch BaCl2 vào bình chứa Na2SO4" });
+            } else if (act === "mc_3") {
+              labSimState.step = 3; labSimState.mixProgress = 1.0; labSimState.reacted = true;
+              executeLabAction(act, { btn, step: 4, sound: "drip", title: "Phản ứng tạo kết tủa trắng đục BaSO4 không tan: BaCl2 + Na2SO4 -> BaSO4 v + 2NaCl" });
+            } else if (act === "mc_4") {
+              labSimState.step = 3; labSimState.mixProgress = 1.0; labSimState.reacted = true;
+              executeLabAction(act, { btn, step: 5, sound: "bell", title: "Cân điện tử hiển thị giữ nguyên m_sau = 158.45g -> Định luật bảo toàn khối lượng được kiểm chứng tuyệt đối!" });
+            }
+          };
+        });
 
       } else if (simType === "hydrocarbon_bromine") {
         labSimState.gas = "C2H4";
@@ -9292,6 +10380,17 @@ let labLoggedData = [];
           '</div>' +
           '<div class="lab-ctrl-btns" style="margin-top:8px">' +
             '<button class="lab-ctrl-toggle" id="btnResetBromine" type="button">↺ Đổi ống nghiệm dung dịch Bromine mới</button>' +
+          '</div>' +
+          '<div class="lab-actions-section">' +
+            '<div class="lab-actions-header">' +
+              '<div class="lab-actions-title">🎯 HÀNH ĐỘNG THỰC HÀNH TRỰC TIẾP</div>' +
+            '</div>' +
+            '<div class="lab-actions-grid">' +
+              '<button type="button" class="lab-action-btn" data-action="hb_1"><span class="btn-icon">🧪</span><span>1. Chuẩn bị dung dịch Bromine da cam</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="hb_2"><span class="btn-icon">💨</span><span>2. Dẫn khí Ethylene (C2H4) ➔ Mất màu!</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="hb_3"><span class="btn-icon">💨</span><span>3. Dẫn khí Methane (CH4) ➔ Không mất màu</span></button>' +
+              '<button type="button" class="lab-action-btn" data-action="hb_4"><span class="btn-icon">↺</span><span>4. Đổi ống nghiệm dung dịch Bromine mới</span></button>' +
+            '</div>' +
           '</div>';
 
         const selG = document.getElementById("selGas");
@@ -9313,6 +10412,25 @@ let labLoggedData = [];
           bFlow.classList.remove("active");
           bFlow.textContent = "▶ Mở van dẫn khí";
         };
+
+        ctrlPanel.querySelectorAll(".lab-action-btn").forEach(btn => {
+          btn.onclick = () => {
+            const act = btn.dataset.action;
+            if (act === "hb_1") {
+              labSimState.colorFactor = 1.0; labSimState.isFlowing = false;
+              executeLabAction(act, { btn, step: 1, sound: "switch", title: "Chuẩn bị ống nghiệm chứa dung dịch Bromine màu vàng da cam" });
+            } else if (act === "hb_2") {
+              labSimState.gas = "C2H4"; labSimState.isFlowing = true; labSimState.colorFactor = 0.0;
+              executeLabAction(act, { btn, step: 2, sound: "bell", title: "Dẫn khí Ethylene C2H4 -> Phản ứng cộng làm mất màu dung dịch Bromine hoàn toàn!" });
+            } else if (act === "hb_3") {
+              labSimState.gas = "CH4"; labSimState.isFlowing = true; labSimState.colorFactor = 1.0;
+              executeLabAction(act, { btn, step: 3, sound: "drip", title: "Dẫn khí Methane CH4 -> Không phản ứng ở điều kiện thường, màu da cam không đổi" });
+            } else if (act === "hb_4") {
+              labSimState.colorFactor = 1.0; labSimState.isFlowing = false;
+              executeLabAction(act, { btn, step: 1, sound: "switch", title: "Thay ống nghiệm dung dịch Bromine nguyên chất mới" });
+            }
+          };
+        });
       }
 
       // Initialize 3D WebGL engine if available
