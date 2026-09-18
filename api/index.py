@@ -1271,8 +1271,41 @@ def api_lab_export_report():
     return jsonify({"error": "Docx export service unavailable"}), 500
 
 # =========================================================================
-# 5. EXAM 3280 (MA TRẬN, ĐẶC TẢ, ĐỀ THI WORD)
+# 5. EXAM 3280 & CÔNG VĂN 3280/BGDĐT-GDTrH (THAY THẾ CV 5842)
 # =========================================================================
+@app.route("/api/curriculum/cong-van-3280", methods=["GET", "OPTIONS"])
+@app.route("/curriculum/cong-van-3280", methods=["GET", "OPTIONS"])
+def api_get_cong_van_3280():
+    if request.method == "OPTIONS": return jsonify({"status": "ok"})
+    # Load cong_van_3280.json
+    cv_file = BASE_DIR / "api" / "data" / "cong_van_3280.json"
+    if not cv_file.exists():
+        cv_file = BASE_DIR / "src" / "app" / "data" / "cong_van_3280.json"
+    if cv_file.exists():
+        try:
+            with open(cv_file, "r", encoding="utf-8") as f:
+                cv_data = json.load(f)
+            subject = request.args.get("subject")
+            grade = request.args.get("grade")
+            if subject and subject in cv_data.get("subjects", {}):
+                subj_data = cv_data["subjects"][subject]
+                if grade and grade in subj_data.get("grades", {}):
+                    return jsonify({
+                        "metadata": cv_data.get("metadata", {}),
+                        "subject": subject,
+                        "grade": grade,
+                        "guidelines": subj_data["grades"][grade]
+                    })
+                return jsonify({
+                    "metadata": cv_data.get("metadata", {}),
+                    "subject": subject,
+                    "data": subj_data
+                })
+            return jsonify(cv_data)
+        except Exception as err:
+            return jsonify({"error": f"Lỗi đọc dữ liệu Công văn 3280: {str(err)}"}), 500
+    return jsonify({"error": "Dữ liệu Công văn 3280 chưa sẵn sàng"}), 404
+
 @app.route("/api/exam/generate-3280", methods=["POST", "OPTIONS"])
 @app.route("/exam/generate-3280", methods=["POST", "OPTIONS"])
 def api_exam_generate_3280():

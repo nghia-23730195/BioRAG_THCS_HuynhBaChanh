@@ -169,7 +169,11 @@ def build_exam_package_3280_doc(exam_data: Dict[str, Any]) -> docx.Document:
     )
     _add_p_styled(
         doc, f"KHUNG MA TRẬN ĐỀ KIỂM TRA {exam_type} MÔN KHOA HỌC TỰ NHIÊN – LỚP {grade}",
-        size_pt=14, bold=True, color=COLOR_PRIMARY, align=WD_ALIGN_PARAGRAPH.CENTER, space_after_pt=3
+        size_pt=14, bold=True, color=COLOR_PRIMARY, align=WD_ALIGN_PARAGRAPH.CENTER, space_after_pt=2
+    )
+    _add_p_styled(
+        doc, "(Kèm theo Công văn số 3280/BGDĐT-GDTrH ngày 27/8/2020 của Bộ GD&ĐT - thay thế Công văn số 5842/BGDĐT-VP)",
+        size_pt=10, italic=True, color=COLOR_MUTED, align=WD_ALIGN_PARAGRAPH.CENTER, space_after_pt=3
     )
     _add_p_styled(
         doc, f"Năm học: {school_year} · Thời gian làm bài: {duration_min} phút · Tỉ lệ: {ratio_tn_pct}% Trắc nghiệm ({tn_total_score:.1f}đ) + {ratio_tl_pct}% Tự luận ({tl_total_score:.1f}đ)",
@@ -340,11 +344,11 @@ def build_exam_package_3280_doc(exam_data: Dict[str, Any]) -> docx.Document:
     # =========================================================================
     _add_p_styled(
         doc, f"BẢN ĐẶC TẢ MA TRẬN ĐỀ KIỂM TRA {exam_type} MÔN KHTN – LỚP {grade}",
-        size_pt=13.5, bold=True, color=COLOR_PRIMARY, align=WD_ALIGN_PARAGRAPH.CENTER, space_after_pt=3
+        size_pt=13.5, bold=True, color=COLOR_PRIMARY, align=WD_ALIGN_PARAGRAPH.CENTER, space_after_pt=2
     )
     _add_p_styled(
-        doc, f"(Quy định chi tiết Yêu cầu cần đạt chuẩn GDPT 2018 tương ứng từng câu hỏi)",
-        size_pt=11, italic=True, align=WD_ALIGN_PARAGRAPH.CENTER, space_after_pt=8
+        doc, "(Căn cứ Công văn số 3280/BGDĐT-GDTrH ngày 27/8/2020 thay thế Công văn 5842/BGDĐT-VP · GDPT 2018)",
+        size_pt=10, italic=True, color=COLOR_MUTED, align=WD_ALIGN_PARAGRAPH.CENTER, space_after_pt=8
     )
 
     spec_table = doc.add_table(rows=1, cols=6)
