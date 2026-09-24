@@ -4,8 +4,15 @@ venv/
 .venv/
 _BACKUP*
 BioRAG_ChoMac/
-datasources/
+Claude outputs/
 database_kntt/
+database_kntt_v2/
+datasources/
+datasources_kntt8_fix/
+scratch/
+src/
+web_assets/
+__pycache__/
 *.bat
 *.xlsx
 *.zip
@@ -16,6 +23,4 @@ Dockerfile
 requirements_docker.txt
 HUONG_DAN_*.md
 DOC_TRUOC_KHI_CHAY.md
-src/test/
-src/etl/
-src/rag/
+*.bak*
