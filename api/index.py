@@ -275,32 +275,47 @@ def get_image_catalog():
     return IMAGE_CATALOG_CACHE
 
 def get_relevant_images_for_query(question, matched_lesson=None, grade=None, limit=2):
-    """Retrieve 1-3 best SGK diagrams or illustrations matching the lesson or question."""
+    """Retrieve 1-3 best authentic SGK illustrations or verified textbook pages matching the lesson or question."""
     results = []
     seen = set()
     
-    # 1. From matched_lesson illustrations if present
-    if matched_lesson and isinstance(matched_lesson.get("illustrations"), list):
-        for ill in matched_lesson.get("illustrations", []):
-            p = ill.get("image_path") or ill.get("image_url")
-            if p and p not in seen:
-                seen.add(p)
-                clean_p = p.replace('\\', '/').lstrip('/')
-                if 'images/' in clean_p:
-                    clean_p = clean_p.split('images/')[-1]
-                from urllib.parse import quote
-                img_url = f"/api/images/{quote(clean_p, safe='/')}"
+    resolved_grade = int(grade or (matched_lesson.get("grade") if matched_lesson else 7) or 7)
+    clean_stem = f"SGK KHTN {resolved_grade} KNTT"
+    
+    # 1. Primary Priority: Authentic scanned textbook pages corresponding to the matched lesson
+    if matched_lesson:
+        source_label = matched_lesson.get("source_label", "")
+        pages_to_show = []
+        m_range = re.search(r'Trang\s+(\d+)(?:[–-](\d+))?', source_label)
+        if m_range:
+            p_start = int(m_range.group(1))
+            p_end = int(m_range.group(2)) if m_range.group(2) else p_start
+            for p in range(p_start, min(p_start + limit, p_end + 1)):
+                pages_to_show.append(p)
+        
+        if not pages_to_show:
+            for s in matched_lesson.get("generation_sources", []):
+                p = s.get("page")
+                if p and p not in pages_to_show:
+                    pages_to_show.append(p)
+                    
+        for printed_p in pages_to_show[:limit]:
+            if printed_p not in seen:
+                seen.add(printed_p)
+                img_url = f"/api/learning/textbook-page?grade={resolved_grade}&page={printed_p}"
+                label = f"Trang {printed_p} (SGK KHTN {resolved_grade} · {matched_lesson.get('number', '')})"
+                caption = f"Trang {printed_p} - {matched_lesson.get('title', '')} (SGK KHTN {resolved_grade} Kết nối tri thức)"
                 results.append({
                     "image_url": img_url,
-                    "image_path": clean_p,
-                    "label": ill.get("label") or f"Hình minh họa (Trang {ill.get('page', '?')}, SGK KHTN {matched_lesson.get('grade', grade or 7)})",
-                    "caption": ill.get("caption") or ill.get("label") or "Hình minh họa từ SGK",
-                    "page": ill.get("page", 1),
-                    "source": ill.get("source") or f"SGK KHTN {matched_lesson.get('grade', grade or 7)} KNTT.pdf",
+                    "image_path": f"{clean_stem}/page_{printed_p}.jpg",
+                    "label": label,
+                    "caption": caption,
+                    "page": printed_p,
+                    "source": f"{clean_stem}.pdf",
                     "metadata": {
-                        "page_number": ill.get("page", 1),
-                        "pdf_filename": ill.get("source") or f"SGK KHTN {matched_lesson.get('grade', grade or 7)} KNTT.pdf",
-                        "figure_caption": ill.get("caption", ""),
+                        "page_number": printed_p,
+                        "pdf_filename": f"{clean_stem}.pdf",
+                        "figure_caption": caption,
                         "matched_query": question
                     }
                 })
@@ -309,7 +324,6 @@ def get_relevant_images_for_query(question, matched_lesson=None, grade=None, lim
 
     # 2. Match from image_catalog using keywords, grade, or page
     catalog = get_image_catalog()
-    resolved_grade = int(grade or (matched_lesson.get("grade") if matched_lesson else 7) or 7)
     q_low = question.lower()
     
     scored = []
@@ -369,10 +383,10 @@ def get_relevant_images_for_query(question, matched_lesson=None, grade=None, lim
         sources = matched_lesson.get("generation_sources", [])
         if sources and sources[0].get("page"):
             p_num = sources[0].get("page")
-        fallback_path = f"SGK KHTN {resolved_grade} KNTT/page_{p_num}_img_0.png"
+        fallback_path = f"SGK KHTN {resolved_grade} KNTT/page_{p_num}.jpg"
         from urllib.parse import quote
         results.append({
-            "image_url": f"/api/images/{quote(fallback_path, safe='/')}",
+            "image_url": f"/api/learning/textbook-page?grade={resolved_grade}&page={p_num}",
             "image_path": fallback_path,
             "label": f"Sơ đồ SGK: {matched_lesson.get('number', '')} {matched_lesson.get('title', '')}".strip(),
             "caption": f"Trang kiến thức SGK KHTN {resolved_grade} - Trang {p_num}",

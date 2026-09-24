@@ -813,21 +813,21 @@ def format_local_rag_answer(question, lesson):
     if matched_entry:
         lines.append(f"- **{matched_entry['term']}**: {matched_entry['definition']}")
         if matched_entry.get("details"):
-            lines.append(f"  * *Chi tiết khoa học*: {matched_entry['details']}")
-
-    # Add other related terms from lesson
-    terms = lesson.get("terms", [])
-    added_terms = 0
-    for t in terms:
-        t_name = t.get("term", "")
-        t_def = t.get("definition", "")
-        if matched_entry and (t_name.lower() in matched_entry["term"].lower() or matched_entry["term"].lower() in t_name.lower()):
-            continue
-        if len(t_def) > 20 and not t_def.endswith(('...', 'được', 'và', 'của', 'tạo', 'là', 'trong')):
-            lines.append(f"- **{t_name}**: {t_def}")
-            added_terms += 1
-            if added_terms >= 3:
-                break
+            lines.append(f"  * *Chi tiết khoa học & Đặc điểm*: {matched_entry['details']}")
+    else:
+        # Fallback to key terms from lesson
+        terms = lesson.get("terms", [])
+        added_terms = 0
+        for t in terms:
+            t_name = t.get("term", "")
+            t_def = t.get("definition", "")
+            if len(t_def) > 20 and not t_def.endswith(('...', 'được', 'và', 'của', 'tạo', 'là', 'trong')):
+                lines.append(f"- **{t_name}**: {t_def}")
+                added_terms += 1
+                if added_terms >= 2:
+                    break
+        if not added_terms and lesson.get("content"):
+            lines.append(f"- **{title}**: {lesson.get('content')[:250]}...")
                 
     lines.append("")
 
@@ -882,13 +882,16 @@ def call_gemini_rest(prompt, api_key):
         try:
             with urllib.request.urlopen(req, timeout=12) as resp:
                 data = json.loads(resp.read().decode("utf-8"))
-                parts = candidate.get("content", {}).get("parts", [])
-                texts = [p.get("text", "") for p in parts if not p.get("thought") and p.get("text")]
-                if not texts:
-                    texts = [p.get("text", "") for p in parts if p.get("text")]
-                text = "\n".join(texts).strip()
-                if text and len(text) > 50:
-                    return text, m
+                candidates = data.get("candidates", [])
+                if candidates:
+                    candidate = candidates[0]
+                    parts = candidate.get("content", {}).get("parts", [])
+                    texts = [p.get("text", "") for p in parts if not p.get("thought") and p.get("text")]
+                    if not texts:
+                        texts = [p.get("text", "") for p in parts if p.get("text")]
+                    text = "\n".join(texts).strip()
+                    if text and len(text) > 50:
+                        return text, m
         except Exception:
             continue
     return None, None
