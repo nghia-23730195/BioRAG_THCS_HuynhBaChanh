@@ -238,12 +238,8 @@
       ],
       "terms": [
         {
-          "term": "hình bên",
-          "definition": "Nội quy phòng thực hành\" Theo em, những hoạt động nào trong phòng thực hành ở hình bên là không an toàn?."
-        },
-        {
-          "term": "hình bên",
-          "definition": "không an toàn – Khi làm thí nghiệm, chúng ta phải tiếp xức với: nguồn điện, nguồn nhiệt, hoá chất, chất dễ"
+          "term": "Hiện tượng phản xạ toàn phần",
+          "definition": "Là hiện tượng toàn bộ tia sáng tới bị phản xạ ngược trở lại môi trường trong suốt ban đầu tại mặt phân cách giữa hai môi trường, không có tia khúc xạ đi vào môi trường thứ hai."
         }
       ],
       "warmup": {
@@ -364,8 +360,16 @@
       ],
       "terms": [
         {
-          "term": "Kinh lúp cầm tay đơn giản",
-          "definition": "một tấm kinh có phần rìa mỏng hơn phần giữa, thường"
+          "term": "Thấu kính phân kì",
+          "definition": "Là thấu kính có phần rìa dày hơn phần giữa, có tác dụng làm phân kì (loe rộng ra) chùm tia sáng tới song song với trục chính."
+        },
+        {
+          "term": "Thấu kính hội tụ",
+          "definition": "Là thấu kính có phần rìa mỏng hơn phần giữa (làm bằng vật liệu trong suốt như thủy tinh, nhựa), có tác dụng hội tụ chùm tia sáng tới song song với trục chính tại một điểm nằm sau thấu kính gọi là tiêu điểm chính."
+        },
+        {
+          "term": "Lăng kính",
+          "definition": "Là một khối chất trong suốt, đồng chất (thường làm bằng thủy tinh hoặc nhựa trong), được giới hạn bởi hai mặt phẳng không song song gọi là các mặt bên của lăng kính."
         },
         {
           "term": "Kính lúp",
@@ -473,6 +477,22 @@
         "Hình 42 Ca-mê-ra và máy tính"
       ],
       "terms": [
+        {
+          "term": "Quang hợp ở thực vật",
+          "definition": "Là quá trình lá cây và các bộ phận có màu xanh của thực vật sử dụng năng lượng ánh sáng mặt trời đã được chất diệp lục (trong lục lạp) hấp thụ để tổng hợp chất hữu cơ (glucose, tinh bột) từ nước (H2O) rễ hút lên và khí carbon dioxide (CO2) từ không khí, đồng thời giải phóng khí oxygen (O2) ra môi trường."
+        },
+        {
+          "term": "Thấu kính phân kì",
+          "definition": "Là thấu kính có phần rìa dày hơn phần giữa, có tác dụng làm phân kì (loe rộng ra) chùm tia sáng tới song song với trục chính."
+        },
+        {
+          "term": "Thấu kính hội tụ",
+          "definition": "Là thấu kính có phần rìa mỏng hơn phần giữa (làm bằng vật liệu trong suốt như thủy tinh, nhựa), có tác dụng hội tụ chùm tia sáng tới song song với trục chính tại một điểm nằm sau thấu kính gọi là tiêu điểm chính."
+        },
+        {
+          "term": "Lăng kính",
+          "definition": "Là một khối chất trong suốt, đồng chất (thường làm bằng thủy tinh hoặc nhựa trong), được giới hạn bởi hai mặt phẳng không song song gọi là các mặt bên của lăng kính."
+        },
         {
           "term": "Kinh hiển vi quang học",
           "definition": "Để quan sát gân của một lá cây ta có thể dùng kính lúp Tuy nhiên, để quan sát tế bào của chiếc lá này, thì ta phải làm thế nào – Tìm hiểu về kính hiển vi quang học Thị kính Đĩa quay gắn Kinh hiển vi quang học có thể phóng to ảnh của vật các vật kính được quan sát khoảng từ 40 lần đến 3000 lần."
@@ -768,6 +788,14 @@
         "Cần thực hiện phép đo đúng cách để thu được kết quả đo chính xác."
       ],
       "terms": [
+        {
+          "term": "Khối lượng riêng",
+          "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
         {
           "term": "Khối lượng",
           "definition": "Bài 6 ĐO KHỐI LƯỢNG MỤC TIÊU Nêu được cách đo, đơn vị đo và dụng cụ thường dùng để đo khối lượng."
@@ -1240,6 +1268,18 @@
       },
       "terms": [
         {
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+        },
+        {
+          "term": "Đơn chất",
+          "definition": "Là những chất được tạo nên từ chỉ một nguyên tố hóa học duy nhất (ví dụ: kim loại nhôm Al, khí oxygen O2, than chì C, khí nitrogen N2)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
           "term": "ta nhận thấy nước",
           "definition": "chất lỏng, không màu, không mùi,"
         },
@@ -1453,6 +1493,18 @@
         "11"
       ],
       "terms": [
+        {
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+        },
+        {
+          "term": "Đơn chất",
+          "definition": "Là những chất được tạo nên từ chỉ một nguyên tố hóa học duy nhất (ví dụ: kim loại nhôm Al, khí oxygen O2, than chì C, khí nitrogen N2)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
         {
           "term": "nhiệt độ xác định gọi",
           "definition": "nhiệt độ nóng chảy, Ngược lại, quá trình chất chuyển từ thể lỏng"
@@ -2046,6 +2098,14 @@
       ],
       "terms": [
         {
+          "term": "Nguyên tử",
+          "definition": "Là hạt vô cùng nhỏ bé và trung hòa về điện, cấu tạo nên mọi chất. Nguyên tử gồm hạt nhân mang điện tích dương ở tâm (chứa proton mang điện +1 và neutron không mang điện) và lớp vỏ electron mang điện tích âm (-1) chuyển động xung quanh."
+        },
+        {
+          "term": "Nguyên tố hóa học",
+          "definition": "Là tập hợp những nguyên tử cùng loại có cùng số proton trong hạt nhân (cùng điện tích hạt nhân). Các nguyên tử của cùng một nguyên tố hóa học đều có tính chất hóa học giống nhau."
+        },
+        {
           "term": "Quặng",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Một số nguyên liệu, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         },
@@ -2511,6 +2571,18 @@
       ],
       "terms": [
         {
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+        },
+        {
+          "term": "Đơn chất",
+          "definition": "Là những chất được tạo nên từ chỉ một nguyên tố hóa học duy nhất (ví dụ: kim loại nhôm Al, khí oxygen O2, than chì C, khí nitrogen N2)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
           "term": "được tạo thành từ một chất",
           "definition": "bạc, bình khí oxygen cũng chỉ chứa một chất là oxygen"
         },
@@ -2748,6 +2820,18 @@
         }
       ],
       "terms": [
+        {
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+        },
+        {
+          "term": "Đơn chất",
+          "definition": "Là những chất được tạo nên từ chỉ một nguyên tố hóa học duy nhất (ví dụ: kim loại nhôm Al, khí oxygen O2, than chì C, khí nitrogen N2)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
         {
           "term": "Tách chất khỏi hỗn hợp",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Tách chất khỏi hỗn hợp, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
@@ -3019,6 +3103,10 @@
       },
       "terms": [
         {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
           "term": "Màng tế bào",
           "definition": "Là đơn vị cấu trúc và chức năng cơ bản nhất của mọi cơ thể sống. Tất cả các loài sinh vật từ vi khuẩn đơn bào đến con người đều được cấu tạo từ một hoặc nhiều tế bào."
         },
@@ -3032,15 +3120,7 @@
         },
         {
           "term": "Nhân hoặc vùng nhân",
-          "definition": "nơi chứa vật chất di truyền"
-        },
-        {
-          "term": "thuật",
-          "definition": "trung tâm điều khiển các hoạt động sống của tế bào"
-        },
-        {
-          "term": "thuật",
-          "definition": "trung tâm điều khiển các hoạt động sống của tế bào"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Cấu tạo và chức năng của các tế bào (SGK KHTN 6), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         }
       ],
       "summary": [
@@ -3169,8 +3249,12 @@
       ],
       "terms": [
         {
-          "term": "Quá trình này còn được gọi",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Sự lớn lên và sinh sản của tế bào, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
         }
       ],
       "warmup": {
@@ -3319,8 +3403,12 @@
       ],
       "terms": [
         {
-          "term": "Thực hành: Quan sát và phân biệt một số loại tế bào",
-          "definition": "Là đơn vị cấu trúc và chức năng cơ bản nhất của mọi cơ thể sống. Tất cả các loài sinh vật từ vi khuẩn đơn bào đến con người đều được cấu tạo từ một hoặc nhiều tế bào."
+          "term": "Phân tử",
+          "definition": "Là hạt đại diện cho chất, gồm một số nguyên tử liên kết với nhau bằng liên kết hóa học và thể hiện đầy đủ tính chất hóa học của chất đó."
+        },
+        {
+          "term": "Thấu kính phân kì",
+          "definition": "Là thấu kính có phần rìa dày hơn phần giữa, có tác dụng làm phân kì (loe rộng ra) chùm tia sáng tới song song với trục chính."
         }
       ]
     },
@@ -3416,6 +3504,14 @@
         "Cơ thể đa bào (ví dụ: con voi, con gà,...) thường có kích thước lớn, tỉ lệ diện tích và thể tích của cơ thể nhỏ nên sự vận chuyển các gà,...) thường có kích thư..."
       ],
       "terms": [
+        {
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
+        },
         {
           "term": "làm hai nhóm lớn",
           "definition": "cơ thể đơn bào và cơ thể đa bào"
@@ -3691,7 +3787,7 @@
       "terms": [
         {
           "term": "Thực hành: Quan sát và mô tả cơ thể đơn bào, cơ thể đa bào",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Thực hành: Quan sát và mô tả cơ thể đơn bào, cơ thể đa bào, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
+          "definition": "Khái niệm và nội dung trọng tâm của Bài 24 trong chương trình Khoa học tự nhiên lớp 6 (Kết nối tri thức với cuộc sống)."
         }
       ]
     },
@@ -3790,6 +3886,22 @@
         "giới sinh vật khác nhau. Em có biết – thuật tự tổng hợp chất hữu cơ (tự dưỡng), còn động vật là các cơ thể có khả năng vận động chủ động và dinh dưỡng theo kiểu..."
       ],
       "terms": [
+        {
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
+        },
+        {
+          "term": "Phân tử",
+          "definition": "Là hạt đại diện cho chất, gồm một số nguyên tử liên kết với nhau bằng liên kết hóa học và thể hiện đầy đủ tính chất hóa học của chất đó."
+        },
+        {
+          "term": "Thấu kính phân kì",
+          "definition": "Là thấu kính có phần rìa dày hơn phần giữa, có tác dụng làm phân kì (loe rộng ra) chùm tia sáng tới song song với trục chính."
+        },
         {
           "term": "của loài",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Hệ thống phân loại sinh vật, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
@@ -3896,12 +4008,20 @@
       ],
       "terms": [
         {
+          "term": "Phân tử",
+          "definition": "Là hạt đại diện cho chất, gồm một số nguyên tử liên kết với nhau bằng liên kết hóa học và thể hiện đầy đủ tính chất hóa học của chất đó."
+        },
+        {
+          "term": "Thấu kính phân kì",
+          "definition": "Là thấu kính có phần rìa dày hơn phần giữa, có tác dụng làm phân kì (loe rộng ra) chùm tia sáng tới song song với trục chính."
+        },
+        {
           "term": "của khoá lưỡng phân",
           "definition": "từ một tập hợp các đối tượng ban đầu được tách thành hai"
         },
         {
           "term": "lưỡng phân",
-          "definition": "khoá phân loại phổ biến nhất"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Khóa lưỡng phân (SGK KHTN 6), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         }
       ],
       "warmup": {
@@ -4517,12 +4637,28 @@
       ],
       "terms": [
         {
-          "term": "nguyên sinh vật",
-          "definition": "gi – Đa dạng nguyên sinh vật"
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
+        },
+        {
+          "term": "Nguyên tử",
+          "definition": "Là hạt vô cùng nhỏ bé và trung hòa về điện, cấu tạo nên mọi chất. Nguyên tử gồm hạt nhân mang điện tích dương ở tâm (chứa proton mang điện +1 và neutron không mang điện) và lớp vỏ electron mang điện tích âm (-1) chuyển động xung quanh."
+        },
+        {
+          "term": "Nguyên tố hóa học",
+          "definition": "Là tập hợp những nguyên tử cùng loại có cùng số proton trong hạt nhân (cùng điện tích hạt nhân). Các nguyên tử của cùng một nguyên tố hóa học đều có tính chất hóa học giống nhau."
         },
         {
           "term": "nguyên sinh vật",
-          "definition": "gi – Đa dạng nguyên sinh vật"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Nguyên sinh vật (SGK KHTN 6), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
+        },
+        {
+          "term": "nguyên sinh vật",
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Nguyên sinh vật (SGK KHTN 6), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "Đa số nguyên sinh vật",
@@ -4648,6 +4784,22 @@
         }
       ],
       "terms": [
+        {
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
+        },
+        {
+          "term": "Nguyên tử",
+          "definition": "Là hạt vô cùng nhỏ bé và trung hòa về điện, cấu tạo nên mọi chất. Nguyên tử gồm hạt nhân mang điện tích dương ở tâm (chứa proton mang điện +1 và neutron không mang điện) và lớp vỏ electron mang điện tích âm (-1) chuyển động xung quanh."
+        },
+        {
+          "term": "Nguyên tố hóa học",
+          "definition": "Là tập hợp những nguyên tử cùng loại có cùng số proton trong hạt nhân (cùng điện tích hạt nhân). Các nguyên tử của cùng một nguyên tố hóa học đều có tính chất hóa học giống nhau."
+        },
         {
           "term": "Thực hành: Quan sát nguyên sinh vật",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Thực hành: Quan sát nguyên sinh vật, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
@@ -5087,16 +5239,12 @@
       ],
       "terms": [
         {
-          "term": "Thực vật có mạch",
-          "definition": "nhóm các loài thực vật có thân, lá, rễ thật và cơ thể có mạch dẫn"
-        },
-        {
           "term": "Dương xỉ",
-          "definition": "đại diện của nhóm thực vật có"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Thực vật (SGK KHTN 6), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "Thực vật hạt trần",
-          "definition": "những cây gỗ có kích thước"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Thực vật (SGK KHTN 6), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "hữu cơ do cây xanh tạo ra",
@@ -5108,7 +5256,7 @@
         },
         {
           "term": "các ngành chính",
-          "definition": "rêu, Dương xỉ, Hạt trần và Hạt"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Thực vật (SGK KHTN 6), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         }
       ],
       "warmup": {
@@ -5267,8 +5415,12 @@
       ],
       "terms": [
         {
-          "term": "Thực hành: Quan sát và phân biệt một số nhóm thực vật",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Thực hành: Quan sát và phân biệt một số nhóm thực vật, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
+          "term": "Phân tử",
+          "definition": "Là hạt đại diện cho chất, gồm một số nguyên tử liên kết với nhau bằng liên kết hóa học và thể hiện đầy đủ tính chất hóa học của chất đó."
+        },
+        {
+          "term": "Thấu kính phân kì",
+          "definition": "Là thấu kính có phần rìa dày hơn phần giữa, có tác dụng làm phân kì (loe rộng ra) chùm tia sáng tới song song với trục chính."
         }
       ]
     },
@@ -5483,11 +5635,11 @@
         },
         {
           "term": "chân khớp",
-          "definition": "phần phụ (chân) phân đốt, nối"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Động vật (SGK KHTN 6), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "chân khớp",
-          "definition": "phần phụ (chân) phân đốt, nối"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Động vật (SGK KHTN 6), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "khoá",
@@ -5620,7 +5772,7 @@
       "terms": [
         {
           "term": "Địa điểm có thể",
-          "definition": "vườn cây, vườn thực nghiệm,"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Thực hành: Quan sát và nhận biết một số nhóm động vật ngoài thiên nhiên (SGK KHTN 6), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "điểm",
@@ -5880,6 +6032,14 @@
       ],
       "terms": [
         {
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
+        },
+        {
           "term": "Đa dạng sinh học",
           "definition": "Là sự phong phú về số lượng loài, số lượng cá thể trong mỗi loài, sự đa dạng về nguồn gen di truyền và sự phong phú của các hệ sinh thái trên Trái Đất."
         }
@@ -6026,6 +6186,14 @@
         "7. Nhận xét sự phân bố của thực vật và động vật ở các môi trường khác nhau và độ đa"
       ],
       "terms": [
+        {
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
+        },
         {
           "term": "Địa điểm tìm hiểu có thể",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Tìm hiểu sinh vật ngoài thiên nhiên, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
@@ -6469,6 +6637,14 @@
       ],
       "terms": [
         {
+          "term": "Đột biến gene",
+          "definition": "Là những biến đổi bất thường trong cấu trúc phân tử của gene, liên quan đến một hoặc một số cặp nucleotide (gồm các dạng: thay thế một cặp nucleotide, thêm một cặp nucleotide, mất một cặp nucleotide)."
+        },
+        {
+          "term": "Di truyền và Biến dị",
+          "definition": "Di truyền là hiện tượng truyền đạt các đặc điểm, tính trạng của bố mẹ, tổ tiên cho các thế hệ con cháu. Biến dị là hiện tượng con cái sinh ra xuất hiện những đặc điểm mới khác biệt so với bố mẹ và khác nhau giữa các cá thể trong cùng một lứa con."
+        },
+        {
           "term": "gọi",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Biến dạng của lò xo, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         },
@@ -6619,11 +6795,11 @@
         },
         {
           "term": "Trọng lượng của vật",
-          "definition": "độ lớn lực hút của Trái Đất"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Trọng lực, lực hấp dẫn (SGK KHTN 6), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "Trọng lượng của vật",
-          "definition": "độ lớn lực hút của Trái Đất"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Trọng lực, lực hấp dẫn (SGK KHTN 6), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "Khối lượng của vật",
@@ -6763,7 +6939,7 @@
       "terms": [
         {
           "term": "Lực ma sát",
-          "definition": "Là tác dụng đẩy hoặc kéo của vật này lên vật khác, được đặc trưng bởi phương, chiều, điểm đặt và độ lớn (đơn vị đo là Niutơn, kí hiệu N)."
+          "definition": "Là lực xuất hiện ở bề mặt tiếp xúc giữa hai vật và có tác dụng cản trở chuyển động của vật đối với bề mặt kia."
         }
       ],
       "illustrations": [
@@ -6996,6 +7172,18 @@
       ],
       "terms": [
         {
+          "term": "Di truyền và Biến dị",
+          "definition": "Di truyền là hiện tượng truyền đạt các đặc điểm, tính trạng của bố mẹ, tổ tiên cho các thế hệ con cháu. Biến dị là hiện tượng con cái sinh ra xuất hiện những đặc điểm mới khác biệt so với bố mẹ và khác nhau giữa các cá thể trong cùng một lứa con."
+        },
+        {
+          "term": "Khối lượng riêng",
+          "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
           "term": "được tạo ra",
           "definition": "nhờ có năng lượng dự trữ trong pin"
         },
@@ -7157,6 +7345,14 @@
         }
       ],
       "terms": [
+        {
+          "term": "Khối lượng riêng",
+          "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
         {
           "term": "Một số dạng năng lượng",
           "definition": "Bài 47 MỘT SỐ DẠNG NĂNG LƯỢNG MỤC TIÊU Phân loại được năng lượng theo tiêu chí."
@@ -7338,6 +7534,14 @@
       ],
       "terms": [
         {
+          "term": "Khối lượng riêng",
+          "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
           "term": "Sự chuyển hóa năng lượng",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Sự chuyển hóa năng lượng, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         }
@@ -7434,6 +7638,14 @@
         }
       ],
       "terms": [
+        {
+          "term": "Khối lượng riêng",
+          "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
         {
           "term": "Năng lượng hao phí",
           "definition": "Bài 49 NĂNG LƯỢNG HAO PHÍ MỤC TIÊU chuyển từ dạng này sang dạng khác, từ vật này sang vật khác."
@@ -7545,8 +7757,12 @@
       ],
       "terms": [
         {
-          "term": "Hình bên",
-          "definition": "28,9% Năng lượng tái tạo Hình bên là cơ cấu nguồn năng 45,9% 3,4% Nhiệt điện dầu lượng dùng để sản xuất điện ở nước ta năm 2015."
+          "term": "Khối lượng riêng",
+          "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
         },
         {
           "term": "và năng lượng tái tạo",
@@ -7562,11 +7778,11 @@
         },
         {
           "term": "Năng lượng địa nhiệt",
-          "definition": "năng lượng thu được từ sức"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Năng lượng tái tạo (SGK KHTN 6), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "Năng lượng sinh khối",
-          "definition": "năng lượng thu được từ thực"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Năng lượng tái tạo (SGK KHTN 6), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         }
       ],
       "warmup": {
@@ -7706,6 +7922,14 @@
         "CUOC SONG Đồ chơi \"dự án\" để góp phần bảo tồn năng lượng và bảo vệ môi trường. CUOC SONG Đồ chơi Mô hình Thùng đựng Túi giấy sách vở Hình 510 Thế Sản phẩm tái c..."
       ],
       "terms": [
+        {
+          "term": "Khối lượng riêng",
+          "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
         {
           "term": "tái tạo",
           "definition": "mặt khác, năng lượng tái tạo là nguyên nhân gây không tái tạo đang cạn kiệt dần và khi bị đốt cháy lại gây ra các vấn đề nghiêm trọng ô nhiễm môi trường."
@@ -7856,6 +8080,10 @@
       ],
       "terms": [
         {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
           "term": "Nêu được Mặt Trời và sao",
           "definition": "các thiên thể phát sáng; Mặt Trăng, các hành tinh và sao chồi"
         },
@@ -7877,7 +8105,7 @@
         },
         {
           "term": "Chòm sao",
-          "definition": "tập hợp các sao mà đường tưởng"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Chuyển động nhìn thấy của Mặt Trời. Thiên thể (SGK KHTN 6), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         }
       ],
       "warmup": {
@@ -8065,11 +8293,7 @@
       "terms": [
         {
           "term": "được mô tả như",
-          "definition": "\"chú Cuội ngồi gốc cây đa\""
-        },
-        {
-          "term": "Thuật Mặt Trăng",
-          "definition": "một vệ tinh của Trái Đất mà chúng ta có thể nhìn thấy trên bầu trời"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Mặt Trăng (SGK KHTN 6), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "Mặt Trăng",
@@ -8657,6 +8881,10 @@
       ],
       "terms": [
         {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
           "term": "Môn Khoa học tự nhiên",
           "definition": "môn học về các sự vật và hiện tượng trong thế giới tự nhiên"
         },
@@ -8725,7 +8953,7 @@
         "Trình bày được mô hình nguyên tử của Rutherford – Bohr (mô hình sắp xếp electron trong các lớp vỏ nguyên tử).",
         "Nêu được khối lượng của một nguyên tử theo đơn vị quốc tế amu (đơn vị khối lượng nguyên tử)."
       ],
-      "content": "Chương I NGUYÊN TỬ SƠ LƯỢC VỀ BẢNG TUẦN HOÀN CÁC NGUYÊN TỐ HOÁ HỌC Bài NGUYÊN TỬ MỤC TIÊU Trình bày được mô hình nguyên tử của Rutherford – Bohr (mô hình sắp xếp electron trong các lớp electron ở vỏ nguyên tử). Nêu được khối lượng của một nguyên tử theo đơn vị quốc tế amu (đơn vị khối lượng nguyên tử). Mọi vật thể tự nhiên hay nhân tạo đều được tạo thành từ một số loại hạt vô cùng nhỏ bé gọi là nguyên tử. Vậy nguyên tử có cấu tạo như thế nào – I- Quan niệm ban đầu về nguyên tử Hàng ngàn năm trước, nhiều nhà thông thái Hy Lạp mà đại diện là Đê-mô-crit (Democritus), đã cho rằng: sự tồn tại của một loại hạt vô cùng Trong một thời gian dài các nhà nhỏ (được gọi là nguyên tử) tạo nên sự đa dạng giả kim thuật thực hiện nhiều thí của vạn vật. Khởi nguồn của quan niệm nguyên nghiệm nhằm biến các kim loại tử là sự chia nhỏ một vật sẽ đến một giới hạn rẻ tiền (như chì) thành các kim \"không thể phân chia được\". Khái niệm này bị loại quý (như vàng). Tuy nhiên, lãng quên cho đến đầu thế kỉ XIX mới được \"không thể phân chia được\". Khái niệm này bị loại quý (như vàng). Tuy nhiên, lãng quên cho đến đầu thế kỉ XIX mới được theo không một nhà giả kim thuật nhắc lại qua giải thích của Đan-tơn (J. Dalton) nào thực hiện thành công sự biến đổi đó.",
+      "content": "Chương I NGUYÊN TỬ SƠ LƯỢC VỀ BẢNG TUẦN HOÀN CÁC NGUYÊN TỐ HOÁ HỌC Bài NGUYÊN TỬ MỤC TIÊU Trình bày được mô hình nguyên tử của Rutherford – Bohr (mô hình sắp xếp electron trong các lớp electron ở vỏ nguyên tử). Nêu được khối lượng của một nguyên tử theo đơn vị quốc tế amu (đơn vị khối lượng nguyên tử). Mọi vật thể tự nhiên hay nhân tạo đều được tạo thành từ một số loại hạt vô cùng nhỏ bé gọi là nguyên tử. Vậy nguyên tử có cấu tạo như thế nào Quan niệm ban đầu về nguyên tử Hàng ngàn năm trước, nhiều nhà thông thái Hy Lạp mà đại diện là Đê-mô-crit (Democritus), đã cho rằng: sự tồn tại của một loại hạt vô cùng Trong một thời gian dài các nhà nhỏ (được gọi là nguyên tử) tạo nên sự đa dạng giả kim thuật thực hiện nhiều thí của vạn vật. Khởi nguồn của quan niệm nguyên nghiệm nhằm biến các kim loại tử là sự chia nhỏ một vật sẽ đến một giới hạn rẻ tiền (như chì) thành các kim \"không thể phân chia được\". Khái niệm này bị loại quý (như vàng). Tuy nhiên, lãng quên cho đến đầu thế kỉ XIX mới được \"không thể phân chia được\". Khái niệm này bị loại quý (như vàng). Tuy nhiên, lãng quên cho đến đầu thế kỉ XIX mới được theo không một nhà giả kim thuật nhắc lại qua giải thích của Đan-tơn (J. Dalton) nào thực hiện thành công sự biến đổi đó.",
       "source_label": "SGK KHTN 7 KNTT · Bài 2 · Trang 14–18",
       "generation_sources": [
         {
@@ -8869,16 +9097,20 @@
       ],
       "terms": [
         {
+          "term": "Nguyên tố hóa học",
+          "definition": "Là tập hợp những nguyên tử cùng loại có cùng số proton trong hạt nhân (cùng điện tích hạt nhân). Các nguyên tử của cùng một nguyên tố hóa học đều có tính chất hóa học giống nhau."
+        },
+        {
           "term": "Hy Lạp mà đại diện",
           "definition": "Vậy nguyên tử có cấu tạo như thế nào – I- Quan niệm ban đầu về nguyên tử Hàng ngàn năm trước, nhiều nhà thông thái Hy Lạp mà đại diện là Đê-mô-crit (Democritus), đã cho rằng: sự tồn tại của một loại hạt vô cùng Trong một thời gian dài các nhà nhỏ (được gọi là nguyên tử) tạo nên sự đa dạng giả kim thuật thực hiện nhiều thí của vạn vật."
         },
         {
           "term": "Nguyên tử",
-          "definition": "Là hạt vô cùng nhỏ bé và trung hòa về điện, cấu tạo nên mọi chất trong vũ trụ. Nguyên tử gồm hạt nhân mang điện tích dương ở tâm (chứa các hạt proton mang điện tích +1 và neutron không mang điện) và lớp vỏ gồm các electron mang điện tích -1 chuyển động xung quanh."
+          "definition": "Là hạt vô cùng nhỏ bé và trung hòa về điện, cấu tạo nên mọi chất. Nguyên tử gồm hạt nhân mang điện tích dương ở tâm (chứa proton mang điện +1 và neutron không mang điện) và lớp vỏ electron mang điện tích âm (-1) chuyển động xung quanh."
         },
         {
           "term": "Nguyên tử",
-          "definition": "Là hạt vô cùng nhỏ bé và trung hòa về điện, cấu tạo nên mọi chất trong vũ trụ. Nguyên tử gồm hạt nhân mang điện tích dương ở tâm (chứa các hạt proton mang điện tích +1 và neutron không mang điện) và lớp vỏ gồm các electron mang điện tích -1 chuyển động xung quanh."
+          "definition": "Là hạt vô cùng nhỏ bé và trung hòa về điện, cấu tạo nên mọi chất. Nguyên tử gồm hạt nhân mang điện tích dương ở tâm (chứa proton mang điện +1 và neutron không mang điện) và lớp vỏ electron mang điện tích âm (-1) chuyển động xung quanh."
         }
       ],
       "warmup": {
@@ -9025,6 +9257,14 @@
       ],
       "terms": [
         {
+          "term": "Nguyên tử",
+          "definition": "Là hạt vô cùng nhỏ bé và trung hòa về điện, cấu tạo nên mọi chất. Nguyên tử gồm hạt nhân mang điện tích dương ở tâm (chứa proton mang điện +1 và neutron không mang điện) và lớp vỏ electron mang điện tích âm (-1) chuyển động xung quanh."
+        },
+        {
+          "term": "Nguyên tố hóa học",
+          "definition": "Là tập hợp những nguyên tử cùng loại có cùng số proton trong hạt nhân (cùng điện tích hạt nhân). Các nguyên tử của cùng một nguyên tố hóa học đều có tính chất hóa học giống nhau."
+        },
+        {
           "term": "Vậy nguyên tố hoá học",
           "definition": "gì – Các nguyên tố tạo nên cơ thể người"
         },
@@ -9060,7 +9300,7 @@
         "Mô tả được cấu tạo bảng tuần hoàn gồm: ô, nhóm, chu kì.",
         "Sử dụng được bảng tuần hoàn để chỉ ra các nhóm nguyên tố/nguyên tố kim loại, các nhóm nguyên tố/nguyên tố phi kim, nhóm nguyên tố khí hiếm trong bảng tuần hoàn."
       ],
-      "content": "Bài SƠ LƯỢC VỀ BẢNG TUẦN HOÀN CÁC NGUYÊN TỐ HOÁ HỌC MỤC TIÊU Nêu được các nguyên tắc xây dựng bảng tuần hoàn các nguyên tố hoá học. Mô tả được cấu tạo bảng tuần hoàn gồm ô, nhóm, chu kì. Sử dụng được bảng tuần hoàn để chỉ ra các nhóm nguyên tố kim loại, phi kim, khí hiếm. Thuật Ngày nay, người ta đã xác định được hàng chục triệu chất hoá học với các tính chất khác nhau được tạo thành từ hơn một trăm nguyên tố hoá học, Liệu có nguyên tắc nào sắp xếp các nguyên tố để dễ nhận ra tính chất của chúng không – I-Nguyên tắc sắp xếp các nguyên tố hoá học trong bảng tuần hoàn Sắp xếp các nguyên tố hoá học Chuẩn bị:",
+      "content": "Bài SƠ LƯỢC VỀ BẢNG TUẦN HOÀN CÁC NGUYÊN TỐ HOÁ HỌC MỤC TIÊU Nêu được các nguyên tắc xây dựng bảng tuần hoàn các nguyên tố hoá học. Mô tả được cấu tạo bảng tuần hoàn gồm ô, nhóm, chu kì. Sử dụng được bảng tuần hoàn để chỉ ra các nhóm nguyên tố kim loại, phi kim, khí hiếm. Thuật Ngày nay, người ta đã xác định được hàng chục triệu chất hoá học với các tính chất khác nhau được tạo thành từ hơn một trăm nguyên tố hoá học, Liệu có nguyên tắc nào sắp xếp các nguyên tố để dễ nhận ra tính chất của chúng không Nguyên tắc sắp xếp các nguyên tố hoá học trong bảng tuần hoàn Sắp xếp các nguyên tố hoá học Chuẩn bị:",
       "source_label": "SGK KHTN 7 KNTT · Bài 4 · Trang 23–31",
       "generation_sources": [
         {
@@ -9313,6 +9553,10 @@
       ],
       "terms": [
         {
+          "term": "Nguyên tố hóa học",
+          "definition": "Là tập hợp những nguyên tử cùng loại có cùng số proton trong hạt nhân (cùng điện tích hạt nhân). Các nguyên tử của cùng một nguyên tố hóa học đều có tính chất hóa học giống nhau."
+        },
+        {
           "term": "Tuần hoàn",
           "definition": "tính lặp đi lặp lại một cách đều đặn dấu hiệu nào đó"
         },
@@ -9321,8 +9565,8 @@
           "definition": "Bài SƠ LƯỢC VỀ BẢNG TUẦN HOÀN CÁC NGUYÊN TỐ HOÁ HỌC MỤC TIÊU Nêu được các nguyên tắc xây dựng bảng tuần hoàn các nguyên tố hoá học."
         },
         {
-          "term": "Số hiệu nguyên tử chính",
-          "definition": "Là hạt vô cùng nhỏ bé và trung hòa về điện, cấu tạo nên mọi chất trong vũ trụ. Nguyên tử gồm hạt nhân mang điện tích dương ở tâm (chứa các hạt proton mang điện tích +1 và neutron không mang điện) và lớp vỏ gồm các electron mang điện tích -1 chuyển động xung quanh."
+          "term": "Nguyên tử",
+          "definition": "Là hạt vô cùng nhỏ bé và trung hòa về điện, cấu tạo nên mọi chất. Nguyên tử gồm hạt nhân mang điện tích dương ở tâm (chứa proton mang điện +1 và neutron không mang điện) và lớp vỏ electron mang điện tích âm (-1) chuyển động xung quanh."
         },
         {
           "term": "Chu kì",
@@ -9381,7 +9625,7 @@
         "Nêu được khái niệm phân tử, đơn chất, hợp chất. Đưa ra được một số ví dụ về đơn chất và hợp chất.",
         "Tính được khối lượng phân tử theo đơn vị amu."
       ],
-      "content": "Chưong PHÂN TỬ O LIÊN KẾT HOÁ HỌC Bài PHÂN TỬ - ĐƠN CHẤT - HỢP CHẤT MỤC TIÊU Nêu được khái niệm đơn chất, hợp chất và phân tử. Đưa ra được một số ví dụ về đơn chất và hợp chất. Tính được khối lượng phân tử theo đơn vị amu. Hàng chục triệu chất hoá học đã biết được phân loại như thế nào để dễ nghiên cứu và sử dụng – I-Đơn chất và hợp chất Phân loại chất",
+      "content": "Chưong PHÂN TỬ O LIÊN KẾT HOÁ HỌC Bài PHÂN TỬ - ĐƠN CHẤT - HỢP CHẤT MỤC TIÊU Nêu được khái niệm đơn chất, hợp chất và phân tử. Đưa ra được một số ví dụ về đơn chất và hợp chất. Tính được khối lượng phân tử theo đơn vị amu. Hàng chục triệu chất hoá học đã biết được phân loại như thế nào để dễ nghiên cứu và sử dụng Đơn chất và hợp chất Phân loại chất",
       "source_label": "SGK KHTN 7 KNTT · Bài 5 · Trang 32–35",
       "generation_sources": [
         {
@@ -9506,8 +9750,20 @@
       ],
       "terms": [
         {
+          "term": "Đơn chất",
+          "definition": "Là những chất được tạo nên từ chỉ một nguyên tố hóa học duy nhất (ví dụ: kim loại nhôm Al, khí oxygen O2, than chì C, khí nitrogen N2)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
+          "term": "Thấu kính phân kì",
+          "definition": "Là thấu kính có phần rìa dày hơn phần giữa, có tác dụng làm phân kì (loe rộng ra) chùm tia sáng tới song song với trục chính."
+        },
+        {
           "term": "Hợp chất",
-          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
         },
         {
           "term": "Phân tử",
@@ -9563,7 +9819,7 @@
         "Nêu được sự hình thành liên kết ion theo nguyên tắc cho và nhận electron để tạo ra ion có lớp vỏ electron của nguyên tố khí hiếm (Áp dụng cho phân tử đơn giản như NaCl, MgO,…).",
         "Chỉ ra được sự khác nhau về một số tính chất của chất ion và chất cộng hoá trị."
       ],
-      "content": "Bài GIỚI THIỆU VỀ LIÊN KẾT HOÁ HỌC MỤC TIÊU Nêu được mô hình sắp xếp các electron trong vỏ nguyên tử của một số nguyên tố khí hiếm. Nêu được sự hình thành liên kết cộng hoá trị theo nguyên tắc dùng chung electron để tạo ra lớp electron ngoài cùng giống nguyên tử nguyên tố khí hiếm. Áp dụng được cho các phân tử đơn giản như H, 0, NH, H, C0, N, \" Nêu được sự hình thành liên kết ion theo nguyên tắc cho và nhận electron để tạo ra ion có lớp electron ngoài Chỉ ra được sự khác nhau về một số tính chất của hợp chất ion và hợp chất cộng hoá trị, Trong tự nhiên, chỉ có các khí hiếm tồn tại ở dạng đớn nguyên tử bền vững, còn nguyên tử Thuật thuật của các nguyên tố khác thường có xu hướng kết hợp với nhau bằng các liên kết hoá học. Các thuận trong liên kết hoá học được hình thành như thế nào – I- Cấu trúc electron bền vững của khí hiếm Ở điều kiện thường, các khí hiếm tồn tại dưới dạng Helium trơ, rất khó cháy hay đơn nguyên tử bền vững, khó bị biến đổi hoá học. Lớp nổ, được sử dụng để bơm electron ngoài cùng của chúng chứa 8 electron (trừ He M) vào khinh khí cầu thay thế chứa 2 electron). Nguyên tử của các nguyên tố khác cho hydrogen, Vì hydrogen có xu hướng tham gia liên kết hoá học để đạt được dễ gây cháy nổ. cho hydrogen, Vì hydrogen có xu hướng tham gia liên kết hoá học để đạt được dễ gây cháy nổ. lớp electron ngoài cùng giống khí hiếm bằng cách nhường, nhận hay dùng chung các electron.",
+      "content": "Bài GIỚI THIỆU VỀ LIÊN KẾT HOÁ HỌC MỤC TIÊU Nêu được mô hình sắp xếp các electron trong vỏ nguyên tử của một số nguyên tố khí hiếm. Nêu được sự hình thành liên kết cộng hoá trị theo nguyên tắc dùng chung electron để tạo ra lớp electron ngoài cùng giống nguyên tử nguyên tố khí hiếm. Áp dụng được cho các phân tử đơn giản như H, 0, NH, H, C0, N, \" Nêu được sự hình thành liên kết ion theo nguyên tắc cho và nhận electron để tạo ra ion có lớp electron ngoài Chỉ ra được sự khác nhau về một số tính chất của hợp chất ion và hợp chất cộng hoá trị, Trong tự nhiên, chỉ có các khí hiếm tồn tại ở dạng đớn nguyên tử bền vững, còn nguyên tử Thuật thuật của các nguyên tố khác thường có xu hướng kết hợp với nhau bằng các liên kết hoá học. Các thuận trong liên kết hoá học được hình thành như thế nào Cấu trúc electron bền vững của khí hiếm Ở điều kiện thường, các khí hiếm tồn tại dưới dạng Helium trơ, rất khó cháy hay đơn nguyên tử bền vững, khó bị biến đổi hoá học. Lớp nổ, được sử dụng để bơm electron ngoài cùng của chúng chứa 8 electron (trừ He M) vào khinh khí cầu thay thế chứa 2 electron). Nguyên tử của các nguyên tố khác cho hydrogen, Vì hydrogen có xu hướng tham gia liên kết hoá học để đạt được dễ gây cháy nổ. cho hydrogen, Vì hydrogen có xu hướng tham gia liên kết hoá học để đạt được dễ gây cháy nổ. lớp electron ngoài cùng giống khí hiếm bằng cách nhường, nhận hay dùng chung các electron.",
       "source_label": "SGK KHTN 7 KNTT · Bài 6 · Trang 36–39",
       "generation_sources": [
         {
@@ -9997,6 +10253,10 @@
       ],
       "terms": [
         {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
           "term": "cách đầy đủ",
           "definition": "tốc độ trung bình của chuyển động"
         },
@@ -10031,7 +10291,7 @@
         "Mô tả được sơ lược cách đo tốc độ bằng đồng hồ bấm giây và cổng quang điện trong dụng cụ thực hành ở nhà trường.",
         "Mô tả được sơ lược thiết bị \"bắn tốc độ\" trong kiểm tra tốc độ các phương tiện giao thông."
       ],
-      "content": "Bài ĐO TỐC ĐỘ MỤC TIÊU Mô tả được sơ lược cách đo tốc độ bằng đồng hồ bấm giây và cổng quang \"điện trong dụng cụ thực hành ở nhà trường; thiết bị \"\"bắn tốc độ\" trong kiểm\" tra tốc độ các phương tiện giao thông. Theo em để xác định tốc độ chuyển động người ta phải đo những đại lượng nào và dùng những dụng cụ nào để đo3 Tại sao – I-Đo tốc độ dùng đồng hồ bấm giây",
+      "content": "Bài ĐO TỐC ĐỘ MỤC TIÊU Mô tả được sơ lược cách đo tốc độ bằng đồng hồ bấm giây và cổng quang \"điện trong dụng cụ thực hành ở nhà trường; thiết bị \"\"bắn tốc độ\" trong kiểm\" tra tốc độ các phương tiện giao thông. Theo em để xác định tốc độ chuyển động người ta phải đo những đại lượng nào và dùng những dụng cụ nào để đo3 Tại sao Đo tốc độ dùng đồng hồ bấm giây",
       "source_label": "SGK KHTN 7 KNTT · Bài 9 · Trang 49–52",
       "generation_sources": [
         {
@@ -10315,7 +10575,7 @@
       "terms": [
         {
           "term": "Sau đây",
-          "definition": "cách vẽ đồ thị dựa trên các số"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Đồ thị quãng đường - thời gian (SGK KHTN 7), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "Biết điểm O",
@@ -10484,8 +10744,8 @@
       ],
       "terms": [
         {
-          "term": "Thảo luận về ảnh hưởng của tốc độ trong an toàn giao thông",
-          "definition": "Yêu cầu Sưu tầm tài liệu, tranh ảnh, video để trình bày và thảo luận về ảnh hưởng của tốc độ trong an toàn giao thông."
+          "term": "Hiện tượng phản xạ toàn phần",
+          "definition": "Là hiện tượng toàn bộ tia sáng tới bị phản xạ ngược trở lại môi trường trong suốt ban đầu tại mặt phân cách giữa hai môi trường, không có tia khúc xạ đi vào môi trường thứ hai."
         }
       ]
     },
@@ -11000,6 +11260,10 @@
       },
       "terms": [
         {
+          "term": "Hiện tượng phản xạ toàn phần",
+          "definition": "Là hiện tượng toàn bộ tia sáng tới bị phản xạ ngược trở lại môi trường trong suốt ban đầu tại mặt phân cách giữa hai môi trường, không có tia khúc xạ đi vào môi trường thứ hai."
+        },
+        {
           "term": "Âm phản xạ",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Phản xạ âm, chống ô nhiễm tiếng ồn, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         }
@@ -11226,6 +11490,30 @@
       ],
       "terms": [
         {
+          "term": "Khối lượng riêng",
+          "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
+          "term": "Hiện tượng khúc xạ ánh sáng",
+          "definition": "Là hiện tượng tia sáng bị gãy khúc (đổi hướng truyền đột ngột) tại mặt phân cách giữa hai môi trường trong suốt khác nhau khi truyền xiên góc từ môi trường này sang môi trường khác."
+        },
+        {
+          "term": "Ánh sáng trắng",
+          "definition": "Là hỗn hợp của vô số ánh sáng đơn sắc khác nhau có màu biến thiên liên tục từ màu đỏ đến màu tím."
+        },
+        {
+          "term": "Ánh sáng đơn sắc",
+          "definition": "Là ánh sáng có một màu xác định và không bị đổi màu (không bị tán sắc) khi đi qua lăng kính, chỉ bị lệch đường truyền về phía đáy lăng kính."
+        },
+        {
+          "term": "Hiện tượng tán sắc ánh sáng",
+          "definition": "Là hiện tượng một chùm ánh sáng trắng (ánh sáng phức hợp) khi truyền qua lăng kính hoặc môi trường trong suốt bị phân tách thành một dải nhiều chùm ánh sáng đơn sắc có màu biến thiên liên tục từ đỏ đến tím (đỏ, da cam, vàng, lục, lam, chàm, tím)."
+        },
+        {
           "term": "sáng",
           "definition": "Chuong ÁNH SÁNG Bài TIA SÁNG, VÙNG TỐI NĂNG LƯỢNG ÁNH SÁNG MỤC TIÊU Thực hiện thí nghiệm thu được năng lượng ánh sáng; từ đó, nêu được ánh sáng là một dạng của năng lượng."
         },
@@ -11436,6 +11724,26 @@
       ],
       "terms": [
         {
+          "term": "Hiện tượng phản xạ toàn phần",
+          "definition": "Là hiện tượng toàn bộ tia sáng tới bị phản xạ ngược trở lại môi trường trong suốt ban đầu tại mặt phân cách giữa hai môi trường, không có tia khúc xạ đi vào môi trường thứ hai."
+        },
+        {
+          "term": "Hiện tượng khúc xạ ánh sáng",
+          "definition": "Là hiện tượng tia sáng bị gãy khúc (đổi hướng truyền đột ngột) tại mặt phân cách giữa hai môi trường trong suốt khác nhau khi truyền xiên góc từ môi trường này sang môi trường khác."
+        },
+        {
+          "term": "Ánh sáng trắng",
+          "definition": "Là hỗn hợp của vô số ánh sáng đơn sắc khác nhau có màu biến thiên liên tục từ màu đỏ đến màu tím."
+        },
+        {
+          "term": "Ánh sáng đơn sắc",
+          "definition": "Là ánh sáng có một màu xác định và không bị đổi màu (không bị tán sắc) khi đi qua lăng kính, chỉ bị lệch đường truyền về phía đáy lăng kính."
+        },
+        {
+          "term": "Hiện tượng tán sắc ánh sáng",
+          "definition": "Là hiện tượng một chùm ánh sáng trắng (ánh sáng phức hợp) khi truyền qua lăng kính hoặc môi trường trong suốt bị phân tách thành một dải nhiều chùm ánh sáng đơn sắc có màu biến thiên liên tục từ đỏ đến tím (đỏ, da cam, vàng, lục, lam, chàm, tím)."
+        },
+        {
           "term": "Hiện tượng đó gọi",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Sự phản xạ ánh sáng, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         },
@@ -11612,7 +11920,7 @@
       "terms": [
         {
           "term": "phẳng được gọi",
-          "definition": "ảnh của vật qua gương phẳng"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Ảnh của vật qua gương phẳng (SGK KHTN 7), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         }
       ],
       "warmup": {
@@ -11763,7 +12071,7 @@
       "terms": [
         {
           "term": "xác định được vật đó",
-          "definition": "nam châm – I ? Nam châm là gì?"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Nam châm (SGK KHTN 7), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "xác định được vật đó",
@@ -12030,7 +12338,7 @@
         },
         {
           "term": "phải gọi",
-          "definition": "cực Bắc địa từ còn từ cực nằm"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Từ trường (SGK KHTN 7), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "ở Bắc bán cầu phải gọi",
@@ -12071,7 +12379,7 @@
         "Chế tạo được nam châm điện đơn giản.",
         "Làm thay đổi được từ trường của nam châm điện bằng thay đổi dòng điện."
       ],
-      "content": "Bài CHẾ TẠO NAM CHÂM ĐIỆN ĐƠN GIẢN MỤC TIÊU Chế tạo được nam châm điện đơn giản và làm thay đổi được từ trường của nó bằng thay đổi dòng điện. Hình trên là nam châm của cần cầu dọn rác kim loại, Nhờ nam châm này cần cầu có thể các lấy rác kim loại là hợp kim của sắt ở đống rác và di chuyển đến các thùng xe chở rác rồi thả xuống, Nhiều khi rác là những tấm kim loại lớn, nặng hàng trăm kilôgam. Nam châm ở cần cầu có phải là loại nam châm vĩnh cửu mà ta đã học không3 Tại sao – I-Nam châm điện Các thí nghiệm cho thấy, dòng điện chạy trong dây dẫn thẳng hay trong cuộn dây đều sinh ra từ trường, người ta ứng dụng tính chất này để chế tạo ra nam châm, gọi là nam châm điện. Cấu tạo nam châm điện Hình 20.1 mô tả cấu tạo của một nam châm điện:",
+      "content": "Bài CHẾ TẠO NAM CHÂM ĐIỆN ĐƠN GIẢN MỤC TIÊU Chế tạo được nam châm điện đơn giản và làm thay đổi được từ trường của nó bằng thay đổi dòng điện. Hình trên là nam châm của cần cầu dọn rác kim loại, Nhờ nam châm này cần cầu có thể các lấy rác kim loại là hợp kim của sắt ở đống rác và di chuyển đến các thùng xe chở rác rồi thả xuống, Nhiều khi rác là những tấm kim loại lớn, nặng hàng trăm kilôgam. Nam châm ở cần cầu có phải là loại nam châm vĩnh cửu mà ta đã học không3 Tại sao Nam châm điện Các thí nghiệm cho thấy, dòng điện chạy trong dây dẫn thẳng hay trong cuộn dây đều sinh ra từ trường, người ta ứng dụng tính chất này để chế tạo ra nam châm, gọi là nam châm điện. Cấu tạo nam châm điện Hình 20.1 mô tả cấu tạo của một nam châm điện:",
       "source_label": "SGK KHTN 7 KNTT · Bài 20 · Trang 96–98",
       "generation_sources": [
         {
@@ -12169,8 +12477,8 @@
       ],
       "terms": [
         {
-          "term": "Hình trên",
-          "definition": "nam châm của cần cầu dọn rác kim loại, Nhờ nam châm này cần cầu có thể"
+          "term": "Hiện tượng cảm ứng điện từ",
+          "definition": "Là hiện tượng xuất hiện dòng điện cảm ứng trong một cuộn dây dẫn kín khi số đường sức từ xuyên qua tiết diện của cuộn dây đó biến thiên (tăng lên hoặc giảm đi)."
         },
         {
           "term": "các lấy rác kim loại",
@@ -12186,7 +12494,7 @@
         },
         {
           "term": "Nam châm điện",
-          "definition": "bộ phận cơ bản của chuông điện"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Chế tạo nam châm điện đơn giản (SGK KHTN 7), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         }
       ],
       "warmup": {
@@ -12292,6 +12600,22 @@
         "tăng, mồ hôi toát ra Trao đổi chất và chuyển hoá năng lượng giúp sinh nhiều, nhanh khát vật tồn tại, sinh trưởng, phát triển, sinh sản, cảm và nhanh đói. ứng và..."
       ],
       "terms": [
+        {
+          "term": "Khối lượng riêng",
+          "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³)."
+        },
+        {
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+        },
+        {
+          "term": "Đơn chất",
+          "definition": "Là những chất được tạo nên từ chỉ một nguyên tố hóa học duy nhất (ví dụ: kim loại nhôm Al, khí oxygen O2, than chì C, khí nitrogen N2)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
         {
           "term": "Chuyển hoá năng lượng",
           "definition": "sự biến đổi của năng lượng từ dạng này sang dạng khác;"
@@ -12450,20 +12774,20 @@
       ],
       "terms": [
         {
-          "term": "Quang hợp",
-          "definition": "Là quá trình lá cây và các bộ phận có màu xanh của thực vật sử dụng năng lượng ánh sáng mặt trời đã được diệp lục hấp thụ để tổng hợp chất hữu cơ (glucose, tinh bột) từ nước (H2O) và khí carbon dioxide (CO2), đồng thời giải phóng khí oxygen (O2) ra môi trường."
+          "term": "Quang hợp ở thực vật",
+          "definition": "Là quá trình lá cây và các bộ phận có màu xanh của thực vật sử dụng năng lượng ánh sáng mặt trời đã được chất diệp lục (trong lục lạp) hấp thụ để tổng hợp chất hữu cơ (glucose, tinh bột) từ nước (H2O) rễ hút lên và khí carbon dioxide (CO2) từ không khí, đồng thời giải phóng khí oxygen (O2) ra môi trường."
         },
         {
-          "term": "Quang hợp",
-          "definition": "Là quá trình lá cây và các bộ phận có màu xanh của thực vật sử dụng năng lượng ánh sáng mặt trời đã được diệp lục hấp thụ để tổng hợp chất hữu cơ (glucose, tinh bột) từ nước (H2O) và khí carbon dioxide (CO2), đồng thời giải phóng khí oxygen (O2) ra môi trường."
+          "term": "Quang hợp ở thực vật",
+          "definition": "Là quá trình lá cây và các bộ phận có màu xanh của thực vật sử dụng năng lượng ánh sáng mặt trời đã được chất diệp lục (trong lục lạp) hấp thụ để tổng hợp chất hữu cơ (glucose, tinh bột) từ nước (H2O) rễ hút lên và khí carbon dioxide (CO2) từ không khí, đồng thời giải phóng khí oxygen (O2) ra môi trường."
         },
         {
-          "term": "Quang hợp",
-          "definition": "Là quá trình lá cây và các bộ phận có màu xanh của thực vật sử dụng năng lượng ánh sáng mặt trời đã được diệp lục hấp thụ để tổng hợp chất hữu cơ (glucose, tinh bột) từ nước (H2O) và khí carbon dioxide (CO2), đồng thời giải phóng khí oxygen (O2) ra môi trường."
+          "term": "Quang hợp ở thực vật",
+          "definition": "Là quá trình lá cây và các bộ phận có màu xanh của thực vật sử dụng năng lượng ánh sáng mặt trời đã được chất diệp lục (trong lục lạp) hấp thụ để tổng hợp chất hữu cơ (glucose, tinh bột) từ nước (H2O) rễ hút lên và khí carbon dioxide (CO2) từ không khí, đồng thời giải phóng khí oxygen (O2) ra môi trường."
         },
         {
           "term": "Lá cây",
-          "definition": "cơ quan chủ yếu thực hiện chức"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Quang hợp ở thực vật (SGK KHTN 7), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         }
       ],
       "warmup": {
@@ -12640,6 +12964,10 @@
         "hint": "Hãy liên hệ với các sự vật, hiện tượng tự nhiên quen thuộc xung quanh chúng ta."
       },
       "terms": [
+        {
+          "term": "Quang hợp ở thực vật",
+          "definition": "Là quá trình lá cây và các bộ phận có màu xanh của thực vật sử dụng năng lượng ánh sáng mặt trời đã được chất diệp lục (trong lục lạp) hấp thụ để tổng hợp chất hữu cơ (glucose, tinh bột) từ nước (H2O) rễ hút lên và khí carbon dioxide (CO2) từ không khí, đồng thời giải phóng khí oxygen (O2) ra môi trường."
+        },
         {
           "term": "nước",
           "definition": "các yếu tố chủ yếu ảnh hưởng đến"
@@ -12840,8 +13168,8 @@
       ],
       "terms": [
         {
-          "term": "Thực hành: Chứng minh quang hợp ở cây xanh",
-          "definition": "Là quá trình lá cây và các bộ phận có màu xanh của thực vật sử dụng năng lượng ánh sáng mặt trời đã được diệp lục hấp thụ để tổng hợp chất hữu cơ (glucose, tinh bột) từ nước (H2O) và khí carbon dioxide (CO2), đồng thời giải phóng khí oxygen (O2) ra môi trường."
+          "term": "Quang hợp ở thực vật",
+          "definition": "Là quá trình lá cây và các bộ phận có màu xanh của thực vật sử dụng năng lượng ánh sáng mặt trời đã được chất diệp lục (trong lục lạp) hấp thụ để tổng hợp chất hữu cơ (glucose, tinh bột) từ nước (H2O) rễ hút lên và khí carbon dioxide (CO2) từ không khí, đồng thời giải phóng khí oxygen (O2) ra môi trường."
         }
       ]
     },
@@ -12855,7 +13183,7 @@
         "Mô tả được một cách tổng quát quá trình hô hấp ở tế bào (ở thực vật và động vật); nêu được khái niệm hô hấp tế bào.",
         "Viết được phương trình hô hấp dạng chữ thể hiện hai chiều tổng hợp và phân giải."
       ],
-      "content": "Bài HÔ HẤP TẾ BÀO MỤC TIÊU Mô tả được một cách tổng quát quá trình hô hấp tế bào (ở thực vật và ở động vật): Nêu được khái niệm Viết được phương trình hô hấp dạng chữ. Thể hiện được hai chiều tổng hợp và phân giải chất hữu cơ ở tế bào. Năng lượng dùng cho các hoạt động sống của sinh vật được tạo ra như thế nào3 Quá trình đó diễn ra ở đâu trong cơ thể sinh vật – I-Hô hấp tế bào Hầu hết các quá trình sống của tế bào như sinh trưởng, phát triển, trao đổi chất; các phân tử chất hữu cơ (chủ yếu là glucose) được phân giải thành khí carbon dioxide Thành và nước, đồng thời tạo ra năng lượng ATP cung cấp cho các hoạt động của tế bào.",
+      "content": "Bài HÔ HẤP TẾ BÀO MỤC TIÊU Mô tả được một cách tổng quát quá trình hô hấp tế bào (ở thực vật và ở động vật): Nêu được khái niệm Viết được phương trình hô hấp dạng chữ. Thể hiện được hai chiều tổng hợp và phân giải chất hữu cơ ở tế bào. Năng lượng dùng cho các hoạt động sống của sinh vật được tạo ra như thế nào3 Quá trình đó diễn ra ở đâu trong cơ thể sinh vật Hô hấp tế bào Hầu hết các quá trình sống của tế bào như sinh trưởng, phát triển, trao đổi chất; các phân tử chất hữu cơ (chủ yếu là glucose) được phân giải thành khí carbon dioxide Thành và nước, đồng thời tạo ra năng lượng ATP cung cấp cho các hoạt động của tế bào.",
       "source_label": "SGK KHTN 7 KNTT · Bài 25 · Trang 111–112",
       "order": 250,
       "active": true,
@@ -12916,7 +13244,7 @@
       "terms": [
         {
           "term": "Hô hấp tế bào",
-          "definition": "Là quá trình phân giải các phân tử chất hữu cơ (chủ yếu là glucose) diễn ra trong tế bào (tại bào quan ti thể) với sự tham gia của khí oxygen, tạo ra sản phẩm là carbon dioxide (CO2), nước (H2O) và giải phóng năng lượng dưới dạng ATP cung cấp cho mọi hoạt động sống của cơ thể."
+          "definition": "Là quá trình phân giải các phân tử chất hữu cơ (chủ yếu là glucose) diễn ra trong tế bào (chủ yếu tại bào quan ti thể) với sự tham gia của khí oxygen, tạo ra sản phẩm là carbon dioxide (CO2), nước (H2O) và giải phóng năng lượng dưới dạng ATP cung cấp cho mọi hoạt động sống của tế bào và cơ thể."
         }
       ],
       "summary": [
@@ -13113,7 +13441,7 @@
         },
         {
           "term": "Hô hấp tế bào",
-          "definition": "Là quá trình phân giải các phân tử chất hữu cơ (chủ yếu là glucose) diễn ra trong tế bào (tại bào quan ti thể) với sự tham gia của khí oxygen, tạo ra sản phẩm là carbon dioxide (CO2), nước (H2O) và giải phóng năng lượng dưới dạng ATP cung cấp cho mọi hoạt động sống của cơ thể."
+          "definition": "Là quá trình phân giải các phân tử chất hữu cơ (chủ yếu là glucose) diễn ra trong tế bào (chủ yếu tại bào quan ti thể) với sự tham gia của khí oxygen, tạo ra sản phẩm là carbon dioxide (CO2), nước (H2O) và giải phóng năng lượng dưới dạng ATP cung cấp cho mọi hoạt động sống của tế bào và cơ thể."
         },
         {
           "term": "Đây",
@@ -13440,6 +13768,18 @@
       ],
       "terms": [
         {
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
           "term": "Trao đổi khí",
           "definition": "gì: Quá trình trao đổi khí diễn"
         },
@@ -13606,6 +13946,26 @@
         "điều hoà thân nhiệt. Chất dinh dưỡng cung cấp nguyên liệu và năng lượng để sinh vật thực hiện các quá trình sống, ở thực vật, chất dinh dưỡng là các chất khoáng..."
       ],
       "terms": [
+        {
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
+        },
+        {
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+        },
+        {
+          "term": "Đơn chất",
+          "definition": "Là những chất được tạo nên từ chỉ một nguyên tố hóa học duy nhất (ví dụ: kim loại nhôm Al, khí oxygen O2, than chì C, khí nitrogen N2)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
         {
           "term": "Nước",
           "definition": "VAI TRÒ CỦA NƯỚC VÀ Bài CHẤT DINH DƯỜNG ĐỐI VỚI SINH VẬT MỤCTIÊU Thuật thuật dựa vào sơ đồ (hoặc mô hình), nêu được thành phần hoá học, cấu trúc và tính chất của nước."
@@ -13820,16 +14180,24 @@
       ],
       "terms": [
         {
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+        },
+        {
+          "term": "Đơn chất",
+          "definition": "Là những chất được tạo nên từ chỉ một nguyên tố hóa học duy nhất (ví dụ: kim loại nhôm Al, khí oxygen O2, than chì C, khí nitrogen N2)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
           "term": "nước chính",
           "definition": "cơ chế điều tiết độ đóng, mở của khí khổng, Khi cây đủ nước, tế"
         },
         {
           "term": "Thoát hơi nước",
           "definition": "động lực đầu trên của dòng đi lên, đóng vai trò như lực kéo"
-        },
-        {
-          "term": "Thuật thuận thuận Sa mạc",
-          "definition": "nơi có điều kiện vô cùng khắc nghiệt, lượng mưa ở đây rất ít, có khi cả năm không có mưa"
         }
       ],
       "warmup": {
@@ -14007,6 +14375,18 @@
       ],
       "terms": [
         {
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+        },
+        {
+          "term": "Đơn chất",
+          "definition": "Là những chất được tạo nên từ chỉ một nguyên tố hóa học duy nhất (ví dụ: kim loại nhôm Al, khí oxygen O2, than chì C, khí nitrogen N2)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
           "term": "già",
           "definition": "nơi hấp thụ nhiều nước nhất, Sau khi hấp thụ vào mạch máu, nước được vận"
         }
@@ -14146,6 +14526,10 @@
         "hint": "Hãy liên hệ với các sự vật, hiện tượng tự nhiên quen thuộc xung quanh chúng ta."
       },
       "terms": [
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
         {
           "term": "cây",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Thực hành: Chứng minh thân vận chuyển nước và lá thoát hơi nước, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
@@ -14294,16 +14678,20 @@
       ],
       "terms": [
         {
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
+        },
+        {
           "term": "bẩm sinh",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Cảm ứng ở sinh vật và tập tính ở động vật, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         },
         {
           "term": "được",
           "definition": "Chưong VIII CẢM ỨNG Ở SINH VẬT CẢM ỨNG Ở SINH VẬT VÀ TẬP TÍNH Bài Ở ĐỘNG VẬT MỤC TIÊU Phát biểu được khái niệm cảm ứng ở sinh vật, Lấy được ví dụ về các hiện tượng cảm ứng ở sinh vật (ở thực vật và động vật)."
-        },
-        {
-          "term": "các thuật",
-          "definition": "chim chích) và giao trách nhiệm chăm sóc con non cho những con chim"
         },
         {
           "term": "Cảm ứng",
@@ -14361,7 +14749,7 @@
       "objectives": [
         "Vận dụng được các kiến thức cảm ứng vào giải thích một số hiện tượng trong thực tiễn (ví dụ trong học tập, chăn nuôi, trồng trọt)."
       ],
-      "content": "SINH VẬT VÀO THỰC TIẾN MỤC TIÊU tập, chăn nuôi, trồng trọt). Vì sao khi trồng các loài cây thân leo như mướp, bầu, bí, thiên li,.. người trồng thường phải làm giàn cho cây – I- Ứng dụng hiện tượng cảm ứng ở sinh vật trong trồng trọt Con người đã ứng dụng tính hướng sáng, hướng nước, hướng chất dinh dưỡng, - ở các loài thực vật để có chế độ chiếu sáng. OC S tưới nước, bón phân, làm giàn, phù hợp với mỗi loài nhằm tạo điều kiện cho cây trồng sinh trưởng nhanh, phát triển tốt, đồng thời đáp ứng được các nhu cầu khác nhau của con người Ví dụ: người ta làm trụ cho cây đồng thời đáp ứng được các nhu cầu khác nhau của con người Ví dụ: người ta làm trụ cho cây hồ tiêu dựa trên hiện tượng cảm ứng hướng tiếp xúc giúp cho cây sinh trưởng nhanh, phát triển tốt, cho năng suất cao.",
+      "content": "SINH VẬT VÀO THỰC TIẾN MỤC TIÊU tập, chăn nuôi, trồng trọt). Vì sao khi trồng các loài cây thân leo như mướp, bầu, bí, thiên li,.. người trồng thường phải làm giàn cho cây Ứng dụng hiện tượng cảm ứng ở sinh vật trong trồng trọt Con người đã ứng dụng tính hướng sáng, hướng nước, hướng chất dinh dưỡng, - ở các loài thực vật để có chế độ chiếu sáng. OC S tưới nước, bón phân, làm giàn, phù hợp với mỗi loài nhằm tạo điều kiện cho cây trồng sinh trưởng nhanh, phát triển tốt, đồng thời đáp ứng được các nhu cầu khác nhau của con người Ví dụ: người ta làm trụ cho cây đồng thời đáp ứng được các nhu cầu khác nhau của con người Ví dụ: người ta làm trụ cho cây hồ tiêu dựa trên hiện tượng cảm ứng hướng tiếp xúc giúp cho cây sinh trưởng nhanh, phát triển tốt, cho năng suất cao.",
       "source_label": "SGK KHTN 7 KNTT · Bài 34 · Trang 141–144",
       "generation_sources": [
         {
@@ -14498,8 +14886,12 @@
       ],
       "terms": [
         {
-          "term": "Vận dụng hiện tượng cảm ứng ở sinh vật vào thực tiễn",
-          "definition": "Là khả năng của sinh vật tiếp nhận các kích thích từ môi trường (ánh sáng, nhiệt độ, hóa chất, trọng lực, va chạm...) và phản ứng lại các kích thích đó một cách phù hợp để thích nghi và tồn tại."
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
         }
       ]
     },
@@ -14655,6 +15047,14 @@
       ],
       "terms": [
         {
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
+        },
+        {
           "term": "Thực hành: Cảm ứng ở sinh vật",
           "definition": "Là khả năng của sinh vật tiếp nhận các kích thích từ môi trường (ánh sáng, nhiệt độ, hóa chất, trọng lực, va chạm...) và phản ứng lại các kích thích đó một cách phù hợp để thích nghi và tồn tại."
         }
@@ -14784,6 +15184,14 @@
         "hint": "Hãy liên hệ với các sự vật, hiện tượng tự nhiên quen thuộc xung quanh chúng ta."
       },
       "terms": [
+        {
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
+        },
         {
           "term": "Sinh trưởng",
           "definition": "Là sự tăng lên về kích thước và khối lượng của cơ thể sinh vật do sự tăng lên về số lượng và kích thước của tế bào thông qua quá trình phân chia và lớn lên của tế bào."
@@ -15002,6 +15410,14 @@
       ],
       "terms": [
         {
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
+        },
+        {
           "term": "Dinh dưỡng",
           "definition": "ỨNG DỤNG SINH TRƯỞNG VÀ PHÁT TRIỂN Bài SINH VẬT VÀO THỰC TIỀN MỤC TIÊU Thuật thuật đế - Nêu được các nhân tố chủ yếu ảnh hưởng đến sinh trưởng và phát triển ở sinh vật (nhân tố nghị thị nhiệt độ, ánh sáng, nước, chất dinh dưỡng)."
         }
@@ -15178,8 +15594,12 @@
       ],
       "terms": [
         {
-          "term": "Thực hành: Quan sát, mô tả sự sinh trưởng và phát triển ở một số sinh vật",
-          "definition": "Là sự tăng lên về kích thước và khối lượng của cơ thể sinh vật do sự tăng lên về số lượng và kích thước của tế bào thông qua quá trình phân chia và lớn lên của tế bào."
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
         }
       ]
     },
@@ -15348,8 +15768,12 @@
       ],
       "terms": [
         {
-          "term": "hình bên",
-          "definition": "các tập đoàn san hô gồm hàng"
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
         },
         {
           "term": "sinh sản vô tính",
@@ -15357,11 +15781,11 @@
         },
         {
           "term": "vật",
-          "definition": "sinh sản vô tính và sinh sản"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Sinh sản vô tính ở sinh vật (SGK KHTN 7), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "vật",
-          "definition": "sinh sản vô tính và sinh sản"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Sinh sản vô tính ở sinh vật (SGK KHTN 7), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "Sinh sản vô tính",
@@ -15552,12 +15976,20 @@
       ],
       "terms": [
         {
-          "term": "hữu tính",
-          "definition": "gì và quá trình này diễn ra"
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
         },
         {
           "term": "hữu tính",
-          "definition": "gì và quá trình này diễn ra"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Sinh sản hữu tính ở sinh vật (SGK KHTN 7), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
+        },
+        {
+          "term": "hữu tính",
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Sinh sản hữu tính ở sinh vật (SGK KHTN 7), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "Sinh sản hữu tính",
@@ -15746,8 +16178,12 @@
       ],
       "terms": [
         {
-          "term": "Một số yếu tố ảnh hưởng và điều hòa, điều khiển sinh sản ở sinh vật",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Một số yếu tố ảnh hưởng và điều hòa, điều khiển sinh sản ở sinh vật, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
         }
       ]
     },
@@ -15760,7 +16196,7 @@
       "objectives": [
         "Dựa vào sơ đồ mối quan hệ giữa tế bào với cơ thể và môi trường (tế bào – cơ thể – môi trường) và sơ đồ quan hệ giữa các hoạt động sống: trao đổi chất và chuyển hoá năng lượng – sinh trưởng, phát triển – cảm ứng – sinh sản, chứng minh cơ thể sinh vật là một thể thống nhất."
       ],
-      "content": "CƠ THỂ SINH VẬT LÀ MỘT THỂ Bài THỐNG NHẤT MỤC TIÊU Thuật Thánh Dựa vào sơ đồ mối quan hệ giữa tế bào với cơ thể sinh vật và môi trường (tế bào – cơ thể – môi trường) và sơ đồ quan hệ giữa các hoạt động sống (trao đổi chất và chuyển hoá năng lượng – sinh trưởng, phát triển – cảm ứng – sinh sản) chứng minh cơ thể sinh vật là một thể thống nhất. Tế bào, cơ thể và môi trường có mối quan hệ tương tác qua lại, đảm bảo cho cơ thể thực hiện các hoạt động sống và tồn tại như một thể thống nhất, Sự thống nhất này được thể phiện như thế nào – I- Mối quan hệ giữa tế bào, cơ thể sinh vật và môi trường Mọi cơ thể sống đều được cấu tạo từ tế bào. Cơ thể đa bào gồm nhiều tế bào; phân hoá thành mô, cơ quan, hệ cơ quan khác nhau cùng phối hợp thực hiện tất cả các hoạt động sống của cơ thể. Tế bào và cơ thể có mối quan hệ chặt chẽ với nhau và với môi trường, Nhờ cơ thể lấy các chất dinh dưỡng, nước, chất khoáng và 0, từ môi trường mà tế bào thực hiện được quá trình trao đổi chất để lớn lên, sinh sản và cảm ứng, từ đó giúp cơ thể thực hiện được các hoạt động sống.",
+      "content": "CƠ THỂ SINH VẬT LÀ MỘT THỂ Bài THỐNG NHẤT MỤC TIÊU Thuật Thánh Dựa vào sơ đồ mối quan hệ giữa tế bào với cơ thể sinh vật và môi trường (tế bào – cơ thể – môi trường) và sơ đồ quan hệ giữa các hoạt động sống (trao đổi chất và chuyển hoá năng lượng – sinh trưởng, phát triển – cảm ứng – sinh sản) chứng minh cơ thể sinh vật là một thể thống nhất. Tế bào, cơ thể và môi trường có mối quan hệ tương tác qua lại, đảm bảo cho cơ thể thực hiện các hoạt động sống và tồn tại như một thể thống nhất, Sự thống nhất này được thể phiện như thế nào Mối quan hệ giữa tế bào, cơ thể sinh vật và môi trường Mọi cơ thể sống đều được cấu tạo từ tế bào. Cơ thể đa bào gồm nhiều tế bào; phân hoá thành mô, cơ quan, hệ cơ quan khác nhau cùng phối hợp thực hiện tất cả các hoạt động sống của cơ thể. Tế bào và cơ thể có mối quan hệ chặt chẽ với nhau và với môi trường, Nhờ cơ thể lấy các chất dinh dưỡng, nước, chất khoáng và 0, từ môi trường mà tế bào thực hiện được quá trình trao đổi chất để lớn lên, sinh sản và cảm ứng, từ đó giúp cơ thể thực hiện được các hoạt động sống.",
       "source_label": "SGK KHTN 7 KNTT · Bài 42 · Trang 173–174",
       "generation_sources": [
         {
@@ -15840,6 +16276,14 @@
         }
       ],
       "terms": [
+        {
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
+        },
         {
           "term": "Cơ thể sinh vật là một thể thống nhất",
           "definition": "CƠ THỂ SINH VẬT LÀ MỘT THỂ Bài THỐNG NHẤT MỤC TIÊU Thuật Thánh Dựa vào sơ đồ mối quan hệ giữa tế bào với cơ thể sinh vật và môi trường (tế bào – cơ thể – môi trường) và sơ đồ quan hệ giữa các hoạt động sống (trao đổi chất và chuyển hoá năng lượng – sinh trưởng, phát triển – cảm ứng – sinh sản) chứng minh cơ thể sinh vật là một thể thống nhất."
@@ -16030,6 +16474,18 @@
         "Bài 28 Sự truyền nhiệt Bài 29 Sự nở vì nhiệt VẬT SỐNG Chương VII. SINH Học Cơ Thể Người 20% Bài 30 Khái quát về cơ thể người Bài 31 Hệ vận động ở người Bài 32 D..."
       ],
       "terms": [
+        {
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+        },
+        {
+          "term": "Đơn chất",
+          "definition": "Là những chất được tạo nên từ chỉ một nguyên tố hóa học duy nhất (ví dụ: kim loại nhôm Al, khí oxygen O2, than chì C, khí nitrogen N2)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
         {
           "term": "Môn KHTN",
           "definition": "Các mạch nội dung của CT môn KHTN được sắp xếp thành bốn chủ đề: Chất và sự biến đổi của chất; Vật sống; Năng lượng và sự biến đổi; Trái Đất và bầu trời Bằng sự kết hợp của ba trục cơ bản là: chủ đề khoa học; các nguyên lí và khái niệm Thuật chung; hình thành và phát triển năng lực, kiến thức và kí năng về Vật Ii, Hoá học, Sinh học, Khoa học Trái Đất vừa được tích hợp trong các nguyên lí và khái niệm chung của tự nhiên, các thuật thuật vừa được tích hợp trong việc tìm hiểu tụ nhiên và giải quyết các vấn đề của cuộc sống của nhau tùng phân môn NGUYÊN LÍ - KHÁI NIỆM CHUNG CHẤT VÀ SỰ BIẾN ĐỒI CỦA CHẤT tùng phân môn NGUYÊN LÍ - KHÁI NIỆM CHUNG CHẤT VÀ SỰ BIẾN ĐỒI CỦA CHẤT Chất có ở xung quanh ta Chuyển hoá hoá học Có Cấu trúc của chất lý VẬT SỐNG và cấu trúc vật sống CHU DE KHOA HOC Các hoạt động sống NĂNG LƯỢNG, SỰ BIẾN ĐỐI I Lực và sự chuyển động CHU DE KHOA HOC Các hoạt động sống NĂNG LƯỢNG, SỰ BIẾN ĐỐI I Lực và sự chuyển động TRÁI ĐẤT VÀ BẦU TRỜI \"Sơ lược \"\"Hoá học\" về vỏ Trái Đất?."
@@ -16255,8 +16711,8 @@
       ],
       "terms": [
         {
-          "term": "động học tập",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Phản ứng hóa học, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
+          "term": "Hiện tượng phản xạ toàn phần",
+          "definition": "Là hiện tượng toàn bộ tia sáng tới bị phản xạ ngược trở lại môi trường trong suốt ban đầu tại mặt phân cách giữa hai môi trường, không có tia khúc xạ đi vào môi trường thứ hai."
         },
         {
           "term": "Máu",
@@ -16264,10 +16720,6 @@
         },
         {
           "term": "Nhóm máu",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Phản ứng hóa học, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
-        },
-        {
-          "term": "Trong tai có một bộ phận",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Phản ứng hóa học, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         }
       ],
@@ -16417,15 +16869,27 @@
       ],
       "terms": [
         {
+          "term": "Khối lượng riêng",
+          "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³)."
+        },
+        {
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+        },
+        {
+          "term": "Đơn chất",
+          "definition": "Là những chất được tạo nên từ chỉ một nguyên tố hóa học duy nhất (ví dụ: kim loại nhôm Al, khí oxygen O2, than chì C, khí nitrogen N2)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
           "term": "Máu",
           "definition": "dịch lỏng lưu thông trong hệ tuần hoàn"
         },
         {
           "term": "Nhóm máu",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Mol và tỉ khối chất khí, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
-        },
-        {
-          "term": "Trong tai có một bộ phận",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Mol và tỉ khối chất khí, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         }
       ],
@@ -16621,7 +17085,7 @@
       },
       "terms": [
         {
-          "term": "phân tử",
+          "term": "Phân tử",
           "definition": "Là hạt đại diện cho chất, gồm một số nguyên tử liên kết với nhau bằng liên kết hóa học và thể hiện đầy đủ tính chất hóa học của chất đó."
         }
       ],
@@ -16833,8 +17297,20 @@
       ],
       "terms": [
         {
-          "term": "phải chọn chốt ra",
-          "definition": "phải chọn chốt ra là một chiều – DC)."
+          "term": "Khối lượng riêng",
+          "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
+          "term": "Định luật Ohm (Ôm)",
+          "definition": "Cường độ dòng điện chạy qua một đoạn dây dẫn tỉ lệ thuận với hiệu điện thế đặt vào hai đầu đoạn dây và tỉ lệ nghịch với điện trở của đoạn dây đó: I = U / R (trong đó I đo bằng Ampe - A, U đo bằng Vôn - V, R đo bằng Ôm - Ω)."
+        },
+        {
+          "term": "Hiện tượng phản xạ toàn phần",
+          "definition": "Là hiện tượng toàn bộ tia sáng tới bị phản xạ ngược trở lại môi trường trong suốt ban đầu tại mặt phân cách giữa hai môi trường, không có tia khúc xạ đi vào môi trường thứ hai."
         },
         {
           "term": "phẩm cuối cùng giống nhau",
@@ -17193,8 +17669,20 @@
       ],
       "terms": [
         {
-          "term": "thuật",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Tốc độ phản ứng và chất xúc tác, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+        },
+        {
+          "term": "Đơn chất",
+          "definition": "Là những chất được tạo nên từ chỉ một nguyên tố hóa học duy nhất (ví dụ: kim loại nhôm Al, khí oxygen O2, than chì C, khí nitrogen N2)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
+          "term": "Hiện tượng phản xạ toàn phần",
+          "definition": "Là hiện tượng toàn bộ tia sáng tới bị phản xạ ngược trở lại môi trường trong suốt ban đầu tại mặt phân cách giữa hai môi trường, không có tia khúc xạ đi vào môi trường thứ hai."
         },
         {
           "term": "Thể tích mol của một chất",
@@ -17367,8 +17855,8 @@
       ],
       "terms": [
         {
-          "term": "Thuật Dung dịch",
-          "definition": "hỗn hợp đồng nhất của hai hay nhiều chất, Thông thường, chất nào có"
+          "term": "Acid",
+          "definition": "Là những hợp chất mà phân tử gồm có một hay nhiều nguyên tử hydrogen liên kết với gốc acid. Khi tan trong nước, acid tạo ra cation H⁺ làm dung dịch có vị chua và làm giấy quỳ tím đổi sang màu đỏ (pH < 7)."
         },
         {
           "term": "lượng lớn hơn thì được gọi",
@@ -17597,6 +18085,10 @@
       ],
       "terms": [
         {
+          "term": "Base (Bazơ)",
+          "definition": "Là những hợp chất mà phân tử gồm có nguyên tử kim loại (hoặc nhóm NH4⁺) liên kết với một hay nhiều nhóm hydroxide (-OH). Khi tan trong nước, base tạo ra anion OH⁻ làm giấy quỳ tím đổi sang màu xanh và dung dịch phenolphthalein chuyển sang màu hồng (pH > 7)."
+        },
+        {
           "term": "Hoạt động này chủ yếu",
           "definition": "các nội dung đọc hiểu để tù đó HS trả lời câu hỏi, rút ra"
         },
@@ -17823,6 +18315,10 @@
       ],
       "terms": [
         {
+          "term": "Oxide (Oxit)",
+          "definition": "Là hợp chất của hai nguyên tố, trong đó bắt buộc có một nguyên tố là oxygen."
+        },
+        {
           "term": "tự nhiên thực chất",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Oxide, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         }
@@ -18047,16 +18543,12 @@
       },
       "terms": [
         {
-          "term": "Thuật Thuật Chất xúc tác",
-          "definition": "chất tham gia một cách tuần hoàn vào phản ứng, làm tăng tốc độ phản"
+          "term": "Muối",
+          "definition": "Là hợp chất được tạo ra từ sự thay thế ion H⁺ trong phân tử acid bằng ion kim loại hoặc ion ammonium (NH4⁺). Phân tử muối gồm có kim loại (hoặc NH4⁺) liên kết với gốc acid."
         },
         {
           "term": "hoá học của enzyme",
           "definition": "protein, Hầu hết các phản ứng trong cơ thể sống xảy ra nhờ tác dụng"
-        },
-        {
-          "term": "hình",
-          "definition": "các lĩnh vực: công nghiệp phân bón, công nghiệp lọc hoá dầu, công nghiệp vật liệu -"
         },
         {
           "term": "tổng hợp ammonia",
@@ -18064,7 +18556,7 @@
         },
         {
           "term": "gọi",
-          "definition": "hiện tượng đầu độc xúc tác"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Muối (SGK KHTN 8), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         }
       ],
       "illustrations": [
@@ -18212,16 +18704,16 @@
       ],
       "terms": [
         {
-          "term": "Thuật Thuật Chất xúc tác",
-          "definition": "chất tham gia một cách tuần hoàn vào phản ứng, làm tăng tốc độ phản"
+          "term": "Phân tử",
+          "definition": "Là hạt đại diện cho chất, gồm một số nguyên tử liên kết với nhau bằng liên kết hóa học và thể hiện đầy đủ tính chất hóa học của chất đó."
+        },
+        {
+          "term": "Thấu kính phân kì",
+          "definition": "Là thấu kính có phần rìa dày hơn phần giữa, có tác dụng làm phân kì (loe rộng ra) chùm tia sáng tới song song với trục chính."
         },
         {
           "term": "hoá học của enzyme",
           "definition": "protein, Hầu hết các phản ứng trong cơ thể sống xảy ra nhờ tác dụng"
-        },
-        {
-          "term": "hình",
-          "definition": "các lĩnh vực: công nghiệp phân bón, công nghiệp lọc hoá dầu, công nghiệp vật liệu -"
         },
         {
           "term": "tổng hợp ammonia",
@@ -18229,7 +18721,7 @@
         },
         {
           "term": "gọi",
-          "definition": "hiện tượng đầu độc xúc tác"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Phân bón hóa học (SGK KHTN 8), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         }
       ],
       "warmup": {
@@ -18413,6 +18905,14 @@
         "hint": "Hãy liên hệ với các sự vật, hiện tượng tự nhiên quen thuộc xung quanh chúng ta."
       },
       "terms": [
+        {
+          "term": "Khối lượng riêng",
+          "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
         {
           "term": "Mục đích của hoạt động này",
           "definition": "để HS trình bày được ứng dụng của một số acid"
@@ -18612,6 +19112,18 @@
       ],
       "terms": [
         {
+          "term": "Khối lượng riêng",
+          "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
+          "term": "Định luật Ohm (Ôm)",
+          "definition": "Cường độ dòng điện chạy qua một đoạn dây dẫn tỉ lệ thuận với hiệu điện thế đặt vào hai đầu đoạn dây và tỉ lệ nghịch với điện trở của đoạn dây đó: I = U / R (trong đó I đo bằng Ampe - A, U đo bằng Vôn - V, R đo bằng Ôm - Ω)."
+        },
+        {
           "term": "Chất chỉ thị màu",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Thực hành xác định khối lượng riêng, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         },
@@ -18779,8 +19291,12 @@
       ],
       "terms": [
         {
-          "term": "Sulfur dioxide",
-          "definition": "Là hợp chất của hai nguyên tố, trong đó có một nguyên tố là oxygen."
+          "term": "Áp suất",
+          "definition": "Là độ lớn của áp lực (lực ép có phương vuông góc với mặt bị ép) tác dụng lên một đơn vị diện tích bị ép: p = F / S (p là áp suất đo bằng Pascal - Pa, F là áp lực đo bằng N, S là diện tích bị ép đo bằng m²)."
+        },
+        {
+          "term": "Oxide (Oxit)",
+          "definition": "Là hợp chất của hai nguyên tố, trong đó bắt buộc có một nguyên tố là oxygen."
         }
       ],
       "warmup": {
@@ -19009,8 +19525,24 @@
       ],
       "terms": [
         {
-          "term": "Oxide nào",
-          "definition": "Là hợp chất của hai nguyên tố, trong đó có một nguyên tố là oxygen."
+          "term": "Áp suất",
+          "definition": "Là độ lớn của áp lực (lực ép có phương vuông góc với mặt bị ép) tác dụng lên một đơn vị diện tích bị ép: p = F / S (p là áp suất đo bằng Pascal - Pa, F là áp lực đo bằng N, S là diện tích bị ép đo bằng m²)."
+        },
+        {
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+        },
+        {
+          "term": "Đơn chất",
+          "definition": "Là những chất được tạo nên từ chỉ một nguyên tố hóa học duy nhất (ví dụ: kim loại nhôm Al, khí oxygen O2, than chì C, khí nitrogen N2)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
+          "term": "Oxide (Oxit)",
+          "definition": "Là hợp chất của hai nguyên tố, trong đó bắt buộc có một nguyên tố là oxygen."
         }
       ],
       "warmup": {
@@ -19189,8 +19721,8 @@
       ],
       "terms": [
         {
-          "term": "Lực đẩy Archimedes",
-          "definition": "Là tác dụng đẩy hoặc kéo của vật này lên vật khác, được đặc trưng bởi phương, chiều, điểm đặt và độ lớn (đơn vị đo là Niutơn, kí hiệu N)."
+          "term": "Lực đẩy Archimedes (Ác-si-mét)",
+          "definition": "Là lực đẩy hướng thẳng đứng từ dưới lên trên do chất lỏng (hoặc chất khí) tác dụng lên bất kỳ vật nào nhúng chìm một phần hoặc toàn bộ trong nó. Độ lớn của lực đẩy bằng trọng lượng của khối chất lỏng bị vật chiếm chỗ: F_A = d × V."
         }
       ]
     },
@@ -19696,6 +20228,10 @@
       ],
       "terms": [
         {
+          "term": "Hiện tượng cảm ứng điện từ",
+          "definition": "Là hiện tượng xuất hiện dòng điện cảm ứng trong một cuộn dây dẫn kín khi số đường sức từ xuyên qua tiết diện của cuộn dây đó biến thiên (tăng lên hoặc giảm đi)."
+        },
+        {
           "term": "phụ thuộc vào hai yếu tố",
           "definition": "độ lớn của áp lực và diện tích bị ép"
         }
@@ -19836,8 +20372,8 @@
       },
       "terms": [
         {
-          "term": "khoảng trống đó chính",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Dòng điện, nguồn điện, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
+          "term": "Hiện tượng cảm ứng điện từ",
+          "definition": "Là hiện tượng xuất hiện dòng điện cảm ứng trong một cuộn dây dẫn kín khi số đường sức từ xuyên qua tiết diện của cuộn dây đó biến thiên (tăng lên hoặc giảm đi)."
         }
       ],
       "illustrations": [
@@ -20029,12 +20565,8 @@
       ],
       "terms": [
         {
-          "term": "lên một điểm ở đáy hồ",
-          "definition": "HS tự tìm thêm ví dụ chứng tỏ sự tồn tại của áp suất khí quyển lên một điểm ở đáy hồ là tổng áp suất gây bởi cột nước có độ cao bằng độ sâu của hồ và Cáp suất khí quyển."
-        },
-        {
-          "term": "Thị vật đặt trong nó gọi",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Mạch điện đơn giản, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
+          "term": "Hiện tượng cảm ứng điện từ",
+          "definition": "Là hiện tượng xuất hiện dòng điện cảm ứng trong một cuộn dây dẫn kín khi số đường sức từ xuyên qua tiết diện của cuộn dây đó biến thiên (tăng lên hoặc giảm đi)."
         }
       ],
       "warmup": {
@@ -20230,8 +20762,8 @@
       ],
       "terms": [
         {
-          "term": "và của nước",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Tác dụng của dòng điện, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
+          "term": "Hiện tượng cảm ứng điện từ",
+          "definition": "Là hiện tượng xuất hiện dòng điện cảm ứng trong một cuộn dây dẫn kín khi số đường sức từ xuyên qua tiết diện của cuộn dây đó biến thiên (tăng lên hoặc giảm đi)."
         }
       ],
       "warmup": {
@@ -20368,8 +20900,8 @@
       },
       "terms": [
         {
-          "term": "Thuận nó",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Cường độ dòng điện và hiệu điện thế, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
+          "term": "Hiện tượng cảm ứng điện từ",
+          "definition": "Là hiện tượng xuất hiện dòng điện cảm ứng trong một cuộn dây dẫn kín khi số đường sức từ xuyên qua tiết diện của cuộn dây đó biến thiên (tăng lên hoặc giảm đi)."
         }
       ],
       "illustrations": [
@@ -20484,12 +21016,12 @@
       ],
       "terms": [
         {
-          "term": "Trong Đòn bầy",
-          "definition": "một trong các loại máy cơ đơn giản được sử dụng nhiều trong đời sống để"
+          "term": "Hiện tượng cảm ứng điện từ",
+          "definition": "Là hiện tượng xuất hiện dòng điện cảm ứng trong một cuộn dây dẫn kín khi số đường sức từ xuyên qua tiết diện của cuộn dây đó biến thiên (tăng lên hoặc giảm đi)."
         },
         {
-          "term": "bầy loại này còn được gọi",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Thực hành đo cường độ dòng điện và hiệu điện thế, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
+          "term": "Trong Đòn bầy",
+          "definition": "một trong các loại máy cơ đơn giản được sử dụng nhiều trong đời sống để"
         },
         {
           "term": "Một ví dụ cho loại này",
@@ -20696,8 +21228,12 @@
       ],
       "terms": [
         {
-          "term": "Thuật Đây",
-          "definition": "một hoạt động kết nối, mở rộng, GV có thể hướng dẫn cho HS nhiệm vụ về nhà,"
+          "term": "Khối lượng riêng",
+          "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
         },
         {
           "term": "điện",
@@ -20855,6 +21391,14 @@
         "Giải thích hiện tượng nhiễm điện do cọ xát."
       ],
       "terms": [
+        {
+          "term": "Khối lượng riêng",
+          "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
         {
           "term": "khoảng thời gian",
           "definition": "tiếng sấm nổ, đó là do tốc độ âm thanh chậm hơn so với tốc độ ánh sáng"
@@ -21105,6 +21649,10 @@
       ],
       "terms": [
         {
+          "term": "Di truyền và Biến dị",
+          "definition": "Di truyền là hiện tượng truyền đạt các đặc điểm, tính trạng của bố mẹ, tổ tiên cho các thế hệ con cháu. Biến dị là hiện tượng con cái sinh ra xuất hiện những đặc điểm mới khác biệt so với bố mẹ và khác nhau giữa các cá thể trong cùng một lứa con."
+        },
+        {
           "term": "Nguồn điện",
           "definition": "khái niệm được dùng để chỉ những vật, thiết bị có khả năng cung cấp"
         },
@@ -21115,14 +21663,6 @@
         {
           "term": "Nguồn điện xoay chiều",
           "definition": "nguồn cung cấp dòng điện xoay chiều Trong nguồn điện này"
-        },
-        {
-          "term": "một cách đơn giản",
-          "definition": "tại thời điểm t, cực này có thể đóng vai trò là cực dương song tại thời"
-        },
-        {
-          "term": "Thuật thiến tiếch chỉ",
-          "definition": "một chất dẫn điện thường, Chính dòng điện sinh ra trong các kim loại khác bản"
         },
         {
           "term": "Dòng điện trong kim loại",
@@ -21344,7 +21884,7 @@
       "terms": [
         {
           "term": "điện",
-          "definition": "chiều dòng điện trong mạch"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Sự nở vì nhiệt (SGK KHTN 8), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "Cầu chì hay cầu dao điện",
@@ -21654,16 +22194,12 @@
       },
       "terms": [
         {
-          "term": "thuật thiệu đó",
-          "definition": "một dụng cụ dùng để thay đổi dòng điện chạy trong mạch"
-        },
-        {
           "term": "Đơn vị của hiệu điện thế",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Hệ vận động ở người, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         },
         {
           "term": "của số chỉ ampe kế",
-          "definition": "giá trị của cường độ dòng điện"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Hệ vận động ở người (SGK KHTN 8), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         }
       ],
       "summary": [
@@ -22052,7 +22588,7 @@
       "terms": [
         {
           "term": "trở trong r",
-          "definition": "đáng kể và khi đó U sẽ khác E"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Dinh dưỡng và tiêu hóa ở người (SGK KHTN 8), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         }
       ],
       "warmup": {
@@ -22291,16 +22827,8 @@
       ],
       "terms": [
         {
-          "term": "Ngọi",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Máu và hệ tuần hoàn của cơ thể người, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
-        },
-        {
           "term": "Nội năng của một vật",
           "definition": "năng lượng lưu trũ trong vật dưới dạng động năng của chuyển"
-        },
-        {
-          "term": "Các thuật",
-          "definition": "hàm trạng thái của vật Nhiệt lượng chỉ là số đo nhiệt năng vật thu thêm vào hoặc mất bót"
         },
         {
           "term": "rồi Nếu",
@@ -22703,16 +23231,8 @@
       ],
       "terms": [
         {
-          "term": "các thuật Sự truyền nhiệt",
-          "definition": "thuật ngữ dùng để chỉ quá trình trao đổi nhiệt năng giữa hai môi"
-        },
-        {
           "term": "Dẫn nhiệt",
           "definition": "quá trình truyền nhiệt năng trực tiếp thông qua va chạm giữa các hạt cấu"
-        },
-        {
-          "term": "Thuật Bức xạ nhiệt",
-          "definition": "sự truyền nhiệt giữa các vật không tiếp xúc với nhau, thông qua một loại"
         },
         {
           "term": "Các chứ không phải",
@@ -22720,7 +23240,7 @@
         },
         {
           "term": "học",
-          "definition": "về sự truyền năng lượng nhiệt"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Hệ bài tiết ở người (SGK KHTN 8), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         }
       ],
       "warmup": {
@@ -23660,6 +24180,14 @@
       },
       "terms": [
         {
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
+        },
+        {
           "term": "Chất dinh dưỡng",
           "definition": "các chất có trong thức ăn mà cơ thể sử dụng làm nguyên liệu"
         }
@@ -23841,6 +24369,14 @@
       ],
       "terms": [
         {
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
+        },
+        {
           "term": "tiêu hoá hoá học",
           "definition": "chủ yếu, Lớp niêm mạc ruột non có các nếp gấp, trên đó có nhiều lông"
         },
@@ -23981,12 +24517,16 @@
       ],
       "terms": [
         {
-          "term": "miệng sẽ",
-          "definition": "nơi cu trú của các vi khuẩn thường trú trong miệng, Vi khuẩn sử dụng đường"
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
         },
         {
-          "term": "Thuật thì gọi",
-          "definition": "RhT (âm tính): Kháng thể chống Rhĩ không có sẫn tự nhiên trong huyết tương mà"
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
+        },
+        {
+          "term": "miệng sẽ",
+          "definition": "nơi cu trú của các vi khuẩn thường trú trong miệng, Vi khuẩn sử dụng đường"
         },
         {
           "term": "tỉ lệ người Rht",
@@ -24142,6 +24682,14 @@
         "GV đưa ra nhiệm vụ cụ thể cho từng nội dung thực hành như thời gian, yêu cầu cần"
       ],
       "terms": [
+        {
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
+        },
         {
           "term": "phổ biến",
           "definition": "thiếu máu, huyết áp cao và xơ vữa động mạch"
@@ -24328,8 +24876,12 @@
       ],
       "terms": [
         {
-          "term": "thuật theo hai hướng",
-          "definition": "lên trên và ra hai bên làm lồng ngực nở rộng; cơ hoành co làm lổng ngực"
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
         }
       ],
       "warmup": {
@@ -24477,8 +25029,12 @@
       ],
       "terms": [
         {
-          "term": "thuật theo hai hướng",
-          "definition": "lên trên và ra hai bên làm lồng ngực nở rộng; cơ hoành co làm lổng ngực"
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
         }
       ],
       "warmup": {
@@ -24619,8 +25175,8 @@
       },
       "terms": [
         {
-          "term": "GV sẽ",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Cân bằng tự nhiên, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
+          "term": "Cân bằng tự nhiên",
+          "definition": "Khái niệm và nội dung trọng tâm của Bài 46 trong chương trình Khoa học tự nhiên lớp 8 (Kết nối tri thức với cuộc sống)."
         }
       ],
       "illustrations": [
@@ -24794,10 +25350,6 @@
         "GV có thể đánh giá kết quả học tập của HS dựa trên các câu trả lời của HS đối với các"
       ],
       "terms": [
-        {
-          "term": "tại 27 nước châu Âu",
-          "definition": "\"Theo báo cáo của Hội đồng châu Âu, số ca ghép thận tính trên một triệu dân hằng năm Cũng theo số liệu của Hội đồng châu Âu, trong năm 2012, tổng số các trường hợp ghép thận tại 27 nước châu Âu là 18854 trường hợp."
-        },
         {
           "term": "vẫn",
           "definition": "những vùng có số ca ghép thuộc nhóm thấp nhất thế giới Những thông tin này cho"
@@ -25141,6 +25693,18 @@
       ],
       "terms": [
         {
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+        },
+        {
+          "term": "Đơn chất",
+          "definition": "Là những chất được tạo nên từ chỉ một nguyên tố hóa học duy nhất (ví dụ: kim loại nhôm Al, khí oxygen O2, than chì C, khí nitrogen N2)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
           "term": "Bản bán trụ",
           "definition": "một khối thuỷ tinh trong suốt, Bảng"
         },
@@ -25341,6 +25905,10 @@
       },
       "terms": [
         {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
           "term": "thượng",
           "definition": "1,4 m, Tính thế năng trọng trường của bao xi măng trong hai trường hợp"
         },
@@ -25513,20 +26081,20 @@
       ],
       "terms": [
         {
-          "term": "Nêu được cơ năng",
-          "definition": "tổng động năng và thế năng của vật"
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
         },
         {
           "term": "Nêu được cơ năng",
           "definition": "tổng động năng và thế năng của vật"
         },
         {
-          "term": "khối lượng của quả nặng",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Cơ năng, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
+          "term": "Nêu được cơ năng",
+          "definition": "tổng động năng và thế năng của vật"
         },
         {
           "term": "Cơ năng của một vật",
-          "definition": "tổng động năng và thế năng:"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Cơ năng (SGK KHTN 9), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "được",
@@ -25722,12 +26290,12 @@
       ],
       "terms": [
         {
-          "term": "khối lượng của quả nặng",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Công và công suất, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
+          "term": "Áp suất",
+          "definition": "Là độ lớn của áp lực (lực ép có phương vuông góc với mặt bị ép) tác dụng lên một đơn vị diện tích bị ép: p = F / S (p là áp suất đo bằng Pascal - Pa, F là áp lực đo bằng N, S là diện tích bị ép đo bằng m²)."
         },
         {
           "term": "Cơ năng của một vật",
-          "definition": "tổng động năng và thế năng:"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Công và công suất (SGK KHTN 9), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "được",
@@ -25739,11 +26307,11 @@
         },
         {
           "term": "Đơn vị của công",
-          "definition": "jun, kí hiệu là J (1 J – 1 Nm)"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Công và công suất (SGK KHTN 9), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "Các bội của jun",
-          "definition": "kilôjun (k]) và mêgajun (M]):"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Công và công suất (SGK KHTN 9), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         }
       ],
       "warmup": {
@@ -25990,6 +26558,22 @@
       ],
       "terms": [
         {
+          "term": "Hiện tượng khúc xạ ánh sáng",
+          "definition": "Là hiện tượng tia sáng bị gãy khúc (đổi hướng truyền đột ngột) tại mặt phân cách giữa hai môi trường trong suốt khác nhau khi truyền xiên góc từ môi trường này sang môi trường khác."
+        },
+        {
+          "term": "Ánh sáng trắng",
+          "definition": "Là hỗn hợp của vô số ánh sáng đơn sắc khác nhau có màu biến thiên liên tục từ màu đỏ đến màu tím."
+        },
+        {
+          "term": "Ánh sáng đơn sắc",
+          "definition": "Là ánh sáng có một màu xác định và không bị đổi màu (không bị tán sắc) khi đi qua lăng kính, chỉ bị lệch đường truyền về phía đáy lăng kính."
+        },
+        {
+          "term": "Hiện tượng tán sắc ánh sáng",
+          "definition": "Là hiện tượng một chùm ánh sáng trắng (ánh sáng phức hợp) khi truyền qua lăng kính hoặc môi trường trong suốt bị phân tách thành một dải nhiều chùm ánh sáng đơn sắc có màu biến thiên liên tục từ đỏ đến tím (đỏ, da cam, vàng, lục, lam, chàm, tím)."
+        },
+        {
           "term": "Công suất",
           "definition": "Một số giá trị công suất Chương II Đối tượng Công suất P ÁNH SÁNG Ngựa Khoảng 700 w Tên lửa Khoảng 2.10 – W Ô tô 2.10'W – 3.10 – W Nhà máy thuỷ diện Hoà Bình Khoảng 5.10 – W Bài KHÚC XA ÁNH SÁNG Đầu máy xc lừa 10W – 3.10 – Mặt Trời Khoảng 37.10 – W Cứ mỗi lần đập, tim người thực hiện một công khoảng 1 J."
         },
@@ -25999,7 +26583,7 @@
         },
         {
           "term": "gọi",
-          "definition": "hiện tượng khúc xạ ánh sáng"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Khúc xạ ánh sáng (SGK KHTN 9), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "thời v",
@@ -26008,10 +26592,6 @@
         {
           "term": "thời v",
           "definition": "tốc độ ánh sáng trong môi trường"
-        },
-        {
-          "term": "Chiết suất của chân không",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Khúc xạ ánh sáng, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         }
       ],
       "warmup": {
@@ -26216,12 +26796,12 @@
       },
       "terms": [
         {
-          "term": "Cáp quang",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Phản xạ toàn phần, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
+          "term": "Hiện tượng phản xạ toàn phần",
+          "definition": "Là hiện tượng toàn bộ tia sáng tới bị phản xạ ngược trở lại môi trường trong suốt ban đầu tại mặt phân cách giữa hai môi trường, không có tia khúc xạ đi vào môi trường thứ hai."
         },
         {
-          "term": "thuật quang",
-          "definition": "một dây trong suốt có tính"
+          "term": "Cáp quang",
+          "definition": "Là khái niệm khoa học trọng tâm trong bài học Phản xạ toàn phần, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         }
       ],
       "illustrations": [
@@ -26249,7 +26829,7 @@
         "Từ kết quả thí nghiệm truyền ánh sáng qua lăng kính, nêu được khái niệm về ánh sáng màu.",
         "Nêu được màu sắc của một vật được nhìn thấy phụ thuộc vào màu sắc của ánh sáng bị vật đó hấp thụ và phản xạ."
       ],
-      "content": "Bài LĂNG KÍNH chiết suất n của chất làm lăng kính. Về phương diện quang học, một lăng kính được đặc trưng bởi: góc chiết quang A; Hãy chỉ ra góc chiết quang, mặt bên, cạnh và đáy của lăng kính có trong phòng thí nghiệm. Thuận Thiên Từ kết quá thí nghiệm truyền ánh sáng qua lăng kính, nêu được khái niệm về ánh sáng màu. Thí nghiệm 1: Tìm hiểu hiện tượng tán sắc ánh sảng Thuật thuận điểm Nêu được màu sắc của một vật được nhìn thấy phụ thuộc vào màu sắc của ánh sáng bị vật đó hấp thụ và phản xạ.",
+      "content": "Bài LĂNG KÍNH chiết suất n của chất làm lăng kính. Về phương diện quang học, một lăng kính được đặc trưng bởi: góc chiết quang A; Hãy chỉ ra góc chiết quang, mặt bên, cạnh và đáy của lăng kính có trong phòng thí nghiệm. Từ kết quá thí nghiệm truyền ánh sáng qua lăng kính, nêu được khái niệm về ánh sáng màu. Thí nghiệm 1: Tìm hiểu hiện tượng tán sắc ánh sảng Nêu được màu sắc của một vật được nhìn thấy phụ thuộc vào màu sắc của ánh sáng bị vật đó hấp thụ và phản xạ.",
       "source_label": "SGK KHTN 9 KNTT · Bài 7 · Trang 34–36",
       "order": 70,
       "active": true,
@@ -26362,12 +26942,32 @@
       },
       "terms": [
         {
-          "term": "Lăng kính",
-          "definition": "một khối trong suốt, đồng chất, được giới"
+          "term": "Thấu kính phân kì",
+          "definition": "Là thấu kính có phần rìa dày hơn phần giữa, có tác dụng làm phân kì (loe rộng ra) chùm tia sáng tới song song với trục chính."
         },
         {
-          "term": "chính của lăng kính và",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Lăng kính và tán sắc ánh sáng, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
+          "term": "Thấu kính hội tụ",
+          "definition": "Là thấu kính có phần rìa mỏng hơn phần giữa (làm bằng vật liệu trong suốt như thủy tinh, nhựa), có tác dụng hội tụ chùm tia sáng tới song song với trục chính tại một điểm nằm sau thấu kính gọi là tiêu điểm chính."
+        },
+        {
+          "term": "Hiện tượng khúc xạ ánh sáng",
+          "definition": "Là hiện tượng tia sáng bị gãy khúc (đổi hướng truyền đột ngột) tại mặt phân cách giữa hai môi trường trong suốt khác nhau khi truyền xiên góc từ môi trường này sang môi trường khác."
+        },
+        {
+          "term": "Ánh sáng trắng",
+          "definition": "Là hỗn hợp của vô số ánh sáng đơn sắc khác nhau có màu biến thiên liên tục từ màu đỏ đến màu tím."
+        },
+        {
+          "term": "Ánh sáng đơn sắc",
+          "definition": "Là ánh sáng có một màu xác định và không bị đổi màu (không bị tán sắc) khi đi qua lăng kính, chỉ bị lệch đường truyền về phía đáy lăng kính."
+        },
+        {
+          "term": "Hiện tượng tán sắc ánh sáng",
+          "definition": "Là hiện tượng một chùm ánh sáng trắng (ánh sáng phức hợp) khi truyền qua lăng kính hoặc môi trường trong suốt bị phân tách thành một dải nhiều chùm ánh sáng đơn sắc có màu biến thiên liên tục từ đỏ đến tím (đỏ, da cam, vàng, lục, lam, chàm, tím)."
+        },
+        {
+          "term": "Lăng kính",
+          "definition": "Là một khối chất trong suốt, đồng chất (thường làm bằng thủy tinh hoặc nhựa trong), được giới hạn bởi hai mặt phẳng không song song gọi là các mặt bên của lăng kính."
         }
       ],
       "summary": [
@@ -26723,28 +27323,24 @@
       ],
       "terms": [
         {
+          "term": "Thấu kính phân kì",
+          "definition": "Là thấu kính có phần rìa dày hơn phần giữa, có tác dụng làm phân kì (loe rộng ra) chùm tia sáng tới song song với trục chính."
+        },
+        {
+          "term": "Thấu kính hội tụ",
+          "definition": "Là thấu kính có phần rìa mỏng hơn phần giữa (làm bằng vật liệu trong suốt như thủy tinh, nhựa), có tác dụng hội tụ chùm tia sáng tới song song với trục chính tại một điểm nằm sau thấu kính gọi là tiêu điểm chính."
+        },
+        {
+          "term": "Lăng kính",
+          "definition": "Là một khối chất trong suốt, đồng chất (thường làm bằng thủy tinh hoặc nhựa trong), được giới hạn bởi hai mặt phẳng không song song gọi là các mặt bên của lăng kính."
+        },
+        {
           "term": "kính hội tụ và đâu",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Thấu kính, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         },
         {
           "term": "Thấu kính",
           "definition": "một khối đồng chất trong suốt (thuỷ"
-        },
-        {
-          "term": "kính rìa mỏng",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Thấu kính, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
-        },
-        {
-          "term": "kính rìa dày",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Thấu kính, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
-        },
-        {
-          "term": "kính rìa mỏng",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Thấu kính, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
-        },
-        {
-          "term": "kính rìa dày",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Thấu kính, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         }
       ],
       "warmup": {
@@ -26931,6 +27527,18 @@
       ],
       "terms": [
         {
+          "term": "Thấu kính phân kì",
+          "definition": "Là thấu kính có phần rìa dày hơn phần giữa, có tác dụng làm phân kì (loe rộng ra) chùm tia sáng tới song song với trục chính."
+        },
+        {
+          "term": "Thấu kính hội tụ",
+          "definition": "Là thấu kính có phần rìa mỏng hơn phần giữa (làm bằng vật liệu trong suốt như thủy tinh, nhựa), có tác dụng hội tụ chùm tia sáng tới song song với trục chính tại một điểm nằm sau thấu kính gọi là tiêu điểm chính."
+        },
+        {
+          "term": "Lăng kính",
+          "definition": "Là một khối chất trong suốt, đồng chất (thường làm bằng thủy tinh hoặc nhựa trong), được giới hạn bởi hai mặt phẳng không song song gọi là các mặt bên của lăng kính."
+        },
+        {
           "term": "Thấu kính",
           "definition": "một khối đồng chất trong suốt, giới hạn bởi hai mặt cong hoặc bởi một"
         },
@@ -27092,6 +27700,18 @@
       ],
       "terms": [
         {
+          "term": "Thấu kính phân kì",
+          "definition": "Là thấu kính có phần rìa dày hơn phần giữa, có tác dụng làm phân kì (loe rộng ra) chùm tia sáng tới song song với trục chính."
+        },
+        {
+          "term": "Thấu kính hội tụ",
+          "definition": "Là thấu kính có phần rìa mỏng hơn phần giữa (làm bằng vật liệu trong suốt như thủy tinh, nhựa), có tác dụng hội tụ chùm tia sáng tới song song với trục chính tại một điểm nằm sau thấu kính gọi là tiêu điểm chính."
+        },
+        {
+          "term": "Lăng kính",
+          "definition": "Là một khối chất trong suốt, đồng chất (thường làm bằng thủy tinh hoặc nhựa trong), được giới hạn bởi hai mặt phẳng không song song gọi là các mặt bên của lăng kính."
+        },
+        {
           "term": "lúp",
           "definition": "số bội giác G, được xác định bằng tỉ số giữa góc trông"
         },
@@ -27106,10 +27726,6 @@
         {
           "term": "Kính lúp",
           "definition": "thấu kính hội tụ có tiêu cự ngắn (f- 25 cm), dùng để quan sát các vật nhỏ"
-        },
-        {
-          "term": "Quá trình này gọi",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Kính lúp. Bài tập thấu kính, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         }
       ],
       "warmup": {
@@ -27366,28 +27982,16 @@
       ],
       "terms": [
         {
+          "term": "Hiện tượng cảm ứng điện từ",
+          "definition": "Là hiện tượng xuất hiện dòng điện cảm ứng trong một cuộn dây dẫn kín khi số đường sức từ xuyên qua tiết diện của cuộn dây đó biến thiên (tăng lên hoặc giảm đi)."
+        },
+        {
+          "term": "Định luật Ohm (Ôm)",
+          "definition": "Cường độ dòng điện chạy qua một đoạn dây dẫn tỉ lệ thuận với hiệu điện thế đặt vào hai đầu đoạn dây và tỉ lệ nghịch với điện trở của đoạn dây đó: I = U / R (trong đó I đo bằng Ampe - A, U đo bằng Vôn - V, R đo bằng Ôm - Ω)."
+        },
+        {
           "term": "Kính lúp",
           "definition": "thấu kính hội tụ có tiêu cự ngắn (f- 25 cm), dùng để quan sát các vật nhỏ"
-        },
-        {
-          "term": "Quá trình này gọi",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Điện trở. Định luật Ohm, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
-        },
-        {
-          "term": "Vật dẫn",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Điện trở. Định luật Ohm, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
-        },
-        {
-          "term": "Vật dẫn",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Điện trở. Định luật Ohm, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
-        },
-        {
-          "term": "lượt",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Điện trở. Định luật Ohm, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
-        },
-        {
-          "term": "mạch",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Điện trở. Định luật Ohm, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         }
       ],
       "warmup": {
@@ -27627,12 +28231,8 @@
       ],
       "terms": [
         {
-          "term": "mạch",
-          "definition": "Thí nghiệm tìm hiểu đặc điểm của đoạn mạch nối tiếp Chuẩn bị: MỤC TIÊU Ba điện trở R - 6 2, R, - 10 0, R, - 16 N; Thuật thuận Tính được cường độ dòng điện trong đoạn mạch một chiều mắc nối tiếp, mắc song song trong một số cho mọi điểm; trong đoạn mạch điện mắc song song, tổng cường độ dòng điện trong các nhánh bằng cường độ dòng điện chạy trong mạch chính."
-        },
-        {
           "term": "Vậy giá trị điện trở",
-          "definition": "47 x 10 – 5% ? 47 - 5% (2)"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Đoạn mạch nối tiếp, song song (SGK KHTN 9), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         }
       ],
       "warmup": {
@@ -27787,16 +28387,24 @@
       },
       "terms": [
         {
+          "term": "Áp suất",
+          "definition": "Là độ lớn của áp lực (lực ép có phương vuông góc với mặt bị ép) tác dụng lên một đơn vị diện tích bị ép: p = F / S (p là áp suất đo bằng Pascal - Pa, F là áp lực đo bằng N, S là diện tích bị ép đo bằng m²)."
+        },
+        {
+          "term": "Khối lượng riêng",
+          "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
+          "term": "Hiện tượng cảm ứng điện từ",
+          "definition": "Là hiện tượng xuất hiện dòng điện cảm ứng trong một cuộn dây dẫn kín khi số đường sức từ xuyên qua tiết diện của cuộn dây đó biến thiên (tăng lên hoặc giảm đi)."
+        },
+        {
           "term": "nghĩa",
           "definition": "để bóng đèn sáng bình thường cần mắc bóng đèn"
-        },
-        {
-          "term": "Bàn",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Năng lượng của dòng điện và công suất điện, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
-        },
-        {
-          "term": "Bàn",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Năng lượng của dòng điện và công suất điện, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         },
         {
           "term": "Trong U",
@@ -28052,6 +28660,18 @@
       ],
       "terms": [
         {
+          "term": "Nguyên tử",
+          "definition": "Là hạt vô cùng nhỏ bé và trung hòa về điện, cấu tạo nên mọi chất. Nguyên tử gồm hạt nhân mang điện tích dương ở tâm (chứa proton mang điện +1 và neutron không mang điện) và lớp vỏ electron mang điện tích âm (-1) chuyển động xung quanh."
+        },
+        {
+          "term": "Nguyên tố hóa học",
+          "definition": "Là tập hợp những nguyên tử cùng loại có cùng số proton trong hạt nhân (cùng điện tích hạt nhân). Các nguyên tử của cùng một nguyên tố hóa học đều có tính chất hóa học giống nhau."
+        },
+        {
+          "term": "Hiện tượng cảm ứng điện từ",
+          "definition": "Là hiện tượng xuất hiện dòng điện cảm ứng trong một cuộn dây dẫn kín khi số đường sức từ xuyên qua tiết diện của cuộn dây đó biến thiên (tăng lên hoặc giảm đi)."
+        },
+        {
           "term": "chính",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Cảm ứng điện từ. Nguyên tắc tạo ra dòng điện xoay chiều, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         },
@@ -28261,6 +28881,10 @@
         "nguồn năng lượng hoá thạch trên Trái Đất. 75/229 XXX QQQX"
       ],
       "terms": [
+        {
+          "term": "Hiện tượng cảm ứng điện từ",
+          "definition": "Là hiện tượng xuất hiện dòng điện cảm ứng trong một cuộn dây dẫn kín khi số đường sức từ xuyên qua tiết diện của cuộn dây đó biến thiên (tăng lên hoặc giảm đi)."
+        },
         {
           "term": "dụng để chiếu sáng",
           "definition": "dòng điện một chiều hay dòng điện xoay chiều – 2"
@@ -28498,6 +29122,14 @@
         "Nguồn: eia.gov/petroleum/gasdiesel/"
       ],
       "terms": [
+        {
+          "term": "Khối lượng riêng",
+          "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
         {
           "term": "Xung điện",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Vòng năng lượng trên Trái Đất. Năng lượng hoá thạch, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
@@ -28770,6 +29402,14 @@
       ],
       "terms": [
         {
+          "term": "Khối lượng riêng",
+          "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
           "term": "Năng lượng tái tạo",
           "definition": "năng lượng đến từ các nguồn năng lượng có sẫn trong thiên nhiên, liên"
         },
@@ -29029,6 +29669,18 @@
         "hint": "Hãy liên hệ với các sự vật, hiện tượng tự nhiên quen thuộc xung quanh chúng ta."
       },
       "terms": [
+        {
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+        },
+        {
+          "term": "Đơn chất",
+          "definition": "Là những chất được tạo nên từ chỉ một nguyên tố hóa học duy nhất (ví dụ: kim loại nhôm Al, khí oxygen O2, than chì C, khí nitrogen N2)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
         {
           "term": "Những kim loại này",
           "definition": "kim loại hoạt động hoá học mạnh"
@@ -29684,8 +30336,8 @@
           "definition": "Bài 21 SỰ KHÁC NHAU CƠ BẢN GIỮA PHI KIM VÀ KIM LOẠI Các phi kim như carbon, lưu huỳnh hay chlorine là những chất không thể thiếu trong công nghiệp cũng như cuộc sống hàng ngày, Tỉnh chất của chúng có gì khác so với kim loại:."
         },
         {
-          "term": "Hợp chất của carbon",
-          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
         }
       ],
       "warmup": {
@@ -29904,12 +30556,20 @@
       ],
       "terms": [
         {
+          "term": "Đơn chất",
+          "definition": "Là những chất được tạo nên từ chỉ một nguyên tố hóa học duy nhất (ví dụ: kim loại nhôm Al, khí oxygen O2, than chì C, khí nitrogen N2)."
+        },
+        {
+          "term": "Trao đổi chất và chuyển hóa năng lượng",
+          "definition": "Là đặc trưng cơ bản của sự sống, bao gồm quá trình cơ thể sinh vật lấy các chất từ môi trường (nước, thức ăn, oxygen/CO2), biến đổi chúng trong tế bào thành các chất cần thiết cho cơ thể và tích lũy năng lượng, đồng thời thải các chất cặn bã, chất độc và nhiệt ra môi trường ngoài."
+        },
+        {
           "term": "kim",
           "definition": "phi kim có thể tồn tại ở thể khí (hydrogen, nitrogen, oxygen, fluorine, chlorine,...), Chương VII thể lòng (bromine) hay thể rắn (carbon, silicon, phosphorus, lưu huỳnh,...)."
         },
         {
-          "term": "Hợp chất của carbon",
-          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
         },
         {
           "term": "Công thức cấu tạo",
@@ -29920,12 +30580,12 @@
           "definition": "liên kết đơn, biểu diễn bằng một gạch nối (?); còn liên kết cộng"
         },
         {
-          "term": "Hợp chất của carbon",
-          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
         },
         {
-          "term": "Hợp chất của carbon",
-          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
         }
       ],
       "warmup": {
@@ -30200,12 +30860,12 @@
       ],
       "terms": [
         {
-          "term": "Hợp chất của carbon",
-          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
         },
         {
-          "term": "Hợp chất của carbon",
-          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
+          "term": "Hợp chất",
+          "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2)."
         },
         {
           "term": "Hydrocarbon",
@@ -31143,16 +31803,16 @@
           "definition": "gia vị quen thuộc được sử dụng phổ biến trong chế biến thực phẩm, Chất nào đã"
         },
         {
-          "term": "Acetic acid",
-          "definition": "Là những hợp chất trong phân tử gồm có một hay nhiều nguyên tử hydrogen liên kết với gốc acid, khi tan trong nước phân li ra cation H⁺ làm quỳ tím chuyển sang màu đỏ (pH < 7)."
+          "term": "Acid",
+          "definition": "Là những hợp chất mà phân tử gồm có một hay nhiều nguyên tử hydrogen liên kết với gốc acid. Khi tan trong nước, acid tạo ra cation H⁺ làm dung dịch có vị chua và làm giấy quỳ tím đổi sang màu đỏ (pH < 7)."
         },
         {
-          "term": "Acetic acid",
-          "definition": "Là những hợp chất trong phân tử gồm có một hay nhiều nguyên tử hydrogen liên kết với gốc acid, khi tan trong nước phân li ra cation H⁺ làm quỳ tím chuyển sang màu đỏ (pH < 7)."
+          "term": "Acid",
+          "definition": "Là những hợp chất mà phân tử gồm có một hay nhiều nguyên tử hydrogen liên kết với gốc acid. Khi tan trong nước, acid tạo ra cation H⁺ làm dung dịch có vị chua và làm giấy quỳ tím đổi sang màu đỏ (pH < 7)."
         },
         {
-          "term": "Acetic acid",
-          "definition": "Là những hợp chất trong phân tử gồm có một hay nhiều nguyên tử hydrogen liên kết với gốc acid, khi tan trong nước phân li ra cation H⁺ làm quỳ tím chuyển sang màu đỏ (pH < 7)."
+          "term": "Acid",
+          "definition": "Là những hợp chất mà phân tử gồm có một hay nhiều nguyên tử hydrogen liên kết với gốc acid. Khi tan trong nước, acid tạo ra cation H⁺ làm dung dịch có vị chua và làm giấy quỳ tím đổi sang màu đỏ (pH < 7)."
         },
         {
           "term": "Propyl acetate",
@@ -31318,16 +31978,12 @@
       ],
       "terms": [
         {
-          "term": "đơn giản",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Lipid, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
-        },
-        {
           "term": "Glycerol",
-          "definition": "alcohol có công thức cấu tạo:"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Lipid (SGK KHTN 9), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
-          "term": "Acid béo",
-          "definition": "Là những hợp chất trong phân tử gồm có một hay nhiều nguyên tử hydrogen liên kết với gốc acid, khi tan trong nước phân li ra cation H⁺ làm quỳ tím chuyển sang màu đỏ (pH < 7)."
+          "term": "Acid",
+          "definition": "Là những hợp chất mà phân tử gồm có một hay nhiều nguyên tử hydrogen liên kết với gốc acid. Khi tan trong nước, acid tạo ra cation H⁺ làm dung dịch có vị chua và làm giấy quỳ tím đổi sang màu đỏ (pH < 7)."
         },
         {
           "term": "công thức cấu tạo thu gọn",
@@ -31547,16 +32203,12 @@
           "definition": "những hợp chất hữu cơ có trong tế bào sống, không tan trong nước, nhưng"
         },
         {
-          "term": "hình",
-          "definition": "Là khái niệm khoa học trọng tâm trong bài học Carbohydrate. Glucose và saccharose, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
-        },
-        {
           "term": "Chất béo",
           "definition": "triester của glycerol và các acid béo, có công thức (RCOO),C,H, Phản"
         },
         {
           "term": "Glucose",
-          "definition": "loại đường có trong nhiều trái"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Carbohydrate. Glucose và saccharose (SGK KHTN 9), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         }
       ],
       "warmup": {
@@ -31749,10 +32401,6 @@
         {
           "term": "Tỉnh bột và cellulose",
           "definition": "những carbolrydrate phức tạp có vai trò khác nhau trong cơ thể sinh vật;"
-        },
-        {
-          "term": "Vai trò chính của tỉnh bột",
-          "definition": "nguồn dự trữ năng lượng, còn vai trò chính của celhulose là tạo niên bộ"
         },
         {
           "term": "cellulose",
@@ -32330,8 +32978,16 @@
       ],
       "terms": [
         {
-          "term": "Các oxide phổ biến nhất",
-          "definition": "Là hợp chất của hai nguyên tố, trong đó có một nguyên tố là oxygen."
+          "term": "Nguyên tử",
+          "definition": "Là hạt vô cùng nhỏ bé và trung hòa về điện, cấu tạo nên mọi chất. Nguyên tử gồm hạt nhân mang điện tích dương ở tâm (chứa proton mang điện +1 và neutron không mang điện) và lớp vỏ electron mang điện tích âm (-1) chuyển động xung quanh."
+        },
+        {
+          "term": "Nguyên tố hóa học",
+          "definition": "Là tập hợp những nguyên tử cùng loại có cùng số proton trong hạt nhân (cùng điện tích hạt nhân). Các nguyên tử của cùng một nguyên tố hóa học đều có tính chất hóa học giống nhau."
+        },
+        {
+          "term": "Oxide (Oxit)",
+          "definition": "Là hợp chất của hai nguyên tố, trong đó bắt buộc có một nguyên tố là oxygen."
         },
         {
           "term": "Vô Trái Đất",
@@ -32856,6 +33512,10 @@
       ],
       "terms": [
         {
+          "term": "Hiện tượng phản xạ toàn phần",
+          "definition": "Là hiện tượng toàn bộ tia sáng tới bị phản xạ ngược trở lại môi trường trong suốt ban đầu tại mặt phân cách giữa hai môi trường, không có tia khúc xạ đi vào môi trường thứ hai."
+        },
+        {
           "term": "Xi măng",
           "definition": "một loại vật liệu kết dính, được dùng trong xây"
         },
@@ -33097,8 +33757,12 @@
       ],
       "terms": [
         {
-          "term": "dioxide",
-          "definition": "Là hợp chất của hai nguyên tố, trong đó có một nguyên tố là oxygen."
+          "term": "Di truyền và Biến dị",
+          "definition": "Di truyền là hiện tượng truyền đạt các đặc điểm, tính trạng của bố mẹ, tổ tiên cho các thế hệ con cháu. Biến dị là hiện tượng con cái sinh ra xuất hiện những đặc điểm mới khác biệt so với bố mẹ và khác nhau giữa các cá thể trong cùng một lứa con."
+        },
+        {
+          "term": "Oxide (Oxit)",
+          "definition": "Là hợp chất của hai nguyên tố, trong đó bắt buộc có một nguyên tố là oxygen."
         },
         {
           "term": "Di truyền học",
@@ -33311,6 +33975,14 @@
       ],
       "terms": [
         {
+          "term": "Di truyền và Biến dị",
+          "definition": "Di truyền là hiện tượng truyền đạt các đặc điểm, tính trạng của bố mẹ, tổ tiên cho các thế hệ con cháu. Biến dị là hiện tượng con cái sinh ra xuất hiện những đặc điểm mới khác biệt so với bố mẹ và khác nhau giữa các cá thể trong cùng một lứa con."
+        },
+        {
+          "term": "Định luật Ohm (Ôm)",
+          "definition": "Cường độ dòng điện chạy qua một đoạn dây dẫn tỉ lệ thuận với hiệu điện thế đặt vào hai đầu đoạn dây và tỉ lệ nghịch với điện trở của đoạn dây đó: I = U / R (trong đó I đo bằng Ampe - A, U đo bằng Vôn - V, R đo bằng Ôm - Ω)."
+        },
+        {
           "term": "Phép lai phân tích",
           "definition": "Nêu được vai trò của phép lai phân tích."
         }
@@ -33478,27 +34150,31 @@
       ],
       "terms": [
         {
-          "term": "DNA",
-          "definition": "NUCLEIC ACID VÀ GENE DNA là đại phân tử cấu trúc từ các đơn phân adenine (A), thymine (T), cytosine (C) và chục triệu amu."
+          "term": "Đột biến gene",
+          "definition": "Là những biến đổi bất thường trong cấu trúc phân tử của gene, liên quan đến một hoặc một số cặp nucleotide (gồm các dạng: thay thế một cặp nucleotide, thêm một cặp nucleotide, mất một cặp nucleotide)."
         },
         {
-          "term": "Nucleic acid",
-          "definition": "Là những hợp chất trong phân tử gồm có một hay nhiều nguyên tử hydrogen liên kết với gốc acid, khi tan trong nước phân li ra cation H⁺ làm quỳ tím chuyển sang màu đỏ (pH < 7)."
+          "term": "Phân tử DNA (Axit đêoxiribônuclêic)",
+          "definition": "Là đại phân tử sinh học có cấu trúc chuỗi xoắn kép gồm 2 mạch polynucleotide song song và ngược chiều nhau, được cấu tạo theo nguyên tắc đa phân từ 4 loại đơn phân nucleotide: A (Adenine), T (Thymine), G (Guanine), C (Cytosine)."
         },
         {
-          "term": "DNA",
-          "definition": "NUCLEIC ACID VÀ GENE DNA là đại phân tử cấu trúc từ các đơn phân adenine (A), thymine (T), cytosine (C) và chục triệu amu."
+          "term": "Acid",
+          "definition": "Là những hợp chất mà phân tử gồm có một hay nhiều nguyên tử hydrogen liên kết với gốc acid. Khi tan trong nước, acid tạo ra cation H⁺ làm dung dịch có vị chua và làm giấy quỳ tím đổi sang màu đỏ (pH < 7)."
         },
         {
-          "term": "Nucleic acid có hai loại",
-          "definition": "Là những hợp chất trong phân tử gồm có một hay nhiều nguyên tử hydrogen liên kết với gốc acid, khi tan trong nước phân li ra cation H⁺ làm quỳ tím chuyển sang màu đỏ (pH < 7)."
+          "term": "Phân tử DNA (Axit đêoxiribônuclêic)",
+          "definition": "Là đại phân tử sinh học có cấu trúc chuỗi xoắn kép gồm 2 mạch polynucleotide song song và ngược chiều nhau, được cấu tạo theo nguyên tắc đa phân từ 4 loại đơn phân nucleotide: A (Adenine), T (Thymine), G (Guanine), C (Cytosine)."
+        },
+        {
+          "term": "Acid",
+          "definition": "Là những hợp chất mà phân tử gồm có một hay nhiều nguyên tử hydrogen liên kết với gốc acid. Khi tan trong nước, acid tạo ra cation H⁺ làm dung dịch có vị chua và làm giấy quỳ tím đổi sang màu đỏ (pH < 7)."
         },
         {
           "term": "định một sản phẩm xác định",
           "definition": "phân tử RNA hoặc chuỗi polypeptide"
         },
         {
-          "term": "Phân tử mRNA",
+          "term": "Phân tử",
           "definition": "Là hạt đại diện cho chất, gồm một số nguyên tử liên kết với nhau bằng liên kết hóa học và thể hiện đầy đủ tính chất hóa học của chất đó."
         }
       ],
@@ -33701,7 +34377,11 @@
       ],
       "terms": [
         {
-          "term": "Phân tử mRNA",
+          "term": "Phân tử DNA (Axit đêoxiribônuclêic)",
+          "definition": "Là đại phân tử sinh học có cấu trúc chuỗi xoắn kép gồm 2 mạch polynucleotide song song và ngược chiều nhau, được cấu tạo theo nguyên tắc đa phân từ 4 loại đơn phân nucleotide: A (Adenine), T (Thymine), G (Guanine), C (Cytosine)."
+        },
+        {
+          "term": "Phân tử",
           "definition": "Là hạt đại diện cho chất, gồm một số nguyên tử liên kết với nhau bằng liên kết hóa học và thể hiện đầy đủ tính chất hóa học của chất đó."
         },
         {
@@ -33709,8 +34389,8 @@
           "definition": "chuỗi polyribonucleotide nhưng một số vùng có sự tự bắt cặp theo"
         },
         {
-          "term": "Nucleic acid",
-          "definition": "Là những hợp chất trong phân tử gồm có một hay nhiều nguyên tử hydrogen liên kết với gốc acid, khi tan trong nước phân li ra cation H⁺ làm quỳ tím chuyển sang màu đỏ (pH < 7)."
+          "term": "Acid",
+          "definition": "Là những hợp chất mà phân tử gồm có một hay nhiều nguyên tử hydrogen liên kết với gốc acid. Khi tan trong nước, acid tạo ra cation H⁺ làm dung dịch có vị chua và làm giấy quỳ tím đổi sang màu đỏ (pH < 7)."
         },
         {
           "term": "phân với đơn phân",
@@ -33929,6 +34609,10 @@
       ],
       "terms": [
         {
+          "term": "Đột biến gene",
+          "definition": "Là những biến đổi bất thường trong cấu trúc phân tử của gene, liên quan đến một hoặc một số cặp nucleotide (gồm các dạng: thay thế một cặp nucleotide, thêm một cặp nucleotide, mất một cặp nucleotide)."
+        },
+        {
           "term": "Giả thiết mã di truyền",
           "definition": "Là hiện tượng truyền đạt các tính trạng, đặc điểm của bố mẹ, tổ tiên cho các thế hệ con cháu thông qua vật chất di truyền."
         },
@@ -34116,6 +34800,10 @@
       ],
       "terms": [
         {
+          "term": "Di truyền và Biến dị",
+          "definition": "Di truyền là hiện tượng truyền đạt các đặc điểm, tính trạng của bố mẹ, tổ tiên cho các thế hệ con cháu. Biến dị là hiện tượng con cái sinh ra xuất hiện những đặc điểm mới khác biệt so với bố mẹ và khác nhau giữa các cá thể trong cùng một lứa con."
+        },
+        {
           "term": "gene được gọi",
           "definition": "Là một đoạn phân tử DNA mang thông tin di truyền mã hóa cho một chuỗi polypeptide hoặc một phân tử RNA nhất định."
         },
@@ -34128,8 +34816,8 @@
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Đột biến gene, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
         },
         {
-          "term": "Đa số đột biến gene",
-          "definition": "Là một đoạn phân tử DNA mang thông tin di truyền mã hóa cho một chuỗi polypeptide hoặc một phân tử RNA nhất định."
+          "term": "Đột biến gene",
+          "definition": "Là những biến đổi bất thường trong cấu trúc phân tử của gene, liên quan đến một hoặc một số cặp nucleotide (gồm các dạng: thay thế một cặp nucleotide, thêm một cặp nucleotide, mất một cặp nucleotide)."
         }
       ],
       "warmup": {
@@ -34412,7 +35100,7 @@
       "terms": [
         {
           "term": "tâm động",
-          "definition": "điểm giới hạn giữa một bên"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Nhiễm sắc thể và bộ nhiễm sắc thể (SGK KHTN 9), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "là cánh ngắn và một bên",
@@ -34420,7 +35108,7 @@
         },
         {
           "term": "tâm động",
-          "definition": "điểm giới hạn giữa một bên"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Nhiễm sắc thể và bộ nhiễm sắc thể (SGK KHTN 9), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "là cánh ngắn và một bên",
@@ -34694,6 +35382,22 @@
       ],
       "terms": [
         {
+          "term": "Phân tử",
+          "definition": "Là hạt đại diện cho chất, gồm một số nguyên tử liên kết với nhau bằng liên kết hóa học và thể hiện đầy đủ tính chất hóa học của chất đó."
+        },
+        {
+          "term": "Nguyên tử",
+          "definition": "Là hạt vô cùng nhỏ bé và trung hòa về điện, cấu tạo nên mọi chất. Nguyên tử gồm hạt nhân mang điện tích dương ở tâm (chứa proton mang điện +1 và neutron không mang điện) và lớp vỏ electron mang điện tích âm (-1) chuyển động xung quanh."
+        },
+        {
+          "term": "Nguyên tố hóa học",
+          "definition": "Là tập hợp những nguyên tử cùng loại có cùng số proton trong hạt nhân (cùng điện tích hạt nhân). Các nguyên tử của cùng một nguyên tố hóa học đều có tính chất hóa học giống nhau."
+        },
+        {
+          "term": "Thấu kính phân kì",
+          "definition": "Là thấu kính có phần rìa dày hơn phần giữa, có tác dụng làm phân kì (loe rộng ra) chùm tia sáng tới song song với trục chính."
+        },
+        {
           "term": "Nêu được nhiễm sắc thể vừa",
           "definition": "vật chất mang thông tín di truyền, vừa là đơn vị truyền đạt vật chất di"
         },
@@ -34715,7 +35419,7 @@
         },
         {
           "term": "nam kí hiệu",
-          "definition": "44A + XY, của nữ là 44A % XX,"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Nguyên phân và giảm phân (SGK KHTN 9), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         }
       ],
       "warmup": {
@@ -34896,6 +35600,10 @@
       ],
       "terms": [
         {
+          "term": "Định luật Ohm (Ôm)",
+          "definition": "Cường độ dòng điện chạy qua một đoạn dây dẫn tỉ lệ thuận với hiệu điện thế đặt vào hai đầu đoạn dây và tỉ lệ nghịch với điện trở của đoạn dây đó: I = U / R (trong đó I đo bằng Ampe - A, U đo bằng Vôn - V, R đo bằng Ôm - Ω)."
+        },
+        {
           "term": "Nguyên phân",
           "definition": "hình thức phân chia tế bào mà trong đó các tế bào con được tạo ra"
         },
@@ -34905,7 +35613,7 @@
         },
         {
           "term": "nam kí hiệu",
-          "definition": "44A + XY, của nữ là 44A % XX,"
+          "definition": "Là khái niệm khoa học cốt lõi trong bài học Nhiễm sắc thể giới tính và cơ chế xác định giới tính (SGK KHTN 9), thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu."
         },
         {
           "term": "Trong NST vừa",
@@ -35067,6 +35775,10 @@
         "2, Dựa vào những thông tin trên, hây cho biết đột biến cấu trúc NST là gì. K 197/229 XX ĐQQ X D"
       ],
       "terms": [
+        {
+          "term": "Di truyền và Biến dị",
+          "definition": "Di truyền là hiện tượng truyền đạt các đặc điểm, tính trạng của bố mẹ, tổ tiên cho các thế hệ con cháu. Biến dị là hiện tượng con cái sinh ra xuất hiện những đặc điểm mới khác biệt so với bố mẹ và khác nhau giữa các cá thể trong cùng một lứa con."
+        },
         {
           "term": "Đây",
           "definition": "hiện tượng gì – I-Quy luật di truyền liên kết"
@@ -35301,6 +36013,14 @@
         "người ta thường trồng giống đa bội hơn là giống lưỡng bội. Hình 47.. Một số tính trạng ở người (201/229 X X E QQQX D"
       ],
       "terms": [
+        {
+          "term": "Đột biến gene",
+          "definition": "Là những biến đổi bất thường trong cấu trúc phân tử của gene, liên quan đến một hoặc một số cặp nucleotide (gồm các dạng: thay thế một cặp nucleotide, thêm một cặp nucleotide, mất một cặp nucleotide)."
+        },
+        {
+          "term": "Di truyền và Biến dị",
+          "definition": "Di truyền là hiện tượng truyền đạt các đặc điểm, tính trạng của bố mẹ, tổ tiên cho các thế hệ con cháu. Biến dị là hiện tượng con cái sinh ra xuất hiện những đặc điểm mới khác biệt so với bố mẹ và khác nhau giữa các cá thể trong cùng một lứa con."
+        },
         {
           "term": "những biến đổi đó được gọi",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Đột biến nhiễm sắc thể, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."
@@ -35569,6 +36289,10 @@
       ],
       "terms": [
         {
+          "term": "Di truyền và Biến dị",
+          "definition": "Di truyền là hiện tượng truyền đạt các đặc điểm, tính trạng của bố mẹ, tổ tiên cho các thế hệ con cháu. Biến dị là hiện tượng con cái sinh ra xuất hiện những đặc điểm mới khác biệt so với bố mẹ và khác nhau giữa các cá thể trong cùng một lứa con."
+        },
+        {
           "term": "Đột biến NST",
           "definition": "những biến đổi về cấu trúc và số lượng NST"
         },
@@ -35770,6 +36494,10 @@
         }
       ],
       "terms": [
+        {
+          "term": "Di truyền và Biến dị",
+          "definition": "Di truyền là hiện tượng truyền đạt các đặc điểm, tính trạng của bố mẹ, tổ tiên cho các thế hệ con cháu. Biến dị là hiện tượng con cái sinh ra xuất hiện những đặc điểm mới khác biệt so với bố mẹ và khác nhau giữa các cá thể trong cùng một lứa con."
+        },
         {
           "term": "Ứng dụng công nghệ di truyền vào đời sống",
           "definition": "Là hiện tượng truyền đạt các tính trạng, đặc điểm của bố mẹ, tổ tiên cho các thế hệ con cháu thông qua vật chất di truyền."
@@ -36365,6 +37093,14 @@
         "150 000 năm trước"
       ],
       "terms": [
+        {
+          "term": "Hệ sinh thái",
+          "definition": "Là một hệ thống sinh học hoàn chỉnh bao gồm quần xã sinh vật (thành phần hữu sinh) và môi trường sống của chúng (sinh cảnh - thành phần vô sinh), trong đó các sinh vật luôn tương tác qua lại với nhau và với môi trường tạo nên chu trình trao đổi vật chất và dòng chuyển hóa năng lượng khép kín."
+        },
+        {
+          "term": "Quần thể sinh vật",
+          "definition": "Là tập hợp các cá thể cùng một loài, cùng sinh sống trong một khoảng không gian xác định, vào một thời điểm nhất định, có khả năng giao phối tự do với nhau để sinh ra thế hệ sau hữu thụ."
+        },
         {
           "term": "Lamarck",
           "definition": "Là khái niệm khoa học trọng tâm trong bài học Sự phát sinh và phát triển sự sống trên Trái Đất, thể hiện bản chất quy luật và tính chất đặc trưng của đối tượng nghiên cứu trong chương trình Khoa học tự nhiên."

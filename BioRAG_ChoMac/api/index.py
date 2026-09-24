@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Vercel Serverless Function entry point for BioRAG (TRƯỜNG THCS TÂN TẠO A).
+"""Vercel Serverless Function entry point for BioRAG (TRƯỜNG THCS HUỲNH BÁ CHÁNH).
 
 Optimized for Vercel Serverless environment:
 - Ultra-lightweight (pure Python & standard libs, no heavy PyTorch/CUDA)
@@ -107,7 +107,7 @@ def handle_404(e):
     return jsonify({
         "error": f"API endpoint {request.path} not found",
         "status": 404,
-        "school": "TRƯỜNG THCS TÂN TẠO A"
+        "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH"
     }), 404
 
 @app.errorhandler(500)
@@ -526,7 +526,7 @@ def api_auth_login():
             "username": username,
             "name": display_name,
             "role": user_role,
-            "school": "TRƯỜNG THCS TÂN TẠO A",
+            "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH",
             "permissions": ["teacher_mode", "edit_lessons", "generate_lessons", "export_5512", "export_3280", "view_sgv"]
         }
         token = generate_auth_token(user_payload)
@@ -561,7 +561,7 @@ def api_auth_login():
             "grade_class": grade_class,
             "student_code": student_code,
             "role": "student",
-            "school": "TRƯỜNG THCS TÂN TẠO A",
+            "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH",
             "permissions": ["read_sgk", "chat_ai", "take_quiz", "view_history", "lab_3d"]
         }
         token = generate_auth_token(user_payload)
@@ -569,7 +569,7 @@ def api_auth_login():
             "success": True,
             "user": user_payload,
             "token": token,
-            "message": f"Chào mừng em {full_name} (Lớp {grade_class}) đến với BioRAG Tân Tạo A!"
+            "message": f"Chào mừng em {full_name} (Lớp {grade_class}) đến với BioRAG Huỳnh Bá Chánh!"
         })
 
     else:
@@ -583,12 +583,12 @@ def api_auth_me():
         return jsonify({
             "authenticated": True,
             "user": user,
-            "school": "TRƯỜNG THCS TÂN TẠO A"
+            "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH"
         })
     return jsonify({
         "authenticated": False,
         "user": None,
-        "school": "TRƯỜNG THCS TÂN TẠO A"
+        "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH"
     })
 
 @app.route("/api/auth/logout", methods=["POST", "OPTIONS"])
@@ -604,7 +604,7 @@ def api_auth_classes():
     return jsonify({
         "grades": [6, 7, 8, 9],
         "classes": DEFAULT_CLASSES,
-        "school": "TRƯỜNG THCS TÂN TẠO A"
+        "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH"
     })
 
 # =========================================================================
@@ -619,7 +619,7 @@ def health():
     return jsonify({
         "status": "ok",
         "service": "BioRAG Vercel Serverless",
-        "school": "TRƯỜNG THCS TÂN TẠO A",
+        "school": "TRƯỜNG THCS HUỲNH BÁ CHÁNH",
         "backend_proxy": bool(BACKEND_URL),
         "lessons_available": len(get_all_lessons()),
         "exams_available": len(CURATED_EXAM_BANK),
@@ -1162,7 +1162,7 @@ def api_quiz_generate():
             "grade": grade,
             "topic": topic,
             "title": topic,
-            "school_name": "TRƯỜNG THCS TÂN TẠO A"
+            "school_name": "TRƯỜNG THCS HUỲNH BÁ CHÁNH"
         }, target_mcq_count=count)
         mcqs = exam_synth.get("multiple_choice", [])[:count]
         if mcqs:
@@ -1258,8 +1258,8 @@ def api_lab_export_report():
                 exp = item
                 break
     student_info = {
-        "school": data.get("school_name") or "TRƯỜNG THCS TÂN TẠO A",
-        "student_name": data.get("student_name") or "Học sinh THCS Tân Tạo A",
+        "school": data.get("school_name") or "TRƯỜNG THCS HUỲNH BÁ CHÁNH",
+        "student_name": data.get("student_name") or "Học sinh THCS Huỳnh Bá Chánh",
         "class": data.get("class_name") or f"Lớp {exp.get('grade', 7) if exp else 7}",
         "group": data.get("group") or "Nhóm thực hành KHTN",
         "date": data.get("date") or ""
@@ -1329,7 +1329,7 @@ def api_exam_generate_3280():
             "grade": grade,
             "topic": topic,
             "title": f"ĐỀ KIỂM TRA ĐỊNH KỲ KHTN {grade}",
-            "school_name": "TRƯỜNG THCS TÂN TẠO A"
+            "school_name": "TRƯỜNG THCS HUỲNH BÁ CHÁNH"
         }, target_mcq_count=count)
         return jsonify({"exam": exam, "exam_data": exam})
     return jsonify({"error": "Builder unavailable"}), 500
@@ -1482,7 +1482,7 @@ KIẾN THỨC BÀI HỌC THAM KHẢO TỪ SGK KNTT:
 - Tóm tắt: {', '.join(matched_lesson.get('summary', []))}
 - Nội dung: {matched_lesson.get('content', '')}
 """
-        prompt = f"""Bạn là Trợ lý AI Khoa học Tự nhiên chính thức của Trường Thcs Tân Tạo A.
+        prompt = f"""Bạn là Trợ lý AI Khoa học Tự nhiên chính thức của Trường THCS Huỳnh Bá Chánh.
 Chương trình: Khoa học Tự nhiên Lớp {resolved_grade} (Bộ sách Kết nối tri thức với cuộc sống).
 {lesson_context}
 
@@ -1509,7 +1509,7 @@ HÃY TRẢ LỜI ĐẦY ĐỦ, CHUẨN MỰC SƯ PHẠM THEO CẤU TRÚC SAU:
 
     local_answer = format_local_rag_answer(question, matched_lesson) if callable(format_local_rag_answer) else ""
     if not local_answer or len(local_answer) < 30:
-        local_answer = f"""Chào bạn! Mình là Trợ lý AI Khoa học Tự nhiên của **Trường Thcs Tân Tạo A**.
+        local_answer = f"""Chào bạn! Mình là Trợ lý AI Khoa học Tự nhiên của **Trường THCS Huỳnh Bá Chánh**.
 
 Hiện tại bạn đang hỏi về: **{question}**.
 Kho tri thức SGK KHTN Lớp {resolved_grade} (Kết nối tri thức) đã tích hợp đầy đủ 195 bài học, bài tập trắc nghiệm và mô phỏng 3D tại các mục tương ứng trên hệ thống."""
@@ -1697,7 +1697,7 @@ def resolve_image_bytes_and_crop(raw_image_path="", raw_image_url="", metadata=N
     return img_bytes, mime_type, crop_info
 
 
-def build_image_notes_docx(image_bytes, question, answer, source_name, page, crop_info=None, school_name="TRƯỜNG THCS TÂN TẠO A"):
+def build_image_notes_docx(image_bytes, question, answer, source_name, page, crop_info=None, school_name="TRƯỜNG THCS HUỲNH BÁ CHÁNH"):
     """Generate Word (.docx) study note document with embedded image and pedagogic answer."""
     import io, re
     try:
@@ -1811,7 +1811,7 @@ def api_image_chat():
     
     if img_bytes and api_key and callable(call_gemini_vision_rest):
         focus_desc = "Người học đã KHOANH MỘT VÙNG TRỌNG TÂM trên hình. Ảnh đính kèm là vùng đã khoanh." if crop_info else "Người học đang quan sát toàn bộ hình ảnh SGK."
-        prompt = f"""Bạn là Trợ lý AI Khoa học Tự nhiên của Trường THCS Tân Tạo A.
+        prompt = f"""Bạn là Trợ lý AI Khoa học Tự nhiên của Trường THCS Huỳnh Bá Chánh.
 Bộ sách: SGK Khoa học Tự nhiên Lớp {grade} (Kết nối tri thức với cuộc sống).
 Nguồn hình: {metadata.get('pdf_filename') or metadata.get('source') or label or 'SGK KHTN'}.
 Chú thích hình: {label or metadata.get('figure_caption') or 'Hình minh họa SGK'}.
@@ -1867,7 +1867,7 @@ def api_image_chat_export():
     source_name = metadata.get("pdf_filename") or metadata.get("source") or label or "SGK KHTN KNTT"
     page = metadata.get("page_number") or metadata.get("page") or 1
     
-    docx_bytes = build_image_notes_docx(img_bytes, question, answer, source_name, page, crop_info, school_name="TRƯỜNG THCS TÂN TẠO A")
+    docx_bytes = build_image_notes_docx(img_bytes, question, answer, source_name, page, crop_info, school_name="TRƯỜNG THCS HUỲNH BÁ CHÁNH")
     
     if docx_bytes:
         buf = io.BytesIO(docx_bytes)
@@ -1876,7 +1876,7 @@ def api_image_chat_export():
             buf,
             mimetype="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             as_attachment=True,
-            download_name=f"Ghi_chu_hoc_tap_trang_{safe_p}_THCS_TanTaoA.docx"
+            download_name=f"Ghi_chu_hoc_tap_trang_{safe_p}_THCS_HuynhBaChanh.docx"
         )
         
     return jsonify({"error": "Không thể xuất tài liệu Word lúc này."}), 500

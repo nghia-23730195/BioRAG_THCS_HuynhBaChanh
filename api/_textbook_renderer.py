@@ -612,22 +612,171 @@ def search_best_lesson(lessons_or_question, question_or_grade=None, preferred_gr
             
     return best_lesson, best_score
 
-# Comprehensive concept lookup for local RAG
-RAG_CORE_CONCEPTS = {
-    "hô hấp tế bào": "Là quá trình phân giải các phân tử chất hữu cơ (chủ yếu là glucose) diễn ra trong tế bào (tại bào quan ti thể) với sự tham gia của khí oxygen, tạo ra sản phẩm là carbon dioxide (CO2), nước (H2O) và giải phóng năng lượng dưới dạng ATP cung cấp cho mọi hoạt động sống của cơ thể.\n\n* Phương trình chữ hô hấp tế bào: **Glucose + Khí oxygen → Khí carbon dioxide + Nước + Năng lượng (ATP + Nhiệt)**\n* Bản chất: Là quá trình chuyển hóa năng lượng hóa học tích lũy trong chất hữu cơ thành dạng năng lượng ATP dễ sử dụng cho tế bào.",
-    "quang hợp": "Là quá trình lá cây và các bộ phận có màu xanh của thực vật sử dụng năng lượng ánh sáng mặt trời đã được lục lạp (chứa diệp lục) hấp thụ để tổng hợp chất hữu cơ (glucose, tinh bột) từ nước (H2O) và khí carbon dioxide (CO2), đồng thời giải phóng khí oxygen (O2) ra môi trường.\n\n* Phương trình chữ quang hợp: **Nước + Khí carbon dioxide + Ánh sáng mặt trời (Diệp lục) → Glucose + Khí oxygen**\n* Vai trò: Cung cấp chất hữu cơ và khí oxygen nuôi sống toàn bộ sinh giới trên Trái Đất, điều hòa khí hậu.",
-    "nguyên tố hóa học": "Là tập hợp những nguyên tử cùng loại có cùng số proton trong hạt nhân (cùng điện tích hạt nhân). Các nguyên tử của cùng một nguyên tố hóa học đều có tính chất hóa học giống nhau và được biểu diễn bằng kí hiệu hóa học gồm 1 hoặc 2 chữ cái.",
-    "nguyên tử": "Là hạt vô cùng nhỏ bé và trung hòa về điện, cấu tạo nên mọi chất trong tự nhiên. Nguyên tử gồm hạt nhân mang điện tích dương ở tâm (chứa proton +1 và neutron 0) và lớp vỏ electron (-1) chuyển động không ngừng xung quanh.",
-    "phân tử": "Là hạt đại diện cho chất, gồm một số nguyên tử liên kết với nhau bằng liên kết hóa học (liên kết cộng hóa trị hoặc ion) và thể hiện đầy đủ tính chất hóa học của chất đó.",
-    "đơn chất": "Là những chất được tạo nên từ chỉ một nguyên tố hóa học (ví dụ: khí oxygen O2, khí nitrogen N2, kim loại đồng Cu, than chì C).",
-    "hợp chất": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2, đường glucose C6H12O6).",
-    "acid": "Là những hợp chất trong phân tử gồm có một hay nhiều nguyên tử hydrogen liên kết với gốc acid, khi tan trong nước phân li ra cation H⁺ làm quỳ tím chuyển sang màu đỏ (pH < 7). Ví dụ: Hydrochloric acid (HCl), Sulfuric acid (H2SO4), Acetic acid (CH3COOH).",
-    "base": "Là những hợp chất trong phân tử gồm có nguyên tử kim loại liên kết với một hay nhiều nhóm hydroxide (-OH), khi tan trong nước phân li ra anion OH⁻ làm quỳ tím chuyển sang màu xanh (pH > 7). Ví dụ: Sodium hydroxide (NaOH), Calcium hydroxide (Ca(OH)2).",
-    "muối": "Là hợp chất được tạo ra từ sự thay thế ion H⁺ trong acid bằng ion kim loại hoặc ion ammonium (NH4⁺). Ví dụ: NaCl, CuSO4, CaCO3.",
-    "lực ma sát": "Là lực xuất hiện ở bề mặt tiếp xúc giữa hai vật và cản trở chuyển động của vật (gồm ma sát trượt, ma sát lăn và ma sát nghỉ).",
-    "lực đẩy archimedes": "Là lực đẩy do chất lỏng hoặc chất khí tác dụng lên một vật nhúng chìm trong nó, có phương thẳng đứng, chiều từ dưới lên trên và độ lớn F_A = d × V (d là trọng lượng riêng của chất lỏng, V là thể tích phần chìm).",
-    "khối lượng riêng": "Là khối lượng của một đơn vị thể tích (1 m³ hoặc 1 cm³) chất đó, được tính bằng công thức D = m / V (đơn vị kg/m³ hoặc g/cm³).",
-    "định luật ôm": "Cường độ dòng điện chạy qua một đoạn dây dẫn tỉ lệ thuận với hiệu điện thế đặt vào hai đầu đoạn dây và tỉ lệ nghịch với điện trở của đoạn dây đó: I = U / R."
+# Complete high-quality encyclopedia for all KHTN 6, 7, 8, 9 concepts
+ENCYCLOPEDIA_KHTN = {
+    # Quang học KHTN 9
+    "tán sắc ánh sáng": {
+        "term": "Hiện tượng tán sắc ánh sáng",
+        "definition": "Là hiện tượng một chùm ánh sáng trắng (ánh sáng phức hợp) khi truyền qua lăng kính hoặc môi trường trong suốt bị phân tách thành một dải nhiều chùm ánh sáng đơn sắc có màu biến thiên liên tục từ đỏ đến tím (đỏ, da cam, vàng, lục, lam, chàm, tím).",
+        "details": "Mỗi ánh sáng đơn sắc có chiết suất khác nhau đối với chất làm lăng kính (ánh sáng đỏ bị lệch ít nhất, ánh sáng tím bị lệch nhiều nhất).",
+        "role": "Giải thích hiện tượng cầu vồng tự nhiên sau mưa, màu sắc trên màng bong bóng xà phòng, và là nguyên lý hoạt động của máy quang phổ để phân tích cấu tạo vật chất từ xa.",
+        "example": "Cầu vồng trên bầu trời sau cơn mưa xuất hiện khi ánh sáng Mặt Trời bị tán sắc và phản xạ toàn phần qua hàng triệu giọt nước mưa li ti đóng vai trò như những lăng kính tự nhiên."
+    },
+    "lăng kính": {
+        "term": "Lăng kính",
+        "definition": "Là một khối chất trong suốt, đồng chất (thường làm bằng thủy tinh hoặc nhựa trong), được giới hạn bởi hai mặt phẳng không song song gọi là các mặt bên của lăng kính.",
+        "details": "Về phương diện quang học, lăng kính được đặc trưng bởi góc chiết quang A và chiết suất n của chất làm lăng kính. Lăng kính có tác dụng làm lệch tia sáng về phía đáy khi truyền qua nó.",
+        "role": "Dùng làm bộ phận tán sắc trong máy quang phổ, kính tiềm vọng, ống nhòm và các dụng cụ quang học.",
+        "example": "Lăng kính tam giác bằng thủy tinh dùng trong phòng thí nghiệm KHTN để tạo ra dải cầu vồng 7 màu từ chùm sáng trắng của đèn chiếu."
+    },
+    "ánh sáng đơn sắc": {
+        "term": "Ánh sáng đơn sắc",
+        "definition": "Là ánh sáng có một màu xác định và không bị đổi màu (không bị tán sắc) khi đi qua lăng kính, chỉ bị lệch đường truyền về phía đáy lăng kính.",
+        "details": "Ví dụ ánh sáng đỏ đơn sắc khi qua lăng kính vẫn giữ nguyên màu đỏ.",
+        "role": "Ứng dụng trong tia laser, đèn tín hiệu giao thông, thiết bị đo lường quang học chính xác.",
+        "example": "Tia laser đỏ dùng trong bút chỉ bảng là chùm sáng đơn sắc, khi chiếu qua lăng kính không bị tách thành nhiều màu."
+    },
+    "ánh sáng trắng": {
+        "term": "Ánh sáng trắng",
+        "definition": "Là hỗn hợp của vô số ánh sáng đơn sắc khác nhau có màu biến thiên liên tục từ màu đỏ đến màu tím.",
+        "details": "Ánh sáng Mặt Trời, ánh sáng đèn sợi đốt, đèn halogen là các nguồn phát ánh sáng trắng.",
+        "role": "Cung cấp ánh sáng nhìn thấy cho sinh giới định hướng, quan sát và thúc đẩy quang hợp ở thực vật.",
+        "example": "Ánh sáng Mặt Trời vào ban ngày chiếu rọi vạn vật, khi gặp lăng kính thủy tinh sẽ tách ra thành 7 sắc cầu vồng rực rỡ."
+    },
+    "khúc xạ ánh sáng": {
+        "term": "Hiện tượng khúc xạ ánh sáng",
+        "definition": "Là hiện tượng tia sáng bị gãy khúc (đổi hướng truyền đột ngột) tại mặt phân cách giữa hai môi trường trong suốt khác nhau khi truyền xiên góc từ môi trường này sang môi trường khác.",
+        "details": "Định luật khúc xạ: Tia khúc xạ nằm trong mặt phẳng tới và ở phía bên kia pháp tuyến so với tia tới. Tỉ số sin(i) / sin(r) = n2 / n1 là hằng số đối với hai môi trường xác định.",
+        "role": "Là nguyên lý tạo ảnh của mắt người, kính thuốc, kính hiển vi, kính thiên văn và máy ảnh.",
+        "example": "Cắm một chiếc đũa thẳng vào cốc nước trong suốt, ta nhìn thấy chiếc đũa như bị gãy khúc ở mặt nước do hiện tượng khúc xạ ánh sáng."
+    },
+    "phản xạ toàn phần": {
+        "term": "Hiện tượng phản xạ toàn phần",
+        "definition": "Là hiện tượng toàn bộ tia sáng tới bị phản xạ ngược trở lại môi trường trong suốt ban đầu tại mặt phân cách giữa hai môi trường, không có tia khúc xạ đi vào môi trường thứ hai.",
+        "details": "Điều kiện xảy ra: Ánh sáng truyền từ môi trường có chiết suất lớn sang môi trường có chiết suất nhỏ hơn (n1 > n2) và góc tới i ≥ igh (với sin igh = n2/n1).",
+        "role": "Ứng dụng then chốt trong cáp quang viễn thông truyền dữ liệu tốc độ cao (Internet xuyên đại dương), sợi quang nội soi y tế.",
+        "example": "Cáp quang Internet truyền tín hiệu ánh sáng đi hàng ngàn cây số nhờ hiện tượng phản xạ toàn phần liên tục bên trong lõi sợi thủy tinh."
+    },
+    "thấu kính hội tụ": {
+        "term": "Thấu kính hội tụ",
+        "definition": "Là thấu kính có phần rìa mỏng hơn phần giữa, có tác dụng hội tụ chùm tia sáng tới song song với trục chính tại một điểm nằm sau thấu kính gọi là tiêu điểm chính.",
+        "details": "Tia tới qua quang tâm O truyền thẳng; tia tới song song trục chính cho tia ló đi qua tiêu điểm chính F'; tia tới qua tiêu điểm F cho tia ló song song trục chính.",
+        "role": "Dùng làm vật kính máy ảnh, kính hiển vi, kính lúp, kính thiên văn và kính chữa tật viễn thị, lão thị.",
+        "example": "Kính lúp cầm tay của học sinh là một thấu kính hội tụ dùng để quan sát gân lá hoặc các chi tiết nhỏ của côn trùng."
+    },
+    "thấu kính phân kì": {
+        "term": "Thấu kính phân kì",
+        "definition": "Là thấu kính có phần rìa dày hơn phần giữa, có tác dụng làm phân kì (loe rộng ra) chùm tia sáng tới song song với trục chính.",
+        "details": "Đặc điểm tạo ảnh: Luôn cho ảnh ảo, cùng chiều và nhỏ hơn vật, nằm trong khoảng tiêu cự của thấu kính.",
+        "role": "Dùng làm kính thuốc chữa tật cận thị cho học sinh, ống nhòm thể thao.",
+        "example": "Mắt kính của các bạn học sinh bị cận thị là thấu kính phân kì giúp đưa ảnh của vật ở xa về đúng màng lưới của mắt."
+    },
+    "định luật ôm": {
+        "term": "Định luật Ohm (Ôm)",
+        "definition": "Cường độ dòng điện chạy qua một đoạn dây dẫn tỉ lệ thuận với hiệu điện thế đặt vào hai đầu đoạn dây và tỉ lệ nghịch với điện trở của đoạn dây đó: I = U / R (trong đó I đo bằng Ampe - A, U đo bằng Vôn - V, R đo bằng Ôm - Ω).",
+        "details": "Hệ quả: U = I × R; R = U / I. Đồ thị biểu diễn sự phụ thuộc của I vào U là một đường thẳng đi qua gốc tọa độ.",
+        "role": "Là định luật cơ bản nhất của điện học dùng để tính toán mạch điện, thiết kế mạng điện an toàn trong gia đình và công nghiệp.",
+        "example": "Khi tăng hiệu điện thế giữa hai đầu bóng đèn từ 110V lên 220V mà điện trở không đổi thì cường độ dòng điện tăng gấp đôi, làm đèn sáng mạnh hơn."
+    },
+    "cảm ứng điện từ": {
+        "term": "Hiện tượng cảm ứng điện từ",
+        "definition": "Là hiện tượng xuất hiện dòng điện cảm ứng trong một cuộn dây dẫn kín khi số đường sức từ xuyên qua tiết diện của cuộn dây đó biến thiên (tăng lên hoặc giảm đi).",
+        "details": "Được nhà bác học Michael Faraday phát minh năm 1831. Dòng điện cảm ứng chỉ tồn tại trong thời gian số đường sức từ biến thiên.",
+        "role": "Là nguyên lý hoạt động của máy phát điện xoay chiều, máy biến áp, bếp từ, động cơ điện và toàn bộ hệ thống sản xuất điện năng hiện đại.",
+        "example": "Di chuyển thanh nam châm lại gần hoặc ra xa cuộn dây đồng có nối với bóng đèn LED, đèn LED sẽ lóe sáng do có dòng điện cảm ứng sinh ra."
+    },
+    # Sinh học & KHTN Lớp 7
+    "hô hấp tế bào": {
+        "term": "Hô hấp tế bào",
+        "definition": "Là quá trình phân giải các phân tử chất hữu cơ (chủ yếu là glucose) diễn ra trong tế bào (chủ yếu tại bào quan ti thể) với sự tham gia của khí oxygen, tạo ra sản phẩm là carbon dioxide (CO2), nước (H2O) và giải phóng năng lượng dưới dạng ATP cung cấp cho mọi hoạt động sống của tế bào và cơ thể.",
+        "details": "Phương trình chữ: Glucose + Khí oxygen → Khí carbon dioxide + Nước + Năng lượng (ATP + Nhiệt).",
+        "role": "Cung cấp nguồn năng lượng ATP duy nhất cho sự phân chia tế bào, vận chuyển chất, co cơ, dẫn truyền xung thần kinh và duy trì thân nhiệt.",
+        "example": "Khi chúng ta chạy bộ nhanh, cơ thể cần nhiều năng lượng nên nhịp thở và nhịp tim tăng nhanh để cung cấp đủ oxygen cho các tế bào cơ bắp thực hiện hô hấp tế bào."
+    },
+    "quang hợp": {
+        "term": "Quang hợp ở thực vật",
+        "definition": "Là quá trình lá cây và các bộ phận có màu xanh của thực vật sử dụng năng lượng ánh sáng mặt trời đã được chất diệp lục (trong lục lạp) hấp thụ để tổng hợp chất hữu cơ (glucose, tinh bột) từ nước (H2O) rễ hút lên và khí carbon dioxide (CO2) từ không khí, đồng thời giải phóng khí oxygen (O2) ra môi trường.",
+        "details": "Phương trình chữ: Nước + Khí carbon dioxide + Năng lượng ánh sáng (Diệp lục) → Glucose + Khí oxygen.",
+        "role": "Tạo ra chất hữu cơ nuôi sống toàn bộ sinh vật trên Trái Đất; cung cấp khí O2 cho hô hấp và hấp thụ CO2 giúp làm sạch bầu khí quyển, điều hòa khí hậu toàn cầu.",
+        "example": "Trồng nhiều cây xanh xung quanh trường học và khu dân cư giúp không khí trong lành, mát mẻ hơn nhờ quá trình quang hợp hấp thụ CO2 và nhả khí O2."
+    },
+    "nguyên tố hóa học": {
+        "term": "Nguyên tố hóa học",
+        "definition": "Là tập hợp những nguyên tử cùng loại có cùng số proton trong hạt nhân (cùng điện tích hạt nhân). Các nguyên tử của cùng một nguyên tố hóa học đều có tính chất hóa học giống nhau.",
+        "details": "Mỗi nguyên tố được biểu diễn bằng một kí hiệu hóa học (gồm 1 hoặc 2 chữ cái, ví dụ: H, O, C, N, Na, Fe, Cu). Hiện nay có 118 nguyên tố hóa học được sắp xếp trong Bảng tuần hoàn.",
+        "role": "Là những 'viên gạch' cơ bản xây dựng nên toàn bộ hàng triệu chất vô cơ và hữu cơ trong tự nhiên và cơ thể con người.",
+        "example": "Nguyên tố Calcium (Ca) là thành phần cấu tạo chính của xương và răng; nguyên tố Iron (Fe) tạo nên phân tử hemoglobin vận chuyển oxygen trong máu."
+    },
+    "nguyên tử": {
+        "term": "Nguyên tử",
+        "definition": "Là hạt vô cùng nhỏ bé và trung hòa về điện, cấu tạo nên mọi chất. Nguyên tử gồm hạt nhân mang điện tích dương ở tâm (chứa proton mang điện +1 và neutron không mang điện) và lớp vỏ electron mang điện tích âm (-1) chuyển động xung quanh.",
+        "details": "Trong một nguyên tử trung hòa điện: Số proton = Số electron. Khối lượng nguyên tử tập trung hầu hết ở hạt nhân do khối lượng electron rất nhỏ không đáng kể.",
+        "role": "Hiểu cấu tạo nguyên tử giúp giải thích các liên kết hóa học, phản ứng hóa học và sự biến đổi của vật chất.",
+        "example": "Một nguyên tử Carbon có 6 proton, 6 neutron ở hạt nhân và 6 electron ở lớp vỏ."
+    },
+    "phân tử": {
+        "term": "Phân tử",
+        "definition": "Là hạt đại diện cho chất, gồm một số nguyên tử liên kết với nhau bằng liên kết hóa học và thể hiện đầy đủ tính chất hóa học của chất đó.",
+        "details": "Khối lượng phân tử (phân tử khối) bằng tổng khối lượng của các nguyên tử tạo nên phân tử đó.",
+        "role": "Là đơn vị cấu thành cơ bản của các chất tinh khiết trong thế giới tự nhiên.",
+        "example": "Phân tử nước (H2O) gồm 2 nguyên tử Hydrogen liên kết với 1 nguyên tử Oxygen, có khối lượng phân tử là 18 amu."
+    },
+    "đơn chất": {
+        "term": "Đơn chất",
+        "definition": "Là những chất được tạo nên từ chỉ một nguyên tố hóa học duy nhất (ví dụ: kim loại nhôm Al, khí oxygen O2, than chì C, khí nitrogen N2).",
+        "details": "Đơn chất được chia làm đơn chất kim loại (dẫn điện, dẫn nhiệt, có ánh kim) và đơn chất phi kim.",
+        "role": "Dùng làm nguyên liệu sản xuất công nghiệp, dây dẫn điện, vật liệu xây dựng.",
+        "example": "Dây dẫn điện trong nhà làm bằng đồng (Cu) nguyên chất – là một đơn chất kim loại dẫn điện rất tốt."
+    },
+    "hợp chất": {
+        "term": "Hợp chất",
+        "definition": "Là những chất được tạo nên từ hai hay nhiều nguyên tố hóa học khác nhau liên kết với nhau theo tỉ lệ số nguyên tử xác định (ví dụ: nước H2O, muối ăn NaCl, khí carbon dioxide CO2).",
+        "details": "Hợp chất có tính chất hoàn toàn khác biệt so với các đơn chất cấu thành nên nó.",
+        "role": "Chiếm đại đa số các chất trong tự nhiên, từ đất, đá, nước đến cơ thể sinh vật.",
+        "example": "Muối ăn (NaCl) là hợp chất của kim loại Sodium (Na) và khí Chlorine (Cl2), nhưng khi kết hợp lại tạo thành gia vị an toàn hằng ngày."
+    },
+    "acid": {
+        "term": "Acid",
+        "definition": "Là những hợp chất mà phân tử gồm có một hay nhiều nguyên tử hydrogen liên kết với gốc acid. Khi tan trong nước, acid tạo ra cation H⁺ làm dung dịch có vị chua và làm giấy quỳ tím đổi sang màu đỏ (pH < 7).",
+        "details": "Tính chất hóa học chung: Đổi màu chất chỉ thị; tác dụng với kim loại đứng trước H giải phóng khí H2; tác dụng với base tạo muối và nước; tác dụng với basic oxide tạo muối và nước.",
+        "role": "Dùng rộng rãi trong công nghiệp sản xuất phân bón, chất tẩy rửa, ắc quy xe máy và tham gia vào quá trình tiêu hóa thức ăn trong dạ dày người (dịch vị chứa HCl loãng).",
+        "example": "Hydrochloric acid (HCl) có trong dịch vị dạ dày giúp tiêu hóa thức ăn; Acetic acid (CH3COOH) nồng độ 2-5% chính là giấm ăn dùng trong gia đình."
+    },
+    "base": {
+        "term": "Base (Bazơ)",
+        "definition": "Là những hợp chất mà phân tử gồm có nguyên tử kim loại liên kết với một hay nhiều nhóm hydroxide (-OH). Khi tan trong nước, base tạo ra anion OH⁻ làm giấy quỳ tím đổi sang màu xanh và dung dịch phenolphthalein chuyển sang màu hồng (pH > 7).",
+        "details": "Base tan trong nước gọi là kiềm (NaOH, KOH, Ba(OH)2, Ca(OH)2). Base không tan như Cu(OH)2, Fe(OH)3.",
+        "role": "Dùng để trung hòa acid, xử lý đất chua phèn trong nông nghiệp, sản xuất xà phòng và giấy.",
+        "example": "Vôi tôi (Ca(OH)2) được nông dân rắc lên ruộng để khử chua cho đất phèn và khử trùng ao nuôi tôm cá."
+    },
+    "muối": {
+        "term": "Muối",
+        "definition": "Là hợp chất được tạo ra từ sự thay thế ion H⁺ trong phân tử acid bằng ion kim loại hoặc ion ammonium (NH4⁺). Phân tử muối gồm có kim loại (hoặc NH4⁺) liên kết với gốc acid.",
+        "details": "Ví dụ: Muối ăn NaCl, đá vôi CaCO3, phèn chua KAl(SO4)2, phân đạm NH4NO3.",
+        "role": "Là gia vị không thể thiếu, khoáng chất vi lượng cho cơ thể sống, nguyên liệu sản xuất phân bón, thủy tinh, xi măng.",
+        "example": "Baking soda (NaHCO3) là một loại muối dùng làm bột nở khi nướng bánh và khử mùi nhà bếp."
+    },
+    "lực ma sát": {
+        "term": "Lực ma sát",
+        "definition": "Là lực xuất hiện ở bề mặt tiếp xúc giữa hai vật và có tác dụng cản trở chuyển động của vật đối với bề mặt kia.",
+        "details": "Gồm 3 loại: Ma sát trượt (khi vật trượt trên bề mặt), ma sát lăn (khi vật lăn trên bề mặt), và ma sát nghỉ (giữ cho vật đứng yên khi có lực tác dụng).",
+        "role": "Giúp con người đi lại, xe cộ di chuyển, dừng lại khi phanh, cầm nắm được đồ vật; cần giảm ma sát ở các ổ bi, trục máy bằng dầu mỡ bôi trơn.",
+        "example": "Lốp xe đạp có nhiều rãnh và gai cao su để tăng ma sát bám đường, giúp xe không bị trượt ngã khi phanh gấp."
+    },
+    "lực đẩy archimedes": {
+        "term": "Lực đẩy Archimedes (Ác-si-mét)",
+        "definition": "Là lực đẩy hướng thẳng đứng từ dưới lên trên do chất lỏng (hoặc chất khí) tác dụng lên bất kỳ vật nào nhúng chìm một phần hoặc toàn bộ trong nó. Độ lớn của lực đẩy bằng trọng lượng của khối chất lỏng bị vật chiếm chỗ: F_A = d × V.",
+        "details": "Điều kiện vật nổi, chìm: Vật chìm khi F_A < P (d_vat > d_chatlong); Vật lơ lửng khi F_A = P; Vật nổi khi F_A > P và dâng lên đến khi F_A = P.",
+        "role": "Là nguyên lý giúp tàu thuyền bằng thép nặng hàng vạn tấn vẫn nổi trên mặt biển, khinh khí cầu bay lượn trên bầu trời.",
+        "example": "Tàu thủy chở hàng khổng lồ được thiết kế khoang rỗng làm tăng thể tích chiếm chỗ V, giúp lực đẩy Archimedes F_A lớn hơn trọng lượng P của tàu nên tàu nổi vững vàng."
+    },
+    "khối lượng riêng": {
+        "term": "Khối lượng riêng",
+        "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³).",
+        "details": "Khối lượng riêng là một đại lượng vật lí đặc trưng cho từng chất tinh khiết ở nhiệt độ xác định. Trọng lượng riêng: d = 10 × D (đơn vị N/m³).",
+        "role": "Dùng để nhận biết chất, kiểm tra độ tinh khiết của vàng bạc, tính toán tải trọng kết cấu trong xây dựng và cơ khí.",
+        "example": "Nước ngọt có khối lượng riêng khoảng 1000 kg/m³, trong khi sắt có khối lượng riêng 7800 kg/m³, do đó sắt nặng gấp 7,8 lần nước cùng thể tích."
+    }
 }
 
 def format_local_rag_answer(question, lesson):
@@ -648,44 +797,51 @@ def format_local_rag_answer(question, lesson):
     # 2. 1. Definition & Core concepts
     lines.append("### 1. Định nghĩa & Bản chất cốt lõi")
     
-    # Check core dictionary
-    matched_core = None
-    for k, v in RAG_CORE_CONCEPTS.items():
-        if k in q_lower or k in title.lower():
-            matched_core = (k, v)
+    # Check encyclopedia for matched concept
+    matched_entry = None
+    for k, ev in ENCYCLOPEDIA_KHTN.items():
+        if k in q_lower or (len(k.split()) > 1 and all(w in q_lower for w in k.split())):
+            matched_entry = ev
             break
             
-    if matched_core:
-        lines.append(f"- **{matched_core[0].title()}**: {matched_core[1]}")
-    
+    if not matched_entry:
+        for k, ev in ENCYCLOPEDIA_KHTN.items():
+            if k in title.lower():
+                matched_entry = ev
+                break
+
+    if matched_entry:
+        lines.append(f"- **{matched_entry['term']}**: {matched_entry['definition']}")
+        if matched_entry.get("details"):
+            lines.append(f"  * *Chi tiết khoa học*: {matched_entry['details']}")
+
+    # Add other related terms from lesson
     terms = lesson.get("terms", [])
-    matching_terms = []
+    added_terms = 0
     for t in terms:
         t_name = t.get("term", "")
-        if matched_core and t_name.lower() in matched_core[0]:
+        t_def = t.get("definition", "")
+        if matched_entry and (t_name.lower() in matched_entry["term"].lower() or matched_entry["term"].lower() in t_name.lower()):
             continue
-        if t_name.lower() in q_lower or any(w in t_name.lower() for w in q_lower.split() if len(w) > 2):
-            matching_terms.append(f"- **{t_name}**: {t.get('definition')}")
-            
-    if matching_terms:
-        lines.extend(matching_terms)
-    elif not matched_core and terms:
-        for t in terms[:3]:
-            lines.append(f"- **{t.get('term')}**: {t.get('definition')}")
-            
-    content = lesson.get("content", "")
-    if content and "Đọc đầy đủ" not in content and len(content) > 30:
-        lines.append(f"\n{content}")
+        if len(t_def) > 20 and not t_def.endswith(('...', 'được', 'và', 'của', 'tạo', 'là', 'trong')):
+            lines.append(f"- **{t_name}**: {t_def}")
+            added_terms += 1
+            if added_terms >= 3:
+                break
+                
     lines.append("")
 
     # 3. 2. Role & Scientific Significance
     lines.append("### 2. Vai trò & Ý nghĩa khoa học")
-    summary = lesson.get("summary", [])
-    if summary:
-        for sm in summary[:3]:
-            lines.append(f"- {sm}")
+    if matched_entry and matched_entry.get("role"):
+        lines.append(f"- {matched_entry['role']}")
     else:
-        lines.append(f"- Giúp con người hiểu rõ các quy luật vận động của vật chất, năng lượng và sự sống trong tự nhiên, từ đó ứng dụng vào thực tiễn đời sống và sản xuất.")
+        summary = [s for s in lesson.get("summary", []) if len(s) > 20 and not re.match(r'^\d+\.', s)]
+        if summary:
+            for sm in summary[:2]:
+                lines.append(f"- {sm}")
+        else:
+            lines.append(f"- Giúp giải thích các quy luật vận động, chuyển hóa của vật chất và năng lượng trong tự nhiên, từ đó ứng dụng vào thực tiễn đời sống và sản xuất.")
     lines.append("")
 
     # 4. 3. Connection to SGK KNTT
@@ -699,7 +855,10 @@ def format_local_rag_answer(question, lesson):
 
     # 5. 4. Vivid Real-world Examples
     lines.append("### 4. Ví dụ thực tế sinh động")
-    lines.append(f"Trong cuộc sống hàng ngày, chúng ta có thể dễ dàng quan sát hiện tượng liên quan đến **{title}** thông qua các biến đổi tự nhiên xung quanh hoặc trong các thí nghiệm thực hành tại phòng bộ môn KHTN Trường THCS Huỳnh Bá Chánh.")
+    if matched_entry and matched_entry.get("example"):
+        lines.append(f"{matched_entry['example']}")
+    else:
+        lines.append(f"Trong đời sống hàng ngày, chúng ta có thể dễ dàng quan sát hiện tượng liên quan đến **{title}** thông qua các biến đổi tự nhiên xung quanh hoặc trong các thí nghiệm thực hành tại phòng bộ môn KHTN Trường THCS Huỳnh Bá Chánh.")
     lines.append("")
 
     # 6. 5. AI Guidance note
@@ -723,13 +882,12 @@ def call_gemini_rest(prompt, api_key):
         try:
             with urllib.request.urlopen(req, timeout=12) as resp:
                 data = json.loads(resp.read().decode("utf-8"))
-                candidate = data.get("candidates", [{}])[0]
                 parts = candidate.get("content", {}).get("parts", [])
                 texts = [p.get("text", "") for p in parts if not p.get("thought") and p.get("text")]
                 if not texts:
                     texts = [p.get("text", "") for p in parts if p.get("text")]
                 text = "\n".join(texts).strip()
-                if text and len(text) > 100:
+                if text and len(text) > 50:
                     return text, m
         except Exception:
             continue
@@ -743,7 +901,7 @@ def call_gemini_vision_rest(prompt, image_bytes, mime_type="image/jpeg", api_key
     import base64
     encoded_img = base64.b64encode(image_bytes).decode("ascii")
     mime = mime_type or "image/jpeg"
-    models = ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-2.0-flash", "gemini-3.1-flash-lite", "gemini-3.5-flash"]
+    models = ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-2.0-flash", "gemini-1.5-pro"]
     for m in models:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={api_key}"
         payload = json.dumps({
@@ -780,146 +938,21 @@ def call_gemini_vision_rest(prompt, image_bytes, mime_type="image/jpeg", api_key
     return None, None
 
 
-def format_image_chat_local_answer(question, label="", metadata=None, lesson=None, grade=7, crop_info=None):
-    """Comprehensive offline pedagogic answer for SGK image exploration."""
-    metadata = metadata or {}
-    fig_title = label or metadata.get("figure_caption") or metadata.get("matched_query") or "Hình ảnh minh họa SGK"
-    source = metadata.get("pdf_filename") or metadata.get("source") or f"SGK KHTN {grade} (Kết nối tri thức)"
-    page = metadata.get("page_number") or metadata.get("page") or "?"
+def format_image_chat_local_answer(question, image_meta=None):
+    """Format local RAG answer for image-guided QA."""
+    lbl = image_meta.get("label", "Hình minh họa SGK") if image_meta else "Hình minh họa SGK"
+    cap = image_meta.get("caption", "") if image_meta else ""
+    src = image_meta.get("source", "SGK KHTN KNTT") if image_meta else "SGK KHTN KNTT"
+    pg = image_meta.get("page", 1) if image_meta else 1
     
-    lesson_title = lesson.get("title", "") if lesson else ""
-    lesson_number = lesson.get("number", "") if lesson else ""
-    terms = lesson.get("terms", []) if lesson else []
-    summary = lesson.get("summary", []) if lesson else []
-    
-    q_low = question.lower()
-    
-    # 1. Notes / Tóm tắt ghi chú
-    if "tóm tắt" in q_low or "ghi chú" in q_low or "dễ ôn" in q_low:
-        res = [
-            f"### 📝 GHI CHÚ HỌC TẬP TỪ HÌNH ẢNH SGK",
-            f"**Nguồn:** {source} · Trang {page}",
-            f"**Đối tượng quan sát:** {fig_title}",
-            "",
-            "#### 1. Ý chính & Diễn biến trong hình",
-        ]
-        if crop_info:
-            res.append(f"- *Vùng ảnh quan sát:* Khu vực trọng tâm được khoanh vùng trên trang sách ({round(crop_info.get('width', 1)*100)}% × {round(crop_info.get('height', 1)*100)}%).")
-        
-        if "khoai tây" in fig_title.lower() or "sinh trưởng" in fig_title.lower() or "21.1" in fig_title:
-            res.extend([
-                "- Hình thể hiện toàn bộ **vòng đời sinh trưởng và phát triển** của cây khoai tây từ củ mầm đến khi thu hoạch củ mới.",
-                "- **Các giai đoạn rõ rệt:** Củ mọc mầm ➔ Cây con phát triển rễ, thân, lá ➔ Cây trưởng thành ra hoa ➔ Hình thành củ dưới đất ➔ Cây già cỗi và tàn lụi, để lại các củ khoai tây thế hệ mới.",
-                "- **Mối liên hệ hai chiều:** *Sinh trưởng* (tăng số lượng, kích thước cành lá, rễ, củ) diễn ra đan xen và làm tiền đề cho *phát triển* (phân hóa chồi, ra hoa, tạo củ mới)."
-            ])
-        else:
-            if summary:
-                for s in summary[:3]:
-                    res.append(f"- {s}")
-            else:
-                res.append(f"- Sơ đồ minh họa trực quan cấu tạo, cơ chế và mối liên hệ khoa học trong bài học **{lesson_number} {lesson_title}**.")
-        
-        res.extend([
-            "",
-            "#### 2. Thuật ngữ quan trọng cần nhớ",
-        ])
-        if terms:
-            for t in terms[:3]:
-                res.append(f"- **{t.get('term')}:** {t.get('definition')}")
-        else:
-            res.extend([
-                "- **Sinh trưởng:** Sự tăng lên về kích thước và khối lượng cơ thể do tăng số lượng và kích thước tế bào.",
-                "- **Phát triển:** Quá trình biến đổi bao gồm sinh trưởng, phân hóa tế bào và phát sinh hình thái các cơ quan mới."
-            ])
-            
-        res.extend([
-            "",
-            "#### 3. Kết luận khoa học",
-            f"- Các cơ quan và giai đoạn biến đổi trong hình tuân theo quy luật phát triển tự nhiên của sinh vật, gắn liền với chương trình KHTN Lớp {grade}.",
-            "",
-            "#### 💡 Mẹo ghi nhớ nhanh",
-            "👉 *'Sinh trưởng là LỚN LÊN (tăng lượng, tăng cỡ) — Phát triển là THAY ĐỔI CHẤT (sinh cơ quan mới như lá, hoa, quả, củ)'*."
-        ])
-        return "\n".join(res)
-        
-    # 2. Tạo trắc nghiệm
-    elif "trắc nghiệm" in q_low or "câu hỏi" in q_low:
-        res = [
-            f"### 🎯 BỘ 5 CÂU HỎI TRẮC NGHIỆM TỪ HÌNH ẢNH ({fig_title})",
-            f"*Nguồn: {source} (Trang {page})*",
-            "",
-            "**Câu 1:** Hình ảnh trên minh họa cho quá trình nào ở sinh vật?",
-            "A. Quá trình trao đổi chất và chuyển hóa năng lượng.",
-            "B. Quá trình sinh trưởng và phát triển qua các giai đoạn.",
-            "C. Quá trình cảm ứng và thích nghi với môi trường.",
-            "D. Quá trình sinh sản vô tính nhân tạo.",
-            "👉 **Đáp án đúng: B.** *Giải thích: Hình biểu diễn các giai đoạn biến đổi hình thái, kích thước và cơ quan theo thời gian.*",
-            "",
-            "**Câu 2:** Hiện tượng cây tăng về chiều cao thân và kích thước rễ thuộc về quá trình nào?",
-            "A. Phát triển.",
-            "B. Cảm ứng.",
-            "C. Sinh trưởng.",
-            "D. Phân hóa.",
-            "👉 **Đáp án đúng: C.** *Giải thích: Sự gia tăng về kích thước và khối lượng là biểu hiện của sinh trưởng.*",
-            "",
-            "**Câu 3:** Giai đoạn cây ra hoa và kết quả/củ thể hiện rõ nhất đặc trưng của quá trình nào?",
-            "A. Sinh trưởng.",
-            "B. Phát triển (phân hóa cơ quan sinh sản).",
-            "C. Quang hợp tích lũy chất.",
-            "D. Thoát hơi nước.",
-            "👉 **Đáp án đúng: B.** *Giải thích: Sự phát sinh cơ quan mới (hoa, quả, củ) là biểu hiện của quá trình phát triển.*",
-            "",
-            "**Câu 4:** Mối quan hệ giữa sinh trưởng và phát triển được thể hiện như thế nào?",
-            "A. Hoàn toàn độc lập và không liên quan nhau.",
-            "B. Diễn ra song hành, sinh trưởng tạo tiền đề cho phát triển.",
-            "C. Sinh trưởng kết thúc thì phát triển mới bắt đầu.",
-            "D. Chỉ xảy ra ở động vật, không có ở thực vật.",
-            "👉 **Đáp án đúng: B.** *Giải thích: Sinh vật phải sinh trưởng tích lũy đủ khối lượng vật chất mới bước sang giai đoạn phát triển mới.*",
-            "",
-            "**Câu 5:** Vận dụng thực tiễn: Muốn thu hoạch củ đạt năng suất cao nhất, người trồng cần chú ý điều gì?",
-            "A. Bẻ hết lá ngay khi cây vừa mọc mầm.",
-            "B. Chăm sóc, cung cấp đủ nước và dinh dưỡng ở giai đoạn cây sinh trưởng mạnh tạo củ.",
-            "C. Không tưới nước trong toàn bộ vòng đời của cây.",
-            "D. Thu hoạch khi cây vừa nảy mầm.",
-            "👉 **Đáp án đúng: B.** *Giải thích: Cung cấp đầy đủ điều kiện dinh dưỡng giúp củ phát triển to và tích lũy nhiều tinh bột.*"
-        ]
-        return "\n".join(res)
-        
-    # 3. Giải thích cho từng lớp học
-    elif "giải thích" in q_low or "lớp" in q_low:
-        res = [
-            f"### 🔬 GIẢI THÍCH CHI TIẾT DÀNH CHO HỌC SINH LỚP {grade}",
-            f"**Hình quan sát:** {fig_title} (SGK KHTN {grade} - Kết nối tri thức, Trang {page})",
-            "",
-            "#### 1. Khái niệm & Hiện tượng quan sát được",
-            f"Quan sát hình vẽ, chúng ta thấy sự chuyển tiếp tuần tự giữa các trạng thái của đối tượng qua từng thời kỳ. Mỗi giai đoạn đều có những đặc điểm hình thái và cấu trúc thích nghi với chức năng sinh học cụ thể.",
-            "",
-            "#### 2. Bản chất khoa học",
-            f"Hiện tượng này là minh chứng rõ nét cho quy luật vận động và biến đổi vật chất trong tự nhiên, nằm trong chương trình trọng tâm của **{lesson_number} {lesson_title}**.",
-            "",
-            "#### 3. Câu hỏi tự kiểm tra",
-            "❓ *Em hãy nêu 2 dấu hiệu chứng minh sự khác nhau giữa sinh trưởng (tăng kích thước) và phát triển (phân hóa cơ quan) trên hình vẽ này nhé!*"
-        ]
-        return "\n".join(res)
-
-    # 4. Trả lời câu hỏi tổng quát
-    else:
-        res = [
-            f"### 🔍 PHÂN TÍCH HÌNH ẢNH: {fig_title}",
-            f"*Trích dẫn: {source} (Trang {page})*",
-            "",
-            f"Chào em! Thầy/cô xin giải đáp câu hỏi **'{question}'** dựa trên hình ảnh SGK như sau:",
-            "",
-            "#### 1. Chi tiết nhìn thấy trên hình",
-            f"- Hình ảnh cung cấp thông tin trực quan về cấu trúc, sơ đồ hoặc diễn biến của đối tượng trong bài học **{lesson_number} {lesson_title}**.",
-            "- Các mũi tên và ký hiệu trên hình giúp người học theo dõi chiều hướng diễn biến và mối quan hệ nhân - quả giữa các thành phần.",
-            "",
-            "#### 2. Ý nghĩa bài học & Vận dụng",
-            "- Giúp học sinh khắc sâu kiến thức lý thuyết bằng sơ đồ hóa trực quan.",
-            "- Rèn luyện năng lực quan sát, nhận biết và suy luận khoa học trong môn Khoa học tự nhiên.",
-            "",
-            "💡 *Nếu em muốn phân tích kỹ một chi tiết cụ thể, hãy dùng công cụ **'Khoanh vùng'** để khoanh trực tiếp vùng ảnh cần tìm hiểu nhé!*"
-        ]
-        return "\n".join(res)
-
+    lines = [
+        f"Chào em! Đây là hình ảnh **{lbl}** thuộc tài liệu **{src}** (Trang {pg}).",
+        "",
+        "### Phân tích sơ đồ & hình ảnh:",
+        f"- **Mô tả**: {cap or lbl}",
+        f"- **Giải đáp câu hỏi**: Dựa trên kiến thức bài học trong SGK KHTN Kết nối tri thức, hình ảnh thể hiện cấu trúc/hiện tượng khoa học đặc trưng giúp minh họa trực quan cho các khái niệm lý thuyết.",
+        "",
+        "💡 *Em hãy kết hợp đọc kĩ phần văn bản đi kèm trong SGK và các chú thích trên hình để nắm vững bản chất nhé!*"
+    ]
+    return "\n".join(lines)
 
