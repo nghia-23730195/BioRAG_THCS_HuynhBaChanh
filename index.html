@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#176b4d">
-  <title>BioRAG — Trường THCS Tân Tạo A</title>
+  <title>BioRAG — Trường THCS Huỳnh Bá Chánh</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <style>
@@ -1171,8 +1171,8 @@
   <div class="app">
     <button class="overlay" id="overlay" aria-label="Đóng điều hướng"></button>
     <aside id="sidebar">
-      <div class="brand"><div class="logo">TTA</div><div class="brand-copy">
-        <strong>THCS Tân Tạo A</strong><span>BioRAG KHTN 6–9</span></div></div>
+      <div class="brand"><div class="logo">HBC</div><div class="brand-copy">
+        <strong>THCS Huỳnh Bá Chánh</strong><span>BioRAG KHTN 6–9</span></div></div>
       <button class="new-chat" id="newChat"><b>＋</b>Cuộc trò chuyện mới</button>
       <section class="side-section"><div class="label">Dữ liệu học tập</div>
         <div class="library"><div class="book">▤</div><div class="library-copy">
@@ -1197,12 +1197,12 @@
       <section class="side-section history-wrap"><div class="label">Câu hỏi gần đây</div>
         <div class="history" id="history"></div></section>
       <div class="local"><div class="local-icon">◇</div><div class="local-copy">
-        <strong>Hệ thống BioRAG</strong><span>Trường THCS Tân Tạo A</span></div></div>
+        <strong>Hệ thống BioRAG</strong><span>Trường THCS Huỳnh Bá Chánh</span></div></div>
     </aside>
 
     <section class="main">
       <header><button class="menu" id="menu" aria-label="Mở điều hướng">☰</button>
-        <div class="title"><small id="pageEyebrow">Trường THCS Tân Tạo A</small><h1 id="pageHeading">Khoa học tự nhiên</h1></div>
+        <div class="title"><small id="pageEyebrow">Trường THCS Huỳnh Bá Chánh</small><h1 id="pageHeading">Khoa học tự nhiên</h1></div>
         <div style="display:flex;align-items:center;gap:8px" class="header-right-actions">
           <div class="auth-container" id="authContainer">
             <button class="auth-header-btn" id="authHeaderBtn" type="button" onclick="openAuthModal()" title="Đăng nhập hệ thống BioRAG">
@@ -1222,7 +1222,7 @@
                 <div class="user-dropdown-info">
                   <div class="user-dropdown-name" id="dropdownName">Thầy/Cô · Tổ KHTN</div>
                   <div class="user-dropdown-role" id="dropdownRole">Giáo viên KHTN</div>
-                  <div class="user-dropdown-school">THCS Tân Tạo A</div>
+                  <div class="user-dropdown-school">THCS Huỳnh Bá Chánh</div>
                 </div>
               </div>
               <div class="user-dropdown-divider"></div>
@@ -1469,7 +1469,7 @@
           <span style="font-size:22px">🏫</span>
           <div>
             <strong style="font-size:15px;display:block;color:#0f172a">Đăng nhập BioRAG</strong>
-            <small style="color:#64748b;font-size:11px">Trường THCS Tân Tạo A · KHTN 6–9</small>
+            <small style="color:#64748b;font-size:11px">Trường THCS Huỳnh Bá Chánh · KHTN 6–9</small>
           </div>
         </div>
         <button type="button" id="authClose" class="auth-close" onclick="closeAuthModal()" aria-label="Đóng">×</button>
@@ -1573,7 +1573,7 @@
         <div id="profileModalAvatar" class="user-avatar" style="width:54px;height:54px;font-size:20px;margin:0 auto 12px">GV</div>
         <h3 id="profileModalName" style="margin:0 0 4px;font-size:16px;color:#0f172a">Thầy/Cô</h3>
         <div id="profileModalRole" style="font-size:12px;font-weight:700;color:#0284c7;margin-bottom:6px">Giáo viên KHTN</div>
-        <div style="font-size:12px;color:#64748b;margin-bottom:18px">Trường THCS Tân Tạo A · TPHCM</div>
+        <div style="font-size:12px;color:#64748b;margin-bottom:18px">Trường THCS Huỳnh Bá Chánh · TPHCM</div>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px;text-align:left;font-size:12px;color:#475569;margin-bottom:18px;line-height:1.6">
           <div id="profileModalClassRow"><strong>Lớp học:</strong> <span id="profileModalClass">-</span></div>
           <div id="profileModalCodeRow"><strong>Mã số:</strong> <span id="profileModalCode">-</span></div>
@@ -1979,7 +1979,7 @@
             username: username,
             name: isAdm ? "Quản trị viên KHTN" : "Thầy/Cô · Tổ KHTN",
             role: isAdm ? "admin" : "teacher",
-            school: "TRƯỜNG THCS TÂN TẠO A",
+            school: "TRƯỜNG THCS HUỲNH BÁ CHÁNH",
             permissions: ["teacher_mode", "edit_lessons", "generate_lessons", "export_5512", "export_3280", "view_sgv"]
           };
           setCurrentUser(localUser);
@@ -2059,12 +2059,12 @@
           grade_class: gradeClass,
           student_code: code,
           role: "student",
-          school: "TRƯỜNG THCS TÂN TẠO A",
+          school: "TRƯỜNG THCS HUỲNH BÁ CHÁNH",
           permissions: ["read_sgk", "chat_ai", "take_quiz", "view_history", "lab_3d"]
         };
         setCurrentUser(localUser);
         closeAuthModal();
-        alert(`Chào mừng em ${name} (Lớp ${gradeClass}) đến với BioRAG THCS Tân Tạo A!`);
+        alert(`Chào mừng em ${name} (Lớp ${gradeClass}) đến với BioRAG THCS Huỳnh Bá Chánh!`);
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
@@ -3871,7 +3871,7 @@
       if(quizSubmitted){
         const rank=Number(score10)>=8.5?"Xuất sắc!":Number(score10)>=7.0?"Hoàn thành tốt":Number(score10)>=5.0?"Đạt yêu cầu":"Hãy củng cố thêm kiến thức";
         const currentU = getCurrentUser();
-        const candHtml = currentU ? ('<div style="font-size:12px;color:#0369a1;margin:4px 0 6px;font-weight:600">👤 Thí sinh: '+escapeHtml(currentU.name)+(currentU.grade_class?' · Lớp '+escapeHtml(currentU.grade_class):'')+' · THCS Tân Tạo A</div>') : '';
+        const candHtml = currentU ? ('<div style="font-size:12px;color:#0369a1;margin:4px 0 6px;font-weight:600">👤 Thí sinh: '+escapeHtml(currentU.name)+(currentU.grade_class?' · Lớp '+escapeHtml(currentU.grade_class):'')+' · THCS Huỳnh Bá Chánh</div>') : '';
         html+='<div class="quiz-result">'+
           '<div>'+
             '<strong>'+rank+' ('+score10+'/10 điểm)</strong>'+
@@ -5762,7 +5762,7 @@ let labLoggedData = [];
             exp_id: exp.id,
             student_name: studentName,
             class_name: "Lớp " + exp.grade + "A",
-            school_name: "Trường THCS Tân Tạo A",
+            school_name: "Trường THCS Huỳnh Bá Chánh",
             logged_data: labLoggedData,
             quiz_answers: labQuizAnswers,
             captured_image: labCapturedImage || (window.Lab3DEngine && window.Lab3DEngine.captureScreenshot ? window.Lab3DEngine.captureScreenshot() : null),

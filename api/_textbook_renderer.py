@@ -70,7 +70,7 @@ def find_lesson_by_source_and_page(lessons, source, page):
     return fallback, 1, 4
 
 def render_textbook_page_svg(lesson, page, start_page, end_page, school_name=None):
-    school_name = school_name or os.environ.get("SCHOOL_NAME") or lesson.get("school_name") or "TRƯỜNG THCS TÂN TẠO A"
+    school_name = school_name or os.environ.get("SCHOOL_NAME") or lesson.get("school_name") or "TRƯỜNG THCS HUỲNH BÁ CHÁNH"
     school_code = "TTA" if "TÂN TẠO" in school_name.upper() else ("HBC" if "HUỲNH BÁ" in school_name.upper() else "KHTN")
     grade = lesson.get("grade", 7)
     theme_colors = {
@@ -317,7 +317,7 @@ def render_textbook_reader_html(lesson, current_page, start_page, end_page, sour
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{html.escape(number)}: {html.escape(title)} - SGK KHTN {grade} | THCS Tân Tạo A</title>
+  <title>{html.escape(number)}: {html.escape(title)} - SGK KHTN {grade} | THCS Huỳnh Bá Chánh</title>
   <style>
     :root {{
       --primary: #0284c7;
@@ -674,8 +674,8 @@ def format_local_rag_answer(question, lesson):
 
     # 6. 5. AI Guidance note
     lines.append("### 5. Lời nhắn nhủ từ Trợ lý AI")
-    lines.append(f"Thầy/cô rất khen ngợi tinh thần ham học hỏi của em! Khoa học tự nhiên luôn ẩn chứa những điều kỳ diệu ngay trong cuộc sống quanh ta. Hãy luôn giữ sự tò mò này để khám phá thế giới nhé. Nếu em còn bất kỳ thắc mắc nào, đừng ngần ngại đặt câu hỏi cho thầy/cô. Chúc em có những giờ học thật thú vị và bổ ích tại **Trường THCS Tân Tạo A**!\n")
-    lines.append(f"📖 *Nguồn trích dẫn: {source_label} · Trường THCS Tân Tạo A*")
+    lines.append(f"Thầy/cô rất khen ngợi tinh thần ham học hỏi của em! Khoa học tự nhiên luôn ẩn chứa những điều kỳ diệu ngay trong cuộc sống quanh ta. Hãy luôn giữ sự tò mò này để khám phá thế giới nhé. Nếu em còn bất kỳ thắc mắc nào, đừng ngần ngại đặt câu hỏi cho thầy/cô. Chúc em có những giờ học thật thú vị và bổ ích tại **Trường THCS Huỳnh Bá Chánh**!\n")
+    lines.append(f"📖 *Nguồn trích dẫn: {source_label} · Trường THCS Huỳnh Bá Chánh*")
     return "\n".join(lines)
 
 def call_gemini_rest(prompt, api_key):
