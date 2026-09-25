@@ -1817,9 +1817,17 @@ def api_image_chat():
 
     all_lessons = get_all_lessons(grade)
     matched_lesson = None
-    if callable(search_best_lesson) and all_lessons:
-        search_query = f"{label} {question}"
-        matched_lesson, _ = search_best_lesson(all_lessons, search_query, grade)
+    if all_lessons:
+        m_bai = re.search(r'bài\s*(\d+)', label, re.I)
+        if m_bai:
+            bai_num = f"Bài {m_bai.group(1)}"
+            for l in all_lessons:
+                if l.get("number", "").strip().lower() == bai_num.lower():
+                    matched_lesson = l
+                    break
+        if not matched_lesson and callable(search_best_lesson):
+            search_query = f"{label} {question}"
+            matched_lesson, _ = search_best_lesson(all_lessons, search_query, grade)
 
     api_key = str(data.get("api_key") or os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY") or "").strip()
     

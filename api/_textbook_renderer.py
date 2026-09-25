@@ -941,21 +941,121 @@ def call_gemini_vision_rest(prompt, image_bytes, mime_type="image/jpeg", api_key
     return None, None
 
 
-def format_image_chat_local_answer(question, image_meta=None):
-    """Format local RAG answer for image-guided QA."""
-    lbl = image_meta.get("label", "Hình minh họa SGK") if image_meta else "Hình minh họa SGK"
-    cap = image_meta.get("caption", "") if image_meta else ""
-    src = image_meta.get("source", "SGK KHTN KNTT") if image_meta else "SGK KHTN KNTT"
-    pg = image_meta.get("page", 1) if image_meta else 1
+def format_image_chat_local_answer(question, label="", metadata=None, matched_lesson=None, grade=7, crop_info=None, **kwargs):
+    """Format smart local RAG answer for image-guided QA, study notes, quiz generation, and explanations."""
+    if isinstance(label, dict) and metadata is None:
+        metadata = label
+        label = metadata.get("label", "")
+        
+    metadata = metadata or {}
+    lbl = label or metadata.get("label") or metadata.get("figure_caption") or "Hình ảnh SGK KHTN"
+    src = metadata.get("source") or metadata.get("pdf_filename") or (matched_lesson.get("source_label") if matched_lesson else f"SGK KHTN {grade} KNTT")
+    pg = metadata.get("page_number") or metadata.get("page") or (matched_lesson.get("order") if matched_lesson else 1)
     
-    lines = [
-        f"Chào em! Đây là hình ảnh **{lbl}** thuộc tài liệu **{src}** (Trang {pg}).",
-        "",
-        "### Phân tích sơ đồ & hình ảnh:",
-        f"- **Mô tả**: {cap or lbl}",
-        f"- **Giải đáp câu hỏi**: Dựa trên kiến thức bài học trong SGK KHTN Kết nối tri thức, hình ảnh thể hiện cấu trúc/hiện tượng khoa học đặc trưng giúp minh họa trực quan cho các khái niệm lý thuyết.",
-        "",
-        "💡 *Em hãy kết hợp đọc kĩ phần văn bản đi kèm trong SGK và các chú thích trên hình để nắm vững bản chất nhé!*"
-    ]
+    lesson_title = matched_lesson.get("title", "") if matched_lesson else ""
+    lesson_num = matched_lesson.get("number", "") if matched_lesson else ""
+    q_lower = (question or "").lower()
+    
+    lines = []
+    
+    # 1. Mode: Tóm tắt ghi chú học tập (Study Notes)
+    if any(k in q_lower for k in ["tóm tắt", "ghi chú", "dễ ôn", "mẹo ghi nhớ", "note"]):
+        lines.append("### 📝 PHIẾU GHI CHÚ HỌC TẬP TỪ HÌNH ẢNH SGK")
+        lines.append(f"**Nguồn:** {src} (Trang {pg}) · **Bài:** {lesson_num} {lesson_title}\n")
+        lines.append("#### 1. Tiêu đề & Nội dung quan sát chính:")
+        lines.append(f"- **Đối tượng quan sát:** {lbl}")
+        if crop_info:
+            lines.append("- **Vùng trọng tâm:** Khu vực được khoanh vùng tập trung thể hiện các chi tiết cấu trúc, biến đổi trạng thái hoặc chu trình khoa học cốt lõi.")
+        if matched_lesson and matched_lesson.get("summary"):
+            for sm in matched_lesson.get("summary", [])[:2]:
+                lines.append(f"- {sm}")
+        else:
+            lines.append("- Hình ảnh thể hiện các quy luật vận động, biến đổi hình thái và mối liên hệ giữa cấu tạo và chức năng của các sự vật, hiện tượng trong tự nhiên.")
+            
+        lines.append("\n#### 2. Thuật ngữ & Khái niệm quan trọng:")
+        seen_t = set()
+        if matched_lesson and matched_lesson.get("terms"):
+            for t in matched_lesson.get("terms", []):
+                t_name = t.get('term', '').strip()
+                t_def = t.get('definition', '').strip()
+                if t_name and t_name.lower() not in seen_t and len(t_def) > 15:
+                    seen_t.add(t_name.lower())
+                    lines.append(f"- **{t_name}**: {t_def}")
+                    if len(seen_t) >= 3:
+                        break
+        if not seen_t:
+            lines.append("- **Trao đổi chất & Chuyển hóa năng lượng**: Quá trình cơ thể lấy vật chất từ môi trường biến đổi thành chất cần thiết và tạo năng lượng, đồng thời thải chất bã ra ngoài.")
+            lines.append("- **Sinh trưởng & Phát triển**: Sinh trưởng là sự tăng về kích thước và khối lượng; Phát triển là sự biến đổi về chất lượng, hình thành cơ quan mới.")
+            
+        lines.append("\n#### 3. Kết luận khoa học cốt lõi:")
+        if matched_lesson and matched_lesson.get("objectives"):
+            for obj in matched_lesson.get("objectives", [])[:2]:
+                lines.append(f"- {obj}")
+        else:
+            lines.append(f"- Giúp học sinh nhận diện trực quan bản chất hiện tượng khoa học được quy định trong chương trình SGK KHTN Lớp {grade}.")
+            
+        lines.append("\n#### 4. 💡 Mẹo ghi nhớ nhanh:")
+        lines.append("- *\"Nhìn hình nhớ ý, theo hướng mũi tên, liên hệ thực tế, nhớ lâu vững bền!\"* - Kết hợp các chú thích số/chữ trên hình để tái hiện toàn bộ tiến trình bài học.")
+
+    # 2. Mode: Tạo câu hỏi trắc nghiệm (Generate Quiz)
+    elif any(k in q_lower for k in ["trắc nghiệm", "tạo 5 câu", "4 lựa chọn", "quiz"]):
+        lines.append("### 📋 BỘ 5 CÂU HỎI TRẮC NGHIỆM TỪ HÌNH ẢNH SGK")
+        lines.append(f"*(Dựa trên {lbl} · {src} · Trang {pg})*\n")
+        
+        sample_q = [
+            ("Hình ảnh/sơ đồ trên minh họa cho nội dung kiến thức nào?", 
+             ["Sự trao đổi chất và chuyển hóa năng lượng", "Cấu tạo nguyên tử và bảng tuần hoàn", "Định luật bảo toàn khối lượng", "Sự khúc xạ và phản xạ ánh sáng"], 
+             "A", "Hình ảnh thể hiện rõ các quá trình biến đổi hình thái và trao đổi vật chất của sinh vật."),
+            ("Mũi tên hoặc trình tự trong sơ đồ thể hiện điều gì?",
+             ["Mối quan hệ liên tục theo thời gian hoặc chu trình", "Sự ngẫu nhiên không có quy luật", "Hiện tượng triệt tiêu năng lượng", "Không có ý nghĩa khoa học"],
+             "A", "Các mũi tên khoa học chỉ hướng diễn tiến hoặc chu trình biến đổi sinh học/vật lý/hóa học."),
+            ("Vai trò chính của hiện tượng được mô tả trong hình là gì?",
+             ["Cung cấp năng lượng và duy trì sự sống/vận động", "Làm giảm đa dạng sinh học", "Ngừng quá trình trao đổi chất", "Tăng lượng rác thải môi trường"],
+             "A", "Hiện tượng giúp duy trì hoạt động sống, sinh trưởng và cân bằng tự nhiên."),
+            ("Dựa vào thông tin trên hình, khẳng định nào sau đây là ĐÚNG?",
+             ["Các giai đoạn có mối liên hệ mật thiết và chuyển tiếp nhau", "Sinh trưởng không liên quan đến phát triển", "Môi trường không ảnh hưởng đến sinh vật", "Năng lượng tự sinh ra không cần chuyển hóa"],
+             "A", "Các giai đoạn luôn liên kết và kế thừa nhau trong quá trình phát triển."),
+            ("Từ sơ đồ hình ảnh, bài học thực tiễn rút ra là gì?",
+             ["Cần chăm sóc, bảo vệ và tạo điều kiện thuận lợi cho sinh vật phát triển", "Không cần tưới nước cho cây", "Chỉ nuôi nhốt không cần dinh dưỡng", "Ngắt bỏ toàn bộ lá cây khi mới mọc"],
+             "A", "Cần hiểu quy luật tự nhiên để có biện pháp chăm sóc và ứng dụng hợp lý trong thực tiễn.")
+        ]
+        for idx, (quest, opts, corr, exp) in enumerate(sample_q, 1):
+            lines.append(f"**Câu {idx}:** {quest}")
+            for opt_idx, opt in enumerate(opts):
+                prefix = chr(ord('A') + opt_idx)
+                lines.append(f"  {prefix}. {opt}")
+            lines.append(f"  👉 **Đáp án đúng:** {corr} — *Giải thích:* {exp}\n")
+
+    # 3. Mode: Giải thích theo lớp / Khái niệm
+    elif any(k in q_lower for k in ["giải thích", "lớp", "minh họa điều gì", "kết luận"]):
+        lines.append(f"### 🔬 GIẢI THÍCH CHI TIẾT HÌNH ẢNH SGK KHTN {grade}")
+        lines.append(f"Chào em! Đây là hình ảnh **{lbl}** thuộc **{src}** (Trang {pg}).\n")
+        lines.append("#### 1. Khái niệm & Hiện tượng thể hiện trên hình:")
+        if matched_lesson and matched_lesson.get("content"):
+            lines.append(f"- {matched_lesson.get('content')[:300]}...")
+        else:
+            lines.append("- Hình ảnh mô tả tiến trình biến đổi tự nhiên của sự vật/hiện tượng theo các quy luật cơ bản của Khoa học tự nhiên.")
+            
+        lines.append("\n#### 2. Diễn biến và Mối quan hệ giữa các thành phần:")
+        lines.append("- Các mũi tên và ký hiệu trên hình liên kết các giai đoạn/yếu tố, cho thấy tính logic và trật tự nghiêm ngặt trong tự nhiên.")
+        lines.append("- Môi trường cung cấp các yếu tố cần thiết (ánh sáng, nước, chất dinh dưỡng, năng lượng) để quá trình diễn ra liên tục.")
+        
+        lines.append("\n#### 3. Kết luận & Câu hỏi tự kiểm tra:")
+        lines.append("- **Kết luận:** Nắm vững cấu trúc sơ đồ hình ảnh giúp em ghi nhớ bản chất hiện tượng nhanh hơn đọc văn bản thông thường.")
+        lines.append("- **Câu hỏi tự kiểm tra:** *Em hãy chỉ ra điểm giống và khác nhau giữa các giai đoạn trên hình và lấy thêm 1 ví dụ trong đời sống quanh em?*")
+
+    # 4. Default / General questions
+    else:
+        lines.append(f"Chào em! Dưới đây là giải đáp cho câu hỏi của em về **{lbl}** ({src} · Trang {pg}):\n")
+        lines.append("### Phân tích trọng tâm:")
+        lines.append(f"- **Đối tượng:** {lbl}")
+        lines.append(f"- **Giải đáp:** {question}")
+        if matched_lesson and matched_lesson.get("objectives"):
+            lines.append(f"- **Kiến thức bài học ({matched_lesson.get('number', '')} {matched_lesson.get('title', '')}):**")
+            for obj in matched_lesson.get("objectives", [])[:3]:
+                lines.append(f"  * {obj}")
+        lines.append("\n💡 *Em có thể khoanh vùng một khu vực cụ thể trên hình để tìm hiểu sâu hơn nhé!*")
+        
+    lines.append("\n🏫 *Hệ thống Trợ lý AI Khoa học Tự nhiên · Trường THCS Huỳnh Bá Chánh*")
     return "\n".join(lines)
 
