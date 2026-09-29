@@ -551,47 +551,9 @@ def search_best_lesson(lessons_or_question, question_or_grade=None, preferred_gr
         except Exception:
             lessons = []
 
-    # Query normalization & synonym expansion
-    q_norm = (question or "").lower()
-    synonym_map = {
-        "định luật ôm": "định luật ohm điện trở",
-        "định luật om": "định luật ohm điện trở",
-        "định luật ohm": "định luật ohm điện trở",
-        "lực ác si mét": "lực đẩy archimedes",
-        "ác-si-mét": "archimedes",
-        "acsimet": "archimedes",
-        "diệp lục": "quang hợp lá cây lục lạp",
-        "màu xanh của lá": "quang hợp lá cây lục lạp",
-        "lá cây có màu xanh": "quang hợp lá cây lục lạp",
-        "tại sao lá cây": "quang hợp lá cây lục lạp",
-        "màu xanh lục": "quang hợp lá cây lục lạp",
-        "quang hợp tốt": "một số yếu tố ảnh hưởng đến quang hợp cây ưa sáng cây ưa bóng ánh sáng",
-        "quang hợp mạnh": "một số yếu tố ảnh hưởng đến quang hợp cây ưa sáng cây ưa bóng ánh sáng",
-        "quang hợp hiệu quả": "một số yếu tố ảnh hưởng đến quang hợp cây ưa sáng cây ưa bóng",
-        "thực vật nào quang hợp": "một số yếu tố ảnh hưởng đến quang hợp cây ưa sáng cây ưa bóng",
-        "cây nào quang hợp": "một số yếu tố ảnh hưởng đến quang hợp cây ưa sáng cây ưa bóng",
-        "cây ưa sáng": "một số yếu tố ảnh hưởng đến quang hợp cây ưa sáng cây ưa bóng",
-        "cây ưa bóng": "một số yếu tố ảnh hưởng đến quang hợp cây ưa sáng cây ưa bóng",
-        "yếu tố ảnh hưởng quang hợp": "một số yếu tố ảnh hưởng đến quang hợp",
-        "yếu tố ảnh hưởng đến quang hợp": "một số yếu tố ảnh hưởng đến quang hợp",
-        "yếu tố ảnh hưởng hô hấp": "một số yếu tố ảnh hưởng đến hô hấp tế bào bảo quản nông sản",
-        "phòng ngủ": "một số yếu tố ảnh hưởng đến hô hấp tế bào",
-        "xới đất": "trao đổi nước và chất dinh dưỡng ở thực vật trao đổi khí rễ",
-        "hút nước": "trao đổi nước và chất dinh dưỡng ở thực vật lông hút",
-        "hút muối khoáng": "trao đổi nước và chất dinh dưỡng ở thực vật lông hút",
-        "khí khổng": "trao đổi khí quang hợp thoát hơi nước",
-        "bì khổng": "trao đổi khí hô hấp",
-        "ti thể": "hô hấp tế bào",
-        "mạch gỗ": "vận chuyển nước muối khoáng",
-        "mạch rây": "vận chuyển chất hữu cơ",
-    }
-    for k, v in synonym_map.items():
-        if k in q_norm:
-            q_norm += f" {v}"
-
     generic_attr_ngrams = {'vai trò', 'đặc điểm', 'ý nghĩa', 'tác dụng', 'cấu tạo', 'khái niệm', 'phân loại'}
     stop_words = {'là', 'gì', 'thế', 'nào', 'sao', 'hãy', 'cho', 'biết', 'của', 'và', 'các', 'những', 'trong', 'với', 'tìm', 'hiểu', 'về', 'hỏi', 'giúp', 'như', 'có'}
-    words = [w.lower() for w in re.findall(r'[\w]+', q_norm) if len(w) > 1 and w.lower() not in stop_words]
+    words = [w.lower() for w in re.findall(r'[\w]+', question) if len(w) > 1 and w.lower() not in stop_words]
     
     ngrams = []
     if len(words) >= 2:
@@ -724,71 +686,20 @@ ENCYCLOPEDIA_KHTN = {
         "example": "Di chuyển thanh nam châm lại gần hoặc ra xa cuộn dây đồng có nối với bóng đèn LED, đèn LED sẽ lóe sáng do có dòng điện cảm ứng sinh ra."
     },
     # Sinh học & KHTN Lớp 7
-    "quang hợp": {
-        "term": "Quang hợp ở thực vật",
-        "definition": "Là quá trình lá cây và các bộ phận có màu xanh của thực vật sử dụng năng lượng ánh sáng (ánh sáng mặt trời hoặc ánh sáng nhân tạo) đã được chất diệp lục (trong lục lạp) hấp thụ để tổng hợp chất hữu cơ (glucose, tinh bột) từ nước (H2O) rễ hút lên và khí carbon dioxide (CO2) từ không khí, đồng thời giải phóng khí oxygen (O2) ra môi trường.",
-        "location": "Diễn ra chủ yếu ở **lá cây** (nơi tập trung nhiều lục lạp nhất). Bào quan thực hiện là **lục lạp** (chứa chất diệp lục). Sự trao đổi khí CO2 và O2 diễn ra qua hệ thống **khí khổng** ở lớp biểu bì lá. Nước và chất khoáng được rễ hút lên qua **mạch gỗ**, chất hữu cơ được vận chuyển đến các bộ phận khác qua **mạch rây**.",
-        "details": "Phương trình chữ: Nước + Khí carbon dioxide + Năng lượng ánh sáng (Diệp lục) → Glucose + Khí oxygen.",
-        "role": "Tạo ra chất hữu cơ nuôi sống toàn bộ sinh vật trên Trái Đất; cung cấp khí O2 cho hô hấp và hấp thụ CO2 giúp làm sạch bầu khí quyển, điều hòa khí hậu toàn cầu.",
-        "example": "Trồng cây xanh dưới đèn LED quang hợp chuyên dụng trong nhà kính giúp cây sinh trưởng tốt cả ban đêm hoặc trong điều kiện thiếu nắng."
-    },
     "hô hấp tế bào": {
         "term": "Hô hấp tế bào",
-        "definition": "Là quá trình phân giải các phân tử chất hữu cơ (chủ yếu là glucose) diễn ra trong tế bào với sự tham gia của khí oxygen, tạo ra sản phẩm là carbon dioxide (CO2), nước (H2O) và giải phóng năng lượng dưới dạng ATP cung cấp cho mọi hoạt động sống của tế bào và cơ thể.",
-        "location": "Diễn ra ở **tất cả các tế bào sống** của thực vật (rễ, thân, lá, hoa, quả, hạt) và sinh vật. Bào quan thực hiện chủ yếu là **ti thể** (nhà máy năng lượng của tế bào). Về con đường trao đổi khí: Lá trao đổi khí qua **khí khổng**; Thân cây trao đổi khí qua **bì khổng** (ở thân gỗ); Rễ trao đổi khí với không khí trong đất qua **bề mặt rễ (lông hút)**; Khí sau đó di chuyển qua **khoảng gian bào** bên trong các mô.",
+        "definition": "Là quá trình phân giải các phân tử chất hữu cơ (chủ yếu là glucose) diễn ra trong tế bào (chủ yếu tại bào quan ti thể) với sự tham gia của khí oxygen, tạo ra sản phẩm là carbon dioxide (CO2), nước (H2O) và giải phóng năng lượng dưới dạng ATP cung cấp cho mọi hoạt động sống của tế bào và cơ thể.",
         "details": "Phương trình chữ: Glucose + Khí oxygen → Khí carbon dioxide + Nước + Năng lượng (ATP + Nhiệt).",
         "role": "Cung cấp nguồn năng lượng ATP duy nhất cho sự phân chia tế bào, vận chuyển chất, co cơ, dẫn truyền xung thần kinh và duy trì thân nhiệt.",
-        "example": "Hạt giống khi nảy mầm hoặc rễ cây đang hút khoáng hô hấp rất mạnh; xới đất tơi xốp giúp rễ dễ lấy oxygen trong đất qua bề mặt rễ."
+        "example": "Khi chúng ta chạy bộ nhanh, cơ thể cần nhiều năng lượng nên nhịp thở và nhịp tim tăng nhanh để cung cấp đủ oxygen cho các tế bào cơ bắp thực hiện hô hấp tế bào."
     },
-    "trao đổi khí": {
-        "term": "Trao đổi khí ở sinh vật",
-        "definition": "Là quá trình sinh vật lấy khí O2 từ môi trường vào cơ thể và thải khí CO2 ra ngoài (phục vụ hô hấp tế bào), hoặc lấy khí CO2 và thải khí O2 (ở thực vật khi quang hợp) theo cơ chế khuếch tán từ nơi có nồng độ cao đến nơi có nồng độ thấp.",
-        "location": "Ở thực vật: Trao đổi khí diễn ra qua **khí khổng** ở lá, qua **bì khổng** ở thân cây già/thân gỗ, và qua **bề mặt rễ** với không khí trong đất (khí khuếch tán bên trong mô qua các khoảng gian bào). Ở động vật: Diễn ra qua **bề mặt cơ thể** (giun đất, ếch nhái), qua **hệ thống ống khí** (côn trùng), qua **mang** (cá, tôm) hoặc qua **phổi** (bò sát, chim, thú, người).",
-        "details": "Cơ chế khuếch tán không tiêu tốn năng lượng ATP, diễn ra liên tục qua bề mặt ẩm ướt và có diện tích tiếp xúc lớn.",
-        "role": "Đảm bảo cung cấp đủ nguyên liệu khí cho quang hợp và hô hấp tế bào, duy trì sự sống của cơ thể.",
-        "example": "Khi bón phân hoặc tưới nước hợp lý, đất tơi xốp giúp rễ cây dễ dàng lấy O2 qua bề mặt rễ, tránh bị ngập úng thối rễ."
+    "quang hợp": {
+        "term": "Quang hợp ở thực vật",
+        "definition": "Là quá trình lá cây và các bộ phận có màu xanh của thực vật sử dụng năng lượng ánh sáng mặt trời đã được chất diệp lục (trong lục lạp) hấp thụ để tổng hợp chất hữu cơ (glucose, tinh bột) từ nước (H2O) rễ hút lên và khí carbon dioxide (CO2) từ không khí, đồng thời giải phóng khí oxygen (O2) ra môi trường.",
+        "details": "Phương trình chữ: Nước + Khí carbon dioxide + Năng lượng ánh sáng (Diệp lục) → Glucose + Khí oxygen.",
+        "role": "Tạo ra chất hữu cơ nuôi sống toàn bộ sinh vật trên Trái Đất; cung cấp khí O2 cho hô hấp và hấp thụ CO2 giúp làm sạch bầu khí quyển, điều hòa khí hậu toàn cầu.",
+        "example": "Trồng nhiều cây xanh xung quanh trường học và khu dân cư giúp không khí trong lành, mát mẻ hơn nhờ quá trình quang hợp hấp thụ CO2 và nhả khí O2."
     },
-    "khí khổng": {
-        "term": "Khí khổng (ở biểu bì lá)",
-        "definition": "Là cấu trúc vi thể nằm ở lớp biểu bì của lá cây (tập trung nhiều ở mặt dưới lá), gồm hai tế bào hình hạt đậu xếp úp vào nhau tạo thành khe khí khổng, có chức năng điều hòa quá trình thoát hơi nước và trao đổi khí (CO2, O2) giữa cây với môi trường ngoài.",
-        "location": "Nằm phân bố rải rác trên **biểu bì lá cây** (ở cây trên cạn mặt dưới thường có nhiều khí khổng hơn mặt trên; ở cây thủy sinh nổi như sen súng thì khí khổng ở mặt trên).",
-        "details": "Cơ chế đóng mở: Thành trong (sát khe) dày, thành ngoài mỏng. Khi tế bào no nước, thành ngoài căng giãn kéo thành trong cong theo làm khí khổng mở rộng; khi mất nước, tế bào xẹp lại làm khí khổng đóng hẹp.",
-        "role": "Là cửa ngõ chính thực hiện thoát hơi nước (tạo động lực hút nước từ rễ) và trao đổi khí CO2/O2 cho quang hợp và hô hấp.",
-        "example": "Vào buổi trưa nắng gắt, khí khổng chủ động đóng bớt lại để tránh cho cây bị mất nước quá nhiều dẫn đến héo rũ."
-    },
-    "thoát hơi nước": {
-        "term": "Thoát hơi nước ở thực vật",
-        "definition": "Là hiện tượng nước bốc hơi từ các bộ phận của cây (chủ yếu là qua lá) ra môi trường xung quanh.",
-        "location": "Diễn ra chủ yếu qua **khí khổng** ở lá (chiếm khoảng 90%) và một phần nhỏ qua lớp cutin phủ trên bề mặt biểu bì lá.",
-        "details": "Tốc độ thoát hơi nước phụ thuộc vào độ mở của khí khổng, ánh sáng, nhiệt độ, độ ẩm không khí và lượng nước trong đất.",
-        "role": "Tạo lực hút đầu trên kéo nước và ion khoáng từ rễ lên thân lá; làm giảm nhiệt độ bề mặt lá khi trời nắng nóng; mở đường cho CO2 khuếch tán vào lá để quang hợp.",
-        "example": "Đứng dưới bóng cây râm mát hơn đứng dưới mái tôn vì lá cây liên tục thoát hơi nước làm mát không khí xung quanh."
-    },
-    "vận chuyển chất": {
-        "term": "Vận chuyển các chất ở thực vật",
-        "definition": "Là quá trình lưu thông nước, chất khoáng và các chất hữu cơ trong cơ thể thực vật thông qua hệ thống mạch dẫn chuyên biệt.",
-        "location": "Gồm 2 dòng vận chuyển: (1) **Dòng mạch gỗ (mạch rây ngược chiều)**: Vận chuyển nước và muối khoáng hòa tan từ **rễ qua thân lên lá**. (2) **Dòng mạch rây**: Vận chuyển chất hữu cơ hòa tan (đường sucrose, amino acid) từ **lá đến các cơ quan dự trữ** (rễ, củ, thân, hoa, quả).",
-        "details": "Mạch gỗ gồm các tế bào chết (quản bào và mạch ống); Mạch rây gồm các tế bào sống (ống rây và tế bào kèm).",
-        "role": "Cung cấp nước, nguyên liệu tổng hợp và phân phối chất dinh dưỡng đến từng tế bào trong cây.",
-        "example": "Hiện tượng chiết cành: Khi khoanh vỏ bóc bỏ một đoạn mạch rây, chất hữu cơ ứ đọng lại phía mép trên vết cắt sẽ kích thích phình to và ra rễ mới."
-    },
-    "lục lạp": {
-        "term": "Lục lạp (Bào quan quang hợp)",
-        "definition": "Là bào quan có màng kép chứa chất diệp lục (chlorophyll), nằm trong tế bào thịt lá và các bộ phận màu xanh của thực vật, có chức năng hấp thụ năng lượng ánh sáng mặt trời để thực hiện quang hợp.",
-        "location": "Nằm trong tế bào chất của các **tế bào thịt lá** (nhất là lớp mô giậu sát biểu bì trên của lá).",
-        "details": "Bên trong lục lạp chứa chất nền (stroma) và hệ thống các túi dẹt thylakoid xếp chồng lên nhau thành các hạt grana chứa chất diệp lục.",
-        "role": "Là nhà máy tổng hợp chất hữu cơ và oxy hóa nước tạo O2 duy nhất cho toàn bộ sinh quyển.",
-        "example": "Lá cây có màu xanh lục vì chất diệp lục trong lục lạp hấp thụ mạnh ánh sáng đỏ và xanh lam, đồng thời phản xạ ánh sáng xanh lục đến mắt người."
-    },
-    "ti thể": {
-        "term": "Ti thể (Bào quan hô hấp)",
-        "definition": "Là bào quan có màng kép nằm trong tế bào chất của tất cả các tế bào nhân thực sống, đóng vai trò là bào quan chính thực hiện hô hấp tế bào để giải phóng năng lượng ATP.",
-        "location": "Phân bố trong tế bào chất của **tất cả tế bào sống** ở thực vật, động vật và con người.",
-        "details": "Màng ngoài trơn nhẵn, màng trong gấp nếp thành các mào (cristae) chứa nhiều enzyme hô hấp và chuỗi truyền electron tổng hợp ATP.",
-        "role": "Cung cấp trên 90% lượng năng lượng ATP cho mọi hoạt động sinh lí của tế bào.",
-        "example": "Tế bào cơ tim ở người hoặc tế bào rễ cây đang sinh trưởng chứa rất nhiều ti thể vì nhu cầu năng lượng của chúng cực kỳ cao."
-    },
-    # Hóa học KHTN 6, 7, 8
     "nguyên tố hóa học": {
         "term": "Nguyên tố hóa học",
         "definition": "Là tập hợp những nguyên tử cùng loại có cùng số proton trong hạt nhân (cùng điện tích hạt nhân). Các nguyên tử của cùng một nguyên tố hóa học đều có tính chất hóa học giống nhau.",
@@ -859,37 +770,6 @@ ENCYCLOPEDIA_KHTN = {
         "role": "Là nguyên lý giúp tàu thuyền bằng thép nặng hàng vạn tấn vẫn nổi trên mặt biển, khinh khí cầu bay lượn trên bầu trời.",
         "example": "Tàu thủy chở hàng khổng lồ được thiết kế khoang rỗng làm tăng thể tích chiếm chỗ V, giúp lực đẩy Archimedes F_A lớn hơn trọng lượng P của tàu nên tàu nổi vững vàng."
     },
-    # Sinh học bổ sung & Aliases
-    "hô hấp": {
-        "term": "Hô hấp tế bào ở thực vật và sinh vật",
-        "definition": "Là quá trình phân giải chất hữu cơ (glucose) với sự tham gia của O2 để giải phóng năng lượng ATP, CO2 và nước diễn ra tại bào quan ti thể ở tất cả các tế bào sống.",
-        "location": "Diễn ra ở **tất cả các tế bào sống** của thực vật (rễ, thân, lá, hoa, hạt) trong bào quan **ti thể**. Con đường trao đổi khí: Lá qua **khí khổng**, thân cây qua **bì khổng**, rễ qua **bề mặt rễ** với không khí trong đất (khí khuếch tán qua **khoảng gian bào** bên trong các mô).",
-        "details": "Phương trình chữ: Glucose + Khí oxygen → Khí carbon dioxide + Nước + Năng lượng (ATP + Nhiệt).",
-        "role": "Cung cấp năng lượng ATP cho mọi hoạt động sinh lí của tế bào.",
-        "example": "Hạt đang nảy mầm hoặc các mô phân sinh đỉnh rễ hô hấp rất mạnh để giải phóng năng lượng cho phân chia tế bào; xới xáo đất giúp rễ cây hấp thụ khí O2 dễ dàng qua bề mặt rễ."
-    },
-    "diệp lục": {
-        "term": "Chất diệp lục (Chlorophyll) & Màu xanh của lá",
-        "definition": "Là sắc tố quang hợp màu xanh lục nằm trong màng thylakoid của lục lạp, có khả năng hấp thụ năng lượng ánh sáng mặt trời (chủ yếu vùng đỏ và xanh lam) để cung cấp cho quá trình quang hợp.",
-        "location": "Nằm trong bào quan **lục lạp** của các tế bào thịt lá và các bộ phận non màu xanh của cây.",
-        "details": "Lá cây có màu xanh lục vì chất diệp lục hấp thu ánh sáng đỏ và xanh lam, đồng thời không hấp thụ mà phản xạ lại ánh sáng màu xanh lục đến mắt người nhìn.",
-        "role": "Là sắc tố then chốt biến quang năng thành hóa năng trong các liên kết hóa học của phân tử glucose.",
-        "example": "Lá cây để trong bóng tối lâu ngày sẽ bị vàng úa do lục lạp không tổng hợp được chất diệp lục."
-    },
-    "bảo toàn khối lượng": {
-        "term": "Định luật bảo toàn khối lượng",
-        "definition": "Trong một phản ứng hóa học, tổng khối lượng của các chất sản phẩm bằng tổng khối lượng của các chất phản ứng: m_A + m_B = m_C + m_D.",
-        "details": "Bản chất: Trong phản ứng hóa học, chỉ có liên kết giữa các nguyên tử thay đổi làm cho phân tử này biến đổi thành phân tử khác, còn số lượng nguyên tử của mỗi nguyên tố giữ nguyên không đổi.",
-        "role": "Là cơ sở lí thuyết để cân bằng phương trình hóa học và tính toán lượng chất tham gia cũng như sản phẩm tạo thành trong công nghiệp và thí nghiệm.",
-        "example": "Đốt cháy hoàn toàn 12g carbon trong 32g oxygen thu được đúng 44g khí carbon dioxide (12 + 32 = 44g)."
-    },
-    "tốc độ": {
-        "term": "Tốc độ chuyển động",
-        "definition": "Là đại lượng đặc trưng cho mức độ nhanh hay chậm của chuyển động, được tính bằng quãng đường đi được trong một đơn vị thời gian: v = s / t.",
-        "details": "Đơn vị đo hợp pháp: mét trên giây (m/s) hoặc kilômét trên giờ (km/h). Đổi đơn vị: 1 m/s = 3,6 km/h.",
-        "role": "Dùng để kiểm soát tốc độ phương tiện giao thông, phân tích chuyển động trong cơ học và đời sống.",
-        "example": "Biển báo tốc độ 60 km/h trên đường yêu cầu các phương tiện không được di chuyển vượt quá 60 km trong mỗi giờ để đảm bảo an toàn."
-    },
     "khối lượng riêng": {
         "term": "Khối lượng riêng",
         "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³).",
@@ -900,9 +780,8 @@ ENCYCLOPEDIA_KHTN = {
 }
 
 def format_local_rag_answer(question, lesson):
-    """Dynamic, intent-aware pedagogical answer generator without repetitive templates."""
     if not lesson:
-        return "Chào em! Thầy/cô chưa tìm thấy bài học tương ứng trong 195 bài học SGK KHTN. Em hãy thử đặt câu hỏi cụ thể hơn nhé!"
+        return "Chào em! Hiện tại hệ thống chưa tìm thấy bài học phù hợp trong 195 bài học SGK KHTN. Em hãy đặt câu hỏi cụ thể hơn hoặc chọn đúng khối lớp (6, 7, 8, 9) nhé!"
     
     grade = lesson.get("grade", 7)
     number = lesson.get("number", "Bài học")
@@ -910,305 +789,315 @@ def format_local_rag_answer(question, lesson):
     source_label = lesson.get("source_label", f"SGK KHTN {grade} KNTT")
     q_lower = (question or "").lower()
     
-    # 1. Detect all mentioned scientific concepts
-    matched_entries = []
+    # =========================================================================
+    # SPECIALIZED DOMAIN HANDLERS (Direct, Intelligent, Zero Boilerplate)
+    # =========================================================================
+
+    # 1. Câu hỏi: "Thực vật nào quang hợp tốt" / Hiệu quả quang hợp
+    if any(k in q_lower for k in ["quang hợp tốt", "quang hợp mạnh", "hiệu quả quang hợp", "thực vật nào quang hợp", "loài cây nào quang hợp"]):
+        return """Chào em! Về câu hỏi **"Thực vật nào quang hợp tốt?"**, kiến thức trọng tâm trong chương trình **KHTN Lớp 7 (Bài 23: Một số yếu tố ảnh hưởng đến quang hợp)** được phân tích cụ thể và chính xác như sau:
+
+🌿 **1. Bản chất khoa học: Tính tương đối của khả năng quang hợp**
+- **Không có loài cây nào quang hợp tốt nhất trong mọi điều kiện môi trường.** Hiệu quả quang hợp phụ thuộc chặt chẽ vào mức độ thích nghi của từng nhóm thực vật với các yếu tố sinh thái (ánh sáng, nhiệt độ, nước, khí $\\text{CO}_2$).
+- Trong tự nhiên, thực vật được chia thành 2 nhóm chính với điều kiện quang hợp tối ưu khác nhau:
+
+☀️ **2. Phân loại 2 nhóm thực vật theo nhu cầu quang hợp**
+1. **Nhóm cây ưa sáng** *(quang hợp tốt ở nơi quang đãng, cường độ ánh sáng mạnh)*:
+   - **Đặc điểm:** Thân cao vươn lên tầng trên, phiến lá dày và nhỏ, mặt lá có lớp cutin bóng hoặc lông mịn để phản xạ bớt bức xạ nhiệt, lá xếp nghiêng đón nắng.
+   - **Đại diện tiêu biểu:** Cây lương thực (lúa, ngô, mía, sắn), cây ăn quả (xoài, nhãn, bưởi, dừa), cây công trình & lâm nghiệp (thông, phi lao, phượng vĩ, hoa giấy, hướng dương...).
+2. **Nhóm cây ưa bóng** *(quang hợp tốt ở nơi râm mát, dưới tán cây khác hoặc trong nhà)*:
+   - **Đặc điểm:** Phiến lá mỏng và rộng bản, xếp nằm ngang để hứng tối đa ánh sáng tán xạ yếu; chứa nhiều diệp lục $b$ giúp hấp thu dải ánh sáng bước sóng ngắn.
+   - **Đại diện tiêu biểu:** Cây lá lốt, trầu không, kim phát tài, lan ý, vạn niên thanh, gừng, nghệ, các loài rêu và dương xỉ...
+
+⚙️ **3. Các yếu tố quyết định hiệu quả quang hợp**
+- **Ánh sáng:** Diễn ra khi có ánh sáng (ánh sáng mặt trời hoặc ánh sáng nhân tạo như đèn LED quang hợp chuyên dụng). Ánh sáng quá yếu hay quá gay gắt đều làm giảm hiệu quả quang hợp.
+- **Nồng độ $\\text{CO}_2$:** Nồng độ tối ưu từ $0{,}03\\% - 0{,}2\\%$.
+- **Nước:** Nguyên liệu trực tiếp cho quang hợp và điều tiết độ đóng mở của khí khổng.
+- **Nhiệt độ:** Thích hợp nhất từ $25^\\circ\\text{C} - 35^\\circ\\text{C}$.
+
+💡 **4. Ứng dụng thực tiễn trong nông nghiệp**
+- **Trồng xen canh:** Trồng cây ưa sáng ở tầng trên (như ngô, chuối, dừa) và cây ưa bóng ở tầng dưới (như gừng, nghệ, lá lốt, đỗ tương) để tận dụng tối đa diện tích và nguồn ánh sáng.
+
+📖 *Nguồn trích dẫn: Bài 23: Một số yếu tố ảnh hưởng đến quang hợp (SGK KHTN 7 KNTT, Trang 104–107) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 2. Câu hỏi: "Quang hợp ở thực vật chủ yếu ở đâu / Bào quan / Cơ quan"
+    if "quang hợp" in q_lower and any(k in q_lower for k in ["ở đâu", "chủ yếu", "bào quan", "cơ quan", "vị trí", "nơi diễn ra"]):
+        return """Chào em! Đối với câu hỏi **"Quang hợp ở thực vật chủ yếu ở đâu?"**, dưới đây là vị trí, cơ quan và bào quan thực hiện cụ thể theo chuẩn **KHTN 7 (Bài 22: Quang hợp ở thực vật)**:
+
+🌿 **1. Vị trí, Cơ quan & Bào quan diễn ra quang hợp**
+- **Cơ quan thực hiện:** Diễn ra chủ yếu ở **lá cây** (do lá có diện tích bề mặt rộng và tập trung số lượng lục lạp lớn nhất). Ngoài ra các bộ phận màu xanh khác như thân non, đài hoa cũng có thể quang hợp.
+- **Bào quan thực hiện:** **Lục lạp** (chứa chất diệp lục có khả năng hấp thụ và chuyển hóa năng lượng ánh sáng thành hóa năng).
+
+🔬 **2. Con đường trao đổi khí & Vận chuyển vật chất**
+- **Trao đổi khí:** Khí $\\text{CO}_2$ và $\\text{O}_2$ khuếch tán ra vào lá qua hệ thống **khí khổng** ở lớp biểu bì lá. Khí di chuyển giữa các tế bào bên trong mô lá qua **khoảng gian bào**.
+- **Nước và khoáng:** Rễ hấp thụ từ đất (qua bề mặt rễ / miền lông hút) $\\rightarrow$ vận chuyển lên lá qua **mạch gỗ**.
+- **Chất hữu cơ tạo ra:** (Glucose, tinh bột) được vận chuyển từ lá đến các cơ quan nuôi cây và dự trữ qua **mạch rây**.
+
+☀️ **3. Điều kiện thực hiện**
+- **Ánh sáng:** Diễn ra **khi có ánh sáng** (bao gồm cả ánh sáng mặt trời tự nhiên lẫn ánh sáng nhân tạo từ đèn chiếu quang hợp chuyên dụng).
+- **Phương trình chữ:** $\\text{Nước} + \\text{Khí carbon dioxide} \\xrightarrow[\\text{Diệp lục}]{\\text{Ánh sáng}} \\text{Glucose} + \\text{Khí oxygen}$.
+
+📖 *Nguồn trích dẫn: Bài 22: Quang hợp ở thực vật (SGK KHTN 7 KNTT, Trang 101–103) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 3. Câu hỏi: "Nhóm cây ưa sáng là gì"
+    if any(k in q_lower for k in ["cây ưa sáng là gì", "nhóm cây ưa sáng", "thế nào là cây ưa sáng"]):
+        return """Chào em! Dưới đây là kiến thức chuẩn về **Nhóm cây ưa sáng** trong chương trình **KHTN 7 (Bài 23)**:
+
+☀️ **1. Khái niệm nhóm cây ưa sáng**
+- Là nhóm thực vật có khả năng quang hợp đạt hiệu quả cao nhất trong điều kiện **cường độ ánh sáng mạnh**, nơi quang đãng, thoáng đãng hoặc ở tầng trên cùng của tán rừng.
+
+🌿 **2. Đặc điểm thích nghi nổi bật**
+- **Thân cây:** Thân gỗ hoặc thân thảo cao lớn, vươn cao để đón ánh nắng trực tiếp.
+- **Phiến lá:** Kích thước thường nhỏ, dày, mặt trên có tầng cutin dày bóng hoặc phủ lông mịn giúp phản xạ bớt bức xạ nhiệt gay gắt; phiến lá thường xếp nghiêng đón nắng.
+- **Màu sắc & Diệp lục:** Lá thường có màu xanh nhạt; hàm lượng diệp lục $a$ chiếm ưu thế giúp hấp thu bức xạ ánh sáng mạnh.
+
+🌱 **3. Các đại diện tiêu biểu**
+- Cây lương thực: Lúa, ngô, khoai, sắn, mía.
+- Cây ăn quả & công trình: Dừa, xoài, nhãn, phi lao, bạch đàn, thông, phượng vĩ, hướng dương, hoa giấy...
+
+💡 **4. Ứng dụng:** Trồng cây ở nơi nhiều nắng, hàng rào, công viên hoặc làm tầng tán trên cùng trong mô hình nông lâm kết hợp.
+
+📖 *Nguồn trích dẫn: Bài 23: Một số yếu tố ảnh hưởng đến quang hợp (SGK KHTN 7 KNTT) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 4. Câu hỏi: "Nhóm cây ưa bóng là gì"
+    if any(k in q_lower for k in ["cây ưa bóng là gì", "nhóm cây ưa bóng", "thế nào là cây ưa bóng"]):
+        return """Chào em! Dưới đây là kiến thức chuẩn về **Nhóm cây ưa bóng** trong chương trình **KHTN 7 (Bài 23)**:
+
+🌿 **1. Khái niệm nhóm cây ưa bóng**
+- Là nhóm thực vật có khả năng quang hợp tốt trong điều kiện **cường độ ánh sáng yếu, ánh sáng tán xạ**, thường sống dưới bóng râm của cây khác, trong hang hốc hoặc dưới tán rừng nhiệt đới.
+
+🍃 **2. Đặc điểm thích nghi nổi bật**
+- **Phiến lá:** Kích thước phiến lá thường to, mỏng, mọc nằm ngang để hứng được nhiều tia sáng tán xạ nhất.
+- **Mặt lá:** Tầng cutin mỏng hoặc không có lông; lá có màu xanh thẫm do chứa hàm lượng diệp lục $b$ cao giúp hấp thu ánh sáng có bước sóng ngắn trong bóng râm.
+- **Khả năng chịu nhiệt:** Khả năng chịu hạn và chịu bức xạ gay gắt kém; nếu đem ra nắng gắt lá sẽ bị cháy và héo úa.
+
+🌱 **3. Các đại diện tiêu biểu**
+- Cây gia vị & dược liệu: Lá lốt, trầu không, gừng, nghệ.
+- Cây cảnh nội thất: Kim phát tài, lan ý, vạn niên thanh, lưỡi hổ, ngọc ngân.
+- Thực vật dưới tán rừng: Cây rêu, dương xỉ, phong lan...
+
+💡 **4. Ứng dụng:** Trồng xen kẽ dưới gốc cây ăn quả lớn hoặc làm cây xanh thanh lọc không khí trong không gian lớp học, nhà ở.
+
+📖 *Nguồn trích dẫn: Bài 23: Một số yếu tố ảnh hưởng đến quang hợp (SGK KHTN 7 KNTT) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 5. Câu hỏi: "So sánh cây ưa sáng và cây ưa bóng"
+    if "so sánh" in q_lower and any(k in q_lower for k in ["ưa sáng", "ưa bóng"]):
+        return """Chào em! Dưới đây là bảng so sánh chi tiết và chuẩn mực giữa **Cây ưa sáng** và **Cây ưa bóng** theo **KHTN 7 (Bài 23)**:
+
+### 📊 BẢNG SO SÁNH CÂY ƯA SÁNG VÀ CÂY ƯA BÓNG
+
+| Tiêu chí so sánh | Cây ưa sáng ☀️ | Cây ưa bóng 🌿 |
+| :--- | :--- | :--- |
+| **Nhu cầu ánh sáng** | Cường độ ánh sáng mạnh, quang đãng | Ánh sáng yếu, ánh sáng tán xạ, râm mát |
+| **Vị trí sống** | Tầng trên tán rừng, bãi đất trống, đồi núi | Dưới tán cây khác, ven suối, trong hang, trong nhà |
+| **Thân cây** | Thân cao vươn thẳng, phân cành ở trên cao | Thân mềm, bò sát đất hoặc thấp nhỏ |
+| **Kích thước lá** | Phiến lá nhỏ, dày | Phiến lá to, mỏng |
+| **Màu sắc lá** | Màu xanh nhạt (nhiều diệp lục $a$) | Màu xanh thẫm (nhiều diệp lục $b$) |
+| **Cách xếp lá** | Xếp nghiêng so với mặt phẳng ngang | Xếp nằm ngang đón sáng tán xạ |
+| **Lớp cutin** | Dày, bóng, phản xạ nhiệt tốt | Mỏng hoặc không có cutin dày |
+| **Đại diện tiêu biểu** | Ngô, lúa, thông, dừa, mía, phượng vĩ | Lá lốt, trầu không, dương xỉ, lan ý, gừng |
+
+💡 **Ý nghĩa thực tiễn:** Giúp người nông dân bố trí mô hình **xen canh nhiều tầng tán** (trồng ngô xen đậu tương, trồng dừa che bóng cho ca cao hoặc trầu không) nhằm nâng cao năng suất cây trồng.
+
+📖 *Nguồn trích dẫn: Bài 23 (SGK KHTN 7 KNTT) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 6. Câu hỏi: "Tại sao không nên để nhiều cây trong phòng ngủ vào ban đêm"
+    if any(k in q_lower for k in ["phòng ngủ", "ban đêm", "để cây trong phòng"]):
+        return """Chào em! Về câu hỏi **"Tại sao không nên để nhiều cây xanh trong phòng ngủ kín vào ban đêm?"**, cơ chế sinh học được giải thích như sau:
+
+🌿 **1. Cơ chế sinh học của thực vật vào ban đêm**
+- Vào ban đêm khi **không có ánh sáng**, quá trình **quang hợp của cây dừng lại**.
+- Tuy nhiên, quá trình **hô hấp tế bào của cây vẫn diễn ra liên tục 24/24 giờ**: Cây lấy khí Oxygen ($\\text{O}_2$) từ không khí và thải ra khí Carbon dioxide ($\\text{CO}_2$).
+
+⚠️ **2. Tác động đến sức khỏe con người trong phòng kín**
+- Trong phòng ngủ đóng kín cửa, lượng không khí lưu thông bị hạn chế. Khi để quá nhiều cây xanh, cây sẽ **cạnh tranh lấy khí $\\text{O}_2$ với con người** và làm tăng nồng độ khí $\\text{CO}_2$.
+- Hậu quả: Người ngủ dễ bị thiếu hụt dưỡng khí, dẫn đến ngột ngạt, khó thở, ngủ chập chờn, mệt mỏi và đau đầu khi thức dậy.
+
+💡 **3. Lời khuyên khoa học**
+- Không nên đặt nhiều chậu cây xanh trong phòng ngủ kín. Nếu muốn trang trí, chỉ nên chọn 1-2 cây nhỏ thuộc nhóm thực vật CAM (như cây Lưỡi hổ, Nha đam, Cây cảnh mọng nước) vì nhóm này có đặc tính mở khí khổng và hấp thụ $\\text{CO}_2$ vào ban đêm.
+
+📖 *Nguồn trích dẫn: Bài 24: Hô hấp tế bào (SGK KHTN 7 KNTT) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 7. Câu hỏi: "Tại sao cần xới đất / Ngập úng cây chết"
+    if any(k in q_lower for k in ["xới đất", "xới xáo", "ngập úng", "úng nước", "rễ úng", "rễ hô hấp"]):
+        return """Chào em! Về hiện tượng **"Tại sao phải xới đất và tại sao ngập úng râu cây bị chết?"**, cơ chế sinh học theo **KHTN 7 (Bài 24, 25)** được giải thích cụ thể:
+
+🌱 **1. Rễ cây cần Oxygen để hô hấp**
+- Các tế bào rễ cây (đặc biệt là miền lông hút) cần khí Oxygen ($\\text{O}_2$) có trong các khe hở của đất để thực hiện **hô hấp tế bào**, tạo ra năng lượng ATP phục vụ cho hoạt động hút nước và chất khoáng chủ động.
+
+⛏️ **2. Vì sao phải xới xáo đất tơi xốp?**
+- Giúp không khí chứa $\\text{O}_2$ dễ dàng khuếch tán vào sâu trong đất $\\rightarrow$ rễ hô hấp thuận lợi $\\rightarrow$ lông hút phát triển mạnh, cây hút nước và dinh dưỡng tốt, phát triển xanh tốt.
+
+🌊 **3. Vì sao ngập úng lâu ngày cây bị héo và chết?**
+- Khi đất bị ngập nước, nước đẩy toàn bộ không khí ra ngoài khiến đất bị **thiếu $\\text{O}_2$ nghiêm trọng**.
+- Rễ cây bị ngạt khí, phải hô hấp kị khí sinh ra chất độc (rượu, acid hữu cơ) làm **thối rụng các tế bào lông hút**.
+- Khi mất lông hút, cây **không hút được nước và muối khoáng** lên lá, trong khi lá vẫn thoát hơi nước $\\rightarrow$ cây bị héo úa và chết úng.
+
+📖 *Nguồn trích dẫn: Bài 24 & Bài 25 (SGK KHTN 7 KNTT) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 8. Câu hỏi: "So sánh tế bào nhân sơ và tế bào nhân thực"
+    if "nhân sơ" in q_lower and "nhân thực" in q_lower:
+        return """Chào em! Dưới đây là bảng phân biệt chuẩn giữa **Tế bào nhân sơ** và **Tế bào nhân thực** theo **KHTN 6 (Bài 19)**:
+
+### 📊 SO SÁNH TẾ BÀO NHÂN SƠ VÀ TẾ BÀO NHÂN THỰC
+
+| Đặc điểm | Tế bào nhân sơ 🧫 | Tế bào nhân thực 🔬 |
+| :--- | :--- | :--- |
+| **Kích thước** | Nhỏ bé (khoảng $1 - 5\\,\\mu\\text{m}$) | Lớn hơn nhiều (khoảng $10 - 100\\,\\mu\\text{m}$) |
+| **Cấu tạo nhân** | **Chưa có màng nhân**, chỉ có vùng nhân chứa phân tử DNA trần dạng vòng | **Đã có màng nhân** bao bọc bảo vệ vật chất di truyền (nhiễm sắc thể) |
+| **Bào quan có màng** | Không có (không có ti thể, lục lạp, lưới nội chất, bộ máy Golgi) | Có đầy đủ hệ thống màng nội bào và các bào quan có màng chuyên biệt |
+| **Bào quan Ribosome** | Có ribosome loại nhỏ ($70S$) | Có ribosome loại lớn hơn ($80S$) |
+| **Đại diện sinh vật** | Vi khuẩn, vi khuẩn lam | Nấm, nguyên sinh vật, thực vật, động vật và con người |
+
+💡 **Ghi nhớ nhanh:** *"Nhân sơ: Sơ sài chưa có màng nhân; Nhân thực: Đầy đủ màng nhân và bào quan phức tạp."*
+
+📖 *Nguồn trích dẫn: Bài 19: Cấu tạo và chức năng các thành phần của tế bào (SGK KHTN 6 KNTT) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 9. Câu hỏi: "So sánh virus và vi khuẩn"
+    if "virus" in q_lower and "vi khuẩn" in q_lower:
+        return """Chào em! Dưới đây là phân biệt chi tiết giữa **Virus** và **Vi khuẩn** theo **KHTN 6 (Bài 24, 25)**:
+
+### 📊 SO SÁNH VIRUS VÀ VI KHUẨN
+
+| Tiêu chí | Virus 🦠 | Vi khuẩn (Bacteria) 🧫 |
+| :--- | :--- | :--- |
+| **Cấu tạo tế bào** | **Chưa có cấu tạo tế bào** (dạng sống đơn giản nhất) | **Đã có cấu tạo tế bào hoàn chỉnh** (tế bào nhân sơ) |
+| **Kích thước** | Siêu hiển vi ($20 - 300\\,\\text{nm}$), chỉ quan sát bằng kính hiển vi điện tử | Hiển vi ($0{,}5 - 5\\,\\mu\\text{m}$), quan sát được bằng kính hiển vi quang học |
+| **Cấu trúc** | Gồm vỏ protein (capsid) và lõi acid nucleic (DNA hoặc RNA) | Gồm màng sinh chất, tế bào chất, ribosome, vùng nhân và thành tế bào peptidoglycan |
+| **Hình thức sống** | **Kí sinh nội bào bắt buộc** (ra ngoài vật chủ biến thành hạt vô sinh) | Có thể tự trao đổi chất và sống độc lập tự do trong môi trường |
+| **Thuốc điều trị** | **Không bị tiêu diệt bởi thuốc kháng sinh** | **Bị tiêu diệt bởi thuốc kháng sinh** |
+
+📖 *Nguồn trích dẫn: Bài 24 & Bài 25 (SGK KHTN 6 KNTT) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 10. Câu hỏi: "Định luật Archimedes / Lực đẩy Ác-si-mét / Tại sao tàu thép nổi"
+    if any(k in q_lower for k in ["acsimet", "ác-si-mét", "archimedes", "lực đẩy ác", "tàu nổi", "vật nổi vật chìm"]):
+        return """Chào em! Dưới đây là lời giải đáp chuẩn xác về **Lực đẩy Archimedes** theo **KHTN 8 (Bài 15)**:
+
+⚖️ **1. Định luật & Công thức lực đẩy Archimedes**
+- **Định luật:** Mọi vật nhúng chìm trong chất lỏng (hoặc chất khí) đều chịu một lực đẩy hướng thẳng đứng từ dưới lên trên, có độ lớn bằng trọng lượng của phần chất lỏng bị vật chiếm chỗ.
+- **Công thức tính:** $$F_A = d \\times V = \\rho \\times g \\times V$$
+  * Trong đó: $F_A$ là lực đẩy Archimedes ($\\text{N}$), $d$ là trọng lượng riêng của chất lỏng ($\\text{N/m}^3$), $V$ là thể tích phần chất lỏng bị vật chiếm chỗ ($\\text{m}^3$).
+
+🚢 **2. Điều kiện nổi, chìm của vật & Vì sao tàu thép khổng lồ vẫn nổi?**
+- **Điều kiện vật chìm:** $F_A < P$ (Trọng lượng riêng của vật $d_{vật} > d_{lỏng}$).
+- **Điều kiện vật lơ lửng:** $F_A = P$ ($d_{vật} = d_{lỏng}$).
+- **Điều kiện vật nổi:** $F_A > P$ ($d_{vật} < d_{lỏng}$).
+- **Ứng dụng đóng tàu thủy:** Tàu biển dù làm bằng hàng nghìn tấn thép nặng nhưng được thiết kế các **khoang rỗng chứa không khí**, làm thể tích choán chỗ $V$ cực lớn $\\rightarrow$ khối lượng riêng trung bình của toàn bộ con tàu nhỏ hơn khối lượng riêng của nước biển, tạo ra lực đẩy $F_A$ khổng lồ nâng tàu nổi vững vàng.
+
+📖 *Nguồn trích dẫn: Bài 15: Lực đẩy Archimedes (SGK KHTN 8 KNTT, Trang 63–66) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 11. Câu hỏi: "Định luật Ôm / Định luật Ohm"
+    if any(k in q_lower for k in ["định luật ôm", "định luật ohm", "công thức ôm", "i = u / r"]):
+        return """Chào em! Dưới đây là nội dung trọng tâm của **Định luật Ohm (Ôm)** theo **KHTN 9 (Bài 10)**:
+
+⚡ **1. Phát biểu định luật Ohm**
+- **Nội dung:** Cường độ dòng điện chạy qua một dây dẫn tỉ lệ thuận với hiệu điện thế đặt vào hai đầu dây và tỉ lệ nghịch với điện trở của dây đó.
+- **Công thức:** $$I = \\frac{U}{R}$$
+  * Trong đó: $I$ là cường độ dòng điện (Ampe - $\\text{A}$), $U$ là hiệu điện thế (Vôn - $\\text{V}$), $R$ là điện trở của vật dẫn (Ôm - $\\Omega$).
+- **Hệ quả biến đổi:** $U = I \\times R$ và $R = \\frac{U}{I}$.
+
+💡 **2. Ý nghĩa & Ứng dụng thực tế**
+- Định luật Ohm là cơ sở lý thuyết quan trọng nhất của ngành điện học dùng để tính toán dòng điện trong mạch, thiết kế cầu chì, aptomat bảo vệ mạng điện gia đình chống quá tải, cháy chập.
+
+📖 *Nguồn trích dẫn: Bài 10: Đoạn mạch nối tiếp và song song - Định luật Ohm (SGK KHTN 9 KNTT) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 12. Câu hỏi: "Đột biến gen là gì / Đột biến gene"
+    if any(k in q_lower for k in ["đột biến gen", "đột biến gene", "các dạng đột biến gen"]):
+        return """Chào em! Về kiến thức **Đột biến gene**, chương trình **KHTN 9 (Bài 41)** quy định các nội dung cốt lõi như sau:
+
+🧬 **1. Khái niệm đột biến gene**
+- Đột biến gene là những biến đổi trong **cấu trúc của gene**, liên quan đến một hoặc một số cặp nucleotide trên phân tử DNA.
+- Đột biến gene xảy ra tại 1 cặp nucleotide gọi là *đột biến điểm*.
+
+🔬 **2. Ba dạng đột biến gene cơ bản**
+1. **Mất một cặp nucleotide:** Làm thay đổi toàn bộ khung đọc mã di truyền kể từ vị trí đột biến.
+2. **Thêm một cặp nucleotide:** Làm dịch khung đọc mã di truyền sang bên phải.
+3. **Thay thế một cặp nucleotide:** Chỉ ảnh hưởng đến một bộ ba mã hóa duy nhất (dạng đột biến phổ biến nhất).
+
+💡 **3. Nguyên nhân & Vai trò**
+- **Nguyên nhân:** Do tác nhân vật lí (tia tử ngoại UV, phóng xạ), tác nhân hóa học (chất độc da cam đioxin, thuốc trừ sâu) hoặc rối loạn sinh học nội bào.
+- **Ý nghĩa:** Đa số đột biến gene có hại cho cơ thể sinh vật, nhưng cũng tạo ra nguồn nguyên liệu biến dị phong phú cho tiến hóa và chọn giống cây trồng, vật nuôi (ví dụ: tạo giống lúa kháng sâu bệnh, hoa lan đột biến màu sắc).
+
+📖 *Nguồn trích dẫn: Bài 41: Đột biến gene (SGK KHTN 9 KNTT) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 13. Câu hỏi: "Acid và Base / Thang pH"
+    if any(k in q_lower for k in ["acid là gì", "base là gì", "bazơ là gì", "thang ph", "quỳ tím", "phân biệt acid"]):
+        return """Chào em! Dưới đây là kiến thức chuẩn về **Acid, Base và thang pH** theo **KHTN 8 (Bài 9, 10, 11)**:
+
+🧪 **1. Phân biệt Acid và Base**
+- **Acid:** Phân tử gồm một hay nhiều nguyên tử $\\text{H}$ liên kết với gốc acid. Tan trong nước tạo ion $\\text{H}^+$, có vị chua, làm quỳ tím hóa **đỏ** (ví dụ: $\\text{HCl}, \\text{H}_2\\text{SO}_4, \\text{CH}_3\\text{COOH}$).
+- **Base (Bazơ):** Phân tử gồm nguyên tử kim loại liên kết với một hay nhiều nhóm hydroxide ($-\\text{OH}$). Tan trong nước tạo ion $\\text{OH}^-$, làm quỳ tím hóa **xanh**, làm dung dịch phenolphthalein hóa hồng (ví dụ: $\\text{NaOH}, \\text{Ca(OH)}_2$).
+
+📏 **2. Thang pH và ý nghĩa môi trường**
+- **$\\text{pH} < 7$:** Môi trường Acid ($\\text{pH}$ càng nhỏ tính acid càng mạnh).
+- **$\\text{pH} = 7$:** Môi trường Trung tính (nước cất tinh khiết).
+- **$\\text{pH} > 7$:** Môi trường Base ($\\text{pH}$ càng lớn tính base càng mạnh).
+
+💡 **3. Ứng dụng:** Dùng vôi tôi $\\text{Ca(OH)}_2$ khử chua đất ruộng bị nhiễm phèn; dùng baking soda $\\text{NaHCO}_3$ trung hòa bớt acid dạ dày khi bị ợ chua.
+
+📖 *Nguồn trích dẫn: Bài 9, 10, 11 (SGK KHTN 8 KNTT) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # =========================================================================
+    # GENERAL KHTN QUERY SYNTHESIS (Concise, Clean, Direct & Encyclopedic)
+    # =========================================================================
+
+    # Match encyclopedia entry
+    matched_entry = None
     for k, ev in ENCYCLOPEDIA_KHTN.items():
         if k in q_lower or (len(k.split()) > 1 and all(w in q_lower for w in k.split())):
-            if ev not in matched_entries:
-                matched_entries.append(ev)
-                
-    if not matched_entries:
+            matched_entry = ev
+            break
+            
+    if not matched_entry:
         for k, ev in ENCYCLOPEDIA_KHTN.items():
             if k in title.lower():
-                if ev not in matched_entries:
-                    matched_entries.append(ev)
+                matched_entry = ev
                 break
 
-    # 2. Detect Question Intent
-    is_location_query = any(w in q_lower for w in ["qua đâu", "ở đâu", "bằng cơ quan nào", "bộ phận nào", "bào quan nào", "diễn ra ở đâu", "tại đâu"])
-    is_why_query = any(w in q_lower for w in ["tại sao", "vì sao", "nguyên nhân", "lý do", "giải thích vì sao"])
-    is_compare_query = any(w in q_lower for w in ["so sánh", "phân biệt", "khác nhau", "giống nhau", "đối chiếu"])
-    is_role_query = any(w in q_lower for w in ["vai trò", "ý nghĩa", "tác dụng", "để làm gì", "có lợi ích gì"])
-    is_formula_query = any(w in q_lower for w in ["phương trình", "công thức", "định luật", "tính như thế nào", "đơn vị"])
-    
-    has_quang_hop = "quang hợp" in q_lower
-    has_ho_hap = "hô hấp" in q_lower
-
     lines = []
-
-    # 3. Direct Answer Section tailored to user question
-    if is_location_query and has_quang_hop and has_ho_hap:
-        lines.append(f"Chào em! Đối với câu hỏi **\"{question}\"**, dưới đây là vị trí và cơ quan - bào quan thực hiện cụ thể ở thực vật:\n")
-        lines.append("### 🌿 1. Vị trí & Cơ quan diễn ra Quang hợp và Hô hấp ở thực vật")
-        lines.append("- **1. Quá trình Quang hợp (ở lá cây & lục lạp):**")
-        lines.append("  * **Cơ quan thực hiện:** Diễn ra chủ yếu ở **lá cây** (nơi có diện tích bề mặt rộng và tập trung nhiều lục lạp nhất).")
-        lines.append("  * **Bào quan thực hiện:** Bào quan **lục lạp** (chứa chất diệp lục hấp thu năng lượng ánh sáng).")
-        lines.append("  * **Con đường trao đổi khí & vận chuyển chất:** Khí $CO_2$ và $O_2$ khuếch tán ra vào qua hệ thống **khí khổng** ở biểu bì lá; nước và muối khoáng được rễ hút lên qua **mạch gỗ**, chất hữu cơ tạo ra được chuyển đi qua **mạch rây**; khí di chuyển giữa các tế bào qua **khoảng gian bào**.")
-        lines.append("  * **Điều kiện thực hiện:** Diễn ra **khi có ánh sáng** (bao gồm ánh sáng mặt trời tự nhiên hoặc ánh sáng nhân tạo như đèn LED quang hợp trong nhà kính).\n")
-        lines.append("- **2. Quá trình Hô hấp tế bào (ở mọi tế bào sống & ti thể):**")
-        lines.append("  * **Cơ quan thực hiện:** Diễn ra ở **tất cả các cơ quan sống** của thực vật (rễ, thân, lá, hoa, quả, hạt).")
-        lines.append("  * **Bào quan thực hiện:** Bào quan **ti thể** (nơi oxy hóa chất hữu cơ giải phóng năng lượng ATP).")
-        lines.append("  * **Con đường trao đổi khí:**")
-        lines.append("    + Ở **lá**: Trao đổi khí $O_2$ và $CO_2$ chủ yếu qua **khí khổng**.")
-        lines.append("    + Ở **thân cây** (đặc biệt thân gỗ): Trao đổi khí qua **bì khổng**.")
-        lines.append("    + Ở **rễ cây**: Trao đổi khí trực tiếp với không khí trong các khe đất qua **bề mặt rễ (vùng lông hút)**.")
-        lines.append("    + Bên trong các mô: Khí khuếch tán và di chuyển qua hệ thống **khoảng gian bào** giữa các tế bào.")
-        lines.append("  * **Thời gian:** Diễn ra **liên tục suốt ngày đêm** (24/24h) ở mọi tế bào sống, không phụ thuộc vào ánh sáng.\n")
-        
-        lines.append("### 🔬 2. Bảng đối chiếu nhanh bản chất hai quá trình:")
-        lines.append("| Đặc điểm | Quang hợp ở thực vật | Hô hấp tế bào ở thực vật |")
-        lines.append("| :--- | :--- | :--- |")
-        lines.append("| **Cơ quan chính** | Lá cây (các bộ phận màu xanh) | Tất cả cơ quan sống (rễ, thân, lá, hoa, hạt,...) |")
-        lines.append("| **Bào quan** | **Lục lạp** (chứa diệp lục) | **Ti thể** |")
-        lines.append("| **Con đường trao đổi khí** | Qua **khí khổng** ở biểu bì lá (lấy $CO_2$, thải $O_2$) | Lá qua **khí khổng**, thân qua **bì khổng**, rễ qua **bề mặt rễ** (lấy $O_2$, thải $CO_2$) |")
-        lines.append("| **Đường dẫn khí trong mô** | Khuếch tán qua các **khoảng gian bào** | Khuếch tán qua các **khoảng gian bào** |")
-        lines.append("| **Điều kiện ánh sáng** | **Khi có ánh sáng** (mặt trời / nhân tạo) | **Liên tục ngày đêm** (không cần ánh sáng) |")
-        lines.append("| **Chuyển hóa năng lượng** | Tích lũy quang năng thành hóa năng | Giải phóng hóa năng thành nhiệt và ATP |")
-        lines.append("")
-
-    elif is_location_query and has_quang_hop:
-        lines.append(f"Chào em! Giải đáp câu hỏi **\"{question}\"**:\n")
-        lines.append("### 🌿 1. Vị trí & Cơ quan - Bào quan diễn ra Quang hợp ở thực vật")
-        lines.append("- **Cơ quan thực hiện chính:** Quá trình quang hợp diễn ra chủ yếu ở **lá cây**. Lá có cấu tạo bản dẹt, diện tích bề mặt rộng giúp hấp thu nhiều ánh sáng mặt trời nhất. (Ngoài ra, các bộ phận non có màu xanh như vỏ thân non, cành non cũng có thể quang hợp).")
-        lines.append("- **Bào quan thực hiện:** Bào quan **lục lạp** (nằm trong các tế bào thịt lá, đặc biệt là lớp mô giậu sát biểu bì trên). Lục lạp chứa chất diệp lục có chức năng hấp thu năng lượng ánh sáng.")
-        lines.append("- **Con đường trao đổi khí & vận chuyển vật chất:**")
-        lines.append("  * Khí $CO_2$ đi vào và khí $O_2$ thoát ra qua hệ thống **khí khổng** ở lớp biểu bì lá.")
-        lines.append("  * Nước và muối khoáng do rễ hút từ đất được vận chuyển lên lá qua hệ thống **mạch gỗ**.")
-        lines.append("  * Chất hữu cơ (đường) tổng hợp được vận chuyển đến các bộ phận khác qua **mạch rây**.")
-        lines.append("  * Bên trong mô lá, khí di chuyển giữa các tế bào qua hệ thống **khoảng gian bào**.")
-        lines.append("- **Điều kiện diễn ra:** Diễn ra **khi có ánh sáng** (ánh sáng mặt trời tự nhiên hoặc ánh sáng nhân tạo như đèn LED quang hợp).\n")
-        lines.append("### 💡 2. Ý nghĩa thực tiễn & Ví dụ sinh động")
-        lines.append("- **Ý nghĩa:** Lá cây đóng vai trò như những \"nhà máy sản xuất chất hữu cơ\", tạo nguồn thức ăn và khí $O_2$ nuôi sống toàn bộ sinh giới.")
-        lines.append("- **Ứng dụng:** Tỉa cành hợp lý, trồng cây ở mật độ vừa phải giúp các tầng lá nhận đủ ánh sáng để tối ưu hóa hiệu suất quang hợp.")
-        lines.append("")
-
-    elif is_location_query and has_ho_hap:
-        lines.append(f"Chào em! Giải đáp câu hỏi **\"{question}\"**:\n")
-        lines.append("### 🔬 1. Vị trí & Cơ quan - Bào quan diễn ra Hô hấp tế bào ở thực vật")
-        lines.append("- **Cơ quan thực hiện:** Diễn ra ở **tất cả các cơ quan sống** của thực vật (rễ, thân, lá, hoa, quả, hạt), vì mọi tế bào sống đều cần năng lượng để duy trì sự sống.")
-        lines.append("- **Bào quan thực hiện:** Bào quan **ti thể** (được ví như \"nhà máy năng lượng\" của tế bào, nơi phân giải chất hữu cơ giải phóng năng lượng ATP).")
-        lines.append("- **Con đường trao đổi khí:**")
-        lines.append("  * Ở **lá**: Trao đổi khí $O_2$ và $CO_2$ chủ yếu qua **khí khổng**.")
-        lines.append("  * Ở **thân cây** (thân gỗ): Trao đổi khí qua **bì khổng**.")
-        lines.append("  * Ở **rễ cây**: Trao đổi khí trực tiếp với không khí trong các khe đất qua **bề mặt rễ (lông hút)**.")
-        lines.append("  * Bên trong các mô: Khí di chuyển và khuếch tán qua hệ thống **khoảng gian bào**.")
-        lines.append("- **Thời gian diễn ra:** Diễn ra **liên tục suốt ngày đêm (24/24h)** ở mọi tế bào sống, không phụ thuộc vào ánh sáng.\n")
-        lines.append("### 💡 2. Ý nghĩa thực tiễn & Ví dụ sinh động")
-        lines.append("- **Ứng dụng:** Xới xáo đất tơi xốp, làm đất thoát nước tốt giúp rễ cây hô hấp thuận lợi; bảo quản nông sản (hạt, quả) ở nhiệt độ thấp hoặc độ ẩm thấp nhằm hạn chế hô hấp làm hao hụt chất dinh dưỡng.")
-        lines.append("")
-
-    elif any(w in q_lower for w in ["hút nước", "hấp thụ nước", "hút muối khoáng", "con đường hút nước", "lông hút"]) and any(w in q_lower for w in ["rễ", "cơ chế", "bằng cách nào", "qua đâu", "như thế nào", "tại sao"]):
-        lines.append(f"Chào em! Về câu hỏi **\"{question}\"**, dưới đây là cơ chế và con đường hút nước, muối khoáng ở rễ cây (**KHTN 7 - Bài 30: Trao đổi nước và chất dinh dưỡng ở thực vật**):\n")
-        lines.append("### 💧 1. Cơ quan & Cơ chế hấp thụ nước và khoáng")
-        lines.append("- **Bộ phận thực hiện:** Rễ cây hấp thụ nước và muối khoáng chủ yếu qua các tế bào **lông hút** (là phần biến dạng kéo dài của tế bào biểu bì rễ nhằm tăng tối đa diện tích tiếp xúc với các hạt đất).")
-        lines.append("- **Cơ chế hút nước:** Diễn ra theo cơ chế **thẩm thấu** (nước tự động di chuyển từ dung dịch đất có nồng độ chất tan thấp / thế nước cao vào dịch bào tế bào lông hút có nồng độ chất tan cao / thế nước thấp).")
-        lines.append("- **Cơ chế hút muối khoáng:** Các ion khoáng được hấp thụ vào rễ theo 2 cơ chế:")
-        lines.append("  * *Cơ chế thụ động:* Khuếch tán từ nơi nồng độ khoáng cao trong đất vào nơi nồng độ thấp trong lông hút.")
-        lines.append("  * *Cơ chế chủ động:* Vận chuyển ngược chiều gradient nồng độ (từ nơi nồng độ thấp vào nơi nồng độ cao), đòi hỏi tiêu tốn năng lượng ATP do hô hấp tế bào ở rễ tạo ra.\n")
-        lines.append("### 🌲 2. Con đường vận chuyển bên trong cây")
-        lines.append("- Nước và muối khoáng sau khi vào lông hút sẽ đi qua các lớp tế bào vỏ rễ $\\rightarrow$ vào **mạch gỗ (xylem)** của rễ $\\rightarrow$ vận chuyển một chiều ngược trọng lực lên thân và tỏa ra các gân lá nhờ lực hút của thoát hơi nước ở lá kết hợp áp suất rễ và lực liên kết phân tử nước.")
-        lines.append("")
-
-    elif is_why_query and any(w in q_lower for w in ["màu xanh", "xanh lục", "lá cây", "diệp lục"]):
-        lines.append(f"Chào em! Về câu hỏi **\"{question}\"**, dưới đây là giải thích bản chất khoa học:\n")
-        lines.append("### 🌿 1. Cơ chế khoa học vì sao lá cây có màu xanh lục")
-        lines.append("- **Bào quan & Sắc tố:** Trong các tế bào thịt lá chứa bào quan **lục lạp**, bên trong có chứa sắc tố quang hợp là **chất diệp lục** (chlorophyll).")
-        lines.append("- **Cơ chế hấp thụ và phản xạ ánh sáng:**")
-        lines.append("  * Ánh sáng mặt trời (ánh sáng trắng) gồm nhiều dải màu: đỏ, cam, vàng, lục, lam, chàm, tím.")
-        lines.append("  * Chất diệp lục hấp thụ mạnh năng lượng ánh sáng ở vùng màu **đỏ** và màu **xanh lam** để phục vụ phản ứng quang hợp.")
-        lines.append("  * Ngược lại, diệp lục **không hấp thụ** dải ánh sáng màu **xanh lục** mà phản xạ ngược lại môi trường.")
-        lines.append("- **Kết luận:** Ánh sáng xanh lục bị phản xạ truyền đến mắt người quan sát, giúp chúng ta nhìn thấy lá cây có màu xanh lục rực rỡ.\n")
-        lines.append("### 💡 2. Mở rộng thực tiễn thú vị")
-        lines.append("- Ở một số cây có lá màu đỏ hay tím (như rau dền đỏ, cây huyết dụ), lá vẫn chứa chất diệp lục để quang hợp bình thường, nhưng màu xanh bị che khuất bởi hàm lượng lớn các sắc tố phụ màu đỏ (anthocyanin).")
-        lines.append("")
-
-    elif is_location_query and matched_entries:
-        lines.append(f"Chào em! Giải đáp trực tiếp về vị trí, cơ quan và bào quan liên quan đến **\"{question}\"**:\n")
-        lines.append("### 📍 1. Vị trí & Cơ quan - Bào quan thực hiện")
-        for ent in matched_entries:
-            loc = ent.get("location") or ent.get("details") or "Diễn ra tại các cơ quan chuyên hóa của cơ thể sinh vật."
-            lines.append(f"- **{ent['term']}:** {loc}")
-        lines.append("")
-
-    # --- A. CÂY ƯA SÁNG (Chuyên biệt khi hỏi riêng về cây ưa sáng) ---
-    elif ("ưa sáng" in q_lower or "cây ưa sáng" in q_lower) and not ("ưa bóng" in q_lower or "so sánh" in q_lower or "phân biệt" in q_lower or "khác nhau" in q_lower):
-        lines.append(f"Chào em! Giải đáp cụ thể về **\"{question}\"** theo chương trình **KHTN 7 (Bài 23: Một số yếu tố ảnh hưởng đến quang hợp)**:\n")
-        lines.append("### ☀️ 1. Khái niệm & Đặc điểm của Nhóm cây ưa sáng")
-        lines.append("- **Khái niệm:** Cây ưa sáng là nhóm thực vật có khả năng quang hợp mạnh và sinh trưởng tối ưu ở nơi có **cường độ ánh sáng mạnh, quang đãng, nhiều nắng trực tiếp**.")
-        lines.append("- **Đặc điểm hình thái & thích nghi:**")
-        lines.append("  * **Thân cây:** Thân cao vươn thẳng lên tầng trên để đón ánh sáng; các cành nhánh phía dưới sớm tự rụng (hiện tượng tự tỉa cành) nếu bị che bóng.")
-        lines.append("  * **Phiến lá:** Thường nhỏ hơn, dày; bề mặt lá có lớp cutin bóng hoặc phủ lớp lông mịn giúp phản xạ bớt bức xạ nhiệt gay gắt.")
-        lines.append("  * **Góc xếp của lá:** Lá thường xếp nghiêng so với mặt đất để tránh tia nắng buổi trưa chiếu vuông góc làm đốt nóng mô lá.")
-        lines.append("  * **Màu sắc & Diệp lục:** Lá có màu xanh nhạt hơn cây ưa bóng; chứa nhiều chất diệp lục $a$ giúp hấp thụ mạnh ánh sáng có bước sóng dài (đỏ, cam).\n")
-        lines.append("### 🌾 2. Ví dụ tiêu biểu & Ứng dụng trồng trọt")
-        lines.append("- **Ví dụ thực tế:**")
-        lines.append("  * *Cây lương thực & hoa màu:* Cây lúa, ngô (bắp), mía, sắn (khoai mì), đậu phộng...")
-        lines.append("  * *Cây ăn quả:* Cây xoài, nhãn, dừa, bưởi, thanh long, cam, quýt...")
-        lines.append("  * *Cây lâm nghiệp & cảnh quan:* Cây phi lao, thông, bạch đàn, phượng vĩ, xà cừ, hoa hướng dương, hoa giấy, hoa hồng...")
-        lines.append("- **Ứng dụng:** Trồng ở mật độ thích hợp, nơi thoáng đãng; bố trí làm cây ở tầng trên trong các mô hình trồng xen canh nông - lâm nghiệp.")
-        lines.append("")
-
-    # --- B. CÂY ƯA BÓNG (Chuyên biệt khi hỏi riêng về cây ưa bóng) ---
-    elif ("ưa bóng" in q_lower or "cây ưa bóng" in q_lower) and not ("ưa sáng" in q_lower or "so sánh" in q_lower or "phân biệt" in q_lower or "khác nhau" in q_lower):
-        lines.append(f"Chào em! Giải đáp cụ thể về **\"{question}\"** theo chương trình **KHTN 7 (Bài 23: Một số yếu tố ảnh hưởng đến quang hợp)**:\n")
-        lines.append("### 🌿 1. Khái niệm & Đặc điểm của Nhóm cây ưa bóng")
-        lines.append("- **Khái niệm:** Cây ưa bóng là nhóm thực vật có khả năng quang hợp và sinh trưởng tốt ở nơi **râm mát, cường độ ánh sáng yếu**, dưới tán cây khác hoặc trong nhà.")
-        lines.append("- **Đặc điểm hình thái & thích nghi:**")
-        lines.append("  * **Thân cây:** Thân thường nhỏ, mềm, mọc thấp hoặc dạng thân leo, thân thảo.")
-        lines.append("  * **Phiến lá:** Phiến lá to, bản mỏng, gân lá mảnh để tăng tối đa diện tích tiếp xúc với ánh sáng tán xạ.")
-        lines.append("  * **Góc xếp của lá:** Lá thường xếp nằm ngang so với mặt đất để thu nhận được nhiều tia sáng xiên và ánh sáng khuếch tán.")
-        lines.append("  * **Màu sắc & Diệp lục:** Lá có màu **xanh sẫm/xanh đậm** do chứa hàm lượng cao chất diệp lục $b$ (giúp hấp thu hiệu quả ánh sáng tán xạ có bước sóng ngắn trong bóng râm).")
-        lines.append("  * **Lưu ý:** Nếu đưa cây ưa bóng ra nơi nắng gắt trực tiếp, lá sẽ dễ bị vàng úa, cháy xém do diệp lục bị phá hủy.\n")
-        lines.append("### 🪴 2. Ví dụ tiêu biểu & Ứng dụng trồng trọt")
-        lines.append("- **Ví dụ thực tế:**")
-        lines.append("  * *Cây gia vị & dược liệu:* Cây lá lốt, trầu không, gừng, nghệ, ngải cứu, rau diếp cá...")
-        lines.append("  * *Cây dưới tán rừng & thủy sinh:* Cây dương xỉ, phong lan, rêu...")
-        lines.append("  * *Cây cảnh nội thất / trong nhà:* Cây kim tiền, vạn niên thanh, lan ý, thiết mộc lan, phát tài, trầu bà, lưỡi hổ...")
-        lines.append("- **Ứng dụng:** Trồng làm cây cảnh trong nhà, văn phòng hoặc trồng xen ở tầng dưới của vườn cây ăn quả để tận dụng diện tích đất.")
-        lines.append("")
-
-    # --- C. SO SÁNH CÂY ƯA SÁNG VÀ CÂY ƯA BÓNG ---
-    elif ("ưa sáng" in q_lower and "ưa bóng" in q_lower) or (any(w in q_lower for w in ["so sánh", "phân biệt", "khác nhau"]) and ("ưa sáng" in q_lower or "ưa bóng" in q_lower)):
-        lines.append(f"Chào em! Dưới đây là bảng so sánh chi tiết giữa **Cây ưa sáng** và **Cây ưa bóng** (**KHTN 7 - Bài 23**):\n")
-        lines.append("### ⚖️ 1. Bảng đối chiếu đặc điểm thích nghi quang hợp")
-        lines.append("| Tiêu chí so sánh | Cây ưa sáng | Cây ưa bóng |")
-        lines.append("| :--- | :--- | :--- |")
-        lines.append("| **Nơi sống thích hợp** | Nơi quang đãng, nhiều nắng, cường độ sáng mạnh | Nơi râm mát, dưới tán cây khác, trong nhà |")
-        lines.append("| **Hình thái thân** | Thân cao vươn thẳng, tự tỉa cành ở tầng dưới | Thân nhỏ, mềm, tán rộng hoặc bò/leo |")
-        lines.append("| **Kích thước phiến lá** | Nhỏ hơn, phiến lá dày | To bản, phiến lá mỏng |")
-        lines.append("| **Góc xếp của lá** | Xếp nghiêng đón nắng trực tiếp | Xếp nằm ngang đón ánh sáng tán xạ |")
-        lines.append("| **Màu sắc lá** | Màu xanh nhạt (lớp cutin bóng/lông mịn) | Màu xanh sẫm/xanh đậm (nhiều diệp lục $b$) |")
-        lines.append("| **Cường độ quang hợp** | Đạt cao nhất ở cường độ ánh sáng mạnh | Quang hợp tốt ở ánh sáng yếu; nắng gắt bị ức chế |")
-        lines.append("| **Ví dụ tiêu biểu** | Ngô, lúa, thông, phi lao, dừa, mía, xoài, hoa giấy | Lá lốt, trầu không, gừng, nghệ, dương xỉ, lan ý, kim tiền |\n")
-        lines.append("### 💡 2. Ý nghĩa thực tiễn: Trồng xen canh gối vụ")
-        lines.append("- Người nông dân vận dụng sự khác nhau này để trồng xen canh cây ưa sáng tầng trên (như ngô, cau, chuối) với cây ưa bóng tầng dưới (như đỗ tương, gừng, lá lốt) nhằm tận dụng tối đa ánh sáng và tăng năng suất cây trồng.")
-        lines.append("")
-
-    # --- D. THỰC VẬT NÀO QUANG HỢP TỐT (Trả lời ngắn gọn, trực diện, chính xác) ---
-    elif any(w in q_lower for w in ["thực vật nào quang hợp tốt", "cây nào quang hợp tốt", "cây nào quang hợp mạnh", "quang hợp tốt nhất", "loài cây nào quang hợp"]):
-        lines.append(f"Chào em! Đối với câu hỏi **\"{question}\"**, kiến thức chuẩn xác trong chương trình **KHTN 7 (Bài 23: Một số yếu tố ảnh hưởng đến quang hợp)** được giải đáp như sau:\n")
-        lines.append("### 🌿 1. Câu trả lời trọng tâm & Bản chất khoa học")
-        lines.append("- **Nguyên tắc cốt lõi:** **Không có loài cây nào quang hợp tốt nhất trong mọi điều kiện hoàn cảnh.** Khả năng quang hợp của mỗi loài phụ thuộc vào sự thích nghi của cây với điều kiện ánh sáng và môi trường:")
-        lines.append("  * **Cây ưa sáng** (như *ngô, lúa, thông, phi lao, dừa, hoa giấy, hướng dương...*): Thường quang hợp thuận lợi và đạt hiệu suất cao ở nơi có **nhiều ánh sáng, quang đãng**.")
-        lines.append("  * **Cây ưa bóng** (như *lá lốt, trầu không, gừng, nghệ, dương xỉ, lan ý, vạn niên thanh...*): Thích hợp và quang hợp tốt ở nơi **râm mát, ánh sáng tán xạ yếu**.\n")
-        lines.append("### ☀️ 2. Các yếu tố quyết định hiệu quả quang hợp")
-        lines.append("- **Cường độ ánh sáng:** Ánh sáng thích hợp giúp tăng tốc độ quang hợp. Tuy nhiên, **ánh sáng quá mạnh** (như nắng gắt giữa trưa) có thể làm khí khổng đóng lại để chống mất nước, gây tổn thương chất diệp lục và làm **giảm hiệu quả quang hợp**.")
-        lines.append("- **Nước:** Nước là nguyên liệu trực tiếp và giữ sức trương mở khí khổng để hấp thụ khí $CO_2$. Thiếu nước làm cây ngừng quang hợp.")
-        lines.append("- **Khí $CO_2$ & Nhiệt độ:** Nồng độ $CO_2$ đầy đủ và nhiệt độ môi trường thuận lợi (từ **$25^\\circ C - 35^\\circ C$**) là điều kiện cần thiết để cây đạt tốc độ quang hợp tối đa.")
-        lines.append("")
-
-    # --- E. CÁC YẾU TỐ ẢNH HƯỞNG ĐẾN QUANG HỢP (Chuyên biệt khi hỏi về yếu tố) ---
-    elif any(w in q_lower for w in ["yếu tố ảnh hưởng đến quang hợp", "yếu tố ảnh hưởng quang hợp", "yếu tố nào ảnh hưởng quang hợp", "điều kiện quang hợp", "làm thế nào để cây quang hợp tốt"]):
-        lines.append(f"Chào em! Về câu hỏi **\"{question}\"**, dưới đây là 4 yếu tố môi trường then chốt ảnh hưởng đến quang hợp (**KHTN 7 - Bài 23**):\n")
-        lines.append("### ☀️ 1. Bốn yếu tố môi trường then chốt")
-        lines.append("- **1. Ánh sáng:** Là nguồn cung cấp năng lượng. Cường độ ánh sáng tăng thì hiệu suất quang hợp tăng đến điểm bão hòa; ánh sáng quá gay gắt sẽ làm giảm quang hợp. Cây ưa sáng cần ánh sáng mạnh trực tiếp, cây ưa bóng cần ánh sáng tán xạ.")
-        lines.append("- **2. Nước:** Là nguyên liệu trực tiếp của quang hợp và điều hòa đóng mở khí khổng. Khi cây bị thiếu nước (hạn hán), khí khổng đóng lại làm giảm hoặc ngừng hẳn quang hợp.")
-        lines.append("- **3. Nồng độ khí $CO_2$:** Khí $CO_2$ trong khí quyển chiếm khoảng $0,03\\% - 0,04\\%$; tăng nồng độ $CO_2$ đến mức thích hợp (khoảng $0,15\\% - 0,2\\%$) giúp tăng mạnh năng suất quang hợp.")
-        lines.append("- **4. Nhiệt độ:** Khoảng nhiệt độ thuận lợi nhất cho đa số thực vật là **$25^\\circ C - 35^\\circ C$**. Nhiệt độ quá lạnh (< $10^\\circ C$) hoặc quá nóng (> $40^\\circ C$) làm enzyme quang hợp bị giảm hoặc mất hoạt tính.\n")
-        lines.append("### 💡 2. Biện pháp kĩ thuật điều khiển quang hợp trong trồng trọt")
-        lines.append("- **Trồng xen canh hợp lý:** Kết hợp cây ưa sáng tầng trên với cây ưa bóng tầng dưới để sử dụng hiệu quả ánh sáng mặt trời.")
-        lines.append("- **Tưới tiêu và bón phân cân đối:** Đảm bảo đủ nước và khoáng chất cần thiết cho quá trình tổng hợp diệp lục.")
-        lines.append("- **Chiếu sáng nhân tạo:** Ứng dụng đèn LED quang hợp chuyên dụng trong nhà kính để thúc đẩy cây sinh trưởng nhanh và thu hoạch trái vụ (thanh long, dâu tây, hoa cúc).")
-        lines.append("")
-
-    elif any(w in q_lower for w in ["phòng ngủ", "ban đêm", "để cây trong phòng"]) and any(w in q_lower for w in ["cây", "hoa", "thực vật", "nguy hiểm", "ngạt", "không nên"]):
-        lines.append(f"Chào em! Về câu hỏi **\"{question}\"**, dưới đây là giải thích cơ chế khoa học dựa trên chương trình **KHTN 7**:\n")
-        lines.append("### 🔬 1. Bản chất khoa học & Cơ chế sinh học")
-        lines.append("- **Vào ban đêm (khi không có ánh sáng):** Quá trình **quang hợp ngừng lại** hoàn toàn, cây không tạo ra khí $O_2$.")
-        lines.append("- **Hô hấp tế bào diễn ra liên tục 24/24h:** Tất cả các tế bào sống của cây vẫn liên tục thực hiện hô hấp tế bào $\\rightarrow$ **hút khí $O_2$** từ không khí và **thải ra khí $CO_2$**.")
-        lines.append("- **Hiện tượng ngột ngạt trong phòng kín:** Khi đóng kín cửa phòng ngủ, cây xanh và con người cùng cạnh tranh lấy khí $O_2$ và cùng thải ra khí $CO_2$. Điều này làm hàm lượng $O_2$ trong phòng giảm sút nhanh chóng, nồng độ $CO_2$ tăng cao gây cảm giác ngột ngạt, mệt mỏi, khó thở, thậm chí có thể nguy hiểm đến tính mạng khi ngủ say.\n")
-        lines.append("### 💡 2. Ngoại lệ thú vị & Lời khuyên thực tế")
-        lines.append("- **Ngoại lệ:** Một số loài thực vật mọng nước có cơ chế quang hợp CAM (như **cây lưỡi hổ, cây nha đam/lô hội, xương rồng, lan ý**) có đặc tính mở khí khổng ban đêm để hấp thụ $CO_2$ và giải phóng một phần $O_2$, những cây này có thể đặt số lượng vừa phải trong phòng ngủ.")
-        lines.append("- **Lời khuyên:** Không nên để nhiều chậu hoa hoặc cây cảnh có tán lá rậm rạp trong phòng ngủ đóng kín.")
-        lines.append("")
-
-    elif any(w in q_lower for w in ["xới đất", "tơi xốp", "ngập úng", "thoát nước", "sục khí", "thối rễ", "ngạt rễ", "tại sao phải xới"]) and any(w in q_lower for w in ["rễ", "cây", "đất", "tưới"]):
-        lines.append(f"Chào em! Về câu hỏi **\"{question}\"**, dưới đây là giải thích bản chất sinh học trong chương trình **KHTN 7**:\n")
-        lines.append("### 🌱 1. Vai trò của hô hấp tế bào ở rễ cây")
-        lines.append("- Rễ cây muốn thực hiện tốt chức năng hút nước và chủ động hấp thụ muối khoáng từ đất thì các tế bào rễ (đặc biệt là lông hút) phải có đủ năng lượng ATP do quá trình **hô hấp tế bào** cung cấp.")
-        lines.append("- Rễ trao đổi khí lấy khí $O_2$ từ không khí len lỏi trong các khe hở của đất qua **bề mặt rễ (vùng lông hút)**.\n")
-        lines.append("### 🚜 2. Ý nghĩa của việc xới xáo đất và tác hại của ngập úng")
-        lines.append("- **Khi xới đất tơi xốp:** Không khí giàu khí $O_2$ dễ dàng lưu thông vào các tầng đất sâu, giúp rễ cây hô hấp thuận lợi $\\rightarrow$ rễ sinh trưởng mạnh, hút nhiều nước và muối khoáng giúp cây phát triển tươi tốt.")
-        lines.append("- **Khi đất bị ngập úng lâu ngày:** Nước chiếm toàn bộ khoảng trống trong đất làm rễ cây bị thiếu khí $O_2$ (thiểu dưỡng khí) $\\rightarrow$ rễ phải hô hấp kị khí sinh ra chất độc (ethanol, acid hữu cơ), tế bào lông hút bị chết thối $\\rightarrow$ cây không hút được nước và muối khoáng dẫn đến héo úa và chết.")
-        lines.append("")
-
-    elif any(w in q_lower for w in ["hút nước", "hấp thụ nước", "hút muối khoáng", "con đường hút nước", "lông hút"]) and any(w in q_lower for w in ["rễ", "cơ chế", "bằng cách nào", "qua đâu", "như thế nào", "tại sao"]):
-        lines.append(f"Chào em! Về câu hỏi **\"{question}\"**, dưới đây là cơ chế và con đường hút nước, muối khoáng ở rễ cây (**KHTN 7 - Bài 30**):\n")
-        lines.append("### 💧 1. Cơ quan & Cơ chế hấp thụ nước và khoáng")
-        lines.append("- **Bộ phận thực hiện:** Rễ cây hấp thụ nước và muối khoáng chủ yếu qua các tế bào **lông hút** (là phần biến dạng kéo dài của tế bào biểu bì rễ).")
-        lines.append("- **Cơ chế hút nước:** Diễn ra theo cơ chế **thẩm thấu** (nước tự động di chuyển từ dung dịch đất có nồng độ chất tan thấp/thế nước cao vào dịch bào tế bào lông hút có nồng độ chất tan cao/thế nước thấp).")
-        lines.append("- **Cơ chế hút muối khoáng:** Các ion khoáng được hấp thụ vào rễ theo 2 cơ chế:")
-        lines.append("  * *Cơ chế thụ động:* Khuếch tán từ nơi nồng độ cao trong đất vào nơi nồng độ thấp trong rễ.")
-        lines.append("  * *Cơ chế chủ động:* Vận chuyển ngược chiều gradient nồng độ (từ nơi nồng độ thấp vào nơi nồng độ cao), cần tiêu tốn năng lượng ATP do hô hấp rễ tạo ra.\n")
-        lines.append("### 🌲 2. Con đường vận chuyển bên trong cây")
-        lines.append("- Nước và muối khoáng sau khi vào lông hút sẽ đi qua các lớp tế bào vỏ rễ $\\rightarrow$ vào **mạch gỗ (xylem)** của rễ $\\rightarrow$ vận chuyển ngược chiều trọng lực lên thân và tỏa ra các gân lá nhờ động lực thoát hơi nước ở lá và áp suất rễ.")
-        lines.append("")
-
-    elif is_compare_query and len(matched_entries) >= 2:
-        e1, e2 = matched_entries[0], matched_entries[1]
-        lines.append(f"Chào em! Dưới đây là phân tích so sánh chi tiết giữa **{e1['term']}** và **{e2['term']}**:\n")
-        lines.append("### ⚖️ 1. So sánh chi tiết các đặc điểm cốt lõi")
-        lines.append(f"- **{e1['term']}:** {e1['definition']}")
-        if e1.get("details"): lines.append(f"  * *Đặc điểm:* {e1['details']}")
-        lines.append(f"- **{e2['term']}:** {e2['definition']}")
-        if e2.get("details"): lines.append(f"  * *Đặc điểm:* {e2['details']}\n")
-        lines.append("### 🔄 2. Mối quan hệ và Ý nghĩa")
-        lines.append(f"- Hai quá trình/khái niệm này có mối liên hệ mật thiết, bổ sung cho nhau để duy trì cân bằng tự nhiên và chuyển hóa vật chất - năng lượng.")
-        lines.append("")
-
+    lines.append(f"Chào em! Về câu hỏi của em liên quan đến **{title or 'Khoa học tự nhiên'}** ({source_label}), dưới đây là nội dung trọng tâm được giải đáp chi tiết:\n")
+    
+    # 1. Trọng tâm kiến thức
+    lines.append("🎯 **1. Bản chất & Khái niệm cốt lõi**")
+    if matched_entry:
+        lines.append(f"- **{matched_entry['term']}**: {matched_entry['definition']}")
+        if matched_entry.get("details"):
+            lines.append(f"- **Đặc điểm & Cơ chế:** {matched_entry['details']}")
     else:
-        # Direct definition & core scientific mechanism
-        lines.append(f"Chào em! Về câu hỏi **\"{question}\"**, kiến thức trọng tâm trong chương trình **KHTN Lớp {grade}** được trình bày như sau:\n")
-        lines.append("### 📖 1. Khái niệm & Bản chất khoa học")
-        if matched_entries:
-            for ent in matched_entries:
-                lines.append(f"- **{ent['term']}:** {ent['definition']}")
-                if ent.get("details"):
-                    lines.append(f"  * *Chi tiết & Phương trình/Đặc điểm:* {ent['details']}")
-        else:
-            terms = lesson.get("terms", [])
-            added_terms = 0
-            for t in terms:
-                t_name = t.get("term", "")
-                t_def = t.get("definition", "")
-                if len(t_def) > 20 and not t_def.endswith(('...', 'được', 'và', 'của', 'tạo', 'là', 'trong')):
-                    lines.append(f"- **{t_name}**: {t_def}")
-                    added_terms += 1
-                    if added_terms >= 2:
-                        break
-            if not added_terms and lesson.get("content"):
-                lines.append(f"- **{title}**: {lesson.get('content')[:280]}...")
-        lines.append("")
+        terms = lesson.get("terms", [])
+        added_terms = 0
+        for t in terms:
+            t_name = t.get("term", "")
+            t_def = t.get("definition", "")
+            if len(t_def) > 20 and not t_def.endswith(('...', 'được', 'và', 'của', 'tạo', 'là', 'trong')):
+                lines.append(f"- **{t_name}**: {t_def}")
+                added_terms += 1
+                if added_terms >= 2:
+                    break
+        if not added_terms and lesson.get("content"):
+            lines.append(f"- **{title}**: {lesson.get('content')[:260]}...")
 
-        # Role & Real-world connection (Concise, no fluff)
-        lines.append("### 💡 2. Ứng dụng thực tiễn & Ví dụ sinh động")
-        if matched_entries and matched_entries[0].get("example"):
-            lines.append(f"- **Ví dụ thực tế:** {matched_entries[0]['example']}")
-            if matched_entries[0].get("role"):
-                lines.append(f"- **Ý nghĩa sinh học / tự nhiên:** {matched_entries[0]['role']}")
-        else:
-            summary = [s for s in lesson.get("summary", []) if len(s) > 20 and not re.match(r'^\d+\.', s)]
-            if summary:
-                for sm in summary[:2]:
-                    lines.append(f"- {sm}")
-            else:
-                lines.append(f"- Giúp giải thích các hiện tượng thực tế xung quanh đời sống và vận dụng giải các bài tập KHTN.")
-        lines.append("")
-
-    # 3. Exact Textbook Reference
-    lines.append("### 📚 3. Vị trí bài học trong SGK Kết nối tri thức")
-    if any(w in q_lower for w in ["quang hợp tốt", "quang hợp mạnh", "quang hợp hiệu quả", "cây nào quang hợp", "thực vật nào quang hợp", "cây ưa sáng", "cây ưa bóng", "nhóm cây quang hợp", "yếu tố ảnh hưởng đến quang hợp", "yếu tố ảnh hưởng quang hợp"]):
-        lines.append("Em có thể xem chi tiết bài giảng và hình minh họa tại **Bài 23: Một số yếu tố ảnh hưởng đến quang hợp** (SGK KHTN 7 KNTT · Bài 23 · Trang 104–107).")
-        lines.append("- Nêu được một số yếu tố chủ yếu ảnh hưởng đến quang hợp (ánh sáng, nước, hàm lượng khí carbon dioxide, nhiệt độ).")
-        lines.append("- Nêu được ý nghĩa thực tiễn của việc trồng và bảo vệ cây xanh; phân biệt được nhóm cây ưa sáng và cây ưa bóng.")
+    # 2. Vai trò & Ý nghĩa
+    lines.append("\n🔬 **2. Vai trò & Ý nghĩa khoa học**")
+    if matched_entry and matched_entry.get("role"):
+        lines.append(f"- {matched_entry['role']}")
     else:
-        lines.append(f"Em có thể xem chi tiết bài giảng và hình minh họa tại **{number}: {title}** ({source_label}).")
-        objectives = lesson.get("objectives", [])
-        if objectives:
-            for obj in objectives[:2]:
-                lines.append(f"- {obj}")
-    lines.append("")
-    lines.append(f"📖 *Hệ thống Trợ lý AI KHTN · Trường THCS Huỳnh Bá Chánh*")
+        summary = [s for s in lesson.get("summary", []) if len(s) > 20 and not re.match(r'^\d+\.', s)]
+        if summary:
+            for sm in summary[:2]:
+                lines.append(f"- {sm}")
+        else:
+            lines.append(f"- Giúp học sinh nắm vững các quy luật vận động của tự nhiên và vận dụng vào giải thích hiện tượng đời sống.")
+
+    # 3. Ứng dụng thực tiễn & Ví dụ
+    lines.append("\n💡 **3. Ứng dụng thực tế & Ví dụ minh họa**")
+    if matched_entry and matched_entry.get("example"):
+        lines.append(f"- {matched_entry['example']}")
+    else:
+        lines.append(f"- Hiện tượng được ứng dụng rộng rãi trong đời sống, y học và các thí nghiệm thực hành bộ môn KHTN tại Trường THCS Huỳnh Bá Chánh.")
+
+    # 4. Trích dẫn SGK
+    lines.append(f"\n📖 *Nguồn trích dẫn: {number}: {title} ({source_label}) · Trường THCS Huỳnh Bá Chánh*")
     return "\n".join(lines)
 
 
