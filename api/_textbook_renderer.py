@@ -565,6 +565,20 @@ def search_best_lesson(lessons_or_question, question_or_grade=None, preferred_gr
         "lá cây có màu xanh": "quang hợp lá cây lục lạp",
         "tại sao lá cây": "quang hợp lá cây lục lạp",
         "màu xanh lục": "quang hợp lá cây lục lạp",
+        "quang hợp tốt": "một số yếu tố ảnh hưởng đến quang hợp cây ưa sáng cây ưa bóng ánh sáng",
+        "quang hợp mạnh": "một số yếu tố ảnh hưởng đến quang hợp cây ưa sáng cây ưa bóng ánh sáng",
+        "quang hợp hiệu quả": "một số yếu tố ảnh hưởng đến quang hợp cây ưa sáng cây ưa bóng",
+        "thực vật nào quang hợp": "một số yếu tố ảnh hưởng đến quang hợp cây ưa sáng cây ưa bóng",
+        "cây nào quang hợp": "một số yếu tố ảnh hưởng đến quang hợp cây ưa sáng cây ưa bóng",
+        "cây ưa sáng": "một số yếu tố ảnh hưởng đến quang hợp cây ưa sáng cây ưa bóng",
+        "cây ưa bóng": "một số yếu tố ảnh hưởng đến quang hợp cây ưa sáng cây ưa bóng",
+        "yếu tố ảnh hưởng quang hợp": "một số yếu tố ảnh hưởng đến quang hợp",
+        "yếu tố ảnh hưởng đến quang hợp": "một số yếu tố ảnh hưởng đến quang hợp",
+        "yếu tố ảnh hưởng hô hấp": "một số yếu tố ảnh hưởng đến hô hấp tế bào bảo quản nông sản",
+        "phòng ngủ": "một số yếu tố ảnh hưởng đến hô hấp tế bào",
+        "xới đất": "trao đổi nước và chất dinh dưỡng ở thực vật trao đổi khí rễ",
+        "hút nước": "trao đổi nước và chất dinh dưỡng ở thực vật lông hút",
+        "hút muối khoáng": "trao đổi nước và chất dinh dưỡng ở thực vật lông hút",
         "khí khổng": "trao đổi khí quang hợp thoát hơi nước",
         "bì khổng": "trao đổi khí hô hấp",
         "ti thể": "hô hấp tế bào",
@@ -911,7 +925,7 @@ def format_local_rag_answer(question, lesson):
                 break
 
     # 2. Detect Question Intent
-    is_location_query = any(w in q_lower for w in ["qua đâu", "ở đâu", "bằng cơ quan nào", "bộ phận nào", "bào quan nào", "diễn ra ở đâu", "tại đâu", "bằng cách nào"])
+    is_location_query = any(w in q_lower for w in ["qua đâu", "ở đâu", "bằng cơ quan nào", "bộ phận nào", "bào quan nào", "diễn ra ở đâu", "tại đâu"])
     is_why_query = any(w in q_lower for w in ["tại sao", "vì sao", "nguyên nhân", "lý do", "giải thích vì sao"])
     is_compare_query = any(w in q_lower for w in ["so sánh", "phân biệt", "khác nhau", "giống nhau", "đối chiếu"])
     is_role_query = any(w in q_lower for w in ["vai trò", "ý nghĩa", "tác dụng", "để làm gì", "có lợi ích gì"])
@@ -983,12 +997,16 @@ def format_local_rag_answer(question, lesson):
         lines.append("- **Ứng dụng:** Xới xáo đất tơi xốp, làm đất thoát nước tốt giúp rễ cây hô hấp thuận lợi; bảo quản nông sản (hạt, quả) ở nhiệt độ thấp hoặc độ ẩm thấp nhằm hạn chế hô hấp làm hao hụt chất dinh dưỡng.")
         lines.append("")
 
-    elif is_location_query and matched_entries:
-        lines.append(f"Chào em! Giải đáp trực tiếp về vị trí, cơ quan và bào quan liên quan đến **\"{question}\"**:\n")
-        lines.append("### 📍 1. Vị trí & Cơ quan - Bào quan thực hiện")
-        for ent in matched_entries:
-            loc = ent.get("location") or ent.get("details") or "Diễn ra tại các cơ quan chuyên hóa của cơ thể sinh vật."
-            lines.append(f"- **{ent['term']}:** {loc}")
+    elif any(w in q_lower for w in ["hút nước", "hấp thụ nước", "hút muối khoáng", "con đường hút nước", "lông hút"]) and any(w in q_lower for w in ["rễ", "cơ chế", "bằng cách nào", "qua đâu", "như thế nào", "tại sao"]):
+        lines.append(f"Chào em! Về câu hỏi **\"{question}\"**, dưới đây là cơ chế và con đường hút nước, muối khoáng ở rễ cây (**KHTN 7 - Bài 30: Trao đổi nước và chất dinh dưỡng ở thực vật**):\n")
+        lines.append("### 💧 1. Cơ quan & Cơ chế hấp thụ nước và khoáng")
+        lines.append("- **Bộ phận thực hiện:** Rễ cây hấp thụ nước và muối khoáng chủ yếu qua các tế bào **lông hút** (là phần biến dạng kéo dài của tế bào biểu bì rễ nhằm tăng tối đa diện tích tiếp xúc với các hạt đất).")
+        lines.append("- **Cơ chế hút nước:** Diễn ra theo cơ chế **thẩm thấu** (nước tự động di chuyển từ dung dịch đất có nồng độ chất tan thấp / thế nước cao vào dịch bào tế bào lông hút có nồng độ chất tan cao / thế nước thấp).")
+        lines.append("- **Cơ chế hút muối khoáng:** Các ion khoáng được hấp thụ vào rễ theo 2 cơ chế:")
+        lines.append("  * *Cơ chế thụ động:* Khuếch tán từ nơi nồng độ khoáng cao trong đất vào nơi nồng độ thấp trong lông hút.")
+        lines.append("  * *Cơ chế chủ động:* Vận chuyển ngược chiều gradient nồng độ (từ nơi nồng độ thấp vào nơi nồng độ cao), đòi hỏi tiêu tốn năng lượng ATP do hô hấp tế bào ở rễ tạo ra.\n")
+        lines.append("### 🌲 2. Con đường vận chuyển bên trong cây")
+        lines.append("- Nước và muối khoáng sau khi vào lông hút sẽ đi qua các lớp tế bào vỏ rễ $\\rightarrow$ vào **mạch gỗ (xylem)** của rễ $\\rightarrow$ vận chuyển một chiều ngược trọng lực lên thân và tỏa ra các gân lá nhờ lực hút của thoát hơi nước ở lá kết hợp áp suất rễ và lực liên kết phân tử nước.")
         lines.append("")
 
     elif is_why_query and any(w in q_lower for w in ["màu xanh", "xanh lục", "lá cây", "diệp lục"]):
@@ -1002,6 +1020,66 @@ def format_local_rag_answer(question, lesson):
         lines.append("- **Kết luận:** Ánh sáng xanh lục bị phản xạ truyền đến mắt người quan sát, giúp chúng ta nhìn thấy lá cây có màu xanh lục rực rỡ.\n")
         lines.append("### 💡 2. Mở rộng thực tiễn thú vị")
         lines.append("- Ở một số cây có lá màu đỏ hay tím (như rau dền đỏ, cây huyết dụ), lá vẫn chứa chất diệp lục để quang hợp bình thường, nhưng màu xanh bị che khuất bởi hàm lượng lớn các sắc tố phụ màu đỏ (anthocyanin).")
+        lines.append("")
+
+    elif is_location_query and matched_entries:
+        lines.append(f"Chào em! Giải đáp trực tiếp về vị trí, cơ quan và bào quan liên quan đến **\"{question}\"**:\n")
+        lines.append("### 📍 1. Vị trí & Cơ quan - Bào quan thực hiện")
+        for ent in matched_entries:
+            loc = ent.get("location") or ent.get("details") or "Diễn ra tại các cơ quan chuyên hóa của cơ thể sinh vật."
+            lines.append(f"- **{ent['term']}:** {loc}")
+        lines.append("")
+
+    elif any(w in q_lower for w in ["quang hợp tốt", "quang hợp mạnh", "quang hợp hiệu quả", "cây nào quang hợp", "thực vật nào quang hợp", "cây ưa sáng", "cây ưa bóng", "nhóm cây quang hợp", "yếu tố ảnh hưởng đến quang hợp", "yếu tố ảnh hưởng quang hợp", "điều kiện quang hợp", "làm thế nào để cây quang hợp tốt"]):
+        lines.append(f"Chào em! Về câu hỏi **\"{question}\"**, kiến thức trọng tâm trong chương trình **KHTN 7 (Bài 23: Một số yếu tố ảnh hưởng đến quang hợp)** được phân tích cụ thể như sau:\n")
+        lines.append("### 🌿 1. Phân loại 2 nhóm thực vật theo nhu cầu ánh sáng & khả năng quang hợp")
+        lines.append("- **1. Nhóm cây ưa sáng (quang hợp tốt ở nơi quang đãng, cường độ ánh sáng mạnh):**")
+        lines.append("  * **Đặc điểm thích nghi:** Thân cao vươn lên tầng trên để đón nắng trực tiếp; phiến lá thường nhỏ, dày, mặt trên bóng (có lớp cutin dày) hoặc có lông mịn để phản xạ bớt bức xạ nhiệt, màu xanh nhạt; lá xếp nghiêng đón nắng.")
+        lines.append("  * **Đại diện tiêu biểu:** Cây lương thực (lúa, ngô, mía, sắn), cây ăn quả (xoài, nhãn, bưởi, dừa), cây lâm nghiệp / cây công trình (phi lao, bạch đàn, phượng vĩ, thông, xà cừ, hướng dương...).")
+        lines.append("- **2. Nhóm cây ưa bóng (quang hợp tốt ở nơi râm mát, cường độ ánh sáng yếu, dưới tán cây khác hoặc trong nhà):**")
+        lines.append("  * **Đặc điểm thích nghi:** Thân nhỏ, tán lá rộng; phiến lá to, mỏng, gân lá mảnh, màu xanh sẫm (chứa nhiều chất diệp lục $b$ để hấp thụ tối đa ánh sáng tán xạ yếu); lá nằm ngang đón tia sáng xiên.")
+        lines.append("  * **Đại diện tiêu biểu:** Cây gia vị (lá lốt, trầu không, gừng, nghệ), cây dưới tán rừng (dương xỉ, phong lan), cây trồng trang trí trong nhà (kim tiền, vạn niên thanh, lan ý, thiết mộc lan, phát tài...).\n")
+        lines.append("### ☀️ 2. Bốn yếu tố môi trường then chốt giúp thực vật quang hợp tối ưu")
+        lines.append("- **1. Ánh sáng:** Cường độ ánh sáng và quang chu kì thích hợp cho từng loài cây (cây ưa sáng cần ánh sáng mạnh trực tiếp, cây ưa bóng cần ánh sáng tán xạ).")
+        lines.append("- **2. Nước:** Vừa là nguyên liệu trực tiếp của quang hợp, vừa giữ sức trương để mở khí khổng đón khí $CO_2$. Khi thiếu nước, khí khổng đóng lại làm giảm hoặc ngưng trệ quang hợp.")
+        lines.append("- **3. Nồng độ khí $CO_2$:** Khí $CO_2$ trong khí quyển chiếm khoảng $0,03\\% - 0,04\\%$; tăng nồng độ $CO_2$ đến điểm bão hòa thích hợp (khoảng $0,15\\% - 0,2\\%$) sẽ giúp cây tăng vọt hiệu suất quang hợp.")
+        lines.append("- **4. Nhiệt độ:** Nhiệt độ thuận lợi nhất cho đa số thực vật quang hợp là **$25^\\circ C - 35^\\circ C$**. Nhiệt độ quá lạnh (< $10^\\circ C$) hoặc quá nóng (> $40^\\circ C$) làm enzyme quang hợp bị giảm hoạt tính.\n")
+        lines.append("### 💡 3. Ứng dụng thực tiễn trong nông nghiệp & trồng trọt")
+        lines.append("- **Trồng xen canh hợp lý:** Trồng kết hợp cây ưa sáng ở tầng trên (như ngô, chuối, cau) với cây ưa bóng ở tầng dưới (như đỗ tương, gừng, lá lốt) để tận dụng triệt để không gian và nguồn ánh sáng.")
+        lines.append("- **Chiếu sáng nhân tạo trong nhà kính:** Sử dụng hệ thống đèn LED quang hợp chuyên dụng để thúc đẩy cây sinh trưởng nhanh, tăng năng suất trái vụ (ví dụ: thanh long, dâu tây, hoa cúc).")
+        lines.append("")
+
+    elif any(w in q_lower for w in ["phòng ngủ", "ban đêm", "để cây trong phòng"]) and any(w in q_lower for w in ["cây", "hoa", "thực vật", "nguy hiểm", "ngạt", "không nên"]):
+        lines.append(f"Chào em! Về câu hỏi **\"{question}\"**, dưới đây là giải thích cơ chế khoa học dựa trên chương trình **KHTN 7**:\n")
+        lines.append("### 🔬 1. Bản chất khoa học & Cơ chế sinh học")
+        lines.append("- **Vào ban đêm (khi không có ánh sáng):** Quá trình **quang hợp ngừng lại** hoàn toàn, cây không tạo ra khí $O_2$.")
+        lines.append("- **Hô hấp tế bào diễn ra liên tục 24/24h:** Tất cả các tế bào sống của cây vẫn liên tục thực hiện hô hấp tế bào $\\rightarrow$ **hút khí $O_2$** từ không khí và **thải ra khí $CO_2$**.")
+        lines.append("- **Hiện tượng ngột ngạt trong phòng kín:** Khi đóng kín cửa phòng ngủ, cây xanh và con người cùng cạnh tranh lấy khí $O_2$ và cùng thải ra khí $CO_2$. Điều này làm hàm lượng $O_2$ trong phòng giảm sút nhanh chóng, nồng độ $CO_2$ tăng cao gây cảm giác ngột ngạt, mệt mỏi, khó thở, thậm chí có thể nguy hiểm đến tính mạng khi ngủ say.\n")
+        lines.append("### 💡 2. Ngoại lệ thú vị & Lời khuyên thực tế")
+        lines.append("- **Ngoại lệ:** Một số loài thực vật mọng nước có cơ chế quang hợp CAM (như **cây lưỡi hổ, cây nha đam/lô hội, xương rồng, lan ý**) có đặc tính mở khí khổng ban đêm để hấp thụ $CO_2$ và giải phóng một phần $O_2$, những cây này có thể đặt số lượng vừa phải trong phòng ngủ.")
+        lines.append("- **Lời khuyên:** Không nên để nhiều chậu hoa hoặc cây cảnh có tán lá rậm rạp trong phòng ngủ đóng kín.")
+        lines.append("")
+
+    elif any(w in q_lower for w in ["xới đất", "tơi xốp", "ngập úng", "thoát nước", "sục khí", "thối rễ", "ngạt rễ", "tại sao phải xới"]) and any(w in q_lower for w in ["rễ", "cây", "đất", "tưới"]):
+        lines.append(f"Chào em! Về câu hỏi **\"{question}\"**, dưới đây là giải thích bản chất sinh học trong chương trình **KHTN 7**:\n")
+        lines.append("### 🌱 1. Vai trò của hô hấp tế bào ở rễ cây")
+        lines.append("- Rễ cây muốn thực hiện tốt chức năng hút nước và chủ động hấp thụ muối khoáng từ đất thì các tế bào rễ (đặc biệt là lông hút) phải có đủ năng lượng ATP do quá trình **hô hấp tế bào** cung cấp.")
+        lines.append("- Rễ trao đổi khí lấy khí $O_2$ từ không khí len lỏi trong các khe hở của đất qua **bề mặt rễ (vùng lông hút)**.\n")
+        lines.append("### 🚜 2. Ý nghĩa của việc xới xáo đất và tác hại của ngập úng")
+        lines.append("- **Khi xới đất tơi xốp:** Không khí giàu khí $O_2$ dễ dàng lưu thông vào các tầng đất sâu, giúp rễ cây hô hấp thuận lợi $\\rightarrow$ rễ sinh trưởng mạnh, hút nhiều nước và muối khoáng giúp cây phát triển tươi tốt.")
+        lines.append("- **Khi đất bị ngập úng lâu ngày:** Nước chiếm toàn bộ khoảng trống trong đất làm rễ cây bị thiếu khí $O_2$ (thiểu dưỡng khí) $\\rightarrow$ rễ phải hô hấp kị khí sinh ra chất độc (ethanol, acid hữu cơ), tế bào lông hút bị chết thối $\\rightarrow$ cây không hút được nước và muối khoáng dẫn đến héo úa và chết.")
+        lines.append("")
+
+    elif any(w in q_lower for w in ["hút nước", "hấp thụ nước", "hút muối khoáng", "con đường hút nước", "lông hút"]) and any(w in q_lower for w in ["rễ", "cơ chế", "bằng cách nào", "qua đâu", "như thế nào", "tại sao"]):
+        lines.append(f"Chào em! Về câu hỏi **\"{question}\"**, dưới đây là cơ chế và con đường hút nước, muối khoáng ở rễ cây (**KHTN 7 - Bài 30**):\n")
+        lines.append("### 💧 1. Cơ quan & Cơ chế hấp thụ nước và khoáng")
+        lines.append("- **Bộ phận thực hiện:** Rễ cây hấp thụ nước và muối khoáng chủ yếu qua các tế bào **lông hút** (là phần biến dạng kéo dài của tế bào biểu bì rễ).")
+        lines.append("- **Cơ chế hút nước:** Diễn ra theo cơ chế **thẩm thấu** (nước tự động di chuyển từ dung dịch đất có nồng độ chất tan thấp/thế nước cao vào dịch bào tế bào lông hút có nồng độ chất tan cao/thế nước thấp).")
+        lines.append("- **Cơ chế hút muối khoáng:** Các ion khoáng được hấp thụ vào rễ theo 2 cơ chế:")
+        lines.append("  * *Cơ chế thụ động:* Khuếch tán từ nơi nồng độ cao trong đất vào nơi nồng độ thấp trong rễ.")
+        lines.append("  * *Cơ chế chủ động:* Vận chuyển ngược chiều gradient nồng độ (từ nơi nồng độ thấp vào nơi nồng độ cao), cần tiêu tốn năng lượng ATP do hô hấp rễ tạo ra.\n")
+        lines.append("### 🌲 2. Con đường vận chuyển bên trong cây")
+        lines.append("- Nước và muối khoáng sau khi vào lông hút sẽ đi qua các lớp tế bào vỏ rễ $\\rightarrow$ vào **mạch gỗ (xylem)** của rễ $\\rightarrow$ vận chuyển ngược chiều trọng lực lên thân và tỏa ra các gân lá nhờ động lực thoát hơi nước ở lá và áp suất rễ.")
         lines.append("")
 
     elif is_compare_query and len(matched_entries) >= 2:
