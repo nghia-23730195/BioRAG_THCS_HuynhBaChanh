@@ -551,6 +551,46 @@ def search_best_lesson(lessons_or_question, question_or_grade=None, preferred_gr
         except Exception:
             lessons = []
 
+    q_clean = (question or "").lower()
+    
+    # 1. Direct Topic-to-Lesson exact routing (Ensuring high precision)
+    SPECIFIC_LESSON_ROUTING = [
+        # KHTN 7
+        (7, ["quang hợp tốt", "hiệu quả quang hợp", "yếu tố ảnh hưởng quang hợp", "ưa sáng", "ưa bóng", "cây ưa sáng", "cây ưa bóng", "xen canh"], "Bài 23"),
+        (7, ["quang hợp ở đâu", "cơ quan quang hợp", "bào quan quang hợp", "vị trí quang hợp", "nơi diễn ra quang hợp", "diệp lục", "khí khổng"], "Bài 22"),
+        (7, ["phòng ngủ", "ban đêm", "để cây trong phòng", "hô hấp tế bào", "ti thể"], "Bài 24"),
+        (7, ["xới đất", "xới xáo", "ngập úng", "lông hút", "mạch gỗ", "mạch rây", "hấp thụ nước và khoáng"], "Bài 25"),
+        (7, ["định luật phản xạ", "phản xạ ánh sáng", "gương phẳng"], "Bài 16"),
+        # KHTN 6
+        (6, ["nhân sơ", "nhân thực", "tế bào nhân sơ", "tế bào nhân thực"], "Bài 19"),
+        (6, ["virus", "vi rút"], "Bài 24"),
+        (6, ["vi khuẩn", "bacteria"], "Bài 25"),
+        # KHTN 8
+        (8, ["bảo toàn khối lượng"], "Bài 5"),
+        (8, ["acid", "axit"], "Bài 9"),
+        (8, ["base", "bazơ"], "Bài 10"),
+        (8, ["thang ph", "đo ph", "nồng độ ph"], "Bài 11"),
+        (8, ["muối", "muối ăn"], "Bài 12"),
+        (8, ["áp suất", "áp suất chất lỏng", "bình thông nhau"], "Bài 14"),
+        (8, ["acsimet", "ác-si-mét", "archimedes", "lực đẩy ác", "tàu nổi", "vật nổi vật chìm"], "Bài 15"),
+        (8, ["đòn bẩy", "momen lực"], "Bài 18"),
+        # KHTN 9
+        (9, ["tán sắc", "lăng kính", "ánh sáng trắng", "cầu vồng"], "Bài 7"),
+        (9, ["thấu kính hội tụ", "thấu kính phân kì", "kính lúp"], "Bài 8"),
+        (9, ["cận thị", "viễn thị", "tật của mắt"], "Bài 9"),
+        (9, ["định luật ôm", "định luật ohm", "điện trở"], "Bài 10"),
+        (9, ["cảm ứng điện từ", "faraday", "dòng điện cảm ứng"], "Bài 14"),
+        (9, ["đột biến gen", "đột biến gene"], "Bài 41"),
+        (9, ["quy luật phân li", "menđen", "mendeleev"], "Bài 37"),
+        (9, ["chuỗi thức ăn", "lưới thức ăn", "hệ sinh thái"], "Bài 44"),
+    ]
+
+    for req_grade, phrases, target_bai in SPECIFIC_LESSON_ROUTING:
+        if (preferred_grade is None or preferred_grade == req_grade) and any(p in q_clean for p in phrases):
+            for l in lessons:
+                if int(l.get("grade") or 0) == req_grade and l.get("number", "").strip().lower() == target_bai.lower():
+                    return l, 500
+
     generic_attr_ngrams = {'vai trò', 'đặc điểm', 'ý nghĩa', 'tác dụng', 'cấu tạo', 'khái niệm', 'phân loại'}
     stop_words = {'là', 'gì', 'thế', 'nào', 'sao', 'hãy', 'cho', 'biết', 'của', 'và', 'các', 'những', 'trong', 'với', 'tìm', 'hiểu', 'về', 'hỏi', 'giúp', 'như', 'có'}
     words = [w.lower() for w in re.findall(r'[\w]+', question) if len(w) > 1 and w.lower() not in stop_words]

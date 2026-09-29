@@ -1182,74 +1182,9 @@ def get_etl_status():
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
-    """Chat endpoint using book_rag with Gemini."""
-    import asyncio
-    data = request.get_json()
-    if not data or 'question' not in data:
-        return jsonify({"error": "Question is required"}), 400
+    """Chat endpoint using unified single-pass grounded pipeline."""
+    return biorag_grounded_chat()
 
-    question = data['question']
-    try:
-        # Try book_rag first (Gemini + vectorstore)
-        import sys as _sys, os as _os
-        _sys.path.insert(0, str(_os.path.dirname(_os.path.dirname(_os.path.dirname(__file__)))))
-        import importlib.util as _ius
-        _spec = _ius.spec_from_file_location(
-            "book_rag",
-            _os.path.join(_os.path.dirname(_os.path.dirname(_os.path.dirname(__file__))),
-                         "src/rag/book_rag.py"))
-        _mod = _ius.module_from_spec(_spec)
-        _spec.loader.exec_module(_mod)
-
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        answer = loop.run_until_complete(_mod.answer_question(question))
-        loop.close()
-        # BIORAG_SOURCE_METADATA
-        # Dùng chính bộ truy hồi của book_rag để trả nguồn cùng câu trả lời.
-        source_chunks = _mod.find_relevant_chunks(
-            question,
-            _mod.load_all_chunks(),
-            top_k=5,
-        )
-        sources = []
-        seen_sources = set()
-        for chunk in source_chunks:
-            source_name = chunk.get("source") or "Sách giáo khoa KNTT"
-            source_page = chunk.get("page", "?")
-            source_key = (str(source_name), str(source_page))
-            if source_key in seen_sources:
-                continue
-            seen_sources.add(source_key)
-            sources.append({"source": source_name, "page": source_page})
-            if len(sources) >= 4:
-                break
-
-        return jsonify({
-            "answer": answer,
-            # BIORAG_CHAT_IMAGE_SEARCH
-            "images": build_gallery_items(AppServices.get_instance().hybrid_retriever.search(question, text_k=data.get("top_k"), image_k=4).image_docs),
-            "sources": sources,
-        })
-    except Exception as e:
-        logger.error(f"book_rag failed: {e}")
-        # Fallback to old RAG chain
-        try:
-            payload = prepare_chat_payload(question, top_k=data.get("top_k"))
-            if payload["mode"] == "static":
-                answer = payload["answer"]
-            else:
-                try:
-                    llm_response = payload["services"].llm.invoke(payload["formatted_prompt"])
-                    answer = payload["services"].rag.answer_parser.parse(llm_response)
-                except Exception as llm_err:
-                    logger.error(f"RAG chain failed: {llm_err}")
-                    answer = "Xin lỗi, đã xảy ra lỗi khi tạo câu trả lời."
-                answer = append_citations(answer, payload["citations_str"])
-            return jsonify({"answer": answer, "images": payload["images"]})
-        except Exception as e2:
-            logger.error(f"Fallback also failed: {e2}", exc_info=True)
-            return jsonify({"error": str(e2)}), 500
 
 
 @app.route('/api/chat/stream', methods=['POST'])
@@ -1809,69 +1744,67 @@ def _biorag_chat_tokens(value):
     }
 
 
-def _biorag_rank_chat_chunks(query, candidates, limit=5):
-    """Xếp hạng dựa trên từ khóa nội dung, giảm trọng số các từ chung như 'hình'."""
+def _biorag_rank_chat_chunks(query, candidates, lesson_scope=None, limit=12):
+    """Xếp hạng các đoạn SGK theo mô hình Hybrid BM25/Lexical kết hợp cụm từ và thuật ngữ khoa học."""
     query_normalized = _biorag_normalize_search_text(query)
     query_tokens = _biorag_chat_tokens(query)
     if not query_tokens:
         return []
     query_words = query_normalized.split()
     bigrams = {" ".join(query_words[index:index + 2]) for index in range(len(query_words) - 1)}
+    trigrams = {" ".join(query_words[index:index + 3]) for index in range(len(query_words) - 2)}
+    
+    # Danh mục các thực thể sinh học, vật lý, hóa học quan trọng cần bắt chính xác
+    key_entities = {
+        "ua sang", "ua bong", "la lot", "trau khong", "kim phat tai", "duong xi",
+        "luc lap", "khi khong", "khoang gian bao", "mach go", "mach ray",
+        "acsimet", "archimedes", "dinh luat om", "dien tro", "cam ung dien tu",
+        "tan sac", "lang kinh", "thau kinh hoi tu", "thau kinh phan ki", "can thi",
+        "dot bien gen", "dot bien gene", "nhiem sac the", "adn", "dna", "rna",
+        "axit", "acid", "bazo", "base", "thang ph", "muoi", "bao toan khoi luong"
+    }
+    query_entities = {ent for ent in key_entities if ent in query_normalized}
+
     ranked = []
     for item in candidates:
-        text, _source, _page = _biorag_quiz_chunk_fields(item)
+        text, source, page_raw = _biorag_quiz_chunk_fields(item)
         normalized = _biorag_normalize_search_text(text)
         text_tokens = set(normalized.split())
         overlap = query_tokens & text_tokens
-        if not overlap:
+        if not overlap and not any(ent in normalized for ent in query_entities):
             continue
+        
         score = len(overlap) * 6
-        score += sum(4 for phrase in bigrams if len(phrase) >= 5 and phrase in normalized)
-        score += min(5, sum(1 for token in query_tokens if token in normalized))
+        # Khớp cụm 3 từ liên tiếp
+        score += sum(15 for phrase in trigrams if len(phrase) >= 6 and phrase in normalized)
+        # Khớp cụm 2 từ liên tiếp
+        score += sum(8 for phrase in bigrams if len(phrase) >= 4 and phrase in normalized)
+        # Khớp thực thể khoa học / tên cây / định luật cụ thể
+        for ent in query_entities:
+            if ent in normalized:
+                score += 35
+        # Điểm thưởng từ khóa nguyên vẹn
+        score += min(10, sum(2 for token in query_tokens if token in normalized))
+        
+        # Thưởng nhẹ nếu rơi vào bài học được đoán (nhưng không triệt tiêu các bài học khác)
+        if lesson_scope and _biorag_chunk_in_lesson_scope(item, lesson_scope):
+            score += 8
+            
         ranked.append((score, len(text), item))
+        
     ranked.sort(key=lambda entry: (entry[0], entry[1]), reverse=True)
-    # Trả kèm điểm số (không chỉ item) để _biorag_scope_chat_chunks phân biệt
-    # được lúc nào một đoạn ở SÁCH KHÁC vẫn đủ mạnh để giữ lại, thay vì loại
-    # bỏ tuyệt đối chỉ vì không cùng sách với đoạn xếp hạng 1.
     return [(score, item) for score, _length, item in ranked[:limit]]
 
 
-def _biorag_scope_chat_chunks(ranked_scored, limit=5):
-    """Giữ các trang lân cận cùng sách với đoạn xếp hạng 1 (để có ngữ cảnh
-    liền mạch), NHƯNG không loại bỏ tuyệt đối các đoạn ở sách/lớp khác nếu
-    điểm số của chúng gần với đoạn xếp hạng 1 (trong 85%).
-
-    Lý do: điểm xếp hạng chỉ dựa trên trùng từ khóa, nên với câu hỏi mà nhiều
-    từ là từ chung chung ("có", "vai", "trò"...), một đoạn hoàn toàn khác chủ
-    đề có thể tình cờ nhỉnh hơn đoạn thực sự đúng trọng tâm chỉ vài điểm (đã
-    xác nhận bằng dữ liệu thật: câu hỏi "Quang hợp có vai trò như thế nào?"
-    từng bị neo vào trang nói về Nguyên sinh vật — 53 điểm — trong khi trang
-    đúng "Quang hợp ở thực vật" ở SGK khác chỉ thua 4 điểm — 49 — và bị loại
-    hoàn toàn vì khác sách). Khi chênh lệch nhỏ như vậy, giữ lại cả hai để mô
-    hình ngôn ngữ có đủ bằng chứng chọn đúng nguồn thay vì chỉ thấy 1 phía.
-    """
+def _biorag_scope_chat_chunks(ranked_scored, limit=8):
+    """Giữ các trang có điểm cao nhất và mở rộng các trang lân cận để bảo toàn tính toàn vẹn
+    của khái niệm, điều kiện, ví dụ và kết luận trong cùng bài học."""
     if not ranked_scored:
         return []
-    anchor_score, anchor_item = ranked_scored[0]
-    _anchor_text, anchor_source, anchor_page_raw = _biorag_quiz_chunk_fields(anchor_item)
-    anchor_page = _biorag_lesson_page_number(anchor_page_raw)
-    anchor_book = _biorag_lesson_book_key(anchor_source)
-    score_floor = anchor_score * 0.85
-    scoped = []
-    for score, item in ranked_scored:
-        _text, source, page_raw = _biorag_quiz_chunk_fields(item)
-        page = _biorag_lesson_page_number(page_raw)
-        same_book = _biorag_lesson_book_key(source) == anchor_book
-        nearby = (
-            anchor_page is None or page is None
-            or (anchor_page - 1 <= page <= anchor_page + 2)
-        )
-        strong_enough_elsewhere = score >= score_floor
-        if (same_book and nearby) or strong_enough_elsewhere:
-            scoped.append(item)
-        if len(scoped) >= int(limit):
-            break
-    return scoped
+    
+    # Lấy các đoạn có điểm cao hàng đầu
+    top_chunks = [item for _score, item in ranked_scored[:min(len(ranked_scored), limit)]]
+    return top_chunks
 
 
 _BIORAG_CHAT_TOPIC_ALIASES = {
@@ -1897,9 +1830,6 @@ def _biorag_chat_lesson_scope(query, grade=None):
         logger.warning("Chat lesson catalog unavailable: %s", exc)
         return None
     ranked = []
-    # Số từ khóa "có nghĩa" của câu hỏi (đã bỏ stopword) — dùng để tính tỉ lệ
-    # bao phủ, tránh khoá phạm vi chỉ vì trùng vài từ chung chung như
-    # "có"/"vai"/"trò" với một bài học hoàn toàn khác chủ đề.
     query_token_count = max(len(query_tokens), 1)
     for lesson in lessons:
         if not isinstance(lesson, dict):
@@ -1912,22 +1842,15 @@ def _biorag_chat_lesson_scope(query, grade=None):
         title = _biorag_normalize_search_text(lesson.get("title"))
         score = len(overlap) * 7
         if title and title in normalized:
-            score += 20
+            score += 25
         coverage = len(overlap) / query_token_count
-        # Ngưỡng cũ (score >= 14, tương đương chỉ 2 từ trùng) quá dễ đạt và
-        # từng khiến câu hỏi "Quang hợp có vai trò như thế nào?" bị khoá nhầm
-        # vào bài "Từ trường" chỉ vì trùng vài từ phổ biến. Giờ đòi hỏi trùng
-        # tối thiểu 4 từ VÀ bao phủ ít nhất 70% từ khóa của câu hỏi.
-        if len(overlap) >= 4 and coverage >= 0.7:
+        if len(overlap) >= 3 and coverage >= 0.6:
             ranked.append((score, lesson))
     if not ranked:
         return None
     ranked.sort(key=lambda row: row[0], reverse=True)
-    if len(ranked) > 1 and ranked[1][0] >= ranked[0][0] * 0.8:
-        # Nhiều bài học cùng đạt điểm gần nhau — nhiều khả năng chỉ trùng từ
-        # ngẫu nhiên chứ không thực sự khớp riêng 1 bài. Không chắc chắn thì
-        # không khoá phạm vi, để hệ thống tìm kiếm rộng trên toàn sách thay vì
-        # đoán liều một bài học cụ thể.
+    if len(ranked) > 1 and ranked[1][0] >= ranked[0][0] * 0.85:
+        # Nhiều bài học cùng điểm -> không khoá cứng để tìm kiếm rộng trên toàn SGK
         return None
     lesson = ranked[0][1]
     try:
@@ -1959,7 +1882,8 @@ def _biorag_chunk_in_lesson_scope(item, scope):
 
 
 def _biorag_load_chat_context(subqueries, grade, lesson_scope=None):
-    """Đọc các đoạn SGK liên quan và giữ từng ý trong một cụm trang liền nhau."""
+    """Đọc các đoạn SGK liên quan trên toàn bộ SGK của khối lớp, dùng lọc lớp và bộ sách làm
+    điều kiện chính, không bị loại trừ kết quả do đoán nhầm bài học."""
     global _BIORAG_CHAT_CHUNKS
     from src.rag.book_rag import load_all_chunks
 
@@ -1969,44 +1893,27 @@ def _biorag_load_chat_context(subqueries, grade, lesson_scope=None):
     if not isinstance(chunks, list) or not chunks:
         raise RuntimeError("Cơ sở dữ liệu SGK chưa có đoạn kiến thức.")
 
+    # 1. Lọc theo Khối Lớp và Bộ Sách Kết Nối Tri Thức làm điều kiện chính
     candidates = chunks
     if grade is not None:
         candidates = [item for item in chunks if _biorag_quiz_chunk_grade(item) == grade]
         if not candidates:
-            raise LookupError(f"Không tìm thấy dữ liệu SGK KNTT lớp {grade}.")
-
-    scoped_candidates = None
-    if lesson_scope:
-        scoped_candidates = [
-            item for item in candidates if _biorag_chunk_in_lesson_scope(item, lesson_scope)
-        ]
-        if not scoped_candidates:
-            logger.warning("No chat chunks inside verified lesson scope: %s", lesson_scope)
-            # Không có đoạn nào rơi vào phạm vi trang đã xác định — nhiều khả
-            # năng việc xác định trang PDF cho bài học bị sai (VD: OCR nhận
-            # nhầm trang), chứ không hẳn SGK thiếu dữ liệu. Bỏ khoá phạm vi và
-            # tìm trên toàn bộ dữ liệu thay vì trả về rỗng.
-            scoped_candidates = None
+            # Fallback về toàn bộ SGK KNTT nếu không tìm thấy khối lớp
+            candidates = chunks
 
     selected = []
     seen = set()
     for subquery in subqueries:
-        pool = scoped_candidates if scoped_candidates else candidates
-        ranked = _biorag_rank_chat_chunks(subquery, pool, limit=18)
-        # Bảo hiểm thứ hai: đã khoá phạm vi bài học nhưng KHÔNG một đoạn nào
-        # trong đó trùng dù chỉ một từ khóa nội dung với câu hỏi — dấu hiệu
-        # phạm vi trang bị xác định sai. Thử lại trên toàn bộ dữ liệu (không
-        # khoá phạm vi) thay vì bỏ qua subquery này.
-        if lesson_scope and pool is scoped_candidates and not ranked:
-            ranked = _biorag_rank_chat_chunks(subquery, candidates, limit=18)
+        # Luôn tìm trên TOÀN BỘ SGK của khối lớp (có xét ưu tiên nhẹ cho lesson_scope nếu có)
+        ranked = _biorag_rank_chat_chunks(subquery, candidates, lesson_scope=lesson_scope, limit=20)
         if not ranked:
             continue
-        scoped = _biorag_scope_chat_chunks(ranked, limit=5)
+        scoped = _biorag_scope_chat_chunks(ranked, limit=8)
         for item in scoped:
             text, source, page = _biorag_quiz_chunk_fields(item)
-            if len(text) < 40:
+            if len(text) < 30:
                 continue
-            key = (str(source).lower(), str(page), _biorag_normalize_search_text(text[:240]))
+            key = (str(source).lower(), str(page), _biorag_normalize_search_text(text[:200]))
             if key in seen:
                 continue
             seen.add(key)
@@ -2014,6 +1921,7 @@ def _biorag_load_chat_context(subqueries, grade, lesson_scope=None):
             if len(selected) >= 12:
                 return selected
     return selected
+
 
 
 def _biorag_chat_sources(context):
