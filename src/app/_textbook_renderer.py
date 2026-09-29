@@ -917,10 +917,13 @@ def format_local_rag_answer(question, lesson):
     is_role_query = any(w in q_lower for w in ["vai trò", "ý nghĩa", "tác dụng", "để làm gì", "có lợi ích gì"])
     is_formula_query = any(w in q_lower for w in ["phương trình", "công thức", "định luật", "tính như thế nào", "đơn vị"])
     
+    has_quang_hop = "quang hợp" in q_lower
+    has_ho_hap = "hô hấp" in q_lower
+
     lines = []
-    
+
     # 3. Direct Answer Section tailored to user question
-    if is_location_query and ("quang hợp" in q_lower or "hô hấp" in q_lower):
+    if is_location_query and has_quang_hop and has_ho_hap:
         lines.append(f"Chào em! Đối với câu hỏi **\"{question}\"**, dưới đây là vị trí và cơ quan - bào quan thực hiện cụ thể ở thực vật:\n")
         lines.append("### 🌿 1. Vị trí & Cơ quan diễn ra Quang hợp và Hô hấp ở thực vật")
         lines.append("- **1. Quá trình Quang hợp (ở lá cây & lục lạp):**")
@@ -947,6 +950,37 @@ def format_local_rag_answer(question, lesson):
         lines.append("| **Đường dẫn khí trong mô** | Khuếch tán qua các **khoảng gian bào** | Khuếch tán qua các **khoảng gian bào** |")
         lines.append("| **Điều kiện ánh sáng** | **Khi có ánh sáng** (mặt trời / nhân tạo) | **Liên tục ngày đêm** (không cần ánh sáng) |")
         lines.append("| **Chuyển hóa năng lượng** | Tích lũy quang năng thành hóa năng | Giải phóng hóa năng thành nhiệt và ATP |")
+        lines.append("")
+
+    elif is_location_query and has_quang_hop:
+        lines.append(f"Chào em! Giải đáp câu hỏi **\"{question}\"**:\n")
+        lines.append("### 🌿 1. Vị trí & Cơ quan - Bào quan diễn ra Quang hợp ở thực vật")
+        lines.append("- **Cơ quan thực hiện chính:** Quá trình quang hợp diễn ra chủ yếu ở **lá cây**. Lá có cấu tạo bản dẹt, diện tích bề mặt rộng giúp hấp thu nhiều ánh sáng mặt trời nhất. (Ngoài ra, các bộ phận non có màu xanh như vỏ thân non, cành non cũng có thể quang hợp).")
+        lines.append("- **Bào quan thực hiện:** Bào quan **lục lạp** (nằm trong các tế bào thịt lá, đặc biệt là lớp mô giậu sát biểu bì trên). Lục lạp chứa chất diệp lục có chức năng hấp thu năng lượng ánh sáng.")
+        lines.append("- **Con đường trao đổi khí & vận chuyển vật chất:**")
+        lines.append("  * Khí $CO_2$ đi vào và khí $O_2$ thoát ra qua hệ thống **khí khổng** ở lớp biểu bì lá.")
+        lines.append("  * Nước và muối khoáng do rễ hút từ đất được vận chuyển lên lá qua hệ thống **mạch gỗ**.")
+        lines.append("  * Chất hữu cơ (đường) tổng hợp được vận chuyển đến các bộ phận khác qua **mạch rây**.")
+        lines.append("  * Bên trong mô lá, khí di chuyển giữa các tế bào qua hệ thống **khoảng gian bào**.")
+        lines.append("- **Điều kiện diễn ra:** Diễn ra **khi có ánh sáng** (ánh sáng mặt trời tự nhiên hoặc ánh sáng nhân tạo như đèn LED quang hợp).\n")
+        lines.append("### 💡 2. Ý nghĩa thực tiễn & Ví dụ sinh động")
+        lines.append("- **Ý nghĩa:** Lá cây đóng vai trò như những \"nhà máy sản xuất chất hữu cơ\", tạo nguồn thức ăn và khí $O_2$ nuôi sống toàn bộ sinh giới.")
+        lines.append("- **Ứng dụng:** Tỉa cành hợp lý, trồng cây ở mật độ vừa phải giúp các tầng lá nhận đủ ánh sáng để tối ưu hóa hiệu suất quang hợp.")
+        lines.append("")
+
+    elif is_location_query and has_ho_hap:
+        lines.append(f"Chào em! Giải đáp câu hỏi **\"{question}\"**:\n")
+        lines.append("### 🔬 1. Vị trí & Cơ quan - Bào quan diễn ra Hô hấp tế bào ở thực vật")
+        lines.append("- **Cơ quan thực hiện:** Diễn ra ở **tất cả các cơ quan sống** của thực vật (rễ, thân, lá, hoa, quả, hạt), vì mọi tế bào sống đều cần năng lượng để duy trì sự sống.")
+        lines.append("- **Bào quan thực hiện:** Bào quan **ti thể** (được ví như \"nhà máy năng lượng\" của tế bào, nơi phân giải chất hữu cơ giải phóng năng lượng ATP).")
+        lines.append("- **Con đường trao đổi khí:**")
+        lines.append("  * Ở **lá**: Trao đổi khí $O_2$ và $CO_2$ chủ yếu qua **khí khổng**.")
+        lines.append("  * Ở **thân cây** (thân gỗ): Trao đổi khí qua **bì khổng**.")
+        lines.append("  * Ở **rễ cây**: Trao đổi khí trực tiếp với không khí trong các khe đất qua **bề mặt rễ (lông hút)**.")
+        lines.append("  * Bên trong các mô: Khí di chuyển và khuếch tán qua hệ thống **khoảng gian bào**.")
+        lines.append("- **Thời gian diễn ra:** Diễn ra **liên tục suốt ngày đêm (24/24h)** ở mọi tế bào sống, không phụ thuộc vào ánh sáng.\n")
+        lines.append("### 💡 2. Ý nghĩa thực tiễn & Ví dụ sinh động")
+        lines.append("- **Ứng dụng:** Xới xáo đất tơi xốp, làm đất thoát nước tốt giúp rễ cây hô hấp thuận lợi; bảo quản nông sản (hạt, quả) ở nhiệt độ thấp hoặc độ ẩm thấp nhằm hạn chế hô hấp làm hao hụt chất dinh dưỡng.")
         lines.append("")
 
     elif is_location_query and matched_entries:
