@@ -551,9 +551,33 @@ def search_best_lesson(lessons_or_question, question_or_grade=None, preferred_gr
         except Exception:
             lessons = []
 
+    # Query normalization & synonym expansion
+    q_norm = (question or "").lower()
+    synonym_map = {
+        "định luật ôm": "định luật ohm điện trở",
+        "định luật om": "định luật ohm điện trở",
+        "định luật ohm": "định luật ohm điện trở",
+        "lực ác si mét": "lực đẩy archimedes",
+        "ác-si-mét": "archimedes",
+        "acsimet": "archimedes",
+        "diệp lục": "quang hợp lá cây lục lạp",
+        "màu xanh của lá": "quang hợp lá cây lục lạp",
+        "lá cây có màu xanh": "quang hợp lá cây lục lạp",
+        "tại sao lá cây": "quang hợp lá cây lục lạp",
+        "màu xanh lục": "quang hợp lá cây lục lạp",
+        "khí khổng": "trao đổi khí quang hợp thoát hơi nước",
+        "bì khổng": "trao đổi khí hô hấp",
+        "ti thể": "hô hấp tế bào",
+        "mạch gỗ": "vận chuyển nước muối khoáng",
+        "mạch rây": "vận chuyển chất hữu cơ",
+    }
+    for k, v in synonym_map.items():
+        if k in q_norm:
+            q_norm += f" {v}"
+
     generic_attr_ngrams = {'vai trò', 'đặc điểm', 'ý nghĩa', 'tác dụng', 'cấu tạo', 'khái niệm', 'phân loại'}
     stop_words = {'là', 'gì', 'thế', 'nào', 'sao', 'hãy', 'cho', 'biết', 'của', 'và', 'các', 'những', 'trong', 'với', 'tìm', 'hiểu', 'về', 'hỏi', 'giúp', 'như', 'có'}
-    words = [w.lower() for w in re.findall(r'[\w]+', question) if len(w) > 1 and w.lower() not in stop_words]
+    words = [w.lower() for w in re.findall(r'[\w]+', q_norm) if len(w) > 1 and w.lower() not in stop_words]
     
     ngrams = []
     if len(words) >= 2:
@@ -686,20 +710,71 @@ ENCYCLOPEDIA_KHTN = {
         "example": "Di chuyển thanh nam châm lại gần hoặc ra xa cuộn dây đồng có nối với bóng đèn LED, đèn LED sẽ lóe sáng do có dòng điện cảm ứng sinh ra."
     },
     # Sinh học & KHTN Lớp 7
-    "hô hấp tế bào": {
-        "term": "Hô hấp tế bào",
-        "definition": "Là quá trình phân giải các phân tử chất hữu cơ (chủ yếu là glucose) diễn ra trong tế bào (chủ yếu tại bào quan ti thể) với sự tham gia của khí oxygen, tạo ra sản phẩm là carbon dioxide (CO2), nước (H2O) và giải phóng năng lượng dưới dạng ATP cung cấp cho mọi hoạt động sống của tế bào và cơ thể.",
-        "details": "Phương trình chữ: Glucose + Khí oxygen → Khí carbon dioxide + Nước + Năng lượng (ATP + Nhiệt).",
-        "role": "Cung cấp nguồn năng lượng ATP duy nhất cho sự phân chia tế bào, vận chuyển chất, co cơ, dẫn truyền xung thần kinh và duy trì thân nhiệt.",
-        "example": "Khi chúng ta chạy bộ nhanh, cơ thể cần nhiều năng lượng nên nhịp thở và nhịp tim tăng nhanh để cung cấp đủ oxygen cho các tế bào cơ bắp thực hiện hô hấp tế bào."
-    },
     "quang hợp": {
         "term": "Quang hợp ở thực vật",
         "definition": "Là quá trình lá cây và các bộ phận có màu xanh của thực vật sử dụng năng lượng ánh sáng mặt trời đã được chất diệp lục (trong lục lạp) hấp thụ để tổng hợp chất hữu cơ (glucose, tinh bột) từ nước (H2O) rễ hút lên và khí carbon dioxide (CO2) từ không khí, đồng thời giải phóng khí oxygen (O2) ra môi trường.",
+        "location": "Diễn ra chủ yếu ở **lá cây** (nơi tập trung nhiều lục lạp nhất). Bào quan thực hiện là **lục lạp** (chứa chất diệp lục). Sự trao đổi khí CO2 và O2 diễn ra qua hệ thống **khí khổng** ở lớp biểu bì lá. Nước và chất khoáng được rễ hút lên qua **mạch gỗ**, chất hữu cơ được vận chuyển đến các bộ phận khác qua **mạch rây**.",
         "details": "Phương trình chữ: Nước + Khí carbon dioxide + Năng lượng ánh sáng (Diệp lục) → Glucose + Khí oxygen.",
         "role": "Tạo ra chất hữu cơ nuôi sống toàn bộ sinh vật trên Trái Đất; cung cấp khí O2 cho hô hấp và hấp thụ CO2 giúp làm sạch bầu khí quyển, điều hòa khí hậu toàn cầu.",
         "example": "Trồng nhiều cây xanh xung quanh trường học và khu dân cư giúp không khí trong lành, mát mẻ hơn nhờ quá trình quang hợp hấp thụ CO2 và nhả khí O2."
     },
+    "hô hấp tế bào": {
+        "term": "Hô hấp tế bào",
+        "definition": "Là quá trình phân giải các phân tử chất hữu cơ (chủ yếu là glucose) diễn ra trong tế bào với sự tham gia của khí oxygen, tạo ra sản phẩm là carbon dioxide (CO2), nước (H2O) và giải phóng năng lượng dưới dạng ATP cung cấp cho mọi hoạt động sống của tế bào và cơ thể.",
+        "location": "Diễn ra ở **tất cả các tế bào sống** của thực vật (rễ, thân, lá, hoa, quả, hạt) và sinh vật. Bào quan thực hiện chủ yếu là **ti thể** (được ví như nhà máy năng lượng của tế bào). Ở thực vật, sự trao đổi khí O2/CO2 phục vụ hô hấp diễn ra qua **khí khổng** ở lá và **bì khổng** hoặc khoảng gian bào ở thân, rễ.",
+        "details": "Phương trình chữ: Glucose + Khí oxygen → Khí carbon dioxide + Nước + Năng lượng (ATP + Nhiệt).",
+        "role": "Cung cấp nguồn năng lượng ATP duy nhất cho sự phân chia tế bào, vận chuyển chất, co cơ, dẫn truyền xung thần kinh và duy trì thân nhiệt.",
+        "example": "Hạt giống khi nảy mầm hoặc rễ cây đang hút khoáng hô hấp rất mạnh; khi chúng ta vận động nhanh, nhịp thở tăng để cung cấp đủ oxygen cho ti thể hô hấp tạo ATP."
+    },
+    "trao đổi khí": {
+        "term": "Trao đổi khí ở sinh vật",
+        "definition": "Là quá trình sinh vật lấy khí O2 từ môi trường vào cơ thể và thải khí CO2 ra ngoài (phục vụ hô hấp tế bào), hoặc lấy khí CO2 và thải khí O2 (ở thực vật khi quang hợp) theo cơ chế khuếch tán từ nơi có nồng độ cao đến nơi có nồng độ thấp.",
+        "location": "Ở thực vật: Trao đổi khí diễn ra chủ yếu qua **khí khổng** ở lá và **bì khổng** ở thân cây già. Ở động vật: Diễn ra qua **bề mặt cơ thể** (giun đất, ếch nhái), qua **hệ thống ống khí** (côn trùng), qua **mang** (cá, tôm) hoặc qua **phổi** (bò sát, chim, thú, người).",
+        "details": "Cơ chế khuếch tán không tiêu tốn năng lượng ATP, diễn ra liên tục qua bề mặt ẩm ướt và có diện tích tiếp xúc lớn.",
+        "role": "Đảm bảo cung cấp đủ nguyên liệu khí cho quang hợp và hô hấp tế bào, duy trì sự sống của cơ thể.",
+        "example": "Khi bón phân hoặc tưới nước hợp lý, đất tơi xốp giúp rễ cây dễ dàng trao đổi khí O2 qua các khoảng gian bào, tránh bị ngập úng thối rễ."
+    },
+    "khí khổng": {
+        "term": "Khí khổng (ở biểu bì lá)",
+        "definition": "Là cấu trúc vi thể nằm ở lớp biểu bì của lá cây (tập trung nhiều ở mặt dưới lá), gồm hai tế bào hình hạt đậu xếp úp vào nhau tạo thành khe khí khổng, có chức năng điều hòa quá trình thoát hơi nước và trao đổi khí (CO2, O2) giữa cây với môi trường ngoài.",
+        "location": "Nằm phân bố rải rác trên **biểu bì lá cây** (ở cây trên cạn mặt dưới thường có nhiều khí khổng hơn mặt trên; ở cây thủy sinh nổi như sen súng thì khí khổng ở mặt trên).",
+        "details": "Cơ chế đóng mở: Thành trong (sát khe) dày, thành ngoài mỏng. Khi tế bào no nước, thành ngoài căng giãn kéo thành trong cong theo làm khí khổng mở rộng; khi mất nước, tế bào xẹp lại làm khí khổng đóng hẹp.",
+        "role": "Là cửa ngõ chính thực hiện thoát hơi nước (tạo động lực hút nước từ rễ) và trao đổi khí CO2/O2 cho quang hợp và hô hấp.",
+        "example": "Vào buổi trưa nắng gắt, khí khổng chủ động đóng bớt lại để tránh cho cây bị mất nước quá nhiều dẫn đến héo rũ."
+    },
+    "thoát hơi nước": {
+        "term": "Thoát hơi nước ở thực vật",
+        "definition": "Là hiện tượng nước bốc hơi từ các bộ phận của cây (chủ yếu là qua lá) ra môi trường xung quanh.",
+        "location": "Diễn ra chủ yếu qua **khí khổng** ở lá (chiếm khoảng 90%) và một phần nhỏ qua lớp cutin phủ trên bề mặt biểu bì lá.",
+        "details": "Tốc độ thoát hơi nước phụ thuộc vào độ mở của khí khổng, ánh sáng, nhiệt độ, độ ẩm không khí và lượng nước trong đất.",
+        "role": "Tạo lực hút đầu trên kéo nước và ion khoáng từ rễ lên thân lá; làm giảm nhiệt độ bề mặt lá khi trời nắng nóng; mở đường cho CO2 khuếch tán vào lá để quang hợp.",
+        "example": "Đứng dưới bóng cây râm mát hơn đứng dưới mái tôn vì lá cây liên tục thoát hơi nước làm mát không khí xung quanh."
+    },
+    "vận chuyển chất": {
+        "term": "Vận chuyển các chất ở thực vật",
+        "definition": "Là quá trình lưu thông nước, chất khoáng và các chất hữu cơ trong cơ thể thực vật thông qua hệ thống mạch dẫn chuyên biệt.",
+        "location": "Gồm 2 dòng vận chuyển: (1) **Dòng mạch gỗ (mạch rây ngược chiều)**: Vận chuyển nước và muối khoáng hòa tan từ **rễ qua thân lên lá**. (2) **Dòng mạch rây**: Vận chuyển chất hữu cơ hòa tan (đường sucrose, amino acid) từ **lá đến các cơ quan dự trữ** (rễ, củ, thân, hoa, quả).",
+        "details": "Mạch gỗ gồm các tế bào chết (quản bào và mạch ống); Mạch rây gồm các tế bào sống (ống rây và tế bào kèm).",
+        "role": "Cung cấp nước, nguyên liệu tổng hợp và phân phối chất dinh dưỡng đến từng tế bào trong cây.",
+        "example": "Hiện tượng chiết cành: Khi khoanh vỏ bóc bỏ một đoạn mạch rây, chất hữu cơ ứ đọng lại phía mép trên vết cắt sẽ kích thích phình to và ra rễ mới."
+    },
+    "lục lạp": {
+        "term": "Lục lạp (Bào quan quang hợp)",
+        "definition": "Là bào quan có màng kép chứa chất diệp lục (chlorophyll), nằm trong tế bào thịt lá và các bộ phận màu xanh của thực vật, có chức năng hấp thụ năng lượng ánh sáng mặt trời để thực hiện quang hợp.",
+        "location": "Nằm trong tế bào chất của các **tế bào thịt lá** (nhất là lớp mô giậu sát biểu bì trên của lá).",
+        "details": "Bên trong lục lạp chứa chất nền (stroma) và hệ thống các túi dẹt thylakoid xếp chồng lên nhau thành các hạt grana chứa chất diệp lục.",
+        "role": "Là nhà máy tổng hợp chất hữu cơ và oxy hóa nước tạo O2 duy nhất cho toàn bộ sinh quyển.",
+        "example": "Lá cây có màu xanh lục vì chất diệp lục trong lục lạp hấp thụ mạnh ánh sáng đỏ và xanh lam, đồng thời phản xạ ánh sáng xanh lục đến mắt người."
+    },
+    "ti thể": {
+        "term": "Ti thể (Bào quan hô hấp)",
+        "definition": "Là bào quan có màng kép nằm trong tế bào chất của tất cả các tế bào nhân thực sống, đóng vai trò là bào quan chính thực hiện hô hấp tế bào để giải phóng năng lượng ATP.",
+        "location": "Phân bố trong tế bào chất của **tất cả tế bào sống** ở thực vật, động vật và con người.",
+        "details": "Màng ngoài trơn nhẵn, màng trong gấp nếp thành các mào (cristae) chứa nhiều enzyme hô hấp và chuỗi truyền electron tổng hợp ATP.",
+        "role": "Cung cấp trên 90% lượng năng lượng ATP cho mọi hoạt động sinh lí của tế bào.",
+        "example": "Tế bào cơ tim ở người hoặc tế bào rễ cây đang sinh trưởng chứa rất nhiều ti thể vì nhu cầu năng lượng của chúng cực kỳ cao."
+    },
+    # Hóa học KHTN 6, 7, 8
     "nguyên tố hóa học": {
         "term": "Nguyên tố hóa học",
         "definition": "Là tập hợp những nguyên tử cùng loại có cùng số proton trong hạt nhân (cùng điện tích hạt nhân). Các nguyên tử của cùng một nguyên tố hóa học đều có tính chất hóa học giống nhau.",
@@ -770,6 +845,37 @@ ENCYCLOPEDIA_KHTN = {
         "role": "Là nguyên lý giúp tàu thuyền bằng thép nặng hàng vạn tấn vẫn nổi trên mặt biển, khinh khí cầu bay lượn trên bầu trời.",
         "example": "Tàu thủy chở hàng khổng lồ được thiết kế khoang rỗng làm tăng thể tích chiếm chỗ V, giúp lực đẩy Archimedes F_A lớn hơn trọng lượng P của tàu nên tàu nổi vững vàng."
     },
+    # Sinh học bổ sung & Aliases
+    "hô hấp": {
+        "term": "Hô hấp tế bào ở thực vật và sinh vật",
+        "definition": "Là quá trình phân giải chất hữu cơ (glucose) với sự tham gia của O2 để giải phóng năng lượng ATP, CO2 và nước diễn ra tại bào quan ti thể ở tất cả các tế bào sống.",
+        "location": "Diễn ra ở **tất cả các tế bào sống** của thực vật (rễ, thân, lá, hoa, hạt) trong bào quan **ti thể**, trao đổi khí qua **khí khổng** ở lá và **bì khổng** ở thân/rễ.",
+        "details": "Phương trình chữ: Glucose + Khí oxygen → Khí carbon dioxide + Nước + Năng lượng (ATP + Nhiệt).",
+        "role": "Cung cấp năng lượng ATP cho mọi hoạt động sinh lí của tế bào.",
+        "example": "Hạt đang nảy mầm hoặc các mô phân sinh đỉnh rễ hô hấp rất mạnh để giải phóng năng lượng cho phân chia tế bào."
+    },
+    "diệp lục": {
+        "term": "Chất diệp lục (Chlorophyll) & Màu xanh của lá",
+        "definition": "Là sắc tố quang hợp màu xanh lục nằm trong màng thylakoid của lục lạp, có khả năng hấp thụ năng lượng ánh sáng mặt trời (chủ yếu vùng đỏ và xanh lam) để cung cấp cho quá trình quang hợp.",
+        "location": "Nằm trong bào quan **lục lạp** của các tế bào thịt lá và các bộ phận non màu xanh của cây.",
+        "details": "Lá cây có màu xanh lục vì chất diệp lục hấp thu ánh sáng đỏ và xanh lam, đồng thời không hấp thụ mà phản xạ lại ánh sáng màu xanh lục đến mắt người nhìn.",
+        "role": "Là sắc tố then chốt biến quang năng thành hóa năng trong các liên kết hóa học của phân tử glucose.",
+        "example": "Lá cây để trong bóng tối lâu ngày sẽ bị vàng úa do lục lạp không tổng hợp được chất diệp lục."
+    },
+    "bảo toàn khối lượng": {
+        "term": "Định luật bảo toàn khối lượng",
+        "definition": "Trong một phản ứng hóa học, tổng khối lượng của các chất sản phẩm bằng tổng khối lượng của các chất phản ứng: m_A + m_B = m_C + m_D.",
+        "details": "Bản chất: Trong phản ứng hóa học, chỉ có liên kết giữa các nguyên tử thay đổi làm cho phân tử này biến đổi thành phân tử khác, còn số lượng nguyên tử của mỗi nguyên tố giữ nguyên không đổi.",
+        "role": "Là cơ sở lí thuyết để cân bằng phương trình hóa học và tính toán lượng chất tham gia cũng như sản phẩm tạo thành trong công nghiệp và thí nghiệm.",
+        "example": "Đốt cháy hoàn toàn 12g carbon trong 32g oxygen thu được đúng 44g khí carbon dioxide (12 + 32 = 44g)."
+    },
+    "tốc độ": {
+        "term": "Tốc độ chuyển động",
+        "definition": "Là đại lượng đặc trưng cho mức độ nhanh hay chậm của chuyển động, được tính bằng quãng đường đi được trong một đơn vị thời gian: v = s / t.",
+        "details": "Đơn vị đo hợp pháp: mét trên giây (m/s) hoặc kilômét trên giờ (km/h). Đổi đơn vị: 1 m/s = 3,6 km/h.",
+        "role": "Dùng để kiểm soát tốc độ phương tiện giao thông, phân tích chuyển động trong cơ học và đời sống.",
+        "example": "Biển báo tốc độ 60 km/h trên đường yêu cầu các phương tiện không được di chuyển vượt quá 60 km trong mỗi giờ để đảm bảo an toàn."
+    },
     "khối lượng riêng": {
         "term": "Khối lượng riêng",
         "definition": "Là khối lượng của một đơn vị thể tích chất đó, được xác định bằng công thức: D = m / V (trong đó D là khối lượng riêng đo bằng kg/m³, m là khối lượng đo bằng kg, V là thể tích đo bằng m³).",
@@ -780,8 +886,9 @@ ENCYCLOPEDIA_KHTN = {
 }
 
 def format_local_rag_answer(question, lesson):
+    """Dynamic, intent-aware pedagogical answer generator without repetitive templates."""
     if not lesson:
-        return "Chào em, thầy/cô rất vui khi nhận được câu hỏi của em! Hiện tại hệ thống chưa tìm thấy bài học phù hợp trong 195 bài học SGK KHTN. Em hãy thử đặt câu hỏi cụ thể hơn nhé!"
+        return "Chào em! Thầy/cô chưa tìm thấy bài học tương ứng trong 195 bài học SGK KHTN. Em hãy thử đặt câu hỏi cụ thể hơn nhé!"
     
     grade = lesson.get("grade", 7)
     number = lesson.get("number", "Bài học")
@@ -789,83 +896,136 @@ def format_local_rag_answer(question, lesson):
     source_label = lesson.get("source_label", f"SGK KHTN {grade} KNTT")
     q_lower = (question or "").lower()
     
-    lines = []
-    # 1. Warm pedagogical greeting
-    lines.append(f"Chào em, thầy/cô rất vui khi nhận được câu hỏi của em! Đây là một câu hỏi rất hay và mang tính khám phá cao, giúp chúng ta mở ra cánh cửa tìm hiểu về kiến thức kỳ diệu trong chương trình **Khoa học tự nhiên lớp {grade}** (Bộ sách *Kết nối tri thức với cuộc sống*).\n")
-    lines.append("Dưới đây là lời giải đáp chi tiết dành cho em:\n")
-    
-    # 2. 1. Definition & Core concepts
-    lines.append("### 1. Định nghĩa & Bản chất cốt lõi")
-    
-    # Check encyclopedia for matched concept
-    matched_entry = None
+    # 1. Detect all mentioned scientific concepts
+    matched_entries = []
     for k, ev in ENCYCLOPEDIA_KHTN.items():
         if k in q_lower or (len(k.split()) > 1 and all(w in q_lower for w in k.split())):
-            matched_entry = ev
-            break
-            
-    if not matched_entry:
+            if ev not in matched_entries:
+                matched_entries.append(ev)
+                
+    if not matched_entries:
         for k, ev in ENCYCLOPEDIA_KHTN.items():
             if k in title.lower():
-                matched_entry = ev
+                if ev not in matched_entries:
+                    matched_entries.append(ev)
                 break
 
-    if matched_entry:
-        lines.append(f"- **{matched_entry['term']}**: {matched_entry['definition']}")
-        if matched_entry.get("details"):
-            lines.append(f"  * *Chi tiết khoa học*: {matched_entry['details']}")
+    # 2. Detect Question Intent
+    is_location_query = any(w in q_lower for w in ["qua đâu", "ở đâu", "bằng cơ quan nào", "bộ phận nào", "bào quan nào", "diễn ra ở đâu", "tại đâu", "bằng cách nào"])
+    is_why_query = any(w in q_lower for w in ["tại sao", "vì sao", "nguyên nhân", "lý do", "giải thích vì sao"])
+    is_compare_query = any(w in q_lower for w in ["so sánh", "phân biệt", "khác nhau", "giống nhau", "đối chiếu"])
+    is_role_query = any(w in q_lower for w in ["vai trò", "ý nghĩa", "tác dụng", "để làm gì", "có lợi ích gì"])
+    is_formula_query = any(w in q_lower for w in ["phương trình", "công thức", "định luật", "tính như thế nào", "đơn vị"])
+    
+    lines = []
+    
+    # 3. Direct Answer Section tailored to user question
+    if is_location_query and ("quang hợp" in q_lower or "hô hấp" in q_lower):
+        lines.append(f"Chào em! Đối với câu hỏi **\"{question}\"**, dưới đây là vị trí và cơ quan - bào quan thực hiện cụ thể ở thực vật:\n")
+        lines.append("### 🌿 1. Vị trí & Cơ quan diễn ra Quang hợp và Hô hấp ở thực vật")
+        lines.append("- **1. Quá trình Quang hợp (ở lá cây & lục lạp):**")
+        lines.append("  * **Cơ quan thực hiện:** Chủ yếu diễn ra ở **lá cây** (nơi có diện tích bề mặt lớn và tập trung nhiều lục lạp nhất).")
+        lines.append("  * **Bào quan thực hiện:** Bào quan **lục lạp** (chứa chất diệp lục hấp thu năng lượng ánh sáng mặt trời).")
+        lines.append("  * **Cơ quan trao đổi khí & nước:** Khí $CO_2$ và $O_2$ khuếch tán ra vào qua **khí khổng** ở lớp biểu bì lá; nước và muối khoáng được rễ hút lên qua **mạch gỗ**, chất hữu cơ tạo ra được chuyển đi qua **mạch rây**.")
+        lines.append("  * **Thời gian:** Chỉ diễn ra vào **ban ngày** (khi có ánh sáng mặt trời).\n")
+        lines.append("- **2. Quá trình Hô hấp tế bào (ở mọi tế bào sống & ti thể):**")
+        lines.append("  * **Cơ quan thực hiện:** Diễn ra ở **tất cả các cơ quan sống** của thực vật (rễ, thân, lá, hoa, quả, hạt).")
+        lines.append("  * **Bào quan thực hiện:** Bào quan **ti thể** (nơi oxy hóa chất hữu cơ giải phóng năng lượng ATP).")
+        lines.append("  * **Cơ quan trao đổi khí:** Trao đổi khí $O_2$ và $CO_2$ qua hệ thống **khí khổng** ở lá và **bì khổng / khoảng gian bào** ở rễ và thân cây.")
+        lines.append("  * **Thời gian:** Diễn ra **liên tục suốt ngày đêm** (24/24h) ở mọi tế bào sống.\n")
+        
+        lines.append("### 🔬 2. Bảng đối chiếu nhanh bản chất hai quá trình:")
+        lines.append("| Đặc điểm | Quang hợp ở thực vật | Hô hấp tế bào ở thực vật |")
+        lines.append("| :--- | :--- | :--- |")
+        lines.append("| **Cơ quan chính** | Lá cây (các bộ phận màu xanh) | Tất cả cơ quan sống (rễ, thân, lá, hạt,...) |")
+        lines.append("| **Bào quan** | **Lục lạp** (chứa diệp lục) | **Ti thể** |")
+        lines.append("| **Trao đổi khí qua** | **Khí khổng** ở lá (hút $CO_2$, nhả $O_2$) | **Khí khổng & Bì khổng** (hút $O_2$, nhả $CO_2$) |")
+        lines.append("| **Chuyển hóa năng lượng** | Tích lũy quang năng thành hóa năng | Giải phóng hóa năng thành nhiệt và ATP |")
+        lines.append("")
 
-    # Add other related terms from lesson
-    terms = lesson.get("terms", [])
-    added_terms = 0
-    for t in terms:
-        t_name = t.get("term", "")
-        t_def = t.get("definition", "")
-        if matched_entry and (t_name.lower() in matched_entry["term"].lower() or matched_entry["term"].lower() in t_name.lower()):
-            continue
-        if len(t_def) > 20 and not t_def.endswith(('...', 'được', 'và', 'của', 'tạo', 'là', 'trong')):
-            lines.append(f"- **{t_name}**: {t_def}")
-            added_terms += 1
-            if added_terms >= 3:
-                break
-                
-    lines.append("")
+    elif is_location_query and matched_entries:
+        lines.append(f"Chào em! Giải đáp trực tiếp về vị trí, cơ quan và bào quan liên quan đến **\"{question}\"**:\n")
+        lines.append("### 📍 1. Vị trí & Cơ quan - Bào quan thực hiện")
+        for ent in matched_entries:
+            loc = ent.get("location") or ent.get("details") or "Diễn ra tại các cơ quan chuyên hóa của cơ thể sinh vật."
+            lines.append(f"- **{ent['term']}:** {loc}")
+        lines.append("")
 
-    # 3. 2. Role & Scientific Significance
-    lines.append("### 2. Vai trò & Ý nghĩa khoa học")
-    if matched_entry and matched_entry.get("role"):
-        lines.append(f"- {matched_entry['role']}")
+    elif is_why_query and any(w in q_lower for w in ["màu xanh", "xanh lục", "lá cây", "diệp lục"]):
+        lines.append(f"Chào em! Về câu hỏi **\"{question}\"**, dưới đây là giải thích bản chất khoa học:\n")
+        lines.append("### 🌿 1. Cơ chế khoa học vì sao lá cây có màu xanh lục")
+        lines.append("- **Bào quan & Sắc tố:** Trong các tế bào thịt lá chứa bào quan **lục lạp**, bên trong có chứa sắc tố quang hợp là **chất diệp lục** (chlorophyll).")
+        lines.append("- **Cơ chế hấp thụ và phản xạ ánh sáng:**")
+        lines.append("  * Ánh sáng mặt trời (ánh sáng trắng) gồm nhiều dải màu: đỏ, cam, vàng, lục, lam, chàm, tím.")
+        lines.append("  * Chất diệp lục hấp thụ mạnh năng lượng ánh sáng ở vùng màu **đỏ** và màu **xanh lam** để phục vụ phản ứng quang hợp.")
+        lines.append("  * Ngược lại, diệp lục **không hấp thụ** dải ánh sáng màu **xanh lục** mà phản xạ ngược lại môi trường.")
+        lines.append("- **Kết luận:** Ánh sáng xanh lục bị phản xạ truyền đến mắt người quan sát, giúp chúng ta nhìn thấy lá cây có màu xanh lục rực rỡ.\n")
+        lines.append("### 💡 2. Mở rộng thực tiễn thú vị")
+        lines.append("- Ở một số cây có lá màu đỏ hay tím (như rau dền đỏ, cây huyết dụ), lá vẫn chứa chất diệp lục để quang hợp bình thường, nhưng màu xanh bị che khuất bởi hàm lượng lớn các sắc tố phụ màu đỏ (anthocyanin).")
+        lines.append("")
+
+    elif is_compare_query and len(matched_entries) >= 2:
+        e1, e2 = matched_entries[0], matched_entries[1]
+        lines.append(f"Chào em! Dưới đây là phân tích so sánh chi tiết giữa **{e1['term']}** và **{e2['term']}**:\n")
+        lines.append("### ⚖️ 1. So sánh chi tiết các đặc điểm cốt lõi")
+        lines.append(f"- **{e1['term']}:** {e1['definition']}")
+        if e1.get("details"): lines.append(f"  * *Đặc điểm:* {e1['details']}")
+        lines.append(f"- **{e2['term']}:** {e2['definition']}")
+        if e2.get("details"): lines.append(f"  * *Đặc điểm:* {e2['details']}\n")
+        lines.append("### 🔄 2. Mối quan hệ và Ý nghĩa")
+        lines.append(f"- Hai quá trình/khái niệm này có mối liên hệ mật thiết, bổ sung cho nhau để duy trì cân bằng tự nhiên và chuyển hóa vật chất - năng lượng.")
+        lines.append("")
+
     else:
-        summary = [s for s in lesson.get("summary", []) if len(s) > 20 and not re.match(r'^\d+\.', s)]
-        if summary:
-            for sm in summary[:2]:
-                lines.append(f"- {sm}")
+        # Direct definition & core scientific mechanism
+        lines.append(f"Chào em! Về câu hỏi **\"{question}\"**, kiến thức trọng tâm trong chương trình **KHTN Lớp {grade}** được trình bày như sau:\n")
+        lines.append("### 📖 1. Khái niệm & Bản chất khoa học")
+        if matched_entries:
+            for ent in matched_entries:
+                lines.append(f"- **{ent['term']}:** {ent['definition']}")
+                if ent.get("details"):
+                    lines.append(f"  * *Chi tiết & Phương trình/Đặc điểm:* {ent['details']}")
         else:
-            lines.append(f"- Giúp giải thích các quy luật vận động, chuyển hóa của vật chất và năng lượng trong tự nhiên, từ đó ứng dụng vào thực tiễn đời sống và sản xuất.")
-    lines.append("")
+            terms = lesson.get("terms", [])
+            added_terms = 0
+            for t in terms:
+                t_name = t.get("term", "")
+                t_def = t.get("definition", "")
+                if len(t_def) > 20 and not t_def.endswith(('...', 'được', 'và', 'của', 'tạo', 'là', 'trong')):
+                    lines.append(f"- **{t_name}**: {t_def}")
+                    added_terms += 1
+                    if added_terms >= 2:
+                        break
+            if not added_terms and lesson.get("content"):
+                lines.append(f"- **{title}**: {lesson.get('content')[:280]}...")
+        lines.append("")
 
-    # 4. 3. Connection to SGK KNTT
-    lines.append("### 3. Mối liên hệ với SGK Kết nối tri thức với cuộc sống")
-    lines.append(f"Nội dung này được trình bày chi tiết tại **{number}: {title}** ({source_label}).")
+        # Role & Real-world connection (Concise, no fluff)
+        lines.append("### 💡 2. Ứng dụng thực tiễn & Ví dụ sinh động")
+        if matched_entries and matched_entries[0].get("example"):
+            lines.append(f"- **Ví dụ thực tế:** {matched_entries[0]['example']}")
+            if matched_entries[0].get("role"):
+                lines.append(f"- **Ý nghĩa sinh học / tự nhiên:** {matched_entries[0]['role']}")
+        else:
+            summary = [s for s in lesson.get("summary", []) if len(s) > 20 and not re.match(r'^\d+\.', s)]
+            if summary:
+                for sm in summary[:2]:
+                    lines.append(f"- {sm}")
+            else:
+                lines.append(f"- Giúp giải thích các hiện tượng thực tế xung quanh đời sống và vận dụng giải các bài tập KHTN.")
+        lines.append("")
+
+    # 3. Exact Textbook Reference
+    lines.append("### 📚 3. Vị trí bài học trong SGK Kết nối tri thức")
+    lines.append(f"Em có thể xem chi tiết bài giảng và hình minh họa tại **{number}: {title}** ({source_label}).")
     objectives = lesson.get("objectives", [])
     if objectives:
-        for obj in objectives[:3]:
+        for obj in objectives[:2]:
             lines.append(f"- {obj}")
     lines.append("")
-
-    # 5. 4. Vivid Real-world Examples
-    lines.append("### 4. Ví dụ thực tế sinh động")
-    if matched_entry and matched_entry.get("example"):
-        lines.append(f"{matched_entry['example']}")
-    else:
-        lines.append(f"Trong đời sống hàng ngày, chúng ta có thể dễ dàng quan sát hiện tượng liên quan đến **{title}** thông qua các biến đổi tự nhiên xung quanh hoặc trong các thí nghiệm thực hành tại phòng bộ môn KHTN Trường THCS Huỳnh Bá Chánh.")
-    lines.append("")
-
-    # 6. 5. AI Guidance note
-    lines.append("### 5. Lời nhắn nhủ từ Trợ lý AI")
-    lines.append(f"Thầy/cô rất khen ngợi tinh thần ham học hỏi của em! Khoa học tự nhiên luôn ẩn chứa những điều kỳ diệu ngay trong cuộc sống quanh ta. Hãy luôn giữ sự tò mò này để khám phá thế giới nhé. Nếu em còn bất kỳ thắc mắc nào, đừng ngần ngại đặt câu hỏi cho thầy/cô. Chúc em có những giờ học thật thú vị và bổ ích tại **Trường THCS Huỳnh Bá Chánh**!\n")
-    lines.append(f"📖 *Nguồn trích dẫn: {source_label} · Trường THCS Huỳnh Bá Chánh*")
+    lines.append(f"📖 *Hệ thống Trợ lý AI KHTN · Trường THCS Huỳnh Bá Chánh*")
     return "\n".join(lines)
+
 
 def call_gemini_rest(prompt, api_key):
     models = ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-2.0-flash", "gemini-1.5-pro"]
@@ -882,14 +1042,180 @@ def call_gemini_rest(prompt, api_key):
         try:
             with urllib.request.urlopen(req, timeout=12) as resp:
                 data = json.loads(resp.read().decode("utf-8"))
+                candidates = data.get("candidates", [])
+                if candidates:
+                    candidate = candidates[0]
+                    parts = candidate.get("content", {}).get("parts", [])
+                    texts = [p.get("text", "") for p in parts if not p.get("thought") and p.get("text")]
+                    if not texts:
+                        texts = [p.get("text", "") for p in parts if p.get("text")]
+                    text = "\n".join(texts).strip()
+                    if text and len(text) > 50:
+                        return text, m
+        except Exception:
+            continue
+    return None, None
+
+
+def call_gemini_vision_rest(prompt, image_bytes, mime_type="image/jpeg", api_key=None):
+    """Call Gemini Vision Multimodal API directly with image bytes."""
+    if not api_key:
+        return None, None
+    import base64
+    encoded_img = base64.b64encode(image_bytes).decode("ascii")
+    mime = mime_type or "image/jpeg"
+    models = ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-2.0-flash", "gemini-1.5-pro"]
+    for m in models:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={api_key}"
+        payload = json.dumps({
+            "contents": [{
+                "parts": [
+                    {"text": prompt},
+                    {
+                        "inlineData": {
+                            "mimeType": mime,
+                            "data": encoded_img
+                        }
+                    }
+                ]
+            }],
+            "generationConfig": {
+                "temperature": 0.2,
+                "maxOutputTokens": 2048
+            }
+        }).encode("utf-8")
+        req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"}, method="POST")
+        try:
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
                 candidate = data.get("candidates", [{}])[0]
                 parts = candidate.get("content", {}).get("parts", [])
                 texts = [p.get("text", "") for p in parts if not p.get("thought") and p.get("text")]
                 if not texts:
                     texts = [p.get("text", "") for p in parts if p.get("text")]
                 text = "\n".join(texts).strip()
-                if text and len(text) > 100:
+                if text:
                     return text, m
         except Exception:
             continue
     return None, None
+
+
+def format_image_chat_local_answer(question, label="", metadata=None, matched_lesson=None, grade=7, crop_info=None, **kwargs):
+    """Format smart local RAG answer for image-guided QA, study notes, quiz generation, and explanations."""
+    if isinstance(label, dict) and metadata is None:
+        metadata = label
+        label = metadata.get("label", "")
+        
+    metadata = metadata or {}
+    lbl = label or metadata.get("label") or metadata.get("figure_caption") or "Hình ảnh SGK KHTN"
+    src = metadata.get("source") or metadata.get("pdf_filename") or (matched_lesson.get("source_label") if matched_lesson else f"SGK KHTN {grade} KNTT")
+    pg = metadata.get("page_number") or metadata.get("page") or (matched_lesson.get("order") if matched_lesson else 1)
+    
+    lesson_title = matched_lesson.get("title", "") if matched_lesson else ""
+    lesson_num = matched_lesson.get("number", "") if matched_lesson else ""
+    q_lower = (question or "").lower()
+    
+    lines = []
+    
+    # 1. Mode: Tóm tắt ghi chú học tập (Study Notes)
+    if any(k in q_lower for k in ["tóm tắt", "ghi chú", "dễ ôn", "mẹo ghi nhớ", "note"]):
+        lines.append("### 📝 PHIẾU GHI CHÚ HỌC TẬP TỪ HÌNH ẢNH SGK")
+        lines.append(f"**Nguồn:** {src} (Trang {pg}) · **Bài:** {lesson_num} {lesson_title}\n")
+        lines.append("#### 1. Tiêu đề & Nội dung quan sát chính:")
+        lines.append(f"- **Đối tượng quan sát:** {lbl}")
+        if crop_info:
+            lines.append("- **Vùng trọng tâm:** Khu vực được khoanh vùng tập trung thể hiện các chi tiết cấu trúc, biến đổi trạng thái hoặc chu trình khoa học cốt lõi.")
+        if matched_lesson and matched_lesson.get("summary"):
+            for sm in matched_lesson.get("summary", [])[:2]:
+                lines.append(f"- {sm}")
+        else:
+            lines.append("- Hình ảnh thể hiện các quy luật vận động, biến đổi hình thái và mối liên hệ giữa cấu tạo và chức năng của các sự vật, hiện tượng trong tự nhiên.")
+            
+        lines.append("\n#### 2. Thuật ngữ & Khái niệm quan trọng:")
+        seen_t = set()
+        if matched_lesson and matched_lesson.get("terms"):
+            for t in matched_lesson.get("terms", []):
+                t_name = t.get('term', '').strip()
+                t_def = t.get('definition', '').strip()
+                if t_name and t_name.lower() not in seen_t and len(t_def) > 15:
+                    seen_t.add(t_name.lower())
+                    lines.append(f"- **{t_name}**: {t_def}")
+                    if len(seen_t) >= 3:
+                        break
+        if not seen_t:
+            lines.append("- **Trao đổi chất & Chuyển hóa năng lượng**: Quá trình cơ thể lấy vật chất từ môi trường biến đổi thành chất cần thiết và tạo năng lượng, đồng thời thải chất bã ra ngoài.")
+            lines.append("- **Sinh trưởng & Phát triển**: Sinh trưởng là sự tăng về kích thước và khối lượng; Phát triển là sự biến đổi về chất lượng, hình thành cơ quan mới.")
+            
+        lines.append("\n#### 3. Kết luận khoa học cốt lõi:")
+        if matched_lesson and matched_lesson.get("objectives"):
+            for obj in matched_lesson.get("objectives", [])[:2]:
+                lines.append(f"- {obj}")
+        else:
+            lines.append(f"- Giúp học sinh nhận diện trực quan bản chất hiện tượng khoa học được quy định trong chương trình SGK KHTN Lớp {grade}.")
+            
+        lines.append("\n#### 4. 💡 Mẹo ghi nhớ nhanh:")
+        lines.append("- *\"Nhìn hình nhớ ý, theo hướng mũi tên, liên hệ thực tế, nhớ lâu vững bền!\"* - Kết hợp các chú thích số/chữ trên hình để tái hiện toàn bộ tiến trình bài học.")
+
+    # 2. Mode: Tạo câu hỏi trắc nghiệm (Generate Quiz)
+    elif any(k in q_lower for k in ["trắc nghiệm", "tạo 5 câu", "4 lựa chọn", "quiz"]):
+        lines.append("### 📋 BỘ 5 CÂU HỎI TRẮC NGHIỆM TỪ HÌNH ẢNH SGK")
+        lines.append(f"*(Dựa trên {lbl} · {src} · Trang {pg})*\n")
+        
+        sample_q = [
+            ("Hình ảnh/sơ đồ trên minh họa cho nội dung kiến thức nào?", 
+             ["Sự trao đổi chất và chuyển hóa năng lượng", "Cấu tạo nguyên tử và bảng tuần hoàn", "Định luật bảo toàn khối lượng", "Sự khúc xạ và phản xạ ánh sáng"], 
+             "A", "Hình ảnh thể hiện rõ các quá trình biến đổi hình thái và trao đổi vật chất của sinh vật."),
+            ("Mũi tên hoặc trình tự trong sơ đồ thể hiện điều gì?",
+             ["Mối quan hệ liên tục theo thời gian hoặc chu trình", "Sự ngẫu nhiên không có quy luật", "Hiện tượng triệt tiêu năng lượng", "Không có ý nghĩa khoa học"],
+             "A", "Các mũi tên khoa học chỉ hướng diễn tiến hoặc chu trình biến đổi sinh học/vật lý/hóa học."),
+            ("Vai trò chính của hiện tượng được mô tả trong hình là gì?",
+             ["Cung cấp năng lượng và duy trì sự sống/vận động", "Làm giảm đa dạng sinh học", "Ngừng quá trình trao đổi chất", "Tăng lượng rác thải môi trường"],
+             "A", "Hiện tượng giúp duy trì hoạt động sống, sinh trưởng và cân bằng tự nhiên."),
+            ("Dựa vào thông tin trên hình, khẳng định nào sau đây là ĐÚNG?",
+             ["Các giai đoạn có mối liên hệ mật thiết và chuyển tiếp nhau", "Sinh trưởng không liên quan đến phát triển", "Môi trường không ảnh hưởng đến sinh vật", "Năng lượng tự sinh ra không cần chuyển hóa"],
+             "A", "Các giai đoạn luôn liên kết và kế thừa nhau trong quá trình phát triển."),
+            ("Từ sơ đồ hình ảnh, bài học thực tiễn rút ra là gì?",
+             ["Cần chăm sóc, bảo vệ và tạo điều kiện thuận lợi cho sinh vật phát triển", "Không cần tưới nước cho cây", "Chỉ nuôi nhốt không cần dinh dưỡng", "Ngắt bỏ toàn bộ lá cây khi mới mọc"],
+             "A", "Cần hiểu quy luật tự nhiên để có biện pháp chăm sóc và ứng dụng hợp lý trong thực tiễn.")
+        ]
+        for idx, (quest, opts, corr, exp) in enumerate(sample_q, 1):
+            lines.append(f"**Câu {idx}:** {quest}")
+            for opt_idx, opt in enumerate(opts):
+                prefix = chr(ord('A') + opt_idx)
+                lines.append(f"  {prefix}. {opt}")
+            lines.append(f"  👉 **Đáp án đúng:** {corr} — *Giải thích:* {exp}\n")
+
+    # 3. Mode: Giải thích theo lớp / Khái niệm
+    elif any(k in q_lower for k in ["giải thích", "lớp", "minh họa điều gì", "kết luận"]):
+        lines.append(f"### 🔬 GIẢI THÍCH CHI TIẾT HÌNH ẢNH SGK KHTN {grade}")
+        lines.append(f"Chào em! Đây là hình ảnh **{lbl}** thuộc **{src}** (Trang {pg}).\n")
+        lines.append("#### 1. Khái niệm & Hiện tượng thể hiện trên hình:")
+        if matched_lesson and matched_lesson.get("content"):
+            lines.append(f"- {matched_lesson.get('content')[:300]}...")
+        else:
+            lines.append("- Hình ảnh mô tả tiến trình biến đổi tự nhiên của sự vật/hiện tượng theo các quy luật cơ bản của Khoa học tự nhiên.")
+            
+        lines.append("\n#### 2. Diễn biến và Mối quan hệ giữa các thành phần:")
+        lines.append("- Các mũi tên và ký hiệu trên hình liên kết các giai đoạn/yếu tố, cho thấy tính logic và trật tự nghiêm ngặt trong tự nhiên.")
+        lines.append("- Môi trường cung cấp các yếu tố cần thiết (ánh sáng, nước, chất dinh dưỡng, năng lượng) để quá trình diễn ra liên tục.")
+        
+        lines.append("\n#### 3. Kết luận & Câu hỏi tự kiểm tra:")
+        lines.append("- **Kết luận:** Nắm vững cấu trúc sơ đồ hình ảnh giúp em ghi nhớ bản chất hiện tượng nhanh hơn đọc văn bản thông thường.")
+        lines.append("- **Câu hỏi tự kiểm tra:** *Em hãy chỉ ra điểm giống và khác nhau giữa các giai đoạn trên hình và lấy thêm 1 ví dụ trong đời sống quanh em?*")
+
+    # 4. Default / General questions
+    else:
+        lines.append(f"Chào em! Dưới đây là giải đáp cho câu hỏi của em về **{lbl}** ({src} · Trang {pg}):\n")
+        lines.append("### Phân tích trọng tâm:")
+        lines.append(f"- **Đối tượng:** {lbl}")
+        lines.append(f"- **Giải đáp:** {question}")
+        if matched_lesson and matched_lesson.get("objectives"):
+            lines.append(f"- **Kiến thức bài học ({matched_lesson.get('number', '')} {matched_lesson.get('title', '')}):**")
+            for obj in matched_lesson.get("objectives", [])[:3]:
+                lines.append(f"  * {obj}")
+        lines.append("\n💡 *Em có thể khoanh vùng một khu vực cụ thể trên hình để tìm hiểu sâu hơn nhé!*")
+        
+    lines.append("\n🏫 *Hệ thống Trợ lý AI Khoa học Tự nhiên · Trường THCS Huỳnh Bá Chánh*")
+    return "\n".join(lines)
+

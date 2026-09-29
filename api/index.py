@@ -1502,13 +1502,12 @@ Chương trình: Khoa học Tự nhiên Lớp {resolved_grade} (Bộ sách Kết
 
 Câu hỏi của học sinh: {question}
 
-HÃY TRẢ LỜI ĐẦY ĐỦ, CHUẨN MỰC SƯ PHẠM THEO CẤU TRÚC SAU:
-1. LỜI CHÀO MỞ ĐẦU: Thân thiện, ấm áp, truyền cảm hứng và khen ngợi câu hỏi hay của học sinh (ví dụ: "Chào em, thầy/cô rất vui khi nhận được câu hỏi của em! Đây là một câu hỏi rất hay, giúp chúng ta hiểu rõ hơn về...").
-2. ĐỊNH NGHĨA & BẢN CHẤT CỐT LÕI: Giải thích khái niệm, định nghĩa và hiện tượng một cách chính xác, kèm phương trình tổng quát hoặc công thức khoa học (nếu có).
-3. VAI TRÒ & Ý NGHĨA KHOA HỌC: Phân tích vai trò đối với sinh giới, cơ thể sinh vật hoặc thực tiễn tự nhiên.
-4. MỐI LIÊN HỆ VỚI SGK KẾT NỐI TRI THỨC: Nêu rõ mối liên hệ với bài học ({matched_lesson.get('number', '')} {matched_lesson.get('title', '')}) và các bài học liên quan trong chương trình SGK KHTN KNTT, trích dẫn chính xác số trang SGK.
-5. VÍ DỤ THỰC TẾ SINH ĐỘNG: Đưa ra ví dụ hoặc ứng dụng thực tế gần gũi với đời sống học sinh THCS.
-6. LỜI NHẮN NHỦ TỪ TRỢ LÝ AI: Động viên tinh thần học tập, khích lệ tình yêu thiên nhiên, nhắc nhở học sinh thoải mái hỏi tiếp nếu còn thắc mắc."""
+HƯỚNG DẪN TRẢ LỜI SƯ PHẠM (TỰ NHIÊN, CHÍNH XÁC, KHÔNG LẶP LẠI KHUÔN MẪU):
+1. Trả lời TRỰC DIỆN vào đúng trọng tâm câu hỏi của học sinh (nếu hỏi "ở đâu/qua đâu" hãy chỉ rõ cơ quan/bào quan; nếu hỏi "tại sao" hãy nêu rõ cơ chế/nguyên nhân; nếu hỏi "so sánh" hãy lập bảng hoặc phân tích điểm giống/khác).
+2. Trình bày rõ ràng bằng Markdown (dùng bullet points, in đậm từ khóa khoa học, công thức hoặc phương trình chữ nếu có).
+3. Đưa ra ví dụ thực tiễn sinh động, gần gũi với lứa tuổi THCS.
+4. Trích dẫn chính xác bài học và trang sách SGK KNTT ({matched_lesson.get('number', '')} {matched_lesson.get('title', '')}).
+5. Giữ giọng văn thân thiện, chuẩn mực nhà giáo, động viên tinh thần tự học của học sinh."""
 
         ai_answer, model_used = call_gemini_rest(prompt, api_key)
         if ai_answer:
@@ -1523,13 +1522,8 @@ HÃY TRẢ LỜI ĐẦY ĐỦ, CHUẨN MỰC SƯ PHẠM THEO CẤU TRÚC SAU:
 
     local_answer = format_local_rag_answer(question, matched_lesson) if callable(format_local_rag_answer) else ""
     if not local_answer or len(local_answer) < 30:
-        local_answer = f"""Chào bạn! Mình là Trợ lý AI Khoa học Tự nhiên của **Trường THCS Huỳnh Bá Chánh**.
-
-Hiện tại bạn đang hỏi về: **{question}**.
-Kho tri thức SGK KHTN Lớp {resolved_grade} (Kết nối tri thức) đã tích hợp đầy đủ 195 bài học, bài tập trắc nghiệm và mô phỏng 3D tại các mục tương ứng trên hệ thống."""
-
-    if not api_key:
-        local_answer += "\n\n💡 *Gợi ý: Để kích hoạt thêm trí tuệ nhân tạo Gemini đàm thoại mở rộng theo thời gian thực, bạn có thể cấu hình biến `GEMINI_API_KEY` trong bảng điều khiển Vercel Settings > Environment Variables.*"
+        local_answer = f"""Chào em! Thầy/cô ghi nhận câu hỏi: **{question}**.
+Nội dung này thuộc chương trình SGK KHTN Lớp {resolved_grade} (Bộ sách Kết nối tri thức với cuộc sống). Em có thể tra cứu bài giảng, làm bài tập trắc nghiệm và trải nghiệm thí nghiệm ảo 3D ngay trên thanh công cụ của hệ thống nhé!"""
 
     return jsonify({
         "answer": local_answer,
