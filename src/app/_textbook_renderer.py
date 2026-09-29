@@ -1077,6 +1077,27 @@ def format_local_rag_answer(question, lesson):
 
 📖 *Nguồn trích dẫn: Bài 9, 10, 11 (SGK KHTN 8 KNTT) · Trường THCS Huỳnh Bá Chánh*"""
 
+    # 14. Câu hỏi: "Cây ăn quả / Cây ăn trái"
+    if any(k in q_lower for k in ["cây ăn quả", "cây ăn trái"]):
+        return """Chào em! Dưới đây là kiến thức toàn diện về **Cây ăn quả** trong chương trình **Khoa học tự nhiên THCS (KNTT)**:
+
+🌳 **1. Khái niệm & Đặc điểm sinh học (KHTN 7)**
+- **Khái niệm:** Cây ăn quả là nhóm thực vật có hoa (thuộc ngành Hạt kín) cho ra quả có cùi thịt hoặc vỏ mọng chứa chất dinh dưỡng, đường, vitamin và khoáng chất phục vụ cho đời sống con người và động vật.
+- **Tập tính sinh thái:** Đa số cây ăn quả (như xoài, nhãn, bưởi, cam, sầu riêng, ổi, mít, dừa...) thuộc **nhóm cây ưa sáng**, cần nhiều ánh nắng mặt trời trực tiếp để quang hợp tổng hợp đường bột và tích lũy dưỡng chất trong quả.
+
+🌱 **2. Các phương pháp nhân giống & Sinh sản (KHTN 7 - Bài 39, 40)**
+1. **Sinh sản sinh dưỡng nhân tạo (Sinh sản vô tính - Bài 39):**
+   - **Chiết cành, Ghép cành, Giâm cành:** Được áp dụng phổ biến nhất ở cây ăn quả nhằm rút ngắn thời gian sinh trưởng, cây nhanh ra hoa tạo quả và giữ nguyên được 100% các đặc tính phẩm chất ngon, năng suất cao của cây mẹ.
+   - **Nuôi cấy mô tế bào:** Nhân nhanh hàng loạt cây giống sạch bệnh, đồng đều.
+2. **Sinh sản hữu tính (Bài 40):**
+   - Cây ra hoa $\\rightarrow$ thụ phấn (nhờ côn trùng như ong bướm hoặc gió) $\\rightarrow$ thụ tinh $\\rightarrow$ bầu nhụy phát triển thành quả, noãn phát triển thành hạt chứa phôi.
+
+💡 **3. Ứng dụng thực tiễn & Chăm sóc cây ăn quả**
+- Cắt tỉa cành thông thoáng để tán lá hứng đủ ánh sáng mặt trời, giúp tăng cường hiệu suất quang hợp.
+- Tưới đủ nước và bón phân hữu cơ, NPK cân đối vào các thời kì: ra hoa, nuôi quả và sau thu hoạch để cây phục hồi sức sống.
+
+📖 *Nguồn trích dẫn: Bài 23, Bài 39 & Bài 40 (SGK KHTN 7 KNTT) · Trường THCS Huỳnh Bá Chánh*"""
+
     # =========================================================================
     # GENERAL KHTN QUERY SYNTHESIS (Concise, Clean, Direct & Encyclopedic)
     # =========================================================================
