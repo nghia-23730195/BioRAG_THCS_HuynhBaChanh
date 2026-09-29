@@ -712,27 +712,27 @@ ENCYCLOPEDIA_KHTN = {
     # Sinh học & KHTN Lớp 7
     "quang hợp": {
         "term": "Quang hợp ở thực vật",
-        "definition": "Là quá trình lá cây và các bộ phận có màu xanh của thực vật sử dụng năng lượng ánh sáng mặt trời đã được chất diệp lục (trong lục lạp) hấp thụ để tổng hợp chất hữu cơ (glucose, tinh bột) từ nước (H2O) rễ hút lên và khí carbon dioxide (CO2) từ không khí, đồng thời giải phóng khí oxygen (O2) ra môi trường.",
+        "definition": "Là quá trình lá cây và các bộ phận có màu xanh của thực vật sử dụng năng lượng ánh sáng (ánh sáng mặt trời hoặc ánh sáng nhân tạo) đã được chất diệp lục (trong lục lạp) hấp thụ để tổng hợp chất hữu cơ (glucose, tinh bột) từ nước (H2O) rễ hút lên và khí carbon dioxide (CO2) từ không khí, đồng thời giải phóng khí oxygen (O2) ra môi trường.",
         "location": "Diễn ra chủ yếu ở **lá cây** (nơi tập trung nhiều lục lạp nhất). Bào quan thực hiện là **lục lạp** (chứa chất diệp lục). Sự trao đổi khí CO2 và O2 diễn ra qua hệ thống **khí khổng** ở lớp biểu bì lá. Nước và chất khoáng được rễ hút lên qua **mạch gỗ**, chất hữu cơ được vận chuyển đến các bộ phận khác qua **mạch rây**.",
         "details": "Phương trình chữ: Nước + Khí carbon dioxide + Năng lượng ánh sáng (Diệp lục) → Glucose + Khí oxygen.",
         "role": "Tạo ra chất hữu cơ nuôi sống toàn bộ sinh vật trên Trái Đất; cung cấp khí O2 cho hô hấp và hấp thụ CO2 giúp làm sạch bầu khí quyển, điều hòa khí hậu toàn cầu.",
-        "example": "Trồng nhiều cây xanh xung quanh trường học và khu dân cư giúp không khí trong lành, mát mẻ hơn nhờ quá trình quang hợp hấp thụ CO2 và nhả khí O2."
+        "example": "Trồng cây xanh dưới đèn LED quang hợp chuyên dụng trong nhà kính giúp cây sinh trưởng tốt cả ban đêm hoặc trong điều kiện thiếu nắng."
     },
     "hô hấp tế bào": {
         "term": "Hô hấp tế bào",
         "definition": "Là quá trình phân giải các phân tử chất hữu cơ (chủ yếu là glucose) diễn ra trong tế bào với sự tham gia của khí oxygen, tạo ra sản phẩm là carbon dioxide (CO2), nước (H2O) và giải phóng năng lượng dưới dạng ATP cung cấp cho mọi hoạt động sống của tế bào và cơ thể.",
-        "location": "Diễn ra ở **tất cả các tế bào sống** của thực vật (rễ, thân, lá, hoa, quả, hạt) và sinh vật. Bào quan thực hiện chủ yếu là **ti thể** (được ví như nhà máy năng lượng của tế bào). Ở thực vật, sự trao đổi khí O2/CO2 phục vụ hô hấp diễn ra qua **khí khổng** ở lá và **bì khổng** hoặc khoảng gian bào ở thân, rễ.",
+        "location": "Diễn ra ở **tất cả các tế bào sống** của thực vật (rễ, thân, lá, hoa, quả, hạt) và sinh vật. Bào quan thực hiện chủ yếu là **ti thể** (nhà máy năng lượng của tế bào). Về con đường trao đổi khí: Lá trao đổi khí qua **khí khổng**; Thân cây trao đổi khí qua **bì khổng** (ở thân gỗ); Rễ trao đổi khí với không khí trong đất qua **bề mặt rễ (lông hút)**; Khí sau đó di chuyển qua **khoảng gian bào** bên trong các mô.",
         "details": "Phương trình chữ: Glucose + Khí oxygen → Khí carbon dioxide + Nước + Năng lượng (ATP + Nhiệt).",
         "role": "Cung cấp nguồn năng lượng ATP duy nhất cho sự phân chia tế bào, vận chuyển chất, co cơ, dẫn truyền xung thần kinh và duy trì thân nhiệt.",
-        "example": "Hạt giống khi nảy mầm hoặc rễ cây đang hút khoáng hô hấp rất mạnh; khi chúng ta vận động nhanh, nhịp thở tăng để cung cấp đủ oxygen cho ti thể hô hấp tạo ATP."
+        "example": "Hạt giống khi nảy mầm hoặc rễ cây đang hút khoáng hô hấp rất mạnh; xới đất tơi xốp giúp rễ dễ lấy oxygen trong đất qua bề mặt rễ."
     },
     "trao đổi khí": {
         "term": "Trao đổi khí ở sinh vật",
         "definition": "Là quá trình sinh vật lấy khí O2 từ môi trường vào cơ thể và thải khí CO2 ra ngoài (phục vụ hô hấp tế bào), hoặc lấy khí CO2 và thải khí O2 (ở thực vật khi quang hợp) theo cơ chế khuếch tán từ nơi có nồng độ cao đến nơi có nồng độ thấp.",
-        "location": "Ở thực vật: Trao đổi khí diễn ra chủ yếu qua **khí khổng** ở lá và **bì khổng** ở thân cây già. Ở động vật: Diễn ra qua **bề mặt cơ thể** (giun đất, ếch nhái), qua **hệ thống ống khí** (côn trùng), qua **mang** (cá, tôm) hoặc qua **phổi** (bò sát, chim, thú, người).",
+        "location": "Ở thực vật: Trao đổi khí diễn ra qua **khí khổng** ở lá, qua **bì khổng** ở thân cây già/thân gỗ, và qua **bề mặt rễ** với không khí trong đất (khí khuếch tán bên trong mô qua các khoảng gian bào). Ở động vật: Diễn ra qua **bề mặt cơ thể** (giun đất, ếch nhái), qua **hệ thống ống khí** (côn trùng), qua **mang** (cá, tôm) hoặc qua **phổi** (bò sát, chim, thú, người).",
         "details": "Cơ chế khuếch tán không tiêu tốn năng lượng ATP, diễn ra liên tục qua bề mặt ẩm ướt và có diện tích tiếp xúc lớn.",
         "role": "Đảm bảo cung cấp đủ nguyên liệu khí cho quang hợp và hô hấp tế bào, duy trì sự sống của cơ thể.",
-        "example": "Khi bón phân hoặc tưới nước hợp lý, đất tơi xốp giúp rễ cây dễ dàng trao đổi khí O2 qua các khoảng gian bào, tránh bị ngập úng thối rễ."
+        "example": "Khi bón phân hoặc tưới nước hợp lý, đất tơi xốp giúp rễ cây dễ dàng lấy O2 qua bề mặt rễ, tránh bị ngập úng thối rễ."
     },
     "khí khổng": {
         "term": "Khí khổng (ở biểu bì lá)",
@@ -849,10 +849,10 @@ ENCYCLOPEDIA_KHTN = {
     "hô hấp": {
         "term": "Hô hấp tế bào ở thực vật và sinh vật",
         "definition": "Là quá trình phân giải chất hữu cơ (glucose) với sự tham gia của O2 để giải phóng năng lượng ATP, CO2 và nước diễn ra tại bào quan ti thể ở tất cả các tế bào sống.",
-        "location": "Diễn ra ở **tất cả các tế bào sống** của thực vật (rễ, thân, lá, hoa, hạt) trong bào quan **ti thể**, trao đổi khí qua **khí khổng** ở lá và **bì khổng** ở thân/rễ.",
+        "location": "Diễn ra ở **tất cả các tế bào sống** của thực vật (rễ, thân, lá, hoa, hạt) trong bào quan **ti thể**. Con đường trao đổi khí: Lá qua **khí khổng**, thân cây qua **bì khổng**, rễ qua **bề mặt rễ** với không khí trong đất (khí khuếch tán qua **khoảng gian bào** bên trong các mô).",
         "details": "Phương trình chữ: Glucose + Khí oxygen → Khí carbon dioxide + Nước + Năng lượng (ATP + Nhiệt).",
         "role": "Cung cấp năng lượng ATP cho mọi hoạt động sinh lí của tế bào.",
-        "example": "Hạt đang nảy mầm hoặc các mô phân sinh đỉnh rễ hô hấp rất mạnh để giải phóng năng lượng cho phân chia tế bào."
+        "example": "Hạt đang nảy mầm hoặc các mô phân sinh đỉnh rễ hô hấp rất mạnh để giải phóng năng lượng cho phân chia tế bào; xới xáo đất giúp rễ cây hấp thụ khí O2 dễ dàng qua bề mặt rễ."
     },
     "diệp lục": {
         "term": "Chất diệp lục (Chlorophyll) & Màu xanh của lá",
@@ -924,22 +924,28 @@ def format_local_rag_answer(question, lesson):
         lines.append(f"Chào em! Đối với câu hỏi **\"{question}\"**, dưới đây là vị trí và cơ quan - bào quan thực hiện cụ thể ở thực vật:\n")
         lines.append("### 🌿 1. Vị trí & Cơ quan diễn ra Quang hợp và Hô hấp ở thực vật")
         lines.append("- **1. Quá trình Quang hợp (ở lá cây & lục lạp):**")
-        lines.append("  * **Cơ quan thực hiện:** Chủ yếu diễn ra ở **lá cây** (nơi có diện tích bề mặt lớn và tập trung nhiều lục lạp nhất).")
-        lines.append("  * **Bào quan thực hiện:** Bào quan **lục lạp** (chứa chất diệp lục hấp thu năng lượng ánh sáng mặt trời).")
-        lines.append("  * **Cơ quan trao đổi khí & nước:** Khí $CO_2$ và $O_2$ khuếch tán ra vào qua **khí khổng** ở lớp biểu bì lá; nước và muối khoáng được rễ hút lên qua **mạch gỗ**, chất hữu cơ tạo ra được chuyển đi qua **mạch rây**.")
-        lines.append("  * **Thời gian:** Chỉ diễn ra vào **ban ngày** (khi có ánh sáng mặt trời).\n")
+        lines.append("  * **Cơ quan thực hiện:** Diễn ra chủ yếu ở **lá cây** (nơi có diện tích bề mặt rộng và tập trung nhiều lục lạp nhất).")
+        lines.append("  * **Bào quan thực hiện:** Bào quan **lục lạp** (chứa chất diệp lục hấp thu năng lượng ánh sáng).")
+        lines.append("  * **Con đường trao đổi khí & vận chuyển chất:** Khí $CO_2$ và $O_2$ khuếch tán ra vào qua hệ thống **khí khổng** ở biểu bì lá; nước và muối khoáng được rễ hút lên qua **mạch gỗ**, chất hữu cơ tạo ra được chuyển đi qua **mạch rây**; khí di chuyển giữa các tế bào qua **khoảng gian bào**.")
+        lines.append("  * **Điều kiện thực hiện:** Diễn ra **khi có ánh sáng** (bao gồm ánh sáng mặt trời tự nhiên hoặc ánh sáng nhân tạo như đèn LED quang hợp trong nhà kính).\n")
         lines.append("- **2. Quá trình Hô hấp tế bào (ở mọi tế bào sống & ti thể):**")
         lines.append("  * **Cơ quan thực hiện:** Diễn ra ở **tất cả các cơ quan sống** của thực vật (rễ, thân, lá, hoa, quả, hạt).")
         lines.append("  * **Bào quan thực hiện:** Bào quan **ti thể** (nơi oxy hóa chất hữu cơ giải phóng năng lượng ATP).")
-        lines.append("  * **Cơ quan trao đổi khí:** Trao đổi khí $O_2$ và $CO_2$ qua hệ thống **khí khổng** ở lá và **bì khổng / khoảng gian bào** ở rễ và thân cây.")
-        lines.append("  * **Thời gian:** Diễn ra **liên tục suốt ngày đêm** (24/24h) ở mọi tế bào sống.\n")
+        lines.append("  * **Con đường trao đổi khí:**")
+        lines.append("    + Ở **lá**: Trao đổi khí $O_2$ và $CO_2$ chủ yếu qua **khí khổng**.")
+        lines.append("    + Ở **thân cây** (đặc biệt thân gỗ): Trao đổi khí qua **bì khổng**.")
+        lines.append("    + Ở **rễ cây**: Trao đổi khí trực tiếp với không khí trong các khe đất qua **bề mặt rễ (vùng lông hút)**.")
+        lines.append("    + Bên trong các mô: Khí khuếch tán và di chuyển qua hệ thống **khoảng gian bào** giữa các tế bào.")
+        lines.append("  * **Thời gian:** Diễn ra **liên tục suốt ngày đêm** (24/24h) ở mọi tế bào sống, không phụ thuộc vào ánh sáng.\n")
         
         lines.append("### 🔬 2. Bảng đối chiếu nhanh bản chất hai quá trình:")
         lines.append("| Đặc điểm | Quang hợp ở thực vật | Hô hấp tế bào ở thực vật |")
         lines.append("| :--- | :--- | :--- |")
-        lines.append("| **Cơ quan chính** | Lá cây (các bộ phận màu xanh) | Tất cả cơ quan sống (rễ, thân, lá, hạt,...) |")
+        lines.append("| **Cơ quan chính** | Lá cây (các bộ phận màu xanh) | Tất cả cơ quan sống (rễ, thân, lá, hoa, hạt,...) |")
         lines.append("| **Bào quan** | **Lục lạp** (chứa diệp lục) | **Ti thể** |")
-        lines.append("| **Trao đổi khí qua** | **Khí khổng** ở lá (hút $CO_2$, nhả $O_2$) | **Khí khổng & Bì khổng** (hút $O_2$, nhả $CO_2$) |")
+        lines.append("| **Con đường trao đổi khí** | Qua **khí khổng** ở biểu bì lá (lấy $CO_2$, thải $O_2$) | Lá qua **khí khổng**, thân qua **bì khổng**, rễ qua **bề mặt rễ** (lấy $O_2$, thải $CO_2$) |")
+        lines.append("| **Đường dẫn khí trong mô** | Khuếch tán qua các **khoảng gian bào** | Khuếch tán qua các **khoảng gian bào** |")
+        lines.append("| **Điều kiện ánh sáng** | **Khi có ánh sáng** (mặt trời / nhân tạo) | **Liên tục ngày đêm** (không cần ánh sáng) |")
         lines.append("| **Chuyển hóa năng lượng** | Tích lũy quang năng thành hóa năng | Giải phóng hóa năng thành nhiệt và ATP |")
         lines.append("")
 
