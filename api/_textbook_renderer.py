@@ -1098,6 +1098,38 @@ def format_local_rag_answer(question, lesson):
 
 📖 *Nguồn trích dẫn: Bài 23, Bài 39 & Bài 40 (SGK KHTN 7 KNTT) · Trường THCS Huỳnh Bá Chánh*"""
 
+    # 15. Câu hỏi: "Chiết cành / Ghép cành / Giâm cành / Nhân giống vô tính / Nuôi cấy mô"
+    if any(k in q_lower for k in ["giâm cành", "chiết cành", "ghép cành", "ghép cây", "nhân giống vô tính", "nuôi cấy mô", "sinh sản sinh dưỡng"]):
+        return """Chào em! Dưới đây là phân tích chi tiết và chuẩn xác về các **Phương pháp nhân giống sinh dưỡng (Sinh sản vô tính ở thực vật)** theo chương trình **KHTN 7 (Bài 39: Sinh sản vô tính ở sinh vật - Trang 159–163)**:
+
+🌱 **1. Bản chất khoa học của nhân giống vô tính**
+- Con người đã ứng dụng khả năng sinh sản sinh dưỡng (hình thành cơ thể mới từ cơ quan sinh dưỡng như thân, cành, lá, rễ) của thực vật để phát triển các phương pháp nhân giống nhân tạo phục vụ sản xuất nông nghiệp.
+
+🌿 **2. Các phương pháp nhân giống vô tính phổ biến**
+
+1. ✂️ **Giâm cành (Trang 161 - Hình 39.7):**
+   - **Cách tiến hành:** Cắt một đoạn cành bánh tẻ (cành không quá non, không quá già) có đủ mắt và chồi đem cắm vào giá thể ẩm (đất cát, xơ dừa). Sau một thời gian, từ các mắt chồi sẽ mọc ra rễ và phát triển thành cây con hoàn chỉnh.
+   - **Cây trồng áp dụng:** Mía, sắn (khoai mì), dâm bụt, rau muống, hoa hồng, rau ngót, khoai lang...
+
+2. 🪴 **Chiết cành (Trang 162 - Hình 39.8):**
+   - **Cách tiến hành:** Bóc một khoanh vỏ ở cành cây khỏe mạnh, cạo sạch lớp tượng tầng (tầng sinh gỗ), đắp bầu đất ẩm giàu mùn bọc kín bằng nilon. Sau một thời gian, rễ sẽ đâm ra ở mép vỏ phía trên vết cắt; khi rễ phát triển đầy đủ thì cắt cành đem trồng ra đất.
+   - **Cây trồng áp dụng:** Các cây ăn quả thân gỗ khó ra rễ bằng giâm cành như cam, chanh, bưởi, nhãn, vải, ổi, xoài...
+
+3. 🌿 **Ghép cành / Ghép mắt (Trang 162 - Hình 39.9):**
+   - **Cách tiến hành:** Dùng một bộ phận sinh dưỡng (mắt ghép, chồi ghép hoặc cành ghép) của cây có đặc tính tốt gắn vào một cây khác cùng họ (gốc ghép có bộ rễ khỏe) sao cho tầng sinh mô của chúng áp sát và liền lại với nhau.
+   - **Cây trồng áp dụng:** Cây ăn quả và hoa cảnh (ghép xoài, ghép bưởi, ghép táo, ghép hoa hồng nhiều màu trên cùng một gốc...).
+
+4. 🧪 **Nuôi cấy tế bào và mô thực vật (Trang 163 - Hình 39.10):**
+   - **Cách tiến hành:** Lấy tế bào hoặc mô non nuôi trong môi trường dinh dưỡng vô trùng trong ống nghiệm $\\rightarrow$ tạo mô sẹo $\\rightarrow$ dùng hormone sinh trưởng kích thích phân hóa thành hàng loạt cây con hoàn chỉnh.
+   - **Cây trồng áp dụng:** Nhân nhanh các giống cây quý hiếm và cây công nghiệp (hoa phong lan, sâm Ngọc Linh, trầm hương, chuối cấy mô...).
+
+⭐ **3. Ưu điểm vượt trội của các phương pháp nhân giống vô tính**
+- **Giữ nguyên đặc tính:** Con sinh ra giữ trọn vẹn 100% các phẩm chất ngon, năng suất cao, kháng bệnh tốt của cây mẹ.
+- **Rút ngắn thời gian sinh trưởng:** Cây sớm ra hoa kết trái hơn rất nhiều so với trồng bằng hạt.
+- **Hiệu quả kinh tế cao:** Nhân nhanh với số lượng lớn trong thời gian ngắn.
+
+📖 *Nguồn trích dẫn: Bài 39: Sinh sản vô tính ở sinh vật (SGK KHTN 7 KNTT, Trang 159–163) · Trường THCS Huỳnh Bá Chánh*"""
+
     # =========================================================================
     # GENERAL KHTN QUERY SYNTHESIS (Concise, Clean, Direct & Encyclopedic)
     # =========================================================================

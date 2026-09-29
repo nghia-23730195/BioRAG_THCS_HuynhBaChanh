@@ -282,23 +282,58 @@ def get_relevant_images_for_query(question, matched_lesson=None, grade=None, lim
     resolved_grade = int(grade or (matched_lesson.get("grade") if matched_lesson else 7) or 7)
     clean_stem = f"SGK KHTN {resolved_grade} KNTT"
     
-    # 1. Primary Priority: Authentic scanned textbook pages corresponding to the matched lesson
+    # 1. Primary Priority: Check exact topic page resolution or authentic scanned textbook pages
+    TOPIC_EXACT_PAGES = [
+        # KHTN 7
+        (7, ["giâm cành", "chiết cành", "ghép cành", "ghép cây", "nhân giống vô tính", "nuôi cấy mô"], [161, 162]),
+        (7, ["quang hợp tốt", "yếu tố ảnh hưởng quang hợp", "ưa sáng", "ưa bóng", "cây ưa sáng", "cây ưa bóng"], [104, 105]),
+        (7, ["quang hợp ở đâu", "cơ quan quang hợp", "bào quan quang hợp", "lục lạp", "khí khổng"], [101, 102]),
+        (7, ["phòng ngủ", "ban đêm", "để cây trong phòng", "hô hấp tế bào", "ti thể"], [111, 112]),
+        (7, ["xới đất", "xới xáo", "ngập úng", "lông hút", "mạch gỗ", "mạch rây"], [127, 128]),
+        (7, ["cây ăn quả", "cây ăn trái"], [159, 161]),
+        # KHTN 6
+        (6, ["nhân sơ", "nhân thực", "tế bào nhân sơ", "tế bào nhân thực"], [65, 66]),
+        (6, ["virus", "vi rút"], [83, 84]),
+        (6, ["vi khuẩn", "bacteria"], [86, 87]),
+        # KHTN 8
+        (8, ["acsimet", "ác-si-mét", "archimedes", "lực đẩy ác", "tàu nổi"], [63, 64]),
+        (8, ["acid", "axit", "base", "bazơ", "thang ph"], [38, 42]),
+        # KHTN 9
+        (9, ["định luật ôm", "định luật ohm", "điện trở"], [41, 42]),
+        (9, ["đột biến gen", "đột biến gene"], [172, 173]),
+    ]
+
+    pages_to_show = []
+    q_low = (question or "").lower()
+
+    for req_g, phrases, p_list in TOPIC_EXACT_PAGES:
+        if resolved_grade == req_g and any(p in q_low for p in phrases):
+            pages_to_show.extend(p_list)
+            break
+
     if matched_lesson:
         source_label = matched_lesson.get("source_label", "")
-        pages_to_show = []
-        m_range = re.search(r'Trang\s+(\d+)(?:[–-](\d+))?', source_label)
-        if m_range:
-            p_start = int(m_range.group(1))
-            p_end = int(m_range.group(2)) if m_range.group(2) else p_start
-            for p in range(p_start, min(p_start + limit, p_end + 1)):
-                pages_to_show.append(p)
-        
         if not pages_to_show:
-            for s in matched_lesson.get("generation_sources", []):
-                p = s.get("page")
+            # Check illustrations in matched_lesson
+            for ill in matched_lesson.get("illustrations", []):
+                p = ill.get("page")
                 if p and p not in pages_to_show:
                     pages_to_show.append(p)
-                    
+            
+            m_range = re.search(r'Trang\s+(\d+)(?:[–-](\d+))?', source_label)
+            if m_range:
+                p_start = int(m_range.group(1))
+                p_end = int(m_range.group(2)) if m_range.group(2) else p_start
+                for p in range(p_start, min(p_start + limit, p_end + 1)):
+                    if p not in pages_to_show:
+                        pages_to_show.append(p)
+            
+            if not pages_to_show:
+                for s in matched_lesson.get("generation_sources", []):
+                    p = s.get("page")
+                    if p and p not in pages_to_show:
+                        pages_to_show.append(p)
+                        
         for printed_p in pages_to_show[:limit]:
             if printed_p not in seen:
                 seen.add(printed_p)
