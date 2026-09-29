@@ -1031,22 +1031,19 @@ def format_local_rag_answer(question, lesson):
         lines.append("")
 
     elif any(w in q_lower for w in ["quang hợp tốt", "quang hợp mạnh", "quang hợp hiệu quả", "cây nào quang hợp", "thực vật nào quang hợp", "cây ưa sáng", "cây ưa bóng", "nhóm cây quang hợp", "yếu tố ảnh hưởng đến quang hợp", "yếu tố ảnh hưởng quang hợp", "điều kiện quang hợp", "làm thế nào để cây quang hợp tốt"]):
-        lines.append(f"Chào em! Về câu hỏi **\"{question}\"**, kiến thức trọng tâm trong chương trình **KHTN 7 (Bài 23: Một số yếu tố ảnh hưởng đến quang hợp)** được phân tích cụ thể như sau:\n")
-        lines.append("### 🌿 1. Phân loại 2 nhóm thực vật theo nhu cầu ánh sáng & khả năng quang hợp")
-        lines.append("- **1. Nhóm cây ưa sáng (quang hợp tốt ở nơi quang đãng, cường độ ánh sáng mạnh):**")
-        lines.append("  * **Đặc điểm thích nghi:** Thân cao vươn lên tầng trên để đón nắng trực tiếp; phiến lá thường nhỏ, dày, mặt trên bóng (có lớp cutin dày) hoặc có lông mịn để phản xạ bớt bức xạ nhiệt, màu xanh nhạt; lá xếp nghiêng đón nắng.")
-        lines.append("  * **Đại diện tiêu biểu:** Cây lương thực (lúa, ngô, mía, sắn), cây ăn quả (xoài, nhãn, bưởi, dừa), cây lâm nghiệp / cây công trình (phi lao, bạch đàn, phượng vĩ, thông, xà cừ, hướng dương...).")
-        lines.append("- **2. Nhóm cây ưa bóng (quang hợp tốt ở nơi râm mát, cường độ ánh sáng yếu, dưới tán cây khác hoặc trong nhà):**")
-        lines.append("  * **Đặc điểm thích nghi:** Thân nhỏ, tán lá rộng; phiến lá to, mỏng, gân lá mảnh, màu xanh sẫm (chứa nhiều chất diệp lục $b$ để hấp thụ tối đa ánh sáng tán xạ yếu); lá nằm ngang đón tia sáng xiên.")
-        lines.append("  * **Đại diện tiêu biểu:** Cây gia vị (lá lốt, trầu không, gừng, nghệ), cây dưới tán rừng (dương xỉ, phong lan), cây trồng trang trí trong nhà (kim tiền, vạn niên thanh, lan ý, thiết mộc lan, phát tài...).\n")
-        lines.append("### ☀️ 2. Bốn yếu tố môi trường then chốt giúp thực vật quang hợp tối ưu")
-        lines.append("- **1. Ánh sáng:** Cường độ ánh sáng và quang chu kì thích hợp cho từng loài cây (cây ưa sáng cần ánh sáng mạnh trực tiếp, cây ưa bóng cần ánh sáng tán xạ).")
-        lines.append("- **2. Nước:** Vừa là nguyên liệu trực tiếp của quang hợp, vừa giữ sức trương để mở khí khổng đón khí $CO_2$. Khi thiếu nước, khí khổng đóng lại làm giảm hoặc ngưng trệ quang hợp.")
-        lines.append("- **3. Nồng độ khí $CO_2$:** Khí $CO_2$ trong khí quyển chiếm khoảng $0,03\\% - 0,04\\%$; tăng nồng độ $CO_2$ đến điểm bão hòa thích hợp (khoảng $0,15\\% - 0,2\\%$) sẽ giúp cây tăng vọt hiệu suất quang hợp.")
-        lines.append("- **4. Nhiệt độ:** Nhiệt độ thuận lợi nhất cho đa số thực vật quang hợp là **$25^\\circ C - 35^\\circ C$**. Nhiệt độ quá lạnh (< $10^\\circ C$) hoặc quá nóng (> $40^\\circ C$) làm enzyme quang hợp bị giảm hoạt tính.\n")
-        lines.append("### 💡 3. Ứng dụng thực tiễn trong nông nghiệp & trồng trọt")
-        lines.append("- **Trồng xen canh hợp lý:** Trồng kết hợp cây ưa sáng ở tầng trên (như ngô, chuối, cau) với cây ưa bóng ở tầng dưới (như đỗ tương, gừng, lá lốt) để tận dụng triệt để không gian và nguồn ánh sáng.")
-        lines.append("- **Chiếu sáng nhân tạo trong nhà kính:** Sử dụng hệ thống đèn LED quang hợp chuyên dụng để thúc đẩy cây sinh trưởng nhanh, tăng năng suất trái vụ (ví dụ: thanh long, dâu tây, hoa cúc).")
+        lines.append(f"Chào em! Đối với câu hỏi **\"{question}\"**, kiến thức trọng tâm trong chương trình **KHTN 7 (Bài 23: Một số yếu tố ảnh hưởng đến quang hợp)** được giải đáp cụ thể như sau:\n")
+        lines.append("### 🌿 1. Bản chất khoa học & Phân loại nhóm thực vật")
+        lines.append("- **Nguyên tắc cốt lõi:** **Không có loài cây nào quang hợp tốt nhất trong mọi điều kiện.** Hiệu quả quang hợp của mỗi loài phụ thuộc chặt chẽ vào đặc điểm thích nghi của cây với cường độ ánh sáng và môi trường sống:")
+        lines.append("  * **Nhóm cây ưa sáng:** Quang hợp thuận lợi ở nơi có nhiều ánh sáng, quang đãng. *Ví dụ:* cây ngô, lúa, thông, phi lao, dừa, mía, hoa giấy, hướng dương...")
+        lines.append("  * **Nhóm cây ưa bóng:** Quang hợp thuận lợi ở nơi râm mát, cường độ ánh sáng yếu, dưới tán cây khác hoặc trong nhà. *Ví dụ:* cây lá lốt, trầu không, gừng, nghệ, dương xỉ, lan ý, vạn niên thanh...")
+        lines.append("\n### ☀️ 2. Các yếu tố môi trường quyết định hiệu quả quang hợp")
+        lines.append("- **Ánh sáng:** Cung cấp năng lượng cho quang hợp. Tuy nhiên, **ánh sáng quá mạnh** (như nắng gắt giữa trưa) có thể làm khí khổng đóng lại để chống mất nước, gây tổn thương diệp lục và làm giảm hiệu quả quang hợp.")
+        lines.append("- **Nước:** Vừa là nguyên liệu trực tiếp của phản ứng quang hợp, vừa giữ sức trương để mở khí khổng đón khí $CO_2$. Thiếu nước làm quang hợp giảm mạnh hoặc ngừng trệ.")
+        lines.append("- **Nồng độ khí $CO_2$:** Nồng độ $CO_2$ trong không khí thích hợp giúp tăng hiệu suất quang hợp.")
+        lines.append("- **Nhiệt độ:** Khoảng nhiệt độ thuận lợi nhất cho đa số thực vật quang hợp là **$25^\\circ C - 35^\\circ C$**; nhiệt độ quá cao (> $40^\\circ C$) hoặc quá lạnh (< $10^\\circ C$) đều làm giảm tốc độ quang hợp.\n")
+        lines.append("### 💡 3. Ứng dụng thực tiễn trong trồng trọt")
+        lines.append("- **Trồng xen canh:** Trồng xen cây ưa sáng (tầng trên như ngô, chuối) với cây ưa bóng (tầng dưới như đỗ, gừng, lá lốt) để tận dụng tối đa nguồn ánh sáng.")
+        lines.append("- **Điều khiển ánh sáng:** Sử dụng đèn LED quang hợp chuyên dụng trong nhà kính để thúc đẩy cây sinh trưởng tốt cả ban đêm hoặc trong điều kiện thiếu nắng.")
         lines.append("")
 
     elif any(w in q_lower for w in ["phòng ngủ", "ban đêm", "để cây trong phòng"]) and any(w in q_lower for w in ["cây", "hoa", "thực vật", "nguy hiểm", "ngạt", "không nên"]):
@@ -1135,11 +1132,16 @@ def format_local_rag_answer(question, lesson):
 
     # 3. Exact Textbook Reference
     lines.append("### 📚 3. Vị trí bài học trong SGK Kết nối tri thức")
-    lines.append(f"Em có thể xem chi tiết bài giảng và hình minh họa tại **{number}: {title}** ({source_label}).")
-    objectives = lesson.get("objectives", [])
-    if objectives:
-        for obj in objectives[:2]:
-            lines.append(f"- {obj}")
+    if any(w in q_lower for w in ["quang hợp tốt", "quang hợp mạnh", "quang hợp hiệu quả", "cây nào quang hợp", "thực vật nào quang hợp", "cây ưa sáng", "cây ưa bóng", "nhóm cây quang hợp", "yếu tố ảnh hưởng đến quang hợp", "yếu tố ảnh hưởng quang hợp"]):
+        lines.append("Em có thể xem chi tiết bài giảng và hình minh họa tại **Bài 23: Một số yếu tố ảnh hưởng đến quang hợp** (SGK KHTN 7 KNTT · Bài 23 · Trang 104–107).")
+        lines.append("- Nêu được một số yếu tố chủ yếu ảnh hưởng đến quang hợp (ánh sáng, nước, hàm lượng khí carbon dioxide, nhiệt độ).")
+        lines.append("- Nêu được ý nghĩa thực tiễn của việc trồng và bảo vệ cây xanh; phân biệt được nhóm cây ưa sáng và cây ưa bóng.")
+    else:
+        lines.append(f"Em có thể xem chi tiết bài giảng và hình minh họa tại **{number}: {title}** ({source_label}).")
+        objectives = lesson.get("objectives", [])
+        if objectives:
+            for obj in objectives[:2]:
+                lines.append(f"- {obj}")
     lines.append("")
     lines.append(f"📖 *Hệ thống Trợ lý AI KHTN · Trường THCS Huỳnh Bá Chánh*")
     return "\n".join(lines)
