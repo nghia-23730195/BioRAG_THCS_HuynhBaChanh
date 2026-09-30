@@ -40,13 +40,29 @@ class HybridRetriever:
         image_retriever_k: int = IMAGE_RETRIEVER_K,
     ):
         self.text_db = VectorDB()
-        self.image_db = ImageVectorDB()
+        self._image_db = None
 
         self.text_k = text_retriever_k
         self.image_k = image_retriever_k
 
-        self._text_retriever = self.text_db.get_retriever({"k": self.text_k})
-        self._image_retriever = self.image_db.get_retriever({"k": self.image_k})
+        self._text_retriever = None
+        self._image_retriever = None
+
+    @property
+    def image_db(self) -> ImageVectorDB:
+        if self._image_db is None:
+            self._image_db = ImageVectorDB()
+        return self._image_db
+
+    def get_text_retriever(self):
+        if self._text_retriever is None:
+            self._text_retriever = self.text_db.get_retriever({"k": self.text_k})
+        return self._text_retriever
+
+    def get_image_retriever(self):
+        if self._image_retriever is None:
+            self._image_retriever = self.image_db.get_retriever({"k": self.image_k})
+        return self._image_retriever
 
     def search(self, query: str, text_k: int = None, image_k: int = None) -> SearchResult:
         """Perform hybrid search: text + image simultaneously."""
@@ -86,7 +102,7 @@ class HybridRetriever:
     def search_text_only(self, query: str) -> List[Document]:
         """Search text collection only."""
         try:
-            return self._text_retriever.invoke(query)
+            return self.get_text_retriever().invoke(query)
         except Exception as e:
             logger.error(f"Text retrieval failed: {e}")
             return []
@@ -94,7 +110,7 @@ class HybridRetriever:
     def search_image_only(self, query: str) -> List[Document]:
         """Search image collection only."""
         try:
-            return self._image_retriever.invoke(query)
+            return self.get_image_retriever().invoke(query)
         except Exception as e:
             logger.error(f"Image retrieval failed: {e}")
             return []

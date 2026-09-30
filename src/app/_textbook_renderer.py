@@ -816,6 +816,41 @@ ENCYCLOPEDIA_KHTN = {
         "details": "Khối lượng riêng là một đại lượng vật lí đặc trưng cho từng chất tinh khiết ở nhiệt độ xác định. Trọng lượng riêng: d = 10 × D (đơn vị N/m³).",
         "role": "Dùng để nhận biết chất, kiểm tra độ tinh khiết của vàng bạc, tính toán tải trọng kết cấu trong xây dựng và cơ khí.",
         "example": "Nước ngọt có khối lượng riêng khoảng 1000 kg/m³, trong khi sắt có khối lượng riêng 7800 kg/m³, do đó sắt nặng gấp 7,8 lần nước cùng thể tích."
+    },
+    "dương xỉ": {
+        "term": "Dương xỉ (Ngành Dương xỉ)",
+        "definition": "Là nhóm thực vật có mạch dẫn (đã có rễ, thân, lá thật sự), sinh sản bằng bào tử nằm trong các ổ túi bào tử ở mặt dưới của lá già (SGK KHTN 6, Bài 34).",
+        "details": "Đặc điểm nhận biết: Lá non cuộn tròn ở đầu hình đầu cuộn; khi trưởng thành xòe rộng. Thân rễ ngầm hoặc thân đứng, có mạch dẫn hoàn thiện để dẫn truyền nước và muối khoáng.",
+        "role": "Góp phần giữ ẩm cho đất, tạo mùn rừng nhiệt đới, một số loài dùng làm cảnh, làm thuốc và lọc nước trong nông nghiệp.",
+        "example": "Cây dương xỉ mọc ở nơi ẩm mát như chân tường, bờ ruộng, dưới tán rừng; các loài thường gặp gồm cỏ bợ, lông culi, bèo ong, rau dớn."
+    },
+    "cây dương xỉ": {
+        "term": "Cây Dương xỉ",
+        "definition": "Là nhóm thực vật có mạch dẫn (đã có rễ, thân, lá thật sự), sinh sản bằng bào tử nằm trong các ổ túi bào tử ở mặt dưới của lá già (SGK KHTN 6, Bài 34).",
+        "details": "Đặc điểm nhận biết: Lá non cuộn tròn ở đầu; khi trưởng thành xòe rộng. Thân rễ ngầm hoặc thân đứng, có mạch dẫn phát triển.",
+        "role": "Giữ ẩm cho đất, tạo mùn rừng nhiệt đới, làm cảnh và lọc nước.",
+        "example": "Thường gặp ở nơi ẩm mát như bờ ruộng, chân tường rêu phong, dưới tán rừng rậm."
+    },
+    "thực vật hạt trần": {
+        "term": "Thực vật Hạt trần",
+        "definition": "Là nhóm thực vật bậc cao có mạch dẫn phát triển, sinh sản bằng hạt nằm lộ trên các lá noãn hở (chưa có hoa và quả thật sự, cơ quan sinh sản là nón).",
+        "details": "Đại diện tiêu biểu: Cây thông, trắc bách diệp, pơmu, vạn tuế, hoàng đàn. Hạt nằm trần trên vảy của nón cái.",
+        "role": "Cung cấp gỗ quý xây dựng, lấy nhựa thông và trồng rừng phòng hộ.",
+        "example": "Cây thông hai lá, cây vạn tuế, cây trắc bách diệp."
+    },
+    "thực vật hạt kín": {
+        "term": "Thực vật Hạt kín",
+        "definition": "Là nhóm thực vật tiến hóa và đa dạng nhất, có hoa, quả và hạt được bao bọc, bảo vệ an toàn bên trong quả.",
+        "details": "Cơ quan sinh dưỡng đa dạng (rễ, thân, lá phát triển mạnh với mạch dẫn hoàn thiện), cơ quan sinh sản là hoa và quả chứa hạt.",
+        "role": "Cung cấp lương thực (lúa, ngô), thực phẩm, quả ăn, dược liệu và bóng mát.",
+        "example": "Cây lúa nước, cây sen, cây cam, hoa hồng, cây bàng, cây phượng vĩ."
+    },
+    "rêu": {
+        "term": "Rêu (Ngành Rêu)",
+        "definition": "Là nhóm thực vật bậc cao đầu tiên sống trên cạn, cấu tạo đơn giản: đã có thân và lá nhưng chưa có mạch dẫn và chưa có rễ thật (chỉ có rễ giả), sinh sản bằng bào tử.",
+        "details": "Túi bào tử nằm ở ngọn cây rêu; khi chín nắp mở giải phóng bào tử ra môi trường ẩm.",
+        "role": "Góp phần tạo thành lớp mùn dinh dưỡng đầu tiên trên đá và đất nghèo.",
+        "example": "Rêu tường mọc thành thảm xanh trên tường ẩm, thân cây to hoặc bờ đất ven suối."
     }
 }
 
@@ -1162,7 +1197,7 @@ def format_local_rag_answer(question, lesson):
         for t in terms:
             t_name = t.get("term", "")
             t_def = t.get("definition", "")
-            if len(t_def) > 20 and not t_def.endswith(('...', 'được', 'và', 'của', 'tạo', 'là', 'trong')):
+            if len(t_def) > 20 and "thể hiện bản chất quy luật" not in t_def and "khái niệm khoa học cốt lõi" not in t_def and "khái niệm khoa học trọng tâm" not in t_def and not t_def.endswith(('...', 'được', 'và', 'của', 'tạo', 'là', 'trong')):
                 lines.append(f"- **{t_name}**: {t_def}")
                 added_terms += 1
                 if added_terms >= 2:
@@ -1195,7 +1230,7 @@ def format_local_rag_answer(question, lesson):
 
 
 def call_gemini_rest(prompt, api_key):
-    models = ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-2.0-flash", "gemini-1.5-pro"]
+    models = ["gemini-3.5-flash-lite", "gemini-3.8-flash", "gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]
     for m in models:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={api_key}"
         payload = json.dumps({
@@ -1231,7 +1266,7 @@ def call_gemini_vision_rest(prompt, image_bytes, mime_type="image/jpeg", api_key
     import base64
     encoded_img = base64.b64encode(image_bytes).decode("ascii")
     mime = mime_type or "image/jpeg"
-    models = ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-2.0-flash", "gemini-1.5-pro"]
+    models = ["gemini-3.5-flash-lite", "gemini-3.8-flash", "gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]
     for m in models:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={api_key}"
         payload = json.dumps({

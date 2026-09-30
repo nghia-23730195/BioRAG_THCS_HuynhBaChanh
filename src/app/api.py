@@ -1736,7 +1736,8 @@ def _biorag_chat_tokens(value):
     stopwords = {
         "cua", "cho", "trong", "nhung", "nhieu", "the", "nao", "mot", "cac", "voi",
         "hay", "gi", "la", "ve", "tu", "den", "minh", "hoa", "hinh", "anh", "tim",
-        "khoa", "hoc", "tu", "nhien", "lop", "sach", "giao", "kntt",
+        "khoa", "hoc", "tu", "nhien", "lop", "sach", "giao", "kntt", "thanh", "pho",
+        "biet", "nhu", "duoc", "khong", "tai", "sao", "diem", "cau", "hoi", "o", "va"
     }
     return {
         token for token in _biorag_normalize_search_text(value).split()
@@ -1744,7 +1745,7 @@ def _biorag_chat_tokens(value):
     }
 
 
-def _biorag_rank_chat_chunks(query, candidates, lesson_scope=None, limit=12):
+def _biorag_rank_chat_chunks(query, candidates, lesson_scope=None, limit=8):
     """Xếp hạng các đoạn SGK theo mô hình Hybrid BM25/Lexical kết hợp cụm từ và thuật ngữ khoa học."""
     query_normalized = _biorag_normalize_search_text(query)
     query_tokens = _biorag_chat_tokens(query)
@@ -1761,7 +1762,9 @@ def _biorag_rank_chat_chunks(query, candidates, lesson_scope=None, limit=12):
         "acsimet", "archimedes", "dinh luat om", "dien tro", "cam ung dien tu",
         "tan sac", "lang kinh", "thau kinh hoi tu", "thau kinh phan ki", "can thi",
         "dot bien gen", "dot bien gene", "nhiem sac the", "adn", "dna", "rna",
-        "axit", "acid", "bazo", "base", "thang ph", "muoi", "bao toan khoi luong"
+        "axit", "acid", "bazo", "base", "thang ph", "muoi", "bao toan khoi luong",
+        "nhan so", "nhan thuc", "te bao nhan so", "te bao nhan thuc", "vung nhan",
+        "ribosome", "ty the", "quang hop", "ho hap", "thoat hoi nuoc"
     }
     query_entities = {ent for ent in key_entities if ent in query_normalized}
 
@@ -1771,38 +1774,53 @@ def _biorag_rank_chat_chunks(query, candidates, lesson_scope=None, limit=12):
         normalized = _biorag_normalize_search_text(text)
         text_tokens = set(normalized.split())
         overlap = query_tokens & text_tokens
+        
+        # Nếu không có từ khóa trùng và không có thực thể nào khớp thì bỏ qua
         if not overlap and not any(ent in normalized for ent in query_entities):
             continue
         
-        score = len(overlap) * 6
+        # Kiểm tra độ bao phủ từ khóa: nếu câu hỏi có >= 2 từ quan trọng, tránh match 1 từ đơn lẻ nếu không có entity/bigram
+        if len(query_tokens) >= 2 and len(overlap) < 2 and not any(ent in normalized for ent in query_entities) and not any(bg in normalized for bg in bigrams if len(bg) >= 5):
+            continue
+        
+        score = len(overlap) * 8
         # Khớp cụm 3 từ liên tiếp
-        score += sum(15 for phrase in trigrams if len(phrase) >= 6 and phrase in normalized)
+        score += sum(20 for phrase in trigrams if len(phrase) >= 6 and phrase in normalized)
         # Khớp cụm 2 từ liên tiếp
-        score += sum(8 for phrase in bigrams if len(phrase) >= 4 and phrase in normalized)
+        score += sum(12 for phrase in bigrams if len(phrase) >= 4 and phrase in normalized)
         # Khớp thực thể khoa học / tên cây / định luật cụ thể
         for ent in query_entities:
             if ent in normalized:
-                score += 35
+                score += 40
         # Điểm thưởng từ khóa nguyên vẹn
         score += min(10, sum(2 for token in query_tokens if token in normalized))
         
         # Thưởng nhẹ nếu rơi vào bài học được đoán (nhưng không triệt tiêu các bài học khác)
         if lesson_scope and _biorag_chunk_in_lesson_scope(item, lesson_scope):
-            score += 8
+            score += 10
             
         ranked.append((score, len(text), item))
         
+    if not ranked:
+        return []
+
     ranked.sort(key=lambda entry: (entry[0], entry[1]), reverse=True)
-    return [(score, item) for score, _length, item in ranked[:limit]]
+    max_score = ranked[0][0]
+    
+    # Dynamic gating: nếu điểm cao nhất quá thấp (< 25), câu hỏi không có căn cứ SGK
+    if max_score < 25:
+        return []
+        
+    # Lọc bỏ các đoạn rác có điểm < 40% điểm cao nhất hoặc dưới 20
+    score_cutoff = max(20.0, max_score * 0.40)
+    filtered = [(score, item) for score, _length, item in ranked if score >= score_cutoff]
+    return filtered[:limit]
 
 
-def _biorag_scope_chat_chunks(ranked_scored, limit=8):
-    """Giữ các trang có điểm cao nhất và mở rộng các trang lân cận để bảo toàn tính toàn vẹn
-    của khái niệm, điều kiện, ví dụ và kết luận trong cùng bài học."""
+def _biorag_scope_chat_chunks(ranked_scored, limit=4):
+    """Giữ các trang có điểm cao nhất và loại bỏ trùng lặp."""
     if not ranked_scored:
         return []
-    
-    # Lấy các đoạn có điểm cao hàng đầu
     top_chunks = [item for _score, item in ranked_scored[:min(len(ranked_scored), limit)]]
     return top_chunks
 
@@ -1904,11 +1922,10 @@ def _biorag_load_chat_context(subqueries, grade, lesson_scope=None):
     selected = []
     seen = set()
     for subquery in subqueries:
-        # Luôn tìm trên TOÀN BỘ SGK của khối lớp (có xét ưu tiên nhẹ cho lesson_scope nếu có)
-        ranked = _biorag_rank_chat_chunks(subquery, candidates, lesson_scope=lesson_scope, limit=20)
+        ranked = _biorag_rank_chat_chunks(subquery, candidates, lesson_scope=lesson_scope, limit=8)
         if not ranked:
             continue
-        scoped = _biorag_scope_chat_chunks(ranked, limit=8)
+        scoped = _biorag_scope_chat_chunks(ranked, limit=4)
         for item in scoped:
             text, source, page = _biorag_quiz_chunk_fields(item)
             if len(text) < 30:
@@ -1918,16 +1935,51 @@ def _biorag_load_chat_context(subqueries, grade, lesson_scope=None):
                 continue
             seen.add(key)
             selected.append({"text": text[:2200], "source": source, "page": page})
-            if len(selected) >= 12:
+            if len(selected) >= 4:
                 return selected
     return selected
 
 
+def _biorag_chat_sources(context, answer=None):
+    if not context:
+        return []
+    
+    # Kiểm tra nếu câu trả lời là từ chối hoặc không có căn cứ
+    answer_text = str(answer or "").strip().lower()
+    refusal_patterns = [
+        "không được đề cập", "khong duoc de cap",
+        "chưa cung cấp đủ căn cứ", "chua cung cap du can cu",
+        "nằm ngoài phạm vi", "nam ngoai pham vi",
+        "không có thông tin", "khong co thong tin",
+    ]
+    if any(p in answer_text for p in refusal_patterns):
+        return []
 
-def _biorag_chat_sources(context):
+    # Trích xuất các mã nguồn được trích dẫn thực tế trong câu trả lời (ví dụ: [S1], [S2], [1], v.v.)
+    cited_indices = set()
+    if answer:
+        for match in re.finditer(r'\[S?(\d+)\]', str(answer)):
+            try:
+                cited_indices.add(int(match.group(1)))
+            except ValueError:
+                pass
+
+    # Nếu có mã trích dẫn, chỉ giữ lại các đoạn được trích dẫn thực sự
+    if cited_indices:
+        filtered_context = [
+            item for idx, item in enumerate(context, start=1)
+            if idx in cited_indices
+        ]
+        if filtered_context:
+            context_to_use = filtered_context
+        else:
+            context_to_use = context[:2]
+    else:
+        context_to_use = context[:2]
+
     sources = []
     seen = set()
-    for item in context:
+    for item in context_to_use:
         key = (str(item["source"]), str(item["page"]))
         if key in seen:
             continue
@@ -2001,6 +2053,9 @@ def _biorag_clean_vietnamese_answer(value):
     }
     for fused, separated in replacements.items():
         answer = re.sub(rf"\b{fused}\b", separated, answer, flags=re.IGNORECASE)
+
+    # Loại bỏ lời chào đầu câu
+    answer = re.sub(r"^(?:Chào em!|Chào bạn!|Xin chào!|Chào em,\s*|Chào bạn,\s*)\s*", "", answer, flags=re.IGNORECASE)
 
     # Loại bỏ các dòng tiền tố mang tính thông báo kỹ thuật/kiểm duyệt
     lines = answer.split("\n")
@@ -2115,7 +2170,7 @@ def _biorag_answer_grounded_question(question, requested_grade, history):
 
     if not context:
         payload = {
-            "answer": "Thông tin này không được đề cập rõ trong các đoạn SGK đã truy xuất.",
+            "answer": "Thông tin này không được đề cập trong sách giáo khoa KHTN hoặc nằm ngoài phạm vi tài liệu tra cứu.",
             "images": [],
             "sources": [],
             "meta": common_meta,
@@ -2132,7 +2187,7 @@ def _biorag_answer_grounded_question(question, requested_grade, history):
         payload = {
             "answer": _biorag_static_image_answer(subqueries, images, grade),
             "images": images,
-            "sources": _biorag_chat_sources(context),
+            "sources": _biorag_chat_sources(context, answer=None),
             "meta": common_meta,
         }
         _biorag_store_cached_chat(cache_key, payload)
@@ -2159,51 +2214,42 @@ def _biorag_answer_grounded_question(question, requested_grade, history):
         f"{index}. {subquery}" for index, subquery in enumerate(subqueries, start=1)
     )
     evidence_block = "\n\n".join(context_blocks)
-    prompt = f"""Bạn là trợ lý Khoa học tự nhiên THCS thân thiện, chỉ được trả lời từ NGỮ LIỆU SGK.
+    prompt = f"""Bạn là trợ lý giải đáp Khoa học tự nhiên THCS (lớp 6-9) chính xác theo Sách giáo khoa Kết nối tri thức.
 
-[LỊCH SỬ TRAO ĐỔI TRONG PHIÊN NÀY]:
+[LỊCH SỬ TRAO ĐỔI]:
 {dialogue_context}
 
-[CÂU HỎI HIỆN TẠI]:
+[CÂU HỎI]:
 {questions_block}
 
-[CHỦ ĐỀ ĐÃ KẾT NỐI TỪ PHIÊN]:
-{contextual_query if contextualized else "Câu hỏi độc lập."}
-
-[NGỮ LIỆU SGK ĐÃ TRUY XUẤT]:
+[NGỮ LIỆU SGK KNTT]:
 {evidence_block}
 
-QUY TẮC:
-- Duy trì nội dung liền mạch, liên kết tự nhiên với những gì đã trao đổi trong phiên này.
-- Nếu học sinh hỏi tiếp nối (dùng đại từ 'nó', 'chúng', 'quá trình này', 'ý trên', v.v.), hãy trả lời đúng trọng tâm về chủ đề đang thảo luận.
-- Trả lời rõ ràng, sư phạm, phù hợp học sinh THCS (lớp 6-9).
-- Mỗi khẳng định khoa học phải được một nguồn S hỗ trợ trực tiếp và ghi [Số] cuối câu (ví dụ [S1], [S2]).
-- Khi câu hỏi yêu cầu thí nghiệm hoặc thực hành (ví dụ: 'làm thí nghiệm... như thế nào'): hãy trình bày mạch lạc theo các mục: Dụng cụ thí nghiệm, Các bước tiến hành (Bước 1, Bước 2...), Hiện tượng quan sát và Kết luận khoa học.
-- Ký hiệu và công thức toán/lý/hóa viết theo chuẩn LaTeX (ví dụ: $i_1$, $r_1$, $i_2$, $r_2$, $v$, $t$, $s$,...).
-- TUYỆT ĐỐI KHÔNG mở đầu bằng câu rập khuôn như 'Dựa trên ngữ liệu SGK...', 'Tôi xin trả lời...'. Trả lời thẳng vào nội dung.
-- TUYỆT ĐỐI KHÔNG tự viết mục 'Hình minh họa' hay bình luận về việc có hay không có hình ảnh (hệ thống sẽ tự động đính kèm trang SGK/hình minh họa bên dưới câu trả lời).
-- Không ghép nguyên nhân của hình này với mô tả của hình khác.
-- Không suy luận quan hệ nhân quả khi nguồn chỉ nêu ví dụ hoặc chú thích hình.
-- Nếu nguồn chưa đủ, nói rõ "SGK truy xuất chưa cung cấp đủ căn cứ".
-- Không dùng kiến thức ngoài nguồn.
-- Trả lời trực tiếp nội dung, không viết các câu bình luận hay câu dẫn dắt ngoài lề.
+QUY TẮC BẮT BUỘC:
+1. CHỈ sử dụng kiến thức có trong [NGỮ LIỆU SGK KNTT]. TUYỆT ĐỐI KHÔNG dùng kiến thức ngoài hay tự suy diễn.
+2. Nếu NGỮ LIỆU SGK không chứa thông tin hoặc câu hỏi nằm ngoài phạm vi, hãy trả lời chính xác: "Thông tin này không được đề cập trong sách giáo khoa KHTN hoặc nằm ngoài phạm vi tài liệu tra cứu."
+3. Mọi khẳng định khoa học PHẢI được trích dẫn nguồn ở cuối câu bằng mã tương ứng (ví dụ: [S1], [S2]).
+4. Trả lời trực tiếp, cô đọng, mạch lạc, khoa học, không chào hỏi ("Chào em!"), không dùng câu dẫn rập khuôn ("Dựa trên ngữ liệu...").
+5. Khi câu hỏi yêu cầu thí nghiệm hoặc thực hành: trình bày rõ ràng: Dụng cụ, Các bước tiến hành, Hiện tượng và Kết luận.
+6. Ký hiệu và công thức viết theo chuẩn LaTeX ($v$, $t$, $s$, $m$,...).
 """
     try:
         llm = AppServices.get_instance().llm
         draft = _biorag_extract_message_text(llm.invoke(prompt))
         if not draft:
             raise ValueError("Mô hình chưa tạo câu trả lời.")
-        verify_prompt = f"""Bạn là bộ phận rà soát độ chính xác của câu trả lời theo NGỮ LIỆU SGK.
-Nhiệm vụ: Chỉnh sửa câu trả lời dưới đây cho hoàn toàn bám sát ngữ liệu SGK. Xóa hoặc sửa mọi khẳng định không có nguồn hỗ trợ. Giữ cấu trúc dễ đọc và ký hiệu nguồn [Số].
+        verify_prompt = f"""Bạn là bộ phận kiểm định câu trả lời RAG SGK KHTN.
+Nhiệm vụ:
+- Kiểm tra câu trả lời bên dưới so với [NGỮ LIỆU SGK].
+- Nếu câu hỏi không được hỗ trợ bởi ngữ liệu, đảm bảo câu trả lời là: "Thông tin này không được đề cập trong sách giáo khoa KHTN hoặc nằm ngoài phạm vi tài liệu tra cứu."
+- Đảm bảo mọi khẳng định đều có nguồn [S...] đúng. Xóa bỏ mọi thông tin bịa đặt hoặc suy đoán ngoài ngữ liệu.
+- Xóa bỏ mọi câu chào hỏi rập khuôn ('Chào em!').
+- CHỈ xuất ra câu trả lời cuối cùng, không kèm giải thích hay nhận xét.
 
-YÊU CẦU BẮT BUỘC VỀ ĐẦU RA:
-- CHỈ trả về đúng nội dung câu trả lời cuối cùng dành cho học sinh.
-- TUYỆT ĐỐI KHÔNG viết lời bình luận, nhận xét hay câu dẫn dắt (TUYỆT ĐỐI KHÔNG viết các câu như 'Bản nháp hiện tại...', 'Dưới đây là...', 'Sau khi kiểm tra...').
-
-NGỮ LIỆU SGK:
+[NGỮ LIỆU SGK]:
 {evidence_block}
 
-CÂU TRẢ LỜI CẦN RÀ SOÁT:
+[CÂU TRẢ LỜI CẦN KIỂM ĐỊNH]:
 {draft}
 """
         try:
@@ -2222,7 +2268,7 @@ CÂU TRẢ LỜI CẦN RÀ SOÁT:
     payload = {
         "answer": answer,
         "images": images,
-        "sources": _biorag_chat_sources(context),
+        "sources": _biorag_chat_sources(context, answer=answer),
         "meta": common_meta,
     }
     _biorag_store_cached_chat(cache_key, payload)

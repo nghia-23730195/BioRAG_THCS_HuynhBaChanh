@@ -1,10 +1,7 @@
 """LLM initialization using HuggingFace models or Gemini API."""
 
 import logging
-import torch
-from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
-from langchain_huggingface import HuggingFacePipeline
-from langchain_google_genai import ChatGoogleGenerativeAI
+from typing import Optional
 
 from ..config import LLM_MODEL, LLM_TEMPERATURE, LLM_MAX_NEW_TOKENS, LLM_TOP_P, HF_TOKEN, GEMINI_API_KEY, GEMINI_MODEL
 
@@ -18,7 +15,11 @@ def get_hf_llm(
     top_p: float = LLM_TOP_P,
     **kwargs
 ):
-    """Initialize HuggingFace LLM with Qwen model."""
+    """Initialize HuggingFace LLM with Qwen model (lazy import to speed up startup)."""
+    import torch
+    from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
+    from langchain_huggingface import HuggingFacePipeline
+
     logger.info(f"Loading LLM: {model_name}")
 
     model = AutoModelForCausalLM.from_pretrained(
@@ -52,18 +53,24 @@ def get_hf_llm(
 def get_gemini_llm(
     model: str = GEMINI_MODEL,
     temperature: float = LLM_TEMPERATURE,
-    max_tokens: int = 8192,
+    max_tokens: int = 4096,
     api_key: str = GEMINI_API_KEY,
 ):
-    """Initialize Gemini API LLM."""
+    """Initialize Gemini API LLM using langchain_google_genai."""
+    from langchain_google_genai import ChatGoogleGenerativeAI
+
     if not api_key:
         raise ValueError("GEMINI_API_KEY is required to use Gemini LLM")
-    logger.info(f"Loading Gemini LLM: {model}")
+    
+    # Preferred order of available Gemini models
+    target_model = model or "gemini-3.5-flash-lite"
+    logger.info(f"Loading Gemini LLM: {target_model}")
     llm = ChatGoogleGenerativeAI(
-        model=model,
+        model=target_model,
         google_api_key=api_key,
         temperature=temperature,
         max_output_tokens=max_tokens,
+        timeout=25.0,
     )
     logger.info("Gemini LLM initialized successfully")
     return llm
@@ -74,3 +81,4 @@ def get_llm():
     if GEMINI_API_KEY:
         return get_gemini_llm()
     return get_hf_llm()
+
