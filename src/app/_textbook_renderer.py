@@ -71,7 +71,7 @@ def find_lesson_by_source_and_page(lessons, source, page):
 
 def render_textbook_page_svg(lesson, page, start_page, end_page, school_name=None):
     school_name = school_name or os.environ.get("SCHOOL_NAME") or lesson.get("school_name") or "TRƯỜNG THCS HUỲNH BÁ CHÁNH"
-    school_code = "TTA" if "TÂN TẠO" in school_name.upper() else ("HBC" if "HUỲNH BÁ" in school_name.upper() else "KHTN")
+    school_code = "HBC" if "HUỲNH BÁ" in school_name.upper() else "KHTN"
     grade = lesson.get("grade", 7)
     theme_colors = {
         6: {"primary": "#059669", "light": "#ecfdf5", "border": "#a7f3d0", "dark": "#065f46"},

@@ -217,7 +217,7 @@ def build_lesson_plan_5512_doc(lesson: Dict[str, Any]) -> docx.Document:
 
     # Left cell: School & Subject
     p_left_1 = _add_paragraph_styled(
-        cell_left, "TRƯỜNG THCS TÂN TẠO",
+        cell_left, "TRƯỜNG THCS HUỲNH BÁ CHÁNH",
         size_pt=11.5, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER, space_after_pt=1
     )
     p_left_2 = _add_paragraph_styled(
@@ -1061,7 +1061,7 @@ def build_lesson_plan_5512_doc(lesson: Dict[str, Any]) -> docx.Document:
     )
 
     _add_paragraph_styled(
-        s_right, "Tân Tạo, ngày ..... tháng ..... năm 202...",
+        s_right, "Đà Nẵng, ngày ..... tháng ..... năm 202...",
         size_pt=11.5, italic=True, align=WD_ALIGN_PARAGRAPH.CENTER, space_after_pt=2
     )
     _add_paragraph_styled(

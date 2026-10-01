@@ -1894,7 +1894,7 @@ def generate_lab_report_docx(exp_id, student_info=None, logged_data=None, quiz_a
         raise ValueError(f"Không tìm thấy thí nghiệm với mã: {exp_id}")
 
     student_info = student_info or {}
-    school_name = student_info.get("school", "TRƯỜNG THCS TÂN TẠO")
+    school_name = student_info.get("school", "TRƯỜNG THCS HUỲNH BÁ CHÁNH")
     student_name = student_info.get("student_name", "...........................................................")
     student_class = student_info.get("class", f"Lớp {exp['grade']}...")
     date_str = student_info.get("date", "Ngày ..... tháng ..... năm 202...")

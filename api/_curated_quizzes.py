@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Ngân hàng Đề thi Trắc nghiệm mẫu chuẩn SGK Kết nối tri thức với cuộc sống (THCS Tân Tạo).
+"""Ngân hàng Đề thi Trắc nghiệm mẫu chuẩn SGK Kết nối tri thức với cuộc sống (THCS Huỳnh Bá Chánh).
 
 Cung cấp các bộ đề kiểm tra 15 phút và đề kiểm tra Giữa kỳ chuẩn cho cả 4 khối lớp 6, 7, 8, 9
 để học sinh và giáo viên có thể làm bài và ôn tập tức thì mà không cần chờ AI khởi tạo.
