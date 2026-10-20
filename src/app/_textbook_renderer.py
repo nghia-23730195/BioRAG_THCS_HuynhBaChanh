@@ -553,45 +553,120 @@ def search_best_lesson(lessons_or_question, question_or_grade=None, preferred_gr
 
     q_clean = (question or "").lower()
     
-    # 1. Direct Topic-to-Lesson exact routing (Ensuring high precision)
-    SPECIFIC_LESSON_ROUTING = [
-        # KHTN 7
-        (7, ["quang hợp tốt", "hiệu quả quang hợp", "yếu tố ảnh hưởng quang hợp", "ưa sáng", "ưa bóng", "cây ưa sáng", "cây ưa bóng", "xen canh"], "Bài 23"),
-        (7, ["quang hợp ở đâu", "cơ quan quang hợp", "bào quan quang hợp", "vị trí quang hợp", "nơi diễn ra quang hợp", "diệp lục", "khí khổng"], "Bài 22"),
-        (7, ["phòng ngủ", "ban đêm", "để cây trong phòng", "hô hấp tế bào", "ti thể"], "Bài 24"),
-        (7, ["xới đất", "xới xáo", "ngập úng", "lông hút", "mạch gỗ", "mạch rây", "hấp thụ nước và khoáng"], "Bài 25"),
-        (7, ["định luật phản xạ", "phản xạ ánh sáng", "gương phẳng"], "Bài 16"),
-        # KHTN 6
-        (6, ["nhân sơ", "nhân thực", "tế bào nhân sơ", "tế bào nhân thực"], "Bài 19"),
-        (6, ["virus", "vi rút"], "Bài 24"),
-        (6, ["vi khuẩn", "bacteria"], "Bài 25"),
-        # KHTN 8
-        (8, ["bảo toàn khối lượng"], "Bài 5"),
-        (8, ["acid", "axit"], "Bài 9"),
-        (8, ["base", "bazơ"], "Bài 10"),
-        (8, ["thang ph", "đo ph", "nồng độ ph"], "Bài 11"),
-        (8, ["muối", "muối ăn"], "Bài 12"),
-        (8, ["áp suất", "áp suất chất lỏng", "bình thông nhau"], "Bài 14"),
-        (8, ["acsimet", "ác-si-mét", "archimedes", "lực đẩy ác", "tàu nổi", "vật nổi vật chìm"], "Bài 15"),
-        (8, ["đòn bẩy", "momen lực"], "Bài 18"),
-        # KHTN 9
-        (9, ["tán sắc", "lăng kính", "ánh sáng trắng", "cầu vồng"], "Bài 7"),
-        (9, ["thấu kính hội tụ", "thấu kính phân kì", "kính lúp"], "Bài 8"),
-        (9, ["cận thị", "viễn thị", "tật của mắt"], "Bài 9"),
-        (9, ["định luật ôm", "định luật ohm", "điện trở"], "Bài 10"),
-        (9, ["cảm ứng điện từ", "faraday", "dòng điện cảm ứng"], "Bài 14"),
-        (9, ["đột biến gen", "đột biến gene"], "Bài 41"),
-        (9, ["quy luật phân li", "menđen", "mendeleev"], "Bài 37"),
-        (9, ["chuỗi thức ăn", "lưới thức ăn", "hệ sinh thái"], "Bài 44"),
-    ]
+    # 1. Direct Topic-to-Lesson exact precision router (96 verified KHTN 6, 7, 8, 9 topics)
+    PRECISION_LESSON_ROUTER = [
+    # ==================== KHTN 6 ====================
+    (6, ["thành phần chính của tế bào", "cấu tạo tế bào", "màng tế bào", "chất tế bào", "nhân tế bào", "vùng nhân", "tế bào nhân sơ", "tế bào nhân thực", "tế bào thực vật", "tế bào động vật", "lục lạp"], "Bài 19"),
+    (6, ["lớn lên", "sinh sản của tế bào", "sự phân chia", "phân chia tế bào"], "Bài 20"),
+    (6, ["tế bào là gì", "đơn vị cơ bản của sự sống", "hình dạng tế bào", "kích thước tế bào"], "Bài 18"),
+    (6, ["cơ thể đơn bào", "cơ thể đa bào", "tảo lam", "trùng roi xanh"], "Bài 22"),
+    (6, ["tổ chức cơ thể đa bào", "mô", "cơ quan", "hệ cơ quan"], "Bài 23"),
+    (6, ["phân loại thế giới sống", "5 giới sinh vật", "khóa lưỡng phân", "tên khoa học"], "Bài 25"),
+    (6, ["vi khuẩn", "bacteria", "lên men sữa chua"], "Bài 27"),
+    (6, ["virus", "vi rút", "corona", "sốt xuất huyết", "hiv"], "Bài 29"),
+    (6, ["nguyên sinh vật", "trùng sốt rét", "trùng kiết lị", "trùng giày"], "Bài 30"),
+    (6, ["nấm", "nấm men", "nấm mốc", "nấm rơm", "nấm độc"], "Bài 32"),
+    (6, ["thực vật", "rêu", "dương xỉ", "hạt trần", "hạt kín"], "Bài 34"),
+    (6, ["động vật không xương sống", "động vật có xương sống", "cá", "lưỡng cư", "bò sát", "chim", "thú"], "Bài 36"),
+    (6, ["đa dạng sinh học", "sách đỏ"], "Bài 38"),
+    (6, ["lực ma sát", "ma sát trượt", "ma sát nghỉ", "ma sát lăn"], "Bài 44"),
+    (6, ["mặt trăng", "pha của mặt trăng", "trăng tròn", "trăng khuyết"], "Bài 53"),
+    (6, ["hệ mặt trời", "các hành tinh"], "Bài 54"),
+    (6, ["ngân hà"], "Bài 55"),
 
-    for req_grade, phrases, target_bai in SPECIFIC_LESSON_ROUTING:
+    # ==================== KHTN 7 ====================
+    (7, ["quang hợp là gì", "quang hợp ở đâu", "cơ quan quang hợp", "bào quan quang hợp", "phương trình quang hợp", "nơi diễn ra quang hợp", "diệp lục"], "Bài 22"),
+    (7, ["quang hợp cần", "yếu tố ảnh hưởng quang hợp", "cây ưa sáng", "cây ưa bóng", "ánh sáng ảnh hưởng quang hợp", "quang hợp tốt", "xen canh"], "Bài 23"),
+    (7, ["chứng minh quang hợp", "thí nghiệm quang hợp"], "Bài 24"),
+    (7, ["hô hấp tế bào là gì", "hô hấp tế bào", "ti thể", "phương trình hô hấp", "quang hợp và hô hấp khác nhau", "tổng hợp và phân giải"], "Bài 25"),
+    (7, ["phòng ngủ", "ban đêm", "để cây trong phòng", "yếu tố ảnh hưởng hô hấp", "bảo quản nông sản"], "Bài 26"),
+    (7, ["trao đổi khí", "khí khổng"], "Bài 28"),
+    (7, ["vai trò của nước", "chất dinh dưỡng đối với sinh vật"], "Bài 29"),
+    (7, ["trao đổi nước ở thực vật", "lông hút", "mạch gỗ", "mạch rây", "thoát hơi nước qua lá", "xới đất", "ngập úng"], "Bài 30"),
+    (7, ["cảm ứng ở sinh vật", "tập tính ở động vật", "hướng sáng", "hướng trọng lực"], "Bài 33"),
+    (7, ["sinh sản vô tính", "giâm cành", "chiết cành", "ghép cành", "nuôi cấy mô"], "Bài 39"),
+    (7, ["sinh sản hữu tính", "thụ phấn", "thụ tinh", "hoa lưỡng tính"], "Bài 40"),
+    (7, ["nguyên tử", "proton", "neutron", "electron", "rutherford", "bohr", "amu"], "Bài 2"),
+    (7, ["bảng tuần hoàn", "nguyên tố hóa học"], "Bài 4"),
+    (7, ["liên kết ion", "liên kết cộng hóa trị"], "Bài 6"),
+    (7, ["hóa trị", "công thức hóa học"], "Bài 7"),
+    (7, ["tốc độ", "công thức tính tốc độ", "v = s / t"], "Bài 8"),
+    (7, ["sóng âm", "môi trường truyền âm"], "Bài 12"),
+    (7, ["độ to", "độ cao", "tần số", "biên độ", "hertz", "hz"], "Bài 13"),
+    (7, ["định luật phản xạ ánh sáng", "gương phẳng", "ảnh ảo"], "Bài 16"),
+    (7, ["nam châm", "từ trường", "đường sức từ", "la bàn"], "Bài 19"),
+
+    # ==================== KHTN 8 ====================
+    (8, ["bảo toàn khối lượng"], "Bài 5"),
+    (8, ["tốc độ phản ứng", "chất xúc tác"], "Bài 7"),
+    (8, ["acid là gì", "axit", "tính chất hóa học của acid", "quỳ tím hóa đỏ"], "Bài 8"),
+    (8, ["base là gì", "bazơ", "thang ph", "đo ph", "nồng độ ph", "quỳ tím hóa xanh", "phenolphtalein"], "Bài 9"),
+    (8, ["oxide", "oxit"], "Bài 10"),
+    (8, ["muối là gì", "muối ăn", "phản ứng trao đổi"], "Bài 11"),
+    (8, ["phân bón hóa học", "phân đạm", "phân lân", "phân kali", "npk"], "Bài 12"),
+    (8, ["khối lượng riêng", "d = m / v"], "Bài 13"),
+    (8, ["áp suất trên một bề mặt", "áp lực", "p = f / s"], "Bài 15"),
+    (8, ["áp suất chất lỏng", "áp suất khí quyển", "bình thông nhau"], "Bài 16"),
+    (8, ["archimedes", "acsimet", "ác-si-mét", "lực đẩy ác", "lực đẩy archimedes", "f_a", "tàu nổi", "điều kiện nổi chìm"], "Bài 17"),
+    (8, ["moment lực", "mômen lực", "tác dụng làm quay"], "Bài 18"),
+    (8, ["đòn bẩy", "ứng dụng đòn bẩy"], "Bài 19"),
+    (8, ["nhiễm điện do cọ xát"], "Bài 20"),
+    (8, ["dòng điện", "nguồn điện", "chất dẫn điện", "chất cách điện"], "Bài 21"),
+    (8, ["hệ vận động", "bộ xương", "khớp xương", "hệ cơ", "cong vẹo cột sống"], "Bài 31"),
+    (8, ["ống tiêu hóa", "cơ quan tiêu hóa", "dạ dày", "ruột non", "thức ăn đi qua"], "Bài 32"),
+    (8, ["hồng cầu", "bạch cầu", "tiểu cầu", "huyết tương", "nhóm máu", "tim có vai trò", "hệ tuần hoàn", "vai trò của tim"], "Bài 33"),
+    (8, ["hệ hô hấp ở người", "phế nang", "thông khí ở phổi"], "Bài 34"),
+    (8, ["thận có vai trò", "hệ bài tiết", "vai trò của thận", "lọc máu", "nước tiểu"], "Bài 35"),
+    (8, ["bảo vệ mắt", "mắt", "hệ thần kinh", "tật khúc xạ", "cận thị", "viễn thị", "tai"], "Bài 37"),
+    (8, ["hệ nội tiết", "tuyến yên", "tuyến giáp", "hormone"], "Bài 38"),
+    (8, ["da và điều hòa thân nhiệt"], "Bài 39"),
+    (8, ["quần thể sinh vật"], "Bài 42"),
+    (8, ["quần xã sinh vật"], "Bài 43"),
+    (8, ["hệ sinh thái", "chuỗi thức ăn", "lưới thức ăn"], "Bài 44"),
+    (8, ["bảo vệ môi trường", "ô nhiễm môi trường"], "Bài 47"),
+
+    # ==================== KHTN 9 ====================
+    (9, ["tán sắc", "lăng kính", "ánh sáng trắng", "ánh sáng đơn sắc", "cầu vồng"], "Bài 7"),
+    (9, ["thấu kính hội tụ", "thấu kính phân kì", "tiêu cự"], "Bài 8"),
+    (9, ["kính lúp"], "Bài 10"),
+    (9, ["định luật ohm", "định luật ôm", "i = u / r", "điện trở"], "Bài 11"),
+    (9, ["đoạn mạch nối tiếp", "đoạn mạch song song"], "Bài 12"),
+    (9, ["công suất điện", "điện năng", "công của dòng điện"], "Bài 13"),
+    (9, ["cảm ứng điện từ", "dòng điện xoay chiều"], "Bài 14"),
+    (9, ["dãy hoạt động hóa học", "kim loại"], "Bài 19"),
+    (9, ["hợp chất hữu cơ"], "Bài 22"),
+    (9, ["alkane", "metan"], "Bài 23"),
+    (9, ["alkene", "etilen"], "Bài 24"),
+    (9, ["ethylic alcohol", "rượu etylic"], "Bài 26"),
+    (9, ["acetic acid", "giấm ăn"], "Bài 27"),
+    (9, ["lipid", "chất béo"], "Bài 28"),
+    (9, ["glucose", "saccharose", "carbohydrate"], "Bài 29"),
+    (9, ["tinh bột", "cellulose"], "Bài 30"),
+    (9, ["protein", "chất đạm"], "Bài 31"),
+    (9, ["polymer", "chất dẻo"], "Bài 32"),
+    (9, ["di truyền học là gì", "khái quát về di truyền"], "Bài 36"),
+    (9, ["quy luật di truyền của mendel", "menđen", "phân li độc lập", "trội lặn"], "Bài 37"),
+    (9, ["dna là gì", "gene là gì", "nucleic acid", "cấu trúc không gian của dna", "cấu trúc của dna", "chức năng của dna", "chức năng của phân tử dna"], "Bài 38"),
+    (9, ["tái bản dna", "nhân đôi dna", "phiên mã", "tạo rna"], "Bài 39"),
+    (9, ["dịch mã", "tổng hợp protein", "mối quan hệ từ gene đến tính trạng"], "Bài 40"),
+    (9, ["đột biến gene", "đột biến gen", "các dạng đột biến gene", "đột biến điểm"], "Bài 41"),
+    (9, ["nhiễm sắc thể là gì", "bộ nhiễm sắc thể", "vai trò của nhiễm sắc thể trong di truyền"], "Bài 42"),
+    (9, ["nguyên phân", "giảm phân"], "Bài 43"),
+    (9, ["nhiễm sắc thể giới tính", "xác định giới tính"], "Bài 44"),
+    (9, ["di truyền liên kết", "morgan"], "Bài 45"),
+    (9, ["đột biến nhiễm sắc thể là gì", "đột biến nhiễm sắc thể", "đột biến cấu trúc", "mất đoạn", "lặp đoạn", "đảo đoạn", "chuyển đoạn", "down"], "Bài 46"),
+    (9, ["di truyền học với con người"], "Bài 47"),
+    (9, ["công nghệ di truyền", "công nghệ gene", "gmo"], "Bài 48"),
+    (9, ["tiến hóa", "chọn lọc tự nhiên"], "Bài 49")
+]
+
+    for req_grade, phrases, target_bai in PRECISION_LESSON_ROUTER:
         if (preferred_grade is None or preferred_grade == req_grade) and any(p in q_clean for p in phrases):
             for l in lessons:
                 if int(l.get("grade") or 0) == req_grade and l.get("number", "").strip().lower() == target_bai.lower():
                     return l, 500
 
-    generic_attr_ngrams = {'vai trò', 'đặc điểm', 'ý nghĩa', 'tác dụng', 'cấu tạo', 'khái niệm', 'phân loại'}
+        generic_attr_ngrams = {'vai trò', 'đặc điểm', 'ý nghĩa', 'tác dụng', 'cấu tạo', 'khái niệm', 'phân loại'}
     stop_words = {'là', 'gì', 'thế', 'nào', 'sao', 'hãy', 'cho', 'biết', 'của', 'và', 'các', 'những', 'trong', 'với', 'tìm', 'hiểu', 'về', 'hỏi', 'giúp', 'như', 'có'}
     words = [w.lower() for w in re.findall(r'[\w]+', question) if len(w) > 1 and w.lower() not in stop_words]
     
@@ -607,36 +682,45 @@ def search_best_lesson(lessons_or_question, question_or_grade=None, preferred_gr
     best_score = 0
     
     for l in lessons:
-        score = 0
         l_grade = int(l.get("grade") or 0)
-        if preferred_grade and l_grade == preferred_grade:
-            score += 100
+        # Strict grade isolation if preferred_grade is specified
+        if preferred_grade and l_grade != preferred_grade:
+            continue
             
+        score = 0
         title = l.get("title", "").lower()
         topic = l.get("topic", "").lower()
-        content = l.get("content", "").lower()
+        content_txt = l.get("content", "").lower()
         objectives = " ".join(l.get("objectives", [])).lower()
-        sections = " ".join([" ".join(s.get("paragraphs", [])) for s in l.get("sections", [])]).lower()
+        
+        sec_titles = " ".join([s.get("title", "") for s in l.get("sections", [])]).lower()
+        sec_paras = " ".join([" ".join(s.get("paragraphs", [])) for s in l.get("sections", [])]).lower()
+        sec_bullets = " ".join([" ".join(s.get("bullets", [])) for s in l.get("sections", [])]).lower()
+        
         terms = " ".join([t.get("term", "") + " " + t.get("definition", "") for t in l.get("terms", [])]).lower()
         summary = " ".join(l.get("summary", [])).lower()
         
-        full_text = f"{title} {topic} {terms} {summary} {objectives} {sections} {content}"
+        full_text = f"{title} {topic} {terms} {summary} {objectives} {sec_titles} {sec_paras} {sec_bullets} {content_txt}"
         
         for ng in ngrams:
             is_attr = ng in generic_attr_ngrams
-            weight = 20 if is_attr else 80
+            weight = 25 if is_attr else 90
             if ng in title:
                 score += weight
+            elif ng in sec_titles:
+                score += (20 if is_attr else 50)
             elif ng in terms:
-                score += (15 if is_attr else 35)
+                score += (15 if is_attr else 40)
             elif ng in topic:
-                score += (10 if is_attr else 25)
+                score += (10 if is_attr else 30)
             elif ng in full_text:
-                score += (5 if is_attr else 10)
+                score += (5 if is_attr else 15)
                 
         for w in words:
             if w in title:
                 score += 15
+            elif w in sec_titles:
+                score += 12
             elif w in terms:
                 score += 10
             elif w in topic:
@@ -991,7 +1075,7 @@ def format_local_rag_answer(question, lesson):
 💡 **3. Lời khuyên khoa học**
 - Không nên đặt nhiều chậu cây xanh trong phòng ngủ kín. Nếu muốn trang trí, chỉ nên chọn 1-2 cây nhỏ thuộc nhóm thực vật CAM (như cây Lưỡi hổ, Nha đam, Cây cảnh mọng nước) vì nhóm này có đặc tính mở khí khổng và hấp thụ $\\text{CO}_2$ vào ban đêm.
 
-📖 *Nguồn trích dẫn: Bài 24: Hô hấp tế bào (SGK KHTN 7 KNTT) · Trường THCS Huỳnh Bá Chánh*"""
+📖 *Nguồn trích dẫn: Bài 25: Hô hấp tế bào & Bài 26: Một số yếu tố ảnh hưởng đến hô hấp tế bào (SGK KHTN 7 KNTT, Trang 112–117) · Trường THCS Huỳnh Bá Chánh*"""
 
     # 7. Câu hỏi: "Tại sao cần xới đất / Ngập úng cây chết"
     if any(k in q_lower for k in ["xới đất", "xới xáo", "ngập úng", "úng nước", "rễ úng", "rễ hô hấp"]):
@@ -1008,7 +1092,7 @@ def format_local_rag_answer(question, lesson):
 - Rễ cây bị ngạt khí, phải hô hấp kị khí sinh ra chất độc (rượu, acid hữu cơ) làm **thối rụng các tế bào lông hút**.
 - Khi mất lông hút, cây **không hút được nước và muối khoáng** lên lá, trong khi lá vẫn thoát hơi nước $\\rightarrow$ cây bị héo úa và chết úng.
 
-📖 *Nguồn trích dẫn: Bài 24 & Bài 25 (SGK KHTN 7 KNTT) · Trường THCS Huỳnh Bá Chánh*"""
+📖 *Nguồn trích dẫn: Bài 26: Một số yếu tố ảnh hưởng đến hô hấp tế bào & Bài 30: Trao đổi nước và chất dinh dưỡng ở thực vật (SGK KHTN 7 KNTT, Trang 115, 129–134) · Trường THCS Huỳnh Bá Chánh*"""
 
     # 8. Câu hỏi: "So sánh tế bào nhân sơ và tế bào nhân thực"
     if "nhân sơ" in q_lower and "nhân thực" in q_lower:
@@ -1042,11 +1126,11 @@ def format_local_rag_answer(question, lesson):
 | **Hình thức sống** | **Kí sinh nội bào bắt buộc** (ra ngoài vật chủ biến thành hạt vô sinh) | Có thể tự trao đổi chất và sống độc lập tự do trong môi trường |
 | **Thuốc điều trị** | **Không bị tiêu diệt bởi thuốc kháng sinh** | **Bị tiêu diệt bởi thuốc kháng sinh** |
 
-📖 *Nguồn trích dẫn: Bài 24 & Bài 25 (SGK KHTN 6 KNTT) · Trường THCS Huỳnh Bá Chánh*"""
+📖 *Nguồn trích dẫn: Bài 27: Vi khuẩn & Bài 29: Virus (SGK KHTN 6 KNTT, Trang 92–100) · Trường THCS Huỳnh Bá Chánh*"""
 
     # 10. Câu hỏi: "Định luật Archimedes / Lực đẩy Ác-si-mét / Tại sao tàu thép nổi"
     if any(k in q_lower for k in ["acsimet", "ác-si-mét", "archimedes", "lực đẩy ác", "tàu nổi", "vật nổi vật chìm"]):
-        return """Chào em! Dưới đây là lời giải đáp chuẩn xác về **Lực đẩy Archimedes** theo **KHTN 8 (Bài 15)**:
+        return """Chào em! Dưới đây là lời giải đáp chuẩn xác về **Lực đẩy Archimedes** theo **KHTN 8 (Bài 17: Lực đẩy Archimedes)**:
 
 ⚖️ **1. Định luật & Công thức lực đẩy Archimedes**
 - **Định luật:** Mọi vật nhúng chìm trong chất lỏng (hoặc chất khí) đều chịu một lực đẩy hướng thẳng đứng từ dưới lên trên, có độ lớn bằng trọng lượng của phần chất lỏng bị vật chiếm chỗ.
@@ -1059,11 +1143,11 @@ def format_local_rag_answer(question, lesson):
 - **Điều kiện vật nổi:** $F_A > P$ ($d_{vật} < d_{lỏng}$).
 - **Ứng dụng đóng tàu thủy:** Tàu biển dù làm bằng hàng nghìn tấn thép nặng nhưng được thiết kế các **khoang rỗng chứa không khí**, làm thể tích choán chỗ $V$ cực lớn $\\rightarrow$ khối lượng riêng trung bình của toàn bộ con tàu nhỏ hơn khối lượng riêng của nước biển, tạo ra lực đẩy $F_A$ khổng lồ nâng tàu nổi vững vàng.
 
-📖 *Nguồn trích dẫn: Bài 15: Lực đẩy Archimedes (SGK KHTN 8 KNTT, Trang 63–66) · Trường THCS Huỳnh Bá Chánh*"""
+📖 *Nguồn trích dẫn: Bài 17: Lực đẩy Archimedes (SGK KHTN 8 KNTT, Trang 70–73) · Trường THCS Huỳnh Bá Chánh*"""
 
     # 11. Câu hỏi: "Định luật Ôm / Định luật Ohm"
     if any(k in q_lower for k in ["định luật ôm", "định luật ohm", "công thức ôm", "i = u / r"]):
-        return """Chào em! Dưới đây là nội dung trọng tâm của **Định luật Ohm (Ôm)** theo **KHTN 9 (Bài 10)**:
+        return """Chào em! Dưới đây là nội dung trọng tâm của **Định luật Ohm (Ôm)** theo **KHTN 9 (Bài 11: Điện trở - Định luật Ohm)**:
 
 ⚡ **1. Phát biểu định luật Ohm**
 - **Nội dung:** Cường độ dòng điện chạy qua một dây dẫn tỉ lệ thuận với hiệu điện thế đặt vào hai đầu dây và tỉ lệ nghịch với điện trở của dây đó.
@@ -1074,7 +1158,7 @@ def format_local_rag_answer(question, lesson):
 💡 **2. Ý nghĩa & Ứng dụng thực tế**
 - Định luật Ohm là cơ sở lý thuyết quan trọng nhất của ngành điện học dùng để tính toán dòng điện trong mạch, thiết kế cầu chì, aptomat bảo vệ mạng điện gia đình chống quá tải, cháy chập.
 
-📖 *Nguồn trích dẫn: Bài 10: Đoạn mạch nối tiếp và song song - Định luật Ohm (SGK KHTN 9 KNTT) · Trường THCS Huỳnh Bá Chánh*"""
+📖 *Nguồn trích dẫn: Bài 11: Đoạn mạch nối tiếp và song song - Định luật Ohm (SGK KHTN 9 KNTT, Trang 48–53) · Trường THCS Huỳnh Bá Chánh*"""
 
     # 12. Câu hỏi: "Đột biến gen là gì / Đột biến gene"
     if any(k in q_lower for k in ["đột biến gen", "đột biến gene", "các dạng đột biến gen"]):
@@ -1097,7 +1181,7 @@ def format_local_rag_answer(question, lesson):
 
     # 13. Câu hỏi: "Acid và Base / Thang pH"
     if any(k in q_lower for k in ["acid là gì", "base là gì", "bazơ là gì", "thang ph", "quỳ tím", "phân biệt acid"]):
-        return """Chào em! Dưới đây là kiến thức chuẩn về **Acid, Base và thang pH** theo **KHTN 8 (Bài 9, 10, 11)**:
+        return """Chào em! Dưới đây là kiến thức chuẩn về **Acid, Base và thang pH** theo **KHTN 8 (Bài 8: Acid & Bài 9: Base - Thang pH)**:
 
 🧪 **1. Phân biệt Acid và Base**
 - **Acid:** Phân tử gồm một hay nhiều nguyên tử $\\text{H}$ liên kết với gốc acid. Tan trong nước tạo ion $\\text{H}^+$, có vị chua, làm quỳ tím hóa **đỏ** (ví dụ: $\\text{HCl}, \\text{H}_2\\text{SO}_4, \\text{CH}_3\\text{COOH}$).
@@ -1110,7 +1194,7 @@ def format_local_rag_answer(question, lesson):
 
 💡 **3. Ứng dụng:** Dùng vôi tôi $\\text{Ca(OH)}_2$ khử chua đất ruộng bị nhiễm phèn; dùng baking soda $\\text{NaHCO}_3$ trung hòa bớt acid dạ dày khi bị ợ chua.
 
-📖 *Nguồn trích dẫn: Bài 9, 10, 11 (SGK KHTN 8 KNTT) · Trường THCS Huỳnh Bá Chánh*"""
+📖 *Nguồn trích dẫn: Bài 8: Acid & Bài 9: Base - Thang pH (SGK KHTN 8 KNTT, Trang 35–43) · Trường THCS Huỳnh Bá Chánh*"""
 
     # 14. Câu hỏi: "Cây ăn quả / Cây ăn trái"
     if any(k in q_lower for k in ["cây ăn quả", "cây ăn trái"]):
@@ -1183,46 +1267,69 @@ def format_local_rag_answer(question, lesson):
                 break
 
     lines = []
-    lines.append(f"Chào em! Về câu hỏi của em liên quan đến **{title or 'Khoa học tự nhiên'}** ({source_label}), dưới đây là nội dung trọng tâm được giải đáp chi tiết:\n")
+    lines.append(f"Chào em! Về câu hỏi của em liên quan đến **{title or 'Khoa học tự nhiên'}** ({source_label}), dưới đây là nội dung trọng tâm được giải đáp chi tiết theo chuẩn SGK KHTN (Bộ sách Kết nối tri thức với cuộc sống):\n")
     
-    # 1. Trọng tâm kiến thức
+    # 1. Trọng tâm kiến thức cốt lõi
     lines.append("🎯 **1. Bản chất & Khái niệm cốt lõi**")
     if matched_entry:
         lines.append(f"- **{matched_entry['term']}**: {matched_entry['definition']}")
         if matched_entry.get("details"):
             lines.append(f"- **Đặc điểm & Cơ chế:** {matched_entry['details']}")
     else:
+        # Extract rich sections from lesson
+        sections = lesson.get("sections", [])
+        q_words = set(re.findall(r'\w+', q_lower))
+        
+        # Check terms
         terms = lesson.get("terms", [])
-        added_terms = 0
-        for t in terms:
-            t_name = t.get("term", "")
-            t_def = t.get("definition", "")
-            if len(t_def) > 20 and "thể hiện bản chất quy luật" not in t_def and "khái niệm khoa học cốt lõi" not in t_def and "khái niệm khoa học trọng tâm" not in t_def and not t_def.endswith(('...', 'được', 'và', 'của', 'tạo', 'là', 'trong')):
-                lines.append(f"- **{t_name}**: {t_def}")
-                added_terms += 1
-                if added_terms >= 2:
-                    break
-        if not added_terms and lesson.get("content"):
-            lines.append(f"- **{title}**: {lesson.get('content')[:260]}...")
+        valid_terms = [t for t in terms if len(t.get("definition", "")) > 15 and "thể hiện bản chất" not in t.get("definition", "") and "khái niệm khoa học" not in t.get("definition", "")]
+        for t in valid_terms[:2]:
+            lines.append(f"- **{t.get('term')}**: {t.get('definition')}")
+            
+        if sections:
+            scored_secs = []
+            for s in sections:
+                s_title = s.get("title", "")
+                s_text = " ".join(s.get("paragraphs", []) + s.get("bullets", []))
+                s_words = set(re.findall(r'\w+', (s_title + " " + s_text).lower()))
+                overlap = len(q_words.intersection(s_words))
+                scored_secs.append((overlap, s))
+            scored_secs.sort(key=lambda x: x[0], reverse=True)
+            best_secs = [s for sc, s in scored_secs if sc > 0][:2]
+            if not best_secs:
+                best_secs = sections[:2]
+                
+            for sec in best_secs:
+                st = sec.get("title", "").strip()
+                if st:
+                    lines.append(f"\n🔹 **{st}**")
+                for p in sec.get("paragraphs", []):
+                    if p.strip() and len(p.strip()) > 10:
+                        lines.append(f"{p.strip()}\n")
+                for b in sec.get("bullets", []):
+                    if b.strip():
+                        lines.append(f"- {b.strip()}")
+        elif lesson.get("content"):
+            lines.append(f"- **{title}**: {lesson.get('content')}")
 
     # 2. Vai trò & Ý nghĩa
     lines.append("\n🔬 **2. Vai trò & Ý nghĩa khoa học**")
     if matched_entry and matched_entry.get("role"):
         lines.append(f"- {matched_entry['role']}")
     else:
-        summary = [s for s in lesson.get("summary", []) if len(s) > 20 and not re.match(r'^\d+\.', s)]
+        summary = [s.strip() for s in lesson.get("summary", []) if len(s.strip()) > 15 and not re.match(r'^\d+\.', s.strip())]
         if summary:
-            for sm in summary[:2]:
+            for sm in summary[:3]:
                 lines.append(f"- {sm}")
         else:
-            lines.append(f"- Giúp học sinh nắm vững các quy luật vận động của tự nhiên và vận dụng vào giải thích hiện tượng đời sống.")
+            lines.append(f"- Nắm vững bản chất hiện tượng giúp giải thích chính xác các quá trình tự nhiên và áp dụng hiệu quả vào đời sống.")
 
     # 3. Ứng dụng thực tiễn & Ví dụ
     lines.append("\n💡 **3. Ứng dụng thực tế & Ví dụ minh họa**")
     if matched_entry and matched_entry.get("example"):
         lines.append(f"- {matched_entry['example']}")
     else:
-        lines.append(f"- Hiện tượng được ứng dụng rộng rãi trong đời sống, y học và các thí nghiệm thực hành bộ môn KHTN tại Trường THCS Huỳnh Bá Chánh.")
+        lines.append(f"- Kiến thức bài học được ứng dụng rộng rãi trong đời sống, y học, sản xuất nông nghiệp và các bài thực hành KHTN tại Trường THCS Huỳnh Bá Chánh.")
 
     # 4. Trích dẫn SGK
     lines.append(f"\n📖 *Nguồn trích dẫn: {number}: {title} ({source_label}) · Trường THCS Huỳnh Bá Chánh*")
@@ -1230,7 +1337,7 @@ def format_local_rag_answer(question, lesson):
 
 
 def call_gemini_rest(prompt, api_key):
-    models = ["gemini-3.5-flash-lite", "gemini-3.8-flash", "gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]
+    models = ["gemini-3.5-flash", "gemma-4-26b-a4b-it", "gemini-3.5-flash-lite"]
     for m in models:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={api_key}"
         payload = json.dumps({
@@ -1252,7 +1359,7 @@ def call_gemini_rest(prompt, api_key):
                     if not texts:
                         texts = [p.get("text", "") for p in parts if p.get("text")]
                     text = "\n".join(texts).strip()
-                    if text and len(text) > 50:
+                    if text and len(text) > 10:
                         return text, m
         except Exception:
             continue
@@ -1266,7 +1373,7 @@ def call_gemini_vision_rest(prompt, image_bytes, mime_type="image/jpeg", api_key
     import base64
     encoded_img = base64.b64encode(image_bytes).decode("ascii")
     mime = mime_type or "image/jpeg"
-    models = ["gemini-3.5-flash-lite", "gemini-3.8-flash", "gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]
+    models = ["gemini-3.5-flash", "gemma-4-26b-a4b-it", "gemini-3.5-flash-lite"]
     for m in models:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={api_key}"
         payload = json.dumps({

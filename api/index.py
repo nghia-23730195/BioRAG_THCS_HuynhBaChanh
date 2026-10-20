@@ -1528,28 +1528,50 @@ def api_chat():
     if api_key and callable(call_gemini_rest):
         lesson_context = ""
         if matched_lesson:
-            terms_text = ', '.join([t.get('term', '') + ': ' + t.get('definition', '') for t in matched_lesson.get('terms', [])])
-            lesson_context = f"""
-KIẾN THỨC BÀI HỌC THAM KHẢO TỪ SGK KNTT:
-- Bài: {matched_lesson.get('number', '')} - {matched_lesson.get('title', '')} (Lớp {matched_lesson.get('grade')})
-- Nguồn: {matched_lesson.get('source_label', '')}
-- Mục tiêu: {', '.join(matched_lesson.get('objectives', []))}
-- Thuật ngữ: {terms_text}
-- Tóm tắt: {', '.join(matched_lesson.get('summary', []))}
-- Nội dung: {matched_lesson.get('content', '')}
-"""
-        prompt = f"""Bạn là Trợ lý AI Khoa học Tự nhiên chính thức của Trường THCS Huỳnh Bá Chánh.
+            terms_list = [f"- **{t.get('term', '')}**: {t.get('definition', '')}" for t in matched_lesson.get('terms', []) if t.get('term')]
+            terms_text = "\n".join(terms_list) if terms_list else "Đang cập nhật"
+            
+            summary_list = [f"- {s}" for s in matched_lesson.get('summary', []) if s]
+            summary_text = "\n".join(summary_list) if summary_list else "Đang cập nhật"
+            
+            sections_text = ""
+            for s in matched_lesson.get('sections', []):
+                sec_title = s.get('title', '').strip()
+                sec_paras = "\n".join([p for p in s.get('paragraphs', []) if p])
+                sec_bullets = "\n".join([f"  * {b}" for b in s.get('bullets', []) if b])
+                sections_text += f"\n#### {sec_title}\n{sec_paras}\n{sec_bullets}\n"
+                
+            lesson_context = f'''
+NGỮ LIỆU BÀI HỌC CHUẨN XÁC TỪ SÁCH GIÁO KHOA KHTN (KẾT NỐI TRI THỨC VỚI CUỘC SỐNG):
+- Bài học: {matched_lesson.get('number', '')} - {matched_lesson.get('title', '')} (Lớp {matched_lesson.get('grade')})
+- Nguồn trích dẫn: {matched_lesson.get('source_label', '')}
+- Mục tiêu cần đạt: {', '.join(matched_lesson.get('objectives', []))}
+
+NỘI DUNG CHI TIẾT CÁC MỤC BÀI HỌC TRONG SGK:
+{sections_text if sections_text.strip() else matched_lesson.get('content', '')}
+
+CÁC THUẬT NGỮ VÀ KHÁI NIỆM KHOA HỌC:
+{terms_text}
+
+TỔNG KẾT BÀI HỌC:
+{summary_text}
+'''
+        prompt = f'''Bạn là Trợ lý AI Khoa học Tự nhiên chính thức của Trường THCS Huỳnh Bá Chánh.
 Chương trình: Khoa học Tự nhiên Lớp {resolved_grade} (Bộ sách Kết nối tri thức với cuộc sống).
 {lesson_context}
 
 Câu hỏi của học sinh: {question}
 
-HƯỚNG DẪN TRẢ LỜI SƯ PHẠM (TỰ NHIÊN, CHÍNH XÁC, KHÔNG LẶP LẠI KHUÔN MẪU):
-1. Trả lời TRỰC DIỆN vào đúng trọng tâm câu hỏi của học sinh (nếu hỏi "ở đâu/qua đâu" hãy chỉ rõ cơ quan/bào quan; nếu hỏi "tại sao" hãy nêu rõ cơ chế/nguyên nhân; nếu hỏi "so sánh" hãy lập bảng hoặc phân tích điểm giống/khác).
-2. Trình bày rõ ràng bằng Markdown (dùng bullet points, in đậm từ khóa khoa học, công thức hoặc phương trình chữ nếu có).
-3. Đưa ra ví dụ thực tiễn sinh động, gần gũi với lứa tuổi THCS.
-4. Trích dẫn chính xác bài học và trang sách SGK KNTT ({matched_lesson.get('number', '')} {matched_lesson.get('title', '')}).
-5. Giữ giọng văn thân thiện, chuẩn mực nhà giáo, động viên tinh thần tự học của học sinh."""
+HƯỚNG DẪN TRẢ LỜI SƯ PHẠM (CHÍNH XÁC, TRỰC DIỆN, CHUẨN MỰC):
+1. Trả lời TRỰC DIỆN và ĐẦY ĐỦ vào đúng trọng tâm câu hỏi của học sinh dựa trên ngữ liệu SGK trên.
+   - Nếu hỏi "ở đâu/qua đâu/cơ quan nào": chỉ rõ chính xác cơ quan, bộ phận, bào quan.
+   - Nếu hỏi "tại sao/vì sao/cơ chế": giải thích cặn kẽ bản chất và cơ chế khoa học.
+   - Nếu hỏi "so sánh": lập bảng hoặc đối chiếu rõ ràng các tiêu chí.
+   - Nếu có công thức hoặc phương trình chữ: viết rõ ràng bằng ký hiệu toán học / hóa học LaTeX hoặc chữ.
+2. Trình bày khoa học bằng Markdown (tiêu đề mục, in đậm thuật ngữ then chốt, gạch đầu dòng mạch lạc).
+3. Đưa ra ví dụ thực tế gần gũi, liên hệ đời sống hoặc thí nghiệm trong nhà trường.
+4. Trích dẫn chính xác bài học và trang sách: ({matched_lesson.get('number', '')}: {matched_lesson.get('title', '')} - {source_label}).
+5. Giữ phong thái sư phạm thân thiện, tích cực, đúng chuẩn Trường THCS Huỳnh Bá Chánh.'''
 
         ai_answer, model_used = call_gemini_rest(prompt, api_key)
         if ai_answer:
