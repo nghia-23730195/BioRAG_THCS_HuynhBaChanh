@@ -224,7 +224,14 @@ def get_all_lessons(grade=None):
                         d = json.load(f)
                         raw_list = d.get("lessons", [])
                         if raw_list:
-                            raw_list.sort(key=lambda x: (int(x.get("grade") or 0), int(x.get("order") or 0), x.get("title") or ""))
+                            def _lesson_nat_sort(x):
+                                g = int(x.get("grade") or 0)
+                                num_str = str(x.get("number") or "")
+                                m = re.search(r'\d+', num_str)
+                                n = int(m.group(0)) if m else 9999
+                                o = int(x.get("order") or (n * 10))
+                                return (g, n, o, str(x.get("title") or ""))
+                            raw_list.sort(key=_lesson_nat_sort)
                             LESSONS_CACHE = raw_list
                             break
                 except Exception as e:

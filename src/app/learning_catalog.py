@@ -302,7 +302,14 @@ def list_lessons(grade: Optional[int] = None, include_inactive: bool = False) ->
         if not include_inactive and not bool(item.get("active", True)):
             continue
         lessons.append(deepcopy(item))
-    lessons.sort(key=lambda item: (int(item.get("grade") or 0), int(item.get("order") or 0), item.get("title") or ""))
+    def _lesson_sort_key(item):
+        grade = int(item.get("grade") or 0)
+        num_str = str(item.get("number") or "")
+        m = re.search(r'\d+', num_str)
+        lesson_num = int(m.group(0)) if m else 9999
+        order = int(item.get("order") or (lesson_num * 10))
+        return (grade, lesson_num, order, str(item.get("title") or ""))
+    lessons.sort(key=_lesson_sort_key)
     return lessons
 
 
