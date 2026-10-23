@@ -2844,92 +2844,46 @@
       "number": "Bài 18",
       "title": "Tế bào – đơn vị cơ bản của sự sống",
       "topic": "Tế bào là đơn vị cơ bản của sự sống; hình dạng và kích thước tế bào",
-      "objectives": [
-        "Nêu được khái niệm tế bào, chức năng của tế bào.",
-        "Nêu được hình dạng và kích thước của một số loại tế bào.",
-        "Nhận biết được tế bào là đơn vị cấu trúc của sự sống."
-      ],
-      "content": "CHƯƠNG V. TẾ BÀO TẾ BÀO Bài 18 ĐƠN VỊ CƠ BẢN CỦA SỰ SỐNG MỤC TIÊU Nêu được khái niệm, chức năng của tế bào. Nhận biết được tế bào là đơn vị cấu trúc của sự sống. Nhưng Nêu được hình dạng và kích thước của một số loại tế bào. thuận Mỗi ngôi nhà được xây nên từ nhiều viên gạch. Vậy đã bao giờ em tự hỏi: Những sinh vật xung quanh chúng ta được cấu tạo từ đơn vị cấu trúc nào – Tế bào là gì?",
-      "source_label": "SGK KHTN 6 KNTT · Bài 18 · Trang 64–67",
-      "order": 180,
-      "active": true,
-      "origin": "system",
-      "created_at": "2026-08-27T13:17:42+00:00",
-      "updated_at": "2026-09-11T18:43:49+00:00",
       "duration": "35–45 phút",
+      "objectives": [
+        "Nêu được tế bào là đơn vị cấu tạo cơ bản của cơ thể sống.",
+        "Nhận biết được sự đa dạng về hình dạng và kích thước của tế bào.",
+        "Giải thích được hình dạng tế bào thường phù hợp với chức năng.",
+        "Vận dụng kiến thức để nhận biết một số loại tế bào quen thuộc."
+      ],
+      "content": "Mọi cơ thể sống đều được cấu tạo từ tế bào. Tế bào rất nhỏ nhưng có thể thực hiện những hoạt động sống cơ bản. Tế bào có nhiều hình dạng, kích thước khác nhau và đặc điểm đó thường phù hợp với chức năng của chúng.",
+      "source_label": "SGK KHTN 6 KNTT · Bài 18 · Trang 64–67",
       "warmup": {
         "question": "Cây đậu, con cá và cơ thể người rất khác nhau. Chúng có điểm cấu tạo chung nào?",
         "hint": "Hãy nghĩ đến đơn vị rất nhỏ chỉ quan sát rõ bằng kính hiển vi."
       },
       "sections": [
         {
-          "title": "Khởi động & Hiện tượng mở đầu",
+          "title": "1. Tế bào là gì?",
           "paragraphs": [
-            "CHƯƠNG V. TẾ BÀO TẾ BÀO Bài 18 ĐƠN VỊ CƠ BẢN CỦA SỰ SỐNG MỤC TIÊU Nêu được khái niệm, chức năng của tế bào. Nhận biết được tế bào là đơn vị cấu trúc của sự sống.",
-            "Nhưng Nêu được hình dạng và kích thước của một số loại tế bào. thuận Mỗi ngôi nhà được xây nên từ nhiều viên gạch. Vậy đã bao giờ em tự hỏi: Những sinh vật xung quanh chúng ta được cấu tạo từ đơn vị cấu trúc nào – Tế bào là gì?",
-            "Vậy đã bao giờ em tự hỏi: Những sinh vật xung quanh chúng ta được cấu tạo từ đơn vị cấu trúc nào – Tế bào là gì – Tất cả các cơ thể sinh vật (thực vật, động vật, con người,...) đều được cấu tạo từ những đơn vị rất nhỏ bé, gọi là tế bào.",
-            "Tuy nhỏ bé nhưng tế bào có thể thực hiện đầy đủ các quá trình sống cơ bản: sinh trưởng (lớn lên), hấp thụ chất dinh dưỡng, hô hấp, cảm ứng, bài tiết và sinh sản.",
-            "Tại sao tế bào được coi là đơn vị cơ bản của các cơ thể sống – Hình dạng và kích thước tế bào HỌC SỐNG"
+            "Tế bào là đơn vị cấu tạo cơ bản của mọi cơ thể sống. Có sinh vật chỉ gồm một tế bào; cũng có sinh vật gồm rất nhiều tế bào phối hợp với nhau.",
+            "Dù rất nhỏ, tế bào vẫn thực hiện các hoạt động sống như trao đổi chất, lớn lên và sinh sản."
           ],
-          "bullets": []
+          "example": "Vi khuẩn là cơ thể đơn bào; cây đậu và con người là cơ thể đa bào."
         },
         {
-          "title": "1. Hình dạng tế bào",
+          "title": "2. Hình dạng của tế bào",
           "paragraphs": [
-            "Có nhiều loại tế bào. Hình dạng các loại tế bào thường phản ánh chức năng khác nhau của chúng. a) Tế bào da ở người b) Tế bào thần kinh ở người c) Tế bào vi khuẩn d) Tế bào ở lá cây Hình 18.1 của chúng.",
-            "a) Tế bào da ở người b) Tế bào thần kinh ở người c) Tế bào vi khuẩn d) Tế bào ở lá cây Hình 18.1 Hình dạng một số loại tế bào Quan sát Hình 18.1, nêu nhận xét về hình dạng tế bào"
-          ],
-          "bullets": []
-        },
-        {
-          "title": "2. Kích thước tế bào",
-          "paragraphs": [
-            "Kích thước tế bào khác nhau giữa các nhóm sinh vật và giữa các cơ quan trong một cơ thể. Có rất ít tế bào kích thước đủ lớn đề có thể quan sát được bằng mắt thường, hầu hết tế bào đều rất nhỏ và chúng ta chỉ có thể quan sát thấy chúng bằng kinh hiển vi.",
-            "01nm 1nm 10nm 100nm 1 um 10 um 100 um 1mm 1 cm 01m 1m 10m 100 m 1km ILLUIL LULL Mắt thường Kính hiển vì quang học 01nm 1nm 10nm 100nm 1 um 10 um 100 um 1mm 1 cm 01m 1m 10m 100 m 1km ILLUIL LULL Mắt thường Kính hiển vì quang học Kính hiển vi điện tử Tế bào động vật và thực vật Cây thông Nguyên tử Lipid Lục lạp Trứng cá khổng lồ gỗ đỏ Virus Chim Phân tử nhỏ Protein Vi khuẩn ruồi Người Cả voi xanh Hình 18.2 Kích thước các bậc cấu trúc của thế giới sống Virus Chim Phân tử nhỏ Protein Vi khuẩn ruồi Người Cả voi xanh Hình 18.2 Kích thước các bậc cấu trúc của thế giới sống Quan sát kích thước tế bào vi khuẩn, tế bào động vật và thực vật trong Hình 18.2 thành và cho biết tế bào nào phải quan sát bằng kính hiển vi, tế bào nào có thể quan sát bằng mắt thường – Khi thảo luận về kích thước và hình dạng tế bào, bốn bạn học sinh có ý kiến như sau:",
-            "B: Tất cả các loại tế bào C: Tất cả các loại tế bào đều có đều có hình dạng và cùng kích thước, nhung hình dạng kích thước giống nhau. giữa chúng luôn khác nhau.",
-            "Tất cả các loại D: Các loại tế tế bào đều có cùng bào khác nhau hình dạng, nhưng thường có chúng luôn có kích kích thước và D: Các loại tế tế bào đều có cùng bào khác nhau hình dạng, nhưng thường có chúng luôn có kích kích thước và thước khác nhau.",
-            "hình dạng khác nhau. Đọc ý kiến trên của các bạn và trả lời các câu hỏi sau:"
+            "Tế bào có thể có dạng hình cầu, hình đĩa, hình que, hình sao hoặc dạng sợi. Hình dạng thường liên quan đến nhiệm vụ mà tế bào đảm nhiệm."
           ],
           "bullets": [
-            "1. Phát biểu của bạn nào đúng – 2, Lấy ví dụ đề giải thích tại sao các phát biểu khác không đúng."
+            "Tế bào hồng cầu có dạng đĩa lõm hai mặt, thuận lợi cho vận chuyển khí.",
+            "Tế bào thần kinh có nhiều nhánh dài, thuận lợi cho truyền tín hiệu.",
+            "Tế bào cơ có dạng sợi dài, phù hợp với khả năng co và giãn."
           ]
         },
         {
-          "title": "Em có thể:",
+          "title": "3. Kích thước của tế bào",
           "paragraphs": [
-            "Giải thích được vì sao tế bào được xem là \"đơn vị cơ bản của sự sống\". mỗi loại tế bào lại có Các loại tế bào khác nhau về hình dạng và kích thước hình dạng khác nhau.",
-            "Em có biết? Năm 1665, nhà khoa học người Anh là Rô-bóc Húc (Robert Hooke) đã dùng chiếc kính hiền vi đơn giản (Hình 18.3a) để quan sát một mầu vỏ cây và thấy nó được tạo nên từ \"Trong thàng trăm cấu trúc giống những hộp nhỏ mà ông goi là \"\"tế bào\"\" Ông đã mô tả bằng cách\" \"vẽ hình ảnh đầu tiên về tế bào mà minh quan sát thấy (Hình 18.3b), đó là những tế bào phóng đại 300 lần (Hình 18.3c).",
-            "a) b) Hình 18.3 phóng đại 300 lần (Hình 18.3c). a) b) Hình 18.3 \"Thuận Kinh hiển vi (a) và hình ảnh tế bào chết của vỏ cây (b,c)\" quan sát được qua kinh hiển vi Vì nguyên liệu cần cho sự sống của tế bào (như oxygen, chất dinh dưỡng) và chất thải được bài tiết (như khí carbon dioxide) phải đi vào và đi ra tế bào qua bề mặt của nó nên nếu tế bào quá lớn, các chất đi vào và đi ra không đủ nhanh theo yêu cầu của các quá trình 1980 sống. Vi vậy, hầu hết tế bào có kích thước rất nhỏ.",
-            "CẤU TẠO VÀ CHỨC NĂNG Bài 19 CÁC THÀNH PHẦN CỦA TẾ BÀO MỤC TIÊU Trình bày được cấu tạo và chức năng các thành phần chính của tế bào. Phân biệt được tế bào nhân sơ, tế bào nhân thực, tế bào động vật, tế bào thực vật.",
-            "Tuy có kích thước nhỏ nhung tế bào có thể thực hiện được các quá trình sống cơ bản. Vậy tế bào được cấu tạo từ những thành phần nào và chúng có chức năng gì để có thể giúp tế bào thực hiện những quá trình sống đó – Cấu tạo của tế bào Màng tế bào Vật chất di truyền Các loại tế bào khác nhau thường có hình dạng, kích thước và chức năng khác nhau nhưng chúng đều được cấu tạo từ các thành phần cơ bản sau:",
-            "Tế bào Nhân Màng tế bào là thành phần có ở mọi tế bào, bao bọc chất cấu tạo từ các thành phần cơ bản sau: Tế bào Nhân Màng tế bào là thành phần có ở mọi tế bào, bao bọc chất tế bào chất. Màng tế bào tham gia vào quá trình trao đổi chất giữa tế bào và môi trường.",
-            "Hình 19.1 Tế bào chất là vùng nằm giữa màng tế bào và nhân Sơ đồ các thành phần chinh của hoặc vùng nhân. Phần lớn các hoạt động trao đổi chất tế bào (hấp thụ chất dinh dưỡng, chuyển hoá năng lượng, hoặc vùng nhân. Phần lớn các hoạt động trao đổi chất tế bào (hấp thụ chất dinh dưỡng, chuyển hoá năng lượng, tạo các chất để tăng trưởng,...) của tế bào xảy ra ở"
+            "Phần lớn tế bào có kích thước hiển vi nên cần kính hiển vi để quan sát. Một số tế bào có thể nhìn thấy bằng mắt thường, chẳng hạn tế bào trứng của một số động vật.",
+            "Kích thước cơ thể không quyết định trực tiếp kích thước tế bào; cơ thể lớn thường có số lượng tế bào nhiều hơn."
           ],
-          "bullets": [
-            "Mọi cơ thể sống đều được cấu tạo từ tế bào, vì vậy",
-            "Tế bào đầu tiên được nhìn thấy và mô tả như thế nào – Năm 1665, nhà khoa học người Anh là Rô-bóc Húc (Robert Hooke) đã dùng chiếc kính",
-            "Tại sao hầu hết các tế bào có kích thước rất nhỏ – Nó (tỉ lệ SNV), Khi tế bào lớn lên, thể tích tăng nhanh hơn nhiều so với diện tích bề mặt"
-          ]
-        },
-        {
-          "title": "1. Quan sát hình 19.1 và",
-          "paragraphs": [
-            "tế bào chất đọc thông tin mục 1, nêu Nhân hoặc vùng nhân là nơi chứa vật chất di truyền các thành phần chính thuật là trung tâm điều khiển các hoạt động sống của tế bào.",
-            "của tế bào và chức năng của chúng. các thành phần chính thuật là trung tâm điều khiển các hoạt động sống của tế bào. của tế bào và chức năng của chúng."
-          ],
-          "bullets": []
-        },
-        {
-          "title": "2. Trên màng tế bào có rất",
-          "paragraphs": [
-            "Tế bào nhân sơ và tế bào nhân thực nhiều lỗ nhỏ li ti. Em hãy dự đoán xem vai trò của nay Mọi sinh vật đều được cấu tạo từ tế bào. Có hai loại tế bào: những lỗ nhỏ này là gi – tế bào nhân sơ và tế bào nhân thực.",
-            "Vùng nhân Nhân những lỗ nhỏ này là gi – tế bào nhân sơ và tế bào nhân thực. Vùng nhân Nhân a) Tế bào nhân sơ b) Tế bào nhân thực Hình 19.2 Cấu tạo tế bào nhân sơ và tế bào nhân thực"
-          ],
-          "bullets": [
-            "Tế bào chất -",
-            "Tế bào chất -",
-            "Màng tế bào -"
-          ]
+          "note": "Không kết luận cơ thể càng lớn thì từng tế bào càng lớn."
         }
       ],
       "diagram": {
@@ -2944,34 +2898,26 @@
       },
       "terms": [
         {
-          "term": "Nhận biết được tế bào",
-          "definition": "Là đơn vị cấu trúc và chức năng cơ bản nhất của mọi cơ thể sống. Tất cả các loài sinh vật từ vi khuẩn đơn bào đến con người đều được cấu tạo từ một hoặc nhiều tế bào."
+          "term": "Tế bào",
+          "definition": "Đơn vị cấu tạo cơ bản của cơ thể sống."
         },
         {
-          "term": "Tại sao tế bào được coi",
-          "definition": "Là đơn vị cấu trúc và chức năng cơ bản nhất của mọi cơ thể sống. Tất cả các loài sinh vật từ vi khuẩn đơn bào đến con người đều được cấu tạo từ một hoặc nhiều tế bào."
+          "term": "Đơn bào",
+          "definition": "Cơ thể chỉ gồm một tế bào."
         },
         {
-          "term": "tế bào được xem",
-          "definition": "Là đơn vị cấu trúc và chức năng cơ bản nhất của mọi cơ thể sống. Tất cả các loài sinh vật từ vi khuẩn đơn bào đến con người đều được cấu tạo từ một hoặc nhiều tế bào."
+          "term": "Đa bào",
+          "definition": "Cơ thể gồm nhiều tế bào."
         },
         {
-          "term": "Màng tế bào",
-          "definition": "Là đơn vị cấu trúc và chức năng cơ bản nhất của mọi cơ thể sống. Tất cả các loài sinh vật từ vi khuẩn đơn bào đến con người đều được cấu tạo từ một hoặc nhiều tế bào."
-        },
-        {
-          "term": "Màng tế bào",
-          "definition": "Là đơn vị cấu trúc và chức năng cơ bản nhất của mọi cơ thể sống. Tất cả các loài sinh vật từ vi khuẩn đơn bào đến con người đều được cấu tạo từ một hoặc nhiều tế bào."
-        },
-        {
-          "term": "Tế bào chất",
-          "definition": "Là đơn vị cấu trúc và chức năng cơ bản nhất của mọi cơ thể sống. Tất cả các loài sinh vật từ vi khuẩn đơn bào đến con người đều được cấu tạo từ một hoặc nhiều tế bào."
+          "term": "Kính hiển vi",
+          "definition": "Dụng cụ giúp quan sát vật thể rất nhỏ."
         }
       ],
       "summary": [
-        "Tế bào chất -",
-        "Tế bào chất -",
-        "Màng tế bào -"
+        "Mọi cơ thể sống đều được cấu tạo từ tế bào.",
+        "Tế bào thực hiện các hoạt động sống cơ bản.",
+        "Hình dạng và kích thước tế bào rất đa dạng, thường phù hợp với chức năng."
       ],
       "quick_check": [
         {
@@ -3008,49 +2954,10 @@
           "explanation": "Phần lớn tế bào có kích thước hiển vi."
         }
       ],
-      "lesson_version": 2,
-      "generation_sources": [
-        {
-          "source": "SGK KHTN 6 KNTT.pdf",
-          "page": 65,
-          "printed_start": 64,
-          "printed_end": 64,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 6 KNTT.pdf",
-          "page": 66,
-          "printed_start": 65,
-          "printed_end": 65,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 6 KNTT.pdf",
-          "page": 67,
-          "printed_start": 66,
-          "printed_end": 66,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 6 KNTT.pdf",
-          "page": 68,
-          "printed_start": 67,
-          "printed_end": 67,
-          "virtual": false
-        }
-      ],
-      "catalog_only": false,
-      "illustrations": [
-        {
-          "caption": "(đọng vạt). Quan sát và vẽ: Dựa vào hình ảnh hai tế bào đã chuẩn bị, hãy vẽ ra giấy hình dạng và câu tạo của mỗi tê bào, ghi lại những đặc điêm đáng chú ý. So s",
-          "image_path": "SGK KHTN 6 KNTT/page_68_img_0.png",
-          "image_url": "/api/images/SGK KHTN 6 KNTT/page_68_img_0.png",
-          "label": "Hình minh họa (Trang 68, SGK KHTN 6)",
-          "matched_query": "Bài 18 Tế bào – đơn vị cơ bản của sự sống",
-          "page": 68,
-          "source": "SGK KHTN 6 KNTT.pdf"
-        }
-      ]
+      "order": 180,
+      "active": true,
+      "origin": "system",
+      "lesson_version": 4
     },
     {
       "id": "k6-cau-tao-va-chuc-nang-cua-cac-te-bao-695de6e2",
@@ -13122,58 +13029,42 @@
       "number": "Bài 25",
       "title": "Hô hấp tế bào",
       "topic": "Hô hấp tế bào; nguyên liệu, sản phẩm và vai trò của hô hấp tế bào",
-      "objectives": [
-        "Mô tả được một cách tổng quát quá trình hô hấp ở tế bào (ở thực vật và động vật); nêu được khái niệm hô hấp tế bào.",
-        "Viết được phương trình hô hấp dạng chữ thể hiện hai chiều tổng hợp và phân giải."
-      ],
-      "content": "Bài HÔ HẤP TẾ BÀO MỤC TIÊU Mô tả được một cách tổng quát quá trình hô hấp tế bào (ở thực vật và ở động vật): Nêu được khái niệm Viết được phương trình hô hấp dạng chữ. Thể hiện được hai chiều tổng hợp và phân giải chất hữu cơ ở tế bào. Năng lượng dùng cho các hoạt động sống của sinh vật được tạo ra như thế nào3 Quá trình đó diễn ra ở đâu trong cơ thể sinh vật Hô hấp tế bào Hầu hết các quá trình sống của tế bào như sinh trưởng, phát triển, trao đổi chất; các phân tử chất hữu cơ (chủ yếu là glucose) được phân giải thành khí carbon dioxide Thành và nước, đồng thời tạo ra năng lượng ATP cung cấp cho các hoạt động của tế bào.",
-      "source_label": "SGK KHTN 7 KNTT · Bài 25 · Trang 111–112",
-      "order": 250,
-      "active": true,
-      "origin": "system",
-      "created_at": "2026-08-27T13:17:42+00:00",
-      "updated_at": "2026-09-11T18:43:49+00:00",
       "duration": "35–45 phút",
+      "objectives": [
+        "Nêu được khái niệm hô hấp tế bào.",
+        "Xác định được nguyên liệu và sản phẩm của quá trình.",
+        "Trình bày được vai trò của năng lượng giải phóng đối với cơ thể.",
+        "Phân biệt được tổng hợp và phân giải chất hữu cơ."
+      ],
+      "content": "Hô hấp tế bào là quá trình phân giải chất hữu cơ trong tế bào, thường sử dụng oxygen, tạo carbon dioxide, nước và giải phóng năng lượng cho các hoạt động sống.",
+      "source_label": "SGK KHTN 7 KNTT · Bài 25 · Trang 111–112",
       "warmup": {
         "question": "Vì sao sau khi chạy nhanh, em thở gấp và cảm thấy cơ thể nóng lên?",
         "hint": "Cơ bắp đang cần nhiều năng lượng hơn khi vận động."
       },
       "sections": [
         {
-          "title": "Khởi động & Hiện tượng mở đầu",
+          "title": "1. Khái niệm hô hấp tế bào",
           "paragraphs": [
-            "Bài HÔ HẤP TẾ BÀO MỤC TIÊU Mô tả được một cách tổng quát quá trình hô hấp tế bào (ở thực vật và ở động vật): Nêu được khái niệm Viết được phương trình hô hấp dạng chữ.",
-            "Thể hiện được hai chiều tổng hợp và phân giải chất hữu cơ ở tế bào. Năng lượng dùng cho các hoạt động sống của sinh vật được tạo ra như thế nào3 Quá trình đó diễn ra ở đâu trong cơ thể sinh vật – I-Hô hấp tế bào Hầu hết các quá trình sống của tế bào như sinh trưởng, phát triển, trao đổi chất; các phân tử chất hữu cơ (chủ yếu là glucose) được phân giải thành khí carbon dioxide Thành và nước, đồng thời tạo ra năng lượng ATP cung cấp cho các hoạt động của tế bào.",
-            "Hô hấp tế bào xảy ra ở ti thể. Ti thể là bào quan trong tế bào của sinh vật nhân thực. Ở đa số thực vật, glucose được tổng hợp từ quá trình quang hợp; ở động vật, tế bào lấy glucose từ quá trình phân giải thức ăn.",
-            "Tế bào VOLCUOUSO Ti thể DA Carbon dioxide Glucose Oxygen Nước Hình 25.1 Tế bào VOLCUOUSO Ti thể DA Carbon dioxide Glucose Oxygen Nước Hình 25.1 Hô hấp ở tế bào Quan sát Hình 25.1, thảo luận nhóm và hoàn thành các yêu cầu sau:"
-          ],
-          "bullets": [
-            "thành sinh sản, . đều cần đến năng lượng, Tuy nhiên, phần lớn năng lượng trong tế bào ở",
-            "Năng lượng (ATP)",
-            "Năng lượng (ATP)",
-            "1. Kể tên các chất tham gia vào quá trình hô hấp và các sản phẩm được tạo ra từ quá"
+            "Hô hấp tế bào là chuỗi phản ứng phân giải chất hữu cơ diễn ra trong tế bào. Năng lượng hóa học trong chất hữu cơ được giải phóng và một phần được tích lũy trong ATP.",
+            "Ở nhiều sinh vật, glucose là nguyên liệu hữu cơ phổ biến và oxygen tham gia quá trình hô hấp hiếu khí."
           ]
         },
         {
-          "title": "II - Mối quan hệ giữa tổng hợp và phân giải chất hữu cơ ở tế bào",
+          "title": "2. Nguyên liệu và sản phẩm",
           "paragraphs": [
-            "Quá trình tổng hợp chất hữu cơ đã tạo ra nguyên liệu cho hô hấp. Hô hấp là quá trình Quá trình phân giải chất hữu cơ như glucose tạo thành nước, carbon dioxide và năng lượng- ngược nhau nhưng phụ thuộc lẫn nhau.",
-            "Oxygen thay thế cho các dấu (3) trong các phương trình dưới đây: (?) % (3) Phân giải (3) (3) (3) (3) (3) (3) % (3) Tổng hợp (?) (?) Năng lượng phụ thuộc lẫn nhau?",
-            "Năng lượng phụ thuộc lẫn nhau – Hô hấp tế bào khác với quá trình đốt cháy nhiên liệu như thế nào – Quá trình đốt cháy nhiên liệu và hô hấp tế bào đều sử dụng khí oxygen, thải ra khí carbon dioxide và sản Quá trình đốt cháy nhiên liệu và hô hấp tế bào đều sử dụng khí oxygen, thải ra khí carbon dioxide và sản sinh ra năng lượng, Tuy nhiên, việc đốt cháy nhiên liệu chỉ giải phóng ra năng lượng dưới dạng nhiệt năng một cách ồ ạt, với hiệu suất thấp (thường nhỏ hơn 25%); còn trong hô hấp tế bào, năng lượng năng một cách ồ ạt, với hiệu suất thấp (thường nhỏ hơn 25%); còn trong hô hấp tế bào, năng lượng được giải phóng từ từ qua từng giai đoạn hô hấp và phần lớn được tích luỹ dưới dạng hoá năng dễ sử dụng để tế bào có thể dùng cho các hoạt động sống, hiệu suất sinh năng lượng cao hơn (khoảng 40%), Chỉ một phần nhỏ năng lượng được giải phóng trong hô hấp dưới dạng nhiệt năng giúp duy trì thân nhiệt hoặc bị thất thoát ra môi trường, Như vậy, nhờ cách thức chuyển hoá năng lượng trong hô hấp mà tế bào thu được nhiều năng lượng hơn, đảm bảo cho tế bào có đủ năng lượng cung cấp cho các hoạt động sống."
+            "Có thể mô tả khái quát: glucose và oxygen tạo thành carbon dioxide, nước và năng lượng.",
+            "Năng lượng giải phóng được dùng cho vận động, sinh trưởng, tổng hợp chất, vận chuyển chất và duy trì nhiệt độ cơ thể."
           ],
-          "bullets": [
-            "1. Đọc thông tin trong mục II, sử dụng các từ: Glucose, Carbon dioxide, ATP, Nước;",
-            "2. Tại sao nói tổng hợp và phân giải chất hữu cơ có biểu hiện trái ngược nhau nhưng",
-            "2. Tại sao nói tổng hợp và phân giải chất hữu cơ có biểu hiện trái ngược nhau nhưng"
-          ]
+          "note": "Hô hấp tế bào không đồng nhất với động tác hít vào – thở ra; hít thở giúp trao đổi khí, còn hô hấp tế bào diễn ra bên trong tế bào."
         },
         {
-          "title": "EM CÓ THỂ",
+          "title": "3. Tổng hợp và phân giải chất hữu cơ",
           "paragraphs": [
-            "Hô hấp tế bào là quá trình phân giải các chất hữu cơ tạo Giải thích được thành nước và carbon dioxide, đồng thời giải phóng ra vai trò của khí năng lượng. Giải thích được thành nước và carbon dioxide, đồng thời giải phóng ra vai trò của khí năng lượng.",
-            "oxygen và khí Phương trình hô hấp: carbon dioxide đối với cơ thể sống. Glucose + Oxygen → Carbon dioxide + Nước + Năng lượng (ATP) Quá trình tổng hợp và phân giải chất hữu cơ có biểu hiện trái ngược nhau nhưng phụ thuộc lẫn nhau."
+            "Quá trình tổng hợp tạo chất hữu cơ và tích lũy năng lượng; quá trình phân giải phá vỡ chất hữu cơ và giải phóng năng lượng.",
+            "Hai nhóm quá trình liên hệ chặt chẽ: sản phẩm của quá trình này có thể trở thành nguyên liệu của quá trình kia."
           ],
-          "bullets": []
+          "example": "Quang hợp tạo glucose và oxygen; hô hấp tế bào sử dụng chúng để giải phóng năng lượng."
         }
       ],
       "diagram": {
@@ -13187,12 +13078,25 @@
       "terms": [
         {
           "term": "Hô hấp tế bào",
-          "definition": "Là quá trình phân giải các phân tử chất hữu cơ (chủ yếu là glucose) diễn ra trong tế bào (chủ yếu tại bào quan ti thể) với sự tham gia của khí oxygen, tạo ra sản phẩm là carbon dioxide (CO2), nước (H2O) và giải phóng năng lượng dưới dạng ATP cung cấp cho mọi hoạt động sống của tế bào và cơ thể."
+          "definition": "Quá trình phân giải chất hữu cơ và giải phóng năng lượng trong tế bào."
+        },
+        {
+          "term": "ATP",
+          "definition": "Dạng năng lượng tế bào có thể sử dụng trực tiếp."
+        },
+        {
+          "term": "Phân giải",
+          "definition": "Biến đổi chất phức tạp thành chất đơn giản hơn, thường giải phóng năng lượng."
+        },
+        {
+          "term": "Tổng hợp",
+          "definition": "Tạo chất phức tạp từ chất đơn giản hơn, thường cần năng lượng."
         }
       ],
       "summary": [
-        "Hô hấp tế bào là quá trình phân giải các chất hữu cơ tạo Giải thích được thành nước và carbon dioxide, đồng thời giải phóng ra vai trò của khí năng lượng. Giải ...",
-        "oxygen và khí Phương trình hô hấp: carbon dioxide đối với cơ thể sống. Glucose + Oxygen → Carbon dioxide + Nước + Năng lượng (ATP) Quá trình tổng hợp và phân gi..."
+        "Hô hấp tế bào phân giải chất hữu cơ để giải phóng năng lượng.",
+        "Nguyên liệu phổ biến là glucose và oxygen; sản phẩm gồm carbon dioxide, nước và năng lượng.",
+        "Năng lượng được dùng cho mọi hoạt động sống của tế bào và cơ thể."
       ],
       "quick_check": [
         {
@@ -13229,35 +13133,10 @@
           "explanation": "Hít thở và hô hấp tế bào liên quan nhưng không phải một quá trình."
         }
       ],
-      "lesson_version": 2,
-      "generation_sources": [
-        {
-          "source": "SGK KHTN 7 KNTT.pdf",
-          "page": 112,
-          "printed_start": 111,
-          "printed_end": 111,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 7 KNTT.pdf",
-          "page": 113,
-          "printed_start": 112,
-          "printed_end": 112,
-          "virtual": false
-        }
-      ],
-      "catalog_only": false,
-      "illustrations": [
-        {
-          "caption": "SSS—- 0S SGÉI S252 2sese: E-- SP 2221(-5.2~9/-— <—-S-WE (9-52 CS272//@E0(\\441022-9529/1-vIẾn- v62 Xcav Ly s2) S103 a3 61000772 2SẾ bị thất thoát ra môi trường. ",
-          "image_path": "SGK KHTN 7 KNTT/page_112_img_0.png",
-          "image_url": "/api/images/SGK KHTN 7 KNTT/page_112_img_0.png",
-          "label": "Hình minh họa (Trang 112, SGK KHTN 7)",
-          "matched_query": "Bài 25 Hô hấp tế bào",
-          "page": 112,
-          "source": "SGK KHTN 7 KNTT.pdf"
-        }
-      ]
+      "order": 250,
+      "active": true,
+      "origin": "system",
+      "lesson_version": 4
     },
     {
       "id": "k7-bai-26-mot-so-yeu-to-anh-huong-den-ho-hap-te-bao",
@@ -21861,113 +21740,46 @@
       "number": "Bài 31",
       "title": "Hệ vận động ở người",
       "topic": "Hệ vận động ở người; xương, khớp, cơ; bảo vệ hệ vận động",
-      "objectives": [
-        "Nêu được chức năng của hệ vận động ở người.",
-        "Dựa vào sơ đồ (hoặc hình vẽ), mô tả được cấu tạo sơ lược các cơ quan của hệ vận động. Phân tích được sự phù hợp giữa cấu tạo với chức năng của hệ vận động.",
-        "Trình bày được một số bệnh, tật liên quan đến hệ vận động và một số bệnh về sức khoẻ học đường liên quan hệ vận động (ví dụ: cong vẹo cột sống).",
-        "Nêu được ý nghĩa của tập thể dục, thể thao và chọn phương pháp luyện tập thể thao phù hợp.",
-        "Vận dụng được hiểu biết về hệ vận động và các bệnh học đường để bảo vệ bản thân và tuyên truyền, giúp đỡ cho người khác.",
-        "Nêu được tác hại của bệnh loãng xương."
-      ],
-      "content": "BÀI 24. CƯỜNG ĐỘ DÒNG ĐIỆN VÀ HIỆU ĐIỆN THẾ MỤC TIÊU Sau bài học, HS sẽ: được đo bằng hiệu điện thế (còn gọi là điện áp) giữa hai cực của nó. CHUẨN BỊ Đối với cả lớp: Đối với mỗi nhóm HS: \" Bốn pin loại 1,5 V đặt trong giá đụng pin; \" Ampe kế có GHĐ 1 A và có ĐCNN là 0,05 A;;\" \" Ampe kế có GHĐ 1 A và có ĐCNN là 0,05 A;;\" THÔNG TIN BỔ SUNG Theo yêu cầu cần đạt trong chương trình, ở lớp 8 không yêu cầu đưa vào định nghĩa Các chính cường độ dòng điện mà chỉ yêu cầu HS nêu được số chỉ của ampe kế là giá trị của cường độ dòng điện, Hiểu đầy đủ hơn, cường độ dòng điện là đại lượng vật lí đặc trung cho độ mạnh, yếu của dòng điện và được đo bằng điện lượng chuyển qua tiết diện thẳng của vật dẫn trong một đơn vị thời gian Độ lớn dòng điện tức thời tính theo công thức i - dt một đơn vị thời gian Độ lớn dòng điện tức thời tính theo công thức i - dt qua tiết diện thắng của vật dẫn trong thời gian rất nhỏ dt, g[t) là đạo hàm của điện lượng Theo theo thời gian.Công thức này được áp dụng trong các bài toán về dòng điện xoay chiều hoặc dòng điện biến đổi Với dòng điện không đổi I - 3, trong đó g là điện lượng chuyển qua tiết diện thắng của t vật dẫn trong thời gian t.",
-      "source_label": "SGK KHTN 8 KNTT · Bài 31 · Trang 125–129",
-      "order": 310,
-      "active": true,
-      "origin": "system",
-      "created_at": "2026-08-27T13:17:42+00:00",
-      "updated_at": "2026-09-11T18:43:49+00:00",
       "duration": "40–45 phút",
+      "objectives": [
+        "Nêu được cấu tạo và chức năng chính của hệ vận động.",
+        "Giải thích được sự phối hợp giữa cơ, xương và khớp khi vận động.",
+        "Nhận biết được một số bệnh, tật liên quan đến hệ vận động.",
+        "Đề xuất được biện pháp bảo vệ hệ vận động trong học tập và sinh hoạt."
+      ],
+      "content": "Hệ vận động gồm bộ xương và hệ cơ. Xương tạo khung và bảo vệ cơ thể; khớp nối các xương; cơ bám vào xương, co và dãn để làm xương chuyển động quanh khớp.",
+      "source_label": "SGK KHTN 8 KNTT · Bài 31 · Trang 125–129",
       "warmup": {
         "question": "Khi em gập cẳng tay, những bộ phận nào phối hợp để tạo ra chuyển động?",
         "hint": "Hãy quan sát cơ ở cánh tay, xương cẳng tay và khớp khuỷu."
       },
       "sections": [
         {
-          "title": "Khởi động & Hiện tượng mở đầu",
+          "title": "1. Cấu tạo của hệ vận động",
           "paragraphs": [
-            "BÀI 24. CƯỜNG ĐỘ DÒNG ĐIỆN VÀ HIỆU ĐIỆN THẾ MỤC TIÊU Sau bài học, HS sẽ: được đo bằng hiệu điện thế (còn gọi là điện áp) giữa hai cực của nó. CHUẨN BỊ Đối với cả lớp:",
-            "Đối với mỗi nhóm HS: \" Bốn pin loại 1,5 V đặt trong giá đụng pin; \" Ampe kế có GHĐ 1 A và có ĐCNN là 0,05 A;;\" \" Ampe kế có GHĐ 1 A và có ĐCNN là 0,05 A;;\" THÔNG TIN BỔ SUNG Theo yêu cầu cần đạt trong chương trình, ở lớp 8 không yêu cầu đưa vào định nghĩa Các chính cường độ dòng điện mà chỉ yêu cầu HS nêu được số chỉ của ampe kế là giá trị của cường độ dòng điện, Hiểu đầy đủ hơn, cường độ dòng điện là đại lượng vật lí đặc trung cho độ mạnh, yếu của dòng điện và được đo bằng điện lượng chuyển qua tiết diện thẳng của vật dẫn trong một đơn vị thời gian Độ lớn dòng điện tức thời tính theo công thức i - dt một đơn vị thời gian Độ lớn dòng điện tức thời tính theo công thức i - dt qua tiết diện thắng của vật dẫn trong thời gian rất nhỏ dt, g[t) là đạo hàm của điện lượng Theo theo thời gian.Công thức này được áp dụng trong các bài toán về dòng điện xoay chiều hoặc dòng điện biến đổi Với dòng điện không đổi I - 3, trong đó g là điện lượng chuyển qua tiết diện thắng của t vật dẫn trong thời gian t.",
-            "Theo định nghĩa này, đơn vị của cường độ dòng điện trong hệ đơn vị đo lường SI là 1c Nampe, kí hiệu là A và 1 A ls Trong thí nghiệm, HS cần sử dụng biến trở, đây là dụng cụ HS chưa biết, GV cần giới thuật thiệu đó là một dụng cụ dùng để thay đổi dòng điện chạy trong mạch Ở thí nghiệm này cũng như ở phần sau đó của bài học, GV không cần thông báo cũng không yêu cầu HS tìm hiểu về nguyên tắc hoạt động của ampe kế.",
-            "Tương tự như vậy, hiệu điện thế cũng là một khái niệm khá trừu tượng, Trước hết, khái Tháng niệm hiệu điện thế gắn liền với tính chất – thể – của trường tĩnh, Từ đó, người ta đưa vào khái niệm hiệu điện thế giữa hai điểm đặc trung cho điện trường về mặt dự trữ năng lượng và có M và N của điện trường có giá trị bằng công của lực điện trường thực hiện khi di chuyển F điện trường q M và N của điện trường có giá trị bằng công của lực điện trường thực hiện khi di chuyển F điện trường q Đơn vị của hiệu điện thế là vôn, kí hiệu là V. Từ định nghĩa hiệu điện thế thì 1 Vlà hiệu điện thế giữa hai điểm của một điện trường sao cho khi di chuyển một đơn vị điện tích q-1C từ điểm này tới điểm kia thì lực điện trường thực hiện một công Amn – 1J.",
-            "1J 1V- 1c q-1C từ điểm này tới điểm kia thì lực điện trường thực hiện một công Amn – 1J. 1J 1V- 1c Trong các nguồn điện có sự chuyển hoá các năng lượng khác thành năng lượng điện, các kết quả tạo ra sự tập trung điện tích ở hai cực của nguồn điện và giữa chúng có một hiệu điện thế. Sự tập trung điện tích sẽ tạo ra một điện trường ngăn cản sự chuyển động của điện Thuật thuật tích về hai cực. Do đó cần cung cấp cho nguồn một năng lượng để làm điện tích dương dịch Trong chính chuyển ngược chiều điện trường thông qua tác dụng một ngoại lực (còn gọi là lực lạ). Khi xảy ra sự cân bằng động giữa ngoại lực dịch chuyển điện tích và lực do điện trường giữa hai cực của nguồn thì giữa hai cực của nguồn có một hiệu điện thế gọi là suất điện động của nguồn.",
-            "Các thuật Suất điện động của nguồn điện là đại lượng đo bằng thương số công A của các lực lạ Trong làm di chuyển điện tích dương q bên trong nguồn điện và độ lớn của điện tích q đó: E- A Việt Nam q Trong Giá trị hiệu điện thế ghi trên vỏ các nguồn điện chính là giá trị suất điện động của nguồn IV GỢI Ý TỔ CHỨC HOẠT ĐỘNG DẠY, HỌC"
-          ],
-          "bullets": [
-            "Thực hiện thí nghiệm để nêu được số chỉ của ampe kế là giá trị của cường độ dòng điện.",
-            "Thực hiện thí nghiệm để nêu được khả năng sinh ra dòng điện của pin (hay acquy)",
-            "Nêu được đơn vị đo cường độ dòng điện và đơn vị đo hiệu điện thế.",
-            "Thiết bị để chiếu các hình vẽ lên màn ảnh.",
-            "Bóng đèn pin lắp sắn vào đế đèn;",
-            "Các đoạn dây nối có vỏ bọc cách điện;",
-            "Công tắc;",
-            "Biến trở con chạy;",
-            "Vôn kế có GHĐ 5 V và có ĐCNN là 0,1 v.",
-            "Công tắc;",
-            "Biến trở con chạy;",
-            "Vôn kế có GHĐ 5 V và có ĐCNN là 0,1 v."
+            "Bộ xương gồm xương đầu, xương thân và xương chi. Các xương nối với nhau tại khớp. Hệ cơ gồm các cơ bám vào xương nhờ mô liên kết.",
+            "Xương tạo khung nâng đỡ, định hình và bảo vệ cơ quan; cơ tạo lực; khớp là vị trí cho phép các phần xương chuyển động tương đối với nhau."
           ]
         },
         {
-          "title": "Hoạt động 1. KHởi ĐộNG",
+          "title": "2. Sự phối hợp tạo vận động",
           "paragraphs": [
-            "Ở Bài 1, HS đã biết ampe kế dùng để đo cường độ dòng điện, vôn kế dùng để đo Hiệu điện thế, Phần khởi động này hướng HS tới nội dung cụ thể hơn, liên quan đến số chỉ của ampe kế và vôn kế.",
-            "Tổ chức để HS thảo luận và trả lời câu hỏi nhu trong SGK: Số chỉ của ampe kế và vôn kế cho ta biết điều gì? vôn kế cho ta biết điều gì – Trong quá trình HS thảo luận, GV không khẳng định hoặc phủ định ý kiến trả lời của HS đưa ra mà chỉ nói với HS rằng sẽ được làm rõ khi nghiên cứu bài học."
+            "Khi cơ co, cơ ngắn lại và kéo xương chuyển động quanh khớp. Nhiều vận động cần các nhóm cơ đối kháng phối hợp: một cơ co trong khi cơ kia dãn."
           ],
-          "bullets": []
+          "example": "Khi gập cẳng tay, cơ phía trước cánh tay co và cơ phía sau dãn; khi duỗi tay, hoạt động của hai nhóm cơ đổi lại."
         },
         {
-          "title": "HOẠT ĐỘNG 2. HƯỚNG DẪN HS TÌM HIỂU CƯỜNG ĐỘ DÒNG ĐIỆN",
+          "title": "3. Bảo vệ hệ vận động",
           "paragraphs": [
-            "GV cho HS hoạt động nhóm thực hiện thí nghiệm như sơ đồ Hình 24.1 SGK, sau đó rút ra các kết luận về cường độ dòng điện. dịch chuyển con chạy của biến trở và rút ra kết luận về mối quan hệ giữa độ sáng của bóng đèn và số chỉ trên ampe kế.",
-            "của số chỉ ampe kế là giá trị của cường độ dòng điện. mạch điện Trước khi các nhóm tiến hành thí nghiệm, GV cần kiểm tra mạch điện HS đã mắc, nếu mắc đúng mới cho HS đóng công tắc để tiến hành thí nghiệm.",
-            "CH: GHĐ: 0,6 A; ĐCNN: 0,02 A; GHĐ: 3 A; ĐCNN: 0,1 A. Mắc ampe kế vào mạch điện sao cho ampe kế nối tiếp với dụng cụ muốn đo cường độ Thường dòng điện, Chốt dương (4) của ampe kế nối với cực dương của nguồn điện, Không được mắc hai chốt của ampe kế trực tiếp vào hai cực của nguồn điện để tránh làm hỏng ampe kế và nguồn điện. (VD1)"
+            "Dinh dưỡng hợp lí, vận động vừa sức và tư thế đúng giúp xương, khớp, cơ phát triển khỏe mạnh. Cần khởi động trước khi luyện tập và dùng đồ bảo hộ phù hợp."
           ],
           "bullets": [
-            "Tổ chức cho HS hoạt động nhóm tiến hành thí nghiệm như sơ đồ Hình 24.1 SGK khi",
-            "Tổ chức cho HS báo cáo thảo luận, kết quả thí nghiệm thu được. Tù đó, rút ra ý nghĩa",
-            "GV thông báo về kí hiệu, đơn vị của cường độ dòng điện, Kí hiệu của ampe kế trong",
-            "Tổ chức cho HS hoạt động cá nhân trả lời câu hỏi trong mục I SGK."
-          ]
-        },
-        {
-          "title": "Hoạt động 3. hướng dẫn hs tìm hiểu hiệu điện thế",
-          "paragraphs": [
-            "Các cho HS quan sát các nguồn điện để HS nhận ra trên mỗi nguồn điện đều có ghi số Vôn, Sau đó, GV giới thiệu về hiệu điện thế cho HS. Cho HS làm việc nhóm để rút ra nhận xét về sự ảnh hưởng của giá trị hiệu điện thế trên hai cực của nguồn điện vào cường độ dòng điện trong mạch Thuật thuận nguồn điện có ghi số vôn. GV giới thiệu số vôn này là hiệu điện thế trên hai cực của nguồn điện.",
-            "các thay các nguồn điện khác nhau và rút ra nhận xét về sự ảnh hưởng của giá trị hiệu điện thế này trên hai cực của nguồn điện vào cường độ dòng điện trong mạch 1980 - GV thông báo về kí hiệu, đơn vị của hiệu điện thế, Kí hiệu của vôn kế trong mạch điện Tổ chức cho HS hoạt động cá nhân trả lời câu hỏi trong SGK.",
-            "CH: Đối với pin mới thì số chỉ vôn kế đo được bằng giá trị ghi trên pin, nhưng đối Phần – Em có biết – trong nội dung này cần được thông báo cho HS để HS chú ý an toàn khi sử dụng các đồ dùng và thiết bị điện"
+            "Ngồi học thẳng lưng, bàn ghế phù hợp chiều cao.",
+            "Mang cặp đều hai vai, tránh mang vật quá nặng lệch một bên.",
+            "Bổ sung đủ protein, calcium, vitamin D và vận động ngoài trời hợp lí.",
+            "Khi chấn thương, hạn chế di chuyển vùng tổn thương và tìm hỗ trợ y tế."
           ],
-          "bullets": [
-            "GV hướng dẫn HS làm việc cá nhân quan sát các nguồn điện phát hiện được trên mỗi",
-            "Tổ chức cho HS hoạt động nhóm tiến hành thí nghiệm như sơ đồ Hình 24.2 SGK khi",
-            "Tổ chức cho HS báo cáo thảo luận, kết quả thí nghiệm thu được."
-          ]
-        },
-        {
-          "title": "Hoạt động 4. GHI NHớ, TổNG KếT",
-          "paragraphs": [
-            "GV yêu cầu HS tụ nhắc lại các nội dung quan trọng trong bài học, sau đó chốt lại \"Thuật những nội dung này được thể hiện trong mục \"Em đã học\"\" Chú ý đến các đơn vị kiến thức sau:",
-            "GỢI Ý KIỂM TRA, ĐÁNH GIÁ GỢI Ý KIỂM TRA, ĐÁNH GIÁ Thuật Đánh giá trong khi học: Đánh giá kí năng thực hiện thí nghiệm tìm hiểu về cường độ đồng điện và hiệu điện thế của HS Đánh giá sau khi học:"
-          ],
-          "bullets": [
-            "Cường độ dòng điện, đơn vị đo cường độ dòng điện.",
-            "Hiệu điện thế, đơn vị đo hiệu điện thế.",
-            "Cường độ dòng điện, đơn vị đo cường độ dòng điện.",
-            "Hiệu điện thế, đơn vị đo hiệu điện thế."
-          ]
-        },
-        {
-          "title": "1. Đề bài",
-          "paragraphs": [
-            "Câu 1. Em hãy hoàn thành bảng dưới đây. Đại lượng Kí hiệu Đơn vị Dụng cụ đo Cường độ dòng điện 2.. Hiệu điện thế Câu 2.Em hãy vẽ sơ đồ của mạch điện sau (trong sơ đồ chỉ rõ các chốt dương và âm của các dụng cụ đo)."
-          ],
-          "bullets": []
-        },
-        {
-          "title": "2. Đánh giá",
-          "paragraphs": [
-            "Câu 1.(H) Đại lượng Kí hiệu Đơn vị Dụng cụ đo Cường độ dòng điện I Ampe Ampe kế Hiệu điện thế U Vôn Vôn kế Câu 2. (H) % A"
-          ],
-          "bullets": []
+          "note": "Không tự nắn chỉnh xương hoặc khớp khi nghi ngờ gãy xương, trật khớp."
         }
       ],
       "diagram": {
@@ -21981,19 +21793,26 @@
       },
       "terms": [
         {
-          "term": "Đơn vị của hiệu điện thế",
-          "definition": "Kiến thức trọng tâm về Đơn vị của hiệu điện thế trong Bài 31 (Hệ vận động ở người) môn Khoa học tự nhiên 8 (Bộ sách Kết nối tri thức với cuộc sống)."
+          "term": "Bộ xương",
+          "definition": "Hệ thống xương tạo khung nâng đỡ và bảo vệ cơ thể."
         },
         {
-          "term": "của số chỉ ampe kế",
-          "definition": "Kiến thức trọng tâm về của số chỉ ampe kế trong Bài 31 (Hệ vận động ở người) môn Khoa học tự nhiên 8 (Bộ sách Kết nối tri thức với cuộc sống)."
+          "term": "Khớp",
+          "definition": "Nơi tiếp giáp giữa các xương."
+        },
+        {
+          "term": "Cơ đối kháng",
+          "definition": "Các cơ tạo ra những tác động ngược chiều và phối hợp trong vận động."
+        },
+        {
+          "term": "Cong vẹo cột sống",
+          "definition": "Tình trạng cột sống cong hoặc lệch bất thường."
         }
       ],
       "summary": [
-        "Cường độ dòng điện, đơn vị đo cường độ dòng điện.",
-        "Hiệu điện thế, đơn vị đo hiệu điện thế.",
-        "Cường độ dòng điện, đơn vị đo cường độ dòng điện.",
-        "Hiệu điện thế, đơn vị đo hiệu điện thế."
+        "Hệ vận động gồm bộ xương và hệ cơ; khớp nối các xương.",
+        "Cơ co tạo lực kéo làm xương chuyển động quanh khớp.",
+        "Tư thế đúng, dinh dưỡng và luyện tập hợp lí giúp bảo vệ hệ vận động."
       ],
       "quick_check": [
         {
@@ -22030,367 +21849,201 @@
           "explanation": "Tư thế đúng và bàn ghế phù hợp giúp giảm tải không cân đối lên cột sống."
         }
       ],
-      "lesson_version": 2,
-      "generation_sources": [
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 126,
-          "printed_start": 125,
-          "printed_end": 125,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 127,
-          "printed_start": 126,
-          "printed_end": 126,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 128,
-          "printed_start": 127,
-          "printed_end": 127,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 129,
-          "printed_start": 128,
-          "printed_end": 128,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 130,
-          "printed_start": 129,
-          "printed_end": 129,
-          "virtual": false
-        }
-      ],
-      "catalog_only": false,
-      "illustrations": [
-        {
-          "caption": "Sơ đồ & Hình minh họa: Bài 31 - Hệ vận động ở người",
-          "image_path": "SGK KHTN 8 KNTT/page_126_img_0.png",
-          "image_url": "/api/images/SGK KHTN 8 KNTT/page_126_img_0.png",
-          "label": "Sơ đồ bài học (Trang 126, SGK KHTN 8)",
-          "matched_query": "Bài 31 Hệ vận động ở người",
-          "page": 126,
-          "source": "SGK KHTN 8 KNTT.pdf"
-        }
-      ]
+      "order": 310,
+      "active": true,
+      "origin": "system",
+      "lesson_version": 4
     },
     {
-      "id": "k8-bai-32-dinh-duong-va-tieu-hoa-o-nguoi",
+      "id": "k8-b32-tieu-hoa",
       "grade": 8,
       "number": "Bài 32",
       "title": "Dinh dưỡng và tiêu hóa ở người",
-      "topic": "Dinh dưỡng và tiêu hóa ở người",
-      "objectives": [
-        "Nêu được khái niệm dinh dưỡng, chất dinh dưỡng. Nêu được mối quan hệ giữa tiêu hoá và dinh dưỡng.",
-        "Trình bày được chức năng của hệ tiêu hoá.",
-        "Quan sát hình vẽ (hoặc mô hình, sơ đồ khái quát) hệ tiêu hoá ở người, kể tên được các cơ quan của hệ tiêu hoá.",
-        "Trình bày được chế độ dinh dưỡng của con người ở các độ tuổi.",
-        "Nêu được một số bệnh về đường tiêu hoá và cách phòng và chống (bệnh răng, miệng; bệnh dạ dày; bệnh đường ruột, ...).",
-        "Trình bày được một số vấn đề về an toàn thực phẩm, cụ thể: nêu được khái niệm an toàn thực phẩm."
-      ],
-      "content": "Các cho HS quan sát các nguồn điện để HS nhận ra trên mỗi nguồn điện đều có ghi số Vôn, Sau đó, GV giới thiệu về hiệu điện thế cho HS. Cho HS làm việc nhóm để rút ra nhận xét về sự ảnh hưởng của giá trị hiệu điện thế trên hai cực của nguồn điện vào cường độ dòng điện trong mạch Thuật thuận nguồn điện có ghi số vôn. GV giới thiệu số vôn này là hiệu điện thế trên hai cực của nguồn điện. các thay các nguồn điện khác nhau và rút ra nhận xét về sự ảnh hưởng của giá trị hiệu điện thế này trên hai cực của nguồn điện vào cường độ dòng điện trong mạch 1980 - GV thông báo về kí hiệu, đơn vị của hiệu điện thế, Kí hiệu của vôn kế trong mạch điện Tổ chức cho HS hoạt động cá nhân trả lời câu hỏi trong SGK.",
-      "source_label": "SGK KHTN 8 KNTT · Bài 32 · Trang 128–134",
-      "generation_sources": [
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 129,
-          "printed_start": 128,
-          "printed_end": 128,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 130,
-          "printed_start": 129,
-          "printed_end": 129,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 131,
-          "printed_start": 130,
-          "printed_end": 130,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 132,
-          "printed_start": 131,
-          "printed_end": 131,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 133,
-          "printed_start": 132,
-          "printed_end": 132,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 134,
-          "printed_start": 133,
-          "printed_end": 133,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 135,
-          "printed_start": 134,
-          "printed_end": 134,
-          "virtual": false
-        }
-      ],
+      "topic": "Sinh học cơ thể người",
+      "duration": "3 tiết (135 phút)",
       "order": 320,
       "active": true,
-      "origin": "curriculum",
-      "catalog_only": false,
-      "created_at": "2026-08-29T13:12:20+00:00",
-      "updated_at": "2026-09-11T18:43:49+00:00",
+      "origin": "official_curriculum",
+      "lesson_version": 5,
+      "source_label": "SGK KHTN 8 KNTT – Bài 32 – Trang 131–135",
+      "content": "Dinh dưỡng và tiêu hóa ở người nghiên cứu cấu tạo hệ tiêu hóa gồm ống tiêu hóa và các tuyến tiêu hóa; các giai đoạn biến đổi thức ăn cơ học và hóa học tại khoang miệng, dạ dày, ruột non; sự hấp thụ chất dinh dưỡng tối đa tại ruột non và các biện pháp bảo vệ hệ tiêu hóa khỏe mạnh.",
+      "warmup": "Khi chúng ta ăn một mẩu bánh mì khô, tại sao càng nhai kĩ lại càng cảm thấy có vị ngọt? Quá trình tiêu hóa và hấp thụ các chất dinh dưỡng trong cơ thể diễn ra như thế nào?",
+      "objectives": [
+        "Nêu được khái niệm dinh dưỡng và tiêu hóa.",
+        "Trình bày được cấu tạo và chức năng của các cơ quan trong hệ tiêu hóa (ống tiêu hóa và tuyến tiêu hóa).",
+        "Mô tả được quá trình tiêu hóa cơ học và tiêu hóa hóa học diễn ra ở khoang miệng, dạ dày và ruột non.",
+        "Giải thích được vì sao ruột non là cơ quan tiêu hóa triệt để nhất và hấp thụ chất dinh dưỡng chủ yếu.",
+        "Vận dụng kiến thức để xây dựng chế độ ăn uống khoa học, vệ sinh an toàn thực phẩm để bảo vệ hệ tiêu hóa."
+      ],
       "sections": [
         {
-          "title": "Hoạt động 3. hướng dẫn hs tìm hiểu hiệu điện thế",
+          "title": "1. Khái niệm dinh dưỡng và tiêu hóa",
           "paragraphs": [
-            "Các cho HS quan sát các nguồn điện để HS nhận ra trên mỗi nguồn điện đều có ghi số Vôn, Sau đó, GV giới thiệu về hiệu điện thế cho HS. Cho HS làm việc nhóm để rút ra nhận xét về sự ảnh hưởng của giá trị hiệu điện thế trên hai cực của nguồn điện vào cường độ dòng điện trong mạch Thuật thuận nguồn điện có ghi số vôn. GV giới thiệu số vôn này là hiệu điện thế trên hai cực của nguồn điện.",
-            "các thay các nguồn điện khác nhau và rút ra nhận xét về sự ảnh hưởng của giá trị hiệu điện thế này trên hai cực của nguồn điện vào cường độ dòng điện trong mạch 1980 - GV thông báo về kí hiệu, đơn vị của hiệu điện thế, Kí hiệu của vôn kế trong mạch điện Tổ chức cho HS hoạt động cá nhân trả lời câu hỏi trong SGK.",
-            "CH: Đối với pin mới thì số chỉ vôn kế đo được bằng giá trị ghi trên pin, nhưng đối Phần – Em có biết – trong nội dung này cần được thông báo cho HS để HS chú ý an toàn khi sử dụng các đồ dùng và thiết bị điện"
+            "Dinh dưỡng là quá trình thu nhận, biến đổi và sử dụng chất dinh dưỡng từ thức ăn để duy trì các hoạt động sống, phát triển cơ thể và tái tạo các tế bào bị tổn thương.",
+            "Tiêu hóa là quá trình biến đổi các chất phức tạp trong thức ăn thành các chất dinh dưỡng đơn giản mà cơ thể có thể hấp thụ được qua niêm mạc ruột vào máu và dịch bạch huyết, đồng thời thải bỏ các chất cặn bã ra ngoài."
           ],
           "bullets": [
-            "GV hướng dẫn HS làm việc cá nhân quan sát các nguồn điện phát hiện được trên mỗi",
-            "Tổ chức cho HS hoạt động nhóm tiến hành thí nghiệm như sơ đồ Hình 24.2 SGK khi",
-            "Tổ chức cho HS báo cáo thảo luận, kết quả thí nghiệm thu được."
+            "Chất dinh dưỡng gồm: chất bột đường (carbohydrate), chất đạm (protein), chất béo (lipid), vitamin, khoáng chất và nước.",
+            "Hai hoạt động tiêu hóa cơ bản: tiêu hóa cơ học (nhai, nghiền, đảo trộn) và tiêu hóa hóa học (sử dụng enzyme xúc tác phân giải liên kết hóa học)."
           ]
         },
         {
-          "title": "Hoạt động 4. GHI NHớ, TổNG KếT",
+          "title": "2. Cấu tạo của hệ tiêu hóa ở người",
           "paragraphs": [
-            "GV yêu cầu HS tụ nhắc lại các nội dung quan trọng trong bài học, sau đó chốt lại \"Thuật những nội dung này được thể hiện trong mục \"Em đã học\"\" Chú ý đến các đơn vị kiến thức sau:",
-            "GỢI Ý KIỂM TRA, ĐÁNH GIÁ GỢI Ý KIỂM TRA, ĐÁNH GIÁ Thuật Đánh giá trong khi học: Đánh giá kí năng thực hiện thí nghiệm tìm hiểu về cường độ đồng điện và hiệu điện thế của HS Đánh giá sau khi học:"
+            "Hệ tiêu hóa ở người được chia thành hai bộ phận chính: ống tiêu hóa và các tuyến tiêu hóa.",
+            "Ống tiêu hóa là một đường ống cơ rỗng kéo dài từ miệng đến hậu môn gồm: khoang miệng, hầu (họng), thực quản, dạ dày, ruột non, ruột già (kết tràng), trực tràng và hậu môn.",
+            "Tuyến tiêu hóa gồm các tuyến tiết dịch tiêu hóa chứa enzyme đổ vào ống tiêu hóa: tuyến nước bọt (ở khoang miệng), tuyến vị (ở niêm mạc dạ dày), gan (tiết dịch mật chứa trong túi mật), tuyến tụy (tiết dịch tụy) và tuyến ruột (ở niêm mạc ruột non)."
           ],
           "bullets": [
-            "Cường độ dòng điện, đơn vị đo cường độ dòng điện.",
-            "Hiệu điện thế, đơn vị đo hiệu điện thế.",
-            "Cường độ dòng điện, đơn vị đo cường độ dòng điện.",
-            "Hiệu điện thế, đơn vị đo hiệu điện thế."
+            "Khoang miệng: răng cắn xé và nghiền thức ăn, lưỡi đảo trộn, tuyến nước bọt làm ẩm và tiêu hóa tinh bột chín.",
+            "Dạ dày: cơ quan phình to nhất của ống tiêu hóa, hình chữ J, có lớp cơ trơn rất dày và khỏe để co bóp nhào trộn thức ăn với dịch vị.",
+            "Ruột non: dài khoảng 2,8 – 3 m ở người trưởng thành, đường kính nhỏ, gấp khúc nhiều lần chiếm phần lớn khoang bụng.",
+            "Gan và tụy: hai tuyến tiêu hóa lớn nhất, tiết dịch đổ vào tá tràng (đoạn đầu của ruột non)."
           ]
         },
         {
-          "title": "1. Đề bài",
+          "title": "3. Quá trình biến đổi thức ăn ở các cơ quan tiêu hóa",
           "paragraphs": [
-            "Câu 1. Em hãy hoàn thành bảng dưới đây. Đại lượng Kí hiệu Đơn vị Dụng cụ đo Cường độ dòng điện 2.. Hiệu điện thế Câu 2.Em hãy vẽ sơ đồ của mạch điện sau (trong sơ đồ chỉ rõ các chốt dương và âm của các dụng cụ đo)."
-          ],
-          "bullets": []
-        },
-        {
-          "title": "2. Đánh giá",
-          "paragraphs": [
-            "Câu 1.(H) Đại lượng Kí hiệu Đơn vị Dụng cụ đo Cường độ dòng điện I Ampe Ampe kế Hiệu điện thế U Vôn Vôn kế Câu 2. (H) % A BÀI 25. THỰC HÀNH ĐO CƯỜNG ĐỘ DÒNG ĐIỆN VÀ HIỆU ĐIỆN THẾ INTERMONTIONALIZATION ANTION INTING MỤCTIÊU Sau bài học, HS sẽ:",
-            "Đo được cường độ dòng điện và hiệu điện thế bằng dụng cụ thực hành CHUẨN BỊ Đối với cả lớp: Đối với mỗi nhóm HS: \"Nguồn điện: 1,5 v; 3 V; 6 V;\" Đối với mỗi nhóm HS:",
-            "\"Nguồn điện: 1,5 v; 3 V; 6 V;\" \"- Một ampe kế có GHĐ là 0,5 A và có ĐCNN là 0,01 A;\" \" Một vôn kế có GHĐ là 6 V và có ĐCNN 0,1 V; Thuật - Mỗi HS chuẩn bị mẫu báo cáo sẫn đã cho ở cuối bài.",
-            "THÔNG TIN BỔ SUNG Theo yêu cầu cần đạt, bài này hướng tới phát triển kĩ năng thực hành của HS. GV cũng có thể tổ chức dạy học gắn bài này với Bài 24 để trở thành một chủ đề lớn hơn Thông qua bài này giúp HS khắc phục quan niệm sai lầm khá phổ biến đó là dòng điện bị \"tiêu thự\" trong mạch bởi các thiết bị điện, Do đó, nhiệm vụ của bài thực hành là đo cường độ dòng điện khi đặt ampe kế trước và sau bóng đèn theo chiều dòng điện Trong bài này cũng chưa cần đề cập mạch mắc nổi tiếp, mạch mắc song song, nội dung này sẽ được học ở lớp 9.",
-            "Đối với phép đo hiệu điện thế có hai nhiệm vụ: đo hiệu điện thế trên hai cực của nguồn và đo hiệu điện thế trên hai đầu dụng cụ dùng điện Khi đo hiệu điện thế trên hai cực của nguồn điện có 2 trường hợp xảy ra:",
-            "Thuật điện - Khi nguồn điện không mắc với mạch điện, giá trị số chỉ trên vôn kế chính là suất điện động của nguồn điện, là giá trị hiệu điện thế trên pin, acquy.U-E-Ir-E; doI-0.",
-            "trở trong r là đáng kể và khi đó U sẽ khác E Khi đo hiệu điện thế trên hai đầu dụng cụ dùng điện như bóng đền, điện trở, thì tuỷ vào lúc Thuật đó có dòng điện chạy trong dụng cụ hay không mà giá trị U có thể bằng hoặc khác 0.",
-            "IV GỢI Ý TỔ CHỨC HOẠT ĐỘNG DẠY, HỌC"
+            "Quá trình tiêu hóa diễn ra tuần tự qua các cơ quan của ống tiêu hóa với sự phối hợp nhịp nhàng giữa biến đổi cơ học và hóa học.",
+            "Ở khoang miệng: Thức ăn được răng cắn, xé, nghiền nhỏ và lưỡi đảo trộn thấm đều nước bọt (tiêu hóa cơ học). Enzyme amylase trong nước bọt biến đổi một phần tinh bột chín thành đường maltose (tiêu hóa hóa học). Thức ăn được vo thành viên nuốt qua hầu và thực quản xuống dạ dày.",
+            "Ở dạ dày: Nhờ các lớp cơ vòng, cơ dọc và cơ chéo co bóp mạnh mẽ, thức ăn được nghiền nhuyễn và thấm đẫm dịch vị (chứa HCl và enzyme pepsin). Môi trường acid HCl tiêu diệt vi khuẩn và hoạt hóa enzyme pepsin biến đổi một phần protein chuỗi dài thành các chuỗi peptide ngắn.",
+            "Ở ruột non: Thức ăn từ dạ dày từng đợt nhỏ xuống tá tràng được trung hòa acid nhờ dịch tụy và dịch ruột có tính kiềm. Dịch mật nhũ tương hóa lipid thành các giọt mỡ nhỏ. Hệ enzyme phong phú (trypsin, erepsin, amylase, maltase, lipase) phân giải triệt để: protein thành amino acid, carbohydrate thành glucose, lipid thành acid béo và glycerol."
           ],
           "bullets": [
-            "Thiết bị để chiếu các hình vẽ lên màn ảnh",
-            "Bảng kết quả thí nghiệm GV đã tiến hành.",
-            "Bảng kết quả thí nghiệm GV đã tiến hành.",
-            "Một công tắc;",
-            "Một bóng đèn pin lắp sẫn vào đế đèn;",
-            "Các đoạn dây dẫn có vỏ bọc cách điện và kẹp nối dây ở hai đầu;",
-            "Khi nguồn mắc với mạch điện, do I khác 0 nên U khác E. Với các pin cũ thì giá trị điện"
+            "Tại khoang miệng: Tinh bột chín --(Amylase nước bọt)--> Đường maltose.",
+            "Tại dạ dày: Protein --(Pepsin + HCl dịch vị)--> Các chuỗi peptide ngắn.",
+            "Tại ruột non: Protein -> Amino acid; Tinh bột/Đường -> Glucose; Lipid -> Acid béo + Glycerol."
           ]
         },
         {
-          "title": "Hoạt động 1. KHởi ĐộNG",
+          "title": "4. Hấp thụ chất dinh dưỡng và thải bã",
           "paragraphs": [
-            "IV GỢI Ý TỔ CHỨC HOẠT ĐỘNG DẠY, HỌC"
-          ],
-          "bullets": []
-        },
-        {
-          "title": "Hoạt động này nhằm đưa ra vấn đề để HS thảo luận và trả lời theo quan điểm của",
-          "paragraphs": [
-            "mình. GV chưa cần đánh giá đúng, sai mà thông báo rằng kết quả sẽ được thể hiện khi các Kem làm thí nghiệm. GV đưa ra vấn đề như trong SGK: Một HS cho rằng \"Bóng đèn tiêu thụ dòng diện, do đó cường độ dòng điện sẽ giảm sau khi đi qua bóng đèn?. Em có đồng ý với bạn HS đó Thuật không – Làm thế nào để kiểm tra ý kiến của mình – thế Yêu cầu HS thảo luận và trả lời, sau đó định hướng vào nội dung bài thực hành"
-          ],
-          "bullets": []
-        },
-        {
-          "title": "HOẠT ĐỘNG 2. HƯỚNG DẪN HS ĐO CƯỜNG ĐỘ DÒNG ĐIỆN VÀ HIỆU ĐIỆN THẾ",
-          "paragraphs": [
-            "Ở bài học trước HS, đã học về cường độ dòng điện và hiệu điện thế, Ở bài học Thuật này, việc trục tiếp thực hành đo cường độ dòng điện và hiệu điện thế sẽ giúp HS ghi nhớ lại những phần đã được học.",
-            "dụng cụ, thiết bị mà GV chuẩn bị được (nên để mỗi nhóm không quá 5 thành viên). Trong thế thức GV có thể khuyến khích các nhóm bằng điểm thưởng đối với nhóm làm nhanh và chính xác.",
-            "GV có thể làm mẫu các thao tác khó hoặc giải đáp thắc mắc của HS (nếu có). Nội dung Thời gian đề xuất Yêu cầu cần đạt"
+            "Ruột non là cơ quan duy nhất diễn ra sự tiêu hóa hoàn toàn triệt để và là nơi hấp thụ hầu hết (trên 95%) các chất dinh dưỡng của cơ thể.",
+            "Cấu tạo đặc biệt giúp ruột non tối ưu hóa hấp thụ: Niêm mạc ruột non có các nếp gấp, trên nếp gấp có hàng triệu nhung mao ruột, trên mỗi tế bào nhung mao lại có vô số vi nhung mao li ti. Cấu trúc này làm tăng diện tích bề mặt tiếp xúc và hấp thụ lên gấp 600 lần so với ống trơn, đạt diện tích hấp thụ khổng lồ khoảng 400 - 500 m2.",
+            "Bên trong mỗi lông nhung ruột có mạng lưới mao mạch máu và mao mạch bạch huyết dày đặc: Glucose, amino acid, nước, vitamin tan trong nước và khoáng chất hấp thụ vào mao mạch máu về gan; Acid béo và glycerol kết hợp lại thành lipid hấp thụ theo con đường mao mạch bạch huyết.",
+            "Chất cặn bã không tiêu hóa được (chủ yếu là chất xơ) chuyển qua van hồi - manh tràng xuống ruột già. Ruột già hấp thụ lại phần lớn lượng nước còn lại, cô đặc chất bã thành phân nhờ vi khuẩn lên men rồi chuyển xuống trực tràng thải ra ngoài qua hậu môn."
           ],
           "bullets": [
-            "GV chia lớp thành các nhóm nhỏ, số lượng HS nhóm phụ thuộc vào số lượng",
-            "GV đưa ra từng nhiệm vụ cụ thể cho nội dung thực hành nhu: thời gian, yêu cầu cần đạt",
-            "GV tổ chức hoạt động theo nhóm để HS lần lượt tiến hành các nội dung thực hành"
+            "Đặc điểm thích nghi hấp thụ: Diện tích tiếp xúc cực lớn (nếp gấp, nhung mao, vi nhung mao), thành ruột mỏng, mạng mao mạch máu và bạch huyết phong phú.",
+            "Gan đóng vai trò điều hòa nồng độ các chất dinh dưỡng trong máu và khử độc trước khi đưa về tim phân phối đi khắp cơ thể."
           ]
         },
         {
-          "title": "thực hành",
+          "title": "5. Bảo vệ hệ tiêu hóa và chế độ dinh dưỡng hợp lí",
           "paragraphs": [
-            "thực hiện – Mắc đúng mạch điện theo sơ đồ. Đo cường độ dòng điện 10 phút – 15 phút Yêu cầu cần đạt"
-          ],
-          "bullets": []
-        },
-        {
-          "title": "thực hành",
-          "paragraphs": [
-            "thực hiện – Mắc đúng mạch điện theo sơ đồ. Đo cường độ dòng điện 10 phút – 15 phút (1) và (2). Nội dung Thời gian đề xuất Yêu cầu cần đạt"
+            "Các bệnh thường gặp ở hệ tiêu hóa gồm: sâu răng, viêm loét dạ dày - tá tràng, trào ngược dạ dày thực quản, viêm đại tràng, tiêu chảy, táo bón và sỏi mật.",
+            "Nguyên nhân chủ yếu do ăn uống thiếu vệ sinh, nhiễm vi khuẩn HP (Helicobacter pylori), thói quen ăn uống thất thường, căng thẳng thần kinh kéo dài hoặc ăn nhiều thức ăn cay nóng, dầu mỡ."
           ],
           "bullets": [
-            "Đo được cường độ dòng điện chạy qua tại vị trí"
+            "Ăn chín, uống sôi, đảm bảo vệ sinh an toàn thực phẩm.",
+            "Ăn đúng giờ, đúng bữa, không bỏ bữa, nhai kĩ no lâu.",
+            "Tạo không khí ăn uống vui vẻ, thoải mái; không vừa ăn vừa xem tivi, đọc sách hay chơi game.",
+            "Bổ sung đủ chất xơ (rau xanh, củ quả) và uống đủ nước để chống táo bón và bảo vệ niêm mạc ruột.",
+            "Đánh răng sạch sẽ sau mỗi bữa ăn và trước khi đi ngủ để phòng ngừa sâu răng."
           ]
-        },
-        {
-          "title": "thực hành",
-          "paragraphs": [
-            "thực hiện qua tại vị trí (1) và (2) đối với cùng một nguồn điện. Đo hiệu điện thế 10 phút – 15 phút 10 phút – 15 phút bóng đèn và giá trị hiệu điện thế của nguồn điện.",
-            "toàn bộ nội dung bài thực hành được giữa các nhóm, lí giải sự khác biệt về kết quả thu được giữa các nhóm. trình chiếu và phân tích kết quả thực hành của một vài nhóm HS.",
-            "GV cần lưu ý HS cần thận khi tiến hành lắp đặt và thực hành thí nghiệm nếu mắc đúng mới cho HS đóng công tắc để tiến hành thí nghiệm. điện đã cho. dung bài học, đồng thời đánh giá được kĩ năng và thái độ của HS."
-          ],
-          "bullets": [
-            "Nêu được nhận xét về giá trị cường độ dòng điện",
-            "Đo được giá trị hiệu điện thế của các nguồn điện.",
-            "Mắc đúng mạch điện theo sơ đồ.",
-            "Đo được hiệu điện thế giữa hai đầu bóng đèn.",
-            "Nêu được nhận xét về giá trị của hiệu điện thế trên",
-            "Đo được hiệu điện thế giữa hai đầu bóng đèn.",
-            "Nêu được nhận xét về giá trị của hiệu điện thế trên",
-            "GV quan sát và hỗ trợ HS, đồng thời nhắc nhở HS về mặt thời gian để hoàn thành",
-            "Ở từng nội dung, GV tổ chức cho các nhóm trao đổi thảo luận, so sánh giá trị thu",
-            "GV có thể củng cố kiến thức về cường độ dòng điện và hiệu điện thế dựa trên việc",
-            "Trước khi các nhóm tiến hành thí nghiệm, GV cần đi kiểm tra mạch điện HS đã mắc,",
-            "GV nên hướng dẫn kí và làm mấu một số thao tác lắp đặt mạch điện từ sơ đồ mạch",
-            "Trong quá trình thực hành, GV cần bao quát lớp để hỗ trợ các nhóm hoàn thành nội",
-            "GV có thể sử dụng điểm thực hành như phần điểm thưởng để khuyến khích HS."
-          ]
-        },
-        {
-          "title": "HOẠT ĐỘNG 3. HƯỚNG DẪN HS HOÀN THÀNH MẪU BÁO CÁO THỰC HÀNH",
-          "paragraphs": [
-            "HS tự hoàn thành mục 1 và 2 trong báo cáo thực hành."
-          ],
-          "bullets": []
-        },
-        {
-          "title": "3. Các bước tiến hành",
-          "paragraphs": [
-            "Đo cường độ dòng điện Đo hiệu điện thế U \" Mắc mạch điện với nguồn điện là pin 1,5 V\" \"Đo giá trị hiệu điện thế của pin 1,5 V và 1,5\" theo sơ đồ Hình 25.1 SGK. Khi đó công tắc ghi vào bảng số liệu.",
-            "đang ngắt, mạch hở. Đo cường độ dòng điện Đo hiệu điện thế U – Mắc vôn kế để đo hiệu điện thế trên hai – Mắc ampe kế vào mạch, đóng công tắc và ĐẦU BÓNG ĐèN Đ, GIÁ TRỊ NÀY CHÍNH LÀ HIỆU đo giá trị cường độ dòng điện 1, chạy qua điện thế giữa hai vị trí (1) và (2) (Hình 25.2 mạch ở vị trí (1) và ghi vào bảng số liệu.",
-            "SGK). Công tắc bị ngắt và mạch hở. mạch ở vị trí (1) và ghi vào bảng số liệu. SGK). Công tắc bị ngắt và mạch hở. điện I, tại vị trí (2) và ghi vào bảng số liệu.",
-            "trên bóng đèn u. \" Thay pin 1,5 V bằng pin 3 V và pin 6 V rồi lặp lại thí nghiệm. nghiệm"
-          ],
-          "bullets": [
-            "Lặp lại thí nghiệm để đo cường độ dòng",
-            "Lặp lại thí nghiệm để đo cường độ dòng",
-            "Đóng công tắc, đọc giá trị hiệu điện thế",
-            "Thay pin 1,5 V bằng pin 3 V và lặp lại thí"
-          ]
-        },
-        {
-          "title": "4. Kết quả thí nghiệm",
-          "paragraphs": [
-            "lặp lại thí nghiệm. nghiệm"
-          ],
-          "bullets": [
-            "Thay pin 1,5 V bằng pin 3 V và lặp lại thí"
-          ]
-        },
-        {
-          "title": "4. Kết quả thí nghiệm",
-          "paragraphs": [
-            "Bảng 25.1. Bảng số liệu đo cường độ Bảng 25.2. Bảng số liệu đo hiệu điện thế dòng điện Lần đo 1,(A) U Ý nguồn (V) U (V) Vị trí 1 Vị trí 2 Pin 1,5V 1,5 0,14 Pin 3 V 2,2 0,20 Pin 6 V 0,46 Ý nguồn (V) U (V) Vị trí 1 Vị trí 2 Pin 1,5V 1,5 0,14 Pin 3 V 2,2 0,20 Pin 6 V 0,46 \"Trong CH: 1.Cường độ dòng điện tại các vị trí 1,2 đối với từng pin là bằng nhau,(H)\""
-          ],
-          "bullets": [
-            "2. Giá trị của hiệu điện thế trên bóng đèn nhỏ hơn giá trị hiệu điện thế của nguồn. (H)"
-          ]
-        },
-        {
-          "title": "3. Giá trị thu được giữa các nhóm có thể sai khác do:",
-          "paragraphs": [
-            "nhóm khác nhau sẽ cản trở và tiêu thụ điện khác nhau. (VD2) Nội dung – Em có biết – GV có thể giới thiệu các cách mắc dụng cụ điện cho HS gồm mắc nối tiếp, song song."
-          ],
-          "bullets": [
-            "Hiệu điện thế của nguồn điện (pin) không hoàn toàn chính xác là 3 V; 6V.",
-            "Mối nối dây dẫn lỏng lẻo.",
-            "Cách đặt mắt đọc số chỉ ampe kế và vôn kế chưa chính xác.",
-            "Dây dẫn, ampe kế cũng có thành phần cản trở dòng điện nên với các dây dẫn ở các"
-          ]
-        },
-        {
-          "title": "Hoạt động 4. GHI NHớ, TổNG KếT",
-          "paragraphs": [
-            "GV yêu cầu HS tự nhắc lại các nội dung quan trọng trong bài thực hành, sau đó \"Các thuật chốt lại những nội dung này được thể hiện trong mục \"Em đã học\"\" Chú ý đến các đơn vị trong\" kiến thức sau:",
-            "GỢI Ý KIỂM TRA, ĐÁNH GIÁ GV có thể sử dụng các câu hỏi, hoạt động trong bài để đánh giá HS, sử dụng mục – Em Trong có thể – làm nhiệm vụ về nhà giao cho HS. Đánh giá trong khi học: Đánh giá kĩ năng thực hiện thí nghiệm đo cường độ dòng điện và hiệu điện thế của HS Đánh giá sau khi học:"
-          ],
-          "bullets": [
-            "Cách đo cường độ dòng điện.",
-            "Cách đo hiệu điện thế."
-          ]
-        },
-        {
-          "title": "1. Để bài",
-          "paragraphs": [
-            "và hiệu điện thế của HS Đánh giá sau khi học:"
-          ],
-          "bullets": []
-        },
-        {
-          "title": "1. Để bài",
-          "paragraphs": [
-            "Câu 1. Khi dùng ampe kế đo cường độ dòng điện trong mạch, cần chú ý chọn ampe kế A. có kích thước phù hợp. B. có giới hạn đo và độ chia nhỏ nhất phù hợp. C. có màu sắc phù hợp.",
-            "D. có khối lượng phù hợp. Câu 2. Muốn đo hiệu điện thế giữa hai cực của một nguồn điện thì phải mắc vôn kế A. nối tiếp với bóng đèn. B. song song với bóng đèn C. song song với nguồn điện.",
-            "D. nối tiếp với nguồn điện. Câu 3. Trong giờ thực hành, các bạn HS phải lắp một mạch điện song song gồm các Trong dụng cụ sau: một nguồn điện, một công tắc, hai đèn Đ, và Đ, một ampe kế đo cường độ dòng điện qua Đ, a) Vẽ sơ đổ mạch điện trên. Ghi rõ chốt của ampe kế \"Tháng 1,1 tháng 6 thành b) Thêm vào trong mạch một vôn kế đo hiệu điện thế giữa hai đầu đèn Đ,, Ghi rõ các chốt của vôn kế và chiều dòng điện trong mạch khi công tắc đóng."
-          ],
-          "bullets": []
-        },
-        {
-          "title": "2. Đánh giá",
-          "paragraphs": [
-            "Câu 1.B.(H) Câu 2.C.(B) K Câu 3.(VD1)"
-          ],
-          "bullets": []
         }
-      ],
-      "summary": [
-        "Cường độ dòng điện, đơn vị đo cường độ dòng điện.",
-        "Hiệu điện thế, đơn vị đo hiệu điện thế.",
-        "Cường độ dòng điện, đơn vị đo cường độ dòng điện.",
-        "Hiệu điện thế, đơn vị đo hiệu điện thế.",
-        "Cách đo cường độ dòng điện.",
-        "Cách đo hiệu điện thế."
       ],
       "terms": [
         {
-          "term": "trở trong r",
-          "definition": "Kiến thức trọng tâm về trở trong r trong Bài 32 (Dinh dưỡng và tiêu hóa ở người) môn Khoa học tự nhiên 8 (Bộ sách Kết nối tri thức với cuộc sống)."
+          "term": "Dinh dưỡng",
+          "definition": "Quá trình cơ thể thu nhận, biến đổi và sử dụng các chất dinh dưỡng từ thức ăn để duy trì sự sống, phát triển và phục hồi mô."
+        },
+        {
+          "term": "Tiêu hóa",
+          "definition": "Quá trình biến đổi thức ăn thành các chất dinh dưỡng đơn giản mà cơ thể có thể hấp thụ được qua niêm mạc ruột vào máu."
+        },
+        {
+          "term": "Enzyme tiêu hóa",
+          "definition": "Các chất xúc tác sinh học đặc hiệu do tuyến tiêu hóa tiết ra để cắt nhỏ các đại phân tử thức ăn phức tạp thành các phân tử dinh dưỡng đơn giản."
+        },
+        {
+          "term": "Nhung mao ruột",
+          "definition": "Các nếp gấp li ti trên niêm mạc ruột non giúp tăng diện tích bề mặt hấp thụ chất dinh dưỡng lên gấp hàng trăm lần."
+        },
+        {
+          "term": "Ruột non",
+          "definition": "Đoạn dài nhất của ống tiêu hóa, nơi diễn ra quá trình tiêu hóa triệt để nhất và hấp thụ hầu hết các chất dinh dưỡng vào máu."
         }
       ],
-      "warmup": {
-        "question": "Trong đời sống, em đã từng quan sát hoặc gặp hiện tượng nào liên quan đến Dinh dưỡng và tiêu hóa ở người?",
-        "hint": "Hãy liên hệ với các sự vật, hiện tượng tự nhiên quen thuộc xung quanh chúng ta."
-      },
-      "illustrations": [
+      "summary": [
+        "Hệ tiêu hóa gồm ống tiêu hóa (miệng, hầu, thực quản, dạ dày, ruột non, ruột già, hậu môn) và tuyến tiêu hóa (tuyến nước bọt, gan, tụy, tuyến vị, tuyến ruột).",
+        "Quá trình tiêu hóa gồm tiêu hóa cơ học (cắn, xé, nhào trộn) và tiêu hóa hóa học (nhờ tác dụng xúc tác của enzyme chuyên biệt).",
+        "Ở khoang miệng tiêu hóa một phần tinh bột chín; ở dạ dày tiêu hóa một phần protein; ở ruột non toàn bộ thức ăn được biến đổi triệt để thành amino acid, glucose, acid béo và glycerol.",
+        "Ruột non là cơ quan hấp thụ chất dinh dưỡng chủ yếu nhờ diện tích tiếp xúc khổng lồ được tạo bởi nếp gấp niêm mạc, nhung mao và vi nhung mao.",
+        "Cần duy trì thói quen ăn uống khoa học, ăn chín uống sôi, nhai kĩ và giữ vệ sinh răng miệng để bảo vệ hệ tiêu hóa."
+      ],
+      "quick_check": [
         {
-          "caption": "Hình 25.1 SGK. Khi đó công tắc Bhh SVUUbbhcoih Ẹ ghi vào bảng số liệu. đang ngắt, mạch hở.",
-          "image_path": "SGK KHTN8 KNTT/page_133_img_0.png",
-          "image_url": "/api/images/SGK KHTN8 KNTT/page_133_img_0.png",
-          "label": "Hình minh họa (Trang 133, SGK KHTN 8)",
-          "matched_query": "Bài 32 Dinh dưỡng và tiêu hóa ở người",
-          "page": 133,
-          "source": "SGK KHTN8 KNTT.pdf"
+          "id": "qc-k8-b32-01",
+          "question": "Cơ quan nào trong ống tiêu hóa là nơi diễn ra quá trình tiêu hóa triệt để nhất và hấp thụ chất dinh dưỡng chủ yếu?",
+          "options": [
+            "A. Dạ dày",
+            "B. Ruột non",
+            "C. Ruột già",
+            "D. Khoang miệng"
+          ],
+          "answer": "B",
+          "explanation": "Ruột non có đầy đủ dịch tụy, dịch mật, dịch ruột chứa hệ enzyme phong phú giúp tiêu hóa triệt để mọi loại thức ăn, đồng thời có cấu tạo nhung mao giúp hấp thụ trên 95% chất dinh dưỡng."
+        },
+        {
+          "id": "qc-k8-b32-02",
+          "question": "Enzyme amylase có trong nước bọt ở khoang miệng có chức năng biến đổi chất nào sau đây?",
+          "options": [
+            "A. Tinh bột chín thành đường maltose",
+            "B. Protein thành chuỗi peptide ngắn",
+            "C. Lipid thành acid béo và glycerol",
+            "D. Đường maltose thành glucose"
+          ],
+          "answer": "A",
+          "explanation": "Tại khoang miệng, enzyme amylase trong nước bọt chỉ xúc tác biến đổi một phần tinh bột chín thành đường đôi maltose."
+        },
+        {
+          "id": "qc-k8-b32-03",
+          "question": "Dịch vị ở dạ dày có tính acid mạnh nhờ chứa chất nào sau đây?",
+          "options": [
+            "A. Acid sulfuric (H2SO4)",
+            "B. Acid nitric (HNO3)",
+            "C. Acid clohydric (HCl)",
+            "D. Acid acetic (CH3COOH)"
+          ],
+          "answer": "C",
+          "explanation": "Dịch vị ở dạ dày chứa acid clohydric (HCl) giúp sát khuẩn thức ăn và tạo môi trường acid tối ưu để hoạt hóa enzyme pepsin phân giải protein."
+        },
+        {
+          "id": "qc-k8-b32-04",
+          "question": "Đặc điểm cấu tạo nào của ruột non giúp tăng diện tích bề mặt hấp thụ chất dinh dưỡng lên gấp khoảng 600 lần?",
+          "options": [
+            "A. Chiều dài ruột rất ngắn và thành ruột dày",
+            "B. Lớp cơ trơn co bóp liên tục không ngừng",
+            "C. Tiết ra lượng dịch mật và dịch tụy rất lớn",
+            "D. Niêm mạc có nhiều nếp gấp, nhung mao và vi nhung mao"
+          ],
+          "answer": "D",
+          "explanation": "Cấu trúc nếp gấp niêm mạc kết hợp hàng triệu nhung mao và vi nhung mao giúp làm tăng diện tích bề mặt hấp thụ của ruột non lên gấp 600 lần, đạt khoảng 400 - 500 m2."
+        },
+        {
+          "id": "qc-k8-b32-05",
+          "question": "Tuyến tiêu hóa nào vừa tiết enzyme tiêu hóa đổ vào ruột non, vừa tiết hormone điều hòa lượng đường trong máu?",
+          "options": [
+            "A. Tuyến tụy",
+            "B. Gan mật",
+            "C. Tuyến nước bọt",
+            "D. Tuyến vị"
+          ],
+          "answer": "A",
+          "explanation": "Tuyến tụy là tuyến pha: phần ngoại tiết tiết dịch tụy chứa enzyme tiêu hóa đổ vào tá tràng; phần nội tiết tiết hormone insulin và glucagon điều hòa nồng độ glucose trong máu."
+        },
+        {
+          "id": "qc-k8-b32-06",
+          "question": "Hành vi nào sau đây là biện pháp khoa học để bảo vệ hệ tiêu hóa?",
+          "options": [
+            "A. Vừa ăn vừa lướt mạng xã hội trên điện thoại",
+            "B. Ăn thức ăn thật nhiều ớt cay và nhiều dầu mỡ",
+            "C. Ăn chậm nhai kĩ và ăn chín uống sôi hợp vệ sinh",
+            "D. Bỏ bữa ăn sáng và ăn thật nhiều vào ban đêm"
+          ],
+          "answer": "C",
+          "explanation": "Ăn chậm nhai kĩ giúp thức ăn được nghiền nhỏ và thấm đều enzyme; ăn chín uống sôi giúp phòng tránh ngộ độc thực phẩm và nhiễm khuẩn đường tiêu hóa."
         }
       ]
     },
@@ -22565,812 +22218,732 @@
           "answer_index": 3,
           "explanation": "Tâm thất trái phải tạo áp lực tống máu đi khắp vòng tuần hoàn lớn nuôi toàn bộ cơ thể nên có thành cơ dày nhất."
         }
-      ],
-      "generation_sources": [
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 136,
-          "printed_start": 135,
-          "printed_end": 135,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 137,
-          "printed_start": 136,
-          "printed_end": 136,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 138,
-          "printed_start": 137,
-          "printed_end": 137,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 139,
-          "printed_start": 138,
-          "printed_end": 138,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 140,
-          "printed_start": 139,
-          "printed_end": 139,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 141,
-          "printed_start": 140,
-          "printed_end": 140,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 142,
-          "printed_start": 141,
-          "printed_end": 141,
-          "virtual": false
-        }
-      ],
-      "illustrations": [
-        {
-          "caption": "Sơ đồ & Hình minh họa: Bài 33 - Máu và hệ tuần hoàn của cơ thể người",
-          "image_path": "SGK KHTN 8 KNTT/page_136_img_0.png",
-          "image_url": "/api/images/SGK KHTN 8 KNTT/page_136_img_0.png",
-          "label": "Sơ đồ bài học (Trang 136, SGK KHTN 8)",
-          "matched_query": "Bài 33 Máu và hệ tuần hoàn của cơ thể người",
-          "page": 136,
-          "source": "SGK KHTN 8 KNTT.pdf"
-        }
       ]
     },
     {
-      "id": "k8-bai-34-he-ho-hap-o-nguoi",
+      "id": "k8-b34-ho-hap",
       "grade": 8,
       "number": "Bài 34",
       "title": "Hệ hô hấp ở người",
-      "topic": "Hệ hô hấp ở người",
-      "objectives": [
-        "Nêu được chức năng của hệ hô hấp.",
-        "Quan sát mô hình (hoặc hình vẽ, sơ đồ khái quát) hệ hô hấp ở người, kể tên được các cơ quan của hệ hô hấp.",
-        "Nêu được một số bệnh về phổi, đường hô hấp và cách phòng chống.",
-        "Trình bày được vai trò của việc chống ô nhiễm không khí liên quan đến các bệnh về hô hấp.",
-        "Điều tra được một số bệnh về đường hô hấp trong trường học hoặc tại địa phương, nêu được nguyên nhân và cách phòng tránh.",
-        "Tranh luận trong nhóm và đưa ra được quan điểm nên hay không nên hút thuốc lá và kinh doanh thuốc lá."
-      ],
-      "content": "THÔNG TIN BỔ SUNG Joulemeter bản chất là một dụng cụ đo điện năng hoặc công suất của nguồn điện thông qua đo cường độ dòng điện, hiệu điện thế và thời gian, Trong trường hợp nhà trường chưa Có joulemeter, GV có thể hướng dẫn HS thùa nhận công thức tính điện năng A - ULT và Thuật thuật dùng vôn kế, ampe kế để đo U, I và đồng hồ để đo thời giant để thực hiện thí nghiệm IV GỢI Ý TỔ CHỨC HOẠT ĐỘNG DẠY, HỌC HS đã được học các nội dung về năng lượng nhiệt ở Bài 26, nên hoạt động này nhằm mục đích định hướng nghiên cứu. GV chia lớp thành các nhóm nhỏ, số lượng HS nhóm phụ thuộc vào số lượng dụng cụ, thiết bị mà GV chuẩn bị được (nên để mỗi nhóm không quá 5 thành viên).",
-      "source_label": "SGK KHTN 8 KNTT · Bài 34 · Trang 142–145",
-      "generation_sources": [
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 143,
-          "printed_start": 142,
-          "printed_end": 142,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 144,
-          "printed_start": 143,
-          "printed_end": 143,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 145,
-          "printed_start": 144,
-          "printed_end": 144,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 146,
-          "printed_start": 145,
-          "printed_end": 145,
-          "virtual": false
-        }
-      ],
+      "topic": "Sinh học cơ thể người",
+      "duration": "3 tiết (135 phút)",
       "order": 340,
       "active": true,
-      "origin": "curriculum",
-      "catalog_only": false,
-      "created_at": "2026-08-29T13:12:20+00:00",
-      "updated_at": "2026-09-11T18:43:49+00:00",
+      "origin": "official_curriculum",
+      "lesson_version": 5,
+      "source_label": "SGK KHTN 8 KNTT – Bài 34 – Trang 142–146",
+      "content": "Hệ hô hấp ở người gồm đường dẫn khí và hai lá phổi; thực hiện hoạt động thông khí ở phổi qua cử động hô hấp và cơ chế trao đổi khí O2 và CO2 theo nguyên lí khuếch tán tại phế nang và tế bào cơ thể.",
+      "warmup": "Một người có thể nhịn ăn vài tuần, nhịn uống vài ngày, nhưng chỉ cần ngừng thở vài phút là có thể tử vong. Vì sao cơ thể chúng ta lại cần hít thở liên tục không ngừng nghỉ?",
+      "objectives": [
+        "Trình bày được cấu tạo và chức năng của các cơ quan trong hệ hô hấp (đường dẫn khí và phổi).",
+        "Mô tả được hoạt động thông khí ở phổi thông qua cử động hít vào và thở ra.",
+        "Giải thích được cơ chế trao đổi khí ở phế nang phổi và ở tế bào cơ thể theo nguyên lí khuếch tán.",
+        "Nêu được tác hại của khói thuốc lá, bụi mịn và các biện pháp bảo vệ hệ hô hấp, rèn luyện đường thở khỏe mạnh."
+      ],
       "sections": [
         {
-          "title": "Khởi động & Hiện tượng mở đầu",
+          "title": "1. Cấu tạo của hệ hô hấp ở người",
           "paragraphs": [
-            "THÔNG TIN BỔ SUNG Joulemeter bản chất là một dụng cụ đo điện năng hoặc công suất của nguồn điện thông qua đo cường độ dòng điện, hiệu điện thế và thời gian, Trong trường hợp nhà trường chưa Có joulemeter, GV có thể hướng dẫn HS thùa nhận công thức tính điện năng A - ULT và Thuật thuật dùng vôn kế, ampe kế để đo U, I và đồng hồ để đo thời giant để thực hiện thí nghiệm IV GỢI Ý TỔ CHỨC HOẠT ĐỘNG DẠY, HỌC"
-          ],
-          "bullets": []
-        },
-        {
-          "title": "Hoạt động 1. KHởi ĐộNG",
-          "paragraphs": [
-            "HS đã được học các nội dung về năng lượng nhiệt ở Bài 26, nên hoạt động này nhằm mục đích định hướng nghiên cứu. GV chia lớp thành các nhóm nhỏ, số lượng HS nhóm phụ thuộc vào số lượng dụng cụ, thiết bị mà GV chuẩn bị được (nên để mỗi nhóm không quá 5 thành viên).",
-            "cần cung cấp bao nhiêu năng lượng nhiệt – Làm thế nào để đo được năng lượng nhiệt đó3?, để đưa được phương án thí nghiệm và các bước tiến hành thí nghiệm đo năng lượng nhiệt bằng joulemeter."
+            "Hệ hô hấp ở người gồm hai bộ phận chính: đường dẫn khí và cơ quan trao đổi khí là hai lá phổi.",
+            "Đường dẫn khí gồm: mũi, họng (hầu), thanh quản, khí quản và phế quản. Đường dẫn khí có chức năng dẫn khí vào và ra khỏi phổi, đồng thời làm ấm, làm ẩm và làm sạch không khí hít vào nhờ lớp niêm mạc có chất nhầy, mao mạch máu dày đặc và hệ thống lông rung chuyển động liên tục.",
+            "Phổi gồm hai lá phổi (phổi phải có 3 thùy, phổi trái có 2 thùy nhường chỗ cho tim). Bề mặt phổi được bao bọc bởi màng phổi gồm hai lớp, ở giữa có lớp dịch mỏng giúp phổi trượt dễ dàng trên thành lồng ngực khi thở.",
+            "Đơn vị cấu tạo và chức năng của phổi là phế nang. Hai lá phổi chứa khoảng 700 - 800 triệu phế nang, tạo ra diện tích bề mặt trao đổi khí khổng lồ lên tới 70 - 100 m2. Thành phế nang rất mỏng (chỉ gồm một lớp tế bào biểu mô) và được bao bọc bởi mạng lưới mao mạch máu dày đặc."
           ],
           "bullets": [
-            "GV tổ chức cho HS thảo luận theo nhóm: \"Khi muốn đun sôi một lượng nước xác định"
+            "Mũi: có lông mũi ngăn bụi, lớp niêm mạc tiết chất nhầy giữ bụi mịn và diệt khuẩn, mạng mao mạch sưởi ấm không khí.",
+            "Nắp thanh quản (sụn thanh thiệt): tự động đậy kín đường hô hấp khi nuốt thức ăn, ngăn không cho thức ăn rơi vào khí quản.",
+            "Khí quản: ống dẫn khí cấu tạo từ 16 - 20 vòng sụn hình chữ C khuyết ở phía sau giúp đường thở luôn mở rộng.",
+            "Phế nang: các túi khí li ti là nơi diễn ra sự trao đổi khí trực tiếp giữa không khí và máu."
           ]
         },
         {
-          "title": "HOẠT ĐỘNG 2. HƯỚNG DẪN HS ĐO NĂNG LƯỢNG NHIỆT BẰNG JOULEMETER",
+          "title": "2. Hoạt động thông khí ở phổi",
           "paragraphs": [
-            "Trong các bài học trước, ta đã biết dòng điện có tác dụng nhiệt, Vì vậy, chúng ta sử dụng nguồn nhiệt là dây đốt được đặt trong bình nhiệt lượng kế, Khi dòng điện chạy qua thuật điện đây đốt, năng lượng điện (được đọc trên joulemeter) sẽ chuyển hoá thành năng lượng nhiệt trên dây đốt và đun nóng nước.",
-            "Các thể cần đạt. GV có thể khuyến khích các nhóm bằng điểm thưởng đối với nhóm làm nhanh và chính xác. GV có thể làm mẫu các thao tác khó hoặc giải đáp thắc mắc của HS (nếu có).",
-            "Nội dung Thời gian đế Yêu cầu cần đạt"
+            "Thông khí ở phổi là quá trình làm mới không khí liên tục trong phế nang, được thực hiện thông qua các cử động hô hấp gồm một lần hít vào và một lần thở ra.",
+            "Cơ chế hít vào (chủ động): Cơ liên sườn ngoài co nâng xương sườn lên, cơ hoành co phẳng hạ xuống làm thể tích khoang ngực tăng lên -> áp suất trong phổi giảm thấp hơn áp suất khí quyển -> không khí giàu O2 từ ngoài tràn vào phổi.",
+            "Cơ chế thở ra (thụ động khi nghỉ ngơi): Cơ liên sườn ngoài và cơ hoành dãn ra, xương sườn hạ xuống và cơ hoành nhô lên làm thể tích khoang ngực giảm -> áp suất trong phổi tăng cao hơn áp suất khí quyển -> đẩy không khí giàu CO2 từ phổi ra ngoài."
           ],
           "bullets": [
-            "GV đưa ra từng nhiệm vụ cụ thể cho nội dung thực hành như: thời gian, yêu cầu",
-            "GV tổ chức hoạt động theo nhóm để HS lần lượt tiến hành các nội dung thực hành"
+            "Nhịp hô hấp: Số lần cử động hô hấp trong một phút (người trưởng thành bình thường khoảng 16 - 18 lần/phút).",
+            "Dung tích sống: Thể tích không khí lớn nhất mà một người có thể thở ra sau khi đã hít vào hết sức. Dung tích sống càng lớn chứng tỏ dung lượng phổi và sức khỏe hô hấp càng tốt."
           ]
         },
         {
-          "title": "thực hành",
+          "title": "3. Cơ chế trao đổi khí ở phổi và ở tế bào",
           "paragraphs": [
-            "xuất thực hiện 27.2 SGK. nhiệt lượng kế nhận được khi bị đun làm tăng Đo năng lượng nhiệt độ thêm 3 – C; 6 – C; 9 – C so với nhiệt độ ban nhiệt bằng 15 phút – 20 phút đầu bằng joulemeter.",
-            "joulemeter. nhiệt bằng 15 phút – 20 phút đầu bằng joulemeter. joulemeter. để đun nóng nước. đun lượng nước trong nhiệt lượng kế từ nhiệt độ ban đầu đến khi nước sôi ở 100 – C.",
-            "19 toàn bộ nội dung bài thực hành giữa các nhóm. Trong thế - GV dựa trên việc trình chiếu và phân tích kết quả thực hành của một vài nhóm HS có thể hướng dẫn HS tính được năng lượng nhiệt cần cung cấp để làm tăng nhiệt độ của một lượng nước từ nhiệt độ cho trước tới khi sôi.",
-            "Nếu mắc đúng mới cho HS đóng công tắc để tiến hành thí nghiệm. điện đã cho. dung bài học, đồng thời đánh giá được kĩ năng và thái độ của HS. Trong - GV có thể sử dụng điểm thực hành như phần điểm thưởng để khuyến khích HS."
+            "Sự trao đổi khí ở phổi (giữa phế nang và máu) và ở tế bào (giữa máu và tế bào) đều tuân theo cơ chế khuếch tán đơn thuần: chất khí khuếch tán từ nơi có nồng độ (áp suất riêng phần) cao đến nơi có nồng độ thấp.",
+            "Trao đổi khí ở phổi: Nồng độ O2 trong phế nang cao hơn trong máu mao mạch phổi nên O2 khuếch tán từ phế nang vào máu, liên kết với hemoglobin tạo oxyhemoglobin (HbO2) làm máu đỏ thẫm biến thành máu đỏ tươi. Ngược lại, nồng độ CO2 trong máu mao mạch phổi cao hơn trong phế nang nên CO2 khuếch tán từ máu vào phế nang để thải ra ngoài.",
+            "Trao đổi khí ở tế bào: Nồng độ O2 trong máu mao mạch cao hơn trong tế bào nên O2 khuếch tán từ máu vào tế bào để tham gia hô hấp tế bào tạo ATP. Ngược lại, nồng độ CO2 do chuyển hóa tế bào sinh ra cao hơn trong máu nên CO2 khuếch tán từ tế bào vào máu, làm máu đỏ tươi biến thành máu đỏ thẫm rồi theo tĩnh mạch trở về tim."
           ],
           "bullets": [
-            "Mắc đúng mạch điện theo bố trí thí nghiệm Hình",
-            "Đo được năng lượng nhiệt mà nước trong bình",
-            "Nêu được nhận xét về năng lượng nhiệt cần thiết",
-            "Nêu được nhận xét về năng lượng nhiệt cần thiết",
-            "Từ thí nghiệm tính được nhiệt lượng cần thiết để",
-            "GV quan sát và hỗ trợ HS, đồng thời nhắc nhở HS về mặt thời gian để hoàn thành",
-            "Ở từng nội dung, GV tổ chức cho các nhóm trao đổi thảo luận về kết quả thu được",
-            "Trước khi các nhóm tiến hành thí nghiệm, GV cần đi kiểm tra mạch điện HS đã mắc;",
-            "GV nên hướng dẫn kĩ và làm mẫu một số thao tác lắp đặt mạch điện từ sơ đồ mạch",
-            "Trong quá trình thực hành, GV cần bao quát lớp để hỗ trợ các nhóm hoàn thành nội"
+            "Tại phế nang: O2 khuếch tán (Phế nang -> Máu); CO2 khuếch tán (Máu -> Phế nang).",
+            "Tại tế bào: O2 khuếch tán (Máu -> Tế bào); CO2 khuếch tán (Tế bào -> Máu)."
           ]
         },
         {
-          "title": "2. Chuẩn bị",
+          "title": "4. Bảo vệ hệ hô hấp và rèn luyện đường thở",
           "paragraphs": [
-            "Dụng cụ thí nghiệm: điện cung cấp"
+            "Các tác nhân gây hại hệ hô hấp gồm: khói thuốc lá, bụi mịn (PM2.5, PM10), khí độc (CO, SO2, NO2) và các vi sinh vật gây bệnh (virus cúm, vi khuẩn lao, virus SARS-CoV-2).",
+            "Tác hại của khói thuốc lá: Chứa nicotine làm tê liệt và phá hủy hệ thống lông rung đường thở; khí CO chiếm chỗ của O2 khi liên kết bền vững với hemoglobin làm giảm khả năng vận chuyển dưỡng khí; chất hắc ín gây viêm phế quản mạn tính và ung thư phổi."
           ],
           "bullets": [
-            "Bình nhiệt lượng kế có dây đốt, que khuấy.",
-            "Nhiệt kế.",
-            "Dụng cụ đo năng lượng điện (joulemeter): là dụng cụ đo năng lượng điện do nguồn",
-            "Nguồn điện 12 v.",
-            "Bốn dây dẫn điện có vỏ cách điện và giắc cắm ở hai đầu dây."
+            "Không hút thuốc lá và tránh xa khói thuốc lá thụ động.",
+            "Đeo khẩu trang đạt chuẩn khi tham gia giao thông và làm việc ở môi trường nhiều khói bụi.",
+            "Trồng nhiều cây xanh xung quanh nhà và trường học để thanh lọc không khí.",
+            "Tập thể dục thể thao đều đặn và tập hít thở sâu để tăng dung tích sống của phổi."
           ]
-        },
-        {
-          "title": "3. Các bước tiến hành",
-          "paragraphs": [],
-          "bullets": [
-            "Nguồn điện 12 v.",
-            "Bốn dây dẫn điện có vỏ cách điện và giắc cắm ở hai đầu dây."
-          ]
-        },
-        {
-          "title": "3. Các bước tiến hành",
-          "paragraphs": [
-            "đầu đo của nhiệt kế. joulemeter và hai dây nối từ joulemeter vào dây đốt bên trong bình nhiệt lượng kế; Thuật thời khuấy nhẹ nước trong bình đến khi nhiệt độ tăng 3 – C so với giá trị ban đầu, đọc giá trị năng lượng điện trên joulemeter và ghi vào bảng số liệu trong báo cáo thực hành \"trong bình tăng nhiệt độ lần lượt là 6 – C,9 – C so với nhiệt độ ban đầu và ghi vào bảng số liệu trong báo cáo thực hành."
-          ],
-          "bullets": [
-            "Đổ một lượng nước xác định vào bình nhiệt lượng kế sao cho nước ngập dây đốt và",
-            "Mắc mạch điện như Hình 27.2 SGK. Lưu ý mắc chính xác hai dây từ nguồn điện vào",
-            "Khuấy nhẹ nước trong bình và đọc giá trị nhiệt độ ban đầut, của nước.",
-            "Bật công tắc nguồn điện, bắm nút start trên joulemeter để nguồn hoạt động, đồng",
-            "Tiếp tục khuấy nhẹ nước trong nhiệt lượng kế và đọc giá trị trên joulemeter khi nước",
-            "Tắt công tắc nguồn điện.",
-            "Lặp lại thí nghiệm với lượng nước trong bình nhiều hơn lượng nước trong thí nghiệm lần 1."
-          ]
-        },
-        {
-          "title": "4. Kết quả thí nghiệm",
-          "paragraphs": [
-            "Bảng 27.1. Bảng số liệu đo nhiệt lượng Bảng 27.2. Bảng số liệu đo nhiệt lượng lần 1 lần 2 với lượng nước nhiều hơn lần 1 m-86g m - 182g lần 1 lần 2 với lượng nước nhiều hơn lần 1 m-86g m - 182g Lần đo t(?C) Năng lượng nhiệt (J) Lần đo t(?C) Năng lượng nhiệt (J) Bắt đầu đo 28,8 29,0 Tăng 3 – C 31,8 32,0 Tăng 6 – C 34,8 35,0 Tăng 9 – C 37,8 38,0 CH: 1. Năng lượng nhiệt cần thiết để nước tăng nhiệt độ phụ thuộc vào khối lượng của nước, độ tăng nhiệt độ của nước, Khối lượng nước càng lớn, độ tăng nhiệt độ càng cao thì năng lượng nhiệt cần làm nóng nước cũng càng lớn.(H)"
-          ],
-          "bullets": []
-        },
-        {
-          "title": "2.HS ước tính năng lượng nhiệt dựa vào khối lượng và độ tăng nhiệt độ của nước.",
-          "paragraphs": [
-            "Nội dung Em có biết?: GV giới thiệu cho HS công thức tính nhiệt lượng cần thiết để nước tăng nhiệt độ. độ tăng nhiệt độ của nước, tuy nhiên trong thực tế khi đo năng lượng nhiệt để nước tăng nhiệt độ luôn lớn hơn năng lượng nhiệt tính toán vì có một phần nhiệt năng bị mất mát ra môi trường xung quanh như toả nhiệt ra không khí, làm nóng nhiệt lượng kế, nóng nhiệt kế, dây dẫn,..."
-          ],
-          "bullets": [
-            "Theo lí thuyết, năng lượng nhiệt mà nước thu vào tỉ lệ thuận với khối lượng nước và"
-          ]
-        },
-        {
-          "title": "Hoạt động 4. GHI NHớ, TổNG KếT",
-          "paragraphs": [
-            "GV yêu cầu HS tự nhắc lại các nội dung quan trọng trong bài thực hành, sau đó chốt lại những nội dung này được thể hiện trong mục – Em đã học?. Chú ý đến cách sử dụng joulemeter để đo năng lượng nhiệt.",
-            "GỢI Ý KIỂM TRA, ĐÁNH GIÁ GV có thể sử dụng các câu hỏi, hoạt động trong bài để đánh giá HS, sử dụng mục – Em có thể – làm nhiệm vụ về nhà giao cho HS. Đánh giá trong khi học: Đánh giá kĩ năng thực hiện thí nghiệm đo năng lượng nhiệt bằng joulemeter.",
-            "Đánh giá sau khi học:"
-          ],
-          "bullets": []
-        },
-        {
-          "title": "1. Đề bài",
-          "paragraphs": [
-            "Câu 1. Có bốn bình A, B, C, D chứa nước ở cùng một nhiệt độ. Sau khi dùng các đèn cồn giống hệt nhau để đun các bình này (hình bên). Người ta thấy nhiệt độ của các bình trở nên khác nhau."
-          ],
-          "bullets": []
         }
-      ],
-      "summary": [
-        "Câu 1. Có bốn bình A, B, C, D chứa nước ở cùng một nhiệt độ. Sau khi dùng các đèn cồn giống hệt nhau để đun các bình này (hình bên). Người ta thấy nhiệt độ của ..."
       ],
       "terms": [
         {
-          "term": "Joulemeter bản chất",
-          "definition": "một dụng cụ đo điện năng hoặc công suất của nguồn điện thông"
+          "term": "Phế nang",
+          "definition": "Đơn vị cấu tạo và chức năng của phổi, có màng siêu mỏng và mạng mao mạch dày đặc để trao đổi khí O2 và CO2."
         },
         {
-          "term": "sử dụng nguồn nhiệt",
-          "definition": "dây đốt được đặt trong bình nhiệt lượng kế, Khi dòng điện chạy qua"
+          "term": "Trao đổi khí",
+          "definition": "Quá trình khuếch tán O2 từ ngoài vào máu và CO2 từ máu ra ngoài diễn ra tại phế nang và tế bào."
+        },
+        {
+          "term": "Thông khí ở phổi",
+          "definition": "Quá trình hít vào và thở ra liên tục giúp làm mới không khí bên trong các phế nang phổi."
+        },
+        {
+          "term": "Dung tích sống",
+          "definition": "Lượng không khí tối đa có thể tống ra khỏi phổi sau một lần hít vào sâu tối đa."
         }
       ],
-      "warmup": {
-        "question": "Trong đời sống, em đã từng quan sát hoặc gặp hiện tượng nào liên quan đến Hệ hô hấp ở người?",
-        "hint": "Hãy liên hệ với các sự vật, hiện tượng tự nhiên quen thuộc xung quanh chúng ta."
-      },
-      "illustrations": [
+      "summary": [
+        "Hệ hô hấp gồm đường dẫn khí (mũi, họng, thanh quản, khí quản, phế quản) và hai lá phổi.",
+        "Đường dẫn khí có chức năng dẫn khí, làm ấm, làm ẩm và làm sạch không khí hít vào.",
+        "Thông khí ở phổi nhờ cử động hít vào và thở ra làm thay đổi thể tích lồng ngực do cơ liên sườn và cơ hoành co dãn.",
+        "Sự trao đổi khí ở phế nang và ở tế bào diễn ra theo cơ chế khuếch tán từ nơi nồng độ cao sang nơi nồng độ thấp.",
+        "Cần giữ môi trường không khí trong lành, không hút thuốc lá và tập thở sâu để bảo vệ hệ hô hấp."
+      ],
+      "quick_check": [
         {
-          "caption": "Sơ đồ & Hình minh họa: Bài 34 - Hệ hô hấp ở người",
-          "image_path": "SGK KHTN 8 KNTT/page_143_img_0.png",
-          "image_url": "/api/images/SGK KHTN 8 KNTT/page_143_img_0.png",
-          "label": "Sơ đồ bài học (Trang 143, SGK KHTN 8)",
-          "matched_query": "Bài 34 Hệ hô hấp ở người",
-          "page": 143,
-          "source": "SGK KHTN 8 KNTT.pdf"
+          "id": "qc-k8-b34-01",
+          "question": "Sự trao đổi khí ở phế nang phổi và ở tế bào mô diễn ra theo cơ chế nào sau đây?",
+          "options": [
+            "A. Vận chuyển chủ động tiêu tốn ATP",
+            "B. Cơ chế khuếch tán từ nơi nồng độ cao đến nơi nồng độ thấp",
+            "C. Thẩm thấu theo gradient nồng độ muối",
+            "D. Thực bào và xuất bào qua màng sinh chất"
+          ],
+          "answer": "B",
+          "explanation": "Cả ở phế nang và tế bào, O2 và CO2 đều khuếch tán hoàn toàn tự nhiên từ nơi có nồng độ (phân áp) cao sang nơi có nồng độ thấp qua màng mao mạch mỏng."
+        },
+        {
+          "id": "qc-k8-b34-02",
+          "question": "Khi hít vào bình thường, cơ hoành và cơ liên sườn ngoài có trạng thái hoạt động như thế nào?",
+          "options": [
+            "A. Cơ hoành co hạ xuống, cơ liên sườn co nâng lồng ngực",
+            "B. Cơ hoành dãn nâng lên, cơ liên sườn dãn hạ lồng ngực",
+            "C. Cơ hoành co nâng lên, cơ liên sườn dãn ra",
+            "D. Cả cơ hoành và cơ liên sườn đều dãn hoàn toàn"
+          ],
+          "answer": "A",
+          "explanation": "Khi hít vào, cơ hoành co hạ phẳng xuống và cơ liên sườn co kéo xương sườn lên làm tăng thể tích lồng ngực, hạ áp suất trong phổi để hút không khí vào."
+        },
+        {
+          "id": "qc-k8-b34-03",
+          "question": "Cấu tạo nào của phổi đóng vai trò là đơn vị cấu tạo và chức năng trực tiếp thực hiện trao đổi khí?",
+          "options": [
+            "A. Khí quản",
+            "B. Phế quản chính",
+            "C. Phế nang",
+            "D. Màng phổi"
+          ],
+          "answer": "C",
+          "explanation": "Phế nang là các túi khí li ti với thành chỉ gồm một lớp tế bào và mạng mao mạch bọc ngoài, là nơi trực tiếp trao đổi khí giữa máu và không khí."
+        },
+        {
+          "id": "qc-k8-b34-04",
+          "question": "Khí độc nào trong khói thuốc lá có khả năng liên kết rất chặt với hemoglobin, chiếm chỗ của oxygen gây ngạt tế bào?",
+          "options": [
+            "A. Khí Carbon dioxide (CO2)",
+            "B. Khí Sulfur dioxide (SO2)",
+            "C. Khí Nitrogen (N2)",
+            "D. Khí Carbon monoxide (CO)"
+          ],
+          "answer": "D",
+          "explanation": "Khí CO kết hợp với hemoglobin bền gấp hơn 200 lần so với O2, làm mất khả năng vận chuyển O2 của hồng cầu, gây thiếu dưỡng khí trầm trọng cho tế bào não và tim."
+        },
+        {
+          "id": "qc-k8-b34-05",
+          "question": "Bộ phận nào của đường dẫn khí có cấu tạo sụn tự động đậy kín đường thở khi nuốt để chống sặc thức ăn?",
+          "options": [
+            "A. Nắp thanh quản (sụn thanh thiệt)",
+            "B. Lông mũi",
+            "C. Vòng sụn khí quản",
+            "D. Hốc mũi"
+          ],
+          "answer": "A",
+          "explanation": "Nắp thanh quản (sụn thanh thiệt) tự động hạ xuống đậy kín lỗ thanh quản khi nuốt thức ăn, ngăn không cho thức ăn rơi vào đường thở."
+        },
+        {
+          "id": "qc-k8-b34-06",
+          "question": "Biện pháp nào sau đây giúp rèn luyện dung tích sống của phổi đạt hiệu quả cao nhất?",
+          "options": [
+            "A. Thường xuyên ngồi trong phòng điều hòa đóng kín cửa",
+            "B. Luyện tập thể thao đều đặn và tập hít thở sâu",
+            "C. Hút thuốc lá điện tử thay cho thuốc lá truyền thống",
+            "D. Thở nhanh và nông liên tục cả ngày"
+          ],
+          "answer": "B",
+          "explanation": "Tập thể dục thể thao kết hợp hít thở sâu giúp các phế nang giãn nở tối đa, tăng cường sức co bóp của cơ hô hấp và nâng cao dung tích sống của phổi."
         }
       ]
     },
     {
-      "id": "k8-bai-35-he-bai-tiet-o-nguoi",
+      "id": "k8-b35-bai-tiet",
       "grade": 8,
       "number": "Bài 35",
       "title": "Hệ bài tiết ở người",
-      "topic": "Hệ bài tiết ở người",
-      "objectives": [
-        "Nêu được chức năng của hệ bài tiết.",
-        "Dựa vào hình ảnh hay mô hình, kể tên được các cơ quan của hệ bài tiết nước tiểu.",
-        "Dựa vào hình ảnh sơ lược, kể tên được các bộ phận chủ yếu của thận.",
-        "Trình bày được một số bệnh về hệ bài tiết và cách phòng chống các bệnh đó.",
-        "Vận dụng được hiểu biết về hệ bài tiết để bảo vệ sức khoẻ."
-      ],
-      "content": "a) Nhiệt độ bình nào cao nhất – A. Bình A. B. Bình B. C. Bình C. D. Bình D. Thuật tháng b) Yếu tố nào sau đây làm cho nhiệt độ của nước ở các bình khác nhau? B. Nhiệt lượng tùng bình nhận được C. Lượng nước chứa trong từng bình D. Loại chất lỏng chứa trong tùng bình. Câu 2.Em hãy tính được năng lượng nhiệt cần cung cấp để làm tăng nhiệt độ của 2 lít 1 nước từ 25 – C lên 70 – C.",
-      "source_label": "SGK KHTN 8 KNTT · Bài 35 · Trang 146–149",
-      "generation_sources": [
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 147,
-          "printed_start": 146,
-          "printed_end": 146,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 148,
-          "printed_start": 147,
-          "printed_end": 147,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 149,
-          "printed_start": 148,
-          "printed_end": 148,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 150,
-          "printed_start": 149,
-          "printed_end": 149,
-          "virtual": false
-        }
-      ],
+      "topic": "Sinh học cơ thể người",
+      "duration": "2 tiết (90 phút)",
       "order": 350,
       "active": true,
-      "origin": "curriculum",
-      "catalog_only": false,
-      "created_at": "2026-08-29T13:12:20+00:00",
-      "updated_at": "2026-09-11T18:43:49+00:00",
+      "origin": "official_curriculum",
+      "lesson_version": 5,
+      "source_label": "SGK KHTN 8 KNTT – Bài 35 – Trang 147–151",
+      "content": "Hệ bài tiết ở người thực hiện chức năng lọc máu và thải các chất cặn bã, độc hại ra ngoài cơ thể; cấu tạo hệ bài tiết nước tiểu gồm hai quả thận, ống dẫn nước tiểu, bóng đái và ống đái; cơ chế tạo thành nước tiểu qua 3 giai đoạn tại nephron.",
+      "warmup": "Mỗi ngày cơ thể chúng ta nạp vào rất nhiều thức ăn và nước uống. Các chất cặn bã sinh ra từ quá trình trao đổi chất sẽ được đào thải ra ngoài bằng những con đường nào? Vì sao thận lại được ví như 'nhà máy lọc chất độc' của cơ thể?",
+      "objectives": [
+        "Nêu được khái niệm bài tiết và vai trò của bài tiết đối với cơ thể sống.",
+        "Mô tả được cấu tạo của hệ bài tiết nước tiểu (thận, ống dẫn nước tiểu, bóng đái, ống đái) và cấu tạo đơn vị chức năng của thận (nephron).",
+        "Trình bày được 3 giai đoạn của quá trình tạo thành nước tiểu: lọc máu ở cầu thận, hấp thụ lại và bài tiết tiếp ở ống thận.",
+        "Phân biệt được nước tiểu đầu và nước tiểu chính thức.",
+        "Vận dụng kiến thức để giải thích nguyên nhân tạo sỏi thận và đề xuất các biện pháp bảo vệ hệ bài tiết khỏe mạnh."
+      ],
       "sections": [
         {
-          "title": "Khởi động & Hiện tượng mở đầu",
+          "title": "1. Khái niệm và vai trò của bài tiết",
           "paragraphs": [
-            "a) Nhiệt độ bình nào cao nhất – A. Bình A. B. Bình B. C. Bình C. D. Bình D. Thuật tháng b) Yếu tố nào sau đây làm cho nhiệt độ của nước ở các bình khác nhau? B. Nhiệt lượng tùng bình nhận được C. Lượng nước chứa trong từng bình D. Loại chất lỏng chứa trong tùng bình.",
-            "Câu 2.Em hãy tính được năng lượng nhiệt cần cung cấp để làm tăng nhiệt độ của 2 lít 1 nước từ 25 – C lên 70 – C."
+            "Bài tiết là quá trình lọc và thải các chất cặn bã, chất độc hại và chất dư thừa sinh ra từ các hoạt động chuyển hóa của tế bào ra khỏi cơ thể.",
+            "Các cơ quan tham gia bài tiết trong cơ thể người gồm: Phổi bài tiết khí CO2 và hơi nước; Da bài tiết mồ hôi chứa nước, muối khoáng và một ít ure; Hệ bài tiết nước tiểu là cơ quan bài tiết chủ yếu, đảm nhận thải bỏ tới 90% các sản phẩm chuyển hóa hòa tan trong máu (ure, acid uric, creatinin, muối thừa).",
+            "Vai trò của bài tiết: Giúp thanh lọc cơ thể, chống nhiễm độc nội bào và duy trì tính ổn định của các điều kiện lí - hóa trong môi trường trong (cân bằng nội môi như nồng độ ion, thể tích máu, huyết áp và độ pH)."
           ],
           "bullets": [
-            "Thời gian đun."
+            "Sản phẩm bài tiết chính: CO2 (qua phổi), mồ hôi (qua da), nước tiểu chứa ure, acid uric, muối khoáng thừa (qua thận).",
+            "Thận đóng vai trò trung tâm trong việc thanh lọc máu và duy trì cân bằng nước, điện giải."
           ]
         },
         {
-          "title": "2. Đánh giá",
+          "title": "2. Cấu tạo của hệ bài tiết nước tiểu",
           "paragraphs": [
-            "Câu 1.a) B. b) c. Câu 2. Năng lượng nhiệt cần cung cấp: Q - mc(t, -t) - 376 200 J. VD: 2 câu đúng. H: Câu 1 đúng cả 2 ý. B: Câu 1 đúng 1 ý. BÀI 28. SỰ TRUYỀN NHIỆT MỤC TIÊU Sau bài học, HS sẽ:",
-            "VD: 2 câu đúng. H: Câu 1 đúng cả 2 ý. B: Câu 1 đúng 1 ý. BÀI 28. SỰ TRUYỀN NHIỆT MỤC TIÊU Sau bài học, HS sẽ: sự truyền năng lượng trong mỗi hiện tượng đó. và chân không.",
-            "CHUẨN BỊ THÔNG TIN BỔ SUNG các thuật Sự truyền nhiệt là thuật ngữ dùng để chỉ quá trình trao đổi nhiệt năng giữa hai môi trường (hay hai vật) có nhiệt độ khác nhau Nhiệt luôn được truyền từ môi trường (hay vật) có nhiệt độ cao sang môi trường (hay vật) có nhiệt độ thấp hơn, Sự truyền nhiệt được thực hiện dưới các hình thức: dẫn nhiệt, đối lưu và bức xạ nhiệt."
+            "Hệ bài tiết nước tiểu gồm có: hai quả thận, hai ống dẫn nước tiểu, một bóng đái (bàng quang) và một ống đái.",
+            "Hai quả thận hình hạt đậu, màu đỏ nâu, nằm ở hai bên cột sống phía sau phúc mạc khoang bụng ngang đốt sống thắt lưng. Mỗi quả thận gồm phần vỏ, phần tủy và bể thận.",
+            "Đơn vị cấu tạo và chức năng của thận là nephron. Mỗi quả thận người chứa khoảng 1 triệu nephron. Mỗi nephron gồm có ba phần liên hoàn: Cầu thận (cuộn mao mạch máu), Nang cầu thận (nang Bowman - một túi lõm hình cầu bao bọc ngoài cầu thận) và Ống thận (uốn lượn được bao quanh bởi mạng lưới mao mạch)."
           ],
           "bullets": [
-            "Tìm được ví dụ về hiện tượng dẫn nhiệt, đối lưu, bức xạ nhiệt và mô tả sơ lược được",
-            "Nêu được cách truyền nhiệt chính trong các môi trường chất rắn, chất lỏng, chất khí",
-            "Phân tích được một số ví dụ về công dụng của vật dẫn nhiệt tốt, vật cách nhiệt tốt.",
-            "Mô tả được sự truyền năng lượng trong hiệu ứng nhà kính",
-            "Biết và giải thích được một cách sơ lược về lợi ích và tác hại của hiệu ứng nhà kính.",
-            "Thiết bị chiếu bảng biểu, hình vẽ lên màn ảnh",
-            "Dụng cụ để làm các thí nghiệm trong các Hình 28.1, 28.2, 28.5, 28.8 SGK.",
-            "Phiếu học tập (trình bày trong mục V)."
+            "Thận: cơ quan lọc máu chính để tạo ra nước tiểu.",
+            "Ống dẫn nước tiểu: dẫn nước tiểu chính thức từ bể thận xuống bóng đái.",
+            "Bóng đái (bàng quang): túi cơ đàn hồi chứa nước tiểu tạm thời trước khi thải ra ngoài.",
+            "Ống đái: đường thoát nước tiểu từ bóng đái ra ngoài cơ thể."
           ]
         },
         {
-          "title": "1. Dẫn nhiệt",
+          "title": "3. Quá trình tạo thành nước tiểu",
           "paragraphs": [
-            "Dẫn nhiệt là quá trình truyền nhiệt năng trực tiếp thông qua va chạm giữa các hạt cấu Tạo chất (electron, nguyên tử, phân tử), Cơ chế dẫn nhiệt của các chất rắn, lỏng, khí không giống nhau. Trong sự dẫn nhiệt của chắt rắn, đặc biệt là của các kim loại thì electron tự do đóng vai trò chủ yếu, còn trong chất lỏng và chất khí thì chính các nguyên tử, phân tử tham gia vào quá trình dẫn nhiệt.",
-            "những năng từ các phân tử có động năng lớn hơn sang các phân tử có động năng nhỏ hơn thông qua va chạm."
-          ],
-          "bullets": []
-        },
-        {
-          "title": "2. Đối lưu",
-          "paragraphs": [
-            "động năng giữa các hạt cấu tạo chất khi va chạm mà là sự truyền nhiệt năng giữa các lớp qua va chạm."
-          ],
-          "bullets": []
-        },
-        {
-          "title": "2. Đối lưu",
-          "paragraphs": [
-            "động năng giữa các hạt cấu tạo chất khi va chạm mà là sự truyền nhiệt năng giữa các lớp chất lỏng hoặc chất khí có nhiệt độ khác nhau, Trong đổi lưu luôn có sự chuyển động của các khối vật chất, Cơ chế của sự đối lưu là lực hút của Trái Đất (trọng lực) và lực đầy Archimedes.",
-            "Ví dụ về sự đối lưu của nước: Khi được đun nóng (truyền nhiệt bằng hình thức dẫn nhiệt), lớp nước ở dưới tiếp xúc với nguồn nhiệt nóng lên, nở ra và trọng lượng riêng trở nên nhỏ hơn trọng lượng riêng của lớp nước chưa được đun nóng, làm cho lực đẩy Archimedes tác dụng lên lớp nước nóng lớn hơn trọng lực, đầy lớp nước này nổi lên, còn các thuật lớp nước lạnh ở trên có trọng lượng riêng lớn hơn thì chìm xuống thế chỗ cho lớp nước Thuật thế nóng để sẽ được đun nóng... Hiện tượng cứ thế tiếp cho tới khi cả khối chất lỏng nóng lên Đổi với chất khí, hiện tượng cũng xảy ra tương tụ như đối với chất lỏng.",
-            "Như vậy, nếu đun nước trên con tàu vũ trụ ở trạng thái \"không trọng lượng\" thì sẽ không có hiện tượng đối lưu và nước không thể sôi nhanh bằng khi đun nước ở trạng thái có trọng lượng.",
-            "Người ta phân biệt hai loại đối lưu là đối lưu tự nhiên và đối lưu cưỡng bức. Đối lưu tự nhiên xảy ra khi không có sự can thiệp từ các nhân tố bên ngoài vào chuyển động của chất lưu trong quá trình xảy ra đối lưu, còn đối lưu cướng bức xảy ra khi có sự can thiệp từ các Thuật thuật nhân tố bên ngoài vào chuyển động của chất lưu, Ví dụ: dùng que khuấy, máy trộn, máy hút, Thuật điều lực của tim đẩy máu lưu thông... để làm tăng tốc độ chuyển động của chất lưu Đối lưu cuỡng bức có thể xảy ra mạnh và nhanh gấp nhiều lần đối lưu tự nhiên."
-          ],
-          "bullets": []
-        },
-        {
-          "title": "3. Bức xạ nhiệt",
-          "paragraphs": [
-            "Thuật Bức xạ nhiệt là sự truyền nhiệt giữa các vật không tiếp xúc với nhau, thông qua một loại Thuật được bức xạ điện từ gọi là bức xạ nhiệt, Mọi vật có nhiệt độ cao hơn độ không tuyệt đối đều có khả năng phát ra các bức xạ có tần số phụ thuộc vào nhiệt độ của vật Các bức xạ này có bản chất điện từ. Trong số các bức xạ điện từ có loại mà khi vật hấp thụ được thì nóng lên, gọi là bức xạ nhiệt, Hiện tượng vật nóng lên khi nhận được bức xạ nhiệt gọi là sự truyền nhiệt bằng búc xạ (gọi tắt là sự bức xạ nhiệt).",
-            "Do bức xạ nhiệt có bản chất điện từ nên đôi khi người ta chỉ coi dẫn nhiệt và đối lưu là các cách truyền nhiệt."
-          ],
-          "bullets": []
-        },
-        {
-          "title": "4. Hiệu ứng nhà kính",
-          "paragraphs": [
-            "Hiệu ứng nhà kính còn được gọi là hiệu ứng nhà xanh trong từ điển tiếng Anh (green house effect), Hiệu ứng này được dùng để chỉ hai loại hiệu ứng khác nhau. Một là hiệu ứng của nhà lợp kính dùng để trồng cây: Nhờ được lợp kính nên năng lượng mặt trời có thể xuyên qua mái nhà này vào sưởi ấm không gian bên trong nhà, đồng thời mái lợp kính giữ Thuật thuật lại năng lượng bên trong nhà không cho thoát ra ngoài Hai là hiệu ứng của lớp khí quyền bao quanh Trái Đất trong đó khí carbon dioxide và một số khí khác có khả năng hấp thụ năng lượng mặt trời, làm cho bầu khí quyền và Trái Đất được sưởi ấm. Hiệu ứng nhà kính trồng cây được con người phát hiện ra trước, nhờ đó mới xác định được hiệu ứng nhà kính khí quyền, Tuy bản chất của hai hiệu ứng không giống nhau, nhưng hệ quả đều là giữ ấm môi trường sống nên người ta thường gọi chung hiệu ứng nhà kính trồng cây và hiệu ứng \"nhà kính khí quyển là \"\"hiệu ứng nhà kính\"\" hoặc \"hiệu ứng nhà xanh\" Ánh sáng mặt trời đi qua lớp khí quyển bao quanh Trái Đất tới mặt đất bị một số khí Thuật trong khí quyền hấp thụ Các khí hấp thụ nhiệt năng này được gọi là khí nhà kính hoặc khí nhà xanh, đóng vai trò giống như một cái chăn sưởi ấm cho Trái Đất không bị giá lạnh, Hiệu chính thức ứng nhà kính khí quyền được coi là một trong những chức năng quan trọng nhất của bầu khí quyền, Nếu không có hiệu ứng này thì nhiệt độ trung bình của Trái Đất sẽ là - 18 – C Các chứ không phải là 15 – C như nhiệt độ trung bình hiện nay của Trái Đất, Khoảng 30% bức Xạ mặt trời chiếu xuống Trái Đất bị phản xạ trở lại vào không gian, chỉ có 70% được hấp thụ làm nóng đất, nước, khí quyền, Bầu khí quyền của Trái Đất chứa các phân tử carbon \"Các dioxide (CO,),hơi nước (H,O), methane (CH) và ozone (0,) có khả năng hấp thụ bức xạ\" nhiệt (tia hồng ngoại), Một phần bức xạ hấp thụ làm nóng bầu khí quyền, một phần được bầu khí quyền phản xạ về mặt đất hoặc khuếch tán ra không gian bên ngoài khí quyền Sự các chính cân bằng giữa phần bức xạ nhiệt được hấp thụ và bức xạ nhiệt thoát ra ngoài không gian làm cho nhiệt độ trung bình của khí quyền và bề mặt Trái Đất ổn định, duy trì được sự sống trên trái đất IV GỢI Ý TỔ CHỨC HOẠT ĐỘNG DẠY, HỌC"
-          ],
-          "bullets": []
-        },
-        {
-          "title": "Hoạt động 1. KHởi ĐộNG",
-          "paragraphs": [
-            "trên trái đất IV GỢI Ý TỔ CHỨC HOẠT ĐỘNG DẠY, HỌC"
-          ],
-          "bullets": []
-        },
-        {
-          "title": "Hoạt động 1. KHởi ĐộNG",
-          "paragraphs": [
-            "Tuy các em chưa được học về sự truyền nhiệt nhưng rất có thể các em đã ít nhiều được nghe nói tới, hoặc được đọc bài có liên quan tới sự truyền nhiệt, Do đó, hoạt động này vừa nhằm thăm dò những hiểu biết HS có thể có về sự truyền nhiệt trước khi học bài này, thành để sử dụng chúng vào việc dạy bài học mới, vừa nhắc nhở để các em biết đối tượng của bài học là về sự truyền năng lượng nhiệt.",
-            "Tổ chức để HS thảo luận về câu hỏi trong phần khởi động, Kết luận của phần này là thông báo để HS biết bài này sẽ giúp các em hiểu đầy đủ về sự truyền năng lượng trong các môi trường vật chất khác nhau: rắn, lỏng, khí."
-          ],
-          "bullets": []
-        },
-        {
-          "title": "Hoạt động 2. hướng dẫn hs nhận biết sự dẫn nhiệt",
-          "paragraphs": [
-            "Chương trình không yêu cầu HS hiểu cơ chế của sự dẫn nhiệt, chỉ yêu cầu HS lấy được ví dụ về hiện tượng dẫn nhiệt, Tuy nhiên việc trình bày về cơ chế của sự dẫn nhiệt một cách đơn giản (chỉ vài dòng như SGK) sẽ giúp các em dễ dàng tìm được đúng ví dụ về hiện tượng dẫn nhiệt.",
-            "M Tổ chức cho HS hoạt động theo hướng dẫn trong phần thí nghiệm ở mục I SGK"
+            "Quá trình tạo thành nước tiểu diễn ra liên tục tại các nephron của thận qua 3 giai đoạn kế tiếp nhau:",
+            "1. Giai đoạn lọc máu ở cầu thận: Máu theo động mạch đến cầu thận với áp lực lớn. Nước và các phân tử nhỏ hòa tan được lọc qua vách mao mạch cầu thận và màng nang cầu thận vào nang Bowman để tạo thành nước tiểu đầu. Tế bào máu và protein huyết tương có kích thước lớn không qua được màng lọc nên ở lại trong máu. Mỗi ngày có khoảng 170 – 180 lít nước tiểu đầu được tạo ra.",
+            "2. Giai đoạn hấp thụ lại ở ống thận: Nước tiểu đầu chảy qua ống thận. Tại đây, các tế bào ống thận chủ động hấp thụ lại đến 99% lượng nước, toàn bộ chất dinh dưỡng (glucose, amino acid), vitamin và các ion cần thiết (Na+, Cl-, HCO3-) trở lại mạng mao mạch quanh ống thận.",
+            "3. Giai đoạn bài tiết tiếp ở ống thận: Các tế bào thành ống thận chủ động bài tiết tiếp các chất cặn bã, chất độc hại (ure, acid uric, creatinin, thuốc, chất màu) và các ion thừa (H+, K+) từ máu vào lòng ống thận. Dung dịch còn lại sau giai đoạn này là nước tiểu chính thức (khoảng 1,5 – 2 lít mỗi ngày). Nước tiểu chính thức theo ống góp đổ vào bể thận, xuống bóng đái và thải ra ngoài."
           ],
           "bullets": [
-            "Hướng dẫn để HS đi đến các kết luận sau:"
+            "So sánh nước tiểu đầu và nước tiểu chính thức:",
+            "  * Nước tiểu đầu: Nồng độ chất hòa tan loãng, còn chứa nhiều chất dinh dưỡng hữu ích (glucose, vitamin), thể tích rất lớn (170 - 180 lít/ngày).",
+            "  * Nước tiểu chính thức: Nồng độ chất cặn bã (ure, acid uric) rất đậm đặc, không còn chất dinh dưỡng, thể tích nhỏ (1,5 - 2 lít/ngày)."
           ]
         },
         {
-          "title": "1. Khi đốt nóng thanh AB thì sáp chảy ra, các đinh rơi xuống.",
+          "title": "4. Bảo vệ hệ bài tiết và phòng chống bệnh thận",
           "paragraphs": [
-            "đèn truyền vào thanh đồng và truyền dần từ đầu A tới đầu B của thanh đồng."
+            "Một số bệnh thường gặp ở hệ bài tiết nước tiểu: sỏi thận, sỏi bàng quang, viêm cầu thận, suy thận và nhiễm khuẩn đường tiết niệu.",
+            "Nguyên nhân gây sỏi thận: Do thói quen uống quá ít nước, ăn quá mặn, ăn nhiều thực phẩm giàu oxalate, hoặc nhịn tiểu làm cho các muối khoáng (calci oxalate, phosphat, acid uric) bị cô đặc, kết tinh và lắng đọng lâu ngày tạo thành sỏi làm tắc nghẽn đường dẫn nước tiểu."
           ],
           "bullets": [
-            "2. Đinh rơi xuống do sáp bị thanh đồng nung nóng chảy ra: năng lượng nhiệt đã được"
-          ]
-        },
-        {
-          "title": "3. Các đinh rơi xuống lần lượt theo thứ tự từ a đến e.",
-          "paragraphs": [
-            "Trong thế - GV giới thiệu cơ chế của sự dẫn nhiệt như SGV, kèm theo ví dụ bằng mô hình: ví dụ bắn bị, ví dụ về va chạm của hai con lắc trong Hình 48.5 SGK Khoa học tự nhiên 6, Các ví dụ này giúp HS thấy được cụ thể sự truyền động năng của các vật khi va chạm Sau đó mới yêu cầu HS tìm ví dụ về dẫn nhiệt."
-          ],
-          "bullets": [
-            "GV giới thiệu về vật dẫn nhiệt tốt, vật cách nhiệt tốt và ý nghĩa của Bảng 28.1 SGK",
-            "Kết luận các nội dung này cần nhấn mạnh:"
+            "Uống đủ 1,5 – 2 lít nước mỗi ngày để hòa tan chất cặn bã, tránh lắng đọng tạo sỏi.",
+            "Không nhịn tiểu khi có nhu cầu, tránh làm bóng đái bị căng giãn quá mức và ngăn vi khuẩn tích tụ gây nhiễm khuẩn ngược dòng.",
+            "Ăn uống cân đối, hạn chế ăn thức ăn quá mặn, quá chua hoặc quá nhiều dầu mỡ động vật.",
+            "Giữ vệ sinh cơ quan sinh dục ngoài sạch sẽ hàng ngày để tránh vi khuẩn xâm nhập vào đường niệu đạo.",
+            "Không lạm dụng thuốc kháng sinh và thuốc giảm đau bừa bãi tránh gây độc hại cho tế bào thận."
           ]
         }
-      ],
-      "summary": [
-        "GV giới thiệu về vật dẫn nhiệt tốt, vật cách nhiệt tốt và ý nghĩa của Bảng 28.1 SGK",
-        "Kết luận các nội dung này cần nhấn mạnh:"
       ],
       "terms": [
         {
-          "term": "Dẫn nhiệt",
-          "definition": "quá trình truyền nhiệt năng trực tiếp thông qua va chạm giữa các hạt cấu"
+          "term": "Bài tiết",
+          "definition": "Quá trình lọc và thải các chất cặn bã, chất độc và chất dư thừa từ chuyển hóa nội bào ra ngoài cơ thể để duy trì cân bằng nội môi."
         },
         {
-          "term": "Các chứ không phải",
-          "definition": "15 – C như nhiệt độ trung bình hiện nay của Trái Đất, Khoảng 30% bức"
+          "term": "Nephron",
+          "definition": "Đơn vị cấu tạo và chức năng của thận, gồm cầu thận, nang cầu thận và ống thận, thực hiện nhiệm vụ lọc máu tạo nước tiểu."
         },
         {
-          "term": "học",
-          "definition": "Là tập hợp những nguyên tử cùng loại có cùng số proton trong hạt nhân (cùng điện tích hạt nhân). Các nguyên tử của cùng một nguyên tố hóa học đều có tính chất hóa học giống nhau."
+          "term": "Nước tiểu đầu",
+          "definition": "Chất lỏng tạo ra sau khi máu được lọc qua màng cầu thận vào nang Bowman, còn chứa nhiều nước và chất dinh dưỡng."
+        },
+        {
+          "term": "Nước tiểu chính thức",
+          "definition": "Nước tiểu đậm đặc hoàn chỉnh ở cuối ống thận sau khi đã hấp thụ lại 99% nước, dinh dưỡng và bài tiết thêm chất cặn bã."
+        },
+        {
+          "term": "Sỏi thận",
+          "definition": "Khối khoáng chất rắn kết tinh trong thận do lắng đọng muối khoáng (canxi, phosphat, oxalat) khi uống thiếu nước hoặc nhịn tiểu."
         }
       ],
-      "warmup": {
-        "question": "Trong đời sống, em đã từng quan sát hoặc gặp hiện tượng nào liên quan đến Hệ bài tiết ở người?",
-        "hint": "Hãy liên hệ với các sự vật, hiện tượng tự nhiên quen thuộc xung quanh chúng ta."
-      },
-      "illustrations": [
+      "summary": [
+        "Hệ bài tiết nước tiểu gồm: 2 quả thận, 2 ống dẫn nước tiểu, bóng đái và ống đái.",
+        "Mỗi quả thận chứa khoảng 1 triệu nephron (gồm cầu thận, nang cầu thận và ống thận).",
+        "Quá trình tạo thành nước tiểu gồm 3 giai đoạn: lọc máu ở cầu thận (tạo nước tiểu đầu), hấp thụ lại ở ống thận (giữ lại 99% nước và dinh dưỡng) và bài tiết tiếp ở ống thận (tạo nước tiểu chính thức).",
+        "Mỗi ngày tạo ra 170 - 180 lít nước tiểu đầu nhưng chỉ có khoảng 1,5 - 2 lít nước tiểu chính thức được thải ra ngoài.",
+        "Cần uống đủ 1,5 - 2 lít nước mỗi ngày, không nhịn tiểu và hạn chế ăn mặn để phòng tránh sỏi thận và suy thận."
+      ],
+      "quick_check": [
         {
-          "caption": "Sơ đồ & Hình minh họa: Bài 35 - Hệ bài tiết ở người",
-          "image_path": "SGK KHTN 8 KNTT/page_147_img_0.png",
-          "image_url": "/api/images/SGK KHTN 8 KNTT/page_147_img_0.png",
-          "label": "Sơ đồ bài học (Trang 147, SGK KHTN 8)",
-          "matched_query": "Bài 35 Hệ bài tiết ở người",
-          "page": 147,
-          "source": "SGK KHTN 8 KNTT.pdf"
+          "id": "qc-k8-b35-01",
+          "question": "Mỗi nephron (đơn vị chức năng của thận) được cấu tạo từ những bộ phận nào sau đây?",
+          "options": [
+            "A. Cầu thận, nang cầu thận và ống thận",
+            "B. Ống dẫn nước tiểu, bóng đái và ống đái",
+            "C. Phần vỏ, phần tủy và bể thận",
+            "D. Động mạch thận và tĩnh mạch thận"
+          ],
+          "answer": "A",
+          "explanation": "Mỗi nephron gồm cầu thận (chùm mao mạch lọc máu), nang cầu thận (nang Bowman bao bọc ngoài) và hệ thống ống thận (uốn lượn thực hiện hấp thụ lại và bài tiết tiếp)."
+        },
+        {
+          "id": "qc-k8-b35-02",
+          "question": "Quá trình lọc máu ở cầu thận tạo ra sản phẩm nào sau đây?",
+          "options": [
+            "A. Nước tiểu chính thức",
+            "B. Nước tiểu đầu",
+            "C. Dịch bạch huyết",
+            "D. Huyết tương cô đặc"
+          ],
+          "answer": "B",
+          "explanation": "Quá trình lọc máu qua vách mao mạch cầu thận vào nang Bowman tạo ra khoảng 170 - 180 lít nước tiểu đầu mỗi ngày."
+        },
+        {
+          "id": "qc-k8-b35-03",
+          "question": "Điểm khác biệt cơ bản nhất giữa nước tiểu đầu và nước tiểu chính thức là gì?",
+          "options": [
+            "A. Nước tiểu đầu có màu vàng sẫm còn nước tiểu chính thức không màu",
+            "B. Nước tiểu đầu chứa nhiều tế bào máu còn nước tiểu chính thức không có",
+            "C. Nước tiểu đầu còn chứa nhiều chất dinh dưỡng và loãng, nước tiểu chính thức đậm đặc và chứa chất thải",
+            "D. Nước tiểu đầu có thể tích nhỏ hơn rất nhiều so với nước tiểu chính thức"
+          ],
+          "answer": "C",
+          "explanation": "Nước tiểu đầu loãng và còn chứa nhiều glucose, amino acid, nước (170-180L); sau khi qua ống thận được tái hấp thụ 99% thì nước tiểu chính thức chỉ còn 1.5-2L chứa đậm đặc ure, acid uric và chất thải."
+        },
+        {
+          "id": "qc-k8-b35-04",
+          "question": "Thói quen sinh hoạt nào sau đây là nguyên nhân trực tiếp dẫn đến nguy cơ mắc bệnh sỏi thận?",
+          "options": [
+            "A. Ăn nhiều rau xanh và uống đủ 2 lít nước mỗi ngày",
+            "B. Thường xuyên tập luyện thể dục thể thao buổi sáng",
+            "C. Ngủ đủ 8 tiếng mỗi ngày và giữ tinh thần thoải mái",
+            "D. Uống quá ít nước, ăn mặn và thường xuyên nhịn tiểu"
+          ],
+          "answer": "D",
+          "explanation": "Uống ít nước làm nước tiểu bị cô đặc, kết hợp với thói quen ăn mặn và nhịn tiểu khiến các tinh thể muối khoáng (calci oxalate, phosphat) lắng đọng kết tinh thành sỏi thận."
+        },
+        {
+          "id": "qc-k8-b35-05",
+          "question": "Ở người trưởng thành khỏe mạnh, thể tích nước tiểu chính thức được đào thải ra ngoài trung bình mỗi ngày khoảng bao nhiêu?",
+          "options": [
+            "A. 1,5 – 2 lít",
+            "B. 170 – 180 lít",
+            "C. 0,2 – 0,5 lít",
+            "D. 8 – 10 lít"
+          ],
+          "answer": "A",
+          "explanation": "Sau khi ống thận hấp thụ lại 99% lượng nước từ 170 - 180 lít nước tiểu đầu, lượng nước tiểu chính thức thải ra ngoài chỉ vào khoảng 1,5 đến 2 lít/ngày."
+        },
+        {
+          "id": "qc-k8-b35-06",
+          "question": "Cơ quan nào trong hệ bài tiết nước tiểu đóng vai trò lưu trữ nước tiểu tạm thời trước khi thải ra ngoài?",
+          "options": [
+            "A. Thận",
+            "B. Bóng đái (bàng quang)",
+            "C. Ống dẫn nước tiểu",
+            "D. Bể thận"
+          ],
+          "answer": "B",
+          "explanation": "Bóng đái (bàng quang) là một túi cơ đàn hồi có chức năng tích trữ nước tiểu tạm thời từ thận dẫn xuống, khi đạt khoảng 200 - 300 ml sẽ kích thích phản xạ đi tiểu."
         }
       ]
     },
     {
-      "id": "k8-bai-36-dieu-hoa-moi-truong-trong-cua-co-the-nguoi",
+      "id": "k8-b36-moi-truong-trong",
       "grade": 8,
       "number": "Bài 36",
       "title": "Điều hòa môi trường trong của cơ thể người",
-      "topic": "Điều hòa môi trường trong của cơ thể người",
-      "objectives": [
-        "Nêu được khái niệm môi trường trong của cơ thể.",
-        "Nêu được khái niệm cân bằng môi trường trong và vai trò của sự duy trì ổn định môi trường trong của cơ thể (ví dụ nồng độ glucose, nồng độ muối trong máu, urea, uric acid, pH).",
-        "Đọc và hiểu được thông tin một ví dụ cụ thể về kết quả xét nghiệm nồng độ đường và uric acid trong máu."
-      ],
-      "content": "4 Dẫn nhiệt là sự truyền nhiệt năng từ vật có nhiệt độ cao sang vật có nhiệt độ thấp hơn khi hai vật tiếp xúc với nhau % Cơ chế của sự dẫn nhiệt là sự truyền động năng của chuyển động nhiệt từ các phân tử có động năng lớn sang các phân tử có động năng nhỏ khi va chạm. Để giúp HS dễ tìm đúng ví dụ, GV có thể trình bày kết luận ngay sau khi tiến hành thí nghiệm, trước khi yêu cầu HS tìm ví dụ. HĐ: 1. Chảo được làm bằng kim loại là chất dẫn nhiệt tốt, có thể truyền nhiệt nhanh chóng từ ngọn lửa tới thức ăn. Cán chảo được làm bằng gỗ hoặc nhựa là chất cách nhiệt tốt; Các thuật có tác dụng ngăn nhiệt truyền từ chảo tới tay khi người cầm cán chảo. (VD1) xã thuật ngăn nhiệt năng từ bên ngoài do trời nóng vào trong nhà tốt hơn, giữ cho nhà mát hơn; xã thuật ngược lại mùa đông, mái ngói và mái rạ ngăn nhiệt năng từ trong nhà truyền ra bên ngoài tốt hơn nên nhà ấm hơn. (VD2)",
-      "source_label": "SGK KHTN 8 KNTT · Bài 36 · Trang 150–151",
-      "generation_sources": [
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 151,
-          "printed_start": 150,
-          "printed_end": 150,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 152,
-          "printed_start": 151,
-          "printed_end": 151,
-          "virtual": false
-        }
-      ],
+      "topic": "Sinh học cơ thể người",
+      "duration": "2 tiết (90 phút)",
       "order": 360,
       "active": true,
-      "origin": "curriculum",
-      "catalog_only": false,
-      "created_at": "2026-08-29T13:12:20+00:00",
-      "updated_at": "2026-09-11T18:43:49+00:00",
+      "origin": "official_curriculum",
+      "lesson_version": 5,
+      "source_label": "SGK KHTN 8 KNTT – Bài 36 – Trang 152–155",
+      "content": "Môi trường trong cơ thể người gồm máu, dịch mô và dịch bạch huyết; khái niệm cân bằng nội môi và vai trò của thận, gan trong việc duy trì ổn định nồng độ các chất và độ pH của cơ thể.",
+      "warmup": "Khi chúng ta ăn một bữa ăn rất ngọt hoặc chạy thể thao toát nhiều mồ hôi, tại sao sau đó cơ thể vẫn giữ được nồng độ đường trong máu và lượng nước ổn định? Cơ chế nào giúp bảo vệ cơ thể khỏi những biến động đó?",
+      "objectives": [
+        "Nêu được các thành phần cấu tạo nên môi trường trong cơ thể (máu, dịch mô, dịch bạch huyết).",
+        "Nêu được khái niệm cân bằng môi trường trong (cân bằng nội môi) và ý nghĩa sinh học của nó.",
+        "Trình bày được vai trò của gan và thận trong điều hòa nồng độ glucose, nước, muối khoáng và pH máu.",
+        "Nêu được ý nghĩa của việc xét nghiệm máu và nước tiểu định kì trong chăm sóc sức khỏe."
+      ],
       "sections": [
         {
-          "title": "Khởi động & Hiện tượng mở đầu",
+          "title": "1. Các thành phần của môi trường trong cơ thể",
           "paragraphs": [
-            "4 Dẫn nhiệt là sự truyền nhiệt năng từ vật có nhiệt độ cao sang vật có nhiệt độ thấp hơn khi hai vật tiếp xúc với nhau % Cơ chế của sự dẫn nhiệt là sự truyền động năng của chuyển động nhiệt từ các phân tử có động năng lớn sang các phân tử có động năng nhỏ khi va chạm.",
-            "Để giúp HS dễ tìm đúng ví dụ, GV có thể trình bày kết luận ngay sau khi tiến hành thí nghiệm, trước khi yêu cầu HS tìm ví dụ. HĐ: 1. Chảo được làm bằng kim loại là chất dẫn nhiệt tốt, có thể truyền nhiệt nhanh chóng từ ngọn lửa tới thức ăn. Cán chảo được làm bằng gỗ hoặc nhựa là chất cách nhiệt tốt; Các thuật có tác dụng ngăn nhiệt truyền từ chảo tới tay khi người cầm cán chảo. (VD1) xã thuật ngăn nhiệt năng từ bên ngoài do trời nóng vào trong nhà tốt hơn, giữ cho nhà mát hơn; xã thuật ngược lại mùa đông, mái ngói và mái rạ ngăn nhiệt năng từ trong nhà truyền ra bên ngoài tốt hơn nên nhà ấm hơn. (VD2)"
+            "Môi trường trong của cơ thể người gồm ba thành phần dịch thể lưu thông và liên hệ mật thiết với nhau: máu, dịch mô (nước mô) và dịch bạch huyết.",
+            "Sự liên hệ giữa các thành phần: Một phần huyết tương của máu thẩm thấu qua thành mao mạch vào các khe gian bào tạo thành dịch mô bao quanh trực tiếp các tế bào. Dịch mô sau khi trao đổi chất với tế bào sẽ thấm vào các mao mạch bạch huyết tạo thành dịch bạch huyết. Dịch bạch huyết lưu thông theo mạch bạch huyết rồi đổ ngược trở lại vào tĩnh mạch máu gần tim.",
+            "Vai trò của môi trường trong: Giúp tế bào thực hiện quá trình trao đổi chất (tiếp nhận O2, chất dinh dưỡng và thải CO2, chất cặn bã) với môi trường ngoài."
           ],
           "bullets": [
-            "2. Tôn dẫn nhiệt tốt còn ngói và rạ cách nhiệt tốt, Do đó mùa hè, mái ngói và mái rạ"
+            "Máu: lưu thông trong hệ mạch máu kín.",
+            "Dịch mô: lấp đầy các khe hở giữa các tế bào, tiếp xúc trực tiếp với màng tế bào.",
+            "Dịch bạch huyết: lưu thông trong hệ mạch bạch huyết và hòa nhập lại vào hệ tuần hoàn máu."
           ]
         },
         {
-          "title": "Hoạt động 3. hướng dẫn hs nhận biết sự đối lưu",
+          "title": "2. Khái niệm cân bằng môi trường trong (Cân bằng nội môi)",
           "paragraphs": [
-            "Hiện tượng đối lưu trong chất lỏng là hiện tượng không dễ quan sát và không dễ Thường giải thích HS khó có thể tự mình quan sát thí nghiệm để tìm ra cơ chế của hiện tượng, Do Trong đó SGK trình bày hiện tượng đối lưu của chất lỏng bằng phương pháp thông báo, để HS dựa trên các hiểu biết đã có về đối lưu trong chất lỏng HS có thể tự tìm hiểu về đối lưu trong chất khí.",
-            "Tổ chức các hoạt động như trong SGK chất khí. Tổ chức các hoạt động như trong SGK hiện thí nghiệm dưới sự hướng dẫn tỉ mỉ của GV. Trong quá trình thực hiện thí nghiệm, GV cần hướng dẫn HS cách quan sát, mô tả trước hiện tượng HS có thể quan sát được để giúp các em dễ dàng quan sát hơn Tuy chương trình không yêu cầu HS tìm hiểu cơ chế của sự đối lưu nhưng vì HS đã Các thuật thuật học định luật Archimedes và dễ dàng nhận biết sự nở vì nhiệt nên vẫn có thể hướng dẫn để các em biết cơ chế của sự đối lưu thông qua việc trả lời câu hỏi 1.Cần giới thiệu cho HS biết chất lỏng và chất khí nở ra khi nóng lên, do đó trọng lượng riêng của chất lỏng và chất khí Thành giảm khi nhiệt độ tăng và nhắc lại điều kiện vật nổi đã học trong Bài: Lực đẩy Archimedes."
+            "Cân bằng môi trường trong (còn gọi là cân bằng nội môi) là sự duy trì ổn định các điều kiện lí - hóa của môi trường trong cơ thể (như nồng độ các chất hòa tan, nhiệt độ 37°C, áp suất thẩm thấu và độ pH máu từ 7,35 – 7,45).",
+            "Tính ổn định này là ổn định động: các chỉ số có thể dao động nhẹ quanh giá trị chuẩn nhưng nhanh chóng được cơ thể điều hòa đưa về mức bình thường.",
+            "Ý nghĩa: Đảm bảo điều kiện tối ưu cho các tế bào và các enzyme hoạt động bình thường. Nếu môi trường trong bị mất cân bằng kéo dài (ví dụ đường huyết quá cao, nồng độ acid tăng) sẽ gây rối loạn chuyển hóa, hủy hoại tế bào và dẫn đến tử vong."
           ],
           "bullets": [
-            "Nêu vấn đề về đối lưu như SGK.",
-            "Nêu vấn đề về đối lưu như SGK.",
-            "Làm thí nghiệm về đối lưu trong chất lỏng: Nếu có điều kiện nên để các tổ HS thực",
-            "Tổ chức để HS tự làm thí nghiệm và xác định cơ chế của sự đối lưu trong chất khí"
+            "Nhiệt độ cơ thể người bình thường ổn định ở khoảng 36,5°C - 37,2°C.",
+            "Nồng độ đường glucose trong máu bình thường được duy trì ở mức 3,9 – 6,4 mmol/L (khoảng 0,1%).",
+            "Độ pH của máu dao động trong giới hạn hẹp 7,35 - 7,45."
           ]
         },
         {
-          "title": "1. Khi đốt nến thì cánh quạt quay vì không khí gần đèn nhận được nhiệt năng từ",
+          "title": "3. Vai trò của thận và gan trong điều hòa môi trường trong",
           "paragraphs": [
-            "đèn, nóng lên, nở ra và nhẹ đi (trọng lượng riêng giảm) nên chuyển động lên trên tác dụng lực vào cánh quạt làm nó quay. (VD2) 2.HS tự tìm thêm ví dụ. Nếu có điều kiện có thể giới thiệu với HS một chiếc đèn kéo quân, yêu cầu các em giải thích tại sao đèn quay được. (VD1)"
-          ],
-          "bullets": []
-        },
-        {
-          "title": "Hoạt động 4. hướng dẫn hs nhận biết hiện tượng bức xạ nhiệt",
-          "paragraphs": [
-            "Hiện tượng bức xạ là hiện tượng khó nhận thức đối với HS THCS vì các em chưa đủ kiến thức cơ bản để có thể hiểu được bản chất của hiện tượng này. Do đó phương pháp trình bày nội dung này là phương pháp thông báo, chỉ yêu cầu HS có thể vận dụng kiến thức đã được thông báo, nhận biết được các hiện tượng bức xạ xảy ra trong đời sống.",
-            "Tổ chức các hoạt động theo tiến trình như trong SGK. CH: 1. Chủ yếu do bức xạ, vì cơ thể không tiếp xúc với bếp nên sự truyền nhiệt Thuật không thể do dẫn nhiệt, Có sự truyền nhiệt bằng đối lưu qua lớp không khí xung quanh bếp, nhưng không lớn bằng sự bức xạ. (VD2) 2.Viáo màu trắng hấp thụ tia nhiệt ít hơn và phản xạ tia nhiệt trở lại môi trường nhiều"
+            "Thận và gan là hai cơ quan chủ chốt tham gia điều hòa tính ổn định của môi trường trong cơ thể.",
+            "Vai trò của thận: Thận điều hòa thể tích nước và nồng độ các ion muối khoáng (Na+, K+, Ca2+) trong máu thông qua quá trình lọc và tái hấp thụ ở ống thận. Khi cơ thể thiếu nước (uống ít nước, toát mồ hôi nhiều), thận tăng cường hấp thụ lại nước làm nước tiểu cô đặc; khi cơ thể thừa nước, thận giảm hấp thụ nước làm nước tiểu loãng hơn. Thận cũng tham gia điều hòa độ pH máu bằng cách bài tiết bớt ion H+ hoặc tái hấp thụ ion HCO3-.",
+            "Vai trò của gan: Gan điều hòa nồng độ glucose trong máu ổn định nhờ sự phối hợp với hai hormone của tuyến tụy là insulin và glucagon. Khi đường huyết tăng (sau bữa ăn), tuyến tụy tiết insulin kích thích gan chuyển glucose thừa thành glycogen dự trữ trong gan và cơ. Khi đường huyết giảm (khi đói, vận động nặng), tuyến tụy tiết glucagon kích thích gan phân giải glycogen thành glucose giải phóng vào máu."
           ],
           "bullets": [
-            "hơn. (VD1)"
+            "Thận: Điều hòa thể tích nước, áp suất thẩm thấu, nồng độ muối khoáng và pH máu.",
+            "Gan: Điều hòa nồng độ glucose trong máu, chuyển hóa lipid, protein và giải độc các chất độc hại.",
+            "Tuyến tụy tiết Insulin (giúp hạ đường huyết) và Glucagon (giúp tăng đường huyết)."
           ]
         },
         {
-          "title": "HOẠT ĐỘNG 5. HƯỚNG DẪN HS NHẬN BIẾT HIỆU ỨNG NHÀ KÍNH",
+          "title": "4. Ý nghĩa của xét nghiệm định kì các chỉ số môi trường trong",
           "paragraphs": [
-            "Vì hiệu ứng nhà kính nhân tạo đã được con người tìm ra và tận dụng từ rất lâu, trước khi xác định được các đặc điểm của hiệu ứng nhà kính khí quyền và hiệu ứng này rất Thuật thuận gần gũi, quen thuộc với đời sống con người nên SGK trình bày hiệu ứng này trước (mặc dù chương trình không yêu cầu), nhằm giúp HS dễ dàng hiểu được hiệu ứng nhà kính khí quyển.",
-            "GV thông báo hoặc cho HS đọc hiểu trong SGK với yêu cầu HS phải nêu được sự khác biệt giữa bức xạ của Mặt Trời và của Trái Đất. phương pháp sau: \"Trong đó (4 GV thuyết trình về hiệu ứng nhà kính nhân tạo rồi yêu cầu HS dựa vào Hình 28,8 trị thế\" \"Trong NGGK để trả lời và thảo luận về câu hỏi trong SGK. Sau đó, HS làm thí nghiệm như Hình 28,8 SGK, trong đó thay mặt trời bằng một đèn dây tóc có công suất lớn 4 Tổ chức cho HS làm việc theo nhóm, tự tìm hiểu nội dung trong SGK và trả lời câu hỏi"
+            "Việc xét nghiệm máu và xét nghiệm nước tiểu định kì là phương pháp y khoa quan trọng để theo dõi trạng thái cân bằng nội môi của cơ thể.",
+            "Khi các cơ quan trong cơ thể bị tổn thương hoặc rối loạn chức năng, nồng độ các chất trong môi trường trong sẽ biến đổi: chỉ số glucose trong máu cao cảnh báo bệnh đái tháo đường (tiểu đường); chỉ số acid uric cao cảnh báo bệnh gút (gout); nồng độ ure và creatinin tăng cao cảnh báo chức năng lọc của thận bị suy giảm; xuất hiện protein hoặc hồng cầu trong nước tiểu báo hiệu tổn thương cầu thận."
           ],
           "bullets": [
-            "Có thể tổ chức hoạt động dạy học về hiệu ứng nhà kính nhân tạo theo một trong hai"
+            "Khám sức khỏe và xét nghiệm máu, nước tiểu định kì 6 tháng/lần.",
+            "Phát hiện sớm các dấu hiệu mất cân bằng nội môi để điều chỉnh chế độ ăn uống, lối sống hoặc điều trị y tế kịp thời."
           ]
         }
-      ],
-      "summary": [
-        "Có thể tổ chức hoạt động dạy học về hiệu ứng nhà kính nhân tạo theo một trong hai"
       ],
       "terms": [
         {
-          "term": "Hiện tượng bức xạ",
-          "definition": "hiện tượng khó nhận thức đối với HS THCS vì các em chưa"
+          "term": "Môi trường trong",
+          "definition": "Hệ dịch thể gồm máu, dịch mô và dịch bạch huyết bao bọc xung quanh các tế bào trong cơ thể."
         },
         {
-          "term": "trình bày nội dung này",
-          "definition": "phương pháp thông báo, chỉ yêu cầu HS có thể vận dụng kiến thức"
+          "term": "Cân bằng nội môi",
+          "definition": "Trạng thái duy trì ổn định các điều kiện lí - hóa của môi trường trong cơ thể (nhiệt độ, pH, áp suất thẩm thấu, nồng độ các chất)."
+        },
+        {
+          "term": "Insulin",
+          "definition": "Hormone do tuyến tụy tiết ra giúp hạ đường huyết bằng cách kích thích gan chuyển glucose thành glycogen dự trữ."
+        },
+        {
+          "term": "Glucagon",
+          "definition": "Hormone do tuyến tụy tiết ra giúp nâng đường huyết bằng cách kích thích gan phân giải glycogen thành glucose đưa vào máu."
         }
       ],
-      "warmup": {
-        "question": "Trong đời sống, em đã từng quan sát hoặc gặp hiện tượng nào liên quan đến Điều hòa môi trường trong của cơ thể người?",
-        "hint": "Hãy liên hệ với các sự vật, hiện tượng tự nhiên quen thuộc xung quanh chúng ta."
-      },
-      "illustrations": [
+      "summary": [
+        "Môi trường trong cơ thể gồm 3 thành phần: máu, dịch mô và dịch bạch huyết.",
+        "Cân bằng nội môi là sự duy trì ổn định các chỉ số lí - hóa (nhiệt độ, pH, đường huyết, áp suất thẩm thấu) của môi trường trong.",
+        "Gan điều hòa nồng độ glucose trong máu nhờ sự phối hợp của hormone insulin và glucagon.",
+        "Thận điều hòa áp suất thẩm thấu, thể tích nước, nồng độ ion muối khoáng và độ pH của máu.",
+        "Xét nghiệm máu và nước tiểu định kì giúp phát hiện sớm các rối loạn mất cân bằng nội môi và bệnh lí tiềm ẩn."
+      ],
+      "quick_check": [
         {
-          "caption": "2. H§ tự tìm thêm ví dụ. Nếu có điều kiện có thể giới thiệu với HS một chiếc đèn kéo quân, yêu cầu các em giải thích tại sao đèn quay được. (VDI) Hoạt động 4. H",
-          "image_path": "SGK KHTN8 KNTT/page_152_img_0.png",
-          "image_url": "/api/images/SGK KHTN8 KNTT/page_152_img_0.png",
-          "label": "Hình minh họa (Trang 152, SGK KHTN 8)",
-          "matched_query": "Bài 36 Điều hòa môi trường trong của cơ thể người",
-          "page": 152,
-          "source": "SGK KHTN8 KNTT.pdf"
+          "id": "qc-k8-b36-01",
+          "question": "Môi trường trong của cơ thể người bao gồm những thành phần nào sau đây?",
+          "options": [
+            "A. Dịch tiêu hóa, dịch mật và dịch tụy",
+            "B. Máu, dịch mô và dịch bạch huyết",
+            "C. Nước tiểu, mồ hôi và nước mắt",
+            "D. Tế bào chất, dịch nhân và dịch ti thể"
+          ],
+          "answer": "B",
+          "explanation": "Môi trường trong cơ thể người gồm 3 thành phần dịch thể chính liên kết khép kín: máu (trong lòng mạch), dịch mô (bao quanh tế bào) và dịch bạch huyết (trong mạch bạch huyết)."
+        },
+        {
+          "id": "qc-k8-b36-02",
+          "question": "Khi nồng độ glucose trong máu tăng cao sau bữa ăn, tuyến tụy sẽ tiết ra hormone nào để kích thích gan chuyển glucose thành glycogen dự trữ?",
+          "options": [
+            "A. Insulin",
+            "B. Glucagon",
+            "C. Adrenaline",
+            "D. Thyroxine"
+          ],
+          "answer": "A",
+          "explanation": "Tuyến tụy tiết hormone insulin khi đường huyết tăng cao, kích thích các tế bào gan hấp thu glucose và tổng hợp thành glycogen dự trữ, đưa đường huyết về mức ổn định."
+        },
+        {
+          "id": "qc-k8-b36-03",
+          "question": "Cơ quan nào đóng vai trò chủ chốt trong việc điều hòa thể tích nước, nồng độ muối khoáng và pH của máu?",
+          "options": [
+            "A. Dạ dày",
+            "B. Thận",
+            "C. Tuyến nước bọt",
+            "D. Phổi"
+          ],
+          "answer": "B",
+          "explanation": "Thận điều hòa lượng nước và áp suất thẩm thấu thông qua tái hấp thụ nước ở ống thận, đồng thời bài tiết các ion thừa (H+, K+) để giữ ổn định độ pH máu."
+        },
+        {
+          "id": "qc-k8-b36-04",
+          "question": "Khi xét nghiệm máu, chỉ số nồng độ chất nào sau đây tăng cao bất thường là dấu hiệu cảnh báo bệnh đái tháo đường (tiểu đường)?",
+          "options": [
+            "A. Hemoglobin",
+            "B. Cholesterol",
+            "C. Glucose",
+            "D. Canxi"
+          ],
+          "answer": "C",
+          "explanation": "Bệnh đái tháo đường xảy ra khi tuyến tụy thiếu hụt insulin hoặc tế bào kháng insulin khiến nồng độ đường glucose trong máu tăng cao mạn tính."
+        },
+        {
+          "id": "qc-k8-b36-05",
+          "question": "Độ pH bình thường của máu người khỏe mạnh được duy trì ổn định trong khoảng giới hạn nào sau đây?",
+          "options": [
+            "A. 1,0 – 2,0",
+            "B. 4,5 – 5,5",
+            "C. 7,35 – 7,45",
+            "D. 9,0 – 10,0"
+          ],
+          "answer": "C",
+          "explanation": "Độ pH của máu người bình thường có tính kiềm rất nhẹ và được điều hòa cực kì nghiêm ngặt trong khoảng từ 7,35 đến 7,45."
+        },
+        {
+          "id": "qc-k8-b36-06",
+          "question": "Khi cơ thể bị mất nhiều nước do sốt cao hoặc tiêu chảy, thận sẽ có phản ứng điều hòa nào sau đây?",
+          "options": [
+            "A. Tăng cường bài tiết nước tiểu thật nhiều và loãng",
+            "B. Tăng cường hấp thụ lại nước ở ống thận làm nước tiểu cô đặc",
+            "C. Ngừng hoàn toàn quá trình lọc máu ở cầu thận",
+            "D. Đào thải toàn bộ muối khoáng ra ngoài cơ thể"
+          ],
+          "answer": "B",
+          "explanation": "Khi mất nước, áp suất thẩm thấu tăng kích thích tuyến yên tiết ADH làm thận tăng cường hấp thụ lại nước ở ống thận nhằm giữ nước cho cơ thể, khiến nước tiểu ít và sẫm màu."
         }
       ]
     },
     {
-      "id": "k8-bai-37-he-than-kinh-va-cac-giac-quan-o-nguoi",
+      "id": "k8-b37-than-kinh-giac-quan",
       "grade": 8,
       "number": "Bài 37",
       "title": "Hệ thần kinh và các giác quan ở người",
-      "topic": "Hệ thần kinh và các giác quan ở người",
-      "objectives": [
-        "Nêu được chức năng của hệ thần kinh và các giác quan.",
-        "Dựa vào hình ảnh kể tên được hai bộ phận của hệ thần kinh là bộ phận trung ương (não, tuỷ sống) và bộ phận ngoại biên (các dây thần kinh, hạch thần kinh).",
-        "Trình bày được một số bệnh về hệ thần kinh và cách phòng các bệnh đó.",
-        "Nêu được tác hại của các chất gây nghiện đối với hệ thần kinh.",
-        "Nêu được chức năng của các giác quan thị giác và thính giác.",
-        "Trình bày được một số bệnh về thị giác và thính giác và cách phòng và chống các bệnh đó."
-      ],
-      "content": "THẢO LUẬN VỀ VẤN ĐỂ BẢO VỆ MÔI TRƯỜNG \"thành thí nghiệm ở Hình 28,8 nên có thể tổ chức để HS tự phát hiện ra hiệu ứng nhà kính khí trị\" quyển môi trường sống. Do đó việc thảo luận về các câu hỏi trong mục này là cần thiết quanh Trái Đất dựa trên hiệu ứng nhà kính đã học ở trên. Trong thuật trung yêu cầu HS thảo luận nhóm ngoài giờ học để có một báo cáo ngắn của nhóm về các vấn đề nêu trong câu hỏi. GV có thể cho điểm để đánh giá các báo cáo này.",
-      "source_label": "SGK KHTN 8 KNTT · Bài 37 · Trang 152–156",
-      "generation_sources": [
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 153,
-          "printed_start": 152,
-          "printed_end": 152,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 154,
-          "printed_start": 153,
-          "printed_end": 153,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 155,
-          "printed_start": 154,
-          "printed_end": 154,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 156,
-          "printed_start": 155,
-          "printed_end": 155,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 8 KNTT.pdf",
-          "page": 157,
-          "printed_start": 156,
-          "printed_end": 156,
-          "virtual": false
-        }
-      ],
+      "topic": "Sinh học cơ thể người",
+      "duration": "4 tiết (180 phút)",
       "order": 370,
       "active": true,
-      "origin": "curriculum",
-      "catalog_only": false,
-      "created_at": "2026-08-29T13:12:20+00:00",
-      "updated_at": "2026-09-11T18:43:49+00:00",
+      "origin": "official_curriculum",
+      "lesson_version": 5,
+      "source_label": "SGK KHTN 8 KNTT – Bài 37 – Trang 156–162",
+      "content": "Hệ thần kinh và các giác quan ở người nghiên cứu cấu tạo hệ thần kinh gồm não bộ, tủy sống và dây thần kinh; phản xạ và cung phản xạ; cấu tạo cơ quan thị giác (mắt), cơ quan thính giác (tai), các tật khúc xạ và biện pháp bảo vệ hệ thần kinh.",
+      "warmup": "Khi tay vô tình chạm vào vật nóng, ta lập tức rụt tay lại mà chưa cần kịp suy nghĩ. Phản ứng đó do bộ phận nào điều khiển và diễn ra nhanh như thế nào? Não bộ và các giác quan phối hợp ra sao để giúp ta nhận biết thế giới?",
+      "objectives": [
+        "Trình bày được cấu tạo và chức năng của hệ thần kinh (bộ phận trung ương gồm não bộ, tủy sống; bộ phận ngoại biên gồm dây thần kinh, hạch thần kinh).",
+        "Nêu được khái niệm phản xạ và phân tích được 5 khâu của một cung phản xạ.",
+        "Mô tả được cấu tạo của mắt và tai; giải thích được cơ chế nhìn rõ và cơ chế cảm nhận âm thanh.",
+        "Phân biệt được tật cận thị và tật viễn thị (nguyên nhân, biểu hiện và cách khắc phục bằng kính thuốc).",
+        "Đề xuất được các biện pháp bảo vệ hệ thần kinh, chăm sóc mắt và tai khỏe mạnh."
+      ],
       "sections": [
         {
-          "title": "Khởi động & Hiện tượng mở đầu",
+          "title": "1. Cấu tạo và chức năng của hệ thần kinh",
           "paragraphs": [
-            "CH: Hai cốc nước giống nhau, trong có đặt nhiệt kế"
+            "Hệ thần kinh có chức năng tiếp nhận các kích thích từ môi trường ngoài và môi trường trong, phân tích và điều khiển, điều hòa, phối hợp hoạt động của tất cả các cơ quan trong cơ thể thành một khối thống nhất.",
+            "Về mặt cấu trúc, hệ thần kinh gồm: Bộ phận trung ương (não bộ nằm trong hộp sọ và tủy sống nằm trong ống xương sống) và Bộ phận ngoại biên (12 đôi dây thần kinh não, 31 đôi dây thần kinh tủy và các hạch thần kinh nằm rải rác khắp cơ thể).",
+            "Đơn vị cấu tạo và chức năng cơ bản của hệ thần kinh là nơron (tế bào thần kinh). Mỗi nơron gồm một thân chứa nhân, nhiều sợi nhánh ngắn tiếp nhận xung thần kinh và một sợi trục dài dẫn truyền xung thần kinh đi ra (sợi trục thường có bao myelin bao bọc cách điện)."
           ],
           "bullets": [
-            "Một cốc đặt trong một lồng kính lớn (đóng vai trò nhà kính), một cốc đặt bên ngoài",
-            "Khi bật đèn điện thì nước đặt trong lồng kính nóng lên nhanh hơn và nhiều hơn",
-            "Thí nghiệm chứng tỏ nhà kính giữ được bức xạ nhiệt. (VD1)"
+            "Não bộ gồm: đại não (vỏ não là trung tâm thần kinh cao cấp ý thức, tư duy), não trung gian, thân não (trung khu điều hòa hô hấp, tim mạch) và tiểu não (trung khu điều hòa thăng bằng và phối hợp cử động phức tạp).",
+            "Tủy sống: trung khu của các phản xạ không điều kiện cơ bản (như phản xạ rút tay khi chạm nóng, phản xạ đầu gối).",
+            "Nơron có hai đặc tính sinh lí cơ bản: cảm ứng (phát sinh xung thần kinh khi bị kích thích) và dẫn truyền (dẫn truyền xung thần kinh theo một chiều xác định)."
           ]
         },
         {
-          "title": "HOẠT ĐỘNG 6. HƯỚNG DẪN HS NHẬN BIẾT HIỆU ỨNG NHÀ KÍNH KHÍ QUYỀN VÀ",
+          "title": "2. Phản xạ và cung phản xạ",
           "paragraphs": [
-            "THẢO LUẬN VỀ VẤN ĐỂ BẢO VỆ MÔI TRƯỜNG \"thành thí nghiệm ở Hình 28,8 nên có thể tổ chức để HS tự phát hiện ra hiệu ứng nhà kính khí trị\" quyển môi trường sống. Do đó việc thảo luận về các câu hỏi trong mục này là cần thiết quanh Trái Đất dựa trên hiệu ứng nhà kính đã học ở trên.",
-            "Trong thuật trung yêu cầu HS thảo luận nhóm ngoài giờ học để có một báo cáo ngắn của nhóm về các vấn đề nêu trong câu hỏi. GV có thể cho điểm để đánh giá các báo cáo này.",
-            "'HĐ: 1. Mô tả sự truyền năng lượng trong hiệu ứng nhà kính khí quyền: thụ làm cho bầu khí quyển được giữ ấm Thuật bên ngoài bầu khí quyền Nhờ hiệu ứng này mà khí quyền và bề mặt Trái Đất giữ được nhiệt độ ôn hoà thích hợp cho sự sống, Đó là lợi ích của hiệu ứng nhà kính."
+            "Mọi hoạt động của hệ thần kinh đều được thực hiện thông qua phản xạ. Phản xạ là phản ứng của cơ thể trả lời các kích thích của môi trường thông qua hệ thần kinh.",
+            "Cung phản xạ là con đường mà xung thần kinh truyền từ cơ quan thụ cảm qua trung ương thần kinh đến cơ quan phản ứng.",
+            "Một cung phản xạ hoàn chỉnh bắt buộc phải có đầy đủ 5 thành phần (5 khâu):",
+            "1. Cơ quan thụ cảm (thụ quan tiếp nhận kích thích, ví dụ thụ quan nhiệt trên da).",
+            "2. Nơron hướng tâm (nơron cảm giác dẫn truyền xung thần kinh từ cơ quan thụ cảm về trung ương thần kinh).",
+            "3. Nơron trung gian (ở trung ương thần kinh não bộ hoặc tủy sống, tiếp nhận và xử lí thông tin).",
+            "4. Nơron li tâm (nơron vận động dẫn truyền xung thần kinh lệnh từ trung ương đến cơ quan phản ứng).",
+            "5. Cơ quan phản ứng (cơ co hoặc tuyến tiết dịch)."
           ],
           "bullets": [
-            "HS đã có những hiểu biết về hai loại bức xạ nhiệt và tác dụng của nhà kính qua",
-            "Mục đích của việc học về hiệu ứng nhà kính là để giúp HS hiểu rõ hơn vấn đề bảo vệ",
-            "Hướng dẫn để HS thảo luận nhóm, trả lời các câu hỏi trong mục này.",
-            "Nếu không đủ thời gian để thực hiện hoạt động học tập này ngay trên lớp thì có thể",
-            "Một phần năng lượng của Mặt Trời được khí CO, và hơi nước trong khí quyền hấp",
-            "Bức xạ của Trái Đất phát ra bị bầu khí quyển giữ lại không cho thoát ra không gian",
-            "Nếu lượng C0, trong khí quyền tăng lên quá nhiều thì nhiệt độ của khí quyền và bề"
+            "Ví dụ phản xạ tự vệ: Tay chạm vật nóng -> Thụ cảm nhiệt phát xung -> Nơron hướng tâm dẫn về tủy sống -> Nơron trung gian phát lệnh -> Nơron li tâm truyền tới cơ tay -> Cơ tay co lập tức rút tay lại."
           ]
         },
         {
-          "title": "2. Một số nguyên nhân làm tăng nhanh hàm lượng CO, khói từ nhà máy, khu công",
+          "title": "3. Cơ quan thị giác (Mắt) và các tật khúc xạ",
           "paragraphs": [
-            "nghiệp chưa được xử lí; các phương tiện giao thông gia tăng.... Một số biện pháp làm giảm lượng CO,; trồng nhiều cây xanh; xử lí khói thải;... (H)"
-          ],
-          "bullets": []
-        },
-        {
-          "title": "Hoạt động 7. GHI NHớ, TổNG KếT",
-          "paragraphs": [
-            "GV yêu cầu HS tự nhắc lại các nội dung quan trọng trong bài học, sau đó chốt lại Thuật thuật những nội dung này được thể hiện trong mục – Em đã học – Chú ý đến các đơn vị kiến thức sau:",
-            "GỢI Ý KIỂM TRA, ĐÁNH GIÁ GỢI Ý KIỂM TRA, ĐÁNH GIÁ Thuật thế - GV có thể sử dụng các câu hỏi, hoạt động trong bài để đánh giá HS qua từng hoạt động, sử dụng mục – Em có thể – làm nhiệm vụ về nhà giao cho HS.",
-            "Hành kiểm tra kết quả học tập của HS thông qua phiếu kiểm tra sau:"
+            "Mắt là cơ quan thu nhận kích thích ánh sáng giúp ta nhìn thấy hình dạng, màu sắc và chuyển động của các vật thể.",
+            "Cấu tạo cầu mắt: Từ ngoài vào trong gồm 3 lớp màng: màng cứng (phía trước trong suốt gọi là màng giác - giác mạc), màng mạch (chứa nhiều mao mạch nuôi dưỡng và các tế bào sắc tố đen ngăn ánh sáng phản chiếu) và màng lưới (võng mạc - chứa hàng triệu tế bào thụ cảm thị giác gồm tế bào que cảm nhận ánh sáng yếu và tế bào nón cảm nhận màu sắc, ánh sáng mạnh).",
+            "Hệ thống môi trường trong suốt gồm màng giác, thủy dịch, thể thủy tinh (thấu kính hội tụ sinh học có thể thay đổi độ cong nhờ cơ thể mi để điều tiết ảnh rõ nét) và dịch thủy tinh.",
+            "Các tật khúc xạ học đường thường gặp:",
+            "- Tật cận thị: Mắt chỉ nhìn rõ vật ở gần, nhìn xa bị mờ. Nguyên nhân do cầu mắt quá dài hoặc thể thủy tinh quá phồng (do đọc sách quá gần, thiếu ánh sáng). Hậu quả: Ảnh của vật ở xa rơi ở PHÍA TRƯỚC màng lưới. Cách khắc phục: Đeo kính cận là THẤU KÍNH PHÂN KÌ để kéo ảnh lùi về đúng màng lưới.",
+            "- Tật viễn thị: Mắt nhìn rõ vật ở xa nhưng nhìn gần bị mờ. Nguyên nhân do cầu mắt quá ngắn hoặc thể thủy tinh bị xẹp/lão hóa. Hậu quả: Ảnh của vật rơi ở PHÍA SAU màng lưới. Cách khắc phục: Đeo kính viễn là THẤU KÍNH HỘI TỤ để kéo ảnh về phía trước trên màng lưới."
           ],
           "bullets": [
-            "Sự dẫn nhiệt.",
-            "Sự đối lưu.",
-            "Sự bức xạ nhiệt.",
-            "Hiệu ứng nhà kính nhân tạo.",
-            "Hiệu ứng nhà kính khí quyển.",
-            "Lợi ích và tác hại của hiệu ứng nhà kính.",
-            "Hiệu ứng nhà kính khí quyển.",
-            "Lợi ích và tác hại của hiệu ứng nhà kính.",
-            "Nội dung bài này tương đối dài (GV có thể dạy từ 3 đến 4 tiết) nên cuối bài có thể tiến"
+            "Cận thị: Ảnh rơi TRƯỚC võng mạc -> Đeo thấu kính PHÂN KÌ.",
+            "Viễn thị: Ảnh rơi SAU võng mạc -> Đeo thấu kính HỘI TỤ.",
+            "Loạn thị: Giác mạc cong không đều -> Ảnh bị nhòe méo -> Đeo kính trụ."
           ]
         },
         {
-          "title": "1. Để bài",
+          "title": "4. Cơ quan thính giác (Tai) và cảm thụ âm thanh",
           "paragraphs": [
-            "Câu 1. Chọn từ thích hợp cho các ô trống trong bảng dưới đây. Bảng 28.1. Cách truyền nhiệt chính của các môi trường Môi trường Chất rắn Chất lỏng Chất khí Chân không Cách truyền nhiệt chính (1) .(2)...",
-            ".(3)... ..(4)... Môi trường Chất rắn Chất lỏng Chất khí Chân không Cách truyền nhiệt chính (1) .(2)... .(3)... ..(4)... Câu 2. Nêu tác dụng của các bộ phận sau đây của phích đựng nước nóng: nút, các mặt phản xạ, lớp chân không.",
-            "Nút Mặt phản xạ Câu 3. Tại sao tiết kiệm điện góp phần làm giảm hiệu ứng nhà kính – 2. Đánh giá Câu 1.(1) - Dẫn nhiệt; (2) ? Đối lưu; (3) ? Đối lưu; (4) ? Bức xạ nhiệt. (VD1) theo cả ba hình thức: dẫn nhiệt, đối lưu, bức xạ nhiệt.",
-            "Mặt phản xạ: hạn chế sự truyền nhiệt ra môi trường bên ngoài bằng bức xạ nhiệt (các tia nhiệt bị phản xạ trở lại phích). Lớp chân không: hạn chế sự truyền nhiệt ra môi trường bên ngoài bằng dẫn nhiệt và đối lưu. (VD2) Câu 3. Hiện nay điện năng vẫn còn được sản xuất chủ yếu từ các nhà máy nhiệt điện.",
-            "Do đó cần phải đốt cháy nhiên liệu Các nhiên liệu cháy sẽ toả ra khí CO, là khí đóng vai trò Thuật điện quan trọng nhất trong hiệu ứng nhà kính. Vì vậy tiết kiệm điện sẽ góp phần không làm tăng lượng khí CO, trong không khí, giảm hiệu ứng nhà kính (VD2) Bài 29. Sự Nở Vì Nhiệt MỤC TIÊU Sau bài học, HS sẽ:"
+            "Tai là cơ quan thụ cảm thính giác có chức năng thu nhận sóng âm thanh và cảm nhận sự thăng bằng của cơ thể.",
+            "Cấu tạo tai gồm ba phần: Tai ngoài (vành tai hứng sóng âm, ống tai ngoài dẫn sóng âm và màng nhĩ chắn ở cuối); Tai giữa (chứa chuỗi 3 xương tai nhỏ: xương búa, xương đe, xương bàn đạp và vòi nhĩ nối với hầu giúp cân bằng áp suất); Tai trong (gồm ốc tai chứa dịch và cơ quan Corti với các tế bào thụ cảm thính giác, cùng hệ thống tiền đình và các ống bán khuyên giúp cảm nhận thăng bằng).",
+            "Cơ chế cảm thụ âm thanh: Sóng âm thanh -> Vành tai hứng -> Ống tai truyền vào làm rung màng nhĩ -> Rung chuỗi xương tai (khuếch đại âm) -> Rung dịch ốc tai -> Kích thích tế bào thụ cảm thính giác ở cơ quan Corti phát xung thần kinh -> Dây thần kinh thính giác truyền lên vùng thính giác ở thùy thái dương của vỏ não cho ta cảm nhận âm thanh."
           ],
           "bullets": [
-            "Lớp chân không",
-            "Thực hiện được thí nghiệm chứng tỏ các chất khác nhau nở vì nhiệt khác nhau",
-            "Thực hiện được thí nghiệm chứng tỏ các chất khác nhau nở vì nhiệt khác nhau",
-            "Nêu được một số ví dụ trong đời sống về công dụng và tác hại của sự nở vì nhiệt,",
-            "Vận dụng được kiến thức về sự nở vì nhiệt để giải thích một số hiện tượng có liên",
-            "Thiết bị để chiếu hình vẽ lên màn ảnh.",
-            "Thiết bị để chiếu hình vẽ lên màn ảnh.",
-            "Dụng cụ để làm các thí nghiệm trong Hình 29.1; 29.2; 29.3; 29.6 SGK.",
-            "Phiếu kiểm tra nhanh cuối bài."
+            "Tai ngoài: Vành tai, ống tai ngoài, màng nhĩ.",
+            "Tai giữa: Chuỗi xương tai (búa, đe, bàn đạp), vòi nhĩ.",
+            "Tai trong: Ốc tai (cơ quan Corti thụ cảm âm thanh), tiền đình và ống bán khuyên (giữ thăng bằng)."
           ]
         },
         {
-          "title": "1.Sự nở vì nhiệt của chất rắn",
+          "title": "5. Vệ sinh hệ thần kinh và bảo vệ các giác quan",
           "paragraphs": [
-            "Đối với chất rắn, người ta phân biệt sự nở dài và sự nở khối, Trong thực tế, người ta khảo sát sự nở dài của chất rắn bằng cách theo dõi sự thay đổi độ dài của một thanh rắn theo nhiệt độ, mà không quan tâm đến sự thay đổi tiết diện ngang của thanh này, Bài học này Thuật thuật không phân biệt sự nở dài và sự nở khối của chất rắn. Tuy nhiên trong bài đề cập chủ yếu các thuật đến sự nở dài vì sự nở dài của chất rắn có nhiều ứng dụng thực tế và dễ quan sát.",
-            "Trong thí nghiệm ở Hình 29.1, người ta dùng cồn để đốt nóng các thanh kim loại, Khi Thành thức bị đốt nóng, các thanh kim loại có thể gây bỏng nên GV cần hướng dẫn HS cần thận khi làm thí nghiệm như:"
+            "Hệ thần kinh làm việc liên tục điều khiển cơ thể nên rất dễ bị suy nhược và tổn thương nếu bị căng thẳng thần kinh kéo dài hoặc thiếu ngủ.",
+            "Giấc ngủ có ý nghĩa sống còn: Trong giấc ngủ, các tế bào não được nghỉ ngơi, phục hồi năng lượng và đào thải các độc tố tích tụ trong ngày. Học sinh THCS cần ngủ đủ 8 – 9 tiếng mỗi ngày."
           ],
           "bullets": [
-            "Để dụng cụ cách xa người làm thí nghiệm.",
-            "Dùng bông tầm cồn để đốt nóng, không để cồn vào hộp đựng và đốt trực tiếp.",
-            "Không chạm tay vào thiết bị thí nghiệm,..."
+            "Đảm bảo giấc ngủ đủ và đúng giờ, phòng ngủ thông thoáng, yên tĩnh.",
+            "Học tập và giải trí hợp lí, tránh căng thẳng thần kinh; ngồi học đúng tư thế, giữ khoảng cách mắt từ 25 - 30 cm với sách vở.",
+            "Đảm bảo đủ ánh sáng khi đọc sách; không nhìn màn hình điện thoại, máy tính quá 2 giờ liên tục.",
+            "Vệ sinh tai mũi họng thường xuyên, không dùng vật cứng nhọn ngoáy tai tránh thủng màng nhĩ; tránh tiếp xúc với tiếng ồn quá lớn.",
+            "Tuyệt đối nói không với chất kích thích và chất gây nghiện (rượu bia, thuốc lá, ma túy, bóng cười)."
           ]
-        },
-        {
-          "title": "2. Sự nở vì nhiệt của chất lỏng",
-          "paragraphs": [
-            "Chất lỏng bao giờ cũng phải đựng trong bình chứa bằng chất rắn, Khi được đun nóng thì cả bình chứa và chất lỏng trong bình đều nở ra. Do đó sự nở vì nhiệt quan sát được trong các thí nghiệm được gọi là sự nở biểu kiến, trong đó sự nở của bình chứa không được tính đến, Đối với HS THCS, không cần phân biệt sự nở biểu kiến và sự nở thực của chất lỏng Tuy nhiên, đây cũng là vấn đề có thể dùng để đánh giá trình độ hiểu biết của HS, bằng cách nêu câu hỏi sau khi làm thí nghiệm: \"Sự nở vì nhiệt mà chúng ta vừa quan sát có phải hoàn thành toàn là sự nở vì nhiệt của chất lỏng hay không – Tại sao – Nguyên nhân của sự nở bất thường của nước là sự thay đổi cách sắp xếp của các phân Nguyên nhân của sự nở bất thường của nước là sự thay đổi cách sắp xếp của các phân \"chính thức tử nước thành những nhóm có tính ổn định khác nhau ở những nhiệt độ khác nhau ở4 – C,\" các nhóm mà phân tử được sắp xếp chặt nhất (gần nhau nhất) là các nhóm ổn định nhất: ở xã thuật những nhiệt độ thấp hơn, trong nước bắt đầu hình thành các tinh thể nước đá có các phân tử được sắp xếp kém chặt hơn Không phải chỉ có nước mới nở vì nhiệt không bình thường, Kim cương bắt đầu nở vì Thế nhiệt khi bị làm lạnh xuống dưới 42 – C; silver iodide co lại khi nhiệt độ tăng từ - 10 – C đến 142 – 63 phòng vào ống thuỷ tinh và hứt cao su trước khi cầm ông thuỷ tinh vào mút cao su sao cho ống thuỷ tinh xuyên qua nút khoảng 4 cm. Ấn nút cao su nhẹ nhàng vào bính để nước màu dâng lên trong ống khoảng từ 2 cm đến 3 cm."
-          ],
-          "bullets": []
-        },
-        {
-          "title": "3.Sự nở vì nhiệt của chất khí",
-          "paragraphs": [
-            "Trạng thái nhiệt của một lượng khí nhất định được xác định bằng ba thông số: thể tích (V); áp suất (p) và nhiệt độ tuyệt đối (T). Mối liên hệ giữa ba thông số này được xác định bằng biểu thức của phương trình trạng thái của khí lí tưởng:",
-            "p.v T Có thể có các phương trình sau đây xảy ra: Đối với HS THCS, ta khảo sát sự nở vì nhiệt của chất khí trong quá trình đẳng áp. Thực ra thí nghiệm trong Hình 29.6 SGK không hoàn toàn là quá trình đẳng áp, vì phải có sự chênh lệch về áp suất thì giọt nước màu mới có thể chuyển động trong ống từ dưới lên. Tuy nhiên vì sự chênh lệch áp suất này không nhiều, nếu có thể coi quá trình này là quá trình đẳng áp.",
-            "Để thí nghiệm gần đúng với quá trình đẳng áp hơn, người ta phải dùng ống thuỷ tinh chũ L đặt nằm ngang như hình vẽ bên Thuật đế làm thí nghiệm, Khi đó nếu cho giọt nước màu chuyển động chậm và đều thì có thể coi quá trình nở vì nhiệt của khí trong bình là quá trình đẳng áp. Tuy nhiên, thí nghiệm với ống \"Các chữ L khó thực hiện đối với HS, nên phải dùng thí nghiệm ở Hình 29,6 SGK với mức độ gần đúng có thể chấp nhận được.",
-            "Để đảm bảo thí nghiệm ở Hình 29.6 SGK thành công, cần lưu ý: Thuật thuật - Không để không khí thoát ra khỏi bình bằng cách bôi trơn bằng nước xà phòng nút cao su, lỗ đục ở nút cao su, đầu ống thuỷ tinh cắm vào nút cao su, miệng bình % Cách thứ nhất đã trình bày trong SGK.",
-            "% Cách thứ hai: Lấy tay áp chặt vào bình (đã lắp nút cao su có gắn ống thuỷ tinh) và nhúng đầu ống thuỷ tinh vào nước màu, chờ tới khi có khoảng 15 bọt khí nổi lên thì thôi Thuật thuận không áp tay vào bình nữa. Khi thấy có một ít nước màu đã vào ống thuỷ tinh thì rút ống thuỷ tinh ra khỏi nước màu, để bình lên bàn và chờ cho giọt nước màu dịch chuyển về vị Trí mong muốn. Có thể di chuyển nhẹ nhàng thí nghiệm mà không làm ảnh hưởng đến kết quả thí nghiệm.",
-            "IV GỢI Ý TỔ CHỨC HOẠT ĐỘNG DẠY, HỌC"
-          ],
-          "bullets": [
-            "hằng số",
-            "Quá trình đẳng nhiệt: T không đổi; p và V thay đổi",
-            "Quá trình đẳng tích: V không đổi; p và T thay đổi",
-            "Quá trình đảng áp: p không đổi; V và T thay đổi.",
-            "Cả ba thông số đều thay đổi.",
-            "Có hai cách lấy giọt nước màu vào ống thuỷ tinh:"
-          ]
-        },
-        {
-          "title": "Hoạt động 1. KHởi ĐộNG",
-          "paragraphs": [
-            "quả thí nghiệm. IV GỢI Ý TỔ CHỨC HOẠT ĐỘNG DẠY, HỌC"
-          ],
-          "bullets": []
-        },
-        {
-          "title": "Hoạt động 1. KHởi ĐộNG",
-          "paragraphs": [
-            "Trong thuật Hoạt động khởi động này vừa nhằm mục đích tìm hiểu các ý niệm ban đầu của HS về sự nở vì nhiệt và kích thích sự tò mò của HS."
-          ],
-          "bullets": []
         }
-      ],
-      "summary": [
-        "Sự dẫn nhiệt.",
-        "Sự đối lưu.",
-        "Sự bức xạ nhiệt.",
-        "Hiệu ứng nhà kính nhân tạo.",
-        "Hiệu ứng nhà kính khí quyển.",
-        "Lợi ích và tác hại của hiệu ứng nhà kính.",
-        "Hiệu ứng nhà kính khí quyển.",
-        "Lợi ích và tác hại của hiệu ứng nhà kính.",
-        "Nội dung bài này tương đối dài (GV có thể dạy từ 3 đến 4 tiết) nên cuối bài có thể tiến"
       ],
       "terms": [
         {
-          "term": "các thí nghiệm được gọi",
-          "definition": "sự nở biểu kiến, trong đó sự nở của bình chứa không được tính"
+          "term": "Nơron",
+          "definition": "Đơn vị cấu tạo và chức năng cơ bản của hệ thần kinh, có đặc tính cảm ứng và dẫn truyền xung thần kinh."
         },
         {
-          "term": "thành toàn",
-          "definition": "sự nở vì nhiệt của chất lỏng hay không – Tại sao – Nguyên nhân của sự nở bất thường của nước là sự thay đổi cách sắp xếp của các phân"
+          "term": "Phản xạ",
+          "definition": "Phản ứng của cơ thể trả lời các kích thích của môi trường thông qua sự điều khiển của hệ thần kinh."
         },
         {
-          "term": "SGK không hoàn toàn",
-          "definition": "quá trình đẳng áp, vì phải có sự chênh"
+          "term": "Cung phản xạ",
+          "definition": "Con đường dẫn truyền xung thần kinh khép kín gồm 5 khâu: cơ quan thụ cảm, nơron hướng tâm, nơron trung gian, nơron li tâm và cơ quan phản ứng."
+        },
+        {
+          "term": "Cận thị",
+          "definition": "Tật khúc xạ của mắt khiến ảnh của vật ở xa rơi ở phía trước màng lưới, cần đeo thấu kính phân kì để khắc phục."
+        },
+        {
+          "term": "Viễn thị",
+          "definition": "Tật khúc xạ của mắt khiến ảnh của vật ở gần rơi ở phía sau màng lưới, cần đeo thấu kính hội tụ để khắc phục."
         }
       ],
-      "warmup": {
-        "question": "Trong đời sống, em đã từng quan sát hoặc gặp hiện tượng nào liên quan đến Hệ thần kinh và các giác quan ở người?",
-        "hint": "Hãy liên hệ với các sự vật, hiện tượng tự nhiên quen thuộc xung quanh chúng ta."
-      },
-      "illustrations": [
+      "summary": [
+        "Hệ thần kinh gồm bộ phận trung ương (não bộ, tủy sống) và bộ phận ngoại biên (dây thần kinh, hạch thần kinh).",
+        "Mọi hoạt động thần kinh đều thông qua phản xạ; một cung phản xạ hoàn chỉnh gồm đủ 5 khâu liên hoàn.",
+        "Cầu mắt có màng lưới chứa tế bào que và tế bào nón; thể thủy tinh điều tiết để hội tụ ảnh trên màng lưới.",
+        "Cận thị (ảnh rơi trước màng lưới) đeo thấu kính phân kì; Viễn thị (ảnh rơi sau màng lưới) đeo thấu kính hội tụ.",
+        "Tai gồm tai ngoài, tai giữa và tai trong (ốc tai chứa tế bào thụ cảm thính giác).",
+        "Cần ngủ đủ 8 tiếng mỗi ngày, ngồi học đủ ánh sáng, đúng tư thế và tránh các chất kích thích để bảo vệ hệ thần kinh."
+      ],
+      "quick_check": [
         {
-          "caption": "Hình 29.6 SGK không hoàn toàn là quá trình đẳng áp, vì phải có sự chênh lệch về áp suất thì giọt nước màu mới có thể chuyển động trong ống từ dưới lên. Tuy nhiê",
-          "image_path": "SGK KHTN8 KNTT/page_157_img_0.png",
-          "image_url": "/api/images/SGK KHTN8 KNTT/page_157_img_0.png",
-          "label": "Hình minh họa (Trang 157, SGK KHTN 8)",
-          "matched_query": "Bài 37 Hệ thần kinh và các giác quan ở người",
-          "page": 157,
-          "source": "SGK KHTN8 KNTT.pdf"
+          "id": "qc-k8-b37-01",
+          "question": "Một cung phản xạ hoàn chỉnh bắt buộc phải bao gồm đầy đủ bao nhiêu thành phần (khâu)?",
+          "options": [
+            "A. 3 thành phần",
+            "B. 4 thành phần",
+            "C. 5 thành phần",
+            "D. 6 thành phần"
+          ],
+          "answer": "C",
+          "explanation": "Một cung phản xạ gồm đủ 5 thành phần: 1. Cơ quan thụ cảm, 2. Nơron hướng tâm, 3. Nơron trung gian (trung ương thần kinh), 4. Nơron li tâm, 5. Cơ quan phản ứng."
+        },
+        {
+          "id": "qc-k8-b37-02",
+          "question": "Học sinh bị tật cận thị khi nhìn vật ở xa thì ảnh của vật sẽ hội tụ ở vị trí nào so với màng lưới (võng mạc)?",
+          "options": [
+            "A. Rơi ở phía trước màng lưới",
+            "B. Rơi đúng trên màng lưới",
+            "C. Rơi ở phía sau màng lưới",
+            "D. Không hội tụ thành ảnh"
+          ],
+          "answer": "A",
+          "explanation": "Ở mắt cận thị, do cầu mắt quá dài hoặc thể thủy tinh quá phồng nên chùm sáng hội tụ quá sớm, ảnh của vật ở xa rơi ở phía trước màng lưới khiến mắt nhìn mờ."
+        },
+        {
+          "id": "qc-k8-b37-03",
+          "question": "Để khắc phục tật cận thị học đường, người bệnh cần đeo loại kính thuốc nào sau đây?",
+          "options": [
+            "A. Kính có thấu kính hội tụ",
+            "B. Kính râm chống tia cực tím",
+            "C. Kính có thấu kính phân kì",
+            "D. Kính 2 tròng đổi màu"
+          ],
+          "answer": "C",
+          "explanation": "Thấu kính phân kì có tác dụng làm chùm tia sáng loe rộng ra trước khi vào mắt, giúp đưa ảnh từ phía trước lùi về đúng trên màng lưới của mắt."
+        },
+        {
+          "id": "qc-k8-b37-04",
+          "question": "Bộ phận nào của tai chứa cơ quan Corti với các tế bào thụ cảm thính giác trực tiếp tiếp nhận dao động âm thanh?",
+          "options": [
+            "A. Ốc tai (ở tai trong)",
+            "B. Chuỗi xương tai (ở tai giữa)",
+            "C. Màng nhĩ",
+            "D. Vành tai (ở tai ngoài)"
+          ],
+          "answer": "A",
+          "explanation": "Ốc tai nằm ở tai trong chứa dịch ốc tai và cơ quan Corti với các tế bào có lông thụ cảm thính giác, khi dịch dao động sẽ kích thích tế bào phát xung thần kinh lên não."
+        },
+        {
+          "id": "qc-k8-b37-05",
+          "question": "Đơn vị cấu tạo và chức năng cơ bản của hệ thần kinh là gì?",
+          "options": [
+            "A. Tế bào cơ vân",
+            "B. Phế nang",
+            "C. Nephron",
+            "D. Nơron (tế bào thần kinh)"
+          ],
+          "answer": "D",
+          "explanation": "Nơron (tế bào thần kinh) là đơn vị cấu tạo và chức năng của hệ thần kinh, có thân, sợi nhánh và sợi trục đảm nhiệm chức năng cảm ứng và dẫn truyền xung thần kinh."
+        },
+        {
+          "id": "qc-k8-b37-06",
+          "question": "Thời gian ngủ nghỉ tối ưu mỗi ngày của học sinh lứa tuổi THCS để bảo vệ hệ thần kinh và phục hồi trí não là bao nhiêu?",
+          "options": [
+            "A. Khoảng 4 – 5 tiếng",
+            "B. Khoảng 8 – 9 tiếng",
+            "C. Khoảng 12 – 14 tiếng",
+            "D. Càng ít càng tốt để dành thời gian học"
+          ],
+          "answer": "B",
+          "explanation": "Lứa tuổi THCS đang trong giai đoạn phát triển thể chất và hoạt động trí não cao, cần ngủ đủ 8 – 9 tiếng mỗi ngày để các tế bào thần kinh đại não được phục hồi hoàn toàn."
         }
       ]
     },
@@ -26500,114 +26073,42 @@
       "number": "Bài 7",
       "title": "Lăng kính và tán sắc ánh sáng",
       "topic": "Lăng kính; tán sắc ánh sáng trắng; ánh sáng đơn sắc; màu sắc của vật",
-      "objectives": [
-        "Vẽ được sơ đồ đường truyền của tia sáng qua lăng kính.",
-        "Thực hiện thí nghiệm với lăng kính tạo được quang phổ của ánh sáng trắng qua lăng kính.",
-        "Giải thích được một cách định tính sự tán sắc ánh sáng Mặt Trời qua lăng kính.",
-        "Từ kết quả thí nghiệm truyền ánh sáng qua lăng kính, nêu được khái niệm về ánh sáng màu.",
-        "Nêu được màu sắc của một vật được nhìn thấy phụ thuộc vào màu sắc của ánh sáng bị vật đó hấp thụ và phản xạ."
-      ],
-      "content": "Bài LĂNG KÍNH chiết suất n của chất làm lăng kính. Về phương diện quang học, một lăng kính được đặc trưng bởi: góc chiết quang A; Hãy chỉ ra góc chiết quang, mặt bên, cạnh và đáy của lăng kính có trong phòng thí nghiệm. Từ kết quá thí nghiệm truyền ánh sáng qua lăng kính, nêu được khái niệm về ánh sáng màu. Thí nghiệm 1: Tìm hiểu hiện tượng tán sắc ánh sảng Nêu được màu sắc của một vật được nhìn thấy phụ thuộc vào màu sắc của ánh sáng bị vật đó hấp thụ và phản xạ.",
-      "source_label": "SGK KHTN 9 KNTT · Bài 7 · Trang 34–36",
-      "order": 70,
-      "active": true,
-      "origin": "system",
-      "created_at": "2026-08-27T13:17:42+00:00",
-      "updated_at": "2026-09-11T18:43:49+00:00",
       "duration": "40–45 phút",
+      "objectives": [
+        "Mô tả được cấu tạo cơ bản của lăng kính.",
+        "Mô tả và giải thích được hiện tượng tán sắc ánh sáng trắng.",
+        "Phân biệt được ánh sáng trắng và ánh sáng đơn sắc.",
+        "Vận dụng kiến thức để giải thích cầu vồng và màu sắc của vật."
+      ],
+      "content": "Lăng kính là khối trong suốt có hai mặt phẳng không song song. Khi ánh sáng trắng đi qua lăng kính, các thành phần màu bị lệch khác nhau và tách thành dải màu liên tục.",
+      "source_label": "SGK KHTN 9 KNTT · Bài 7 · Trang 34–36",
       "warmup": {
         "question": "Vì sao một chùm ánh sáng trắng qua lăng kính lại tạo thành nhiều màu?",
         "hint": "Các ánh sáng màu thành phần bị lệch với mức độ khác nhau."
       },
       "sections": [
         {
-          "title": "Khởi động & Hiện tượng mở đầu",
+          "title": "1. Lăng kính",
           "paragraphs": [
-            "Bài LĂNG KÍNH chiết suất n của chất làm lăng kính. Về phương diện quang học, một lăng kính được đặc trưng bởi: góc chiết quang A; Hãy chỉ ra góc chiết quang, mặt bên, cạnh và đáy của lăng kính có trong phòng thí nghiệm."
-          ],
-          "bullets": []
-        },
-        {
-          "title": "II – Hiện tượng tán sắc ánh sáng",
-          "paragraphs": [
-            "Thuận Thiên Từ kết quá thí nghiệm truyền ánh sáng qua lăng kính, nêu được khái niệm về ánh sáng màu. Thí nghiệm 1: Tìm hiểu hiện tượng tán sắc ánh sảng Thuật thuận điểm Nêu được màu sắc của một vật được nhìn thấy phụ thuộc vào màu sắc của ánh sáng bị vật đó hấp thụ và phản xạ.",
-            "Chuẩn bị: (3) thường gặp trong thực tế. khe hẹp (2); Dài mau (4) Ánh sáng từ đèn sợi đốt sau khi đi qua lăng kính Lãng kính Nguồn điện và dây nối (4); tạo thành một chùm sáng có màu từ đỏ đến tím Đèn Lãng kính Nguồn điện và dây nối (4); tạo thành một chùm sáng có màu từ đỏ đến tím Đèn như hình bên, Lăng kính có tác dụng gì trong tấm kính lọc sắc màu tím (5).",
-            "Hình Zọ Bố trí thí nghiệm hiện tượng tán sắc ánh sáng hiện tượng này – Tiến hành: Trong chiến chiếu chùm ánh sáng trắng từ đèn vào mặt bên của lăng kính, dùng màn chắn dịch"
-          ],
-          "bullets": [
-            "Thực hiện thí nghiệm với lăng kính tạo được quang phổ của ánh sáng trắng qua lăng kính.",
-            "Giải thích được một cách định tính sự tán sắc ánh sáng mặt trời qua lăng kính.",
-            "Vận dụng kiến thức về sự truyền ánh sáng, màu sắc ánh sáng, giải thích được một số hiện tượng đơn giản",
-            "Lăng kính gắn trên giá (1);",
-            "Đèn chiếu ánh sáng trắng có",
-            "Màn hứng chùm sáng (3);",
-            "Tấm kính lọc sắc màu đỏ và",
-            "Bố trí thí nghiệm như hình 7.4."
+            "Lăng kính là một khối chất trong suốt, đồng chất, thường có dạng lăng trụ tam giác. Hai mặt bên dùng cho ánh sáng truyền qua không song song với nhau.",
+            "Tia sáng đổi hướng khi truyền qua các mặt phân cách giữa không khí và lăng kính do hiện tượng khúc xạ."
           ]
         },
         {
-          "title": "I – Cấu tạo của lăng kính",
+          "title": "2. Tán sắc ánh sáng trắng",
           "paragraphs": [
-            "thuật chuyển phía sau lăng kính để hứng vệt sáng trên màn. Lăng kính là một khối trong suốt, đồng chất, được giới Thực hiện các yêu cầu và trả lời câu hỏi sau: hạn bởi hai mặt phẳng không song song, thường có dạng"
+            "Khi chùm ánh sáng trắng hẹp đi qua lăng kính, nó tách thành dải nhiều màu liên tục, thường quan sát theo thứ tự đỏ, da cam, vàng, lục, lam, chàm, tím.",
+            "Hiện tượng ánh sáng trắng bị phân tách thành các ánh sáng màu thành phần được gọi là tán sắc ánh sáng."
           ],
-          "bullets": []
+          "note": "Trong điều kiện thí nghiệm điển hình, tia đỏ lệch ít hơn và tia tím lệch nhiều hơn."
         },
         {
-          "title": "1. Mô tả đường đi của tia sáng qua lăng kính mà em quan sát được.",
+          "title": "3. Ánh sáng đơn sắc và màu sắc của vật",
           "paragraphs": [
-            "lăng trụ hình tam giác (hình 7.1)."
+            "Ánh sáng đơn sắc có một màu xác định và không bị tách thành nhiều màu khi truyền qua lăng kính. Ánh sáng trắng là hỗn hợp của nhiều ánh sáng màu.",
+            "Màu ta nhìn thấy phụ thuộc vào ánh sáng chiếu tới và khả năng hấp thụ, phản xạ ánh sáng của vật."
           ],
-          "bullets": []
-        },
-        {
-          "title": "2. Viết ra thứ tự các màu xuất hiện trên màn.",
-          "paragraphs": [
-            "Trong Hai mặt phẳng giới hạn ở trên được gọi là các mặt bên của thời 1983 tháng 3, Những màu sắc khác nhau cho biết điều gì về thành phân của chùm ánh sáng chiếu tới?",
-            "1983 tháng 3, Những màu sắc khác nhau cho biết điều gì về thành phân của chùm ánh sáng chiếu tới – lăng kính, giao tuyến của hai mặt bên được gọi là cạnh của lăng kính. Mặt đối diện với cạnh là đáy của lăng kính.",
-            "Góc A hợp bởi hai mặt bên của lăng kính được gọi là góc chiết quang hay góc ở đỉnh của lăng kính. Một mặt phẳng Hình Zã Lăng kính ánh sáng. tiết diện chính (hình 7.3).",
-            "Màn chiết quang hay góc ở đỉnh của lăng kính. Một mặt phẳng Hình Zã Lăng kính ánh sáng. tiết diện chính (hình 7.3). Màn Góc chiết quang A Đỏ Cạnh Mặt bên Da cam Nguồn phát Vàng Mặt bên ánh sáng trắng Làm Lục Chàm n Lăng kính Tím Đáy Hình 72 Các phần tử của lăng kính Hình 73 Mặt phẳng tiết diện chính Hình 75 Mô tả hiện tượng tán sắc ánh sáng K 35/229 X X BE Q X D Khi chiếu một chùm sáng trắng hẹp đi qua một lăng kính thì ta sẽ thu được nhiều chùm sáng màu khác nhau nằm sát cạnh nhau, tạo thành một dải màu như cầu vồng, Dải này có Quan sát Hình 7.6 và cho biết:",
-            "các màu: đỏ, da cam, vàng, lục, lam, chàm, tím, Lăng kính có tác dụng tách riêng các chùm 1, Khi ánh sáng truyền từ không khí vào lăng kính, tại sao tia khúc xạ IJ lệch gần pháp tuyến hơn so với tia tới S1 – 2, Khi ánh sáng truyền từ lăng kính ra không khí, tại sao tia khúc xạ JR lệch xa pháp tuyến hơn so với tia tới IJ – Thí nghiệm 2 3, Dựa vào sự truyền sáng qua lăng kính, hãy giải thích hiện tượng tán sắc ánh sáng, Biết Chuẩn bị:",
-            "Thí nghiệm 2 3, Dựa vào sự truyền sáng qua lăng kính, hãy giải thích hiện tượng tán sắc ánh sáng, Biết Chuẩn bị: rằng chiết suất của lăng kính đối với các ánh sáng đơn sắc khác nhau là khác nhau, Dụng cụ thí nghiệm như thí nghiệm 1.",
-            "thế chiết suất lớn nhất với tia tím, chiết suất nhỏ nhất với tia đỏ. thế năm 1991 Tiến hành:"
-          ],
-          "bullets": [
-            "Bố trí thí nghiệm như hình 7.4."
-          ]
-        },
-        {
-          "title": "1. Hình vẽ nào trong Hình 7.7",
-          "paragraphs": [],
-          "bullets": [
-            "Bố trí thí nghiệm như hình 7.4."
-          ]
-        },
-        {
-          "title": "1. Hình vẽ nào trong Hình 7.7",
-          "paragraphs": [
-            "Thuật Chiếu ánh sáng trắng từ đèn vào mặt bên của lăng kính. chỉ đúng đường đi của tia sáng qua lăng kính khi lăng kính dặt trong không khí? Gình Z2 kính dặt trong không khí?",
-            "Gình Z2 Trả lời câu hỏi và thực hiện yêu cầu sau: 1, Khi chiếu ánh sáng qua tấm kính lọc sắc đến mặt bên lăng kính, ánh sáng có bị tách \"Tháng 2, Một lăng kính thuỷ tinh có chiết suất n - 1,41. Mặt phẳng tiết diện chính của lăng thế\" thành nhiều màu không?",
-            "thành nhiều màu không – tới mặt bên AB của lăng kính với góc tới i, - 45 – Về đường truyền của tia sáng qua"
-          ],
-          "bullets": [
-            "Lần lượt dùng kính lọc sắc màu đỏ và màu tím chắn vào khe hẹp của nguồn sáng.",
-            "Dùng màn chắn dịch chuyển phía sau lăng kính để hứng vệt sáng trên màn,",
-            "Dùng màn chắn dịch chuyển phía sau lăng kính để hứng vệt sáng trên màn,"
-          ]
-        },
-        {
-          "title": "IV – Màu sắc của vật",
-          "paragraphs": [
-            "1981 tháng 1, Nhớ lại kiến thức đã học, khi nào mắt ta nhìn thấy một vật – Ở hoạt động khởi động, hãy giải thích sự tán sắc ánh sáng mặt trời qua lăng kính. Ở hoạt động khởi động, hãy giải thích sự tán sắc ánh sáng mặt trời qua lăng kính.",
-            "tới mắt ta – 3. Ban đêm, khi không có nguồn sáng, ta nhìn thấy các vật có màu gì – IIII – Sự truyền ánh sáng đơn sắc qua lăng kính Màu sắc của một vật được nhìn thấy phụ thuộc vào màu sắc của ánh sáng bị vật đó hấp thụ Xét lăng kính có chiết suất n đặt trong không khí, Để đơn và phản xạ.",
-            "giản, ta chỉ xét các tia sáng nằm trong mặt phẳng tiết diện chính của lăng kính và là ánh sáng đơn sắc. Dưới ánh sáng trắng, vật có màu là do nó phản xạ ánh sáng màu đó vào mắt ta và hấp thụ những màu còn lại.",
-            "Chiếu tới mặt bên AB của lăng kính một tia sáng SI. Tia sáng này sẽ bị khúc xạ tại I với i, là góc tới, r, là góc có màu đen vì nó được đặt bên cạnh những vật có màu sắc khác.",
-            "khúc xạ. Khi tia sáng tới J với góc tới r, thì bị khúc xạ và ló ra ngoài lăng kính theo tia ló JR với góc khúc xạ i,. Đường đi của tia sáng (SIJR) nằm trong mặt phẳng tiết diện B Ánh sáng trắng Anh sáng trắng chính ABC.",
-            "Hình 76 Đường truyền của Góc D hợp bởi tia tới SI và tia ló JR được gọi là góc lệch của tia sáng qua lăng kính Anh sáng vàng Không có ánh sáng phần xạ tia sáng qua lăng kính Anh sáng vàng Không có ánh sáng phần xạ tia sáng khi đi qua lăng kính.",
-            "Khi tia sáng truyền từ không khí đến mặt bên của lăng kính thì tia ló ra khỏi lăng kính lệch Bề mặt màu vàng Bề mặt màu đen về phía đáy so với tia tới. Hình 7.8 Minh hoạ sự nhìn thấy màu sắc của các bế mặt 237/229 X X BB QQQX D"
-          ],
-          "bullets": [
-            "2. Khi chúng ta thấy các vật màu xanh, đỏ, trắng thì có ánh sáng màu nào truyền từ vật"
-          ]
+          "example": "Cầu vồng hình thành khi ánh sáng Mặt Trời bị khúc xạ, tán sắc và phản xạ trong các giọt nước nhỏ."
         }
       ],
       "diagram": {
@@ -26620,36 +26121,27 @@
       },
       "terms": [
         {
-          "term": "Thấu kính phân kì",
-          "definition": "Là thấu kính có phần rìa dày hơn phần giữa, có tác dụng làm phân kì (loe rộng ra) chùm tia sáng tới song song với trục chính."
+          "term": "Lăng kính",
+          "definition": "Khối trong suốt có hai mặt khúc xạ không song song."
         },
         {
-          "term": "Thấu kính hội tụ",
-          "definition": "Là thấu kính có phần rìa mỏng hơn phần giữa (làm bằng vật liệu trong suốt như thủy tinh, nhựa), có tác dụng hội tụ chùm tia sáng tới song song với trục chính tại một điểm nằm sau thấu kính gọi là tiêu điểm chính."
-        },
-        {
-          "term": "Hiện tượng khúc xạ ánh sáng",
-          "definition": "Là hiện tượng tia sáng bị gãy khúc (đổi hướng truyền đột ngột) tại mặt phân cách giữa hai môi trường trong suốt khác nhau khi truyền xiên góc từ môi trường này sang môi trường khác."
+          "term": "Tán sắc",
+          "definition": "Sự phân tách ánh sáng trắng thành các ánh sáng màu thành phần."
         },
         {
           "term": "Ánh sáng trắng",
-          "definition": "Là hỗn hợp của vô số ánh sáng đơn sắc khác nhau có màu biến thiên liên tục từ màu đỏ đến màu tím."
+          "definition": "Hỗn hợp của nhiều ánh sáng màu."
         },
         {
           "term": "Ánh sáng đơn sắc",
-          "definition": "Là ánh sáng có một màu xác định và không bị đổi màu (không bị tán sắc) khi đi qua lăng kính, chỉ bị lệch đường truyền về phía đáy lăng kính."
-        },
-        {
-          "term": "Hiện tượng tán sắc ánh sáng",
-          "definition": "Là hiện tượng một chùm ánh sáng trắng (ánh sáng phức hợp) khi truyền qua lăng kính hoặc môi trường trong suốt bị phân tách thành một dải nhiều chùm ánh sáng đơn sắc có màu biến thiên liên tục từ đỏ đến tím (đỏ, da cam, vàng, lục, lam, chàm, tím)."
-        },
-        {
-          "term": "Lăng kính",
-          "definition": "Là một khối chất trong suốt, đồng chất (thường làm bằng thủy tinh hoặc nhựa trong), được giới hạn bởi hai mặt phẳng không song song gọi là các mặt bên của lăng kính."
+          "definition": "Ánh sáng có một màu xác định và không bị tách màu qua lăng kính."
         }
       ],
       "summary": [
-        "2. Khi chúng ta thấy các vật màu xanh, đỏ, trắng thì có ánh sáng màu nào truyền từ vật"
+        "Lăng kính làm tia sáng đổi hướng do khúc xạ.",
+        "Ánh sáng trắng qua lăng kính bị tách thành dải nhiều màu.",
+        "Các màu lệch khác nhau; đỏ lệch ít hơn tím trong thí nghiệm điển hình.",
+        "Màu sắc quan sát được phụ thuộc ánh sáng chiếu tới và ánh sáng vật phản xạ."
       ],
       "quick_check": [
         {
@@ -26686,60 +26178,10 @@
           "explanation": "Ánh sáng đơn sắc có một màu nên không bị phân tách thành dải nhiều màu."
         }
       ],
-      "lesson_version": 2,
-      "generation_sources": [
-        {
-          "source": "SGK KHTN 9 KNTT.pdf",
-          "page": 35,
-          "printed_start": 34,
-          "printed_end": 34,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 9 KNTT.pdf",
-          "page": 36,
-          "printed_start": 35,
-          "printed_end": 35,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 9 KNTT.pdf",
-          "page": 37,
-          "printed_start": 36,
-          "printed_end": 36,
-          "virtual": false
-        }
-      ],
-      "catalog_only": false,
-      "illustrations": [
-        {
-          "caption": "Ngực NwV vu Sé, đ51)112 4Ó dsdV “bo: c4b4⁄41Xcc+< ¿40-4 sêx ⁄⁄42-3-49c 6-2 px >ể Zi/33/ 6211//14--- Thí nghiệm dùng nam châm quay Ừ Mô tả sự sáng của hai. đèn L",
-          "image_path": "SGK KHTN9 KNTT/page_35_img_0.png",
-          "image_url": "/api/images/SGK KHTN9 KNTT/page_35_img_0.png",
-          "label": "Hình minh họa (Trang 35, SGK KHTN 9)",
-          "matched_query": "Bài 7 Lăng kính và tán sắc ánh sáng",
-          "page": 35,
-          "source": "SGK KHTN9 KNTT.pdf"
-        },
-        {
-          "caption": "Hình 14,8) tạo thành mạch kín.",
-          "image_path": "SGK KHTN9 KNTT/page_36_img_0.png",
-          "image_url": "/api/images/SGK KHTN9 KNTT/page_36_img_0.png",
-          "label": "Hình minh họa (Trang 36, SGK KHTN 9)",
-          "matched_query": "Bài 7 Lăng kính và tán sắc ánh sáng",
-          "page": 36,
-          "source": "SGK KHTN9 KNTT.pdf"
-        },
-        {
-          "caption": "Hình 14.8) tạo thành mạch kín.",
-          "image_path": "SGK KHTN9 KNTT/page_36_img_1.png",
-          "image_url": "/api/images/SGK KHTN9 KNTT/page_36_img_1.png",
-          "label": "Hình minh họa (Trang 36, SGK KHTN 9)",
-          "matched_query": "Bài 7 Lăng kính và tán sắc ánh sáng",
-          "page": 36,
-          "source": "SGK KHTN9 KNTT.pdf"
-        }
-      ]
+      "order": 70,
+      "active": true,
+      "origin": "system",
+      "lesson_version": 4
     },
     {
       "id": "k9-bai-8-thau-kinh",
@@ -34819,6 +34261,11 @@
       "number": "Bài 43",
       "title": "Nguyên phân và giảm phân",
       "topic": "Cơ chế, diễn biến các kì, ý nghĩa và ứng dụng của nguyên phân và giảm phân trong di truyền học",
+      "duration": "90 phút (2 tiết)",
+      "order": 430,
+      "active": true,
+      "origin": "system",
+      "lesson_version": 4,
       "objectives": [
         "Nêu được khái niệm nguyên phân và giảm phân; trình bày được diễn biến cơ bản của các kì trong nguyên phân và giảm phân.",
         "Phân biệt được nguyên phân và giảm phân về loại tế bào, số lần phân chia, số lượng và bộ NST trong các tế bào con.",
@@ -34826,51 +34273,12 @@
         "Giải thích được nguyên phân là cơ sở của sinh sản vô tính và giảm phân tạo giao tử cho sinh sản hữu tính.",
         "Nêu được một số ứng dụng của nguyên phân và giảm phân trong thực tiễn chọn giống và nhân giống vô tính."
       ],
-      "content": "3.43 NGUYÊN PHÂN VÀ GIẢM PHÂN lại bước vào những đợt nguyên phân tiếp theo để tạo ra nhiều thế hệ tế bào con mới, các tế Qua mỗi lần nguyên phân, từ một tế bào mẹ tạo ra hai tế bào con. Các tế bào con này có thể bào này cấu trúc nến các mô, cơ quan hoặc thay thể các tế bào bị thương, tế bào già bị chết. Ví dụ về nguyên phân: Ở thực vật, khi hạt nảy mầm, tế bào phôi ở trong hạt nguyên phân MỤC TIÊU liên tiếp và biệt hoá tạo ra số lượng lớn tế bào hình thành các cơ quan như rễ, thân, lã,..",
-      "source_label": "SGK KHTN 9 KNTT · Bài 43 · Trang 186–190",
-      "generation_sources": [
-        {
-          "source": "SGK KHTN 9 KNTT.pdf",
-          "page": 187,
-          "printed_start": 186,
-          "printed_end": 186,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 9 KNTT.pdf",
-          "page": 188,
-          "printed_start": 187,
-          "printed_end": 187,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 9 KNTT.pdf",
-          "page": 189,
-          "printed_start": 188,
-          "printed_end": 188,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 9 KNTT.pdf",
-          "page": 190,
-          "printed_start": 189,
-          "printed_end": 189,
-          "virtual": false
-        },
-        {
-          "source": "SGK KHTN 9 KNTT.pdf",
-          "page": 191,
-          "printed_start": 190,
-          "printed_end": 190,
-          "virtual": false
-        }
-      ],
-      "order": 430,
-      "active": true,
-      "origin": "system",
-      "catalog_only": false,
-      "created_at": "2026-08-29T13:12:20+00:00",
-      "updated_at": "2026-09-11T18:43:49+00:00",
+      "warmup": {
+        "title": "Khởi động: Kì diệu của sự phân chia tế bào",
+        "question": "Từ một hợp tử ban đầu vô cùng nhỏ bé, làm thế nào có thể phát triển thành một cơ thể đa bào hoàn chỉnh gồm hàng tỉ tế bào? Quá trình nào đã tạo ra các giao tử (tinh trùng, trứng) để duy trì nòi giống qua các thế hệ?",
+        "context": "Mọi sinh vật đa bào đều bắt đầu từ một tế bào đơn lẻ (hợp tử). Nhờ quá trình nguyên phân liên tiếp kết hợp với sự biệt hóa tế bào mà cơ thể lớn lên. Đồng thời, quá trình giảm phân tạo ra các giao tử đơn bội để chuẩn bị cho sự thụ tinh.",
+        "hint": "Nguyên phân tạo ra các tế bào sinh dưỡng giống hệt tế bào mẹ giúp cơ thể lớn lên; giảm phân tạo ra các giao tử mang bộ NST giảm một nửa giúp duy trì bộ NST qua các thế hệ sinh sản hữu tính."
+      },
       "sections": [
         {
           "title": "1. Khái niệm và diễn biến của quá trình nguyên phân",
@@ -34959,13 +34367,16 @@
           "note": "Bảo vệ môi trường và hạn chế tác nhân đột biến (hóa chất, phóng xạ) để tránh rối loạn quá trình phân bào nguyên phân và giảm phân."
         }
       ],
-      "summary": [
-        "Nguyên phân gồm 1 lần nhân đôi NST và 1 lần phân bào, từ 1 tế bào mẹ (2n) tạo ra 2 tế bào con có bộ NST (2n) giống hệt nhau và giống tế bào mẹ.",
-        "Nguyên phân giúp cơ thể lớn lên, thay thế tế bào tổn thương và là cơ sở của các phương pháp nhân giống vô tính (giâm, chiết, ghép, nuôi cấy mô).",
-        "Giảm phân diễn ra ở tế bào sinh dục chín, gồm 1 lần nhân đôi NST và 2 lần phân chia liên tiếp, từ 1 tế bào mẹ (2n) tạo ra 4 tế bào con mang bộ NST đơn bội (n).",
-        "Sự tiếp hợp trao đổi chéo ở kì đầu I và phân li độc lập ở kì sau I trong giảm phân tạo ra nguồn biến dị tổ hợp phong phú cho tiến hóa và chọn giống.",
-        "Sự phối hợp nguyên phân, giảm phân và thụ tinh giúp duy trì ổn định bộ NST lưỡng bội (2n) đặc trưng của loài sinh sản hữu tính qua các thế hệ."
-      ],
+      "diagram": {
+        "title": "Sơ đồ quá trình Nguyên phân và Giảm phân",
+        "nodes": [
+          "Tế bào mẹ (2n)",
+          "Kì trung gian (NST nhân đôi thành NST kép)",
+          "Nguyên phân (1 lần phân bào) -> 2 tế bào con (2n)",
+          "Giảm phân (2 lần phân bào) -> 4 giao tử (n)",
+          "Thụ tinh (n + n) -> Hợp tử (2n) duy trì ổn định bộ NST"
+        ]
+      },
       "terms": [
         {
           "term": "Nguyên phân (Mitosis)",
@@ -34992,35 +34403,13 @@
           "definition": "Sự xuất hiện các kiểu hình mới ở đời con do sự tái tổ hợp vật chất di truyền của bố mẹ thông qua trao đổi chéo ở giảm phân I và tổ hợp tự do khi thụ tinh."
         }
       ],
-      "warmup": {
-        "title": "Khởi động: Kì diệu của sự phân chia tế bào",
-        "question": "Từ một hợp tử ban đầu vô cùng nhỏ bé, làm thế nào có thể phát triển thành một cơ thể đa bào hoàn chỉnh gồm hàng tỉ tế bào? Quá trình nào đã tạo ra các giao tử (tinh trùng, trứng) để duy trì nòi giống qua các thế hệ?",
-        "context": "Mọi sinh vật đa bào đều bắt đầu từ một tế bào đơn lẻ (hợp tử). Nhờ quá trình nguyên phân liên tiếp kết hợp với sự biệt hóa tế bào mà cơ thể lớn lên. Đồng thời, quá trình giảm phân tạo ra các giao tử đơn bội để chuẩn bị cho sự thụ tinh.",
-        "hint": "Nguyên phân tạo ra các tế bào sinh dưỡng giống hệt tế bào mẹ giúp cơ thể lớn lên; giảm phân tạo ra các giao tử mang bộ NST giảm một nửa giúp duy trì bộ NST qua các thế hệ sinh sản hữu tính."
-      },
-      "illustrations": [
-        {
-          "caption": "Sơ đồ & Hình minh họa: Bài 43 - Nguyên phân và giảm phân",
-          "image_path": "SGK KHTN 9 KNTT/page_187_img_0.png",
-          "image_url": "/api/images/SGK KHTN 9 KNTT/page_187_img_0.png",
-          "label": "Sơ đồ bài học (Trang 187, SGK KHTN 9)",
-          "matched_query": "Bài 43 Nguyên phân và giảm phân",
-          "page": 187,
-          "source": "SGK KHTN 9 KNTT.pdf"
-        }
+      "summary": [
+        "Nguyên phân gồm 1 lần nhân đôi NST và 1 lần phân bào, từ 1 tế bào mẹ (2n) tạo ra 2 tế bào con có bộ NST (2n) giống hệt nhau và giống tế bào mẹ.",
+        "Nguyên phân giúp cơ thể lớn lên, thay thế tế bào tổn thương và là cơ sở của các phương pháp nhân giống vô tính (giâm, chiết, ghép, nuôi cấy mô).",
+        "Giảm phân diễn ra ở tế bào sinh dục chín, gồm 1 lần nhân đôi NST và 2 lần phân chia liên tiếp, từ 1 tế bào mẹ (2n) tạo ra 4 tế bào con mang bộ NST đơn bội (n).",
+        "Sự tiếp hợp trao đổi chéo ở kì đầu I và phân li độc lập ở kì sau I trong giảm phân tạo ra nguồn biến dị tổ hợp phong phú cho tiến hóa và chọn giống.",
+        "Sự phối hợp nguyên phân, giảm phân và thụ tinh giúp duy trì ổn định bộ NST lưỡng bội (2n) đặc trưng của loài sinh sản hữu tính qua các thế hệ."
       ],
-      "duration": "90 phút (2 tiết)",
-      "lesson_version": 4,
-      "diagram": {
-        "title": "Sơ đồ quá trình Nguyên phân và Giảm phân",
-        "nodes": [
-          "Tế bào mẹ (2n)",
-          "Kì trung gian (NST nhân đôi thành NST kép)",
-          "Nguyên phân (1 lần phân bào) -> 2 tế bào con (2n)",
-          "Giảm phân (2 lần phân bào) -> 4 giao tử (n)",
-          "Thụ tinh (n + n) -> Hợp tử (2n) duy trì ổn định bộ NST"
-        ]
-      },
       "quick_check": [
         {
           "question": "Kết quả của quá trình nguyên phân từ một tế bào mẹ (2n) qua một lần phân bào là tạo ra",

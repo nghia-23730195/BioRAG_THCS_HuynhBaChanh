@@ -182,14 +182,14 @@ except Exception:
 try:
     from api._textbook_renderer import (
         find_lesson_by_source_and_page, render_textbook_page_svg, render_textbook_reader_html,
-        search_best_lesson, format_local_rag_answer, call_gemini_rest,
+        search_best_lesson, extract_top_lesson_chunks, format_local_rag_answer, call_gemini_rest,
         call_gemini_vision_rest, format_image_chat_local_answer
     )
 except Exception:
     try:
         from _textbook_renderer import (
             find_lesson_by_source_and_page, render_textbook_page_svg, render_textbook_reader_html,
-            search_best_lesson, format_local_rag_answer, call_gemini_rest,
+            search_best_lesson, extract_top_lesson_chunks, format_local_rag_answer, call_gemini_rest,
             call_gemini_vision_rest, format_image_chat_local_answer
         )
     except Exception as exc:
@@ -198,6 +198,7 @@ except Exception:
         render_textbook_page_svg = None
         render_textbook_reader_html = None
         search_best_lesson = None
+        extract_top_lesson_chunks = None
         format_local_rag_answer = None
         call_gemini_rest = None
         call_gemini_vision_rest = None
@@ -1656,20 +1657,30 @@ CÁC THUẬT NGỮ VÀ KHÁI NIỆM KHOA HỌC:
 TỔNG KẾT BÀI HỌC:
 {summary_text}
 '''
-        prompt = f'''Bạn là Trợ lý AI Khoa học Tự nhiên chính thức của Trường THCS Huỳnh Bá Chánh.
+        # Dynamic extractive chunk ranking for ultra-high grounding accuracy
+        top_chunks = extract_top_lesson_chunks(question, matched_lesson, limit=4) if callable(extract_top_lesson_chunks) and matched_lesson else []
+        chunks_grounding_text = ""
+        if top_chunks:
+            chunks_grounding_text = "\n".join([f"- [{c.get('source_type', 'SGK')}]: {c.get('text', '')}" for c in top_chunks])
+
+        prompt = f'''Bạn là Trợ lý AI Khoa học Tự nhiên chính thức của Trường THCS Huỳnh Bá Chánh (Đà Nẵng).
 Chương trình: Khoa học Tự nhiên Lớp {resolved_grade} (Bộ sách Kết nối tri thức với cuộc sống).
+
+ĐOẠN TRÍCH SGK PHÙ HỢP NHẤT TỪ BÀI HỌC (CĂN CỨ KHOA HỌC TRỌNG TÂM):
+{chunks_grounding_text if chunks_grounding_text else "Căn cứ theo ngữ liệu toàn bài học bên dưới"}
+
 {lesson_context}
 
 Câu hỏi của học sinh: {question}
 
-HƯỚNG DẪN TRẢ LỜI SƯ PHẠM (CHÍNH XÁC, TRỰC DIỆN, CHUẨN MỰC):
-1. Trả lời TRỰC DIỆN và ĐẦY ĐỦ vào đúng trọng tâm câu hỏi của học sinh dựa trên ngữ liệu SGK trên.
+HƯỚNG DẪN TRẢ LỜI SƯ PHẠM (CHÍNH XÁC TUYỆT ĐỐI, TRỰC DIỆN, CHUẨN MỰC):
+1. TRẢ LỜI TRỰC DIỆN VÀO CÂU HỎI ngay trong 1-2 câu đầu tiên dựa trên [ĐOẠN TRÍCH SGK PHÙ HỢP NHẤT] ở trên.
+   - Nêu đúng số liệu và định nghĩa khoa học trong SGK (ví dụ: 55% huyết tương, 45% tế bào máu, 4 ngăn tim, chu kì tim 0,8s, bộ NST 2n, 170-180 lít nước tiểu đầu, 3 dạng đột biến điểm...).
    - Nếu hỏi "ở đâu/qua đâu/cơ quan nào": chỉ rõ chính xác cơ quan, bộ phận, bào quan.
    - Nếu hỏi "tại sao/vì sao/cơ chế": giải thích cặn kẽ bản chất và cơ chế khoa học.
    - Nếu hỏi "so sánh": lập bảng hoặc đối chiếu rõ ràng các tiêu chí.
-   - Nếu có công thức hoặc phương trình chữ: viết rõ ràng bằng ký hiệu toán học / hóa học LaTeX hoặc chữ.
 2. Trình bày khoa học bằng Markdown (tiêu đề mục, in đậm thuật ngữ then chốt, gạch đầu dòng mạch lạc).
-3. Đưa ra ví dụ thực tế gần gũi, liên hệ đời sống hoặc thí nghiệm trong nhà trường.
+3. Đảm bảo tính khoa học chính xác 100%, tuyệt đối không nhầm lẫn giữa các khối lớp hoặc phân môn (Lí, Hóa, Sinh).
 4. Trích dẫn chính xác bài học và trang sách: ({matched_lesson.get('number', '')}: {matched_lesson.get('title', '')} - {source_label}).
 5. Giữ phong thái sư phạm thân thiện, tích cực, đúng chuẩn Trường THCS Huỳnh Bá Chánh.'''
 

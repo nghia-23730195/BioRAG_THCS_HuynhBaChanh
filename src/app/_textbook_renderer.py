@@ -535,6 +535,14 @@ def render_textbook_reader_html(lesson, current_page, start_page, end_page, sour
 </body>
 </html>"""
 
+def phrase_in_text(phrase, text):
+    """Accurately match phrases respecting Unicode word boundaries to prevent substring collisions."""
+    p = phrase.strip().lower()
+    t = (text or "").lower()
+    pattern = r'(?<!\w)' + re.escape(p) + r'(?!\w)'
+    return bool(re.search(pattern, t))
+
+
 def search_best_lesson(lessons_or_question, question_or_grade=None, preferred_grade=None):
     if isinstance(lessons_or_question, list):
         lessons = lessons_or_question
@@ -551,123 +559,140 @@ def search_best_lesson(lessons_or_question, question_or_grade=None, preferred_gr
         except Exception:
             lessons = []
 
-    q_clean = (question or "").lower()
+    q_clean = (question or "").lower().strip()
     
     # 1. Direct Topic-to-Lesson exact precision router (96 verified KHTN 6, 7, 8, 9 topics)
     PRECISION_LESSON_ROUTER = [
-    # ==================== KHTN 6 ====================
-    (6, ["thành phần chính của tế bào", "cấu tạo tế bào", "màng tế bào", "chất tế bào", "nhân tế bào", "vùng nhân", "tế bào nhân sơ", "tế bào nhân thực", "tế bào thực vật", "tế bào động vật", "lục lạp"], "Bài 19"),
-    (6, ["lớn lên", "sinh sản của tế bào", "sự phân chia", "phân chia tế bào"], "Bài 20"),
-    (6, ["tế bào là gì", "đơn vị cơ bản của sự sống", "hình dạng tế bào", "kích thước tế bào"], "Bài 18"),
-    (6, ["cơ thể đơn bào", "cơ thể đa bào", "tảo lam", "trùng roi xanh"], "Bài 22"),
-    (6, ["tổ chức cơ thể đa bào", "mô", "cơ quan", "hệ cơ quan"], "Bài 23"),
-    (6, ["phân loại thế giới sống", "5 giới sinh vật", "khóa lưỡng phân", "tên khoa học"], "Bài 25"),
-    (6, ["vi khuẩn", "bacteria", "lên men sữa chua"], "Bài 27"),
-    (6, ["virus", "vi rút", "corona", "sốt xuất huyết", "hiv"], "Bài 29"),
-    (6, ["nguyên sinh vật", "trùng sốt rét", "trùng kiết lị", "trùng giày"], "Bài 30"),
-    (6, ["nấm", "nấm men", "nấm mốc", "nấm rơm", "nấm độc"], "Bài 32"),
-    (6, ["thực vật", "rêu", "dương xỉ", "hạt trần", "hạt kín"], "Bài 34"),
-    (6, ["động vật không xương sống", "động vật có xương sống", "cá", "lưỡng cư", "bò sát", "chim", "thú"], "Bài 36"),
-    (6, ["đa dạng sinh học", "sách đỏ"], "Bài 38"),
-    (6, ["lực ma sát", "ma sát trượt", "ma sát nghỉ", "ma sát lăn"], "Bài 44"),
-    (6, ["mặt trăng", "pha của mặt trăng", "trăng tròn", "trăng khuyết"], "Bài 53"),
-    (6, ["hệ mặt trời", "các hành tinh"], "Bài 54"),
-    (6, ["ngân hà"], "Bài 55"),
+        # ==================== KHTN 6 ====================
+        (6, ["thành phần chính của tế bào", "cấu tạo tế bào", "màng tế bào", "chất tế bào", "nhân tế bào", "vùng nhân", "tế bào nhân sơ", "tế bào nhân thực", "tế bào thực vật", "tế bào động vật", "lục lạp"], "Bài 19"),
+        (6, ["lớn lên và sinh sản của tế bào", "sinh sản của tế bào", "sự phân chia tế bào", "phân chia tế bào"], "Bài 20"),
+        (6, ["tế bào là gì", "đơn vị cơ bản của sự sống", "hình dạng tế bào", "kích thước tế bào"], "Bài 18"),
+        (6, ["cơ thể đơn bào", "cơ thể đa bào", "tảo lam", "trùng roi xanh"], "Bài 22"),
+        (6, ["tổ chức cơ thể đa bào", "mô là gì", "cơ quan là gì", "hệ cơ quan là gì"], "Bài 23"),
+        (6, ["phân loại thế giới sống", "5 giới sinh vật", "khóa lưỡng phân", "tên khoa học"], "Bài 25"),
+        (6, ["vi khuẩn", "bacteria", "lên men sữa chua", "kháng sinh diệt khuẩn"], "Bài 27"),
+        (6, ["virus", "vi rút", "corona", "sốt xuất huyết", "hiv", "vỏ protein capsid"], "Bài 29"),
+        (6, ["nguyên sinh vật", "trùng sốt rét", "trùng kiết lị", "trùng giày"], "Bài 30"),
+        (6, ["nấm", "nấm men", "nấm mốc", "nấm rơm", "nấm độc"], "Bài 32"),
+        (6, ["ngành thực vật", "rêu", "dương xỉ", "hạt trần", "hạt kín", "cây dương xỉ"], "Bài 34"),
+        (6, ["động vật không xương sống", "động vật có xương sống", "lớp cá", "lớp lưỡng cư", "lớp bò sát", "lớp chim", "lớp thú"], "Bài 36"),
+        (6, ["đa dạng sinh học", "sách đỏ"], "Bài 38"),
+        (6, ["lực ma sát", "ma sát trượt", "ma sát nghỉ", "ma sát lăn"], "Bài 44"),
+        (6, ["mặt trăng", "pha của mặt trăng", "trăng tròn", "trăng khuyết"], "Bài 53"),
+        (6, ["hệ mặt trời", "các hành tinh"], "Bài 54"),
+        (6, ["ngân hà"], "Bài 55"),
 
-    # ==================== KHTN 7 ====================
-    (7, ["quang hợp là gì", "quang hợp ở đâu", "cơ quan quang hợp", "bào quan quang hợp", "phương trình quang hợp", "nơi diễn ra quang hợp", "diệp lục"], "Bài 22"),
-    (7, ["quang hợp cần", "yếu tố ảnh hưởng quang hợp", "cây ưa sáng", "cây ưa bóng", "ánh sáng ảnh hưởng quang hợp", "quang hợp tốt", "xen canh"], "Bài 23"),
-    (7, ["chứng minh quang hợp", "thí nghiệm quang hợp"], "Bài 24"),
-    (7, ["hô hấp tế bào là gì", "hô hấp tế bào", "ti thể", "phương trình hô hấp", "quang hợp và hô hấp khác nhau", "tổng hợp và phân giải"], "Bài 25"),
-    (7, ["phòng ngủ", "ban đêm", "để cây trong phòng", "yếu tố ảnh hưởng hô hấp", "bảo quản nông sản"], "Bài 26"),
-    (7, ["trao đổi khí", "khí khổng"], "Bài 28"),
-    (7, ["vai trò của nước", "chất dinh dưỡng đối với sinh vật"], "Bài 29"),
-    (7, ["trao đổi nước ở thực vật", "lông hút", "mạch gỗ", "mạch rây", "thoát hơi nước qua lá", "xới đất", "ngập úng"], "Bài 30"),
-    (7, ["cảm ứng ở sinh vật", "tập tính ở động vật", "hướng sáng", "hướng trọng lực"], "Bài 33"),
-    (7, ["sinh sản vô tính", "giâm cành", "chiết cành", "ghép cành", "nuôi cấy mô"], "Bài 39"),
-    (7, ["sinh sản hữu tính", "thụ phấn", "thụ tinh", "hoa lưỡng tính"], "Bài 40"),
-    (7, ["nguyên tử", "proton", "neutron", "electron", "rutherford", "bohr", "amu"], "Bài 2"),
-    (7, ["bảng tuần hoàn", "nguyên tố hóa học"], "Bài 4"),
-    (7, ["liên kết ion", "liên kết cộng hóa trị"], "Bài 6"),
-    (7, ["hóa trị", "công thức hóa học"], "Bài 7"),
-    (7, ["tốc độ", "công thức tính tốc độ", "v = s / t"], "Bài 8"),
-    (7, ["sóng âm", "môi trường truyền âm"], "Bài 12"),
-    (7, ["độ to", "độ cao", "tần số", "biên độ", "hertz", "hz"], "Bài 13"),
-    (7, ["định luật phản xạ ánh sáng", "gương phẳng", "ảnh ảo"], "Bài 16"),
-    (7, ["nam châm", "từ trường", "đường sức từ", "la bàn"], "Bài 19"),
+        # ==================== KHTN 7 ====================
+        (7, ["quang hợp là gì", "quang hợp ở đâu", "cơ quan quang hợp", "bào quan quang hợp", "phương trình quang hợp", "nơi diễn ra quang hợp", "diệp lục", "quang hợp ở thực vật", "quang hợp"], "Bài 22"),
+        (7, ["quang hợp cần", "yếu tố ảnh hưởng quang hợp", "cây ưa sáng", "cây ưa bóng", "ánh sáng ảnh hưởng quang hợp", "quang hợp tốt", "xen canh"], "Bài 23"),
+        (7, ["chứng minh quang hợp", "thí nghiệm quang hợp", "tinh bột tạo thành qua quang hợp"], "Bài 24"),
+        (7, ["hô hấp tế bào là gì", "hô hấp tế bào", "ti thể", "phương trình hô hấp", "phương trình hô hấp tế bào", "quang hợp và hô hấp khác nhau", "tổng hợp và phân giải"], "Bài 25"),
+        (7, ["phòng ngủ", "ban đêm", "để cây trong phòng", "yếu tố ảnh hưởng hô hấp", "bảo quản nông sản"], "Bài 26"),
+        (7, ["trao đổi khí", "khí khổng", "trao đổi khí ở thực vật", "trao đổi khí ở phế nang"], "Bài 28"),
+        (7, ["vai trò của nước", "chất dinh dưỡng đối với sinh vật"], "Bài 29"),
+        (7, ["trao đổi nước ở thực vật", "lông hút", "mạch gỗ", "mạch rây", "thoát hơi nước qua lá", "thoát hơi nước", "xới đất", "ngập úng"], "Bài 30"),
+        (7, ["cảm ứng ở sinh vật", "tập tính ở động vật", "hướng sáng", "hướng trọng lực"], "Bài 33"),
+        (7, ["sinh sản vô tính", "giâm cành", "chiết cành", "ghép cành", "nuôi cấy mô", "sinh sản sinh dưỡng"], "Bài 39"),
+        (7, ["sinh sản hữu tính", "thụ phấn", "thụ tinh", "hoa lưỡng tính", "hoa đơn tính"], "Bài 40"),
+        (7, ["nguyên tử", "proton", "neutron", "electron", "rutherford", "bohr", "amu"], "Bài 2"),
+        (7, ["bảng tuần hoàn", "nguyên tố hóa học"], "Bài 4"),
+        (7, ["liên kết ion", "liên kết cộng hóa trị"], "Bài 6"),
+        (7, ["hóa trị", "công thức hóa học"], "Bài 7"),
+        (7, ["tốc độ", "công thức tính tốc độ", "v = s / t"], "Bài 8"),
+        (7, ["sóng âm", "môi trường truyền âm"], "Bài 12"),
+        (7, ["độ to của âm", "độ cao của âm", "tần số", "biên độ", "hertz", "hz"], "Bài 13"),
+        (7, ["định luật phản xạ ánh sáng", "gương phẳng", "ảnh ảo"], "Bài 16"),
+        (7, ["nam châm", "từ trường", "đường sức từ", "la bàn"], "Bài 19"),
 
-    # ==================== KHTN 8 ====================
-    (8, ["bảo toàn khối lượng"], "Bài 5"),
-    (8, ["tốc độ phản ứng", "chất xúc tác"], "Bài 7"),
-    (8, ["acid là gì", "axit", "tính chất hóa học của acid", "quỳ tím hóa đỏ"], "Bài 8"),
-    (8, ["base là gì", "bazơ", "thang ph", "đo ph", "nồng độ ph", "quỳ tím hóa xanh", "phenolphtalein"], "Bài 9"),
-    (8, ["oxide", "oxit"], "Bài 10"),
-    (8, ["muối là gì", "muối ăn", "phản ứng trao đổi"], "Bài 11"),
-    (8, ["phân bón hóa học", "phân đạm", "phân lân", "phân kali", "npk"], "Bài 12"),
-    (8, ["khối lượng riêng", "d = m / v"], "Bài 13"),
-    (8, ["áp suất trên một bề mặt", "áp lực", "p = f / s"], "Bài 15"),
-    (8, ["áp suất chất lỏng", "áp suất khí quyển", "bình thông nhau"], "Bài 16"),
-    (8, ["archimedes", "acsimet", "ác-si-mét", "lực đẩy ác", "lực đẩy archimedes", "f_a", "tàu nổi", "điều kiện nổi chìm"], "Bài 17"),
-    (8, ["moment lực", "mômen lực", "tác dụng làm quay"], "Bài 18"),
-    (8, ["đòn bẩy", "ứng dụng đòn bẩy"], "Bài 19"),
-    (8, ["nhiễm điện do cọ xát"], "Bài 20"),
-    (8, ["dòng điện", "nguồn điện", "chất dẫn điện", "chất cách điện"], "Bài 21"),
-    (8, ["hệ vận động", "bộ xương", "khớp xương", "hệ cơ", "cong vẹo cột sống"], "Bài 31"),
-    (8, ["ống tiêu hóa", "cơ quan tiêu hóa", "dạ dày", "ruột non", "thức ăn đi qua"], "Bài 32"),
-    (8, ["hồng cầu", "bạch cầu", "tiểu cầu", "huyết tương", "nhóm máu", "tim có vai trò", "hệ tuần hoàn", "vai trò của tim"], "Bài 33"),
-    (8, ["hệ hô hấp ở người", "phế nang", "thông khí ở phổi"], "Bài 34"),
-    (8, ["thận có vai trò", "hệ bài tiết", "vai trò của thận", "lọc máu", "nước tiểu"], "Bài 35"),
-    (8, ["bảo vệ mắt", "mắt", "hệ thần kinh", "tật khúc xạ", "cận thị", "viễn thị", "tai"], "Bài 37"),
-    (8, ["hệ nội tiết", "tuyến yên", "tuyến giáp", "hormone"], "Bài 38"),
-    (8, ["da và điều hòa thân nhiệt"], "Bài 39"),
-    (8, ["quần thể sinh vật"], "Bài 42"),
-    (8, ["quần xã sinh vật"], "Bài 43"),
-    (8, ["hệ sinh thái", "chuỗi thức ăn", "lưới thức ăn"], "Bài 44"),
-    (8, ["bảo vệ môi trường", "ô nhiễm môi trường"], "Bài 47"),
+        # ==================== KHTN 8 ====================
+        (8, ["bảo toàn khối lượng"], "Bài 5"),
+        (8, ["tốc độ phản ứng", "chất xúc tác"], "Bài 7"),
+        (8, ["acid là gì", "axit", "tính chất hóa học của acid", "quỳ tím hóa đỏ"], "Bài 8"),
+        (8, ["base là gì", "bazơ", "thang ph", "đo ph", "nồng độ ph", "quỳ tím hóa xanh", "phenolphtalein"], "Bài 9"),
+        (8, ["oxide", "oxit"], "Bài 10"),
+        (8, ["muối là gì", "muối ăn", "phản ứng trao đổi"], "Bài 11"),
+        (8, ["phân bón hóa học", "phân đạm", "phân lân", "phân kali", "npk"], "Bài 12"),
+        (8, ["khối lượng riêng", "d = m / v"], "Bài 13"),
+        (8, ["áp suất trên một bề mặt", "áp lực", "p = f / s"], "Bài 15"),
+        (8, ["áp suất chất lỏng", "áp suất khí quyển", "bình thông nhau"], "Bài 16"),
+        (8, ["archimedes", "acsimet", "ác-si-mét", "lực đẩy ác", "lực đẩy archimedes", "f_a", "tàu nổi", "điều kiện nổi chìm"], "Bài 17"),
+        (8, ["moment lực", "mômen lực", "tác dụng làm quay"], "Bài 18"),
+        (8, ["đòn bẩy", "ứng dụng đòn bẩy"], "Bài 19"),
+        (8, ["nhiễm điện do cọ xát"], "Bài 20"),
+        (8, ["dòng điện", "nguồn điện", "chất dẫn điện", "chất cách điện"], "Bài 21"),
+        (8, ["hệ vận động", "bộ xương", "khớp xương", "hệ cơ", "cong vẹo cột sống"], "Bài 31"),
+        (8, ["dinh dưỡng và tiêu hóa", "hệ tiêu hóa", "ống tiêu hóa", "cơ quan tiêu hóa", "dạ dày", "ruột non", "tiêu hóa ở dạ dày", "tiêu hóa ở ruột non", "thức ăn đi qua", "nhung mao ruột"], "Bài 32"),
+        (8, ["máu và hệ tuần hoàn", "máu", "hệ tuần hoàn", "hồng cầu", "bạch cầu", "tiểu cầu", "huyết tương", "nhóm máu", "nhóm máu o", "nhóm máu a", "nhóm máu b", "nhóm máu ab", "truyền máu", "đông máu", "tại sao máu", "cấu tạo của tim", "tim", "vòng tuần hoàn", "vòng tuần hoàn lớn", "vòng tuần hoàn nhỏ", "huyết áp", "tâm nhĩ", "tâm thất", "van tim", "động mạch", "tĩnh mạch", "mao mạch", "tim hoạt động"], "Bài 33"),
+        (8, ["hệ hô hấp", "hệ hô hấp ở người", "phế nang", "thông khí ở phổi", "cơ quan hô hấp", "trao đổi khí ở phổi", "trao đổi khí ở phế nang"], "Bài 34"),
+        (8, ["hệ bài tiết", "thận", "vai trò của thận", "cơ quan bài tiết", "lọc máu", "nước tiểu", "cầu thận", "nang cầu thận", "ống thận", "tạo thành nước tiểu", "nephron", "sỏi thận"], "Bài 35"),
+        (8, ["môi trường trong", "cân bằng nội môi", "điều hòa môi trường trong", "nội môi"], "Bài 36"),
+        (8, ["hệ thần kinh", "bảo vệ mắt", "mắt", "tật khúc xạ", "cận thị", "viễn thị", "tai", "não bộ", "tủy sống", "phản xạ", "cung phản xạ", "nơron", "neuron"], "Bài 37"),
+        (8, ["hệ nội tiết", "tuyến yên", "tuyến giáp", "tuyến tụy", "hormone"], "Bài 38"),
+        (8, ["da và điều hòa thân nhiệt", "điều hòa thân nhiệt"], "Bài 39"),
+        (8, ["quần thể sinh vật", "quần thể"], "Bài 42"),
+        (8, ["quần xã sinh vật", "quần xã"], "Bài 43"),
+        (8, ["hệ sinh thái", "chuỗi thức ăn", "lưới thức ăn"], "Bài 44"),
+        (8, ["bảo vệ môi trường", "ô nhiễm môi trường"], "Bài 47"),
 
-    # ==================== KHTN 9 ====================
-    (9, ["tán sắc", "lăng kính", "ánh sáng trắng", "ánh sáng đơn sắc", "cầu vồng"], "Bài 7"),
-    (9, ["thấu kính hội tụ", "thấu kính phân kì", "tiêu cự"], "Bài 8"),
-    (9, ["kính lúp"], "Bài 10"),
-    (9, ["định luật ohm", "định luật ôm", "i = u / r", "điện trở"], "Bài 11"),
-    (9, ["đoạn mạch nối tiếp", "đoạn mạch song song"], "Bài 12"),
-    (9, ["công suất điện", "điện năng", "công của dòng điện"], "Bài 13"),
-    (9, ["cảm ứng điện từ", "dòng điện xoay chiều"], "Bài 14"),
-    (9, ["dãy hoạt động hóa học", "kim loại"], "Bài 19"),
-    (9, ["hợp chất hữu cơ"], "Bài 22"),
-    (9, ["alkane", "metan"], "Bài 23"),
-    (9, ["alkene", "etilen"], "Bài 24"),
-    (9, ["ethylic alcohol", "rượu etylic"], "Bài 26"),
-    (9, ["acetic acid", "giấm ăn"], "Bài 27"),
-    (9, ["lipid", "chất béo"], "Bài 28"),
-    (9, ["glucose", "saccharose", "carbohydrate"], "Bài 29"),
-    (9, ["tinh bột", "cellulose"], "Bài 30"),
-    (9, ["protein", "chất đạm"], "Bài 31"),
-    (9, ["polymer", "chất dẻo"], "Bài 32"),
-    (9, ["di truyền học là gì", "khái quát về di truyền"], "Bài 36"),
-    (9, ["quy luật di truyền của mendel", "menđen", "phân li độc lập", "trội lặn"], "Bài 37"),
-    (9, ["dna là gì", "gene là gì", "nucleic acid", "cấu trúc không gian của dna", "cấu trúc của dna", "chức năng của dna", "chức năng của phân tử dna"], "Bài 38"),
-    (9, ["tái bản dna", "nhân đôi dna", "phiên mã", "tạo rna"], "Bài 39"),
-    (9, ["dịch mã", "tổng hợp protein", "mối quan hệ từ gene đến tính trạng"], "Bài 40"),
-    (9, ["đột biến gene", "đột biến gen", "các dạng đột biến gene", "đột biến điểm"], "Bài 41"),
-    (9, ["nhiễm sắc thể là gì", "bộ nhiễm sắc thể", "vai trò của nhiễm sắc thể trong di truyền"], "Bài 42"),
-    (9, ["nguyên phân", "giảm phân"], "Bài 43"),
-    (9, ["nhiễm sắc thể giới tính", "xác định giới tính"], "Bài 44"),
-    (9, ["di truyền liên kết", "morgan"], "Bài 45"),
-    (9, ["đột biến nhiễm sắc thể là gì", "đột biến nhiễm sắc thể", "đột biến cấu trúc", "mất đoạn", "lặp đoạn", "đảo đoạn", "chuyển đoạn", "down"], "Bài 46"),
-    (9, ["di truyền học với con người"], "Bài 47"),
-    (9, ["công nghệ di truyền", "công nghệ gene", "gmo"], "Bài 48"),
-    (9, ["tiến hóa", "chọn lọc tự nhiên"], "Bài 49")
-]
+        # ==================== KHTN 9 ====================
+        (9, ["tán sắc", "lăng kính", "ánh sáng trắng", "ánh sáng đơn sắc", "cầu vồng"], "Bài 7"),
+        (9, ["thấu kính hội tụ", "thấu kính phân kì", "tiêu cự"], "Bài 8"),
+        (9, ["kính lúp"], "Bài 10"),
+        (9, ["định luật ohm", "định luật ôm", "i = u / r", "điện trở"], "Bài 11"),
+        (9, ["đoạn mạch nối tiếp", "đoạn mạch song song"], "Bài 12"),
+        (9, ["công suất điện", "điện năng", "công của dòng điện"], "Bài 13"),
+        (9, ["cảm ứng điện từ", "dòng điện xoay chiều"], "Bài 14"),
+        (9, ["dãy hoạt động hóa học", "kim loại tác dụng với acid"], "Bài 19"),
+        (9, ["hợp chất hữu cơ"], "Bài 22"),
+        (9, ["alkane", "metan", "ch4"], "Bài 23"),
+        (9, ["alkene", "etilen", "c2h4"], "Bài 24"),
+        (9, ["ethylic alcohol", "rượu etylic", "c2h5oh", "độ rượu"], "Bài 26"),
+        (9, ["acetic acid", "axit axetic", "giấm ăn", "ch3cooh"], "Bài 27"),
+        (9, ["lipid", "chất béo"], "Bài 28"),
+        (9, ["glucose", "saccharose", "carbohydrate", "glucozơ"], "Bài 29"),
+        (9, ["tinh bột", "cellulose"], "Bài 30"),
+        (9, ["protein", "chất đạm"], "Bài 31"),
+        (9, ["polymer", "chất dẻo", "polime"], "Bài 32"),
+        (9, ["di truyền học là gì", "khái quát về di truyền"], "Bài 36"),
+        (9, ["quy luật di truyền của mendel", "menđen", "phân li độc lập", "trội lặn", "lai một cặp tính trạng"], "Bài 37"),
+        (9, ["dna là gì", "gene là gì", "nucleic acid", "cấu trúc không gian của dna", "cấu trúc của dna", "chức năng của dna", "chức năng của phân tử dna", "cấu trúc không gian của phân tử dna", "phân tử dna", "chuỗi xoắn kép", "watson", "crick", "nguyên tắc bổ sung", "nucleotide", "adenine", "thymine", "guanine", "cytosine"], "Bài 38"),
+        (9, ["tái bản dna", "nhân đôi dna", "phiên mã", "tạo rna", "mạch khuôn"], "Bài 39"),
+        (9, ["dịch mã", "tổng hợp protein", "mối quan hệ từ gene đến tính trạng"], "Bài 40"),
+        (9, ["đột biến gene", "đột biến gen", "các dạng đột biến gene", "các dạng đột biến gen", "đột biến điểm", "mất một cặp", "thêm một cặp", "thay thế một cặp"], "Bài 41"),
+        (9, ["nhiễm sắc thể là gì", "bộ nhiễm sắc thể", "vai trò của nhiễm sắc thể trong di truyền", "nhiễm sắc thể", "nst"], "Bài 42"),
+        (9, ["nguyên phân", "giảm phân", "kết quả của nguyên phân", "kết quả của giảm phân", "kì đầu", "kì giữa", "kì sau", "kì cuối", "thoi phân bào", "các kì của nguyên phân", "các kì của giảm phân", "ý nghĩa của nguyên phân", "ý nghĩa của giảm phân"], "Bài 43"),
+        (9, ["nhiễm sắc thể giới tính", "xác định giới tính", "cơ chế xác định giới tính", "cặp nst giới tính"], "Bài 44"),
+        (9, ["di truyền liên kết", "morgan", "moocgan"], "Bài 45"),
+        (9, ["đột biến nhiễm sắc thể là gì", "đột biến nhiễm sắc thể", "đột biến cấu trúc", "đột biến số lượng", "đột biến số lượng nhiễm sắc thể", "mất đoạn", "lặp đoạn", "đảo đoạn", "chuyển đoạn", "down", "hội chứng down", "turner", "claifeuto"], "Bài 46"),
+        (9, ["di truyền học với con người", "bệnh di truyền"], "Bài 47"),
+        (9, ["công nghệ di truyền", "công nghệ gene", "gmo", "adn tái tổ hợp"], "Bài 48"),
+        (9, ["tiến hóa", "chọn lọc tự nhiên", "đacuyn", "darwin"], "Bài 49")
+    ]
 
+    # Specificity-based router resolution
+    router_candidates = []
     for req_grade, phrases, target_bai in PRECISION_LESSON_ROUTER:
-        if (preferred_grade is None or preferred_grade == req_grade) and any(p in q_clean for p in phrases):
-            for l in lessons:
-                if int(l.get("grade") or 0) == req_grade and l.get("number", "").strip().lower() == target_bai.lower():
-                    return l, 500
+        if preferred_grade and preferred_grade != req_grade:
+            continue
+        for p in phrases:
+            if phrase_in_text(p, q_clean):
+                w_count = len(p.split())
+                c_len = len(p)
+                match_score = w_count * 100 + c_len
+                if preferred_grade == req_grade:
+                    match_score += 500
+                router_candidates.append((match_score, req_grade, target_bai, p))
 
-        generic_attr_ngrams = {'vai trò', 'đặc điểm', 'ý nghĩa', 'tác dụng', 'cấu tạo', 'khái niệm', 'phân loại'}
-    stop_words = {'là', 'gì', 'thế', 'nào', 'sao', 'hãy', 'cho', 'biết', 'của', 'và', 'các', 'những', 'trong', 'với', 'tìm', 'hiểu', 'về', 'hỏi', 'giúp', 'như', 'có'}
+    if router_candidates:
+        router_candidates.sort(key=lambda x: x[0], reverse=True)
+        best_cand = router_candidates[0]
+        for l in lessons:
+            if int(l.get("grade") or 0) == best_cand[1] and l.get("number", "").strip().lower() == best_cand[2].lower():
+                return l, best_cand[0]
+
+    # Fallback: Multi-level keyword and n-gram scoring
+    generic_attr_ngrams = {'vai trò', 'đặc điểm', 'ý nghĩa', 'tác dụng', 'cấu tạo', 'khái niệm', 'phân loại'}
+    stop_words = {'là', 'gì', 'thế', 'nào', 'sao', 'hãy', 'cho', 'biết', 'của', 'và', 'các', 'những', 'trong', 'với', 'tìm', 'hiểu', 'về', 'hỏi', 'giúp', 'như', 'có', 'được', 'tại'}
     words = [w.lower() for w in re.findall(r'[\w]+', question) if len(w) > 1 and w.lower() not in stop_words]
     
     ngrams = []
@@ -683,7 +708,6 @@ def search_best_lesson(lessons_or_question, question_or_grade=None, preferred_gr
     
     for l in lessons:
         l_grade = int(l.get("grade") or 0)
-        # Strict grade isolation if preferred_grade is specified
         if preferred_grade and l_grade != preferred_grade:
             continue
             
@@ -717,17 +741,17 @@ def search_best_lesson(lessons_or_question, question_or_grade=None, preferred_gr
                 score += (5 if is_attr else 15)
                 
         for w in words:
-            if w in title:
+            if phrase_in_text(w, title):
+                score += 20
+            elif phrase_in_text(w, sec_titles):
                 score += 15
-            elif w in sec_titles:
+            elif phrase_in_text(w, terms):
                 score += 12
-            elif w in terms:
-                score += 10
-            elif w in topic:
-                score += 6
-            elif w in summary:
-                score += 4
-            elif w in full_text:
+            elif phrase_in_text(w, topic):
+                score += 8
+            elif phrase_in_text(w, summary):
+                score += 5
+            elif phrase_in_text(w, full_text):
                 score += 2
                 
         if score > best_score:
@@ -735,6 +759,91 @@ def search_best_lesson(lessons_or_question, question_or_grade=None, preferred_gr
             best_lesson = l
             
     return best_lesson, best_score
+
+
+def extract_top_lesson_chunks(question, lesson, limit=4):
+    """Extract and rank the most relevant paragraphs, terms, bullets, and summary points from a lesson."""
+    if not lesson:
+        return []
+        
+    stop_words = {'là', 'gì', 'thế', 'nào', 'sao', 'hãy', 'cho', 'biết', 'của', 'và', 'các', 'những', 'trong', 'với', 'tìm', 'hiểu', 'về', 'hỏi', 'giúp', 'như', 'có', 'được', 'tại', 'vai', 'trò', 'đặc', 'điểm', 'ý', 'nghĩa'}
+    q_words = [w.lower() for w in re.findall(r'[\w]+', question) if len(w) > 1 and w.lower() not in stop_words]
+    q_set = set(q_words)
+    
+    q_ngrams = []
+    if len(q_words) >= 2:
+        for i in range(len(q_words)-1):
+            q_ngrams.append(f"{q_words[i]} {q_words[i+1]}")
+            
+    chunks = []
+    # 1. Terms
+    for t in lesson.get("terms", []):
+        term = t.get("term", "").strip()
+        defn = t.get("definition", "").strip()
+        if term and defn:
+            chunks.append({
+                "source_type": "Thuật ngữ",
+                "title": term,
+                "text": f"**{term}**: {defn}"
+            })
+            
+    # 2. Sections
+    for s in lesson.get("sections", []):
+        sec_title = s.get("title", "").strip()
+        for p in s.get("paragraphs", []):
+            p = p.strip()
+            if len(p) > 20:
+                chunks.append({
+                    "source_type": sec_title or "Nội dung bài học",
+                    "title": sec_title,
+                    "text": p
+                })
+        for b in s.get("bullets", []):
+            b = b.strip()
+            if len(b) > 15:
+                chunks.append({
+                    "source_type": sec_title or "Chi tiết bài học",
+                    "title": sec_title,
+                    "text": b
+                })
+                
+    # 3. Summary
+    for sm in lesson.get("summary", []):
+        sm = sm.strip()
+        if len(sm) > 20:
+            chunks.append({
+                "source_type": "Tóm tắt bài học",
+                "title": "Ghi nhớ cốt lõi",
+                "text": sm
+            })
+            
+    # Score chunks
+    scored_chunks = []
+    for c in chunks:
+        c_text_lower = c["text"].lower()
+        c_title_lower = c["title"].lower()
+        score = 0
+        
+        # Exact ngram match
+        for ng in q_ngrams:
+            if ng in c_text_lower:
+                score += 25
+            if ng in c_title_lower:
+                score += 35
+                
+        # Word boundary token match
+        for w in q_set:
+            if phrase_in_text(w, c_text_lower):
+                score += 6
+            if phrase_in_text(w, c_title_lower):
+                score += 12
+                
+        if score > 0:
+            scored_chunks.append((score, c))
+            
+    scored_chunks.sort(key=lambda x: x[0], reverse=True)
+    return [c for score, c in scored_chunks[:limit]]
+
 
 # Complete high-quality encyclopedia for all KHTN 6, 7, 8, 9 concepts
 ENCYCLOPEDIA_KHTN = {
@@ -947,10 +1056,250 @@ def format_local_rag_answer(question, lesson):
     title = lesson.get("title", "")
     source_label = lesson.get("source_label", f"SGK KHTN {grade} KNTT")
     q_lower = (question or "").lower()
-    
+
     # =========================================================================
-    # SPECIALIZED DOMAIN HANDLERS (Direct, Intelligent, Zero Boilerplate)
+    # SPECIALIZED DOMAIN HANDLERS (Direct, Authentic, Zero Boilerplate)
     # =========================================================================
+
+    # 1. Câu hỏi: "Thành phần của máu / Máu gồm những thành phần nào"
+    if any(k in q_lower for k in ["thành phần của máu", "máu gồm những thành phần nào", "các thành phần của máu", "thành phần máu"]):
+        return r"""Chào em! Dưới đây là kiến thức chuẩn xác về **Thành phần của máu** trong chương trình **KHTN 8 (Bài 33: Máu và hệ tuần hoàn của cơ thể người)**:
+
+🩸 **1. Hai thành phần chính của máu**
+- Máu là một dạng mô liên kết lỏng lưu thông trong hệ tuần hoàn. Ở người trưởng thành có khoảng **4 đến 5 lít máu**, khi để lắng hoặc ly tâm chống đông sẽ tách thành 2 phần rõ rệt:
+  1. **Huyết tương (chiếm khoảng 55% thể tích máu):** Dạng lỏng, màu vàng nhạt, chứa khoảng 90% nước và 10% chất dinh dưỡng (glucose, amino acid, lipid), kháng thể, hormone, chất khoáng và các chất cặn bã (ure, acid uric).
+  2. **Các tế bào máu (chiếm khoảng 45% thể tích máu):** Lắng ở phía dưới, gồm 3 loại tế bào: hồng cầu, bạch cầu và tiểu cầu.
+
+🔬 **2. Đặc điểm và chức năng của từng loại tế bào máu**
+- **Hồng cầu:** Chiếm số lượng lớn nhất, hình đĩa lõm hai mặt, không có nhân ở tế bào trưởng thành; chứa huyết sắc tố **hemoglobin (Hb)** có màu đỏ.
+  * *Chức năng:* Vận chuyển khí Oxygen ($\text{O}_2$) từ phổi về tế bào và vận chuyển khí Carbon dioxide ($\text{CO}_2$) từ tế bào về phổi để thải ra ngoài.
+- **Bạch cầu:** Kích thước lớn, có nhân, có khả năng hình thành chân giả để di chuyển xuyên qua thành mạch máu.
+  * *Chức năng:* Tham gia bảo vệ cơ thể thông qua các cơ chế thực bào (nuốt và tiêu hóa vi khuẩn), tiết kháng thể vô hiệu hóa kháng nguyên và tiêu diệt các tế bào nhiễm bệnh (tạo đáp ứng miễn dịch).
+- **Tiểu cầu:** Là những mảnh tế bào chất không có nhân, dễ bị vỡ khi va chạm vào bờ vết thương rách của mạch máu.
+  * *Chức năng:* Giải phóng enzyme kích hoạt quá trình đông máu, tạo thành nút tiểu cầu và mạng lưới tơ máu (fibrin) bịt kín vết thương, chống mất máu.
+
+📖 *Nguồn trích dẫn: Bài 33: Máu và hệ tuần hoàn của cơ thể người (SGK KHTN 8 KNTT, Trang 135–137) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 2. Câu hỏi: "Tiểu cầu có vai trò gì / Cơ chế đông máu"
+    if any(k in q_lower for k in ["tiểu cầu", "đông máu", "tại sao máu chảy ra lại đông", "cơ chế đông máu"]):
+        return r"""Chào em! Dưới đây là giải đáp khoa học về **Vai trò của tiểu cầu và cơ chế đông máu** theo chuẩn **KHTN 8 (Bài 33)**:
+
+🩹 **1. Vai trò của tiểu cầu đối với cơ thể**
+- Tiểu cầu là những mảnh tế bào chất không có nhân sinh ra từ tủy xương, có màng rất mỏng và dễ vỡ khi tiếp xúc với bề mặt gồ ghề của vết thương.
+- Vai trò quan trọng nhất của tiểu cầu là **tham gia trực tiếp vào quá trình đông máu** và hình thành **nút tiểu cầu**, giúp cầm máu và bảo vệ cơ thể chống mất máu nguy hiểm khi bị thương tích.
+
+⚙️ **2. Cơ chế của quá trình đông máu**
+- Khi mạch máu bị rách hoặc đứt:
+  1. **Tạo nút tiểu cầu:** Tiểu cầu bám dính vào bờ vết thương và tụ tập lại với nhau tạo thành nút tiểu cầu tạm thời bịt kín chỗ rách nhỏ.
+  2. **Giải phóng enzyme đông máu:** Tiểu cầu bị vỡ giải phóng enzyme đông máu (thromboplastin).
+  3. **Hình thành mạng lưới tơ máu (Fibrin):** Với sự có mặt của ion Calcium ($\text{Ca}^{2+}$) và enzyme, chất sinh sợi huyết (*fibrinogen* - một protein hòa tan trong huyết tương) bị biến đổi thành các sợi huyết (*fibrin* - dạng protein không tan).
+  4. **Tạo cục máu đông:** Các sợi fibrin đan kết với nhau chằng chịt thành mạng lưới dày đặc, giữ chặt các tế bào máu (hồng cầu, bạch cầu) lại để tạo thành **cục máu đông** vững chắc bịt kín hoàn toàn vết thương.
+
+💡 **3. Ý nghĩa thực tiễn & Cấp cứu vết thương**
+- Giúp cơ thể tự vệ sinh học, bảo toàn lượng máu và ngăn chặn vi khuẩn xâm nhập vào tuần hoàn.
+- *Xử trí ban đầu khi bị chảy máu:* Dùng gạc sạch đè chặt lên vết thương trong 3–5 phút để hỗ trợ nút tiểu cầu và sợi fibrin hình thành nhanh chóng.
+
+📖 *Nguồn trích dẫn: Bài 33: Máu và hệ tuần hoàn của cơ thể người (SGK KHTN 8 KNTT, Trang 136–137) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 3. Câu hỏi: "Cấu tạo tim / Vì sao tâm thất trái dày nhất"
+    if any(k in q_lower for k in ["tâm thất trái", "thành cơ dày nhất", "cấu tạo tim", "ngăn tim", "thành tim dày"]):
+        return r"""Chào em! Về câu hỏi **"Cấu tạo tim và tại sao tâm thất trái có thành cơ dày nhất?"**, kiến thức chuẩn **KHTN 8 (Bài 33)** được giải thích chi tiết như sau:
+
+❤️ **1. Cấu tạo 4 ngăn của tim người**
+- Tim là một cơ quan rỗng gồm các sợi cơ tim chuyên biệt, được chia thành **4 ngăn** bởi vách ngăn tim:
+  * **Hai tâm nhĩ ở phía trên (Tâm nhĩ phải và Tâm nhĩ trái):** Thành cơ mỏng, có nhiệm vụ tiếp nhận máu từ các tĩnh mạch chảy về tim rồi co bóp đẩy máu xuống tâm thất.
+  * **Hai tâm thất ở phía dưới (Tâm thất phải và Tâm thất trái):** Thành cơ dày, có nhiệm vụ co bóp tạo lực đẩy máu vào các động mạch đi nuôi cơ thể.
+- Giữa tâm nhĩ và tâm thất có **van nhĩ - thất**, giữa tâm thất và động mạch có **van động mạch**, đảm bảo máu chỉ chảy theo một chiều nhất định (Tĩnh mạch $\rightarrow$ Tâm nhĩ $\rightarrow$ Tâm thất $\rightarrow$ Động mạch).
+
+💪 **2. Vì sao thành cơ tâm thất trái dày nhất trong 4 ngăn tim?**
+- Độ dày của thành cơ tim tỉ lệ thuận với **khối lượng công việc (công co bóp)** và **áp lực** mà ngăn tim đó phải tạo ra:
+  1. **Tâm thất phải:** Chỉ co bóp đẩy máu qua một quãng đường ngắn lên hai lá phổi theo **vòng tuần hoàn nhỏ**, gặp lực cản của hệ mao mạch phổi tương đối nhỏ, nên thành cơ tâm thất phải có độ dày vừa phải.
+  2. **Tâm thất trái:** Phải co bóp tạo một **lực bơm cực lớn với huyết áp cao nhất** để tống máu vào động mạch chủ, thắng sức cản ma sát của toàn bộ mạng lưới mao mạch khắp cơ thể từ đỉnh đầu đến ngón chân theo **vòng tuần hoàn lớn**.
+- Do phải chịu áp lực cao nhất và thực hiện công lớn nhất để nuôi dưỡng toàn bộ cơ thể, **thành cơ tâm thất trái có độ dày lớn nhất (dày gấp khoảng 3 lần thành tâm thất phải)**.
+
+📖 *Nguồn trích dẫn: Bài 33: Máu và hệ tuần hoàn của cơ thể người (SGK KHTN 8 KNTT, Trang 138–139) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 4. Câu hỏi: "Chu kỳ tim / Vì sao tim hoạt động suốt đời không mệt mỏi"
+    if any(k in q_lower for k in ["không mệt mỏi", "suốt đời", "chu kì tim", "chu kỳ tim", "hoạt động của tim", "nhịp tim"]):
+        return r"""Chào em! Về câu hỏi **"Tại sao tim hoạt động suốt đời mà không bị mệt mỏi?"**, cơ chế sinh lí học theo chuẩn **KHTN 8 (Bài 33)** được giải thích như sau:
+
+⏱️ **1. Chu kì hoạt động của tim (Chu kì tim)**
+- Ở người trưởng thành khỏe mạnh khi nghỉ ngơi, nhịp tim trung bình khoảng 75 lần/phút. Mỗi chu kì tim kéo dài khoảng **0,8 giây**, gồm 3 pha kế tiếp nhau:
+  1. **Pha co hai tâm nhĩ:** Kéo dài **0,1 giây** (sau đó tâm nhĩ dãn và nghỉ ngơi suốt **0,7 giây**).
+  2. **Pha co hai tâm thất:** Kéo dài **0,3 giây** (sau đó tâm thất dãn và nghỉ ngơi suốt **0,5 giây**).
+  3. **Pha dãn chung:** Kéo dài **0,4 giây** (cả tâm nhĩ và tâm thất cùng dãn nghỉ ngơi hoàn toàn).
+
+⚖️ **2. Vì sao tim có thể co bóp liên tục suốt đời mà không mệt mỏi?**
+- **Thời gian nghỉ ngơi nhiều hơn thời gian làm việc:**
+  * Tâm nhĩ: Làm việc 0,1s nhưng được nghỉ ngơi tới 0,7s trong mỗi chu kì.
+  * Tâm thất: Làm việc 0,3s nhưng được nghỉ ngơi tới 0,5s trong mỗi chu kì.
+  * Tính chung trong một chu kì 0,8s, tim co bóp làm việc 0,4s và dãn nghỉ ngơi 0,4s (thời gian làm việc bằng thời gian nghỉ).
+- **Cơ chế phục hồi năng lượng tối ưu:** Trong các pha nghỉ dãn, máu giàu dưỡng chất và $\text{O}_2$ từ động mạch vành kịp thời tràn vào nuôi dưỡng các sợi cơ tim, giúp cơ tim đào thải acid lactic và tổng hợp lại năng lượng ATP đầy đủ, phục hồi sức sống hoàn toàn trước khi bước vào chu kì co bóp tiếp theo.
+
+📖 *Nguồn trích dẫn: Bài 33: Máu và hệ tuần hoàn của cơ thể người (SGK KHTN 8 KNTT, Trang 139) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 5. Câu hỏi: "Hai vòng tuần hoàn / Vòng tuần hoàn lớn và nhỏ"
+    if any(k in q_lower for k in ["vòng tuần hoàn lớn", "vòng tuần hoàn nhỏ", "hai vòng tuần hoàn", "đường đi của máu"]):
+        return r"""Chào em! Dưới đây là sơ đồ đường đi của máu qua **Hai vòng tuần hoàn** theo chuẩn **KHTN 8 (Bài 33)**:
+
+🫁 **1. Vòng tuần hoàn nhỏ (Vòng tuần hoàn phổi)**
+- **Vai trò:** Giúp máu thải khí $\text{CO}_2$ và hấp thụ khí $\text{O}_2$ tại phổi.
+- **Đường đi của máu:**
+  $$\text{Tâm thất phải} \rightarrow \text{Động mạch phổi} \rightarrow \text{Mao mạch phổi (thải } \text{CO}_2, \text{ nhận } \text{O}_2\text{)} \rightarrow \text{Tĩnh mạch phổi} \rightarrow \text{Tâm nhĩ trái}$$
+- *Biến đổi màu máu:* Máu đỏ thẫm (giàu $\text{CO}_2$) biến thành máu đỏ tươi (giàu $\text{O}_2$).
+
+🫀 **2. Vòng tuần hoàn lớn (Vòng tuần hoàn cơ thể)**
+- **Vai trò:** Cung cấp khí $\text{O}_2$ và chất dinh dưỡng cho toàn bộ tế bào các cơ quan, đồng thời thu nhận chất thải và $\text{CO}_2$.
+- **Đường đi của máu:**
+  $$\text{Tâm thất trái} \rightarrow \text{Động mạch chủ} \rightarrow \text{Mao mạch các cơ quan (nuôi tế bào)} \rightarrow \text{Tĩnh mạch chủ (trên và dưới)} \rightarrow \text{Tâm nhĩ phải}$$
+- *Biến đổi màu máu:* Máu đỏ tươi (giàu $\text{O}_2$ và dinh dưỡng) biến thành máu đỏ thẫm (giàu $\text{CO}_2$ và chất cặn bã).
+
+📖 *Nguồn trích dẫn: Bài 33: Máu và hệ tuần hoàn của cơ thể người (SGK KHTN 8 KNTT, Trang 138–139) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 6. Câu hỏi: "Hệ nhóm máu ABO / Nguyên tắc truyền máu"
+    if any(k in q_lower for k in ["nhóm máu o", "nhóm máu ab", "nhóm máu a", "nhóm máu b", "nguyên tắc truyền máu", "hệ nhóm máu abo", "truyền máu an toàn"]):
+        return r"""Chào em! Dưới đây là kiến thức chuẩn về **Hệ nhóm máu ABO và nguyên tắc truyền máu** theo **KHTN 8 (Bài 33)**:
+
+🩸 **1. Bốn nhóm máu thuộc hệ ABO**
+- Được xác định dựa trên sự có mặt của **kháng nguyên (A, B)** trên màng hồng cầu và **kháng thể ($\alpha, \beta$)** trong huyết tương:
+  * **Nhóm máu A:** Hồng cầu có kháng nguyên A; huyết tương có kháng thể $\beta$ (chống B).
+  * **Nhóm máu B:** Hồng cầu có kháng nguyên B; huyết tương có kháng thể $\alpha$ (chống A).
+  * **Nhóm máu AB:** Hồng cầu có cả kháng nguyên A và B; huyết tương **không có** kháng thể $\alpha$ và $\beta$ (Nhóm máu chuyên nhận).
+  * **Nhóm máu O:** Hồng cầu **không có** kháng nguyên A và B; huyết tương có cả kháng thể $\alpha$ và $\beta$ (Nhóm máu chuyên cho).
+
+⚠️ **2. Nguyên tắc truyền máu an toàn**
+1. **Nguyên tắc tối thượng:** Khi truyền máu, **tuyệt đối không để kháng nguyên trên màng hồng cầu của người cho bị ngưng kết bởi kháng thể trong huyết tương của người nhận**.
+2. **Quy tắc truyền máu:**
+   - Tốt nhất và an toàn nhất là **truyền cùng nhóm máu** (A cho A, B cho B, O cho O, AB cho AB).
+   - Trong trường hợp cấp cứu không có máu cùng nhóm:
+     * Nhóm máu O có thể truyền cho cả 4 nhóm (A, B, AB, O) vì hồng cầu O không có kháng nguyên.
+     * Người nhóm máu AB có thể nhận máu từ cả 4 nhóm (A, B, AB, O) vì huyết tương AB không có kháng thể.
+3. **An toàn y tế:** Phải xét nghiệm máu người cho để loại trừ các mầm bệnh truyền nhiễm nguy hiểm (HIV, HBV, HCV, giang mai...) và làm phản ứng chéo thử ngưng kết trước khi truyền.
+
+📖 *Nguồn trích dẫn: Bài 33: Máu và hệ tuần hoàn của cơ thể người (SGK KHTN 8 KNTT, Trang 137–138) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 7. Câu hỏi: "So sánh nguyên phân và giảm phân / Kết quả nguyên phân giảm phân"
+    if any(k in q_lower for k in ["nguyên phân và giảm phân", "kết quả của nguyên phân", "kết quả của giảm phân", "so sánh nguyên phân"]):
+        return r"""Chào em! Dưới đây là phân tích chi tiết và bảng so sánh chuẩn mực giữa **Nguyên phân** và **Giảm phân** theo chương trình **KHTN 9 (Bài 43: Nguyên phân và giảm phân)**:
+
+### 📊 BẢNG SO SÁNH NGUYÊN PHÂN VÀ GIẢM PHÂN
+
+| Tiêu chí so sánh | Nguyên phân (Mitosis) 🔬 | Giảm phân (Meiosis) 🧬 |
+| :--- | :--- | :--- |
+| **Loại tế bào xảy ra** | Tế bào sinh dưỡng (soma) và tế bào sinh dục sơ khai | Tế bào sinh dục chín (vào thời kì tạo giao tử) |
+| **Số lần nhân đôi DNA/NST** | 1 lần (ở kì trung gian) | 1 lần (ở kì trung gian trước GP I) |
+| **Số lần phân chia tế bào** | 1 lần phân chia duy nhất | 2 lần phân chia liên tiếp (Giảm phân I & II) |
+| **Sự tiếp hợp & trao đổi chéo** | Không xảy ra hiện tượng trao đổi chéo | Có tiếp hợp và trao đổi chéo NST ở kì đầu GP I |
+| **Kết quả số lượng tế bào** | Từ 1 tế bào mẹ ($2n$) tạo ra **2 tế bào con** | Từ 1 tế bào mẹ ($2n$) tạo ra **4 tế bào con** (giao tử) |
+| **Bộ nhiễm sắc thể con** | Giữ nguyên bộ NST lưỡng bội ($2n$) giống hệt mẹ | Giảm đi một nửa, mang bộ NST đơn bội ($n$) |
+| **Ý nghĩa sinh học** | Giúp cơ thể lớn lên, thay thế tế bào già hỏng; cơ sở của sinh sản vô tính | Tạo giao tử cho thụ tinh, tạo biến dị tổ hợp phong phú cho tiến hóa |
+
+🎯 **Ghi nhớ cốt lõi:**
+- **Nguyên phân:** $1 \text{ tế bào } (2n) \xrightarrow{\text{1 lần chia}} 2 \text{ tế bào con } (2n)$.
+- **Giảm phân:** $1 \text{ tế bào } (2n) \xrightarrow{\text{2 lần chia}} 4 \text{ giao tử } (n)$.
+
+📖 *Nguồn trích dẫn: Bài 43: Nguyên phân và giảm phân (SGK KHTN 9 KNTT, Trang 176–181) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 8. Câu hỏi: "Các kì của nguyên phân / Đặc điểm NST kì giữa nguyên phân"
+    if any(k in q_lower for k in ["các kì của nguyên phân", "kì giữa nguyên phân", "kì đầu nguyên phân", "kì sau nguyên phân", "diễn biến nguyên phân"]):
+        return r"""Chào em! Dưới đây là diễn biến 4 kì của quá trình **Nguyên phân** theo chuẩn **KHTN 9 (Bài 43)**:
+
+🔬 **Diễn biến các kì của nguyên phân**
+1. **Kì đầu:**
+   - Các nhiễm sắc thể kép bắt đầu đóng xoắn và co ngắn.
+   - Màng nhân và nhân con tiêu biến dần; thoi phân bào hình thành nối liền hai cực tế bào với tâm động của NST.
+2. **Kì giữa (Đặc điểm nhận diện rõ nét nhất):**
+   - Các NST kép co xoắn cực đại, có hình thái đặc trưng và kích thước rõ nét nhất.
+   - **Các NST kép tập trung xếp thành 1 hàng thẳng trên mặt phẳng xích đạo của thoi phân bào.**
+3. **Kì sau:**
+   - Mỗi NST kép chẻ dọc tại tâm động tách thành **2 NST đơn**.
+   - Thoi phân bào co rút kéo các NST đơn phân li đồng đều về hai cực đối diện của tế bào.
+4. **Kì cuối:**
+   - Các NST đơn về đến hai cực dãn xoắn dài ra; màng nhân và nhân con tái lập.
+   - Tế bào chất phân chia (thắt màng ở động vật hoặc hình thành vách ngăn ở thực vật) chia tế bào mẹ thành **2 tế bào con có bộ NST $2n$ giống hệt nhau và giống hệt tế bào mẹ**.
+
+💡 **Đặc điểm then chốt cần nhớ:** *"Kì giữa: NST kép xếp 1 hàng ở mặt phẳng xích đạo; Kì sau: NST kép chẻ đôi thành 2 NST đơn phân li về 2 cực."*
+
+📖 *Nguồn trích dẫn: Bài 43: Nguyên phân và giảm phân (SGK KHTN 9 KNTT, Trang 176–178) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 9. Câu hỏi: "Cấu trúc không gian của DNA theo Watson - Crick"
+    if any(k in q_lower for k in ["cấu trúc không gian của dna", "cấu trúc của dna", "phân tử dna", "watson", "chuỗi xoắn kép", "nguyên tắc bổ sung"]):
+        return r"""Chào em! Dưới đây là mô tả chuẩn xác về **Cấu trúc không gian của phân tử DNA** theo mô hình của J. Watson và F. Crick trong **KHTN 9 (Bài 38: Nucleic acid và gene)**:
+
+🧬 **1. Cấu trúc chuỗi xoắn kép**
+- Phân tử DNA là một đại phân tử sinh học có cấu trúc **chuỗi xoắn kép gồm hai mạch polynucleotide chạy song song và ngược chiều nhau**, xoắn đều đặn quanh một trục tưởng tượng theo chiều từ trái sang phải (xoắn phải).
+- **Các thông số kích thước không gian:**
+  * Đường kính vòng xoắn: $2\,\text{nm}$ ($20\,\text{\AA}$).
+  * Chiều cao mỗi chu kì xoắn: $3{,}4\,\text{nm}$ ($34\,\text{\AA}$), bao gồm đúng **10 cặp nucleotide**.
+  * Khoảng cách giữa hai cặp nucleotide kế tiếp: $0{,}34\,\text{nm}$ ($3{,}4\,\text{\AA}$).
+
+🔗 **2. Nguyên tắc bổ sung giữa hai mạch**
+- Các nucleotide trên hai mạch đơn liên kết với nhau từng đôi một bằng các **liên kết hydrogen** theo **Nguyên tắc bổ sung (NTBS)**:
+  * Adenine ($\text{A}$) liên kết với Thymine ($\text{T}$) bằng **2 liên kết hydrogen** ($\text{A} = \text{T}$).
+  * Guanine ($\text{G}$) liên kết với Cytosine ($\text{C}$) bằng **3 liên kết hydrogen** ($\text{G} \equiv \text{C}$).
+- *Hệ quả toán học:* Trong phân tử DNA luôn có số lượng: $A = T$ và $G = C$, do đó $A + G = T + C$.
+
+🎯 **3. Chức năng sinh học của DNA**
+- Lưu giữ, bảo quản và truyền đạt thông tin di truyền quy định cấu trúc protein và các tính trạng của sinh vật qua các thế hệ tế bào và cơ thể.
+
+📖 *Nguồn trích dẫn: Bài 38: Nucleic acid và gene (SGK KHTN 9 KNTT, Trang 158–162) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 10. Câu hỏi: "Quá trình lọc máu tạo nước tiểu ở thận"
+    if any(k in q_lower for k in ["tạo nước tiểu", "lọc máu ở thận", "chức năng của thận", "quá trình bài tiết nước tiểu"]):
+        return r"""Chào em! Dưới đây là lời giải đáp chuẩn về **Quá trình tạo thành nước tiểu ở thận** theo **KHTN 8 (Bài 35: Hệ bài tiết ở người)**:
+
+🫘 **1. Cấu tạo đơn vị chức năng của thận (Nephron)**
+- Mỗi quả thận chứa khoảng **1 triệu nephron**, mỗi nephron gồm 3 phần: Cầu thận (cuộn mao mạch), Nang cầu thận (nang Bowman) và Ống thận.
+
+⚙️ **2. Ba giai đoạn tạo thành nước tiểu**
+1. **Giai đoạn 1: Quá trình lọc máu ở cầu thận**
+   - Máu chảy qua cầu thận dưới áp lực cao, nước và các chất hòa tan nhỏ thẩm thấu qua màng lọc cầu thận vào nang Bowman để tạo thành **nước tiểu đầu** (khoảng $170 - 180\,\text{lít/ngày}$). Tế bào máu và protein lớn không qua được màng lọc.
+2. **Giai đoạn 2: Quá trình hấp thụ lại ở ống thận**
+   - Nước tiểu đầu chảy qua ống thận. Tế bào ống thận chủ động hấp thụ lại **99% lượng nước**, toàn bộ glucose, amino acid và các ion khoáng cần thiết ($\text{Na}^+, \text{Cl}^-$) trở lại mao mạch máu.
+3. **Giai đoạn 3: Quá trình bài tiết tiếp ở ống thận**
+   - Các tế bào thành ống thận chủ động bài tiết tiếp các chất cặn bã, độc hại (ure, acid uric, creatinin, thuốc) và ion thừa vào lòng ống. Dung dịch còn lại là **nước tiểu chính thức** (khoảng $1{,}5 - 2\,\text{lít/ngày}$) đổ vào bể thận, xuống bóng đái và thải ra ngoài.
+
+💡 **3. Lời khuyên bảo vệ thận:** Uống đủ 1,5 – 2 lít nước/ngày, không nhịn tiểu và hạn chế ăn mặn để phòng ngừa sỏi thận và suy thận.
+
+📖 *Nguồn trích dẫn: Bài 35: Hệ bài tiết ở người (SGK KHTN 8 KNTT, Trang 147–151) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 11. Câu hỏi: "Tiêu hóa ở ruột non / Dạ dày"
+    if any(k in q_lower for k in ["tiêu hóa ở ruột non", "ruột non là nơi", "tiêu hóa ở dạ dày", "tiêu hóa cơ học và hóa học"]):
+        return r"""Chào em! Dưới đây là giải đáp về **Quá trình tiêu hóa ở dạ dày và ruột non** theo **KHTN 8 (Bài 32: Dinh dưỡng và tiêu hóa ở người)**:
+
+🍽️ **1. Tiêu hóa ở dạ dày**
+- **Tiêu hóa cơ học:** Nhờ 3 lớp cơ trơn dày khỏe (cơ dọc, cơ vòng, cơ chéo), dạ dày co bóp nhào trộn nghiền nát thức ăn thấm đẫm dịch vị.
+- **Tiêu hóa hóa học:** Enzyme pepsin trong môi trường acid $\text{HCl}$ dịch vị phân giải một phần protein chuỗi dài thành các chuỗi peptide ngắn.
+
+🌿 **2. Ruột non - Cơ quan tiêu hóa triệt để và hấp thụ chủ yếu**
+- **Tiêu hóa triệt để:** Nhờ sự phối hợp của dịch tụy, dịch mật và dịch ruột chứa đầy đủ hệ enzyme:
+  * Protein $\rightarrow$ Amino acid.
+  * Tinh bột và đường $\rightarrow$ Glucose.
+  * Lipid $\xrightarrow{\text{Dịch mật}}$ Nhũ tương mỡ $\xrightarrow{\text{Lipase}}$ Acid béo và Glycerol.
+- **Hấp thụ tối đa:** Niêm mạc ruột non có nhiều nếp gấp, hàng triệu nhung mao và vi nhung mao làm tăng diện tích bề mặt hấp thụ lên **gấp 600 lần (đạt 400 - 500 m²)**, có mạng mao mạch máu và bạch huyết dày đặc hấp thụ trên 95% chất dinh dưỡng.
+
+📖 *Nguồn trích dẫn: Bài 32: Dinh dưỡng và tiêu hóa ở người (SGK KHTN 8 KNTT) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # 12. Câu hỏi: "Trao đổi khí ở phế nang và tế bào"
+    if any(k in q_lower for k in ["trao đổi khí ở phế nang", "trao đổi khí ở phổi", "trao đổi khí ở tế bào", "cơ chế trao đổi khí"]):
+        return r"""Chào em! Dưới đây là cơ chế **Trao đổi khí ở phế nang và tế bào** theo chuẩn **KHTN 8 (Bài 34: Hệ hô hấp ở người)**:
+
+🫁 **1. Cơ chế khuếch tán chất khí**
+- Sự trao đổi khí ở phế nang phổi và ở tế bào đều tuân theo **cơ chế khuếch tán**: Khí khuếch tán tự nhiên từ nơi có nồng độ (áp suất riêng phần) cao đến nơi có nồng độ thấp.
+
+🔄 **2. Diễn biến tại hai vị trí**
+1. **Tại phế nang phổi (Trao đổi khí ở phổi):**
+   - Nồng độ $\text{O}_2$ trong phế nang cao hơn trong máu mao mạch phổi $\rightarrow$ $\text{O}_2$ khuếch tán từ phế nang vào máu kết hợp với hemoglobin.
+   - Nồng độ $\text{CO}_2$ trong máu mao mạch phổi cao hơn trong phế nang $\rightarrow$ $\text{CO}_2$ khuếch tán từ máu vào phế nang để thở ra ngoài.
+   - *Kết quả:* Máu đỏ thẫm biến thành **máu đỏ tươi**.
+2. **Tại tế bào mô (Trao đổi khí ở tế bào):**
+   - Nồng độ $\text{O}_2$ trong máu mao mạch cao hơn trong tế bào $\rightarrow$ $\text{O}_2$ khuếch tán từ máu vào tế bào phục vụ hô hấp tế bào tạo năng lượng.
+   - Nồng độ $\text{CO}_2$ trong tế bào cao hơn trong máu $\rightarrow$ $\text{CO}_2$ khuếch tán từ tế bào vào máu.
+   - *Kết quả:* Máu đỏ tươi biến thành **máu đỏ thẫm**.
+
+📖 *Nguồn trích dẫn: Bài 34: Hệ hô hấp ở người (SGK KHTN 8 KNTT, Trang 144–145) · Trường THCS Huỳnh Bá Chánh*"""
+
+    # Retain existing specialized handlers (Quang hợp tốt, Cây ưa sáng, Thang pH, Định luật Ôm, Đột biến gen, Ác-si-mét...)
 
     # 1. Câu hỏi: "Thực vật nào quang hợp tốt" / Hiệu quả quang hợp
     if any(k in q_lower for k in ["quang hợp tốt", "quang hợp mạnh", "hiệu quả quang hợp", "thực vật nào quang hợp", "loài cây nào quang hợp"]):
@@ -1250,94 +1599,45 @@ def format_local_rag_answer(question, lesson):
 📖 *Nguồn trích dẫn: Bài 39: Sinh sản vô tính ở sinh vật (SGK KHTN 7 KNTT, Trang 159–163) · Trường THCS Huỳnh Bá Chánh*"""
 
     # =========================================================================
-    # GENERAL KHTN QUERY SYNTHESIS (Concise, Clean, Direct & Encyclopedic)
-    # =========================================================================
-
-    # Match encyclopedia entry
-    matched_entry = None
-    for k, ev in ENCYCLOPEDIA_KHTN.items():
-        if k in q_lower or (len(k.split()) > 1 and all(w in q_lower for w in k.split())):
-            matched_entry = ev
-            break
-            
-    if not matched_entry:
-        for k, ev in ENCYCLOPEDIA_KHTN.items():
-            if k in title.lower():
-                matched_entry = ev
-                break
-
-    lines = []
-    lines.append(f"Chào em! Về câu hỏi của em liên quan đến **{title or 'Khoa học tự nhiên'}** ({source_label}), dưới đây là nội dung trọng tâm được giải đáp chi tiết theo chuẩn SGK KHTN (Bộ sách Kết nối tri thức với cuộc sống):\n")
-    
-    # 1. Trọng tâm kiến thức cốt lõi
-    lines.append("🎯 **1. Bản chất & Khái niệm cốt lõi**")
-    if matched_entry:
-        lines.append(f"- **{matched_entry['term']}**: {matched_entry['definition']}")
-        if matched_entry.get("details"):
-            lines.append(f"- **Đặc điểm & Cơ chế:** {matched_entry['details']}")
-    else:
-        # Extract rich sections from lesson
-        sections = lesson.get("sections", [])
-        q_words = set(re.findall(r'\w+', q_lower))
+    # GENERAL KHTN QUERY SYNTHESIS VIA DYNAMIC CHUNK RANKING
+    top_chunks = extract_top_lesson_chunks(question, lesson, limit=3)
+    if top_chunks:
+        lines = []
+        lines.append(f"Chào em! Về câu hỏi của em liên quan đến **{title or 'Khoa học tự nhiên'}** ({source_label}), dưới đây là nội dung trọng tâm được giải đáp chi tiết theo chuẩn SGK KHTN (Bộ sách Kết nối tri thức với cuộc sống):\n")
         
-        # Check terms
-        terms = lesson.get("terms", [])
-        valid_terms = [t for t in terms if len(t.get("definition", "")) > 15 and "thể hiện bản chất" not in t.get("definition", "") and "khái niệm khoa học" not in t.get("definition", "")]
-        for t in valid_terms[:2]:
-            lines.append(f"- **{t.get('term')}**: {t.get('definition')}")
+        # 1. Bản chất & Khái niệm cốt lõi
+        lines.append("🎯 **1. Bản chất & Khái niệm cốt lõi**")
+        lines.append(f"- {top_chunks[0]['text']}\n")
+        
+        # 2. Chi tiết & Cơ chế theo SGK Kết nối tri thức
+        if len(top_chunks) > 1:
+            lines.append("🔬 **2. Chi tiết & Cơ chế theo SGK Kết nối tri thức**")
+            for c in top_chunks[1:]:
+                st = c.get('title') or c.get('source_type') or ''
+                if st and st not in ['Chi tiết bài học', 'Nội dung bài học', 'Thuật ngữ', 'Tóm tắt bài học']:
+                    lines.append(f"- **{st}:** {c['text']}")
+                else:
+                    lines.append(f"- {c['text']}")
+            lines.append("")
             
-        if sections:
-            scored_secs = []
-            for s in sections:
-                s_title = s.get("title", "")
-                s_text = " ".join(s.get("paragraphs", []) + s.get("bullets", []))
-                s_words = set(re.findall(r'\w+', (s_title + " " + s_text).lower()))
-                overlap = len(q_words.intersection(s_words))
-                scored_secs.append((overlap, s))
-            scored_secs.sort(key=lambda x: x[0], reverse=True)
-            best_secs = [s for sc, s in scored_secs if sc > 0][:2]
-            if not best_secs:
-                best_secs = sections[:2]
-                
-            for sec in best_secs:
-                st = sec.get("title", "").strip()
-                if st:
-                    lines.append(f"\n🔹 **{st}**")
-                for p in sec.get("paragraphs", []):
-                    if p.strip() and len(p.strip()) > 10:
-                        lines.append(f"{p.strip()}\n")
-                for b in sec.get("bullets", []):
-                    if b.strip():
-                        lines.append(f"- {b.strip()}")
-        elif lesson.get("content"):
-            lines.append(f"- **{title}**: {lesson.get('content')}")
-
-    # 2. Vai trò & Ý nghĩa
-    lines.append("\n🔬 **2. Vai trò & Ý nghĩa khoa học**")
-    if matched_entry and matched_entry.get("role"):
-        lines.append(f"- {matched_entry['role']}")
-    else:
-        summary = [s.strip() for s in lesson.get("summary", []) if len(s.strip()) > 15 and not re.match(r'^\d+\.', s.strip())]
-        if summary:
-            for sm in summary[:3]:
-                lines.append(f"- {sm}")
+        # 3. Ứng dụng thực tế & Ghi nhớ
+        lines.append("💡 **3. Ứng dụng thực tế & Ghi nhớ trọng tâm**")
+        summary_items = [s for s in lesson.get("summary", []) if len(s) > 15]
+        if summary_items:
+            for s in summary_items[:2]:
+                lines.append(f"- {s}")
         else:
-            lines.append(f"- Nắm vững bản chất hiện tượng giúp giải thích chính xác các quá trình tự nhiên và áp dụng hiệu quả vào đời sống.")
+            lines.append("- Nắm vững bản chất hiện tượng giúp giải thích chính xác các quá trình tự nhiên và liên hệ thực tế đời sống.")
+            
+        lines.append(f"\n📖 *Nguồn trích dẫn: {number}: {title} ({source_label}) · Trường THCS Huỳnh Bá Chánh*")
+        return "\n".join(lines)
 
-    # 3. Ứng dụng thực tiễn & Ví dụ
-    lines.append("\n💡 **3. Ứng dụng thực tế & Ví dụ minh họa**")
-    if matched_entry and matched_entry.get("example"):
-        lines.append(f"- {matched_entry['example']}")
-    else:
-        lines.append(f"- Kiến thức bài học được ứng dụng rộng rãi trong đời sống, y học, sản xuất nông nghiệp và các bài thực hành KHTN tại Trường THCS Huỳnh Bá Chánh.")
+    return f"Chào em! Thầy/cô ghi nhận câu hỏi: **{question}**.\nNội dung này thuộc chương trình SGK KHTN {grade} ({number}: {title}). Em hãy tham khảo chi tiết trong bài học nhé!\n\n📖 *Nguồn trích dẫn: {number}: {title} ({source_label}) · Trường THCS Huỳnh Bá Chánh*"
 
-    # 4. Trích dẫn SGK
-    lines.append(f"\n📖 *Nguồn trích dẫn: {number}: {title} ({source_label}) · Trường THCS Huỳnh Bá Chánh*")
-    return "\n".join(lines)
 
 
 def call_gemini_rest(prompt, api_key):
-    models = ["gemini-3.5-flash", "gemma-4-26b-a4b-it", "gemini-3.5-flash-lite"]
+    models = ["gemini-3.5-flash", "gemini-3.8-flash", "gemini-3.7-flash", "gemini-2.5-flash", "gemini-1.5-flash", "gemini-3.5-flash-lite"]
     for m in models:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={api_key}"
         payload = json.dumps({
@@ -1373,7 +1673,7 @@ def call_gemini_vision_rest(prompt, image_bytes, mime_type="image/jpeg", api_key
     import base64
     encoded_img = base64.b64encode(image_bytes).decode("ascii")
     mime = mime_type or "image/jpeg"
-    models = ["gemini-3.5-flash", "gemma-4-26b-a4b-it", "gemini-3.5-flash-lite"]
+    models = ["gemini-3.5-flash", "gemini-3.8-flash", "gemini-3.7-flash", "gemini-2.5-flash", "gemini-1.5-flash", "gemini-3.5-flash-lite"]
     for m in models:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={api_key}"
         payload = json.dumps({
