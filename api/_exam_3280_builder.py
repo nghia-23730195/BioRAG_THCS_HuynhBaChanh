@@ -11,6 +11,8 @@ containing all 4 mandatory components:
 from __future__ import annotations
 
 import io
+import json
+from pathlib import Path
 import re
 from typing import Any, Dict, List, Optional
 
@@ -801,7 +803,7 @@ def lesson_to_exam_data(
 ) -> Dict[str, Any]:
     """Convert any lesson structure into a complete Dispatch 3280 exam package dictionary."""
     grade = lesson.get("grade") or 6
-    raw_title = str(lesson.get("title") or "Kiểm tra KHTN").strip()
+    raw_title = str(lesson.get("title") or lesson.get("topic") or "Kiểm tra KHTN").strip()
     topic = str(lesson.get("topic") or raw_title).strip()
     objectives = lesson.get("objectives") or []
     if isinstance(objectives, str):
@@ -809,6 +811,39 @@ def lesson_to_exam_data(
     sections = lesson.get("sections") or []
     quick_checks = lesson.get("quick_check") or []
     content_str = str(lesson.get("content") or "")
+
+    # 0. Auto-lookup lesson if caller only passed title/topic without sections or quick_checks
+    existing_mcqs = lesson.get("multiple_choice") or []
+    if not sections and not quick_checks and not existing_mcqs:
+        try:
+            cand_paths = [
+                Path(__file__).resolve().parent / "data" / "learning_lessons.json",
+                Path(__file__).resolve().parent.parent / "api" / "data" / "learning_lessons.json",
+                Path(__file__).resolve().parent.parent / "src" / "app" / "data" / "learning_lessons.json",
+            ]
+            for cp in cand_paths:
+                if cp.exists():
+                    with open(cp, "r", encoding="utf-8-sig") as f:
+                        cat = json.load(f).get("lessons", [])
+                    t_clean = (str(lesson.get("title") or "") + " " + str(lesson.get("topic") or "") + " " + raw_title).lower().strip()
+                    for item in cat:
+                        if int(item.get("grade") or 0) == int(grade):
+                            i_title = str(item.get("title") or "").lower()
+                            i_topic = str(item.get("topic") or "").lower()
+                            i_num = str(item.get("number") or "").lower()
+                            if t_clean in i_title or i_title in t_clean or t_clean in i_topic or (i_num and i_num in t_clean):
+                                lesson = item
+                                raw_title = str(lesson.get("title") or raw_title).strip()
+                                topic = str(lesson.get("topic") or raw_title).strip()
+                                objectives = lesson.get("objectives") or objectives
+                                sections = lesson.get("sections") or sections
+                                quick_checks = lesson.get("quick_check") or quick_checks
+                                content_str = str(lesson.get("content") or content_str)
+                                break
+                    if sections or quick_checks:
+                        break
+        except Exception:
+            pass
 
     existing_mcqs = lesson.get("multiple_choice") or []
     target_count = target_mcq_count if target_mcq_count > 0 else (int(lesson.get("count", 0)) or (len(existing_mcqs) if existing_mcqs else 8))
@@ -871,114 +906,164 @@ def lesson_to_exam_data(
 
     # Expand if needed to reach target_count
     if len(mcqs) < target_count:
-        knowledge_facts = []
-        for obj in objectives:
-            if len(obj) > 10:
-                knowledge_facts.append(obj)
+        # Collect authentic knowledge sources from lesson
+        terms_pool = []
+        for item in (lesson.get("terms") or []):
+            t_term = str(item.get("term") or "").strip()
+            t_def = str(item.get("definition") or "").strip()
+            if t_term and t_def and len(t_def) >= 15 and not any(j in t_def for j in ["QQQ", "191/229"]):
+                terms_pool.append((t_term, t_def))
+
+        summary_pool = []
+        for s_point in (lesson.get("summary") or []):
+            sp = str(s_point).strip()
+            if len(sp) >= 20 and not any(j in sp for j in ["QQQ", "191/229"]):
+                summary_pool.append(sp)
+
+        section_facts = []
         for sec in sections:
-            sec_title = sec.get("title", "")
+            s_title = str(sec.get("title") or "").strip()
             for b in sec.get("bullets") or []:
-                if len(b) > 8:
-                    knowledge_facts.append(f"{sec_title}: {b}" if sec_title else b)
+                clean_b = str(b).strip()
+                if len(clean_b) >= 15 and not any(j in clean_b for j in ["QQQ", "191/229"]):
+                    section_facts.append((s_title, clean_b))
             for p in sec.get("paragraphs") or []:
-                for sent in re.split(r"[\.\;\n]", p):
+                for sent in re.split(r"[\.\;\n]", str(p)):
                     s = sent.strip()
-                    if 20 <= len(s) <= 150:
-                        knowledge_facts.append(s)
-        if content_str:
-            for sent in re.split(r"[\.\;\n]", content_str):
-                s = sent.strip()
-                if 15 <= len(s) <= 150:
-                    knowledge_facts.append(s)
+                    if 25 <= len(s) <= 160 and not s.startswith("Hình") and not s.startswith("Bảng"):
+                        section_facts.append((s_title, s))
 
-        is_random_composite = any(kw in str(topic).lower() for kw in [
-            "ngẫu nhiên", "ngau nhien", "tổng hợp", "tong hop", "toàn bộ", "toan bo",
-            "học kỳ", "hoc ky", "thi thử", "thi thu", "ôn tập cuối kỳ", "on tap cuoi ky", "random"
-        ])
-
-        if is_random_composite or len(knowledge_facts) < 15:
-            try:
-                from src.rag.book_rag import find_relevant_chunks, load_all_chunks
-                chunks = load_all_chunks()
-                g_chunks = [c for c in chunks if f"KHTN {grade}" in str(c.get("source", "")) or f"KHTN{grade}" in str(c.get("source", ""))]
-                if is_random_composite:
-                    g_sorted = sorted(g_chunks, key=lambda c: int(c.get("page") or 0))
-                    step = max(1, len(g_sorted) // 16)
-                    rel = [g_sorted[i] for i in range(0, len(g_sorted), step)][:16]
-                else:
-                    rel = find_relevant_chunks(topic, g_chunks or chunks, 10)
-                for c in rel:
-                    for sent in re.split(r"[\.\;\n]", c.get("text", "")):
-                        s = sent.strip()
-                        if 20 <= len(s) <= 160 and not s.startswith("Hình") and not s.startswith("Bảng"):
-                            knowledge_facts.append(s)
-            except Exception:
-                pass
-
-        templates = [
-            ("NB", "Khẳng định nào sau đây là ĐÚNG khi nói về {subject}?",
-             "Luôn có đặc tính ngược lại với thực tế tự nhiên",
-             "Không tham gia vào quá trình trao đổi chất hay hoạt động sống",
-             "Có cấu trúc hoàn toàn ngẫu nhiên và không có chức năng xác định"),
-            ("NB", "Theo chương trình Khoa học tự nhiên {grade}, {subject} có đặc điểm nào sau đây?",
-             "Chỉ tồn tại ở dạng nhân tạo do con người tổng hợp",
-             "Không chịu tác động của bất kỳ yếu tố môi trường nào",
-             "Biến mất hoàn toàn khi điều kiện nhiệt độ thay đổi nhẹ"),
-            ("TH", "Nội dung nào sau đây phản ánh CHÍNH XÁC bản chất của {subject}?",
-             "Chỉ đóng vai trò thứ yếu và có thể loại bỏ mà không ảnh hưởng",
-             "Diễn ra độc lập hoàn toàn mà không cần vật chất hay năng lượng",
-             "Luôn tạo ra sản phẩm độc hại cho các sinh vật xung quanh"),
-            ("TH", "Khi giải thích về cơ chế hoạt động của {subject}, nhận định nào sau đây là đúng?",
-             "Xảy ra theo quy luật tự phát không tuân theo các nguyên lý khoa học",
-             "Không có sự biến đổi giữa các dạng vật chất và năng lượng",
-             "Mọi đối tượng sinh học đều có cùng một tốc độ phản ứng như nhau"),
-            ("VD", "Ứng dụng thực tiễn nào sau đây phù hợp với kiến thức về {subject}?",
-             "Lạm dụng hóa chất cực mạnh để thay đổi hoàn toàn tự nhiên",
-             "Bỏ qua các nguyên tắc an toàn khi quan sát và thực hành",
-             "Ngăn chặn mọi sự tiếp xúc của sinh vật với môi trường sống"),
-            ("VD", "Biện pháp nào sau đây giúp vận dụng hiệu quả hiểu biết về {subject} vào đời sống?",
-             "Hạn chế tối đa việc cung cấp chất dinh dưỡng và nước",
-             "Sử dụng năng lượng lãng phí không có kế hoạch kiểm soát",
-             "Loại bỏ hoàn toàn các loài thực vật và vi sinh vật có ích"),
-            ("VDC", "Để giải quyết vấn đề thực tiễn liên quan đến {subject}, học sinh nên đề xuất giải pháp nào?",
-             "Phá vỡ cân bằng sinh thái để tăng năng suất ngắn hạn",
-             "Chỉ can thiệp khi hiện tượng suy thoái đã ở mức nghiêm trọng nhất",
-             "Dừng toàn bộ các hoạt động bảo vệ môi trường xung quanh"),
-            ("VDC", "Trong một dự án tìm hiểu về {subject}, việc làm nào sau đây thể hiện thái độ khoa học đúng đắn?",
-             "Tự ý thay đổi số liệu thực nghiệm để có kết quả như mong muốn",
-             "Bỏ qua các bước kiểm chứng và kết luận vội vàng",
-             "Không tuân thủ hướng dẫn an toàn trong phòng thí nghiệm")
+        # Distractor banks tailored for biological and physical natural sciences
+        smart_distractors_pool = [
+            "Chỉ diễn ra ở các sinh vật nhân sơ trong điều kiện nhân tạo.",
+            "Diễn ra độc lập mà không cần năng lượng ATP và vật chất của tế bào.",
+            "Không chịu sự kiểm soát của hệ thống enzym và cơ chế điều hòa sinh học.",
+            "Làm phá vỡ hoàn toàn cấu trúc tế bào và tiêu biến vật chất di truyền.",
+            "Chỉ xuất hiện ngẫu nhiên và không mang ý nghĩa sinh học trong tự nhiên.",
+            "Không tham gia vào quá trình truyền đạt và biểu hiện thông tin di truyền.",
+            "Có xu hướng đảo ngược quy luật tiến hóa và triệt tiêu tính đa dạng sinh học.",
+            "Chỉ xảy ra khi có sự can thiệp trực tiếp từ các hóa chất nhân tạo cực mạnh."
         ]
 
+        used_questions = set(q.get("question", "") for q in mcqs)
+        used_answers = set(str(q.get("explanation", "")) for q in mcqs)
         curr_id = len(mcqs) + 1
-        fact_idx = 0
-        while curr_id <= target_count:
-            t_idx = (curr_id - 1) % len(templates)
-            level, q_pattern, d1, d2, d3 = templates[t_idx]
 
-            if knowledge_facts:
-                fact = knowledge_facts[fact_idx % len(knowledge_facts)]
-                fact_idx += 1
-                clean_fact = fact[:110].strip()
-            else:
-                clean_fact = f"{topic} đóng vai trò quan trọng trong tự nhiên và đời sống con người"
+        # 1. First generate from authentic terms if available
+        for t_term, t_def in terms_pool:
+            if curr_id > target_count:
+                break
+            q_text = f"Theo chương trình Khoa học tự nhiên {grade}, thuật ngữ '{t_term}' có nội dung nào sau đây?"
+            if q_text in used_questions:
+                continue
+            used_questions.add(q_text)
 
-            subject = topic if len(topic) <= 40 else topic[:40]
-            q_text = q_pattern.format(subject=subject, grade=grade)
+            correct_ans = t_def[:120].rstrip(". ")
+            distractors = []
+            # Use other term definitions as high-quality distractors
+            other_defs = [d for t, d in terms_pool if t != t_term and d != t_def]
+            for od in other_defs[:3]:
+                distractors.append(od[:120].rstrip(". "))
+            while len(distractors) < 3:
+                cand = smart_distractors_pool[len(distractors) % len(smart_distractors_pool)]
+                if cand not in distractors:
+                    distractors.append(cand)
 
             correct_pos = (curr_id - 1) % 4
-            opts = [d1, d2, d3]
-            opts.insert(correct_pos, clean_fact)
-
+            opts = list(distractors[:3])
+            opts.insert(correct_pos, correct_ans)
             formatted_opts = [f"{labels[i]}. {opts[i]}" for i in range(4)]
+
             mcqs.append({
                 "id": curr_id,
-                "level": level,
+                "level": "NB",
                 "question": q_text,
                 "options": formatted_opts,
                 "answer_key": labels[correct_pos],
                 "score": q_score,
-                "explanation": f"Theo SGK Khoa học tự nhiên {grade}: {clean_fact}."
+                "explanation": f"Theo SGK KHTN {grade}: {t_term} là {t_def}."
+            })
+            curr_id += 1
+
+        # 2. Next generate from authentic summary facts
+        for s_fact in summary_pool:
+            if curr_id > target_count:
+                break
+            q_text = f"Nội dung nào sau đây là ĐÚNG khi nói về {topic} (KHTN {grade})?"
+            if q_text in used_questions:
+                q_text = f"Nhận định nào sau đây phản ánh CHÍNH XÁC kiến thức về {topic}?"
+            if q_text in used_questions:
+                q_text = f"Theo SGK Khoa học tự nhiên {grade}, khẳng định nào sau đây là ĐÚNG về {topic}?"
+            if q_text in used_questions:
+                continue
+            used_questions.add(q_text)
+
+            correct_ans = s_fact[:130].rstrip(". ")
+            distractors = []
+            # Use other summary facts or smart distractors
+            other_facts = [f for f in summary_pool if f != s_fact]
+            for of in other_facts:
+                if len(distractors) < 2:
+                    distractors.append(f"Không phản ánh đúng: {of[:110].rstrip('. ')}")
+            while len(distractors) < 3:
+                cand = smart_distractors_pool[(curr_id + len(distractors)) % len(smart_distractors_pool)]
+                if cand not in distractors:
+                    distractors.append(cand)
+
+            correct_pos = (curr_id - 1) % 4
+            opts = list(distractors[:3])
+            opts.insert(correct_pos, correct_ans)
+            formatted_opts = [f"{labels[i]}. {opts[i]}" for i in range(4)]
+
+            mcqs.append({
+                "id": curr_id,
+                "level": "TH",
+                "question": q_text,
+                "options": formatted_opts,
+                "answer_key": labels[correct_pos],
+                "score": q_score,
+                "explanation": f"Theo SGK KHTN {grade}: {s_fact}."
+            })
+            curr_id += 1
+
+        # 3. Next generate from section facts
+        sec_idx = 0
+        while curr_id <= target_count and sec_idx < len(section_facts):
+            s_title, fact_str = section_facts[sec_idx]
+            sec_idx += 1
+            if len(fact_str) < 20:
+                continue
+            
+            clean_title = s_title if s_title and len(s_title) <= 50 else topic
+            q_text = f"Đặc điểm nào sau đây là ĐÚNG khi tìm hiểu về '{clean_title}'?"
+            if q_text in used_questions:
+                q_text = f"Khi học về '{clean_title}', kết luận nào sau đây là chính xác?"
+            if q_text in used_questions:
+                q_text = f"Vai trò hoặc ý nghĩa nào sau đây phù hợp với '{clean_title}'?"
+            if q_text in used_questions:
+                continue
+            used_questions.add(q_text)
+
+            correct_ans = fact_str[:130].rstrip(". ")
+            distractors = []
+            while len(distractors) < 3:
+                cand = smart_distractors_pool[(curr_id + len(distractors) * 2) % len(smart_distractors_pool)]
+                if cand not in distractors:
+                    distractors.append(cand)
+
+            correct_pos = (curr_id - 1) % 4
+            opts = list(distractors[:3])
+            opts.insert(correct_pos, correct_ans)
+            formatted_opts = [f"{labels[i]}. {opts[i]}" for i in range(4)]
+
+            mcqs.append({
+                "id": curr_id,
+                "level": "VD" if curr_id > target_count * 0.7 else "TH",
+                "question": q_text,
+                "options": formatted_opts,
+                "answer_key": labels[correct_pos],
+                "score": q_score,
+                "explanation": f"Theo SGK KHTN {grade} ({clean_title}): {fact_str}."
             })
             curr_id += 1
 

@@ -1210,16 +1210,91 @@ def api_quiz_generate():
 
     data = request.get_json(silent=True) or {}
     grade = int(data.get("grade", 7) or 7)
-    topic = data.get("topic", "Khoa học Tự nhiên")
+    topic = str(data.get("topic", "Khoa học Tự nhiên") or "").strip()
     count = int(data.get("count", 5) or 5)
+    lesson_id = data.get("lesson_id")
+    api_key = str(data.get("api_key") or os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY") or "").strip()
 
+    # 1. Resolve exact lesson from catalog
+    target_lesson = None
+    if lesson_id:
+        target_lesson = get_lesson_by_id(lesson_id)
+    if not target_lesson and topic:
+        t_clean = topic.lower().strip()
+        for l in get_all_lessons(grade=grade):
+            l_title = str(l.get("title") or "").lower()
+            l_topic = str(l.get("topic") or "").lower()
+            l_num = str(l.get("number") or "").lower()
+            if t_clean in l_title or l_title in t_clean or t_clean in l_topic or (l_num and l_num in t_clean):
+                target_lesson = l
+                break
+
+    # 2. Try Gemini AI generation if API key is present
+    if api_key and callable(call_gemini_rest) and target_lesson:
+        try:
+            lesson_txt = f"Bài: {target_lesson.get('number', '')} {target_lesson.get('title', '')}\nChủ đề: {target_lesson.get('topic', '')}\n"
+            if target_lesson.get("summary"):
+                lesson_txt += "Tóm tắt: " + " ".join(target_lesson["summary"][:5]) + "\n"
+            if target_lesson.get("terms"):
+                lesson_txt += "Thuật ngữ: " + "; ".join(f"{t.get('term')}: {t.get('definition')}" for t in target_lesson["terms"][:6]) + "\n"
+            
+            prompt = f"""Bạn là giáo viên khảo thí môn Khoa học tự nhiên THCS (Trường THCS Huỳnh Bá Chánh).
+Hãy biên soạn đúng {count} câu hỏi trắc nghiệm khách quan 4 lựa chọn (A, B, C, D) cho học sinh Lớp {grade} về bài học: '{target_lesson.get('title', topic)}'.
+Dựa trên kiến thức chuẩn SGK Kết nối tri thức:
+{lesson_txt}
+
+Yêu cầu nghiêm ngặt:
+1. Mỗi câu hỏi hỏi về một nội dung khoa học cụ thể khác biệt, tuyệt đối không lặp lại nhau.
+2. Các phương án nhiễu phải hợp lý về mặt khoa học, không dùng mẫu câu ngô nghê hay trùng lặp.
+3. Đáp án đúng phân bố đều các vị trí (A, B, C, D).
+4. Chỉ trả về một JSON array hợp lệ (không kèm markdown ngoài JSON):
+[
+  {{
+    "question": "Câu hỏi...",
+    "options": ["Phương án A", "Phương án B", "Phương án C", "Phương án D"],
+    "answer_index": 0,
+    "explanation": "Giải thích ngắn gọn...",
+    "difficulty": "Nhận biết"
+  }}
+]
+"""
+            raw_ai, _ = call_gemini_rest(prompt, api_key)
+            m = re.search(r'\[\s*\{.*\}\s*\]', raw_ai, re.DOTALL)
+            if m:
+                ai_qs = json.loads(m.group(0))
+                if isinstance(ai_qs, list) and len(ai_qs) >= min(count, 3):
+                    q_list = []
+                    labels = ["A", "B", "C", "D"]
+                    for idx, q_item in enumerate(ai_qs[:count], start=1):
+                        a_idx = int(q_item.get("answer_index", 0))
+                        clean_opts = [re.sub(r'^[A-D][\.\:\)]\s*', '', str(o)) for o in q_item.get("options", [])[:4]]
+                        q_list.append({
+                            "id": idx,
+                            "question": q_item.get("question"),
+                            "options": clean_opts,
+                            "answer_index": a_idx,
+                            "answer_key": labels[a_idx] if 0 <= a_idx < 4 else "A",
+                            "difficulty": q_item.get("difficulty") or "Nhận biết",
+                            "explanation": q_item.get("explanation") or f"Theo SGK KHTN {grade}.",
+                            "source": f"KHTN {grade} KNTT",
+                            "page": 1
+                        })
+                    return jsonify({
+                        "questions": q_list,
+                        "meta": {"topic": target_lesson.get("title", topic), "grade": grade, "exam_code": "101", "generated_by": "Gemini AI"}
+                    })
+        except Exception as e:
+            print(f"Gemini quiz gen error: {e}")
+
+    # 3. Deterministic high-quality generation via lesson_to_exam_data
     if lesson_to_exam_data:
-        exam_synth = lesson_to_exam_data({
+        lesson_payload = target_lesson if target_lesson else {
             "grade": grade,
             "topic": topic,
             "title": topic,
             "school_name": "TRƯỜNG THCS HUỲNH BÁ CHÁNH"
-        }, target_mcq_count=count)
+        }
+        exam_synth = lesson_to_exam_data(lesson_payload, target_mcq_count=count)
         mcqs = exam_synth.get("multiple_choice", [])[:count]
         if mcqs:
             q_list = []
@@ -1229,17 +1304,17 @@ def api_quiz_generate():
                 q_list.append({
                     "id": item.get("id"),
                     "question": item.get("question"),
-                    "options": [re.sub(r'^[A-D][\.\:\)]\s*', '', o) for o in item.get("options", [])],
+                    "options": [re.sub(r'^[A-D][\.\:\)]\s*', '', str(o)) for o in item.get("options", [])],
                     "answer_index": ans_idx,
                     "answer_key": ans_key,
                     "difficulty": "Vận dụng" if item.get("level")=="VD" else ("Thông hiểu" if item.get("level")=="TH" else "Nhận biết"),
                     "explanation": item.get("explanation", "Dựa trên kiến thức trọng tâm SGK KHTN."),
                     "source": item.get("source", f"KHTN {grade} KNTT"),
-                    "page": item.get("page", 1)
+                    "page": 1
                 })
             return jsonify({
                 "questions": q_list,
-                "meta": {"topic": topic, "grade": grade, "exam_code": "101"}
+                "meta": {"topic": (target_lesson.get("title") if target_lesson else topic), "grade": grade, "exam_code": "101"}
             })
 
     # Fallback to curated exam questions matching grade

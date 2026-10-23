@@ -5,7 +5,7 @@ from __future__ import annotations
 from copy import deepcopy
 
 
-COMPLETE_LESSON_VERSION = 3
+COMPLETE_LESSON_VERSION = 4
 
 
 COMPLETE_LESSONS = [
@@ -539,6 +539,230 @@ COMPLETE_LESSONS = [
                         "explanation": "Tâm thất trái phải tạo áp lực tống máu đi khắp vòng tuần hoàn lớn nuôi toàn bộ cơ thể nên có thành cơ dày nhất."
                 }
         ]
+},
+{
+    "id": "k9-bai-43-nguyen-phan-va-giam-phan",
+    "grade": 9,
+    "number": "Bài 43",
+    "title": "Nguyên phân và giảm phân",
+    "topic": "Cơ chế, diễn biến các kì, ý nghĩa và ứng dụng của nguyên phân và giảm phân trong di truyền học",
+    "duration": "90 phút (2 tiết)",
+    "order": 430,
+    "active": True,
+    "origin": "system",
+    "lesson_version": 4,
+    "objectives": [
+        "Nêu được khái niệm nguyên phân và giảm phân; trình bày được diễn biến cơ bản của các kì trong nguyên phân và giảm phân.",
+        "Phân biệt được nguyên phân và giảm phân về loại tế bào, số lần phân chia, số lượng và bộ NST trong các tế bào con.",
+        "Nêu được ý nghĩa của nguyên phân, giảm phân và mối quan hệ giữa nguyên phân, giảm phân, thụ tinh trong việc duy trì bộ NST đặc trưng của loài.",
+        "Giải thích được nguyên phân là cơ sở của sinh sản vô tính và giảm phân tạo giao tử cho sinh sản hữu tính.",
+        "Nêu được một số ứng dụng của nguyên phân và giảm phân trong thực tiễn chọn giống và nhân giống vô tính."
+    ],
+    "warmup": {
+        "title": "Khởi động: Kì diệu của sự phân chia tế bào",
+        "question": "Từ một hợp tử ban đầu vô cùng nhỏ bé, làm thế nào có thể phát triển thành một cơ thể đa bào hoàn chỉnh gồm hàng tỉ tế bào? Quá trình nào đã tạo ra các giao tử (tinh trùng, trứng) để duy trì nòi giống qua các thế hệ?",
+        "context": "Mọi sinh vật đa bào đều bắt đầu từ một tế bào đơn lẻ (hợp tử). Nhờ quá trình nguyên phân liên tiếp kết hợp với sự biệt hóa tế bào mà cơ thể lớn lên. Đồng thời, quá trình giảm phân tạo ra các giao tử đơn bội để chuẩn bị cho sự thụ tinh.",
+        "hint": "Nguyên phân tạo ra các tế bào sinh dưỡng giống hệt tế bào mẹ giúp cơ thể lớn lên; giảm phân tạo ra các giao tử mang bộ NST giảm một nửa giúp duy trì bộ NST qua các thế hệ sinh sản hữu tính."
+    },
+    "sections": [
+        {
+            "title": "1. Khái niệm và diễn biến của quá trình nguyên phân",
+            "paragraphs": [
+                "Nguyên phân (mitosis) là hình thức phân chia của tế bào sinh dưỡng và tế bào sinh dục sơ khai. Trước khi bước vào phân bào, ở kì trung gian, các nhiễm sắc thể (NST) nhân đôi tạo thành NST kép gồm hai nhiễm sắc tử chị em (chromatid) đính với nhau ở tâm động.",
+                "Quá trình phân chia nhân diễn ra qua 4 kì liên tiếp: Kì đầu (các NST kép bắt đầu co xoắn, màng nhân và nhân con tiêu biến, thoi phân bào xuất hiện); Kì giữa (các NST kép co xoắn cực đại và tập trung thành một hàng trên mặt phẳng xích đạo của thoi phân bào); Kì sau (hai chromatid của từng NST kép tách nhau ở tâm động thành 2 NST đơn và phân li đồng đều về hai cực tế bào nhờ sự co rút của sợi tơ phân bào); Kì cuối (các NST đơn dãn xoắn, màng nhân và nhân con xuất hiện lại, phân chia tế bào chất hoàn tất).",
+                "Kết quả: Từ một tế bào mẹ (2n) qua một lần nguyên phân tạo ra hai tế bào con có bộ NST giống nhau và giống hệt tế bào mẹ (2n)."
+            ],
+            "bullets": [
+                "Nơi xảy ra: Tế bào sinh dưỡng và tế bào sinh dục sơ khai.",
+                "Nhân đôi NST: 1 lần ở kì trung gian.",
+                "Số lần phân bào: 1 lần (qua 4 kì: đầu, giữa, sau, cuối).",
+                "Đặc điểm kì giữa: NST co xoắn cực đại, xếp thành 1 hàng ở mặt phẳng xích đạo.",
+                "Đặc điểm kì sau: Các chromatid tách nhau ở tâm động thành NST đơn di chuyển về 2 cực.",
+                "Kết quả: 1 tế bào mẹ (2n) -> 2 tế bào con (2n)."
+            ],
+            "example": "Khi hạt ngô nảy mầm, các tế bào phôi nguyên phân liên tục làm rễ và chồi vươn dài; các tế bào da người liên tục nguyên phân thay thế lớp biểu bì bong tróc.",
+            "note": "Ở kì giữa, NST co xoắn cực đại có hình thái và kích thước rõ rệt nhất, là thời điểm thuận lợi nhất để quan sát và đếm số lượng NST dưới kính hiển vi."
+        },
+        {
+            "title": "2. Ý nghĩa của quá trình nguyên phân",
+            "paragraphs": [
+                "Đối với cơ thể đa bào: Nguyên phân làm tăng số lượng tế bào, giúp cơ thể sinh trưởng và phát triển từ hợp tử thành cơ thể trưởng thành. Đồng thời giúp tái tạo các mô, cơ quan bị tổn thương (như liền sẹo vết thương, mọc lại đuôi thằn lằn) và thay thế các tế bào già chết đi.",
+                "Đối với sinh vật sinh sản vô tính: Nguyên phân là phương thức sinh sản tạo ra các cá thể con có kiểu gen hoàn toàn giống với cá thể mẹ.",
+                "Trong thực tiễn nông nghiệp: Nguyên phân là cơ sở khoa học của các phương pháp nhân giống sinh dưỡng như giâm cành, chiết cành, ghép cành và phương pháp nuôi cấy mô tế bào in vitro để nhân nhanh các giống cây trồng quý hiếm, sạch bệnh."
+            ],
+            "bullets": [
+                "Giúp cơ thể lớn lên và tái sinh các phần mô bị tổn thương.",
+                "Đảm bảo sự truyền đạt ổn định bộ NST của loài qua các thế hệ tế bào trong cơ thể.",
+                "Là cơ sở của sinh sản vô tính ở sinh vật nhân thực.",
+                "Ứng dụng nhân giống sinh dưỡng: giâm, chiết, ghép cành và nuôi cấy mô."
+            ],
+            "example": "Từ một mẩu mô lá hoặc đỉnh sinh trưởng của cây lan gấm, qua kĩ thuật nuôi cấy mô tế bào (dựa trên nguyên phân), có thể tạo ra hàng triệu cây lan con giống hệt cây mẹ.",
+            "note": "Cần phân biệt: Nguyên phân diễn ra ở sinh vật nhân thực (có thoi phân bào), còn vi khuẩn (nhân sơ) phân chia bằng hình thức trực phân."
+        },
+        {
+            "title": "3. Khái niệm và diễn biến của quá trình giảm phân",
+            "paragraphs": [
+                "Giảm phân (meiosis) là hình thức phân chia tế bào đặc biệt diễn ra ở các tế bào sinh dục chín trong thời kì phát sinh giao tử. Khác với nguyên phân, giảm phân gồm một lần nhân đôi NST nhưng trải qua hai lần phân chia liên tiếp (Giảm phân I và Giảm phân II).",
+                "Giảm phân I (Phân bào giảm nhiễm): Ở kì đầu I diễn ra sự tiếp hợp và có thể trao đổi đoạn (trao đổi chéo) giữa hai chromatid khác nguồn trong cặp NST tương đồng, tạo ra biến dị tổ hợp. Ở kì giữa I, các cặp NST kép tương đồng xếp thành hai hàng trên mặt phẳng xích đạo. Ở kì sau I, mỗi NST kép trong cặp tương đồng phân li độc lập về một cực tế bào. Kết thúc kì cuối I, tạo 2 tế bào con mang bộ NST kép giảm đi một nửa (n kép).",
+                "Giảm phân II (Phân bào nguyên nhiễm): Diễn ra tương tự nguyên phân nhưng không có nhân đôi NST trước đó. Ở kì sau II, hai chromatid của mỗi NST kép tách nhau ở tâm động thành 2 NST đơn phân li về hai cực. Kết thúc kì cuối II, tạo ra các tế bào con mang bộ NST đơn bội (n).",
+                "Kết quả: Từ một tế bào mẹ (2n) qua giảm phân tạo ra bốn tế bào con có bộ NST giảm đi một nửa (n), sau đó phát triển thành các giao tử (tinh trùng ở cá thể đực hoặc trứng ở cá thể cái)."
+            ],
+            "bullets": [
+                "Nơi xảy ra: Tế bào sinh dục chín.",
+                "Gồm 2 lần phân chia liên tiếp nhưng NST chỉ nhân đôi 1 lần ở kì trung gian trước GP I.",
+                "Kì đầu I: Tiếp hợp và có thể xảy ra trao đổi chéo giữa các NST tương đồng.",
+                "Kì giữa I: Các cặp NST kép xếp thành 2 hàng trên mặt phẳng xích đạo.",
+                "Kì sau I: Các NST kép trong cặp tương đồng phân li độc lập về 2 cực.",
+                "Kết quả: 1 tế bào mẹ (2n) -> 4 tế bào con có bộ NST đơn bội (n)."
+            ],
+            "example": "Ở người, tế bào sinh dục chín có 2n = 46 NST, qua giảm phân tạo ra tinh trùng hoặc tế bào trứng chỉ mang n = 23 NST.",
+            "note": "Hiện tượng tiếp hợp trao đổi chéo ở kì đầu I và phân li độc lập ở kì sau I là hai cơ chế then chốt tạo nên sự đa dạng phong phú của các giao tử và biến dị tổ hợp."
+        },
+        {
+            "title": "4. So sánh nguyên phân và giảm phân",
+            "paragraphs": [
+                "Nguyên phân và giảm phân đều là các hình thức phân bào có tơ ở sinh vật nhân thực, đều có sự nhân đôi NST một lần ở kì trung gian và đều trải qua các kì phân chia nhân: kì đầu, kì giữa, kì sau, kì cuối.",
+                "Tuy nhiên, hai quá trình có các điểm khác biệt bản chất: Nguyên phân chỉ có 1 lần phân chia, diễn ra ở tế bào sinh dưỡng/sinh dục sơ khai, giữ nguyên bộ NST (2n -> 2n), tạo 2 tế bào con giống hệt mẹ. Giảm phân có 2 lần phân chia liên tiếp, diễn ra ở tế bào sinh dục chín, giảm bộ NST đi một nửa (2n -> n), tạo 4 tế bào con mang vật chất di truyền biến dị phong phú."
+            ],
+            "bullets": [
+                "Giống nhau: Đều nhân đôi NST 1 lần; đều có thoi phân bào và trải qua 4 kì phân chia.",
+                "Số lần phân bào: Nguyên phân 1 lần; Giảm phân 2 lần liên tiếp.",
+                "Xếp hàng ở kì giữa: Nguyên phân xếp 1 hàng; Giảm phân I xếp 2 hàng.",
+                "Phân li ở kì sau: Kì sau nguyên phân tách chromatid; Kì sau I giảm phân phân li NST kép tương đồng.",
+                "Kết quả số lượng tế bào: Nguyên phân tạo 2 tế bào con; Giảm phân tạo 4 tế bào con.",
+                "Bộ NST tế bào con: Nguyên phân giữ nguyên (2n); Giảm phân giảm một nửa (n)."
+            ],
+            "example": "Từ 1 tế bào ruồi giấm 2n = 8: qua nguyên phân tạo 2 tế bào con 2n = 8; qua giảm phân tạo 4 giao tử n = 4.",
+            "note": "Giảm phân II bản chất là một lần nguyên phân của tế bào có bộ NST đơn bội kép (n kép -> n đơn)."
+        },
+        {
+            "title": "5. Mối quan hệ giữa nguyên phân, giảm phân, thụ tinh và ứng dụng thực tiễn",
+            "paragraphs": [
+                "Trong tự nhiên, ở các loài sinh vật sinh sản hữu tính, sự kết hợp của ba quá trình nguyên phân, giảm phân và thụ tinh có vai trò đặc biệt quan trọng: Giảm phân tạo ra các giao tử đơn bội (n); Thụ tinh kết hợp giao tử đực (n) và cái (n) phục hồi bộ NST lưỡng bội (2n) ở hợp tử; Nguyên phân giúp hợp tử phát triển thành cơ thể mới. Nhờ đó bộ NST đặc trưng của loài được duy trì ổn định qua các thế hệ.",
+                "Đồng thời, giảm phân kết hợp với thụ tinh tạo ra vô số biến dị tổ hợp, cung cấp nguồn nguyên liệu phong phú cho chọn giống và tiến hóa.",
+                "Ứng dụng: Con người vận dụng nguyên phân trong giâm, chiết, ghép, nuôi cấy mô tế bào để nhân giống cây trồng nhanh chóng, giữ nguyên đặc tính tốt của cây mẹ; vận dụng giảm phân và thụ tinh trong lai hữu tính để tạo các giống cây trồng, vật nuôi có năng suất cao, phẩm chất tốt."
+            ],
+            "bullets": [
+                "Sự phối hợp 3 quá trình duy trì bộ NST 2n ổn định qua các thế hệ sinh vật.",
+                "Biến dị tổ hợp từ giảm phân và thụ tinh là nền tảng cho công tác lai tạo giống.",
+                "Ứng dụng nguyên phân: nhân giống vô tính (giâm, chiết, ghép, vi nhân giống invitro).",
+                "Ứng dụng giảm phân: lai giống hữu tính, chọn lọc các tổ hợp gen ưu tú."
+            ],
+            "example": "Nhờ nuôi cấy mô (nguyên phân), các vườn ươm có thể sản xuất đồng loạt hàng vạn cây giống chuối cấy mô sạch bệnh, sinh trưởng đồng đều.",
+            "note": "Bảo vệ môi trường và hạn chế tác nhân đột biến (hóa chất, phóng xạ) để tránh rối loạn quá trình phân bào nguyên phân và giảm phân."
+        }
+    ],
+    "diagram": {
+        "title": "Sơ đồ quá trình Nguyên phân và Giảm phân",
+        "nodes": [
+            "Tế bào mẹ (2n)",
+            "Kì trung gian (NST nhân đôi thành NST kép)",
+            "Nguyên phân (1 lần phân bào) -> 2 tế bào con (2n)",
+            "Giảm phân (2 lần phân bào) -> 4 giao tử (n)",
+            "Thụ tinh (n + n) -> Hợp tử (2n) duy trì ổn định bộ NST"
+        ]
+    },
+    "terms": [
+        {
+            "term": "Nguyên phân (Mitosis)",
+            "definition": "Hình thức phân chia tế bào sinh dưỡng và sinh dục sơ khai, qua 1 lần nhân đôi và 1 lần phân chia tạo ra 2 tế bào con có bộ NST (2n) giống nhau và giống hệt tế bào mẹ."
+        },
+        {
+            "term": "Giảm phân (Meiosis)",
+            "definition": "Hình thức phân chia tế bào sinh dục chín gồm 1 lần nhân đôi và 2 lần phân bào liên tiếp, tạo ra 4 tế bào con mang bộ NST đơn bội (n) giảm một nửa so với tế bào mẹ."
+        },
+        {
+            "term": "Kì giữa (Metaphase)",
+            "definition": "Kì mà các nhiễm sắc thể co xoắn cực đại có hình thái rõ nhất, xếp thành 1 hàng (nguyên phân) hoặc 2 hàng (giảm phân I) trên mặt phẳng xích đạo của thoi phân bào."
+        },
+        {
+            "term": "Kì sau (Anaphase)",
+            "definition": "Kì phân li: Trong nguyên phân các chromatid tách nhau ở tâm động thành NST đơn đi về 2 cực; trong giảm phân I các NST kép trong cặp tương đồng phân li độc lập về 2 cực."
+        },
+        {
+            "term": "Giao tử (Gamete)",
+            "definition": "Tế bào sinh dục mang bộ NST đơn bội (n) tạo ra từ giảm phân, gồm tinh trùng ở con đực và trứng ở con cái, có khả năng thụ tinh tạo hợp tử."
+        },
+        {
+            "term": "Biến dị tổ hợp",
+            "definition": "Sự xuất hiện các kiểu hình mới ở đời con do sự tái tổ hợp vật chất di truyền của bố mẹ thông qua trao đổi chéo ở giảm phân I và tổ hợp tự do khi thụ tinh."
+        }
+    ],
+    "summary": [
+        "Nguyên phân gồm 1 lần nhân đôi NST và 1 lần phân bào, từ 1 tế bào mẹ (2n) tạo ra 2 tế bào con có bộ NST (2n) giống hệt nhau và giống tế bào mẹ.",
+        "Nguyên phân giúp cơ thể lớn lên, thay thế tế bào tổn thương và là cơ sở của các phương pháp nhân giống vô tính (giâm, chiết, ghép, nuôi cấy mô).",
+        "Giảm phân diễn ra ở tế bào sinh dục chín, gồm 1 lần nhân đôi NST và 2 lần phân chia liên tiếp, từ 1 tế bào mẹ (2n) tạo ra 4 tế bào con mang bộ NST đơn bội (n).",
+        "Sự tiếp hợp trao đổi chéo ở kì đầu I và phân li độc lập ở kì sau I trong giảm phân tạo ra nguồn biến dị tổ hợp phong phú cho tiến hóa và chọn giống.",
+        "Sự phối hợp nguyên phân, giảm phân và thụ tinh giúp duy trì ổn định bộ NST lưỡng bội (2n) đặc trưng của loài sinh sản hữu tính qua các thế hệ."
+    ],
+    "quick_check": [
+        {
+            "question": "Kết quả của quá trình nguyên phân từ một tế bào mẹ (2n) qua một lần phân bào là tạo ra",
+            "options": [
+                "2 tế bào con có bộ NST lưỡng bội (2n) giống hệt tế bào mẹ",
+                "4 tế bào con có bộ NST đơn bội (n)",
+                "2 tế bào con có bộ NST đơn bội (n)",
+                "4 tế bào con có bộ NST lưỡng bội (2n)"
+            ],
+            "answer_index": 0,
+            "explanation": "Qua 1 lần nguyên phân, từ 1 tế bào mẹ (2n) tạo ra 2 tế bào con có bộ NST lưỡng bội (2n) giống nhau và giống hệt tế bào mẹ."
+        },
+        {
+            "question": "Ở kì nào của quá trình nguyên phân, các nhiễm sắc thể kép co xoắn cực đại và tập trung thành một hàng trên mặt phẳng xích đạo của thoi phân bào?",
+            "options": [
+                "Kì đầu",
+                "Kì giữa",
+                "Kì sau",
+                "Kì cuối"
+            ],
+            "answer_index": 1,
+            "explanation": "Ở kì giữa của nguyên phân, các NST kép co xoắn cực đại và xếp thành một hàng trên mặt phẳng xích đạo của thoi vô sắc."
+        },
+        {
+            "question": "Trong quá trình giảm phân, các nhiễm sắc thể nhân đôi bao nhiêu lần và tế bào trải qua bao nhiêu lần phân chia liên tiếp?",
+            "options": [
+                "Nhân đôi 1 lần và phân chia 1 lần",
+                "Nhân đôi 2 lần và phân chia 2 lần",
+                "Nhân đôi 1 lần và phân chia 2 lần liên tiếp",
+                "Nhân đôi 2 lần và phân chia 1 lần"
+            ],
+            "answer_index": 2,
+            "explanation": "Giảm phân gồm 1 lần nhân đôi NST (ở kì trung gian trước giảm phân I) và 2 lần phân chia liên tiếp (Giảm phân I và Giảm phân II)."
+        },
+        {
+            "question": "Ý nghĩa di truyền học của việc các nhiễm sắc tử chị em tách nhau ở tâm động và di chuyển về hai cực ở kì sau nguyên phân là gì?",
+            "options": [
+                "Giúp phân chia đồng đều vật chất di truyền cho hai tế bào con",
+                "Làm giảm bộ NST của tế bào con đi một nửa",
+                "Tạo ra các biến dị tổ hợp phong phú ở đời con",
+                "Nhân đôi lượng vật chất di truyền trong nhân tế bào"
+            ],
+            "answer_index": 0,
+            "explanation": "Việc tách nhau ở tâm động và di chuyển về 2 cực giúp 2 tế bào con nhận được bộ NST hoàn toàn giống nhau và giống hệt tế bào mẹ."
+        },
+        {
+            "question": "Một tế bào sinh dục chín của một loài sinh vật có bộ NST 2n = 8 tiến hành giảm phân. Kết thúc giảm phân, số tế bào con tạo thành và số lượng NST trong mỗi tế bào con lần lượt là:",
+            "options": [
+                "4 tế bào con, mỗi tế bào có 4 NST",
+                "2 tế bào con, mỗi tế bào có 8 NST",
+                "4 tế bào con, mỗi tế bào có 8 NST",
+                "2 tế bào con, mỗi tế bào có 4 NST"
+            ],
+            "answer_index": 0,
+            "explanation": "Kết thúc giảm phân, 1 tế bào mẹ (2n = 8) tạo ra 4 tế bào con mang bộ NST giảm một nửa (n = 2n / 2 = 4 NST)."
+        },
+        {
+            "question": "Hiện tượng con cái sinh ra có nhiều đặc điểm khác bố mẹ hoặc kết hợp đặc điểm của cả bố và mẹ là nhờ sự kết hợp của những quá trình nào sau đây?",
+            "options": [
+                "Chỉ nguyên phân",
+                "Giảm phân và thụ tinh",
+                "Nguyên phân và thụ tinh",
+                "Chỉ nhân đôi DNA"
+            ],
+            "answer_index": 1,
+            "explanation": "Quá trình giảm phân tạo ra nhiều loại giao tử khác nhau nhờ trao đổi chéo và phân li độc lập. Khi thụ tinh, các giao tử kết hợp ngẫu nhiên tạo ra các biến dị tổ hợp phong phú."
+        }
+    ]
 }
 ]
 

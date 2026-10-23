@@ -4012,8 +4012,11 @@
       try{
         const count=Number(quizCount.value)||10;
         const grade=Number(quizGrade.value)||7;
+        const activeL=selectedLearningLesson();
+        const lesson_id=(activeL&&activeL.id)||"";
+        const apiKey=getActiveApiKey();
         const response=await fetch(QUIZ_API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
-          grade,topic,count,difficulty:quizDifficulty.value})});
+          grade,topic,count,difficulty:quizDifficulty.value,lesson_id,api_key:apiKey})});
         const data=await response.json();if(!response.ok||data.error)throw new Error(data.error||("API trả về mã "+response.status));
         if(!Array.isArray(data.questions)||!data.questions.length)throw new Error("Đề trả về không có câu hỏi.");
         quizQuestions=data.questions;
