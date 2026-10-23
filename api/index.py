@@ -1229,7 +1229,32 @@ def api_quiz_generate():
                 target_lesson = l
                 break
 
-    # 2. Try Gemini AI generation if API key is present
+    # 2. Serve authentic curated quick_check questions directly if available
+    if target_lesson and target_lesson.get("quick_check"):
+        qc_available = target_lesson.get("quick_check") or []
+        if len(qc_available) >= count:
+            labels = ["A", "B", "C", "D"]
+            q_list = []
+            for idx, qc in enumerate(qc_available[:count], start=1):
+                a_idx = int(qc.get("answer_index", 0))
+                clean_opts = [re.sub(r'^[A-D][\.\:\)]\s*', '', str(o)) for o in qc.get("options", [])[:4]]
+                q_list.append({
+                    "id": idx,
+                    "question": qc.get("question"),
+                    "options": clean_opts,
+                    "answer_index": a_idx,
+                    "answer_key": labels[a_idx] if 0 <= a_idx < 4 else "A",
+                    "difficulty": "Vận dụng" if idx >= 4 else ("Thông hiểu" if idx >= 2 else "Nhận biết"),
+                    "explanation": qc.get("explanation") or f"Theo SGK KHTN {grade}.",
+                    "source": f"KHTN {grade} KNTT",
+                    "page": 1
+                })
+            return jsonify({
+                "questions": q_list,
+                "meta": {"topic": target_lesson.get("title", topic), "grade": grade, "exam_code": "101", "source": "Curated Textbook SGK"}
+            })
+
+    # 3. Try Gemini AI generation if API key is present
     if api_key and callable(call_gemini_rest) and target_lesson:
         try:
             lesson_txt = f"Bài: {target_lesson.get('number', '')} {target_lesson.get('title', '')}\nChủ đề: {target_lesson.get('topic', '')}\n"
@@ -1259,7 +1284,7 @@ Yêu cầu nghiêm ngặt:
 ]
 """
             raw_ai, _ = call_gemini_rest(prompt, api_key)
-            m = re.search(r'\[\s*\{.*\}\s*\]', raw_ai, re.DOTALL)
+            m = re.search(r'\[\s*\{.*\}\s*\]', raw_ai, re.DOTALL) if (raw_ai and isinstance(raw_ai, str)) else None
             if m:
                 ai_qs = json.loads(m.group(0))
                 if isinstance(ai_qs, list) and len(ai_qs) >= min(count, 3):
