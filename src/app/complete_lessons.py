@@ -5,7 +5,7 @@ from __future__ import annotations
 from copy import deepcopy
 
 
-COMPLETE_LESSON_VERSION = 2
+COMPLETE_LESSON_VERSION = 3
 
 
 COMPLETE_LESSONS = [
@@ -367,6 +367,179 @@ COMPLETE_LESSONS = [
         "origin": "system",
         "lesson_version": COMPLETE_LESSON_VERSION,
     },
+    {
+        "id": "k8-bai-33-mau-va-he-tuan-hoan-cua-co-the-nguoi",
+        "grade": 8,
+        "number": "Bài 33",
+        "title": "Máu và hệ tuần hoàn của cơ thể người",
+        "topic": "Thành phần của máu, miễn dịch, vaccine, nhóm máu và hệ tuần hoàn ở người",
+        "duration": "40–45 phút",
+        "order": 330,
+        "active": True,
+        "origin": "system",
+        "lesson_version": 3,
+        "source_label": "SGK KHTN 8 KNTT · Bài 33 · Trang 135–141",
+        "content": "Máu gồm huyết tương và các tế bào máu (hồng cầu, bạch cầu, tiểu cầu). Hệ tuần hoàn gồm tim và hệ mạch máu (động mạch, mao mạch, tĩnh mạch), thực hiện vận chuyển các chất dinh dưỡng, khí oxygen đến từng tế bào và mang các chất thải, khí carbon dioxide đến các cơ quan bài tiết để thải ra ngoài.",
+        "warmup": {
+                "question": "Khi bị thương làm rách da chảy máu, sau một thời gian máu ngừng chảy nhờ cơ chế nào? Máu có vai trò gì đối với sự sống của cơ thể?",
+                "hint": "Hãy nhớ lại các tế bào máu như tiểu cầu tham gia vào quá trình đông máu và chức năng vận chuyển chất dinh dưỡng, khí của dòng máu."
+        },
+        "objectives": [
+                "Nêu được chức năng của máu và hệ tuần hoàn trong cơ thể người.",
+                "Nêu được các thành phần của máu và chức năng của mỗi thành phần (hồng cầu, bạch cầu, tiểu cầu, huyết tương).",
+                "Nêu được khái niệm miễn dịch, kháng nguyên, kháng thể và vai trò của vaccine trong việc phòng bệnh.",
+                "Nêu được các nhóm máu hệ ABO và nguyên tắc truyền máu an toàn.",
+                "Mô tả được cấu tạo của tim, các mạch máu và hoạt động của 2 vòng tuần hoàn (vòng tuần hoàn lớn và vòng tuần hoàn nhỏ).",
+                "Đề xuất được các biện pháp bảo vệ hệ tim mạch và phòng chống các bệnh về máu, tuần hoàn."
+        ],
+        "sections": [
+                {
+                        "title": "1. Máu và các thành phần của máu",
+                        "paragraphs": [
+                                "Máu là một dạng mô liên kết lỏng lưu thông trong hệ mạch máu khắp cơ thể. Ở người trưởng thành có khoảng 4 đến 5 lít máu. Khi ly tâm hoặc để máu lắng đọng chống đông, máu tách làm hai phần rõ rệt: huyết tương (khoảng 55% thể tích) ở phía trên và các tế bào máu (khoảng 45% thể tích) lắng ở phía dưới.",
+                                "Huyết tương có màu vàng nhạt, chứa khoảng 90% nước và 10% các chất dinh dưỡng (glucose, amino acid, lipid), chất khoáng, hormone, kháng thể và các chất thải (urea, acid uric). Huyết tương duy trì máu ở trạng thái lỏng để vận chuyển các chất trong cơ thể."
+                        ],
+                        "bullets": [
+                                "Hồng cầu: Dạng đĩa lõm hai mặt, không có nhân ở tế bào trưởng thành, chứa huyết sắc tố (hemoglobin - Hb) có màu đỏ. Chức năng chính là vận chuyển khí oxygen (O2) từ phổi đến các tế bào và mang carbon dioxide (CO2) từ các tế bào về phổi để đào thải ra ngoài.",
+                                "Bạch cầu: Kích thước lớn, có nhân, có khả năng hình thành chân giả để di chuyển xuyên qua thành mao mạch. Chức năng chính là bảo vệ cơ thể thông qua các phản ứng miễn dịch: thực bào tiêu diệt vi khuẩn, tạo kháng thể vô hiệu hóa độc tố và tiêu diệt các tế bào nhiễm bệnh.",
+                                "Tiểu cầu: Là những mảnh tế bào chất không có nhân, dễ vỡ khi tiếp xúc với bề mặt gồ ghề của vết thương. Khi mạch máu bị rách, tiểu cầu giải phóng enzyme biến chất sinh sợi huyết (fibrinogen) hòa tan trong huyết tương thành mạng lưới sợi huyết (fibrin) giữ các tế bào máu lại tạo thành cục máu đông, giúp cầm máu và bảo vệ cơ thể chống mất máu."
+                        ]
+                },
+                {
+                        "title": "2. Miễn dịch và vai trò của vaccine",
+                        "paragraphs": [
+                                "Kháng nguyên là những phân tử lạ (protein hoặc polysaccharide trên bề mặt vi sinh vật như vi khuẩn, virus) có khả năng kích thích cơ thể tạo ra đáp ứng miễn dịch. Kháng thể là các phân tử protein đặc hiệu do bạch cầu (tế bào lympho B) tiết ra, có khả năng liên kết chính xác với kháng nguyên tương ứng theo cơ chế chìa khóa và ổ khóa để bất hoạt hoặc tiêu diệt mầm bệnh.",
+                                "Miễn dịch là khả năng của cơ thể nhận biết và tiêu diệt các tác nhân gây hại xâm nhập. Cơ thể có miễn dịch tự nhiên (bẩm sinh hoặc sau khi khỏi bệnh) và miễn dịch nhân tạo (nhờ tiêm vaccine)."
+                        ],
+                        "bullets": [
+                                "Vaccine (vắc-xin): Là chế phẩm sinh học chứa mầm bệnh đã bị làm yếu, bất hoạt (chết) hoặc các kháng nguyên tinh sạch của mầm bệnh.",
+                                "Cơ chế bảo vệ của vaccine: Khi tiêm vaccine vào cơ thể, hệ miễn dịch được kích thích sản sinh ra kháng thể và hình thành các tế bào nhớ (tế bào lympho nhớ). Khi mầm bệnh thật xâm nhập sau này, tế bào nhớ sẽ nhanh chóng sản xuất lượng lớn kháng thể để tiêu diệt mầm bệnh trước khi chúng kịp gây hại.",
+                                "Ý nghĩa của tiêm chủng: Tiêm chủng đầy đủ và đúng lịch là biện pháp phòng bệnh chủ động hiệu quả nhất để bảo vệ bản thân và tạo miễn dịch cộng đồng."
+                        ]
+                },
+                {
+                        "title": "3. Nhóm máu và nguyên tắc truyền máu",
+                        "paragraphs": [
+                                "Ở người, hệ nhóm máu ABO là quan trọng nhất, được xác định dựa trên sự có mặt của kháng nguyên A và B trên màng hồng cầu, cùng các kháng thể alpha (anti-A) và beta (anti-B) trong huyết tương.",
+                                "Nguyên tắc truyền máu: Khi truyền máu, tuyệt đối không để kháng nguyên trên màng hồng cầu của người cho bị ngưng kết bởi kháng thể tương ứng trong huyết tương của người nhận (A gặp anti-A, B gặp anti-B sẽ gây ngưng kết hồng cầu, làm tắc mạch máu và đe dọa tính mạng). Do đó, an toàn nhất là truyền cùng nhóm máu. Ngoài ra, máu truyền phải được xét nghiệm nghiêm ngặt để đảm bảo không chứa mầm bệnh nguy hiểm (HIV, viêm gan B, viêm gan C, giang mai...)."
+                        ],
+                        "bullets": [
+                                "Nhóm máu A: Hồng cầu chứa kháng nguyên A, huyết tương chứa kháng thể beta (anti-B).",
+                                "Nhóm máu B: Hồng cầu chứa kháng nguyên B, huyết tương chứa kháng thể alpha (anti-A).",
+                                "Nhóm máu AB: Hồng cầu chứa cả kháng nguyên A và B, huyết tương không có kháng thể alpha và beta.",
+                                "Nhóm máu O: Hồng cầu không có cả kháng nguyên A và B, huyết tương chứa cả kháng thể alpha và beta."
+                        ]
+                },
+                {
+                        "title": "4. Cấu tạo và hoạt động của hệ tuần hoàn",
+                        "paragraphs": [
+                                "Hệ tuần hoàn gồm tim và hệ thống mạch máu. Tim là cơ quan rỗng có vách ngăn chia thành 4 ngăn: hai tâm nhĩ ở trên (thành mỏng, nhận máu từ tĩnh mạch về) và hai tâm thất ở dưới (thành cơ dày, đặc biệt tâm thất trái dày nhất để tạo lực bơm máu đi khắp cơ thể). Giữa tâm nhĩ và tâm thất có van nhĩ - thất, giữa tâm thất và động mạch có van động mạch, giúp máu chỉ chảy theo một chiều nhất định.",
+                                "Hệ mạch gồm có: Động mạch (dẫn máu từ tim đến các cơ quan, thành dày và đàn hồi cao), Mao mạch (nối giữa động mạch và tĩnh mạch, thành mỏng chỉ gồm một lớp tế bào nội mô để trao đổi chất và khí với tế bào mô), Tĩnh mạch (dẫn máu từ các cơ quan trở về tim, lòng rộng và có các van một chiều ở chi dưới)."
+                        ],
+                        "bullets": [
+                                "Vòng tuần hoàn nhỏ (vòng phổi): Máu đỏ thẫm (giàu CO2) từ tâm thất phải -> động mạch phổi -> mao mạch phổi (thải CO2, hấp thụ O2 biến thành máu đỏ tươi) -> tĩnh mạch phổi -> tâm nhĩ trái.",
+                                "Vòng tuần hoàn lớn (vòng cơ thể): Máu đỏ tươi (giàu O2 và dinh dưỡng) từ tâm thất trái -> động mạch chủ -> các cơ quan -> mao mạch các mô (cung cấp O2 và dưỡng chất, nhận CO2 và chất thải biến thành máu đỏ thẫm) -> tĩnh mạch chủ -> tâm nhĩ phải."
+                        ]
+                },
+                {
+                        "title": "5. Bảo vệ hệ tuần hoàn và phòng chống bệnh tim mạch",
+                        "paragraphs": [
+                                "Hệ tuần hoàn làm việc liên tục suốt đời người. Các bệnh tim mạch như tăng huyết áp, xơ vữa động mạch, nhồi máu cơ tim, đột quỵ và thiếu máu là những nguyên nhân gây tử vong hàng đầu nếu không được phát hiện và phòng ngừa sớm."
+                        ],
+                        "bullets": [
+                                "Luyện tập thể dục thể thao đều đặn, vừa sức giúp tăng cường sức co bóp của cơ tim và khả năng lưu thông máu.",
+                                "Chế độ ăn uống hợp lí: Giảm bớt lượng muối ăn, hạn chế thức ăn nhiều dầu mỡ động vật (chứa nhiều cholesterol gây xơ vữa động mạch), bổ sung nhiều rau củ quả tươi giàu chất xơ và vitamin.",
+                                "Tránh các chất kích thích: Tuyệt đối không hút thuốc lá (nicotin làm co mạch, tăng huyết áp), hạn chế rượu bia, tránh căng thẳng thần kinh (stress kéo dài).",
+                                "Sơ cứu vết thương chảy máu: Đè chặt tay lên vết thương bằng gạc vô trùng hoặc băng ép; nếu máu chảy xối xả từ động mạch cần đặt garo phía trên vết thương và đưa ngay đến cơ sở y tế gần nhất."
+                        ]
+                }
+        ],
+        "diagram": {
+                "title": "Sơ đồ hệ tuần hoàn máu ở người",
+                "nodes": [
+                        "Máu (Huyết tương + Tế bào máu)",
+                        "Tim (Bơm hút & đẩy máu)",
+                        "Vòng tuần hoàn phổi (Trao đổi khí)",
+                        "Vòng tuần hoàn cơ thể (Nuôi dưỡng tế bào)"
+                ]
+        },
+        "terms": [
+                {
+                        "term": "Huyết tương",
+                        "definition": "Phần dịch lỏng màu vàng của máu (chiếm khoảng 55% thể tích máu), duy trì máu ở trạng thái lỏng và vận chuyển chất dinh dưỡng, hormone, chất khoáng và chất thải."
+                },
+                {
+                        "term": "Hồng cầu",
+                        "definition": "Tế bào máu hình đĩa lõm hai mặt, không nhân khi trưởng thành, chứa huyết sắc tố hemoglobin có chức năng vận chuyển khí oxygen và carbon dioxide."
+                },
+                {
+                        "term": "Bạch cầu",
+                        "definition": "Tế bào máu có nhân, đóng vai trò then chốt trong hệ miễn dịch bảo vệ cơ thể thông qua cơ chế thực bào và tiết kháng thể tiêu diệt mầm bệnh."
+                },
+                {
+                        "term": "Tiểu cầu",
+                        "definition": "Những mảnh tế bào chất không nhân tham gia vào quá trình đông máu giúp bịt kín vết thương và chống mất máu."
+                },
+                {
+                        "term": "Kháng nguyên",
+                        "definition": "Chất lạ (thường là protein hoặc polysaccharide trên bề mặt mầm bệnh) xâm nhập vào cơ thể kích thích hệ miễn dịch tạo đáp ứng miễn dịch."
+                },
+                {
+                        "term": "Kháng thể",
+                        "definition": "Phân tử protein do lympho B tiết ra có khả năng liên kết đặc hiệu với kháng nguyên tương ứng theo cơ chế chìa khóa và ổ khóa để vô hiệu hóa kháng nguyên."
+                },
+                {
+                        "term": "Vaccine",
+                        "definition": "Chế phẩm sinh học chứa mầm bệnh đã suy yếu, bất hoạt hoặc kháng nguyên tinh sạch nhằm kích thích cơ thể chủ động tạo miễn dịch phòng bệnh."
+                },
+                {
+                        "term": "Hệ tuần hoàn",
+                        "definition": "Hệ cơ quan gồm tim và hệ mạch máu thực hiện vận chuyển máu mang oxygen và chất dinh dưỡng đến các tế bào, đồng thời mang chất thải và CO2 đến cơ quan bài tiết."
+                }
+        ],
+        "summary": [
+                "Máu gồm huyết tương (chiếm 55%) và các tế bào máu (hồng cầu, bạch cầu, tiểu cầu - chiếm 45%).",
+                "Kháng nguyên kích thích cơ thể sinh kháng thể đặc hiệu; tiêm vaccine là biện pháp phòng bệnh chủ động hiệu quả nhất.",
+                "Hệ nhóm máu ABO gồm 4 nhóm máu: A, B, AB, O; nguyên tắc truyền máu là không để kháng thể người nhận ngưng kết kháng nguyên người cho.",
+                "Hệ tuần hoàn gồm tim (bơm 4 ngăn) và hệ mạch (động mạch, mao mạch, tĩnh mạch) hoạt động qua vòng tuần hoàn phổi và vòng tuần hoàn cơ thể.",
+                "Luyện tập thể dục thể thao, chế độ ăn ít muối, ít dầu mỡ và lối sống lành mạnh giúp bảo vệ hệ tim mạch khỏe mạnh."
+        ],
+        "quick_check": [
+                {
+                        "question": "Thành phần nào của máu đóng vai trò chính trong việc vận chuyển khí oxygen và carbon dioxide?",
+                        "options": [
+                                "Huyết tương",
+                                "Hồng cầu",
+                                "Bạch cầu",
+                                "Tiểu cầu"
+                        ],
+                        "answer_index": 1,
+                        "explanation": "Hồng cầu chứa huyết sắc tố hemoglobin có khả năng kết hợp thuận nghịch với O2 và CO2 để vận chuyển khí."
+                },
+                {
+                        "question": "Người có nhóm máu A trong huyết tương có chứa loại kháng thể nào?",
+                        "options": [
+                                "Kháng thể alpha (anti-A)",
+                                "Kháng thể beta (anti-B)",
+                                "Không có kháng thể",
+                                "Cả kháng thể alpha và beta"
+                        ],
+                        "answer_index": 1,
+                        "explanation": "Người nhóm máu A có kháng nguyên A trên hồng cầu và kháng thể beta (anti-B) trong huyết tương."
+                },
+                {
+                        "question": "Ngăn tim nào có thành cơ dày nhất để tạo lực bơm máu vào động mạch chủ đi nuôi toàn bộ cơ thể?",
+                        "options": [
+                                "Tâm nhĩ phải",
+                                "Tâm nhĩ trái",
+                                "Tâm thất phải",
+                                "Tâm thất trái"
+                        ],
+                        "answer_index": 3,
+                        "explanation": "Tâm thất trái phải tạo áp lực tống máu đi khắp vòng tuần hoàn lớn nuôi toàn bộ cơ thể nên có thành cơ dày nhất."
+                }
+        ]
+}
 ]
 
 

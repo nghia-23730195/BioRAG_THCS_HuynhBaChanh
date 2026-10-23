@@ -22399,17 +22399,173 @@
       "grade": 8,
       "number": "Bài 33",
       "title": "Máu và hệ tuần hoàn của cơ thể người",
-      "topic": "Máu và hệ tuần hoàn của cơ thể người",
-      "objectives": [
-        "Nêu được chức năng của máu và hệ tuần hoàn.",
-        "Nêu được các thành phần của máu và chức năng của mỗi thành phần (hồng cầu, bạch cầu, tiểu cầu, huyết tương).",
-        "Nêu được khái niệm nhóm máu. Phân tích được vai trò của việc hiểu biết về nhóm máu trong thực tiễn.",
-        "Quan sát mô hình (hoặc hình vẽ, sơ đồ khái quát) hệ tuần hoàn ở người, kể tên được các cơ quan của hệ tuần hoàn.",
-        "Nêu được khái niệm miễn dịch, kháng nguyên, kháng thể.",
-        "Nêu được vai trò vaccine (vacxin) và vai trò của tiêm vaccine trong việc phòng bệnh."
-      ],
-      "content": "Chương VI, NHiệt BÀI 26. NĂNG LƯỢNG NHIỆT VÀ NỘI NĂNG MỤC TIÊU Sau bài học, HS sẽ: tử cấu tạo nên vật chuyển động nhanh lên làm cho nhiệt độ của vật tăng lên CHUẨN BỊ vẽ quỹ đạo chuyển động của các hạt Brown trong SGK. So sánh và giải thích sự so sánh các đại lượng sau đây của hai lượng nước ở hai cốc vẽ trong hình bằng cách điển vào các chỗ trống trong bảng. Cốc 1 Cốc 2 Đại lượng Cốc 1 Cốc 2 So sánh Giải thích Khối lượng m m,sm Lượng nước ở cốc 1 nhiều hơn ở cốc 2 Nhiệt độ ..3..",
+      "topic": "Thành phần của máu, miễn dịch, vaccine, nhóm máu và hệ tuần hoàn ở người",
+      "duration": "40–45 phút",
+      "order": 330,
+      "active": true,
+      "origin": "system",
+      "lesson_version": 3,
       "source_label": "SGK KHTN 8 KNTT · Bài 33 · Trang 135–141",
+      "content": "Máu gồm huyết tương và các tế bào máu (hồng cầu, bạch cầu, tiểu cầu). Hệ tuần hoàn gồm tim và hệ mạch máu (động mạch, mao mạch, tĩnh mạch), thực hiện vận chuyển các chất dinh dưỡng, khí oxygen đến từng tế bào và mang các chất thải, khí carbon dioxide đến các cơ quan bài tiết để thải ra ngoài.",
+      "warmup": {
+        "question": "Khi bị thương làm rách da chảy máu, sau một thời gian máu ngừng chảy nhờ cơ chế nào? Máu có vai trò gì đối với sự sống của cơ thể?",
+        "hint": "Hãy nhớ lại các tế bào máu như tiểu cầu tham gia vào quá trình đông máu và chức năng vận chuyển chất dinh dưỡng, khí của dòng máu."
+      },
+      "objectives": [
+        "Nêu được chức năng của máu và hệ tuần hoàn trong cơ thể người.",
+        "Nêu được các thành phần của máu và chức năng của mỗi thành phần (hồng cầu, bạch cầu, tiểu cầu, huyết tương).",
+        "Nêu được khái niệm miễn dịch, kháng nguyên, kháng thể và vai trò của vaccine trong việc phòng bệnh.",
+        "Nêu được các nhóm máu hệ ABO và nguyên tắc truyền máu an toàn.",
+        "Mô tả được cấu tạo của tim, các mạch máu và hoạt động của 2 vòng tuần hoàn (vòng tuần hoàn lớn và vòng tuần hoàn nhỏ).",
+        "Đề xuất được các biện pháp bảo vệ hệ tim mạch và phòng chống các bệnh về máu, tuần hoàn."
+      ],
+      "sections": [
+        {
+          "title": "1. Máu và các thành phần của máu",
+          "paragraphs": [
+            "Máu là một dạng mô liên kết lỏng lưu thông trong hệ mạch máu khắp cơ thể. Ở người trưởng thành có khoảng 4 đến 5 lít máu. Khi ly tâm hoặc để máu lắng đọng chống đông, máu tách làm hai phần rõ rệt: huyết tương (khoảng 55% thể tích) ở phía trên và các tế bào máu (khoảng 45% thể tích) lắng ở phía dưới.",
+            "Huyết tương có màu vàng nhạt, chứa khoảng 90% nước và 10% các chất dinh dưỡng (glucose, amino acid, lipid), chất khoáng, hormone, kháng thể và các chất thải (urea, acid uric). Huyết tương duy trì máu ở trạng thái lỏng để vận chuyển các chất trong cơ thể."
+          ],
+          "bullets": [
+            "Hồng cầu: Dạng đĩa lõm hai mặt, không có nhân ở tế bào trưởng thành, chứa huyết sắc tố (hemoglobin - Hb) có màu đỏ. Chức năng chính là vận chuyển khí oxygen (O2) từ phổi đến các tế bào và mang carbon dioxide (CO2) từ các tế bào về phổi để đào thải ra ngoài.",
+            "Bạch cầu: Kích thước lớn, có nhân, có khả năng hình thành chân giả để di chuyển xuyên qua thành mao mạch. Chức năng chính là bảo vệ cơ thể thông qua các phản ứng miễn dịch: thực bào tiêu diệt vi khuẩn, tạo kháng thể vô hiệu hóa độc tố và tiêu diệt các tế bào nhiễm bệnh.",
+            "Tiểu cầu: Là những mảnh tế bào chất không có nhân, dễ vỡ khi tiếp xúc với bề mặt gồ ghề của vết thương. Khi mạch máu bị rách, tiểu cầu giải phóng enzyme biến chất sinh sợi huyết (fibrinogen) hòa tan trong huyết tương thành mạng lưới sợi huyết (fibrin) giữ các tế bào máu lại tạo thành cục máu đông, giúp cầm máu và bảo vệ cơ thể chống mất máu."
+          ]
+        },
+        {
+          "title": "2. Miễn dịch và vai trò của vaccine",
+          "paragraphs": [
+            "Kháng nguyên là những phân tử lạ (protein hoặc polysaccharide trên bề mặt vi sinh vật như vi khuẩn, virus) có khả năng kích thích cơ thể tạo ra đáp ứng miễn dịch. Kháng thể là các phân tử protein đặc hiệu do bạch cầu (tế bào lympho B) tiết ra, có khả năng liên kết chính xác với kháng nguyên tương ứng theo cơ chế chìa khóa và ổ khóa để bất hoạt hoặc tiêu diệt mầm bệnh.",
+            "Miễn dịch là khả năng của cơ thể nhận biết và tiêu diệt các tác nhân gây hại xâm nhập. Cơ thể có miễn dịch tự nhiên (bẩm sinh hoặc sau khi khỏi bệnh) và miễn dịch nhân tạo (nhờ tiêm vaccine)."
+          ],
+          "bullets": [
+            "Vaccine (vắc-xin): Là chế phẩm sinh học chứa mầm bệnh đã bị làm yếu, bất hoạt (chết) hoặc các kháng nguyên tinh sạch của mầm bệnh.",
+            "Cơ chế bảo vệ của vaccine: Khi tiêm vaccine vào cơ thể, hệ miễn dịch được kích thích sản sinh ra kháng thể và hình thành các tế bào nhớ (tế bào lympho nhớ). Khi mầm bệnh thật xâm nhập sau này, tế bào nhớ sẽ nhanh chóng sản xuất lượng lớn kháng thể để tiêu diệt mầm bệnh trước khi chúng kịp gây hại.",
+            "Ý nghĩa của tiêm chủng: Tiêm chủng đầy đủ và đúng lịch là biện pháp phòng bệnh chủ động hiệu quả nhất để bảo vệ bản thân và tạo miễn dịch cộng đồng."
+          ]
+        },
+        {
+          "title": "3. Nhóm máu và nguyên tắc truyền máu",
+          "paragraphs": [
+            "Ở người, hệ nhóm máu ABO là quan trọng nhất, được xác định dựa trên sự có mặt của kháng nguyên A và B trên màng hồng cầu, cùng các kháng thể alpha (anti-A) và beta (anti-B) trong huyết tương.",
+            "Nguyên tắc truyền máu: Khi truyền máu, tuyệt đối không để kháng nguyên trên màng hồng cầu của người cho bị ngưng kết bởi kháng thể tương ứng trong huyết tương của người nhận (A gặp anti-A, B gặp anti-B sẽ gây ngưng kết hồng cầu, làm tắc mạch máu và đe dọa tính mạng). Do đó, an toàn nhất là truyền cùng nhóm máu. Ngoài ra, máu truyền phải được xét nghiệm nghiêm ngặt để đảm bảo không chứa mầm bệnh nguy hiểm (HIV, viêm gan B, viêm gan C, giang mai...)."
+          ],
+          "bullets": [
+            "Nhóm máu A: Hồng cầu chứa kháng nguyên A, huyết tương chứa kháng thể beta (anti-B).",
+            "Nhóm máu B: Hồng cầu chứa kháng nguyên B, huyết tương chứa kháng thể alpha (anti-A).",
+            "Nhóm máu AB: Hồng cầu chứa cả kháng nguyên A và B, huyết tương không có kháng thể alpha và beta.",
+            "Nhóm máu O: Hồng cầu không có cả kháng nguyên A và B, huyết tương chứa cả kháng thể alpha và beta."
+          ]
+        },
+        {
+          "title": "4. Cấu tạo và hoạt động của hệ tuần hoàn",
+          "paragraphs": [
+            "Hệ tuần hoàn gồm tim và hệ thống mạch máu. Tim là cơ quan rỗng có vách ngăn chia thành 4 ngăn: hai tâm nhĩ ở trên (thành mỏng, nhận máu từ tĩnh mạch về) và hai tâm thất ở dưới (thành cơ dày, đặc biệt tâm thất trái dày nhất để tạo lực bơm máu đi khắp cơ thể). Giữa tâm nhĩ và tâm thất có van nhĩ - thất, giữa tâm thất và động mạch có van động mạch, giúp máu chỉ chảy theo một chiều nhất định.",
+            "Hệ mạch gồm có: Động mạch (dẫn máu từ tim đến các cơ quan, thành dày và đàn hồi cao), Mao mạch (nối giữa động mạch và tĩnh mạch, thành mỏng chỉ gồm một lớp tế bào nội mô để trao đổi chất và khí với tế bào mô), Tĩnh mạch (dẫn máu từ các cơ quan trở về tim, lòng rộng và có các van một chiều ở chi dưới)."
+          ],
+          "bullets": [
+            "Vòng tuần hoàn nhỏ (vòng phổi): Máu đỏ thẫm (giàu CO2) từ tâm thất phải -> động mạch phổi -> mao mạch phổi (thải CO2, hấp thụ O2 biến thành máu đỏ tươi) -> tĩnh mạch phổi -> tâm nhĩ trái.",
+            "Vòng tuần hoàn lớn (vòng cơ thể): Máu đỏ tươi (giàu O2 và dinh dưỡng) từ tâm thất trái -> động mạch chủ -> các cơ quan -> mao mạch các mô (cung cấp O2 và dưỡng chất, nhận CO2 và chất thải biến thành máu đỏ thẫm) -> tĩnh mạch chủ -> tâm nhĩ phải."
+          ]
+        },
+        {
+          "title": "5. Bảo vệ hệ tuần hoàn và phòng chống bệnh tim mạch",
+          "paragraphs": [
+            "Hệ tuần hoàn làm việc liên tục suốt đời người. Các bệnh tim mạch như tăng huyết áp, xơ vữa động mạch, nhồi máu cơ tim, đột quỵ và thiếu máu là những nguyên nhân gây tử vong hàng đầu nếu không được phát hiện và phòng ngừa sớm."
+          ],
+          "bullets": [
+            "Luyện tập thể dục thể thao đều đặn, vừa sức giúp tăng cường sức co bóp của cơ tim và khả năng lưu thông máu.",
+            "Chế độ ăn uống hợp lí: Giảm bớt lượng muối ăn, hạn chế thức ăn nhiều dầu mỡ động vật (chứa nhiều cholesterol gây xơ vữa động mạch), bổ sung nhiều rau củ quả tươi giàu chất xơ và vitamin.",
+            "Tránh các chất kích thích: Tuyệt đối không hút thuốc lá (nicotin làm co mạch, tăng huyết áp), hạn chế rượu bia, tránh căng thẳng thần kinh (stress kéo dài).",
+            "Sơ cứu vết thương chảy máu: Đè chặt tay lên vết thương bằng gạc vô trùng hoặc băng ép; nếu máu chảy xối xả từ động mạch cần đặt garo phía trên vết thương và đưa ngay đến cơ sở y tế gần nhất."
+          ]
+        }
+      ],
+      "diagram": {
+        "title": "Sơ đồ hệ tuần hoàn máu ở người",
+        "nodes": [
+          "Máu (Huyết tương + Tế bào máu)",
+          "Tim (Bơm hút & đẩy máu)",
+          "Vòng tuần hoàn phổi (Trao đổi khí)",
+          "Vòng tuần hoàn cơ thể (Nuôi dưỡng tế bào)"
+        ]
+      },
+      "terms": [
+        {
+          "term": "Huyết tương",
+          "definition": "Phần dịch lỏng màu vàng của máu (chiếm khoảng 55% thể tích máu), duy trì máu ở trạng thái lỏng và vận chuyển chất dinh dưỡng, hormone, chất khoáng và chất thải."
+        },
+        {
+          "term": "Hồng cầu",
+          "definition": "Tế bào máu hình đĩa lõm hai mặt, không nhân khi trưởng thành, chứa huyết sắc tố hemoglobin có chức năng vận chuyển khí oxygen và carbon dioxide."
+        },
+        {
+          "term": "Bạch cầu",
+          "definition": "Tế bào máu có nhân, đóng vai trò then chốt trong hệ miễn dịch bảo vệ cơ thể thông qua cơ chế thực bào và tiết kháng thể tiêu diệt mầm bệnh."
+        },
+        {
+          "term": "Tiểu cầu",
+          "definition": "Những mảnh tế bào chất không nhân tham gia vào quá trình đông máu giúp bịt kín vết thương và chống mất máu."
+        },
+        {
+          "term": "Kháng nguyên",
+          "definition": "Chất lạ (thường là protein hoặc polysaccharide trên bề mặt mầm bệnh) xâm nhập vào cơ thể kích thích hệ miễn dịch tạo đáp ứng miễn dịch."
+        },
+        {
+          "term": "Kháng thể",
+          "definition": "Phân tử protein do lympho B tiết ra có khả năng liên kết đặc hiệu với kháng nguyên tương ứng theo cơ chế chìa khóa và ổ khóa để vô hiệu hóa kháng nguyên."
+        },
+        {
+          "term": "Vaccine",
+          "definition": "Chế phẩm sinh học chứa mầm bệnh đã suy yếu, bất hoạt hoặc kháng nguyên tinh sạch nhằm kích thích cơ thể chủ động tạo miễn dịch phòng bệnh."
+        },
+        {
+          "term": "Hệ tuần hoàn",
+          "definition": "Hệ cơ quan gồm tim và hệ mạch máu thực hiện vận chuyển máu mang oxygen và chất dinh dưỡng đến các tế bào, đồng thời mang chất thải và CO2 đến cơ quan bài tiết."
+        }
+      ],
+      "summary": [
+        "Máu gồm huyết tương (chiếm 55%) và các tế bào máu (hồng cầu, bạch cầu, tiểu cầu - chiếm 45%).",
+        "Kháng nguyên kích thích cơ thể sinh kháng thể đặc hiệu; tiêm vaccine là biện pháp phòng bệnh chủ động hiệu quả nhất.",
+        "Hệ nhóm máu ABO gồm 4 nhóm máu: A, B, AB, O; nguyên tắc truyền máu là không để kháng thể người nhận ngưng kết kháng nguyên người cho.",
+        "Hệ tuần hoàn gồm tim (bơm 4 ngăn) và hệ mạch (động mạch, mao mạch, tĩnh mạch) hoạt động qua vòng tuần hoàn phổi và vòng tuần hoàn cơ thể.",
+        "Luyện tập thể dục thể thao, chế độ ăn ít muối, ít dầu mỡ và lối sống lành mạnh giúp bảo vệ hệ tim mạch khỏe mạnh."
+      ],
+      "quick_check": [
+        {
+          "question": "Thành phần nào của máu đóng vai trò chính trong việc vận chuyển khí oxygen và carbon dioxide?",
+          "options": [
+            "Huyết tương",
+            "Hồng cầu",
+            "Bạch cầu",
+            "Tiểu cầu"
+          ],
+          "answer_index": 1,
+          "explanation": "Hồng cầu chứa huyết sắc tố hemoglobin có khả năng kết hợp thuận nghịch với O2 và CO2 để vận chuyển khí."
+        },
+        {
+          "question": "Người có nhóm máu A trong huyết tương có chứa loại kháng thể nào?",
+          "options": [
+            "Kháng thể alpha (anti-A)",
+            "Kháng thể beta (anti-B)",
+            "Không có kháng thể",
+            "Cả kháng thể alpha và beta"
+          ],
+          "answer_index": 1,
+          "explanation": "Người nhóm máu A có kháng nguyên A trên hồng cầu và kháng thể beta (anti-B) trong huyết tương."
+        },
+        {
+          "question": "Ngăn tim nào có thành cơ dày nhất để tạo lực bơm máu vào động mạch chủ đi nuôi toàn bộ cơ thể?",
+          "options": [
+            "Tâm nhĩ phải",
+            "Tâm nhĩ trái",
+            "Tâm thất phải",
+            "Tâm thất trái"
+          ],
+          "answer_index": 3,
+          "explanation": "Tâm thất trái phải tạo áp lực tống máu đi khắp vòng tuần hoàn lớn nuôi toàn bộ cơ thể nên có thành cơ dày nhất."
+        }
+      ],
       "generation_sources": [
         {
           "source": "SGK KHTN 8 KNTT.pdf",
@@ -22461,179 +22617,6 @@
           "virtual": false
         }
       ],
-      "order": 330,
-      "active": true,
-      "origin": "curriculum",
-      "catalog_only": false,
-      "created_at": "2026-08-29T13:12:20+00:00",
-      "updated_at": "2026-09-11T18:43:49+00:00",
-      "sections": [
-        {
-          "title": "Khởi động & Hiện tượng mở đầu",
-          "paragraphs": [
-            "Chương VI, NHiệt BÀI 26. NĂNG LƯỢNG NHIỆT VÀ NỘI NĂNG MỤC TIÊU Sau bài học, HS sẽ: tử cấu tạo nên vật chuyển động nhanh lên làm cho nhiệt độ của vật tăng lên CHUẨN BỊ vẽ quỹ đạo chuyển động của các hạt Brown trong SGK.",
-            "So sánh và giải thích sự so sánh các đại lượng sau đây của hai lượng nước ở hai cốc vẽ trong hình bằng cách điển vào các chỗ trống trong bảng. Cốc 1 Cốc 2 Đại lượng Cốc 1 Cốc 2 So sánh Giải thích Khối lượng m m,sm Lượng nước ở cốc 1 nhiều hơn ở cốc 2 Nhiệt độ ..3..",
-            ".2.. Tổng động năng phân tử Tổng thế năng Nội năng Nhiệt độ ..3.. .2.. Tổng động năng phân tử Tổng thế năng Nội năng THÔNG TIN BỔ SUNG Trong lực học (NĐLH): NĐLH là lĩnh vực vật lí nghiên cứu các quá trình biến đổi trong tự nhiên theo quan điểm năng lượng, chủ yếu là các quá trình biến đổi từ nhiệt năng sang các dạng năng lượng khác và ngược lại.",
-            "NĐLH khái quát các kết quả quan sát và thực nghiệm thành các định luật, thường được Ngọi là các nguyên lí của NĐLH. Hai nguyên lí của NĐLH thường được đưa vào chương trình 1994 giáo dục phổ thông là nguyên líI và nguyên lí II.",
-            "Nguyên lí I: Độ biến thiên nội năng của vật bằng tổng nhiệt lượng và công mà vật nhận được: AU-Q+A Nguyên lí trên thực chất chỉ là sự vận dụng định luật bảo toàn năng lượng vào các quá trình truyền nhiệt và thực hiện công.",
-            "Nguyên lí II: Phát biểu của Clausius (1822 – 1888): ?Nhiệt không thể tự truyền từ vật lạnh hơn sang vật nóng hơn? lạnh hơn sang vật nóng hơn – Phát biểu của Carnot (1796 – 1832): \"Động cơ nhiệt không thể chuyển hoá tất cả nhiệt lượng thành công cơ học?",
-            "Thuật trọng tới mức độ người ta coi NĐLH là lĩnh vực vật lí nghiên cứu về nội năng và sự biến đổi nội năng HS đã được làm quen với khái niệm nhiệt năng ngay từ cấp Tiểu học. Khái niệm này cũng đã được nhắc tới nhiều lần trong Chương trình môn Khoa học tự nhiên lớp 6 và \"lớp 7, ở cả ba lĩnh vực Vật lí, Hoá học và Sinh học, Khái niệm nội năng là khái niệm HS chưa được học ở các lớp dưới.",
-            "Nội năng của một vật là năng lượng lưu trũ trong vật dưới dạng động năng của chuyển thuật động nhiệt và thế năng tương tác của phân tủ, nguyên tử cấu tạo nên vật:",
-            "U-XE-VE Chú ý, vì bản chất của lực tương tác phân tử, nguyên tử là lực điện, nên thế năng tương Trong thế tác phân tử, nguyên tử là thế năng điện không phải thế năng hấp dẫn mà HS đã được học Trong môn Khoa học tự nhiên 6 Nội năng của một vật được coi là một hàm trạng thái của vật, có thứ nguyên của năng Tháng 1 lượng, Ứng với mỗi trạng thái, vật có một nội năng xác định, Khi vật chuyển từ trạng thái này sang trạng thái khác thì nội năng của vật biến đổi Định nghĩa trên của nội năng là định nghĩa trong phạm vì hẹp của NĐLH. Một cách khái quát thì phải coi nội năng là tổng của mọi dạng năng lượng tích luỹ trong vật, Nếu trong vật có các quá trình biến đổi hoá học, hạt nhân, . thì nội năng bao gồm cả hoá năng và năng lượng hạt nhân lượng Q.Vì nhiệt lượng Q có đơn vị jun ()) nên đôi khi người ta coi nhiệt lượng cũng là một Thuật được đạng năng lượng. Thực ra nhiệt lượng không phải là một dạng năng lượng vì nó không phải Các thuật là hàm trạng thái của vật Nhiệt lượng chỉ là số đo nhiệt năng vật thu thêm vào hoặc mất bót đi trong quá trình truyền nhiệt Nó chỉ tồn tại khi đang có quá trình truyền nhiệt, còn khi vật đã ở trạng thái cân bằng (không trao đổi năng lượng với các vật khác) thì không còn đại lượng này.",
-            "Về mặt bản chất thì nhiệt độ chỉ là số đo động năng trung bình của các phân tử chuyển \"động hỗn loạn theo một đơn vị khác nên phải nói \"\"Khi động năng trung bình của các phân\" tử cấu tạo nên vật tăng thì nhiệt độ của vật tăng – hoặc – Khi các phân tử cấu tạo nên vật Trong của HS THCS, người ta thường nói: \"Khi nhiệt độ của vật càng cao, các phân tử cấu tạo nên vật chuyển động hỗn loạn càng nhanh?: Khi lên cấp THPT sẽ làm rõ bản chất của hiện tượng để đưa ra cách phát biểu phù hợp với quy luật nhân quả.",
-            "IV GỢI Ý TỔ CHỨC HOẠT ĐỘNG DẠY, HỌC"
-          ],
-          "bullets": [
-            "Nhận biết được khái niệm nhiệt năng, khái niệm nội năng.",
-            "Nhận biết được nội năng là loại năng lượng chúng ta thường gặp hằng ngày.",
-            "Nhận biết được khi một vật được làm nóng lên (nhận được nhiệt năng) thì các phân",
-            "Thiết bị để chiếu các hình vẽ lên màn ảnh.",
-            "Nếu có thể, nên chiếu trên màn hình ảnh chụp thí nghiệm của Brown kèm theo hình",
-            "Chuẩn bị phiếu kiểm tra cuối bài theo mẫu sau:",
-            "Nhiệt năng và nội năng là hai trong số các khái niệm quan trọng nhất của nhiệt động",
-            "Hai khái niệm nhiệt năng và nội năng có vai trò rất quan trọng trong NĐLH. Quan",
-            "Để mô tả các quá trình biến đổi trạng thái người ta còn thường dùng khái niệm nhiệt"
-          ]
-        },
-        {
-          "title": "Hoạt động 1. KHởi ĐộNG",
-          "paragraphs": [
-            "Tuy HS chưa được học khái niệm nội năng, nhung rất có thể các em đã tùng nghe nói tới nội năng hoặc vùa nghe thấy thầy, cô giáo nói tới từ 'nội năng – thì các em đã có ngay ý niệm ban đầu về khái niệm này, Do đó, cứ để các em phát biểu những ý niệm, cảm nghĩ ban đầu của mình về khái niệm này, trong quá trình dạy học sẽ tìm cách làm cho các em hiểu Thuật đầy đủ và chính xác hơn, Đây là cách khởi động bài học theo kiểu dạy học kiến tạo.",
-            "Tổ chức để HS thảo luận về câu hỏi trong phần khởi động của bài."
-          ],
-          "bullets": []
-        },
-        {
-          "title": "HOẠT ĐỘNG 2. HƯỚNG DẪN HS TÌM HIỂU MỘT SỐ TÍNH CHẤT CỦA PHÂN TỬ;",
-          "paragraphs": [
-            "NGUYÊN TỬ VÀ KHÁI NIỆM NĂNG LƯỢNG NHIỆT Chương trình chỉ đưa ra yêu cầu cần đạt là – HS nhận biết được khái niệm năng lượng nhiệt\", nhưng không nói rõ là nhận biết ở mức độ nào. Nếu chỉ là nhận biết về mặt hiện tượng thì ngay ở lớp 6, các em đã biết cách nhận ra dạng năng này từ nguồn sinh ra nó rồi Nếu là nhận biết về mặt bản chất thì chương trình lại không đề cập chuyển động nhiệt và lực tương tác của phân tử là cơ sở để đưa ra định nghĩa mang tính bản chất của khái niệm nhiệt năng Nhóm tác giả cho rằng ở lớp 8, cần yêu cầu HS nhận biết bản chất của năng lượng nhiệt; Thuật thuận không thể chỉ yêu cầu HS nhận biết nhiệt năng như ở lớp 6. Tuy nhiên, nếu dành một phần của bài học để trình bày về chuyển động nhiệt và lực tương tác của phân tử thì nội dung này Thuật thuật lại không nằm trong yêu cầu cần đạt của chương trình, Do đó, nhóm tác giả chọn phương án sau:",
-            "\"đọc hiểu\" mở đầu cho việc tìm hiểu khái niệm năng lượng nhiệt (gọi tắt là nhiệt năng). đọc hiểu để giải thích một số hiện tượng thực tế có liên quan đến chuyển động và tương tác của các phân tử: Điều này sẽ giúp các em thấy được cơ sở thực tiễn của các nội dung lí thuyết đã được tiếp thu Phương án 1:",
-            "định nghĩa nhiệt năng. Phương án 1: định nghĩa nhiệt năng. Phương án 2: các em thảo luận nếu có ý kiến khác nhau. sự tồn tại của năng lượng nhiệt, còn bản chất của năng lượng này là gì thì qua bài học hôm nay các em sẽ biết."
-          ],
-          "bullets": [
-            "Trình bày về chuyển động nhiệt và lực tương tác của phân tử như là một nội dung",
-            "Sau đó, GV dùng hệ thống các câu hỏi yêu cầu HS vận dụng những nội dung của phần",
-            "GV giới thiệu nội dung phần đọc hiểu. Nói rõ những nội dung này sẽ giúp chúng ta",
-            "GV giới thiệu nội dung phần đọc hiểu. Nói rõ những nội dung này sẽ giúp chúng ta",
-            "Tổ chức cho HS trao đổi trong nhóm 2, 3 người để trả lời các câu hỏi trong SGK.",
-            "Tổ chức cho HS thảo luận về các phương án trả lời khác nhau để đưa ra kết luận",
-            "GV yêu cầu HS nhắc lại hiểu biết của mình về năng lượng nhiệt đá học ở lớp dưới để",
-            "GV nêu rõ là hiểu biết về năng lượng nhiệt mà các em đã học chỉ mới là nhận ra được"
-          ]
-        },
-        {
-          "title": "1981 – GV tiếp tục các hoạt động còn lại như trong phương án 1.",
-          "paragraphs": [
-            "Từ đó hình thành khái niệm nhiệt năng. ý đến sự tồn tại và trao đổi nhiệt năng trong cơ thể người CH: Các phân tử nước hoa cũng như các phân tử không khí đều chuyển động hỗn loạn theo mọi phía nên không ngùng va cham vào nhau, Do đó, các phân tử nước hoa không chuyển động thắng từ lọ hước hoa đến cuối lớp mà chuyển động theo đường dích dắc có NĐ: 1/Hai Cách để lấm tăng nhiệt năng hai bản tay mình:"
-          ],
-          "bullets": []
-        },
-        {
-          "title": "1881 – Cách 1: xoa liên tục hai bàn tay vào nhau.",
-          "paragraphs": [],
-          "bullets": [
-            "Cách 2: đưa hai tay lại gần nguồn nhiệt. (VD1)"
-          ]
-        },
-        {
-          "title": "2. HS tự tìm ví dụ. (b)",
-          "paragraphs": [
-            "Nội dung – Em có biết – nếu không đủ thời gian thì để các em về nhà tự đọc nội dung này, Nếu còn nhiều thời gian thì GV có thể giới thiệu ảnh chụp thí nghiệm Brow1, dùng hình ảnh về quả bóng lớn tượng trung cho quả địa cầu được hàng nghìn vận động Viên xô đẩy trong lễ khai mạc Thế vận hội để minh hoạ cho chuyển động Brown (xem SGK Vật lí 8 biên soạn theo Chương trình giáo dục phổ thông năm 2006)."
-          ],
-          "bullets": []
-        },
-        {
-          "title": "HOẠT ĐỘNG 3. HƯỚNG DẪN HS NHẬN BIẾT KHÁI NIỆM NỘI NĂNG",
-          "paragraphs": [
-            "Khái niệm nội năng là một khái niệm khoa học mới không dễ hình dung, nền việc tổ chức để HS tự khám phá ra khái niệm này là không phù hợp với trình độ của đa số HS 1980 thế 1 thức lớp 8. Do đó, SGK trình bày khái niệm này dưới dạng thông báo để GV thuyết trình hoặc hướng dẫn HS đọc hiểu Phương án 1:",
-            "hướng dẫn HS đọc hiểu Phương án 1: bày về khái niệm này mà không cần dạy theo trình tự trong SGK. Phương án 2: Với cả hai phương án, GV cần giúp HS thấy được sự tương tự và sự khác biệt giữa thế năng của trường hấp dẫn mà các em đã học với thế năng tương tác phân tử, nguyền tử. Vì Thuật Nhiều HS mới học về tính điện ở chương trước nên có thể nói để các em biết lực tương tác giữa các thuật thế phân tử, nguyên tử là lực điện nên thế năng tương tác phân tử, nguyên tử là thế năng điện (Bản chắt của vấn đề này là: tuy tổng điện tích âm và dương của nguyên tử, phân tử bằng nhau, nhưng vì sự phân bố các điện tích không đổi xứng nên các nguyên tử và phân tử bị xã thuật thế phân cực, nghĩa là có chỗ mang điện âm có chỗ mang điện dương, do đó chúng hút và đầy nhau, Tuy nhiên, nội dung này khó nên không nhất thiết phải trình bày với HS mà có thể thông báo ngay cho các em là tương tác phân tử là tương tác điện).",
-            "CH: 1. Nhiệt độ ở cốc a cao hơn ở cốc b, động năng của các phân tử ở cốc a lớn hơn. (VD1) NĂNG CỦA NƯỚC TRONG CỐC A LỚN HƠN.(VD1)"
-          ],
-          "bullets": [
-            "GV hướng dẫn HS đọc SGK để hiểu định nghĩa của nội năng, sau đó yêu cầu HS trình",
-            "GV hướng dẫn HS đọc SGK để hiểu định nghĩa của nội năng, sau đó yêu cầu HS trình",
-            "GV giới thiệu nội dung phần đọc hiểu",
-            "2. Nhiệt độ trong cốc a cao hơn nên động năng phân tử trong cốc a lớn hơn, Do đó nội"
-          ]
-        },
-        {
-          "title": "Hoạt động 4. hướng dẫn hs nhận biết được sự tăng giảm nội năng của vật;",
-          "paragraphs": [
-            "QUA ĐÓ HIỂU RỖ HƠN VỀ NHIỆT NĂNG VÀ NỘI NĂNG Tuy nội dung này không được thể hiện tường minh trong yêu cầu cần đạt của chương trình, nhưng thực ra đây là một nội dung quan trọng của bài vì nó giúp HS hiểu rõ hơn bản chất của hai khái niệm nhiệt năng và nội năng, phân biệt được rõ ràng hai khái Thuật nhiệm này. Phần này còn nhằm mục đích tổng kết bài và giúp GV đánh giá được mức độ hiểu bài của HS.",
-            "GV giới thiệu hoặc hướng dẫn HS đọc phần đọc hiểu được các câu hỏi này là HS đã hoàn toàn đạt được mức độ yêu cầu của chương trình Có thể Tổ chức HS làm việc theo nhóm nhỏ để trả lời các câu hỏi.",
-            "Thế giải thích khi người bị sốt, nhiệt độ cơ thể tăng thì về mặt NĐLH đã có hiện tượng gì xảy ra. Để làm giảm nhiệt độ của cơ thể người thì ngoài việc dùng thuốc người ta còn đúng các biện pháp vật lí như đắp khăn ướt lên trán người bệnh, xông cho người bệnh ra mồ hôi,.. Việc các dạng năng lượng rất gần gũi với mình các phân tử của nước có động năng lớn hơn nên khi va chạm với các phân tử của quả cầu đã truyền bớt động năng cho các phân tử của quả cầu.",
-            "Nếu chỉ có nước và quả cầu trao đổi năng lượng với nhau thì theo định luật bảo toàn năng lượng hai độ lớn của nhiệt năng này (hai nhiệt lượng này) phải bằng nhau Tuy nhiên ở đây còn có sự trao đổi nhiệt với môi trường bên ngoài nên chúng không hoàn toàn bằng nhau. (VD2) Thuật thuận HĐ: 1. Nước nhận nhiệt năng từ ngọn lửa truyền cho nên nhiệt độ của nước tăng dần những năng mà nước nhận được từ ngọn lửa đã chuyển hoá thành năng lượng được sử dụng để biến đổi trạng thái của nước từ trạng thái lỏng sang trạng thái khí (sự bốc hơi) chứ không phải để làm tăng nhiệt độ của nước.(VD 2)"
-          ],
-          "bullets": [
-            "GV dựa vào các câu hỏi để giúp HS giải thích được bản chất của hiện tượng, Trả lời",
-            "Yêu cầu HS tìm thêm ví dụ về sự thay đổi nội năng trong đời sống, Ví dụ yêu cầu HS",
-            "2. Khi nước đã sôi, nhiệt độ của nước không tăng nửa dù tiếp tục đun vì khi đó nhiệt"
-          ]
-        },
-        {
-          "title": "Hoạt động 5. GHI NHớ, TổNG KếT",
-          "paragraphs": [
-            "những nội dung này được thể hiện trong mục – Em đã học – Chú ý đến các đơn vị kiến thức sau: GỢI Ý KIỂM TRA, ĐÁNH GIÁ GV có thể sử dụng các câu hỏi, hoạt động trong bài để đánh giá HS, sử dụng mục 'Em có thể – làm nhiệm vụ về nhà giao cho HS.",
-            "Đánh giá HS qua việc điền bảng. Đại lượng Cốc 1 Cốc 2 So sánh Giải thích Khối lượng m m, m,sm Lượng nước ở cốc 1 nhiều hơn ở cốc 2. Nhiệt độ T. T, - T, Các nhiệt kế chỉ nhiệt độ giống nhau.",
-            "Tổng động năng phân tử XEa XEaz ZEISTEZ Nhiệt độ T. T, - T, Các nhiệt kế chỉ nhiệt độ giống nhau. Tổng động năng phân tử XEa XEaz ZEISTEZ Vì số phân tử nước ở cốc 1 nhiều hơn.",
-            "năng phân tử Tổng thế XE12 XE, XE-YEZ Vì số phân tử nước ở cốc 1 nhiều hơn. Vì động năng và thế năng phân tử Nội năng bằng nhau nhưng số phân tử nước ở cốc 1 nhiều hơn BÀI 27. THỰC HÀNH ĐO NĂNG LƯỢNG NHIỆT BẰNG JOULEMETER MỤC TIÊU Sau bài học, HS sẽ:",
-            "cốc 1 nhiều hơn BÀI 27. THỰC HÀNH ĐO NĂNG LƯỢNG NHIỆT BẰNG JOULEMETER MỤC TIÊU Sau bài học, HS sẽ: Đo được năng lượng nhiệt mà vật nhận được khi bị đun nóng. CHUẨN BỊ Đối với cả lớp:",
-            "Đối với mỗi nhóm HS: điện cung cấp. điện cung cấp."
-          ],
-          "bullets": [
-            "Năng lượng nhiệt.",
-            "Nội năng.",
-            "Sự tăng, giảm nội năng.",
-            "Ul",
-            "Bảng kết quả thí nghiệm GV đã tiến hành.",
-            "Bình nhiệt lượng kế có dây đốt, que khuấy",
-            "Nhiệt kế.",
-            "Dụng cụ đo năng lượng điện (joulemeter): là dụng cụ đo năng lượng điện do nguồn",
-            "Nhiệt kế.",
-            "Dụng cụ đo năng lượng điện (joulemeter): là dụng cụ đo năng lượng điện do nguồn",
-            "Nguồn điện 12 V.",
-            "Bốn dây dẫn điện có vỏ cách điện và giắc cắm ở hai đầu dây.",
-            "Mỗi HS chuẩn bị mẫu báo cáo như trong SGK."
-          ]
-        }
-      ],
-      "summary": [
-        "Năng lượng nhiệt.",
-        "Nội năng.",
-        "Sự tăng, giảm nội năng.",
-        "Ul",
-        "Bảng kết quả thí nghiệm GV đã tiến hành.",
-        "Bình nhiệt lượng kế có dây đốt, que khuấy",
-        "Nhiệt kế.",
-        "Dụng cụ đo năng lượng điện (joulemeter): là dụng cụ đo năng lượng điện do nguồn",
-        "Nhiệt kế.",
-        "Dụng cụ đo năng lượng điện (joulemeter): là dụng cụ đo năng lượng điện do nguồn",
-        "Nguồn điện 12 V.",
-        "Bốn dây dẫn điện có vỏ cách điện và giắc cắm ở hai đầu dây.",
-        "Mỗi HS chuẩn bị mẫu báo cáo như trong SGK."
-      ],
-      "terms": [
-        {
-          "term": "Nội năng của một vật",
-          "definition": "năng lượng lưu trũ trong vật dưới dạng động năng của chuyển"
-        },
-        {
-          "term": "rồi Nếu",
-          "definition": "nhận biết về mặt bản chất thì chương trình lại không đề cập chuyển động nhiệt"
-        },
-        {
-          "term": "Khái niệm nội năng",
-          "definition": "một khái niệm khoa học mới không dễ hình dung, nền việc"
-        },
-        {
-          "term": "thông báo ngay cho các em",
-          "definition": "tương tác phân tử là tương tác điện)"
-        }
-      ],
-      "warmup": {
-        "question": "Trong đời sống, em đã từng quan sát hoặc gặp hiện tượng nào liên quan đến Máu và hệ tuần hoàn của cơ thể người?",
-        "hint": "Hãy liên hệ với các sự vật, hiện tượng tự nhiên quen thuộc xung quanh chúng ta."
-      },
       "illustrations": [
         {
           "caption": "Sơ đồ & Hình minh họa: Bài 33 - Máu và hệ tuần hoàn của cơ thể người",
@@ -24317,13 +24300,78 @@
       "grade": 8,
       "number": "Bài 43",
       "title": "Quần xã sinh vật",
-      "topic": "Quần xã sinh vật",
+      "topic": "Khái niệm quần xã sinh vật, các đặc trưng cơ bản và biện pháp bảo vệ đa dạng sinh học trong quần xã",
+      "duration": "40–45 phút",
+      "order": 430,
+      "active": true,
+      "origin": "system",
+      "lesson_version": 3,
+      "source_label": "SGK KHTN 8 KNTT · Bài 43 · Trang 178–182",
+      "content": "Quần xã sinh vật là tập hợp các quần thể sinh vật thuộc nhiều loài khác nhau, cùng sống trong một khoảng không gian và thời gian xác định, có mối quan hệ gắn bó mật thiết với nhau và với môi trường sống.",
+      "warmup": {
+        "question": "Trong một khu rừng ngập mặn Cần Giờ, có những loài sinh vật nào cùng chung sống? Chúng có mối quan hệ với nhau như thế nào?",
+        "hint": "Cây đước, cây mắm, các loài tôm, cua, cá, chim nước, khỉ... tạo nên một quần xã sinh vật phong phú."
+      },
       "objectives": [
-        "Phát biểu được khái niệm quần xã sinh vật. Nêu được một số đặc điểm cơ bản của quần xã (đặc điểm về độ đa dạng; đặc điểm về thành phần loài: loài ưu thế, loài đặc trưng). Lấy được ví dụ minh hoạ.",
-        "Nêu được một số biện pháp bảo vệ đa dạng sinh học trong quần xã."
+        "Phát biểu được khái niệm quần xã sinh vật. Lấy được ví dụ minh họa về quần xã sinh vật.",
+        "Nêu được một số đặc trưng cơ bản của quần xã sinh vật (đặc trưng về thành phần loài: loài ưu thế, loài đặc trưng; đặc trưng về độ đa dạng).",
+        "Nêu được mối quan hệ giữa các loài trong quần xã (cạnh tranh, hỗ trợ, sinh vật ăn sinh vật khác...).",
+        "Nêu được các biện pháp bảo vệ đa dạng sinh học trong quần xã sinh vật."
       ],
-      "content": "Trên cơ sở những kiến thức HS đã được học, GV cần khai thác và kế thừa những kiến thức đó để đặt câu hỏi khởi động trong SGK và yêu cầu HS dự đoán câu trả lời GV yêu cầu HS nhắc lại vai trò của hệ tuần hoàn đối với cơ thể người GV đưa ra Trong câu hỏi khởi động để HS trả lời. GV dẫn dắt để đi vào nội dung bài học. Dựa vào thông tin kênh chữ và kênh hình, GV tổ chức cho HS tìm hiểu về các 19 thành phần của máu, miễn dịch và vaccine, nhóm máu, truyền máu và sử dụng các câu hỏi để kiểm tra kiến thức HS đã tìm hiểu được.",
-      "source_label": "SGK KHTN 8 KNTT · Bài 43 · Trang 177–179",
+      "sections": [
+        {
+          "title": "1. Khái niệm quần xã sinh vật",
+          "paragraphs": [
+            "Quần xã sinh vật là tập hợp các quần thể sinh vật thuộc nhiều loài khác nhau, cùng sinh sống trong một không gian và thời gian xác định, có mối quan hệ gắn bó với nhau như một thể thống nhất và có cấu trúc tương đối ổn định.",
+            "Ví dụ: Quần xã rừng mưa nhiệt đới Cúc Phương (gồm các quần thể cây gỗ lim, chò chỉ, các loài phong lan, dương xỉ, các loài thú như báo, khỉ, sóc, các loài chim, côn trùng và vi sinh vật phân giải); quần xã rạn san hô ven biển; quần xã ao sen..."
+          ]
+        },
+        {
+          "title": "2. Các đặc trưng cơ bản của quần xã",
+          "paragraphs": [
+            "Quần xã sinh vật có các đặc trưng cơ bản về thành phần loài và cấu trúc phân bố không gian, thể hiện qua độ đa dạng và vai trò của các loài."
+          ],
+          "bullets": [
+            "Độ đa dạng của quần xã: Thể hiện qua số lượng các loài trong quần xã và số lượng cá thể của mỗi loài. Quần xã càng ổn định thì độ đa dạng loài càng cao (như rừng nhiệt đới), quần xã nhân tạo hoặc ở vùng khắc nghiệt có độ đa dạng thấp hơn (như ruộng lúa, sa mạc).",
+            "Loài ưu thế: Là loài đóng vai trò quan trọng trong quần xã do có số lượng cá thể nhiều, sinh khối lớn hoặc hoạt động mạnh, quyết định chiều hướng phát triển của quần xã (ví dụ: cây đước trong quần xã rừng ngập mặn, cây thông trong rừng thông).",
+            "Loài đặc trưng: Là loài chỉ có ở một quần xã nào đó hoặc có số lượng cá thể nhiều hơn hẳn các loài khác trong quần xã (ví dụ: cá cóc ở Tam Đảo, cây cọ ở đồi Phú Thọ, cây tràm ở rừng U Minh)."
+          ]
+        },
+        {
+          "title": "3. Mối quan hệ giữa các loài và bảo vệ đa dạng sinh học",
+          "paragraphs": [
+            "Trong quần xã, các loài sinh vật luôn tác động qua lại lẫn nhau qua các mối quan hệ hỗ trợ (cộng sinh, hội sinh, hợp tác) và quan hệ đối kháng (cạnh tranh, kí sinh, sinh vật ăn sinh vật khác). Nhờ đó, số lượng cá thể của mỗi loài được khống chế ở mức cân bằng sinh học."
+          ],
+          "bullets": [
+            "Hiện tượng khống chế sinh học: Số lượng cá thể của loài này bị số lượng cá thể của loài khác kìm hãm (ví dụ: chim sâu khống chế số lượng sâu hại, ong mắt đỏ diệt sâu đục thân lúa).",
+            "Các biện pháp bảo vệ: Thành lập các khu bảo tồn thiên nhiên, vườn quốc gia; nghiêm cấm săn bắt, chặt phá rừng bừa bãi; trồng rừng ngập mặn; áp dụng biện pháp phòng trừ sinh học thay thế thuốc hóa học độc hại."
+          ]
+        }
+      ],
+      "terms": [
+        {
+          "term": "Quần xã sinh vật",
+          "definition": "Tập hợp các quần thể sinh vật thuộc nhiều loài khác nhau cùng sống trong một sinh cảnh xác định và gắn bó hữu cơ với nhau."
+        },
+        {
+          "term": "Loài ưu thế",
+          "definition": "Loài có số lượng cá thể lớn, sinh khối lớn và hoạt động mạnh chi phối môi trường sống của quần xã."
+        },
+        {
+          "term": "Loài đặc trưng",
+          "definition": "Loài chỉ có ở một quần xã xác định hoặc có số lượng vượt trội so với các loài khác."
+        },
+        {
+          "term": "Khống chế sinh học",
+          "definition": "Hiện tượng số lượng cá thể của một loài bị kìm hãm ở mức độ nhất định bởi mối quan hệ với loài khác trong quần xã."
+        }
+      ],
+      "summary": [
+        "Quần xã sinh vật là tập hợp các quần thể khác loài cùng chung sống trong một không gian và thời gian xác định.",
+        "Các đặc trưng cơ bản gồm: độ đa dạng loài, loài ưu thế và loài đặc trưng.",
+        "Các loài quan hệ chặt chẽ qua quan hệ hỗ trợ và đối kháng, tạo nên sự cân bằng sinh học thông qua cơ chế khống chế sinh học.",
+        "Cần bảo vệ môi trường sống tự nhiên và hạn chế tác động tiêu cực của con người để bảo tồn đa dạng sinh học của quần xã."
+      ],
       "generation_sources": [
         {
           "source": "SGK KHTN 8 KNTT.pdf",
@@ -24347,113 +24395,6 @@
           "virtual": false
         }
       ],
-      "order": 430,
-      "active": true,
-      "origin": "curriculum",
-      "catalog_only": false,
-      "created_at": "2026-08-29T13:12:20+00:00",
-      "updated_at": "2026-09-11T18:43:49+00:00",
-      "sections": [
-        {
-          "title": "Khởi động & Hiện tượng mở đầu",
-          "paragraphs": [
-            "Trên cơ sở những kiến thức HS đã được học, GV cần khai thác và kế thừa những kiến thức đó để đặt câu hỏi khởi động trong SGK và yêu cầu HS dự đoán câu trả lời GV yêu cầu HS nhắc lại vai trò của hệ tuần hoàn đối với cơ thể người GV đưa ra Trong câu hỏi khởi động để HS trả lời. GV dẫn dắt để đi vào nội dung bài học."
-          ],
-          "bullets": [
-            "Sơ đồ vòng tuần hoàn (2 vòng tuần hoàn).",
-            "Một số việc làm để giữ gìn và bảo vệ cơ quan tuần hoàn."
-          ]
-        },
-        {
-          "title": "Hoạt động 2. Tìm Hiểu Về Máu",
-          "paragraphs": [
-            "Dựa vào thông tin kênh chữ và kênh hình, GV tổ chức cho HS tìm hiểu về các 19 thành phần của máu, miễn dịch và vaccine, nhóm máu, truyền máu và sử dụng các câu hỏi để kiểm tra kiến thức HS đã tìm hiểu được.",
-            "nêu tên các thành phần của máu và chức năng các thành phần của máu 1996 - GV yêu cầu HS nêu khái niệm kháng nguyên, kháng thể, miễn dịch thông qua thông tin mục I.2 trong SGK.",
-            "hiểu về nhóm máu và sự truyền máu. Hoạt động trong SGK, GV có thể cho HS làm việc theo nhóm và các nhóm trao đổi chéo về kết quả. CH mục I.1 1.1 – tiểu cầu, 2 – hồng cầu, 3 – bạch cầu, 4 – huyết tương. (H)"
-          ],
-          "bullets": [
-            "GV yêu cầu HS đọc thông tin mục I.1 kết hợp quan sát Hình 33.1 trong SGK;",
-            "Yêu cầu HS quan sát Hình 33.3 và trình bày cơ chế miễn dịch trong cơ thể người",
-            "GV yêu cầu HS đọc thông tin mục I.3 và nghiên cứu thông tin trong Bảng 33.1 để tìm",
-            "Khi tìm hiểu về mỗi nội dung, GV tổ chức cho HS trả lời câu hỏi hoặc thực hiện",
-            "GV khẳng định kiến thức trong SGK để HS ghi nhớ."
-          ]
-        },
-        {
-          "title": "2.HS dựa vào chức năng các thành phần của máu để trả lời câu hỏi. (H)",
-          "paragraphs": [
-            "CH mục I.2 1.Con người sống trong môi trường chứa nhiều vi khuẩn có hại nhưng vẫn có thể sống khoẻ mạnh nhờ khả năng miễn dịch của cơ thể. (H)"
-          ],
-          "bullets": []
-        },
-        {
-          "title": "2. Tiêm vaccine có vai trò tạo miễn dịch nhân tạo cho cơ thể. (B)",
-          "paragraphs": [
-            "HĐ mục I.3 AB Thuật thế 2 Người có nhóm máu A có thể nhận máu bởi những người có nhóm máu A hoặc trị nhóm máu 0. Nếu truyền nhóm máu không phù hợp, hồng cầu của máu truyền vào cơ thể sẽ bị ngung kết bởi các kháng thể của người nhận ngay trong lòng mạch máu, có thể xảy ra các phản ứng đồng loạt, gây sốc, nguy hiểm đến tính mạng của người được truyền máu (VD)"
-          ],
-          "bullets": []
-        },
-        {
-          "title": "Hoạt động 3. Tìm Hiểu Hệ Tuần Hoàn Ở Người",
-          "paragraphs": [
-            "GV sử dụng tranh ảnh hoặc video về hệ tuần hoàn kết hợp với Hình 33.5 và các Trong chính câu hỏi trong SGK để tổ chức cho HS tìm hiểu về cấu tạo và chức năng của hệ tuần hoàn \"GV yêu cầu HS đọc thông tin trong mục II kết hợp quan sát Hình 33.5 hoặc video, hình ảnh có nội dung tương tự, sau đó trả lời câu hỏi trong SGK.",
-            "Hệ tuần hoàn gồm tim và hệ mạch, Tim hoạt động nhu một chiếc bơm, vừa hút, Thuật thuật vừa đầy máu lưu thông trong hệ tuần hoàn. Hệ mạch gồm động mạch, mao mạch, tỉnh tháng Thành mạch, Các mạch máu có dạng ống, hợp thành một hệ thống kín, Trong đó, động mạch xã vận chuyển máu từ tim đến mao mạch để trao đổi nước, chất khí, các chất giữa máu và các Thuật thuận Hệ tuần hoàn có chức năng vận chuyển các chất dinh dưỡng và chất khí đến các tế bào và nhất mô của cơ thể nhờ sự lưu thông của máu qua vòng tuần hoàn lớn và vòng tuần hoàn nhỏ.(B)"
-          ],
-          "bullets": []
-        },
-        {
-          "title": "Hoạt động 4. tìm hiểu một số bệnh về máu và tim mạch",
-          "paragraphs": [
-            "Có nhiều bệnh về máu và tim mạch, tuy nhiên trong SGK chỉ đề cập ba loại bệnh phổ biến là thiếu máu, huyết áp cao và xơ vữa động mạch. GV tổ chức cho HS tìm hiểu về các bệnh này dựa vào thông tin trong SGK kết hợp liên hệ với thực tế.",
-            "GV tổ chức cho HS thực hiện hoạt động trong SGK: chữ mục III trong SGK. bảo vệ hệ tuần hoàn HĐ HĐ"
-          ],
-          "bullets": [
-            "Yêu cầu HS tìm hiểu nguyên nhân, triệu chứng, hậu quả của các bệnh thông qua kênh",
-            "Vận dụng kiến thức đó để đề xuất cách phòng chống các bệnh về máu và tim mạch,",
-            "1. HS đọc thông tin trong mục III để nêu nguyên nhân, triệu chứng, hậu quả của một",
-            "SỐ BỆNH VỀ MÁU, TIM MẠCH. (B)",
-            "1. HS đọc thông tin trong mục III để nêu nguyên nhân, triệu chứng, hậu quả của một",
-            "SỐ BỆNH VỀ MÁU, TIM MẠCH. (B)"
-          ]
-        },
-        {
-          "title": "2. Một số biện pháp phòng bệnh, bảo vệ hệ tuần hoàn và cơ thể: (H)",
-          "paragraphs": [
-            "Biện pháp bảo vệ sức khoẻ Cơ sở Phát hiện bệnh tật liên quan đến tim mạch để chữa trị Kiểm tra sức khoẻ định kì kịp thời hay có chế độ hoạt động và sinh hoạt phù hợp để hằng năm bệnh được kiểm soát Kiểm tra sức khoẻ định kì kịp thời hay có chế độ hoạt động và sinh hoạt phù hợp để hằng năm bệnh được kiểm soát Khắc phục và hạn chế những Nếu tăng nhịp tim kéo dài sẽ dẫn đến bệnh suy tim và có nguyên nhân làm tăng nhịp thể làm tim ngừng hoạt động, Nếu tăng huyết áp kéo dài tim và huyết áp không mong có thể sẽ làm tổn thương cấu trúc thành động mạch và muốn gây bệnh Ăn uống vệ sinh; khẩu phần có thể sẽ làm tổn thương cấu trúc thành động mạch và muốn gây bệnh Ăn uống vệ sinh; khẩu phần Ngăn chặn sự xâm nhập của một số virus, vi khuẩn, gây bệnh cho cơ thể; ăn nhiều dầu mỡ tác động không tốt chất, hạn chế dầu mõ, ăn đến hệ mạch, tăng nguy cơ xơ vữa động mạch,..",
-            "nhiều quả và rau xanh)"
-          ],
-          "bullets": [
-            "năn hợp lí (ăn đủ lượng, đủ"
-          ]
-        },
-        {
-          "title": "Hoạt động 5. thực hành: thực hiện tình huống giả định cấp cứu người bị",
-          "paragraphs": [
-            "CHẢY MÁU, TAI BIẾN, ĐỘT QUY VÀ ĐO HUYẾT ÁP GV tổ chức cho HS thực hiện tình huống giả định cấp cứu người bị chảy máu, tai biến, đột quy và thực hiện đo huyết áp.",
-            "Trong thế phụ thuộc vào số lượng thiết bị dụng cụ mà GV chuẩn bị được (nên đảm bảo mỗi nhóm không quá 5 HS). đạt được."
-          ],
-          "bullets": [
-            "GV chia lớp thành các nhóm nhỏ để tiến hành thực hành, Số lượng HS/nhóm",
-            "GV yêu cầu các nhóm kiểm tra số lượng thiết bị, dụng cụ của nhóm mình",
-            "GV đưa ra nhiệm vụ cụ thể cho từng nội dung thực hành như thời gian, yêu cầu cần"
-          ]
-        }
-      ],
-      "summary": [
-        "GV chia lớp thành các nhóm nhỏ để tiến hành thực hành, Số lượng HS/nhóm",
-        "GV yêu cầu các nhóm kiểm tra số lượng thiết bị, dụng cụ của nhóm mình",
-        "GV đưa ra nhiệm vụ cụ thể cho từng nội dung thực hành như thời gian, yêu cầu cần"
-      ],
-      "terms": [
-        {
-          "term": "phổ biến",
-          "definition": "thiếu máu, huyết áp cao và xơ vữa động mạch"
-        }
-      ],
-      "warmup": {
-        "question": "Trong đời sống, em đã từng quan sát hoặc gặp hiện tượng nào liên quan đến Quần xã sinh vật?",
-        "hint": "Hãy liên hệ với các sự vật, hiện tượng tự nhiên quen thuộc xung quanh chúng ta."
-      },
       "illustrations": [
         {
           "caption": "Sơ đồ & Hình minh họa: Bài 43 - Quần xã sinh vật",
