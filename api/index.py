@@ -1379,8 +1379,20 @@ def api_lab_experiments():
     result = []
     for exp in EXPERIMENT_CATALOG:
         if subject != "all":
-            if subject in {"phet", "phet_colorado", "phet-physics"}:
-                if not exp.get("is_phet"):
+            if subject in {"biology", "sinhhoc", "sinh", "s"}:
+                if exp.get("subject", "").lower() != "biology":
+                    continue
+            elif subject in {"physics", "vatly", "ly", "l"}:
+                if exp.get("subject", "").lower() != "physics":
+                    continue
+            elif subject in {"chemistry", "hoahoc", "hoa", "h"}:
+                if exp.get("subject", "").lower() != "chemistry":
+                    continue
+            elif subject in {"earth", "traidat", "t"}:
+                if exp.get("subject", "").lower() != "earth":
+                    continue
+            elif subject in {"general", "antoan", "c"}:
+                if exp.get("subject", "").lower() != "general":
                     continue
             elif exp.get("subject", "").lower() != subject:
                 continue

@@ -126,7 +126,7 @@ COMPLETE_LESSONS = [
             }
         ],
         "order": 180,
-        "active": true,
+        "active": True,
         "origin": "system",
         "lesson_version": 4
     },
@@ -241,7 +241,7 @@ COMPLETE_LESSONS = [
             }
         ],
         "order": 250,
-        "active": true,
+        "active": True,
         "origin": "system",
         "lesson_version": 4
     },
@@ -361,7 +361,7 @@ COMPLETE_LESSONS = [
             }
         ],
         "order": 310,
-        "active": true,
+        "active": True,
         "origin": "system",
         "lesson_version": 4
     },
@@ -373,7 +373,7 @@ COMPLETE_LESSONS = [
         "topic": "Sinh học cơ thể người",
         "duration": "3 tiết (135 phút)",
         "order": 320,
-        "active": true,
+        "active": True,
         "origin": "official_curriculum",
         "lesson_version": 5,
         "source_label": "SGK KHTN 8 KNTT – Bài 32 – Trang 131–135",
@@ -566,7 +566,7 @@ COMPLETE_LESSONS = [
         "topic": "Thành phần của máu, miễn dịch, vaccine, nhóm máu và hệ tuần hoàn ở người",
         "duration": "40–45 phút",
         "order": 330,
-        "active": true,
+        "active": True,
         "origin": "system",
         "lesson_version": 3,
         "source_label": "SGK KHTN 8 KNTT · Bài 33 · Trang 135–141",
@@ -739,7 +739,7 @@ COMPLETE_LESSONS = [
         "topic": "Sinh học cơ thể người",
         "duration": "3 tiết (135 phút)",
         "order": 340,
-        "active": true,
+        "active": True,
         "origin": "official_curriculum",
         "lesson_version": 5,
         "source_label": "SGK KHTN 8 KNTT – Bài 34 – Trang 142–146",
@@ -913,7 +913,7 @@ COMPLETE_LESSONS = [
         "topic": "Sinh học cơ thể người",
         "duration": "2 tiết (90 phút)",
         "order": 350,
-        "active": true,
+        "active": True,
         "origin": "official_curriculum",
         "lesson_version": 5,
         "source_label": "SGK KHTN 8 KNTT – Bài 35 – Trang 147–151",
@@ -1094,7 +1094,7 @@ COMPLETE_LESSONS = [
         "topic": "Sinh học cơ thể người",
         "duration": "2 tiết (90 phút)",
         "order": 360,
-        "active": true,
+        "active": True,
         "origin": "official_curriculum",
         "lesson_version": 5,
         "source_label": "SGK KHTN 8 KNTT – Bài 36 – Trang 152–155",
@@ -1266,7 +1266,7 @@ COMPLETE_LESSONS = [
         "topic": "Sinh học cơ thể người",
         "duration": "4 tiết (180 phút)",
         "order": 370,
-        "active": true,
+        "active": True,
         "origin": "official_curriculum",
         "lesson_version": 5,
         "source_label": "SGK KHTN 8 KNTT – Bài 37 – Trang 156–162",
@@ -1570,7 +1570,7 @@ COMPLETE_LESSONS = [
             }
         ],
         "order": 70,
-        "active": true,
+        "active": True,
         "origin": "system",
         "lesson_version": 4
     },
@@ -1582,7 +1582,7 @@ COMPLETE_LESSONS = [
         "topic": "Cơ chế, diễn biến các kì, ý nghĩa và ứng dụng của nguyên phân và giảm phân trong di truyền học",
         "duration": "90 phút (2 tiết)",
         "order": 430,
-        "active": true,
+        "active": True,
         "origin": "system",
         "lesson_version": 4,
         "objectives": [

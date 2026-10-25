@@ -1883,11 +1883,11 @@ def _load_giaoducsoth_khtn_catalog():
 
 PHET_EXPERIMENTS = _load_phet_physics_catalog()
 GIAODUCSOTH_EXPERIMENTS = _load_giaoducsoth_khtn_catalog()
-EXPERIMENT_CATALOG = BUILTIN_EXPERIMENTS + PHET_EXPERIMENTS + GIAODUCSOTH_EXPERIMENTS
+EXPERIMENT_CATALOG = GIAODUCSOTH_EXPERIMENTS
 
 
 def list_experiments(grade=None, subject=None):
-    """Lấy danh sách các bài thí nghiệm, lọc theo khối lớp hoặc phân môn."""
+    """Lấy danh sách các bài thí nghiệm KHTN 6-9 (giaoducsoth.online), lọc theo khối lớp hoặc phân môn."""
     items = EXPERIMENT_CATALOG
     if grade:
         try:
@@ -1897,16 +1897,16 @@ def list_experiments(grade=None, subject=None):
             pass
     if subject:
         subj_str = str(subject).strip().lower()
-        if subj_str in {"physics", "vatly", "ly"}:
-            items = [item for item in items if item["subject"] == "physics"]
-        elif subj_str in {"chemistry", "hoahoc", "hoa"}:
-            items = [item for item in items if item["subject"] == "chemistry"]
-        elif subj_str in {"biology", "sinhhoc", "sinh"}:
+        if subj_str in {"biology", "sinhhoc", "sinh", "s"}:
             items = [item for item in items if item["subject"] == "biology"]
-        elif subj_str in {"earth", "traidat"}:
+        elif subj_str in {"physics", "vatly", "ly", "l"}:
+            items = [item for item in items if item["subject"] == "physics"]
+        elif subj_str in {"chemistry", "hoahoc", "hoa", "h"}:
+            items = [item for item in items if item["subject"] == "chemistry"]
+        elif subj_str in {"earth", "traidat", "t"}:
             items = [item for item in items if item["subject"] == "earth"]
-        elif subj_str in {"phet", "phet_colorado", "phet-physics"}:
-            items = [item for item in items if item.get("is_phet")]
+        elif subj_str in {"general", "antoan", "c"}:
+            items = [item for item in items if item["subject"] == "general"]
         elif subj_str in {"giaoducsoth", "gdso", "khtn", "kntt"}:
             items = [item for item in items if item.get("is_giaoducsoth")]
     return items
@@ -1921,22 +1921,30 @@ EXP_ALIASES = {
 
 
 def get_experiment_by_id(exp_id):
-    """Lấy thông tin chi tiết của một bài thí nghiệm theo mã id."""
+    """Lấy thông tin chi tiết của một bài thí nghiệm theo mã id hoặc mã code (K6-S-01)."""
     if not exp_id:
         return None
     exp_id = str(exp_id).strip()
     target_id = EXP_ALIASES.get(exp_id, exp_id)
-    item = next((exp for exp in EXPERIMENT_CATALOG if exp["id"] == target_id), None)
+    item = next((exp for exp in EXPERIMENT_CATALOG 
+                 if exp.get("id") == target_id 
+                 or exp.get("id", "").lower() == target_id.lower()
+                 or exp.get("id", "").lower() == f"gdso-{target_id.lower()}"
+                 or exp.get("exp_code", "").lower() == target_id.lower()), None)
     if not item:
         return None
     res = dict(item)
     res["simulation"] = {
         "sim_type": res.get("simulation_type"),
         "default_params": res.get("default_params", {}),
+        "sim_url": res.get("sim_url"),
         "phet_url": res.get("phet_url"),
         "web_url": res.get("web_url"),
         "thumb_url": res.get("thumb_url"),
-        "is_phet": res.get("is_phet", False)
+        "exp_code": res.get("exp_code"),
+        "kind": res.get("kind"),
+        "is_giaoducsoth": True,
+        "is_phet": False
     }
     res["objectives"] = [res.get("summary")] if res.get("summary") else [res.get("title")]
     res["procedure"] = res.get("procedure_steps", [])

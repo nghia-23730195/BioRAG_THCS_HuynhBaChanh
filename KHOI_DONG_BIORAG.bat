@@ -26,7 +26,7 @@ if not exist "datasources" goto ERROR_DATASOURCES
 
 set "RAG_DATABASE_DIR=database_kntt"
 set "PYTHONUTF8=1"
-set "BIORAG_URL=http://127.0.0.1:5000/?v=38"
+set "BIORAG_URL=http://127.0.0.1:5000/?v=39"
 
 echo Dang dong may chu BioRAG cu (neu co) de tranh chay nham code cu...
 taskkill /FI "WINDOWTITLE eq BioRAG Server*" /T /F >nul 2>&1
