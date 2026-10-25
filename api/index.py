@@ -1378,12 +1378,32 @@ def api_lab_experiments():
     grade = request.args.get("grade", "all").strip()
     result = []
     for exp in EXPERIMENT_CATALOG:
-        if subject != "all" and exp.get("subject", "").lower() != subject:
-            continue
+        if subject != "all":
+            if subject in {"phet", "phet_colorado", "phet-physics"}:
+                if not exp.get("is_phet"):
+                    continue
+            elif exp.get("subject", "").lower() != subject:
+                continue
         if grade != "all" and str(exp.get("grade")) != grade:
             continue
         result.append(exp)
     return jsonify({"experiments": result, "total": len(result)})
+
+
+@app.route("/data/<path:filename>", methods=["GET"])
+def api_data_asset(filename):
+    """Phục vụ các tệp dữ liệu tĩnh JSON (như phet_physics_experiments.json)."""
+    candidates = [
+        BASE_DIR / "public" / "data",
+        BASE_DIR / "api" / "data",
+        BASE_DIR / "src" / "app" / "data",
+        current_dir / "data",
+    ]
+    for c_dir in candidates:
+        target = c_dir / filename
+        if target.is_file():
+            return send_file(target, mimetype="application/json")
+    return jsonify({"error": f"Tệp data/{filename} không tồn tại."}), 404
 
 @app.route("/api/lab/experiments/<exp_id>", methods=["GET"])
 @app.route("/lab/experiments/<exp_id>", methods=["GET"])

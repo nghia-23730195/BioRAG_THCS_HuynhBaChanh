@@ -16,7 +16,7 @@ from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml import OxmlElement, parse_xml
 from docx.oxml.ns import nsdecls, qn
 
-EXPERIMENT_CATALOG = [
+BUILTIN_EXPERIMENTS = [
     {
         "id": "k6-phy-bien-dang-lo-xo",
         "grade": 6,
@@ -1832,6 +1832,60 @@ EXPERIMENT_CATALOG = [
 ]
 
 
+def _load_phet_physics_catalog():
+    """Tự động tải danh mục thí nghiệm mô phỏng PhET Colorado (Vật lý THCS)."""
+    import json
+    from pathlib import Path
+    possible_paths = [
+        Path(__file__).parent / "data" / "phet_physics_experiments.json",
+        Path(__file__).parent.parent.parent / "src" / "app" / "data" / "phet_physics_experiments.json",
+        Path(__file__).parent.parent / "data" / "phet_physics_experiments.json",
+        Path("src/app/data/phet_physics_experiments.json"),
+        Path("api/data/phet_physics_experiments.json"),
+        Path("public/data/phet_physics_experiments.json")
+    ]
+    for p in possible_paths:
+        try:
+            if p.is_file():
+                with open(p, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    if isinstance(data, list) and data:
+                        return data
+        except Exception:
+            continue
+    return []
+
+
+def _load_giaoducsoth_khtn_catalog():
+    """Tự động tải danh mục 78 thí nghiệm ảo KHTN 6-9 từ giaoducsoth.online (KNTT)."""
+    import json
+    from pathlib import Path
+    possible_paths = [
+        Path(__file__).parent / "data" / "giaoducsoth_khtn_experiments.json",
+        Path(__file__).parent.parent.parent / "src" / "app" / "data" / "giaoducsoth_khtn_experiments.json",
+        Path(__file__).parent.parent / "data" / "giaoducsoth_khtn_experiments.json",
+        Path("src/app/data/giaoducsoth_khtn_experiments.json"),
+        Path("api/data/giaoducsoth_khtn_experiments.json"),
+        Path("public/data/giaoducsoth_khtn_experiments.json"),
+        Path("data/giaoducsoth_khtn_experiments.json")
+    ]
+    for p in possible_paths:
+        try:
+            if p.is_file():
+                with open(p, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    if isinstance(data, list) and data:
+                        return data
+        except Exception:
+            continue
+    return []
+
+
+PHET_EXPERIMENTS = _load_phet_physics_catalog()
+GIAODUCSOTH_EXPERIMENTS = _load_giaoducsoth_khtn_catalog()
+EXPERIMENT_CATALOG = BUILTIN_EXPERIMENTS + PHET_EXPERIMENTS + GIAODUCSOTH_EXPERIMENTS
+
+
 def list_experiments(grade=None, subject=None):
     """Lấy danh sách các bài thí nghiệm, lọc theo khối lớp hoặc phân môn."""
     items = EXPERIMENT_CATALOG
@@ -1847,6 +1901,14 @@ def list_experiments(grade=None, subject=None):
             items = [item for item in items if item["subject"] == "physics"]
         elif subj_str in {"chemistry", "hoahoc", "hoa"}:
             items = [item for item in items if item["subject"] == "chemistry"]
+        elif subj_str in {"biology", "sinhhoc", "sinh"}:
+            items = [item for item in items if item["subject"] == "biology"]
+        elif subj_str in {"earth", "traidat"}:
+            items = [item for item in items if item["subject"] == "earth"]
+        elif subj_str in {"phet", "phet_colorado", "phet-physics"}:
+            items = [item for item in items if item.get("is_phet")]
+        elif subj_str in {"giaoducsoth", "gdso", "khtn", "kntt"}:
+            items = [item for item in items if item.get("is_giaoducsoth")]
     return items
 
 
@@ -1870,7 +1932,11 @@ def get_experiment_by_id(exp_id):
     res = dict(item)
     res["simulation"] = {
         "sim_type": res.get("simulation_type"),
-        "default_params": res.get("default_params", {})
+        "default_params": res.get("default_params", {}),
+        "phet_url": res.get("phet_url"),
+        "web_url": res.get("web_url"),
+        "thumb_url": res.get("thumb_url"),
+        "is_phet": res.get("is_phet", False)
     }
     res["objectives"] = [res.get("summary")] if res.get("summary") else [res.get("title")]
     res["procedure"] = res.get("procedure_steps", [])
@@ -1879,6 +1945,7 @@ def get_experiment_by_id(exp_id):
     res["equations"] = [res.get("formula")] if res.get("formula") else []
     res["harvest_questions"] = [q.get("question") if isinstance(q, dict) else str(q) for q in res.get("practice_questions", [])]
     return res
+
 
 
 def _set_cell_background(cell, fill_hex):

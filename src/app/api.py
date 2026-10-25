@@ -13,16 +13,29 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote
-import torch
+try:
+    import torch
+except ImportError:
+    torch = None
+
 from flask import Flask, request, jsonify, send_file, send_from_directory, Response, stream_with_context
 from flask_cors import CORS
-from transformers import TextIteratorStreamer
+try:
+    from transformers import TextIteratorStreamer
+except ImportError:
+    TextIteratorStreamer = None
 from werkzeug.utils import secure_filename
 
 from src.config import DATA_DIR, PERSIST_DIR, IMAGES_DIR, LLM_MAX_NEW_TOKENS, LLM_TEMPERATURE, LLM_TOP_P
-from src.app.dependencies import AppServices
+try:
+    from src.app.dependencies import AppServices
+except Exception as e:
+    AppServices = None
 from src.app.learning_catalog import create_lesson, list_lessons, update_lesson
-from src.etl.image_review import ImageReviewManager
+try:
+    from src.etl.image_review import ImageReviewManager
+except Exception as e:
+    ImageReviewManager = None
 
 logger = logging.getLogger(__name__)
 
@@ -87,6 +100,23 @@ def web_three_asset(filename):
     )
     response.headers["X-Content-Type-Options"] = "nosniff"
     return response
+
+
+@app.route("/data/<path:filename>", methods=["GET"])
+def web_data_asset(filename):
+    """Phục vụ các tệp dữ liệu tĩnh JSON (như phet_physics_experiments.json)."""
+    project_root = Path(__file__).resolve().parents[2]
+    candidates = [
+        project_root / "public" / "data",
+        project_root / "src" / "app" / "data",
+        project_root / "api" / "data",
+        Path(__file__).resolve().parent / "data",
+    ]
+    for c_dir in candidates:
+        target = c_dir / filename
+        if target.is_file():
+            return send_from_directory(c_dir, filename, conditional=True)
+    return jsonify({"error": f"Tệp data/{filename} không tồn tại."}), 404
 
 
 def _biorag_textbook_pdf_candidates(role="sgk"):
@@ -6210,7 +6240,13 @@ def export_image_chat():
 
 
 def run_api(host='0.0.0.0', port=5000):
-    logger.info("Initializing AppServices before starting Flask...")
-    AppServices.get_instance()
+    if AppServices is not None:
+        try:
+            logger.info("Initializing AppServices before starting Flask...")
+            AppServices.get_instance()
+        except Exception as exc:
+            logger.warning("Could not initialize AppServices (proceeding in lightweight mode): %s", exc)
+    else:
+        logger.info("AppServices is None (running in lightweight API & Lab mode)...")
     logger.info(f"Starting Flask API server on {host}:{port}...")
     app.run(host=host, port=port, debug=False)

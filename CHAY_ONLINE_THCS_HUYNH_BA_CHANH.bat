@@ -11,7 +11,15 @@ echo ======================================================================
 echo.
 
 if not exist "main.py" goto ERROR_MAIN
-if not exist "venv\Scripts\python.exe" goto ERROR_PYTHON
+set "PYTHON_EXE=venv\Scripts\python.exe"
+if not exist "%PYTHON_EXE%" (
+    where python >nul 2>&1
+    if not errorlevel 1 (
+        set "PYTHON_EXE=python"
+    ) else (
+        goto ERROR_PYTHON
+    )
+)
 
 set "RAG_DATABASE_DIR=database_kntt"
 set "RAG_DATA_DIR=datasources"
@@ -26,7 +34,7 @@ for /f "tokens=5" %%P in ('netstat -ano ^| findstr ":%BIORAG_PORT%" ^| findstr "
 timeout /t 2 /nobreak >nul
 
 echo 2. Khoi dong may chu BioRAG Backend (Cong %BIORAG_PORT%)...
-start "BioRAG Backend - THCS Huynh Ba Chanh" "%ComSpec%" /k ""%CD%\venv\Scripts\python.exe" "%CD%\main.py" --api --port %BIORAG_PORT%"
+start "BioRAG Backend - THCS Huynh Ba Chanh" "%ComSpec%" /k ""%PYTHON_EXE%" "%CD%\main.py" --api --port %BIORAG_PORT%"
 
 echo 3. Dang cho may chu nap mo hinh AI va co so du lieu (khoang 25-35 giay)...
 timeout /t 30 /nobreak >nul

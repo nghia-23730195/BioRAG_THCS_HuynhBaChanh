@@ -10,13 +10,23 @@ echo ==========================================
 echo.
 
 if not exist "main.py" goto ERROR_MAIN
-if not exist "venv\Scripts\python.exe" goto ERROR_PYTHON
+
+set "PYTHON_EXE=venv\Scripts\python.exe"
+if not exist "%PYTHON_EXE%" (
+    where python >nul 2>&1
+    if not errorlevel 1 (
+        set "PYTHON_EXE=python"
+    ) else (
+        goto ERROR_PYTHON
+    )
+)
+
 if not exist "database_kntt" goto ERROR_DATABASE
 if not exist "datasources" goto ERROR_DATASOURCES
 
 set "RAG_DATABASE_DIR=database_kntt"
 set "PYTHONUTF8=1"
-set "BIORAG_URL=http://127.0.0.1:5000/?v=36"
+set "BIORAG_URL=http://127.0.0.1:5000/?v=38"
 
 echo Dang dong may chu BioRAG cu (neu co) de tranh chay nham code cu...
 taskkill /FI "WINDOWTITLE eq BioRAG Server*" /T /F >nul 2>&1
@@ -26,7 +36,7 @@ for /f "tokens=5" %%P in ('netstat -ano ^| findstr ":5000" ^| findstr "LISTENING
 timeout /t 2 /nobreak >nul
 
 echo Dang khoi dong may chu BioRAG...
-start "BioRAG Server" "%ComSpec%" /k ""%CD%\venv\Scripts\python.exe" "%CD%\main.py" --api --port 5000"
+start "BioRAG Server" "%ComSpec%" /k ""%PYTHON_EXE%" "%CD%\main.py" --api --port 5000"
 
 echo Dang cho may chu san sang...
 timeout /t 8 /nobreak >nul
