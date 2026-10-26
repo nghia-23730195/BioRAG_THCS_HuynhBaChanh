@@ -572,18 +572,22 @@ def build_exam_package_3280_doc(exam_data: Dict[str, Any]) -> docx.Document:
             doc, f"Câu {q_idx} ({q_score:.2f} điểm): {q_text}",
             size_pt=12, bold=True, space_before_pt=3, space_after_pt=2
         )
+        p_q.paragraph_format.keep_with_next = True
 
         options = q.get("options") or []
         labels = ["A", "B", "C", "D"]
-        for opt_idx, opt in enumerate(options[:4]):
+        opts_slice = options[:4]
+        for opt_idx, opt in enumerate(opts_slice):
             clean_opt = str(opt).strip()
             # If option doesn't start with letter label, add it
             if not re.match(r"^[A-D][\.\:\)]", clean_opt):
                 clean_opt = f"{labels[opt_idx]}. {clean_opt}"
-            _add_p_styled(
+            p_opt = _add_p_styled(
                 doc, f"    {clean_opt}",
                 size_pt=11.5, space_after_pt=1.5, align=WD_ALIGN_PARAGRAPH.LEFT
             )
+            if opt_idx < len(opts_slice) - 1:
+                p_opt.paragraph_format.keep_with_next = True
 
     _add_p_styled(doc, "", space_after_pt=6)
 
@@ -814,48 +818,55 @@ def lesson_to_exam_data(
 
     # 0. Auto-lookup lesson if caller only passed title/topic without sections or quick_checks
     existing_mcqs = lesson.get("multiple_choice") or []
-    if not sections and not quick_checks and not existing_mcqs:
-        try:
-            cand_paths = [
-                Path(__file__).resolve().parent / "data" / "learning_lessons.json",
-                Path(__file__).resolve().parent.parent / "api" / "data" / "learning_lessons.json",
-                Path(__file__).resolve().parent.parent / "src" / "app" / "data" / "learning_lessons.json",
-            ]
-            for cp in cand_paths:
-                if cp.exists():
-                    with open(cp, "r", encoding="utf-8-sig") as f:
-                        cat = json.load(f).get("lessons", [])
-                    t_clean = (str(lesson.get("title") or "") + " " + str(lesson.get("topic") or "") + " " + raw_title).lower().strip()
-                    for item in cat:
-                        if int(item.get("grade") or 0) == int(grade):
-                            i_title = str(item.get("title") or "").lower()
-                            i_topic = str(item.get("topic") or "").lower()
-                            i_num = str(item.get("number") or "").lower()
-                            if t_clean in i_title or i_title in t_clean or t_clean in i_topic or (i_num and i_num in t_clean):
-                                lesson = item
-                                raw_title = str(lesson.get("title") or raw_title).strip()
-                                topic = str(lesson.get("topic") or raw_title).strip()
-                                objectives = lesson.get("objectives") or objectives
-                                sections = lesson.get("sections") or sections
-                                quick_checks = lesson.get("quick_check") or quick_checks
-                                content_str = str(lesson.get("content") or content_str)
-                                break
-                    if sections or quick_checks:
-                        break
-        except Exception:
-            pass
+    all_catalog_lessons: List[Dict[str, Any]] = []
+    try:
+        cand_paths = [
+            Path(__file__).resolve().parent / "data" / "learning_lessons.json",
+            Path(__file__).resolve().parent.parent / "api" / "data" / "learning_lessons.json",
+            Path(__file__).resolve().parent.parent / "src" / "app" / "data" / "learning_lessons.json",
+        ]
+        for cp in cand_paths:
+            if cp.exists():
+                with open(cp, "r", encoding="utf-8-sig") as f:
+                    all_catalog_lessons = json.load(f).get("lessons", [])
+                if all_catalog_lessons:
+                    break
+    except Exception:
+        pass
+
+    if not sections and not quick_checks and not existing_mcqs and all_catalog_lessons:
+        t_clean = (str(lesson.get("title") or "") + " " + str(lesson.get("topic") or "") + " " + raw_title).lower().strip()
+        for item in all_catalog_lessons:
+            if int(item.get("grade") or 0) == int(grade):
+                i_title = str(item.get("title") or "").lower()
+                i_topic = str(item.get("topic") or "").lower()
+                i_num = str(item.get("number") or "").lower()
+                if t_clean in i_title or i_title in t_clean or t_clean in i_topic or (i_num and i_num in t_clean):
+                    lesson = item
+                    raw_title = str(lesson.get("title") or raw_title).strip()
+                    topic = str(lesson.get("topic") or raw_title).strip()
+                    objectives = lesson.get("objectives") or objectives
+                    sections = lesson.get("sections") or sections
+                    quick_checks = lesson.get("quick_check") or quick_checks
+                    content_str = str(lesson.get("content") or content_str)
+                    break
 
     existing_mcqs = lesson.get("multiple_choice") or []
-    target_count = target_mcq_count if target_mcq_count > 0 else (int(lesson.get("count", 0)) or (len(existing_mcqs) if existing_mcqs else 8))
+    target_count = target_mcq_count if target_mcq_count > 0 else (int(lesson.get("count", 0)) or (len(existing_mcqs) if existing_mcqs else (len(quick_checks) if len(quick_checks) >= 8 else 8)))
     if target_count < 3:
         target_count = 8
-    q_score = 0.25 if target_count >= 20 else 0.5
+    if target_count <= 8:
+        q_score = 0.5
+    elif target_count <= 15:
+        q_score = round(6.0 / target_count, 2)
+    else:
+        q_score = 0.25
     labels = ["A", "B", "C", "D"]
 
     # Build Multiple Choice Questions
     mcqs = []
     if existing_mcqs:
-        for idx, q_raw in enumerate(existing_mcqs, start=1):
+        for idx, q_raw in enumerate(existing_mcqs[:target_count], start=1):
             opts = q_raw.get("options") or []
             formatted_opts = []
             for o_i, opt in enumerate(opts[:4]):
@@ -875,7 +886,7 @@ def lesson_to_exam_data(
                 ans_key = "A"
             mcqs.append({
                 "id": idx,
-                "level": q_raw.get("level") or ("NB" if idx <= round(target_count * 0.4) else ("TH" if idx <= round(target_count * 0.7) else "VD")),
+                "level": q_raw.get("level") or ("NB" if idx <= round(target_count * 0.4) else ("TH" if idx <= round(target_count * 0.75) else "VD")),
                 "question": q_raw.get("question") or f"Câu hỏi {idx}",
                 "options": formatted_opts,
                 "answer_key": ans_key,
@@ -883,10 +894,14 @@ def lesson_to_exam_data(
                 "explanation": q_raw.get("explanation") or f"Dựa trên kiến thức {topic} SGK KHTN {grade}."
             })
     else:
-        for idx, qc in enumerate(quick_checks, start=1):
+        for idx, qc in enumerate(quick_checks[:target_count], start=1):
             ans_idx = int(qc.get("answer_index", 0))
             ans_key = labels[ans_idx] if 0 <= ans_idx < len(labels) else "A"
-            level = "NB" if idx == 1 else "TH" if idx == 2 else "VD"
+            raw_level = str(qc.get("level") or "").strip().upper()
+            if raw_level in ("NB", "TH", "VD", "VDC"):
+                level = raw_level
+            else:
+                level = "NB" if idx <= 3 else ("TH" if idx <= 6 else "VD")
             options = qc.get("options") or []
             formatted_opts = []
             for o_i, opt in enumerate(options[:4]):
@@ -904,168 +919,80 @@ def lesson_to_exam_data(
                 "explanation": qc.get("explanation") or f"Dựa trên kiến thức {topic} SGK KHTN {grade}."
             })
 
-    # Expand if needed to reach target_count
+    # Expand if needed to reach target_count using authentic curated questions from same chapter/grade
     if len(mcqs) < target_count:
-        # Collect authentic knowledge sources from lesson
-        terms_pool = []
-        for item in (lesson.get("terms") or []):
-            t_term = str(item.get("term") or "").strip()
-            t_def = str(item.get("definition") or "").strip()
-            if t_term and t_def and len(t_def) >= 15 and not any(j in t_def for j in ["QQQ", "191/229"]):
-                terms_pool.append((t_term, t_def))
+        used_questions = set(q.get("question", "") for q in mcqs)
+        curr_id = len(mcqs) + 1
+        curr_lesson_id = str(lesson.get("id") or "")
+        curr_chapter = str(lesson.get("chapter") or "")
 
-        summary_pool = []
-        for s_point in (lesson.get("summary") or []):
-            sp = str(s_point).strip()
-            if len(sp) >= 20 and not any(j in sp for j in ["QQQ", "191/229"]):
-                summary_pool.append(sp)
-
-        section_facts = []
-        for sec in sections:
-            s_title = str(sec.get("title") or "").strip()
-            for b in sec.get("bullets") or []:
-                clean_b = str(b).strip()
-                if len(clean_b) >= 15 and not any(j in clean_b for j in ["QQQ", "191/229"]):
-                    section_facts.append((s_title, clean_b))
-            for p in sec.get("paragraphs") or []:
-                for sent in re.split(r"[\.\;\n]", str(p)):
-                    s = sent.strip()
-                    if 25 <= len(s) <= 160 and not s.startswith("Hình") and not s.startswith("Bảng"):
-                        section_facts.append((s_title, s))
-
-        # Distractor banks tailored for biological and physical natural sciences
-        smart_distractors_pool = [
-            "Chỉ diễn ra ở các sinh vật nhân sơ trong điều kiện nhân tạo.",
-            "Diễn ra độc lập mà không cần năng lượng ATP và vật chất của tế bào.",
-            "Không chịu sự kiểm soát của hệ thống enzym và cơ chế điều hòa sinh học.",
-            "Làm phá vỡ hoàn toàn cấu trúc tế bào và tiêu biến vật chất di truyền.",
-            "Chỉ xuất hiện ngẫu nhiên và không mang ý nghĩa sinh học trong tự nhiên.",
-            "Không tham gia vào quá trình truyền đạt và biểu hiện thông tin di truyền.",
-            "Có xu hướng đảo ngược quy luật tiến hóa và triệt tiêu tính đa dạng sinh học.",
-            "Chỉ xảy ra khi có sự can thiệp trực tiếp từ các hóa chất nhân tạo cực mạnh."
+        # Gather candidate lessons from the same grade: first same chapter, then other chapters of same grade
+        same_chapter_lessons = [
+            item for item in all_catalog_lessons
+            if int(item.get("grade") or 0) == int(grade)
+            and str(item.get("id") or "") != curr_lesson_id
+            and str(item.get("chapter") or "") == curr_chapter
+        ]
+        other_grade_lessons = [
+            item for item in all_catalog_lessons
+            if int(item.get("grade") or 0) == int(grade)
+            and str(item.get("id") or "") != curr_lesson_id
+            and str(item.get("chapter") or "") != curr_chapter
         ]
 
-        used_questions = set(q.get("question", "") for q in mcqs)
-        used_answers = set(str(q.get("explanation", "")) for q in mcqs)
-        curr_id = len(mcqs) + 1
-
-        # 1. First generate from authentic terms if available
-        for t_term, t_def in terms_pool:
+        for cand_lesson in (same_chapter_lessons + other_grade_lessons):
             if curr_id > target_count:
                 break
-            q_text = f"Theo chương trình Khoa học tự nhiên {grade}, thuật ngữ '{t_term}' có nội dung nào sau đây?"
-            if q_text in used_questions:
-                continue
-            used_questions.add(q_text)
+            for qc in (cand_lesson.get("quick_check") or []):
+                if curr_id > target_count:
+                    break
+                q_text = str(qc.get("question") or "").strip()
+                if not q_text or q_text in used_questions:
+                    continue
+                used_questions.add(q_text)
+                ans_idx = int(qc.get("answer_index", 0))
+                ans_key = labels[ans_idx] if 0 <= ans_idx < len(labels) else "A"
+                raw_level = str(qc.get("level") or "").strip().upper()
+                level = raw_level if raw_level in ("NB", "TH", "VD", "VDC") else ("NB" if curr_id % 3 == 1 else ("TH" if curr_id % 3 == 2 else "VD"))
+                options = qc.get("options") or []
+                formatted_opts = []
+                for o_i, opt in enumerate(options[:4]):
+                    clean = str(opt).strip()
+                    if not re.match(r"^[A-D][\.\:\)]", clean):
+                        clean = f"{labels[o_i]}. {clean}"
+                    formatted_opts.append(clean)
+                if len(formatted_opts) == 4:
+                    mcqs.append({
+                        "id": curr_id,
+                        "level": level,
+                        "question": q_text,
+                        "options": formatted_opts,
+                        "answer_key": ans_key,
+                        "score": q_score,
+                        "explanation": qc.get("explanation") or f"Dựa trên kiến thức SGK KHTN {grade}."
+                    })
+                    curr_id += 1
 
-            correct_ans = t_def[:120].rstrip(". ")
-            distractors = []
-            # Use other term definitions as high-quality distractors
-            other_defs = [d for t, d in terms_pool if t != t_term and d != t_def]
-            for od in other_defs[:3]:
-                distractors.append(od[:120].rstrip(". "))
-            while len(distractors) < 3:
-                cand = smart_distractors_pool[len(distractors) % len(smart_distractors_pool)]
-                if cand not in distractors:
-                    distractors.append(cand)
-
-            correct_pos = (curr_id - 1) % 4
-            opts = list(distractors[:3])
-            opts.insert(correct_pos, correct_ans)
-            formatted_opts = [f"{labels[i]}. {opts[i]}" for i in range(4)]
-
-            mcqs.append({
-                "id": curr_id,
-                "level": "NB",
-                "question": q_text,
-                "options": formatted_opts,
-                "answer_key": labels[correct_pos],
-                "score": q_score,
-                "explanation": f"Theo SGK KHTN {grade}: {t_term} là {t_def}."
-            })
-            curr_id += 1
-
-        # 2. Next generate from authentic summary facts
-        for s_fact in summary_pool:
-            if curr_id > target_count:
-                break
-            q_text = f"Nội dung nào sau đây là ĐÚNG khi nói về {topic} (KHTN {grade})?"
-            if q_text in used_questions:
-                q_text = f"Nhận định nào sau đây phản ánh CHÍNH XÁC kiến thức về {topic}?"
-            if q_text in used_questions:
-                q_text = f"Theo SGK Khoa học tự nhiên {grade}, khẳng định nào sau đây là ĐÚNG về {topic}?"
-            if q_text in used_questions:
-                continue
-            used_questions.add(q_text)
-
-            correct_ans = s_fact[:130].rstrip(". ")
-            distractors = []
-            # Use other summary facts or smart distractors
-            other_facts = [f for f in summary_pool if f != s_fact]
-            for of in other_facts:
-                if len(distractors) < 2:
-                    distractors.append(f"Không phản ánh đúng: {of[:110].rstrip('. ')}")
-            while len(distractors) < 3:
-                cand = smart_distractors_pool[(curr_id + len(distractors)) % len(smart_distractors_pool)]
-                if cand not in distractors:
-                    distractors.append(cand)
-
-            correct_pos = (curr_id - 1) % 4
-            opts = list(distractors[:3])
-            opts.insert(correct_pos, correct_ans)
-            formatted_opts = [f"{labels[i]}. {opts[i]}" for i in range(4)]
-
-            mcqs.append({
-                "id": curr_id,
-                "level": "TH",
-                "question": q_text,
-                "options": formatted_opts,
-                "answer_key": labels[correct_pos],
-                "score": q_score,
-                "explanation": f"Theo SGK KHTN {grade}: {s_fact}."
-            })
-            curr_id += 1
-
-        # 3. Next generate from section facts
-        sec_idx = 0
-        while curr_id <= target_count and sec_idx < len(section_facts):
-            s_title, fact_str = section_facts[sec_idx]
-            sec_idx += 1
-            if len(fact_str) < 20:
-                continue
-            
-            clean_title = s_title if s_title and len(s_title) <= 50 else topic
-            q_text = f"Đặc điểm nào sau đây là ĐÚNG khi tìm hiểu về '{clean_title}'?"
-            if q_text in used_questions:
-                q_text = f"Khi học về '{clean_title}', kết luận nào sau đây là chính xác?"
-            if q_text in used_questions:
-                q_text = f"Vai trò hoặc ý nghĩa nào sau đây phù hợp với '{clean_title}'?"
-            if q_text in used_questions:
-                continue
-            used_questions.add(q_text)
-
-            correct_ans = fact_str[:130].rstrip(". ")
-            distractors = []
-            while len(distractors) < 3:
-                cand = smart_distractors_pool[(curr_id + len(distractors) * 2) % len(smart_distractors_pool)]
-                if cand not in distractors:
-                    distractors.append(cand)
-
-            correct_pos = (curr_id - 1) % 4
-            opts = list(distractors[:3])
-            opts.insert(correct_pos, correct_ans)
-            formatted_opts = [f"{labels[i]}. {opts[i]}" for i in range(4)]
-
-            mcqs.append({
-                "id": curr_id,
-                "level": "VD" if curr_id > target_count * 0.7 else "TH",
-                "question": q_text,
-                "options": formatted_opts,
-                "answer_key": labels[correct_pos],
-                "score": q_score,
-                "explanation": f"Theo SGK KHTN {grade} ({clean_title}): {fact_str}."
-            })
-            curr_id += 1
+        # Fallback to CURATED_EXAM_BANK for this grade if still needed
+        if curr_id <= target_count:
+            bank_data = CURATED_EXAM_BANK.get(int(grade), CURATED_EXAM_BANK[6])
+            for bq in (bank_data.get("multiple_choice") or []):
+                if curr_id > target_count:
+                    break
+                q_text = str(bq.get("question") or "").strip()
+                if not q_text or q_text in used_questions:
+                    continue
+                used_questions.add(q_text)
+                mcqs.append({
+                    "id": curr_id,
+                    "level": bq.get("level", "TH"),
+                    "question": q_text,
+                    "options": list(bq.get("options") or []),
+                    "answer_key": bq.get("answer_key", "A"),
+                    "score": q_score,
+                    "explanation": bq.get("explanation") or f"Dựa trên kiến thức SGK KHTN {grade}."
+                })
+                curr_id += 1
 
     tn_score = round(sum(float(q.get("score") or q_score) for q in mcqs), 2)
     essay_score = round(max(0.0, 10.0 - tn_score), 2)
@@ -1075,35 +1002,67 @@ def lesson_to_exam_data(
     if essay_score >= 1.0:
         e1_score = round(essay_score * 0.5, 1)
         e2_score = round(essay_score - e1_score, 1)
-        essays = [
-            {
-                "id": 1,
-                "level": "VD",
-                "question": f"Dựa trên kiến thức về {topic}, em hãy phân tích mối quan hệ giữa cấu tạo/đặc điểm và chức năng của các thành phần trong bài học. Nêu ít nhất hai ví dụ cụ thể để làm rõ.",
-                "score": e1_score,
-                "rubric": [
-                    {"step": "- Nêu được mối quan hệ cơ bản: Cấu tạo thường phù hợp tối ưu với chức năng đảm nhiệm để duy trì sự sống.", "score": round(e1_score * 0.4, 2)},
-                    {"step": "- Trình bày ví dụ 1 cụ thể (như đặc điểm hình dạng, cấu trúc phù hợp chức năng trao đổi chất/truyền dẫn...).", "score": round(e1_score * 0.3, 2)},
-                    {"step": "- Trình bày ví dụ 2 cụ thể và rút ra nhận xét khoa học chính xác.", "score": round(e1_score * 0.3, 2)}
-                ]
-            },
-            {
-                "id": 2,
-                "level": "VDC",
-                "question": f"Vận dụng kiến thức đã học về {topic}, em hãy giải thích một hiện tượng thực tế đời sống liên quan (hoặc tình huống bảo vệ sức khỏe / môi trường sống). Từ đó đề xuất 2 biện pháp học tập, rèn luyện phù hợp cho học sinh THCS.",
-                "score": e2_score,
-                "rubric": [
-                    {"step": "- Phân tích đúng bản chất hiện tượng thực tiễn dựa trên cơ sở khoa học đã học.", "score": round(e2_score * 0.5, 2)},
-                    {"step": "- Đề xuất được 2 biện pháp cụ thể, khả thi và có ý nghĩa thực tế đối với lứa tuổi học sinh THCS.", "score": round(e2_score * 0.5, 2)}
-                ]
-            }
-        ]
+        target_scores = [e1_score, e2_score]
+        curated_essays = lesson.get("essay_prompts") or lesson.get("essay") or []
+        if curated_essays and len(curated_essays) >= 2:
+            for idx_e, ce in enumerate(curated_essays[:2]):
+                t_sc = target_scores[idx_e]
+                raw_rubric = ce.get("rubric") or []
+                raw_total = sum(float(r.get("score") or 0) for r in raw_rubric) or 2.0
+                scaled_rubric = []
+                running_sc = 0.0
+                for r_i, r_item in enumerate(raw_rubric):
+                    if r_i < len(raw_rubric) - 1:
+                        st_sc = round(t_sc * (float(r_item.get("score") or 0.5) / raw_total), 2)
+                        running_sc += st_sc
+                    else:
+                        st_sc = round(max(0.25, t_sc - running_sc), 2)
+                    scaled_rubric.append({
+                        "step": str(r_item.get("step") or ""),
+                        "score": st_sc,
+                    })
+                essays.append({
+                    "id": idx_e + 1,
+                    "level": ce.get("level") or ("VD" if idx_e == 0 else "VDC"),
+                    "question": str(ce.get("question") or ""),
+                    "score": t_sc,
+                    "rubric": scaled_rubric,
+                })
+        else:
+            essays = [
+                {
+                    "id": 1,
+                    "level": "VD",
+                    "question": f"Dựa trên kiến thức về {topic}, em hãy trình bày các nội dung trọng tâm của bài học và nêu hai ví dụ minh họa cụ thể trong thực tiễn.",
+                    "score": e1_score,
+                    "rubric": [
+                        {"step": f"- Trình bày đầy đủ, chính xác kiến thức trọng tâm về {topic} theo SGK KHTN {grade}.", "score": round(e1_score * 0.5, 2)},
+                        {"step": "- Nêu được ví dụ 1 cụ thể và giải thích hợp lý.", "score": round(e1_score * 0.25, 2)},
+                        {"step": "- Nêu được ví dụ 2 cụ thể và rút ra kết luận khoa học chính xác.", "score": round(e1_score * 0.25, 2)}
+                    ]
+                },
+                {
+                    "id": 2,
+                    "level": "VDC",
+                    "question": f"Vận dụng kiến thức đã học về {topic}, em hãy giải thích một hiện tượng thực tế đời sống liên quan và đề xuất 2 biện pháp ứng dụng thiết thực.",
+                    "score": e2_score,
+                    "rubric": [
+                        {"step": "- Phân tích đúng bản chất khoa học của hiện tượng thực tiễn liên quan đến bài học.", "score": round(e2_score * 0.5, 2)},
+                        {"step": "- Đề xuất được 2 biện pháp ứng dụng cụ thể, khả thi và an toàn trong đời sống.", "score": round(e2_score * 0.5, 2)}
+                    ]
+                }
+            ]
 
     # Build Matrix
-    nb_count = sum(1 for q in mcqs if q.get("level") == "NB")
-    th_count = sum(1 for q in mcqs if q.get("level") == "TH")
-    vd_tn_count = sum(1 for q in mcqs if q.get("level") == "VD")
-    vdc_tn_count = sum(1 for q in mcqs if q.get("level") == "VDC")
+    nb_ids = [f"Câu {q['id']}" for q in mcqs if q.get("level") == "NB"]
+    th_ids = [f"Câu {q['id']}" for q in mcqs if q.get("level") == "TH"]
+    vd_ids = [f"Câu {q['id']}" for q in mcqs if q.get("level") == "VD"]
+    vdc_ids = [f"Câu {q['id']}" for q in mcqs if q.get("level") == "VDC"]
+
+    nb_count = len(nb_ids)
+    th_count = len(th_ids)
+    vd_tn_count = len(vd_ids)
+    vdc_tn_count = len(vdc_ids)
     tl_vd = 1 if len(essays) >= 1 else 0
     tl_vdc = 1 if len(essays) >= 2 else 0
 
@@ -1120,6 +1079,12 @@ def lesson_to_exam_data(
         }
     ]
 
+    def _fmt_refs(id_list: List[str], extra: str = "") -> str:
+        base = ", ".join(id_list) if id_list else ""
+        if base and extra:
+            return f"{base}; {extra}"
+        return base or extra or "-"
+
     # Build Specifications
     spec_rows = [
         {
@@ -1127,32 +1092,32 @@ def lesson_to_exam_data(
             "topic": topic,
             "level": "Nhận biết",
             "requirement": objectives[0] if objectives else f"Nêu được các khái niệm và đặc điểm cơ bản về {topic}.",
-            "question_type": f"{nb_count} TNKQ",
-            "question_refs": f"Câu 1 – Câu {nb_count}" if nb_count else "-"
+            "question_type": f"{nb_count} TNKQ" if nb_count else "-",
+            "question_refs": _fmt_refs(nb_ids)
         },
         {
             "stt": 2,
             "topic": topic,
             "level": "Thông hiểu",
-            "requirement": objectives[1] if len(objectives) > 1 else f"Giải thích được nguyên lý và cơ chế liên quan đến {topic}.",
-            "question_type": f"{th_count} TNKQ",
-            "question_refs": f"Câu {nb_count + 1} – Câu {nb_count + th_count}" if th_count else "-"
+            "requirement": objectives[1] if len(objectives) > 1 else f"Giải thích được nguyên lý và tính chất liên quan đến {topic}.",
+            "question_type": f"{th_count} TNKQ" if th_count else "-",
+            "question_refs": _fmt_refs(th_ids)
         },
         {
             "stt": 3,
             "topic": topic,
             "level": "Vận dụng",
-            "requirement": objectives[2] if len(objectives) > 2 else f"Vận dụng kiến thức bài học để giải quyết câu hỏi tình huống và bài tập.",
-            "question_type": f"{vd_tn_count} TNKQ" + (" + 1 TL" if tl_vd else ""),
-            "question_refs": f"Câu {nb_count + th_count + 1} – Câu {nb_count + th_count + vd_tn_count}" + (", Câu 1 (TL)" if tl_vd else "")
+            "requirement": objectives[2] if len(objectives) > 2 else f"Vận dụng kiến thức về {topic} để giải quyết câu hỏi tình huống và bài tập.",
+            "question_type": (f"{vd_tn_count} TNKQ" if vd_tn_count else "") + (" + 1 TL" if (vd_tn_count and tl_vd) else ("1 TL" if tl_vd else "")),
+            "question_refs": _fmt_refs(vd_ids, "Câu 1 (TL)" if tl_vd else "")
         },
         {
             "stt": 4,
             "topic": topic,
             "level": "Vận dụng cao",
             "requirement": f"Vận dụng kiến thức {topic} để giải thích các vấn đề thực tiễn đời sống, sức khỏe và đề xuất giải pháp bảo vệ môi trường.",
-            "question_type": (f"{vdc_tn_count} TNKQ" if vdc_tn_count else "") + (" + 1 TL" if tl_vdc else ("1 TL" if tl_vdc else "-")),
-            "question_refs": f"Câu 2 (TL)" if tl_vdc else "-"
+            "question_type": (f"{vdc_tn_count} TNKQ" if vdc_tn_count else "") + (" + 1 TL" if (vdc_tn_count and tl_vdc) else ("1 TL" if tl_vdc else "-")),
+            "question_refs": _fmt_refs(vdc_ids, "Câu 2 (TL)" if tl_vdc else "")
         }
     ]
 

@@ -756,8 +756,9 @@ def build_lesson_plan_5512_doc(lesson: Dict[str, Any]) -> docx.Document:
         "Bước 1: Chuyển giao nhiệm vụ học tập:",
         "- GV phát Phiếu học tập số 2 hoặc chiếu các câu hỏi củng cố lên màn hình:",
     ]
-    if quick_checks:
-        for q_idx, qc in enumerate(quick_checks, start=1):
+    pht2_questions = quick_checks[:5] if quick_checks else []
+    if pht2_questions:
+        for q_idx, qc in enumerate(pht2_questions, start=1):
             q_txt = qc.get("question") or f"Câu hỏi {q_idx}"
             gv_h3.append(f"  Câu {q_idx}: {q_txt}")
             options = qc.get("options") or []
@@ -772,9 +773,9 @@ def build_lesson_plan_5512_doc(lesson: Dict[str, Any]) -> docx.Document:
         "Bước 4: Đánh giá, kết luận:",
         "- GV công bố đáp án chuẩn và phân tích ngắn gọn lý do vì sao đáp án đúng:",
     ])
-    if quick_checks:
+    if pht2_questions:
         labels = ["A", "B", "C", "D"]
-        for q_idx, qc in enumerate(quick_checks, start=1):
+        for q_idx, qc in enumerate(pht2_questions, start=1):
             ans_idx = int(qc.get("answer_index", 0))
             ans_label = labels[ans_idx] if 0 <= ans_idx < len(labels) else "A"
             explanation = qc.get("explanation") or ""
@@ -906,7 +907,7 @@ def build_lesson_plan_5512_doc(lesson: Dict[str, Any]) -> docx.Document:
     _add_paragraph_styled(doc, "", space_after_pt=6)
 
     # Phiếu học tập số 2 (Trắc nghiệm củng cố)
-    if quick_checks:
+    if pht2_questions:
         pht2_tbl = doc.add_table(rows=1, cols=1)
         pht2_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
         pht2_tbl.autofit = False
@@ -926,7 +927,7 @@ def build_lesson_plan_5512_doc(lesson: Dict[str, Any]) -> docx.Document:
         )
 
         labels = ["A", "B", "C", "D"]
-        for q_idx, qc in enumerate(quick_checks, start=1):
+        for q_idx, qc in enumerate(pht2_questions, start=1):
             q_txt = qc.get("question") or f"Câu hỏi {q_idx}"
             _add_paragraph_styled(
                 pht2_cell, f"Câu {q_idx}: {q_txt}",
@@ -943,7 +944,7 @@ def build_lesson_plan_5512_doc(lesson: Dict[str, Any]) -> docx.Document:
             pht2_cell, "BẢNG ĐIỀN ĐÁP ÁN:",
             size_pt=11, bold=True, space_before_pt=3, space_after_pt=2
         )
-        ans_box_str = "    ".join([f"Câu {i}: [   ]" for i in range(1, len(quick_checks) + 1)])
+        ans_box_str = "    ".join([f"Câu {i}: [   ]" for i in range(1, len(pht2_questions) + 1)])
         _add_paragraph_styled(
             pht2_cell, f"   {ans_box_str}",
             size_pt=11, bold=True, space_after_pt=2

@@ -1239,13 +1239,22 @@ def api_quiz_generate():
             for idx, qc in enumerate(qc_available[:count], start=1):
                 a_idx = int(qc.get("answer_index", 0))
                 clean_opts = [re.sub(r'^[A-D][\.\:\)]\s*', '', str(o)) for o in qc.get("options", [])[:4]]
+                raw_lvl = str(qc.get("level") or "").strip().upper()
+                if raw_lvl == "NB":
+                    diff_label = "Nhận biết"
+                elif raw_lvl == "TH":
+                    diff_label = "Thông hiểu"
+                elif raw_lvl in ("VD", "VDC"):
+                    diff_label = "Vận dụng"
+                else:
+                    diff_label = "Vận dụng" if idx >= 7 else ("Thông hiểu" if idx >= 4 else "Nhận biết")
                 q_list.append({
                     "id": idx,
                     "question": qc.get("question"),
                     "options": clean_opts,
                     "answer_index": a_idx,
                     "answer_key": labels[a_idx] if 0 <= a_idx < 4 else "A",
-                    "difficulty": "Vận dụng" if idx >= 4 else ("Thông hiểu" if idx >= 2 else "Nhận biết"),
+                    "difficulty": diff_label,
                     "explanation": qc.get("explanation") or f"Theo SGK KHTN {grade}.",
                     "source": f"KHTN {grade} KNTT",
                     "page": 1
