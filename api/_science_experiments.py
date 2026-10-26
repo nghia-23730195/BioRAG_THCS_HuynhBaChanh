@@ -1926,7 +1926,8 @@ def get_experiment_by_id(exp_id):
         return None
     exp_id = str(exp_id).strip()
     target_id = EXP_ALIASES.get(exp_id, exp_id)
-    item = next((exp for exp in EXPERIMENT_CATALOG 
+    all_exps = EXPERIMENT_CATALOG + BUILTIN_EXPERIMENTS + PHET_EXPERIMENTS
+    item = next((exp for exp in all_exps 
                  if exp.get("id") == target_id 
                  or exp.get("id", "").lower() == target_id.lower()
                  or exp.get("id", "").lower() == f"gdso-{target_id.lower()}"
@@ -1934,17 +1935,16 @@ def get_experiment_by_id(exp_id):
     if not item:
         return None
     res = dict(item)
+    res["is_giaoducsoth"] = False
     res["simulation"] = {
         "sim_type": res.get("simulation_type"),
         "default_params": res.get("default_params", {}),
-        "sim_url": res.get("sim_url"),
         "phet_url": res.get("phet_url"),
-        "web_url": res.get("web_url"),
         "thumb_url": res.get("thumb_url"),
         "exp_code": res.get("exp_code"),
         "kind": res.get("kind"),
-        "is_giaoducsoth": True,
-        "is_phet": False
+        "is_giaoducsoth": False,
+        "is_phet": bool(res.get("is_phet", False))
     }
     res["objectives"] = [res.get("summary")] if res.get("summary") else [res.get("title")]
     res["procedure"] = res.get("procedure_steps", [])

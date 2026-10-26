@@ -2994,30 +2994,228 @@
     // =========================================================================
     // UNIVERSAL LAB STAND (Fallback)
     // =========================================================================
-    buildUniversalLabStand: function(group, simType, state) {
+        buildUniversalLabStand: function(group, simType, state) {
       var self = this;
       var uGroup = new THREE.Group();
       uGroup.position.set(0, 0, 0);
-
       var glassMat = this.getGlassMaterial(0xdbeafe, 0.35);
+      var metalMat = this.getMetalMaterial(0.3, 0x334155);
+      var chromeMat = this.getMetalMaterial(0.15, 0xe2e8f0);
 
-      var rackBase = new THREE.Mesh(new THREE.BoxGeometry(2.8, 0.12, 1.0), new THREE.MeshStandardMaterial({ color: 0xb45309, roughness: 0.7 }));
+      if (simType === 'astronomy_solar') {
+        var sunGeo = new THREE.SphereGeometry(0.65, 32, 32);
+        var sunMat = new THREE.MeshStandardMaterial({ color: 0xfbbf24, emissive: 0xf59e0b, emissiveIntensity: 0.9, roughness: 0.2 });
+        var sun = new THREE.Mesh(sunGeo, sunMat);
+        sun.position.set(0, 1.3, 0);
+        uGroup.add(sun);
+
+        var orbitRing = new THREE.Mesh(new THREE.RingGeometry(1.78, 1.82, 64), new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide, transparent: true, opacity: 0.4 }));
+        orbitRing.rotation.x = Math.PI / 2;
+        orbitRing.position.set(0, 1.3, 0);
+        uGroup.add(orbitRing);
+
+        var earthPivot = new THREE.Group();
+        earthPivot.position.set(0, 1.3, 0);
+        var earth = new THREE.Mesh(new THREE.SphereGeometry(0.26, 28, 28), new THREE.MeshStandardMaterial({ color: 0x2563eb, roughness: 0.4, metalness: 0.1 }));
+        earth.position.set(1.8, 0, 0);
+        earthPivot.add(earth);
+
+        var moon = new THREE.Mesh(new THREE.SphereGeometry(0.09, 20, 20), new THREE.MeshStandardMaterial({ color: 0xcbd5e1, roughness: 0.8 }));
+        moon.position.set(2.3, 0.08, 0);
+        earthPivot.add(moon);
+        uGroup.add(earthPivot);
+
+        this.updateFns.push(function(st, t) {
+          var spd = (st && st.orbitSpeed) ? st.orbitSpeed : 1.0;
+          var ang = ((st && st.angleDeg !== undefined) ? (st.angleDeg * Math.PI / 180) : 0) + t * 0.6 * spd;
+          earthPivot.rotation.y = ang * 0.35;
+          moon.position.x = 1.8 + Math.cos(ang * 2.2) * 0.52;
+          moon.position.z = Math.sin(ang * 2.2) * 0.52;
+          sun.rotation.y = t * 0.3;
+        });
+        group.add(uGroup);
+        return;
+      }
+
+      if (simType === 'cell_microscope_3d') {
+        var cellGroup = new THREE.Group();
+        cellGroup.position.set(0, 1.25, 0);
+        var wallMat = new THREE.MeshPhysicalMaterial({ color: 0x10b981, transparent: true, opacity: 0.28, roughness: 0.2, transmission: 0.6, side: THREE.DoubleSide });
+        var outerCell = new THREE.Mesh(new THREE.SphereGeometry(1.15, 32, 24), wallMat);
+        outerCell.scale.set(1.25, 0.85, 1.0);
+        cellGroup.add(outerCell);
+
+        var nucleus = new THREE.Mesh(new THREE.SphereGeometry(0.38, 28, 28), new THREE.MeshStandardMaterial({ color: 0x8b5cf6, roughness: 0.3, emissive: 0x4c1d95, emissiveIntensity: 0.25 }));
+        nucleus.position.set(-0.25, 0.05, 0);
+        cellGroup.add(nucleus);
+
+        var vacuole = new THREE.Mesh(new THREE.SphereGeometry(0.42, 24, 24), new THREE.MeshPhysicalMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.5, roughness: 0.1 }));
+        vacuole.scale.set(1.2, 0.7, 0.9);
+        vacuole.position.set(0.42, 0, 0.1);
+        cellGroup.add(vacuole);
+
+        for (var c = 0; c < 6; c++) {
+          var angC = (c / 6) * Math.PI * 2;
+          var chloro = new THREE.Mesh(new THREE.SphereGeometry(0.14, 16, 16), new THREE.MeshStandardMaterial({ color: 0x22c55e, roughness: 0.35 }));
+          chloro.scale.set(1.4, 0.7, 0.8);
+          chloro.position.set(Math.cos(angC) * 0.78, Math.sin(angC * 2) * 0.22, Math.sin(angC) * 0.65);
+          cellGroup.add(chloro);
+        }
+        uGroup.add(cellGroup);
+        this.updateFns.push(function(st, t) {
+          cellGroup.rotation.y = t * 0.35;
+          cellGroup.position.y = 1.25 + Math.sin(t * 1.5) * 0.05;
+        });
+        group.add(uGroup);
+        return;
+      }
+
+      if (simType === 'genetics_dna_3d') {
+        var dnaGroup = new THREE.Group();
+        dnaGroup.position.set(0, 1.35, 0);
+        var pairs = 14;
+        var baseColors = [0xef4444, 0xfbbf24, 0x10b981, 0x3b82f6];
+        for (var k = 0; k < pairs; k++) {
+          var y = (k - pairs / 2) * 0.18;
+          var twist = k * 0.48;
+          var r = 0.55;
+          var x1 = Math.cos(twist) * r, z1 = Math.sin(twist) * r;
+          var x2 = Math.cos(twist + Math.PI) * r, z2 = Math.sin(twist + Math.PI) * r;
+
+          var s1 = new THREE.Mesh(new THREE.SphereGeometry(0.085, 16, 16), new THREE.MeshStandardMaterial({ color: 0x38bdf8, roughness: 0.25 }));
+          s1.position.set(x1, y, z1);
+          dnaGroup.add(s1);
+
+          var s2 = new THREE.Mesh(new THREE.SphereGeometry(0.085, 16, 16), new THREE.MeshStandardMaterial({ color: 0xa855f7, roughness: 0.25 }));
+          s2.position.set(x2, y, z2);
+          dnaGroup.add(s2);
+
+          var rung = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, r * 2, 12), new THREE.MeshStandardMaterial({ color: baseColors[k % 4], roughness: 0.4 }));
+          rung.position.set(0, y, 0);
+          rung.rotation.z = Math.PI / 2;
+          rung.rotation.y = -twist;
+          dnaGroup.add(rung);
+        }
+        uGroup.add(dnaGroup);
+        this.updateFns.push(function(st, t) {
+          var spd = (st && st.param1) ? (st.param1 / 50) : 1.0;
+          dnaGroup.rotation.y = t * 0.65 * spd;
+        });
+        group.add(uGroup);
+        return;
+      }
+
+      if (simType === 'human_anatomy_3d') {
+        var organGroup = new THREE.Group();
+        organGroup.position.set(0, 1.3, 0);
+        var heartMesh = new THREE.Mesh(new THREE.SphereGeometry(0.42, 28, 28), new THREE.MeshStandardMaterial({ color: 0xdc2626, roughness: 0.35, metalness: 0.1 }));
+        heartMesh.scale.set(0.95, 1.18, 0.85);
+        organGroup.add(heartMesh);
+
+        var lungL = new THREE.Mesh(new THREE.SphereGeometry(0.48, 24, 24), new THREE.MeshStandardMaterial({ color: 0xf472b6, transparent: true, opacity: 0.72, roughness: 0.45 }));
+        lungL.scale.set(0.75, 1.35, 0.75);
+        lungL.position.set(-0.72, 0.05, -0.1);
+        organGroup.add(lungL);
+
+        var lungR = lungL.clone();
+        lungR.position.set(0.72, 0.05, -0.1);
+        organGroup.add(lungR);
+
+        var arteryLoop = new THREE.Mesh(new THREE.TorusGeometry(0.95, 0.045, 16, 48), new THREE.MeshStandardMaterial({ color: 0xef4444, roughness: 0.3 }));
+        organGroup.add(arteryLoop);
+
+        var veinLoop = new THREE.Mesh(new THREE.TorusGeometry(1.08, 0.045, 16, 48), new THREE.MeshStandardMaterial({ color: 0x2563eb, roughness: 0.3 }));
+        organGroup.add(veinLoop);
+
+        uGroup.add(organGroup);
+        this.updateFns.push(function(st, t) {
+          var bpm = (st && st.param1) ? st.param1 : 75;
+          var beat = 1 + Math.sin(t * (bpm / 60) * Math.PI * 2) * 0.09;
+          heartMesh.scale.set(0.95 * beat, 1.18 * beat, 0.85 * beat);
+          var breath = 1 + Math.sin(t * 2.2) * 0.07;
+          lungL.scale.set(0.75 * breath, 1.35 * breath, 0.75 * breath);
+          lungR.scale.set(0.75 * breath, 1.35 * breath, 0.75 * breath);
+          organGroup.rotation.y = Math.sin(t * 0.35) * 0.25;
+        });
+        group.add(uGroup);
+        return;
+      }
+
+      if (simType === 'plant_physiology_3d') {
+        var beaker = new THREE.Mesh(new THREE.CylinderGeometry(0.65, 0.65, 1.5, 32, 1, true), glassMat);
+        beaker.position.set(0, 0.76, 0);
+        uGroup.add(beaker);
+
+        var water = new THREE.Mesh(new THREE.CylinderGeometry(0.62, 0.62, 1.25, 32), this.getLiquidMaterial(0x38bdf8, 0.35));
+        water.position.set(0, 0.64, 0);
+        uGroup.add(water);
+
+        var plantStem = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.07, 0.9, 12), new THREE.MeshStandardMaterial({ color: 0x16a34a, roughness: 0.6 }));
+        plantStem.position.set(0, 0.5, 0);
+        uGroup.add(plantStem);
+
+        for (var l = 0; l < 6; l++) {
+          var leaf = new THREE.Mesh(new THREE.SphereGeometry(0.16, 12, 12), new THREE.MeshStandardMaterial({ color: 0x22c55e, roughness: 0.4 }));
+          leaf.scale.set(1.6, 0.25, 0.7);
+          leaf.position.set(Math.cos(l * 1.1) * 0.22, 0.3 + l * 0.12, Math.sin(l * 1.1) * 0.22);
+          uGroup.add(leaf);
+        }
+
+        var lampStand = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.08, 1.6, 16), metalMat);
+        lampStand.position.set(1.5, 0.8, 0);
+        uGroup.add(lampStand);
+
+        var lampBulb = new THREE.Mesh(new THREE.SphereGeometry(0.22, 20, 20), new THREE.MeshStandardMaterial({ color: 0xfef08a, emissive: 0xfacc15, emissiveIntensity: 0.95 }));
+        lampBulb.position.set(1.25, 1.35, 0);
+        uGroup.add(lampBulb);
+
+        var bubbles = [];
+        for (var b = 0; b < 10; b++) {
+          var bMesh = new THREE.Mesh(new THREE.SphereGeometry(0.035, 10, 10), new THREE.MeshStandardMaterial({ color: 0xffffff, transparent: true, opacity: 0.85 }));
+          bMesh.position.set((Math.random() - 0.5) * 0.25, 0.4 + Math.random() * 0.8, (Math.random() - 0.5) * 0.25);
+          uGroup.add(bMesh);
+          bubbles.push(bMesh);
+        }
+
+        this.updateFns.push(function(st, t) {
+          var intensity = (st && st.param1 !== undefined) ? (st.param1 / 100) : 0.75;
+          lampStand.position.x = 2.1 - intensity * 0.8;
+          lampBulb.position.x = 1.85 - intensity * 0.8;
+          for (var j = 0; j < bubbles.length; j++) {
+            bubbles[j].position.y += 0.008 * (0.3 + intensity * 1.5);
+            if (bubbles[j].position.y > 1.25) bubbles[j].position.y = 0.4;
+          }
+        });
+        group.add(uGroup);
+        return;
+      }
+
+      // Default / lab_safety_station / thermal_phase_change / mechanics_waves_optics:
+      var rackBase = new THREE.Mesh(new THREE.BoxGeometry(2.8, 0.12, 1.1), metalMat);
       rackBase.position.set(0, 0.06, 0);
       uGroup.add(rackBase);
 
-      var rackTop = new THREE.Mesh(new THREE.BoxGeometry(2.8, 0.08, 1.0), new THREE.MeshStandardMaterial({ color: 0xb45309, roughness: 0.7 }));
-      rackTop.position.set(0, 1.2, 0);
-      uGroup.add(rackTop);
+      var rod = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 2.2, 16), chromeMat);
+      rod.position.set(-1.0, 1.15, -0.3);
+      uGroup.add(rod);
 
-      var tubeColors = [0xef4444, 0x3b82f6, 0x10b981, 0xf59e0b];
-      for (var i = 0; i < 4; i++) {
-        var posX = -0.9 + i * 0.6;
-        var tubeMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, 1.4, 24, 1, true), glassMat);
-        tubeMesh.position.set(posX, 0.85, 0);
+      var beakerMain = new THREE.Mesh(new THREE.CylinderGeometry(0.48, 0.48, 1.15, 32, 1, true), glassMat);
+      beakerMain.position.set(-0.2, 0.7, 0);
+      uGroup.add(beakerMain);
+
+      var liqMain = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.45, 0.75, 32), self.getLiquidMaterial(0x0ea5e9, 0.7));
+      liqMain.position.set(-0.2, 0.5, 0);
+      uGroup.add(liqMain);
+
+      var tubeColors = [0xef4444, 0x10b981, 0xf59e0b];
+      for (var i = 0; i < 3; i++) {
+        var posX = 0.55 + i * 0.38;
+        var tubeMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.11, 1.1, 24, 1, true), glassMat);
+        tubeMesh.position.set(posX, 0.68, 0);
         uGroup.add(tubeMesh);
 
-        var liqMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.8, 24), self.getLiquidMaterial(tubeColors[i], 0.75));
-        liqMesh.position.set(posX, 0.55, 0);
+        var liqMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.65, 24), self.getLiquidMaterial(tubeColors[i], 0.78));
+        liqMesh.position.set(posX, 0.46, 0);
         uGroup.add(liqMesh);
       }
 

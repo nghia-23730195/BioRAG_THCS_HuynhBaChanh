@@ -16,13 +16,11 @@
     "summary": "Thí nghiệm thực hành Phòng thí nghiệm an toàn: quy tắc, biển cảnh báo, dụng cụ đo, kính lúp, kính hiển vi thuộc chương trình KHTN lớp 6 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K6-C-01",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K6-C-01",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-C-01.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "lab_safety_station",
     "svg_icon": "<rect x=",
     "ready_meta": {
       "v": "1.0.0",
@@ -77,14 +75,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K6-C-01",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K6-C-01",
+      "sim_type": "lab_safety_station",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-C-01.webp?v=14",
       "exp_code": "K6-C-01",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "lan_do": 1,
+        "dung_cu": "Kính hiển vi (Vật kính 10x)",
+        "dai_luong": "Độ phóng đại 100x",
+        "ket_qua": "Quan sát rõ thành tế bào"
+      },
+      {
+        "lan_do": 2,
+        "dung_cu": "Ống đong chia độ 100 mL",
+        "dai_luong": "Thể tích chất lỏng",
+        "ket_qua": "45,0 mL (đọc tại đáy mặt khum)"
+      },
+      {
+        "lan_do": 3,
+        "dung_cu": "Cân điện tử hiện số",
+        "dai_luong": "Khối lượng mẫu vật",
+        "ket_qua": "25,40 g (đã trừ bì)"
+      }
+    ]
   },
   {
     "id": "gdso-k6-l-01",
@@ -103,13 +119,11 @@
     "summary": "Thí nghiệm thực hành Trạm đo: chiều dài, khối lượng, thời gian, nhiệt độ thuộc chương trình KHTN lớp 6 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K6-L-01",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K6-L-01",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-L-01.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "lab_safety_station",
     "svg_icon": "<g transform=",
     "ready_meta": {
       "v": "1.0.0",
@@ -164,14 +178,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K6-L-01",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K6-L-01",
+      "sim_type": "lab_safety_station",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-L-01.webp?v=14",
       "exp_code": "K6-L-01",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "lan_do": 1,
+        "dung_cu": "Kính hiển vi (Vật kính 10x)",
+        "dai_luong": "Độ phóng đại 100x",
+        "ket_qua": "Quan sát rõ thành tế bào"
+      },
+      {
+        "lan_do": 2,
+        "dung_cu": "Ống đong chia độ 100 mL",
+        "dai_luong": "Thể tích chất lỏng",
+        "ket_qua": "45,0 mL (đọc tại đáy mặt khum)"
+      },
+      {
+        "lan_do": 3,
+        "dung_cu": "Cân điện tử hiện số",
+        "dai_luong": "Khối lượng mẫu vật",
+        "ket_qua": "25,40 g (đã trừ bì)"
+      }
+    ]
   },
   {
     "id": "gdso-k6-l-02",
@@ -190,13 +222,11 @@
     "summary": "Thí nghiệm thực hành Biến dạng lò xo, đo lực bằng lực kế thuộc chương trình KHTN lớp 6 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D, ĐT",
     "kind_desc": "Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K6-L-02",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K6-L-02",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-L-02.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "spring_stretch",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -251,13 +281,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K6-L-02",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K6-L-02",
+      "sim_type": "spring_stretch",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-L-02.webp?v=14",
       "exp_code": "K6-L-02",
       "kind": "3D, ĐT",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -277,13 +305,11 @@
     "summary": "Thí nghiệm thực hành Lực ma sát trên các bề mặt thuộc chương trình KHTN lớp 6 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 2D trực quan, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "2D",
     "kind_desc": "Mô phỏng 2D trực quan",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K6-L-03",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K6-L-03",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-L-03.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "friction_force",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -337,13 +363,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K6-L-03",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K6-L-03",
+      "sim_type": "friction_force",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-L-03.webp?v=14",
       "exp_code": "K6-L-03",
       "kind": "2D",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -363,13 +387,11 @@
     "summary": "Thí nghiệm thực hành Chuyển hóa và bảo toàn năng lượng thuộc chương trình KHTN lớp 6 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 2D trực quan, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "2D",
     "kind_desc": "Mô phỏng 2D trực quan",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K6-L-04",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K6-L-04",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-L-04.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "mechanics_waves_optics",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -423,14 +445,29 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K6-L-04",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K6-L-04",
+      "sim_type": "mechanics_waves_optics",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-L-04.webp?v=14",
       "exp_code": "K6-L-04",
       "kind": "2D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "lan_do": 1,
+        "thong_so_dau_vao": "Tần số f = 220 Hz, Biên độ A = 40%",
+        "ket_qua_do": "Âm trầm, độ to vừa phải; v = s/t ổn định"
+      },
+      {
+        "lan_do": 2,
+        "thong_so_dau_vao": "Tần số f = 440 Hz (La chuẩn), A = 80%",
+        "ket_qua_do": "Âm bổng hơn, độ to lớn; Cơ năng W = Wđ + Wt bảo toàn"
+      },
+      {
+        "lan_do": 3,
+        "thong_so_dau_vao": "Chùm sáng trắng qua lăng kính n = 1,52",
+        "ket_qua_do": "Tán sắc thành dải 7 màu: Đỏ -> Tím (tia tím lệch nhiều nhất)"
+      }
+    ]
   },
   {
     "id": "gdso-k6-t-01",
@@ -449,13 +486,11 @@
     "summary": "Thí nghiệm thực hành Mặt Trời mọc, lặn; các pha Mặt Trăng thuộc chương trình KHTN lớp 6 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K6-T-01",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K6-T-01",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-T-01.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "astronomy_solar",
     "svg_icon": "<path class=",
     "ready_meta": {
       "v": "1.1.0",
@@ -510,14 +545,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K6-T-01",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K6-T-01",
+      "sim_type": "astronomy_solar",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-T-01.webp?v=14",
       "exp_code": "K6-T-01",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "vi_tri": "Pha 1 (0°)",
+        "goc_chieu": "0°",
+        "hien_tuong": "Trăng non (Không nhìn thấy)",
+        "thoi_gian": "Ngày 1 Âm lịch"
+      },
+      {
+        "vi_tri": "Pha 2 (90°)",
+        "goc_chieu": "90°",
+        "hien_tuong": "Trăng bán nguyệt đầu tháng",
+        "thoi_gian": "Ngày 7–8 Âm lịch"
+      },
+      {
+        "vi_tri": "Pha 3 (180°)",
+        "goc_chieu": "180°",
+        "hien_tuong": "Trăng tròn (Vọng)",
+        "thoi_gian": "Ngày 15 Âm lịch"
+      }
+    ]
   },
   {
     "id": "gdso-k6-t-02",
@@ -536,13 +589,11 @@
     "summary": "Thí nghiệm thực hành Hệ Mặt Trời và Ngân Hà thuộc chương trình KHTN lớp 6 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K6-T-02",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K6-T-02",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-T-02.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "astronomy_solar",
     "svg_icon": "<circle class=",
     "ready_meta": {
       "v": "1.1.0",
@@ -597,14 +648,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K6-T-02",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K6-T-02",
+      "sim_type": "astronomy_solar",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-T-02.webp?v=14",
       "exp_code": "K6-T-02",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "vi_tri": "Pha 1 (0°)",
+        "goc_chieu": "0°",
+        "hien_tuong": "Trăng non (Không nhìn thấy)",
+        "thoi_gian": "Ngày 1 Âm lịch"
+      },
+      {
+        "vi_tri": "Pha 2 (90°)",
+        "goc_chieu": "90°",
+        "hien_tuong": "Trăng bán nguyệt đầu tháng",
+        "thoi_gian": "Ngày 7–8 Âm lịch"
+      },
+      {
+        "vi_tri": "Pha 3 (180°)",
+        "goc_chieu": "180°",
+        "hien_tuong": "Trăng tròn (Vọng)",
+        "thoi_gian": "Ngày 15 Âm lịch"
+      }
+    ]
   },
   {
     "id": "gdso-k6-h-01",
@@ -623,13 +692,11 @@
     "summary": "Thí nghiệm thực hành Chuyển thể của chất, đường biểu diễn nhiệt độ theo thời gian thuộc chương trình KHTN lớp 6 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D, ĐT",
     "kind_desc": "Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K6-H-01",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K6-H-01",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-H-01.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "thermal_phase_change",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -684,14 +751,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K6-H-01",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K6-H-01",
+      "sim_type": "thermal_phase_change",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-H-01.webp?v=14",
       "exp_code": "K6-H-01",
       "kind": "3D, ĐT",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "thoi_gian": "0 phút",
+        "nhiet_do": "20 °C",
+        "trang_thai": "Chất lỏng/rắn ban đầu",
+        "hien_tuong": "Chưa đun nóng"
+      },
+      {
+        "thoi_gian": "4 phút",
+        "nhiet_do": "65 °C",
+        "trang_thai": "Đang nóng lên / phản ứng mạnh",
+        "hien_tuong": "Tốc độ chuyển động phân tử tăng"
+      },
+      {
+        "thoi_gian": "8 phút",
+        "nhiet_do": "100 °C",
+        "trang_thai": "Sôi / Hoàn tất phản ứng",
+        "hien_tuong": "Nhiệt độ giữ ổn định trong suốt quá trình sôi"
+      }
+    ]
   },
   {
     "id": "gdso-k6-h-02",
@@ -710,13 +795,11 @@
     "summary": "Thí nghiệm thực hành Oxygen duy trì sự cháy; thành phần không khí thuộc chương trình KHTN lớp 6 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K6-H-02",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K6-H-02",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-H-02.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "air_oxygen_fraction",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -771,13 +854,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K6-H-02",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K6-H-02",
+      "sim_type": "air_oxygen_fraction",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-H-02.webp?v=14",
       "exp_code": "K6-H-02",
       "kind": "3D",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -797,13 +878,11 @@
     "summary": "Thí nghiệm thực hành Dung dịch, huyền phù, nhũ tương; yếu tố ảnh hưởng sự hòa tan thuộc chương trình KHTN lớp 6 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K6-H-03",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K6-H-03",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-H-03.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "thermal_phase_change",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -858,14 +937,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K6-H-03",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K6-H-03",
+      "sim_type": "thermal_phase_change",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-H-03.webp?v=14",
       "exp_code": "K6-H-03",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "thoi_gian": "0 phút",
+        "nhiet_do": "20 °C",
+        "trang_thai": "Chất lỏng/rắn ban đầu",
+        "hien_tuong": "Chưa đun nóng"
+      },
+      {
+        "thoi_gian": "4 phút",
+        "nhiet_do": "65 °C",
+        "trang_thai": "Đang nóng lên / phản ứng mạnh",
+        "hien_tuong": "Tốc độ chuyển động phân tử tăng"
+      },
+      {
+        "thoi_gian": "8 phút",
+        "nhiet_do": "100 °C",
+        "trang_thai": "Sôi / Hoàn tất phản ứng",
+        "hien_tuong": "Nhiệt độ giữ ổn định trong suốt quá trình sôi"
+      }
+    ]
   },
   {
     "id": "gdso-k6-h-04",
@@ -884,13 +981,11 @@
     "summary": "Thí nghiệm thực hành Tách chất: lọc, cô cạn, chiết thuộc chương trình KHTN lớp 6 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K6-H-04",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K6-H-04",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-H-04.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "filtration_evaporation",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -945,13 +1040,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K6-H-04",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K6-H-04",
+      "sim_type": "filtration_evaporation",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-H-04.webp?v=14",
       "exp_code": "K6-H-04",
       "kind": "3D",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -971,13 +1064,11 @@
     "summary": "Thí nghiệm thực hành Cấu tạo tế bào 3D: động vật, thực vật, nhân sơ thuộc chương trình KHTN lớp 6 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K6-S-01",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K6-S-01",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-S-01.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "cell_microscope_3d",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -1032,14 +1123,29 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K6-S-01",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K6-S-01",
+      "sim_type": "cell_microscope_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-S-01.webp?v=14",
       "exp_code": "K6-S-01",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "mau_vat": "Tế bào thực vật (Vảy hành)",
+        "do_phong_dai": "100x",
+        "thanh_phan": "Thành cellulose, Nhân, Không bào lớn, Lục lạp"
+      },
+      {
+        "mau_vat": "Tế bào động vật",
+        "do_phong_dai": "400x",
+        "thanh_phan": "Màng sinh chất, Tế bào chất, Nhân hoàn chỉnh"
+      },
+      {
+        "mau_vat": "Tế bào nhân sơ (Vi khuẩn)",
+        "do_phong_dai": "1000x",
+        "thanh_phan": "Vùng nhân (chưa có màng nhân), Ribosome"
+      }
+    ]
   },
   {
     "id": "gdso-k6-s-02",
@@ -1058,13 +1164,11 @@
     "summary": "Thí nghiệm thực hành Quan sát tế bào vảy hành, trứng cá bằng kính hiển vi thuộc chương trình KHTN lớp 6 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Kính hiển vi quang học ảo phóng đại cao, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "KHV",
     "kind_desc": "Kính hiển vi quang học ảo phóng đại cao",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K6-S-02",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K6-S-02",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-S-02.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "cell_microscope_3d",
     "svg_icon": "<g transform=",
     "ready_meta": {
       "v": "1.0.0",
@@ -1120,14 +1224,29 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K6-S-02",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K6-S-02",
+      "sim_type": "cell_microscope_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-S-02.webp?v=14",
       "exp_code": "K6-S-02",
       "kind": "KHV",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "mau_vat": "Tế bào thực vật (Vảy hành)",
+        "do_phong_dai": "100x",
+        "thanh_phan": "Thành cellulose, Nhân, Không bào lớn, Lục lạp"
+      },
+      {
+        "mau_vat": "Tế bào động vật",
+        "do_phong_dai": "400x",
+        "thanh_phan": "Màng sinh chất, Tế bào chất, Nhân hoàn chỉnh"
+      },
+      {
+        "mau_vat": "Tế bào nhân sơ (Vi khuẩn)",
+        "do_phong_dai": "1000x",
+        "thanh_phan": "Vùng nhân (chưa có màng nhân), Ribosome"
+      }
+    ]
   },
   {
     "id": "gdso-k6-s-03",
@@ -1146,13 +1265,11 @@
     "summary": "Thí nghiệm thực hành Xây dựng khóa lưỡng phân thuộc chương trình KHTN lớp 6 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 2D trực quan, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "2D",
     "kind_desc": "Mô phỏng 2D trực quan",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K6-S-03",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K6-S-03",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-S-03.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "cell_microscope_3d",
     "svg_icon": "<circle class=",
     "ready_meta": {
       "v": "1.0.0",
@@ -1206,14 +1323,29 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K6-S-03",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K6-S-03",
+      "sim_type": "cell_microscope_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-S-03.webp?v=14",
       "exp_code": "K6-S-03",
       "kind": "2D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "mau_vat": "Tế bào thực vật (Vảy hành)",
+        "do_phong_dai": "100x",
+        "thanh_phan": "Thành cellulose, Nhân, Không bào lớn, Lục lạp"
+      },
+      {
+        "mau_vat": "Tế bào động vật",
+        "do_phong_dai": "400x",
+        "thanh_phan": "Màng sinh chất, Tế bào chất, Nhân hoàn chỉnh"
+      },
+      {
+        "mau_vat": "Tế bào nhân sơ (Vi khuẩn)",
+        "do_phong_dai": "1000x",
+        "thanh_phan": "Vùng nhân (chưa có màng nhân), Ribosome"
+      }
+    ]
   },
   {
     "id": "gdso-k6-s-04",
@@ -1232,13 +1364,11 @@
     "summary": "Thí nghiệm thực hành Quan sát vi khuẩn, nguyên sinh vật thuộc chương trình KHTN lớp 6 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Kính hiển vi quang học ảo phóng đại cao, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "KHV",
     "kind_desc": "Kính hiển vi quang học ảo phóng đại cao",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K6-S-04",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K6-S-04",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-S-04.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "cell_microscope_3d",
     "svg_icon": "<g transform=",
     "ready_meta": {
       "v": "1.0.0",
@@ -1294,14 +1424,29 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K6-S-04",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K6-S-04",
+      "sim_type": "cell_microscope_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K6-S-04.webp?v=14",
       "exp_code": "K6-S-04",
       "kind": "KHV",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "mau_vat": "Tế bào thực vật (Vảy hành)",
+        "do_phong_dai": "100x",
+        "thanh_phan": "Thành cellulose, Nhân, Không bào lớn, Lục lạp"
+      },
+      {
+        "mau_vat": "Tế bào động vật",
+        "do_phong_dai": "400x",
+        "thanh_phan": "Màng sinh chất, Tế bào chất, Nhân hoàn chỉnh"
+      },
+      {
+        "mau_vat": "Tế bào nhân sơ (Vi khuẩn)",
+        "do_phong_dai": "1000x",
+        "thanh_phan": "Vùng nhân (chưa có màng nhân), Ribosome"
+      }
+    ]
   },
   {
     "id": "gdso-k7-l-01",
@@ -1320,13 +1465,11 @@
     "summary": "Thí nghiệm thực hành Đo tốc độ bằng cổng quang; đồ thị quãng đường – thời gian thuộc chương trình KHTN lớp 7 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D, ĐT",
     "kind_desc": "Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K7-L-01",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K7-L-01",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-L-01.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "mechanics_waves_optics",
     "svg_icon": "<circle cx=",
     "ready_meta": {
       "v": "1.0.0",
@@ -1381,14 +1524,29 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K7-L-01",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K7-L-01",
+      "sim_type": "mechanics_waves_optics",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-L-01.webp?v=14",
       "exp_code": "K7-L-01",
       "kind": "3D, ĐT",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "lan_do": 1,
+        "thong_so_dau_vao": "Tần số f = 220 Hz, Biên độ A = 40%",
+        "ket_qua_do": "Âm trầm, độ to vừa phải; v = s/t ổn định"
+      },
+      {
+        "lan_do": 2,
+        "thong_so_dau_vao": "Tần số f = 440 Hz (La chuẩn), A = 80%",
+        "ket_qua_do": "Âm bổng hơn, độ to lớn; Cơ năng W = Wđ + Wt bảo toàn"
+      },
+      {
+        "lan_do": 3,
+        "thong_so_dau_vao": "Chùm sáng trắng qua lăng kính n = 1,52",
+        "ket_qua_do": "Tán sắc thành dải 7 màu: Đỏ -> Tím (tia tím lệch nhiều nhất)"
+      }
+    ]
   },
   {
     "id": "gdso-k7-l-02",
@@ -1407,13 +1565,11 @@
     "summary": "Thí nghiệm thực hành Sóng âm; độ to – biên độ, độ cao – tần số thuộc chương trình KHTN lớp 7 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 2D kết hợp Đồ thị toán học thực nghiệm, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "2D, ĐT",
     "kind_desc": "Mô phỏng 2D kết hợp Đồ thị toán học thực nghiệm",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K7-L-02",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K7-L-02",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-L-02.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "mechanics_waves_optics",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -1467,14 +1623,29 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K7-L-02",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K7-L-02",
+      "sim_type": "mechanics_waves_optics",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-L-02.webp?v=14",
       "exp_code": "K7-L-02",
       "kind": "2D, ĐT",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "lan_do": 1,
+        "thong_so_dau_vao": "Tần số f = 220 Hz, Biên độ A = 40%",
+        "ket_qua_do": "Âm trầm, độ to vừa phải; v = s/t ổn định"
+      },
+      {
+        "lan_do": 2,
+        "thong_so_dau_vao": "Tần số f = 440 Hz (La chuẩn), A = 80%",
+        "ket_qua_do": "Âm bổng hơn, độ to lớn; Cơ năng W = Wđ + Wt bảo toàn"
+      },
+      {
+        "lan_do": 3,
+        "thong_so_dau_vao": "Chùm sáng trắng qua lăng kính n = 1,52",
+        "ket_qua_do": "Tán sắc thành dải 7 màu: Đỏ -> Tím (tia tím lệch nhiều nhất)"
+      }
+    ]
   },
   {
     "id": "gdso-k7-l-03",
@@ -1493,13 +1664,11 @@
     "summary": "Thí nghiệm thực hành Tia sáng, vùng tối, vùng nửa tối thuộc chương trình KHTN lớp 7 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K7-L-03",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K7-L-03",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-L-03.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "light_reflection",
     "svg_icon": "<circle class=",
     "ready_meta": {
       "v": "1.0.0",
@@ -1554,13 +1723,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K7-L-03",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K7-L-03",
+      "sim_type": "light_reflection",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-L-03.webp?v=14",
       "exp_code": "K7-L-03",
       "kind": "3D",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -1580,13 +1747,11 @@
     "summary": "Thí nghiệm thực hành Định luật phản xạ; ảnh qua gương phẳng thuộc chương trình KHTN lớp 7 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 2D trực quan, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "2D",
     "kind_desc": "Mô phỏng 2D trực quan",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K7-L-04",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K7-L-04",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-L-04.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "light_reflection",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -1640,13 +1805,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K7-L-04",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K7-L-04",
+      "sim_type": "light_reflection",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-L-04.webp?v=14",
       "exp_code": "K7-L-04",
       "kind": "2D",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -1666,13 +1829,11 @@
     "summary": "Thí nghiệm thực hành Nam châm, từ phổ, chế tạo nam châm điện thuộc chương trình KHTN lớp 7 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K7-L-05",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K7-L-05",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-L-05.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "magnetic_field",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -1727,13 +1888,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K7-L-05",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K7-L-05",
+      "sim_type": "magnetic_field",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-L-05.webp?v=14",
       "exp_code": "K7-L-05",
       "kind": "3D",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -1753,13 +1912,11 @@
     "summary": "Thí nghiệm thực hành Lắp ráp nguyên tử: proton, neutron, electron theo lớp thuộc chương trình KHTN lớp 7 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 3D kết hợp Mô hình hạt phân tử, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D, MH",
     "kind_desc": "Mô phỏng 3D kết hợp Mô hình hạt phân tử",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K7-H-01",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K7-H-01",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-H-01.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "atomic_structure",
     "svg_icon": "<ellipse cx=",
     "ready_meta": {
       "v": "2.0.0",
@@ -1813,13 +1970,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K7-H-01",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K7-H-01",
+      "sim_type": "atomic_structure",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-H-01.webp?v=14",
       "exp_code": "K7-H-01",
       "kind": "3D, MH",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -1839,13 +1994,11 @@
     "summary": "Thí nghiệm thực hành Từ số proton đến nguyên tố; vị trí trong bảng tuần hoàn thuộc chương trình KHTN lớp 7 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 2D trực quan, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "2D",
     "kind_desc": "Mô phỏng 2D trực quan",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K7-H-02",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K7-H-02",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-H-02.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "atomic_structure",
     "svg_icon": "<rect x=",
     "ready_meta": {
       "v": "1.0.0",
@@ -1900,13 +2053,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K7-H-02",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K7-H-02",
+      "sim_type": "atomic_structure",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-H-02.webp?v=14",
       "exp_code": "K7-H-02",
       "kind": "2D",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -1926,13 +2077,11 @@
     "summary": "Thí nghiệm thực hành Phân tử, đơn chất, hợp chất; khối lượng phân tử thuộc chương trình KHTN lớp 7 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô hình hạt phân tử & cấu trúc vi mô, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "MH",
     "kind_desc": "Mô hình hạt phân tử & cấu trúc vi mô",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K7-H-03",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K7-H-03",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-H-03.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "molecule_bonding",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -1986,13 +2135,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K7-H-03",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K7-H-03",
+      "sim_type": "molecule_bonding",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-H-03.webp?v=14",
       "exp_code": "K7-H-03",
       "kind": "MH",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -2012,13 +2159,11 @@
     "summary": "Thí nghiệm thực hành Liên kết ion và liên kết cộng hóa trị thuộc chương trình KHTN lớp 7 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô hình hạt phân tử & cấu trúc vi mô, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "MH",
     "kind_desc": "Mô hình hạt phân tử & cấu trúc vi mô",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K7-H-04",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K7-H-04",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-H-04.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "molecule_bonding",
     "svg_icon": "<circle cx=",
     "ready_meta": {
       "v": "1.0.0",
@@ -2072,13 +2217,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K7-H-04",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K7-H-04",
+      "sim_type": "molecule_bonding",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-H-04.webp?v=14",
       "exp_code": "K7-H-04",
       "kind": "MH",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -2098,13 +2241,11 @@
     "summary": "Thí nghiệm thực hành Hóa trị và lập công thức hóa học thuộc chương trình KHTN lớp 7 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô hình hạt phân tử & cấu trúc vi mô, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "MH",
     "kind_desc": "Mô hình hạt phân tử & cấu trúc vi mô",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K7-H-05",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K7-H-05",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-H-05.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "molecule_bonding",
     "svg_icon": "<rect x=",
     "ready_meta": {
       "v": "1.0.0",
@@ -2158,13 +2299,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K7-H-05",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K7-H-05",
+      "sim_type": "molecule_bonding",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-H-05.webp?v=14",
       "exp_code": "K7-H-05",
       "kind": "MH",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -2184,13 +2323,11 @@
     "summary": "Thí nghiệm thực hành Ảnh hưởng của ánh sáng tới quang hợp thuộc chương trình KHTN lớp 7 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D, ĐT",
     "kind_desc": "Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K7-S-01",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K7-S-01",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-S-01.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "plant_physiology_3d",
     "svg_icon": "<circle class=",
     "ready_meta": {
       "v": "2.0.0",
@@ -2245,14 +2382,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K7-S-01",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K7-S-01",
+      "sim_type": "plant_physiology_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-S-01.webp?v=14",
       "exp_code": "K7-S-01",
       "kind": "3D, ĐT",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "khoang_cach_den": "40 cm (Ánh sáng yếu)",
+        "cuong_do_sang": "2000 lux",
+        "so_bot_khi_o2": "8 bọt/phút",
+        "ket_luan": "Quang hợp yếu"
+      },
+      {
+        "khoang_cach_den": "25 cm (Ánh sáng vừa)",
+        "cuong_do_sang": "5500 lux",
+        "so_bot_khi_o2": "24 bọt/phút",
+        "ket_luan": "Quang hợp tăng mạnh"
+      },
+      {
+        "khoang_cach_den": "12 cm (Ánh sáng mạnh)",
+        "cuong_do_sang": "10000 lux",
+        "so_bot_khi_o2": "42 bọt/phút",
+        "ket_luan": "Đạt mức bão hòa ánh sáng"
+      }
+    ]
   },
   {
     "id": "gdso-k7-s-02",
@@ -2271,13 +2426,11 @@
     "summary": "Thí nghiệm thực hành Chứng minh quang hợp: tinh bột ở lá, khí oxygen thuộc chương trình KHTN lớp 7 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K7-S-02",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K7-S-02",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-S-02.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "plant_physiology_3d",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -2332,14 +2485,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K7-S-02",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K7-S-02",
+      "sim_type": "plant_physiology_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-S-02.webp?v=14",
       "exp_code": "K7-S-02",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "khoang_cach_den": "40 cm (Ánh sáng yếu)",
+        "cuong_do_sang": "2000 lux",
+        "so_bot_khi_o2": "8 bọt/phút",
+        "ket_luan": "Quang hợp yếu"
+      },
+      {
+        "khoang_cach_den": "25 cm (Ánh sáng vừa)",
+        "cuong_do_sang": "5500 lux",
+        "so_bot_khi_o2": "24 bọt/phút",
+        "ket_luan": "Quang hợp tăng mạnh"
+      },
+      {
+        "khoang_cach_den": "12 cm (Ánh sáng mạnh)",
+        "cuong_do_sang": "10000 lux",
+        "so_bot_khi_o2": "42 bọt/phút",
+        "ket_luan": "Đạt mức bão hòa ánh sáng"
+      }
+    ]
   },
   {
     "id": "gdso-k7-s-03",
@@ -2358,13 +2529,11 @@
     "summary": "Thí nghiệm thực hành Hô hấp tế bào ở hạt nảy mầm thuộc chương trình KHTN lớp 7 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K7-S-03",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K7-S-03",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-S-03.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "plant_physiology_3d",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -2419,14 +2588,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K7-S-03",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K7-S-03",
+      "sim_type": "plant_physiology_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-S-03.webp?v=14",
       "exp_code": "K7-S-03",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "khoang_cach_den": "40 cm (Ánh sáng yếu)",
+        "cuong_do_sang": "2000 lux",
+        "so_bot_khi_o2": "8 bọt/phút",
+        "ket_luan": "Quang hợp yếu"
+      },
+      {
+        "khoang_cach_den": "25 cm (Ánh sáng vừa)",
+        "cuong_do_sang": "5500 lux",
+        "so_bot_khi_o2": "24 bọt/phút",
+        "ket_luan": "Quang hợp tăng mạnh"
+      },
+      {
+        "khoang_cach_den": "12 cm (Ánh sáng mạnh)",
+        "cuong_do_sang": "10000 lux",
+        "so_bot_khi_o2": "42 bọt/phút",
+        "ket_luan": "Đạt mức bão hòa ánh sáng"
+      }
+    ]
   },
   {
     "id": "gdso-k7-s-04",
@@ -2445,13 +2632,11 @@
     "summary": "Thí nghiệm thực hành Thân vận chuyển nước, lá thoát hơi nước thuộc chương trình KHTN lớp 7 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K7-S-04",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K7-S-04",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-S-04.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "plant_physiology_3d",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.1.0",
@@ -2506,14 +2691,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K7-S-04",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K7-S-04",
+      "sim_type": "plant_physiology_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-S-04.webp?v=14",
       "exp_code": "K7-S-04",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "khoang_cach_den": "40 cm (Ánh sáng yếu)",
+        "cuong_do_sang": "2000 lux",
+        "so_bot_khi_o2": "8 bọt/phút",
+        "ket_luan": "Quang hợp yếu"
+      },
+      {
+        "khoang_cach_den": "25 cm (Ánh sáng vừa)",
+        "cuong_do_sang": "5500 lux",
+        "so_bot_khi_o2": "24 bọt/phút",
+        "ket_luan": "Quang hợp tăng mạnh"
+      },
+      {
+        "khoang_cach_den": "12 cm (Ánh sáng mạnh)",
+        "cuong_do_sang": "10000 lux",
+        "so_bot_khi_o2": "42 bọt/phút",
+        "ket_luan": "Đạt mức bão hòa ánh sáng"
+      }
+    ]
   },
   {
     "id": "gdso-k7-s-05",
@@ -2532,13 +2735,11 @@
     "summary": "Thí nghiệm thực hành Cảm ứng ở thực vật (tua nhanh thời gian) thuộc chương trình KHTN lớp 7 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 2D trực quan, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "2D",
     "kind_desc": "Mô phỏng 2D trực quan",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K7-S-05",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K7-S-05",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-S-05.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "plant_physiology_3d",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -2592,14 +2793,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K7-S-05",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K7-S-05",
+      "sim_type": "plant_physiology_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K7-S-05.webp?v=14",
       "exp_code": "K7-S-05",
       "kind": "2D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "khoang_cach_den": "40 cm (Ánh sáng yếu)",
+        "cuong_do_sang": "2000 lux",
+        "so_bot_khi_o2": "8 bọt/phút",
+        "ket_luan": "Quang hợp yếu"
+      },
+      {
+        "khoang_cach_den": "25 cm (Ánh sáng vừa)",
+        "cuong_do_sang": "5500 lux",
+        "so_bot_khi_o2": "24 bọt/phút",
+        "ket_luan": "Quang hợp tăng mạnh"
+      },
+      {
+        "khoang_cach_den": "12 cm (Ánh sáng mạnh)",
+        "cuong_do_sang": "10000 lux",
+        "so_bot_khi_o2": "42 bọt/phút",
+        "ket_luan": "Đạt mức bão hòa ánh sáng"
+      }
+    ]
   },
   {
     "id": "gdso-k8-c-01",
@@ -2618,13 +2837,11 @@
     "summary": "Thí nghiệm thực hành Sử dụng hóa chất, thiết bị cơ bản; an toàn thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-C-01",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-C-01",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-C-01.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "lab_safety_station",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -2679,14 +2896,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-C-01",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-C-01",
+      "sim_type": "lab_safety_station",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-C-01.webp?v=14",
       "exp_code": "K8-C-01",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "lan_do": 1,
+        "dung_cu": "Kính hiển vi (Vật kính 10x)",
+        "dai_luong": "Độ phóng đại 100x",
+        "ket_qua": "Quan sát rõ thành tế bào"
+      },
+      {
+        "lan_do": 2,
+        "dung_cu": "Ống đong chia độ 100 mL",
+        "dai_luong": "Thể tích chất lỏng",
+        "ket_qua": "45,0 mL (đọc tại đáy mặt khum)"
+      },
+      {
+        "lan_do": 3,
+        "dung_cu": "Cân điện tử hiện số",
+        "dai_luong": "Khối lượng mẫu vật",
+        "ket_qua": "25,40 g (đã trừ bì)"
+      }
+    ]
   },
   {
     "id": "gdso-k8-l-01",
@@ -2705,13 +2940,11 @@
     "summary": "Thí nghiệm thực hành Thực hành xác định khối lượng riêng thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-L-01",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-L-01",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-L-01.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "archimedes",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -2766,13 +2999,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-L-01",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-L-01",
+      "sim_type": "archimedes",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-L-01.webp?v=14",
       "exp_code": "K8-L-01",
       "kind": "3D",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -2792,13 +3023,11 @@
     "summary": "Thí nghiệm thực hành Áp suất trên bề mặt, áp suất chất lỏng, áp suất khí quyển thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-L-02",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-L-02",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-L-02.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "liquid_pressure",
     "svg_icon": "<circle cx=",
     "ready_meta": {
       "v": "1.0.0",
@@ -2853,13 +3082,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-L-02",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-L-02",
+      "sim_type": "liquid_pressure",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-L-02.webp?v=14",
       "exp_code": "K8-L-02",
       "kind": "3D",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -2879,13 +3106,11 @@
     "summary": "Thí nghiệm thực hành Lực đẩy Archimedes thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D, ĐT",
     "kind_desc": "Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-L-03",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-L-03",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-L-03.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "archimedes",
     "svg_icon": "<circle cx=",
     "ready_meta": {
       "v": "2.0.0",
@@ -2940,13 +3165,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-L-03",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-L-03",
+      "sim_type": "archimedes",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-L-03.webp?v=14",
       "exp_code": "K8-L-03",
       "kind": "3D, ĐT",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -2966,13 +3189,11 @@
     "summary": "Thí nghiệm thực hành Moment lực, đòn bẩy thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 2D trực quan, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "2D",
     "kind_desc": "Mô phỏng 2D trực quan",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-L-04",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-L-04",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-L-04.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "lever_balance",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -3026,13 +3247,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-L-04",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-L-04",
+      "sim_type": "lever_balance",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-L-04.webp?v=14",
       "exp_code": "K8-L-04",
       "kind": "2D",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -3052,13 +3271,11 @@
     "summary": "Thí nghiệm thực hành Nhiễm điện do cọ xát thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-L-05",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-L-05",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-L-05.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "mechanics_waves_optics",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -3113,14 +3330,29 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-L-05",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-L-05",
+      "sim_type": "mechanics_waves_optics",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-L-05.webp?v=14",
       "exp_code": "K8-L-05",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "lan_do": 1,
+        "thong_so_dau_vao": "Tần số f = 220 Hz, Biên độ A = 40%",
+        "ket_qua_do": "Âm trầm, độ to vừa phải; v = s/t ổn định"
+      },
+      {
+        "lan_do": 2,
+        "thong_so_dau_vao": "Tần số f = 440 Hz (La chuẩn), A = 80%",
+        "ket_qua_do": "Âm bổng hơn, độ to lớn; Cơ năng W = Wđ + Wt bảo toàn"
+      },
+      {
+        "lan_do": 3,
+        "thong_so_dau_vao": "Chùm sáng trắng qua lăng kính n = 1,52",
+        "ket_qua_do": "Tán sắc thành dải 7 màu: Đỏ -> Tím (tia tím lệch nhiều nhất)"
+      }
+    ]
   },
   {
     "id": "gdso-k8-l-06",
@@ -3139,13 +3371,11 @@
     "summary": "Thí nghiệm thực hành Lắp mạch điện; đo cường độ dòng điện, hiệu điện thế thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-L-06",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-L-06",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-L-06.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "circuit_ohm",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "2.0.0",
@@ -3199,13 +3429,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-L-06",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-L-06",
+      "sim_type": "circuit_ohm",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-L-06.webp?v=14",
       "exp_code": "K8-L-06",
       "kind": "3D",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -3225,13 +3453,11 @@
     "summary": "Thí nghiệm thực hành Tác dụng của dòng điện thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-L-07",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-L-07",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-L-07.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "circuit_ohm",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -3286,13 +3512,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-L-07",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-L-07",
+      "sim_type": "circuit_ohm",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-L-07.webp?v=14",
       "exp_code": "K8-L-07",
       "kind": "3D",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -3312,13 +3536,11 @@
     "summary": "Thí nghiệm thực hành Sự truyền nhiệt; sự nở vì nhiệt thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 2D trực quan, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "2D",
     "kind_desc": "Mô phỏng 2D trực quan",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-L-08",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-L-08",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-L-08.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "thermal_phase_change",
     "svg_icon": "<rect x=",
     "ready_meta": {
       "v": "1.0.0",
@@ -3372,14 +3594,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-L-08",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-L-08",
+      "sim_type": "thermal_phase_change",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-L-08.webp?v=14",
       "exp_code": "K8-L-08",
       "kind": "2D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "thoi_gian": "0 phút",
+        "nhiet_do": "20 °C",
+        "trang_thai": "Chất lỏng/rắn ban đầu",
+        "hien_tuong": "Chưa đun nóng"
+      },
+      {
+        "thoi_gian": "4 phút",
+        "nhiet_do": "65 °C",
+        "trang_thai": "Đang nóng lên / phản ứng mạnh",
+        "hien_tuong": "Tốc độ chuyển động phân tử tăng"
+      },
+      {
+        "thoi_gian": "8 phút",
+        "nhiet_do": "100 °C",
+        "trang_thai": "Sôi / Hoàn tất phản ứng",
+        "hien_tuong": "Nhiệt độ giữ ổn định trong suốt quá trình sôi"
+      }
+    ]
   },
   {
     "id": "gdso-k8-h-01",
@@ -3398,13 +3638,11 @@
     "summary": "Thí nghiệm thực hành Biến đổi vật lí, biến đổi hóa học; dấu hiệu phản ứng thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-H-01",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-H-01",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-H-01.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "thermal_phase_change",
     "svg_icon": "<path class=",
     "ready_meta": {
       "v": "1.0.0",
@@ -3460,14 +3698,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-H-01",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-H-01",
+      "sim_type": "thermal_phase_change",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-H-01.webp?v=14",
       "exp_code": "K8-H-01",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "thoi_gian": "0 phút",
+        "nhiet_do": "20 °C",
+        "trang_thai": "Chất lỏng/rắn ban đầu",
+        "hien_tuong": "Chưa đun nóng"
+      },
+      {
+        "thoi_gian": "4 phút",
+        "nhiet_do": "65 °C",
+        "trang_thai": "Đang nóng lên / phản ứng mạnh",
+        "hien_tuong": "Tốc độ chuyển động phân tử tăng"
+      },
+      {
+        "thoi_gian": "8 phút",
+        "nhiet_do": "100 °C",
+        "trang_thai": "Sôi / Hoàn tất phản ứng",
+        "hien_tuong": "Nhiệt độ giữ ổn định trong suốt quá trình sôi"
+      }
+    ]
   },
   {
     "id": "gdso-k8-h-02",
@@ -3486,13 +3742,11 @@
     "summary": "Thí nghiệm thực hành Pha dung dịch theo nồng độ; độ tan thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-H-02",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-H-02",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-H-02.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "thermal_phase_change",
     "svg_icon": "<path class=",
     "ready_meta": {
       "v": "1.0.0",
@@ -3548,14 +3802,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-H-02",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-H-02",
+      "sim_type": "thermal_phase_change",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-H-02.webp?v=14",
       "exp_code": "K8-H-02",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "thoi_gian": "0 phút",
+        "nhiet_do": "20 °C",
+        "trang_thai": "Chất lỏng/rắn ban đầu",
+        "hien_tuong": "Chưa đun nóng"
+      },
+      {
+        "thoi_gian": "4 phút",
+        "nhiet_do": "65 °C",
+        "trang_thai": "Đang nóng lên / phản ứng mạnh",
+        "hien_tuong": "Tốc độ chuyển động phân tử tăng"
+      },
+      {
+        "thoi_gian": "8 phút",
+        "nhiet_do": "100 °C",
+        "trang_thai": "Sôi / Hoàn tất phản ứng",
+        "hien_tuong": "Nhiệt độ giữ ổn định trong suốt quá trình sôi"
+      }
+    ]
   },
   {
     "id": "gdso-k8-h-03",
@@ -3574,13 +3846,11 @@
     "summary": "Thí nghiệm thực hành Định luật bảo toàn khối lượng thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 3D kết hợp Mô hình hạt phân tử, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D, MH",
     "kind_desc": "Mô phỏng 3D kết hợp Mô hình hạt phân tử",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-H-03",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-H-03",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-H-03.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "mass_conservation",
     "svg_icon": "<circle class=",
     "ready_meta": {
       "v": "2.0.0",
@@ -3635,13 +3905,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-H-03",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-H-03",
+      "sim_type": "mass_conservation",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-H-03.webp?v=14",
       "exp_code": "K8-H-03",
       "kind": "3D, MH",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -3661,13 +3929,11 @@
     "summary": "Thí nghiệm thực hành Lập phương trình hóa học bằng mô hình hạt thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô hình hạt phân tử & cấu trúc vi mô, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "MH",
     "kind_desc": "Mô hình hạt phân tử & cấu trúc vi mô",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-H-04",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-H-04",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-H-04.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "molecule_bonding",
     "svg_icon": "<circle cx=",
     "ready_meta": {
       "v": "1.0.0",
@@ -3721,13 +3987,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-H-04",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-H-04",
+      "sim_type": "molecule_bonding",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-H-04.webp?v=14",
       "exp_code": "K8-H-04",
       "kind": "MH",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -3747,13 +4011,11 @@
     "summary": "Thí nghiệm thực hành Tốc độ phản ứng: nồng độ, nhiệt độ, diện tích bề mặt, chất xúc tác thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D, ĐT",
     "kind_desc": "Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-H-05",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-H-05",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-H-05.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "thermal_phase_change",
     "svg_icon": "<path class=",
     "ready_meta": {
       "v": "1.0.0",
@@ -3807,14 +4069,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-H-05",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-H-05",
+      "sim_type": "thermal_phase_change",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-H-05.webp?v=14",
       "exp_code": "K8-H-05",
       "kind": "3D, ĐT",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "thoi_gian": "0 phút",
+        "nhiet_do": "20 °C",
+        "trang_thai": "Chất lỏng/rắn ban đầu",
+        "hien_tuong": "Chưa đun nóng"
+      },
+      {
+        "thoi_gian": "4 phút",
+        "nhiet_do": "65 °C",
+        "trang_thai": "Đang nóng lên / phản ứng mạnh",
+        "hien_tuong": "Tốc độ chuyển động phân tử tăng"
+      },
+      {
+        "thoi_gian": "8 phút",
+        "nhiet_do": "100 °C",
+        "trang_thai": "Sôi / Hoàn tất phản ứng",
+        "hien_tuong": "Nhiệt độ giữ ổn định trong suốt quá trình sôi"
+      }
+    ]
   },
   {
     "id": "gdso-k8-h-06",
@@ -3833,13 +4113,11 @@
     "summary": "Thí nghiệm thực hành Acid: đổi màu quỳ, tác dụng với kim loại thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-H-06",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-H-06",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-H-06.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "metal_acid",
     "svg_icon": "<rect x=",
     "ready_meta": {
       "v": "1.0.0",
@@ -3895,13 +4173,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-H-06",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-H-06",
+      "sim_type": "metal_acid",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-H-06.webp?v=14",
       "exp_code": "K8-H-06",
       "kind": "3D",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -3921,13 +4197,11 @@
     "summary": "Thí nghiệm thực hành Base, thang pH: chất chỉ thị, phản ứng trung hòa, đo pH thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D, ĐT",
     "kind_desc": "Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-H-07",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-H-07",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-H-07.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "acid_base_neutralization",
     "svg_icon": "<rect x=",
     "ready_meta": {
       "v": "1.0.0",
@@ -3981,13 +4255,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-H-07",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-H-07",
+      "sim_type": "acid_base_neutralization",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-H-07.webp?v=14",
       "exp_code": "K8-H-07",
       "kind": "3D, ĐT",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -4007,13 +4279,11 @@
     "summary": "Thí nghiệm thực hành Oxide và muối thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-H-08",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-H-08",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-H-08.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "thermal_phase_change",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -4069,14 +4339,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-H-08",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-H-08",
+      "sim_type": "thermal_phase_change",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-H-08.webp?v=14",
       "exp_code": "K8-H-08",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "thoi_gian": "0 phút",
+        "nhiet_do": "20 °C",
+        "trang_thai": "Chất lỏng/rắn ban đầu",
+        "hien_tuong": "Chưa đun nóng"
+      },
+      {
+        "thoi_gian": "4 phút",
+        "nhiet_do": "65 °C",
+        "trang_thai": "Đang nóng lên / phản ứng mạnh",
+        "hien_tuong": "Tốc độ chuyển động phân tử tăng"
+      },
+      {
+        "thoi_gian": "8 phút",
+        "nhiet_do": "100 °C",
+        "trang_thai": "Sôi / Hoàn tất phản ứng",
+        "hien_tuong": "Nhiệt độ giữ ổn định trong suốt quá trình sôi"
+      }
+    ]
   },
   {
     "id": "gdso-k8-s-01",
@@ -4095,13 +4383,11 @@
     "summary": "Thí nghiệm thực hành Cơ thể người 3D: các hệ cơ quan thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-S-01",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-S-01",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-S-01.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "human_anatomy_3d",
     "svg_icon": "<circle cx=",
     "ready_meta": {
       "v": "1.0.0",
@@ -4158,14 +4444,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-S-01",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-S-01",
+      "sim_type": "human_anatomy_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-S-01.webp?v=14",
       "exp_code": "K8-S-01",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "trang_thai": "Nghỉ ngơi",
+        "nhip_tim": "72 nhịp/phút",
+        "nhip_tho": "16 lần/phút",
+        "nhiet_do_co_the": "37,0 °C (Hoạt tính enzyme tối ưu)"
+      },
+      {
+        "trang_thai": "Vận động nhẹ",
+        "nhip_tim": "98 nhịp/phút",
+        "nhip_tho": "22 lần/phút",
+        "nhiet_do_co_the": "37,2 °C (Tăng lưu lượng máu)"
+      },
+      {
+        "trang_thai": "Vận động mạnh",
+        "nhip_tim": "135 nhịp/phút",
+        "nhip_tho": "30 lần/phút",
+        "nhiet_do_co_the": "37,6 °C (Trao đổi khí O2/CO2 cực đại)"
+      }
+    ]
   },
   {
     "id": "gdso-k8-s-02",
@@ -4184,13 +4488,11 @@
     "summary": "Thí nghiệm thực hành Hệ vận động; sơ cứu khi gãy xương thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-S-02",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-S-02",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-S-02.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "human_anatomy_3d",
     "svg_icon": "<g transform=",
     "ready_meta": {
       "v": "1.0.0",
@@ -4245,14 +4547,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-S-02",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-S-02",
+      "sim_type": "human_anatomy_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-S-02.webp?v=14",
       "exp_code": "K8-S-02",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "trang_thai": "Nghỉ ngơi",
+        "nhip_tim": "72 nhịp/phút",
+        "nhip_tho": "16 lần/phút",
+        "nhiet_do_co_the": "37,0 °C (Hoạt tính enzyme tối ưu)"
+      },
+      {
+        "trang_thai": "Vận động nhẹ",
+        "nhip_tim": "98 nhịp/phút",
+        "nhip_tho": "22 lần/phút",
+        "nhiet_do_co_the": "37,2 °C (Tăng lưu lượng máu)"
+      },
+      {
+        "trang_thai": "Vận động mạnh",
+        "nhip_tim": "135 nhịp/phút",
+        "nhip_tho": "30 lần/phút",
+        "nhiet_do_co_the": "37,6 °C (Trao đổi khí O2/CO2 cực đại)"
+      }
+    ]
   },
   {
     "id": "gdso-k8-s-03",
@@ -4271,13 +4591,11 @@
     "summary": "Thí nghiệm thực hành Tiêu hóa; enzyme amylase phân giải tinh bột thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-S-03",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-S-03",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-S-03.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "human_anatomy_3d",
     "svg_icon": "<path class=",
     "ready_meta": {
       "v": "1.0.0",
@@ -4334,14 +4652,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-S-03",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-S-03",
+      "sim_type": "human_anatomy_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-S-03.webp?v=14",
       "exp_code": "K8-S-03",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "trang_thai": "Nghỉ ngơi",
+        "nhip_tim": "72 nhịp/phút",
+        "nhip_tho": "16 lần/phút",
+        "nhiet_do_co_the": "37,0 °C (Hoạt tính enzyme tối ưu)"
+      },
+      {
+        "trang_thai": "Vận động nhẹ",
+        "nhip_tim": "98 nhịp/phút",
+        "nhip_tho": "22 lần/phút",
+        "nhiet_do_co_the": "37,2 °C (Tăng lưu lượng máu)"
+      },
+      {
+        "trang_thai": "Vận động mạnh",
+        "nhip_tim": "135 nhịp/phút",
+        "nhip_tho": "30 lần/phút",
+        "nhiet_do_co_the": "37,6 °C (Trao đổi khí O2/CO2 cực đại)"
+      }
+    ]
   },
   {
     "id": "gdso-k8-s-04",
@@ -4360,13 +4696,11 @@
     "summary": "Thí nghiệm thực hành Tim, vòng tuần hoàn, nhóm máu thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-S-04",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-S-04",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-S-04.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "human_anatomy_3d",
     "svg_icon": "<path class=",
     "ready_meta": {
       "v": "2.0.0",
@@ -4420,14 +4754,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-S-04",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-S-04",
+      "sim_type": "human_anatomy_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-S-04.webp?v=14",
       "exp_code": "K8-S-04",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "trang_thai": "Nghỉ ngơi",
+        "nhip_tim": "72 nhịp/phút",
+        "nhip_tho": "16 lần/phút",
+        "nhiet_do_co_the": "37,0 °C (Hoạt tính enzyme tối ưu)"
+      },
+      {
+        "trang_thai": "Vận động nhẹ",
+        "nhip_tim": "98 nhịp/phút",
+        "nhip_tho": "22 lần/phút",
+        "nhiet_do_co_the": "37,2 °C (Tăng lưu lượng máu)"
+      },
+      {
+        "trang_thai": "Vận động mạnh",
+        "nhip_tim": "135 nhịp/phút",
+        "nhip_tho": "30 lần/phút",
+        "nhiet_do_co_the": "37,6 °C (Trao đổi khí O2/CO2 cực đại)"
+      }
+    ]
   },
   {
     "id": "gdso-k8-s-05",
@@ -4446,13 +4798,11 @@
     "summary": "Thí nghiệm thực hành Hô hấp, trao đổi khí ở phổi thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-S-05",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-S-05",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-S-05.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "human_anatomy_3d",
     "svg_icon": "<path class=",
     "ready_meta": {
       "v": "1.0.0",
@@ -4508,14 +4858,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-S-05",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-S-05",
+      "sim_type": "human_anatomy_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-S-05.webp?v=14",
       "exp_code": "K8-S-05",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "trang_thai": "Nghỉ ngơi",
+        "nhip_tim": "72 nhịp/phút",
+        "nhip_tho": "16 lần/phút",
+        "nhiet_do_co_the": "37,0 °C (Hoạt tính enzyme tối ưu)"
+      },
+      {
+        "trang_thai": "Vận động nhẹ",
+        "nhip_tim": "98 nhịp/phút",
+        "nhip_tho": "22 lần/phút",
+        "nhiet_do_co_the": "37,2 °C (Tăng lưu lượng máu)"
+      },
+      {
+        "trang_thai": "Vận động mạnh",
+        "nhip_tim": "135 nhịp/phút",
+        "nhip_tho": "30 lần/phút",
+        "nhiet_do_co_the": "37,6 °C (Trao đổi khí O2/CO2 cực đại)"
+      }
+    ]
   },
   {
     "id": "gdso-k8-s-06",
@@ -4534,13 +4902,11 @@
     "summary": "Thí nghiệm thực hành Hệ thần kinh, phản xạ; mắt và tật khúc xạ thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-S-06",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-S-06",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-S-06.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "human_anatomy_3d",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -4596,14 +4962,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-S-06",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-S-06",
+      "sim_type": "human_anatomy_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-S-06.webp?v=14",
       "exp_code": "K8-S-06",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "trang_thai": "Nghỉ ngơi",
+        "nhip_tim": "72 nhịp/phút",
+        "nhip_tho": "16 lần/phút",
+        "nhiet_do_co_the": "37,0 °C (Hoạt tính enzyme tối ưu)"
+      },
+      {
+        "trang_thai": "Vận động nhẹ",
+        "nhip_tim": "98 nhịp/phút",
+        "nhip_tho": "22 lần/phút",
+        "nhiet_do_co_the": "37,2 °C (Tăng lưu lượng máu)"
+      },
+      {
+        "trang_thai": "Vận động mạnh",
+        "nhip_tim": "135 nhịp/phút",
+        "nhip_tho": "30 lần/phút",
+        "nhiet_do_co_the": "37,6 °C (Trao đổi khí O2/CO2 cực đại)"
+      }
+    ]
   },
   {
     "id": "gdso-k8-s-07",
@@ -4622,13 +5006,11 @@
     "summary": "Thí nghiệm thực hành Quần thể, hệ sinh thái, lưới thức ăn, cân bằng tự nhiên thuộc chương trình KHTN lớp 8 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 2D kết hợp Đồ thị toán học thực nghiệm, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "2D, ĐT",
     "kind_desc": "Mô phỏng 2D kết hợp Đồ thị toán học thực nghiệm",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K8-S-07",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K8-S-07",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-S-07.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "human_anatomy_3d",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -4682,14 +5064,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K8-S-07",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K8-S-07",
+      "sim_type": "human_anatomy_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K8-S-07.webp?v=14",
       "exp_code": "K8-S-07",
       "kind": "2D, ĐT",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "trang_thai": "Nghỉ ngơi",
+        "nhip_tim": "72 nhịp/phút",
+        "nhip_tho": "16 lần/phút",
+        "nhiet_do_co_the": "37,0 °C (Hoạt tính enzyme tối ưu)"
+      },
+      {
+        "trang_thai": "Vận động nhẹ",
+        "nhip_tim": "98 nhịp/phút",
+        "nhip_tho": "22 lần/phút",
+        "nhiet_do_co_the": "37,2 °C (Tăng lưu lượng máu)"
+      },
+      {
+        "trang_thai": "Vận động mạnh",
+        "nhip_tim": "135 nhịp/phút",
+        "nhip_tho": "30 lần/phút",
+        "nhiet_do_co_the": "37,6 °C (Trao đổi khí O2/CO2 cực đại)"
+      }
+    ]
   },
   {
     "id": "gdso-k9-l-01",
@@ -4708,13 +5108,11 @@
     "summary": "Thí nghiệm thực hành Động năng, thế năng, cơ năng (con lắc, máng nghiêng) thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D, ĐT",
     "kind_desc": "Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-L-01",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-L-01",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-L-01.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "mechanics_waves_optics",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -4769,14 +5167,29 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-L-01",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-L-01",
+      "sim_type": "mechanics_waves_optics",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-L-01.webp?v=14",
       "exp_code": "K9-L-01",
       "kind": "3D, ĐT",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "lan_do": 1,
+        "thong_so_dau_vao": "Tần số f = 220 Hz, Biên độ A = 40%",
+        "ket_qua_do": "Âm trầm, độ to vừa phải; v = s/t ổn định"
+      },
+      {
+        "lan_do": 2,
+        "thong_so_dau_vao": "Tần số f = 440 Hz (La chuẩn), A = 80%",
+        "ket_qua_do": "Âm bổng hơn, độ to lớn; Cơ năng W = Wđ + Wt bảo toàn"
+      },
+      {
+        "lan_do": 3,
+        "thong_so_dau_vao": "Chùm sáng trắng qua lăng kính n = 1,52",
+        "ket_qua_do": "Tán sắc thành dải 7 màu: Đỏ -> Tím (tia tím lệch nhiều nhất)"
+      }
+    ]
   },
   {
     "id": "gdso-k9-l-02",
@@ -4795,13 +5208,11 @@
     "summary": "Thí nghiệm thực hành Công và công suất thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 2D trực quan, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "2D",
     "kind_desc": "Mô phỏng 2D trực quan",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-L-02",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-L-02",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-L-02.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "mechanics_waves_optics",
     "svg_icon": "<circle cx=",
     "ready_meta": {
       "v": "1.0.0",
@@ -4855,14 +5266,29 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-L-02",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-L-02",
+      "sim_type": "mechanics_waves_optics",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-L-02.webp?v=14",
       "exp_code": "K9-L-02",
       "kind": "2D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "lan_do": 1,
+        "thong_so_dau_vao": "Tần số f = 220 Hz, Biên độ A = 40%",
+        "ket_qua_do": "Âm trầm, độ to vừa phải; v = s/t ổn định"
+      },
+      {
+        "lan_do": 2,
+        "thong_so_dau_vao": "Tần số f = 440 Hz (La chuẩn), A = 80%",
+        "ket_qua_do": "Âm bổng hơn, độ to lớn; Cơ năng W = Wđ + Wt bảo toàn"
+      },
+      {
+        "lan_do": 3,
+        "thong_so_dau_vao": "Chùm sáng trắng qua lăng kính n = 1,52",
+        "ket_qua_do": "Tán sắc thành dải 7 màu: Đỏ -> Tím (tia tím lệch nhiều nhất)"
+      }
+    ]
   },
   {
     "id": "gdso-k9-l-03",
@@ -4881,13 +5307,11 @@
     "summary": "Thí nghiệm thực hành Khúc xạ ánh sáng; phản xạ toàn phần thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 2D kết hợp Đồ thị toán học thực nghiệm, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "2D, ĐT",
     "kind_desc": "Mô phỏng 2D kết hợp Đồ thị toán học thực nghiệm",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-L-03",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-L-03",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-L-03.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "light_refraction",
     "svg_icon": "<path class=",
     "ready_meta": {
       "v": "1.0.0",
@@ -4941,13 +5365,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-L-03",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-L-03",
+      "sim_type": "light_refraction",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-L-03.webp?v=14",
       "exp_code": "K9-L-03",
       "kind": "2D, ĐT",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -4967,13 +5389,11 @@
     "summary": "Thí nghiệm thực hành Lăng kính, tán sắc ánh sáng thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-L-04",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-L-04",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-L-04.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "mechanics_waves_optics",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -5028,14 +5448,29 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-L-04",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-L-04",
+      "sim_type": "mechanics_waves_optics",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-L-04.webp?v=14",
       "exp_code": "K9-L-04",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "lan_do": 1,
+        "thong_so_dau_vao": "Tần số f = 220 Hz, Biên độ A = 40%",
+        "ket_qua_do": "Âm trầm, độ to vừa phải; v = s/t ổn định"
+      },
+      {
+        "lan_do": 2,
+        "thong_so_dau_vao": "Tần số f = 440 Hz (La chuẩn), A = 80%",
+        "ket_qua_do": "Âm bổng hơn, độ to lớn; Cơ năng W = Wđ + Wt bảo toàn"
+      },
+      {
+        "lan_do": 3,
+        "thong_so_dau_vao": "Chùm sáng trắng qua lăng kính n = 1,52",
+        "ket_qua_do": "Tán sắc thành dải 7 màu: Đỏ -> Tím (tia tím lệch nhiều nhất)"
+      }
+    ]
   },
   {
     "id": "gdso-k9-l-05",
@@ -5054,13 +5489,11 @@
     "summary": "Thí nghiệm thực hành Thấu kính; đo tiêu cự; kính lúp thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D, ĐT",
     "kind_desc": "Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-L-05",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-L-05",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-L-05.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "lens_convex",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -5115,13 +5548,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-L-05",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-L-05",
+      "sim_type": "lens_convex",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-L-05.webp?v=14",
       "exp_code": "K9-L-05",
       "kind": "3D, ĐT",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -5141,13 +5572,11 @@
     "summary": "Thí nghiệm thực hành Định luật Ohm; đoạn mạch nối tiếp, song song thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D, ĐT",
     "kind_desc": "Mô phỏng 3D kết hợp Đồ thị số liệu thời gian thực",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-L-06",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-L-06",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-L-06.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "circuit_ohm",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -5202,13 +5631,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-L-06",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-L-06",
+      "sim_type": "circuit_ohm",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-L-06.webp?v=14",
       "exp_code": "K9-L-06",
       "kind": "3D, ĐT",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -5228,13 +5655,11 @@
     "summary": "Thí nghiệm thực hành Năng lượng điện, công suất điện thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 2D trực quan, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "2D",
     "kind_desc": "Mô phỏng 2D trực quan",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-L-07",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-L-07",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-L-07.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "circuit_ohm",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -5288,13 +5713,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-L-07",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-L-07",
+      "sim_type": "circuit_ohm",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-L-07.webp?v=14",
       "exp_code": "K9-L-07",
       "kind": "2D",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -5314,13 +5737,11 @@
     "summary": "Thí nghiệm thực hành Cảm ứng điện từ, dòng điện xoay chiều thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-L-08",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-L-08",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-L-08.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "mechanics_waves_optics",
     "svg_icon": "<ellipse cx=",
     "ready_meta": {
       "v": "1.0.0",
@@ -5375,14 +5796,29 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-L-08",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-L-08",
+      "sim_type": "mechanics_waves_optics",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-L-08.webp?v=14",
       "exp_code": "K9-L-08",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "lan_do": 1,
+        "thong_so_dau_vao": "Tần số f = 220 Hz, Biên độ A = 40%",
+        "ket_qua_do": "Âm trầm, độ to vừa phải; v = s/t ổn định"
+      },
+      {
+        "lan_do": 2,
+        "thong_so_dau_vao": "Tần số f = 440 Hz (La chuẩn), A = 80%",
+        "ket_qua_do": "Âm bổng hơn, độ to lớn; Cơ năng W = Wđ + Wt bảo toàn"
+      },
+      {
+        "lan_do": 3,
+        "thong_so_dau_vao": "Chùm sáng trắng qua lăng kính n = 1,52",
+        "ket_qua_do": "Tán sắc thành dải 7 màu: Đỏ -> Tím (tia tím lệch nhiều nhất)"
+      }
+    ]
   },
   {
     "id": "gdso-k9-h-01",
@@ -5401,13 +5837,11 @@
     "summary": "Thí nghiệm thực hành Tính chất hóa học của kim loại: với nước, acid, dung dịch muối thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-H-01",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-H-01",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-H-01.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "metal_acid",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -5461,13 +5895,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-H-01",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-H-01",
+      "sim_type": "metal_acid",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-H-01.webp?v=14",
       "exp_code": "K9-H-01",
       "kind": "3D",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -5487,13 +5919,11 @@
     "summary": "Thí nghiệm thực hành Dãy hoạt động hóa học thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-H-02",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-H-02",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-H-02.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "metal_displacement",
     "svg_icon": "<rect class=",
     "ready_meta": {
       "v": "1.0.0",
@@ -5547,13 +5977,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-H-02",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-H-02",
+      "sim_type": "metal_displacement",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-H-02.webp?v=14",
       "exp_code": "K9-H-02",
       "kind": "3D",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -5573,13 +6001,11 @@
     "summary": "Thí nghiệm thực hành Hợp chất hữu cơ: mô hình phân tử thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô hình hạt phân tử & cấu trúc vi mô, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "MH",
     "kind_desc": "Mô hình hạt phân tử & cấu trúc vi mô",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-H-03",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-H-03",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-H-03.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "molecule_bonding",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -5633,13 +6059,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-H-03",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-H-03",
+      "sim_type": "molecule_bonding",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-H-03.webp?v=14",
       "exp_code": "K9-H-03",
       "kind": "MH",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -5659,13 +6083,11 @@
     "summary": "Thí nghiệm thực hành Alkane, alkene: phản ứng cháy, làm mất màu nước bromine thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 3D kết hợp Mô hình hạt phân tử, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D, MH",
     "kind_desc": "Mô phỏng 3D kết hợp Mô hình hạt phân tử",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-H-04",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-H-04",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-H-04.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "hydrocarbon_bromine",
     "svg_icon": "<path class=",
     "ready_meta": {
       "v": "1.0.0",
@@ -5721,13 +6143,11 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-H-04",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-H-04",
+      "sim_type": "hydrocarbon_bromine",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-H-04.webp?v=14",
       "exp_code": "K9-H-04",
       "kind": "3D, MH",
-      "is_giaoducsoth": true
+      "is_giaoducsoth": false
     }
   },
   {
@@ -5747,13 +6167,11 @@
     "summary": "Thí nghiệm thực hành Ethylic alcohol thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-H-05",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-H-05",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-H-05.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "thermal_phase_change",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -5809,14 +6227,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-H-05",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-H-05",
+      "sim_type": "thermal_phase_change",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-H-05.webp?v=14",
       "exp_code": "K9-H-05",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "thoi_gian": "0 phút",
+        "nhiet_do": "20 °C",
+        "trang_thai": "Chất lỏng/rắn ban đầu",
+        "hien_tuong": "Chưa đun nóng"
+      },
+      {
+        "thoi_gian": "4 phút",
+        "nhiet_do": "65 °C",
+        "trang_thai": "Đang nóng lên / phản ứng mạnh",
+        "hien_tuong": "Tốc độ chuyển động phân tử tăng"
+      },
+      {
+        "thoi_gian": "8 phút",
+        "nhiet_do": "100 °C",
+        "trang_thai": "Sôi / Hoàn tất phản ứng",
+        "hien_tuong": "Nhiệt độ giữ ổn định trong suốt quá trình sôi"
+      }
+    ]
   },
   {
     "id": "gdso-k9-h-06",
@@ -5835,13 +6271,11 @@
     "summary": "Thí nghiệm thực hành Acetic acid; phản ứng ester hóa thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-H-06",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-H-06",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-H-06.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "thermal_phase_change",
     "svg_icon": "<path class=",
     "ready_meta": {
       "v": "1.0.0",
@@ -5897,14 +6331,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-H-06",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-H-06",
+      "sim_type": "thermal_phase_change",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-H-06.webp?v=14",
       "exp_code": "K9-H-06",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "thoi_gian": "0 phút",
+        "nhiet_do": "20 °C",
+        "trang_thai": "Chất lỏng/rắn ban đầu",
+        "hien_tuong": "Chưa đun nóng"
+      },
+      {
+        "thoi_gian": "4 phút",
+        "nhiet_do": "65 °C",
+        "trang_thai": "Đang nóng lên / phản ứng mạnh",
+        "hien_tuong": "Tốc độ chuyển động phân tử tăng"
+      },
+      {
+        "thoi_gian": "8 phút",
+        "nhiet_do": "100 °C",
+        "trang_thai": "Sôi / Hoàn tất phản ứng",
+        "hien_tuong": "Nhiệt độ giữ ổn định trong suốt quá trình sôi"
+      }
+    ]
   },
   {
     "id": "gdso-k9-h-07",
@@ -5923,13 +6375,11 @@
     "summary": "Thí nghiệm thực hành Glucose, tinh bột: nhận biết bằng thí nghiệm thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-H-07",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-H-07",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-H-07.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "thermal_phase_change",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -5985,14 +6435,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-H-07",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-H-07",
+      "sim_type": "thermal_phase_change",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-H-07.webp?v=14",
       "exp_code": "K9-H-07",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "thoi_gian": "0 phút",
+        "nhiet_do": "20 °C",
+        "trang_thai": "Chất lỏng/rắn ban đầu",
+        "hien_tuong": "Chưa đun nóng"
+      },
+      {
+        "thoi_gian": "4 phút",
+        "nhiet_do": "65 °C",
+        "trang_thai": "Đang nóng lên / phản ứng mạnh",
+        "hien_tuong": "Tốc độ chuyển động phân tử tăng"
+      },
+      {
+        "thoi_gian": "8 phút",
+        "nhiet_do": "100 °C",
+        "trang_thai": "Sôi / Hoàn tất phản ứng",
+        "hien_tuong": "Nhiệt độ giữ ổn định trong suốt quá trình sôi"
+      }
+    ]
   },
   {
     "id": "gdso-k9-h-08",
@@ -6011,13 +6479,11 @@
     "summary": "Thí nghiệm thực hành Đá vôi, vôi sống; công nghiệp silicate thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-H-08",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-H-08",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-H-08.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "thermal_phase_change",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -6073,14 +6539,32 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-H-08",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-H-08",
+      "sim_type": "thermal_phase_change",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-H-08.webp?v=14",
       "exp_code": "K9-H-08",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "thoi_gian": "0 phút",
+        "nhiet_do": "20 °C",
+        "trang_thai": "Chất lỏng/rắn ban đầu",
+        "hien_tuong": "Chưa đun nóng"
+      },
+      {
+        "thoi_gian": "4 phút",
+        "nhiet_do": "65 °C",
+        "trang_thai": "Đang nóng lên / phản ứng mạnh",
+        "hien_tuong": "Tốc độ chuyển động phân tử tăng"
+      },
+      {
+        "thoi_gian": "8 phút",
+        "nhiet_do": "100 °C",
+        "trang_thai": "Sôi / Hoàn tất phản ứng",
+        "hien_tuong": "Nhiệt độ giữ ổn định trong suốt quá trình sôi"
+      }
+    ]
   },
   {
     "id": "gdso-k9-s-01",
@@ -6099,13 +6583,11 @@
     "summary": "Thí nghiệm thực hành Lai một cặp, hai cặp tính trạng (Mendel) thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 2D kết hợp Đồ thị toán học thực nghiệm, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "2D, ĐT",
     "kind_desc": "Mô phỏng 2D kết hợp Đồ thị toán học thực nghiệm",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-S-01",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-S-01",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-S-01.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "genetics_dna_3d",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -6159,14 +6641,29 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-S-01",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-S-01",
+      "sim_type": "genetics_dna_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-S-01.webp?v=14",
       "exp_code": "K9-S-01",
       "kind": "2D, ĐT",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "cap_nguyen_tac": "A – T (Adenine – Thymine)",
+        "so_lien_ket_h": "2 liên kết Hydrogen",
+        "ti_le_mendel": "F2: 3 Trội : 1 Lặn (75% : 25%)"
+      },
+      {
+        "cap_nguyen_tac": "G – C (Guanine – Cytosine)",
+        "so_lien_ket_h": "3 liên kết Hydrogen",
+        "ti_le_mendel": "Nhân đôi theo nguyên tắc bán bảo toàn"
+      },
+      {
+        "cap_nguyen_tac": "Phiên mã (DNA -> mRNA)",
+        "so_lien_ket_h": "A-U, T-A, G-C, C-G",
+        "ti_le_mendel": "Bộ ba mã sao (Codon) quy định Amino acid"
+      }
+    ]
   },
   {
     "id": "gdso-k9-s-02",
@@ -6185,13 +6682,11 @@
     "summary": "Thí nghiệm thực hành DNA 3D, gene thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-S-02",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-S-02",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-S-02.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "genetics_dna_3d",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -6245,14 +6740,29 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-S-02",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-S-02",
+      "sim_type": "genetics_dna_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-S-02.webp?v=14",
       "exp_code": "K9-S-02",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "cap_nguyen_tac": "A – T (Adenine – Thymine)",
+        "so_lien_ket_h": "2 liên kết Hydrogen",
+        "ti_le_mendel": "F2: 3 Trội : 1 Lặn (75% : 25%)"
+      },
+      {
+        "cap_nguyen_tac": "G – C (Guanine – Cytosine)",
+        "so_lien_ket_h": "3 liên kết Hydrogen",
+        "ti_le_mendel": "Nhân đôi theo nguyên tắc bán bảo toàn"
+      },
+      {
+        "cap_nguyen_tac": "Phiên mã (DNA -> mRNA)",
+        "so_lien_ket_h": "A-U, T-A, G-C, C-G",
+        "ti_le_mendel": "Bộ ba mã sao (Codon) quy định Amino acid"
+      }
+    ]
   },
   {
     "id": "gdso-k9-s-03",
@@ -6271,13 +6781,11 @@
     "summary": "Thí nghiệm thực hành Tái bản DNA, phiên mã, dịch mã thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô hình hạt phân tử & cấu trúc vi mô, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "MH",
     "kind_desc": "Mô hình hạt phân tử & cấu trúc vi mô",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-S-03",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-S-03",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-S-03.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "genetics_dna_3d",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -6331,14 +6839,29 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-S-03",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-S-03",
+      "sim_type": "genetics_dna_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-S-03.webp?v=14",
       "exp_code": "K9-S-03",
       "kind": "MH",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "cap_nguyen_tac": "A – T (Adenine – Thymine)",
+        "so_lien_ket_h": "2 liên kết Hydrogen",
+        "ti_le_mendel": "F2: 3 Trội : 1 Lặn (75% : 25%)"
+      },
+      {
+        "cap_nguyen_tac": "G – C (Guanine – Cytosine)",
+        "so_lien_ket_h": "3 liên kết Hydrogen",
+        "ti_le_mendel": "Nhân đôi theo nguyên tắc bán bảo toàn"
+      },
+      {
+        "cap_nguyen_tac": "Phiên mã (DNA -> mRNA)",
+        "so_lien_ket_h": "A-U, T-A, G-C, C-G",
+        "ti_le_mendel": "Bộ ba mã sao (Codon) quy định Amino acid"
+      }
+    ]
   },
   {
     "id": "gdso-k9-s-04",
@@ -6357,13 +6880,11 @@
     "summary": "Thí nghiệm thực hành Đột biến gene thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô hình hạt phân tử & cấu trúc vi mô, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "MH",
     "kind_desc": "Mô hình hạt phân tử & cấu trúc vi mô",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-S-04",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-S-04",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-S-04.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "genetics_dna_3d",
     "svg_icon": "<path d=",
     "ready_meta": {
       "v": "1.0.0",
@@ -6417,14 +6938,29 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-S-04",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-S-04",
+      "sim_type": "genetics_dna_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-S-04.webp?v=14",
       "exp_code": "K9-S-04",
       "kind": "MH",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "cap_nguyen_tac": "A – T (Adenine – Thymine)",
+        "so_lien_ket_h": "2 liên kết Hydrogen",
+        "ti_le_mendel": "F2: 3 Trội : 1 Lặn (75% : 25%)"
+      },
+      {
+        "cap_nguyen_tac": "G – C (Guanine – Cytosine)",
+        "so_lien_ket_h": "3 liên kết Hydrogen",
+        "ti_le_mendel": "Nhân đôi theo nguyên tắc bán bảo toàn"
+      },
+      {
+        "cap_nguyen_tac": "Phiên mã (DNA -> mRNA)",
+        "so_lien_ket_h": "A-U, T-A, G-C, C-G",
+        "ti_le_mendel": "Bộ ba mã sao (Codon) quy định Amino acid"
+      }
+    ]
   },
   {
     "id": "gdso-k9-s-05",
@@ -6443,13 +6979,11 @@
     "summary": "Thí nghiệm thực hành Nhiễm sắc thể; nguyên phân, giảm phân thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng không gian 3D tương tác, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "3D",
     "kind_desc": "Mô phỏng không gian 3D tương tác",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-S-05",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-S-05",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-S-05.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "genetics_dna_3d",
     "svg_icon": "<rect class=",
     "ready_meta": {
       "v": "1.0.0",
@@ -6503,14 +7037,29 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-S-05",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-S-05",
+      "sim_type": "genetics_dna_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-S-05.webp?v=14",
       "exp_code": "K9-S-05",
       "kind": "3D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "cap_nguyen_tac": "A – T (Adenine – Thymine)",
+        "so_lien_ket_h": "2 liên kết Hydrogen",
+        "ti_le_mendel": "F2: 3 Trội : 1 Lặn (75% : 25%)"
+      },
+      {
+        "cap_nguyen_tac": "G – C (Guanine – Cytosine)",
+        "so_lien_ket_h": "3 liên kết Hydrogen",
+        "ti_le_mendel": "Nhân đôi theo nguyên tắc bán bảo toàn"
+      },
+      {
+        "cap_nguyen_tac": "Phiên mã (DNA -> mRNA)",
+        "so_lien_ket_h": "A-U, T-A, G-C, C-G",
+        "ti_le_mendel": "Bộ ba mã sao (Codon) quy định Amino acid"
+      }
+    ]
   },
   {
     "id": "gdso-k9-s-06",
@@ -6529,13 +7078,11 @@
     "summary": "Thí nghiệm thực hành Nhiễm sắc thể giới tính; di truyền liên kết thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 2D trực quan, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "2D",
     "kind_desc": "Mô phỏng 2D trực quan",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-S-06",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-S-06",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-S-06.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "genetics_dna_3d",
     "svg_icon": "<rect class=",
     "ready_meta": {
       "v": "1.0.0",
@@ -6589,14 +7136,29 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-S-06",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-S-06",
+      "sim_type": "genetics_dna_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-S-06.webp?v=14",
       "exp_code": "K9-S-06",
       "kind": "2D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "cap_nguyen_tac": "A – T (Adenine – Thymine)",
+        "so_lien_ket_h": "2 liên kết Hydrogen",
+        "ti_le_mendel": "F2: 3 Trội : 1 Lặn (75% : 25%)"
+      },
+      {
+        "cap_nguyen_tac": "G – C (Guanine – Cytosine)",
+        "so_lien_ket_h": "3 liên kết Hydrogen",
+        "ti_le_mendel": "Nhân đôi theo nguyên tắc bán bảo toàn"
+      },
+      {
+        "cap_nguyen_tac": "Phiên mã (DNA -> mRNA)",
+        "so_lien_ket_h": "A-U, T-A, G-C, C-G",
+        "ti_le_mendel": "Bộ ba mã sao (Codon) quy định Amino acid"
+      }
+    ]
   },
   {
     "id": "gdso-k9-s-07",
@@ -6615,13 +7177,11 @@
     "summary": "Thí nghiệm thực hành Di truyền học với con người: phả hệ thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 2D trực quan, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "2D",
     "kind_desc": "Mô phỏng 2D trực quan",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-S-07",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-S-07",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-S-07.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "genetics_dna_3d",
     "svg_icon": "<rect x=",
     "ready_meta": {
       "v": "1.0.0",
@@ -6675,14 +7235,29 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-S-07",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-S-07",
+      "sim_type": "genetics_dna_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-S-07.webp?v=14",
       "exp_code": "K9-S-07",
       "kind": "2D",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "cap_nguyen_tac": "A – T (Adenine – Thymine)",
+        "so_lien_ket_h": "2 liên kết Hydrogen",
+        "ti_le_mendel": "F2: 3 Trội : 1 Lặn (75% : 25%)"
+      },
+      {
+        "cap_nguyen_tac": "G – C (Guanine – Cytosine)",
+        "so_lien_ket_h": "3 liên kết Hydrogen",
+        "ti_le_mendel": "Nhân đôi theo nguyên tắc bán bảo toàn"
+      },
+      {
+        "cap_nguyen_tac": "Phiên mã (DNA -> mRNA)",
+        "so_lien_ket_h": "A-U, T-A, G-C, C-G",
+        "ti_le_mendel": "Bộ ba mã sao (Codon) quy định Amino acid"
+      }
+    ]
   },
   {
     "id": "gdso-k9-s-08",
@@ -6701,13 +7276,11 @@
     "summary": "Thí nghiệm thực hành Chọn lọc tự nhiên, cơ chế tiến hóa thuộc chương trình KHTN lớp 9 (Bộ sách Kết nối tri thức với cuộc sống). Thực hiện tương tác qua giao diện Mô phỏng 2D kết hợp Đồ thị toán học thực nghiệm, cho phép học sinh tự tay thao tác theo 4 bước chuẩn khoa học: Dự đoán, Tiến hành thực nghiệm, Quan sát thu thập số liệu và Giải thích đánh giá kết luận.",
     "kind": "2D, ĐT",
     "kind_desc": "Mô phỏng 2D kết hợp Đồ thị toán học thực nghiệm",
-    "source": "giaoducsoth",
-    "source_label": "Giáo dục số TH · Thầy Hiếu (KHTN 6–9 KNTT)",
-    "is_giaoducsoth": true,
-    "sim_url": "https://giaoducsoth.online/labkhtn/#K9-S-08",
-    "web_url": "https://giaoducsoth.online/labkhtn/#K9-S-08",
+    "source": "biorag_3d",
+    "source_label": "Phòng thí nghiệm 3D KHTN 6–9 · THCS Huỳnh Bá Chánh (SGK KNTT)",
+    "is_giaoducsoth": false,
     "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-S-08.webp?v=14",
-    "simulation_type": "giaoducsoth_embed",
+    "simulation_type": "genetics_dna_3d",
     "svg_icon": "<path class=",
     "ready_meta": {
       "v": "1.0.0",
@@ -6761,13 +7334,28 @@
       }
     ],
     "simulation": {
-      "sim_type": "giaoducsoth_embed",
-      "sim_url": "https://giaoducsoth.online/labkhtn/#K9-S-08",
-      "web_url": "https://giaoducsoth.online/labkhtn/#K9-S-08",
+      "sim_type": "genetics_dna_3d",
       "thumb_url": "https://giaoducsoth.online/labkhtn/thumbs/K9-S-08.webp?v=14",
       "exp_code": "K9-S-08",
       "kind": "2D, ĐT",
-      "is_giaoducsoth": true
-    }
+      "is_giaoducsoth": false
+    },
+    "sample_data": [
+      {
+        "cap_nguyen_tac": "A – T (Adenine – Thymine)",
+        "so_lien_ket_h": "2 liên kết Hydrogen",
+        "ti_le_mendel": "F2: 3 Trội : 1 Lặn (75% : 25%)"
+      },
+      {
+        "cap_nguyen_tac": "G – C (Guanine – Cytosine)",
+        "so_lien_ket_h": "3 liên kết Hydrogen",
+        "ti_le_mendel": "Nhân đôi theo nguyên tắc bán bảo toàn"
+      },
+      {
+        "cap_nguyen_tac": "Phiên mã (DNA -> mRNA)",
+        "so_lien_ket_h": "A-U, T-A, G-C, C-G",
+        "ti_le_mendel": "Bộ ba mã sao (Codon) quy định Amino acid"
+      }
+    ]
   }
 ]
