@@ -2356,7 +2356,7 @@
     }
     async function loadLearningLessons(grade,preferredId){
       learningGrade=Number(grade)||7;const requestSeq=++learningRequestSeq;learningLoading=true;learningError="";renderLearning();
-      try{const response=await fetch(LEARNING_API+"?grade="+learningGrade);const data=await response.json();
+      try{const response=await fetch(LEARNING_API+"?grade="+learningGrade+"&_t="+Date.now(), {cache: "no-store"});const data=await response.json();
         if(!response.ok||data.error)throw new Error(data.error||("API trả về mã "+response.status));if(requestSeq!==learningRequestSeq)return;
         learningLessons=Array.isArray(data.lessons)?data.lessons:[];learningLessons.sort((a,b)=>{const na=parseInt(String(a.number||"").replace(/\D+/g,""),10)||(Number(a.order)||9999);const nb=parseInt(String(b.number||"").replace(/\D+/g,""),10)||(Number(b.order)||9999);if(na!==nb)return na-nb;return(Number(a.order)||0)-(Number(b.order)||0);});learningSourceStatuses=data.meta&&data.meta.source_statuses&&typeof data.meta.source_statuses==="object"?data.meta.source_statuses:{};learningSourceInventory=data.meta&&data.meta.source_inventory&&typeof data.meta.source_inventory==="object"?data.meta.source_inventory:{sgk:{},sgv:{}};selectedLessonId=preferredId&&learningLessons.some(item=>item.id===preferredId)?preferredId:(learningLessons[0]&&learningLessons[0].id)||"";setConnection("online")
       }catch(error){if(requestSeq!==learningRequestSeq)return;learningLessons=[];selectedLessonId="";learningError=error.message||"Không thể tải danh sách bài học.";setConnection("offline")}
