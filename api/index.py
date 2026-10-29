@@ -684,6 +684,15 @@ def health():
         "version": "2.1.0"
     })
 
+@app.route("/chat-moi", methods=["GET"])
+@app.route("/chat-moi.html", methods=["GET"])
+@app.route("/api/chat-moi", methods=["GET"])
+def api_serve_chat_moi():
+    for p in [current_dir / "chat-moi.html", BASE_DIR / "chat-moi.html", BASE_DIR / "public" / "chat-moi.html"]:
+        if p.exists():
+            return send_file(p, mimetype="text/html")
+    return jsonify({"error": "chat-moi.html not found"}), 404
+
 @app.route("/api/debug", methods=["GET"])
 @app.route("/debug", methods=["GET"])
 def api_debug():
@@ -1727,10 +1736,18 @@ HƯỚNG DẪN TRẢ LỜI SƯ PHẠM (CHÍNH XÁC TUYỆT ĐỐI, TRỰC DIỆN
 
         ai_answer, model_used = call_gemini_rest(prompt, api_key)
         if ai_answer:
+            c_list = [{
+                "book": source_item.get("source", f"SGK KHTN {resolved_grade}"),
+                "display": source_item.get("title", f"SGK KHTN {resolved_grade}"),
+                "page": source_item.get("page", 1),
+                "section": matched_lesson.get("title", "") if matched_lesson else ""
+            }]
             return jsonify({
                 "answer": ai_answer,
+                "answer_text": ai_answer,
                 "images": images,
                 "sources": [source_item],
+                "citations": c_list,
                 "grounded": True,
                 "grade": resolved_grade,
                 "meta": {"grounded": True, "grade": resolved_grade, "model": model_used}
@@ -1749,6 +1766,35 @@ Nội dung này thuộc chương trình SGK KHTN Lớp {resolved_grade} (Bộ s�
         "grade": resolved_grade,
         "meta": {"grounded": True, "grade": resolved_grade, "mode": "local_rag"}
     })
+
+@app.route("/api/chat/stream", methods=["POST", "OPTIONS"])
+@app.route("/chat/stream", methods=["POST", "OPTIONS"])
+def api_chat_stream():
+    if request.method == "OPTIONS":
+        return jsonify({"status": "ok"})
+    if BACKEND_URL:
+        import requests
+        target = f"{BACKEND_URL}/api/chat/stream"
+        headers = {k: v for k, v in request.headers if k.lower() not in ["host", "content-length"]}
+        try:
+            req_data = request.get_json(silent=True) or {}
+            resp = requests.post(target, json=req_data, headers=headers, stream=True, timeout=45)
+            return Response(resp.iter_content(chunk_size=512), status=resp.status_code, content_type=resp.headers.get("content-type", "text/event-stream"))
+        except Exception as exc:
+            print(f"Proxy stream error: {exc}")
+    data = request.get_json(silent=True) or {}
+    question = str(data.get("question") or data.get("message") or "").strip()
+    def generate_events():
+        yield "event: status\ndata: " + json.dumps({"type": "status", "stage": "retrieving"}, ensure_ascii=False) + "\n\n"
+        with app.test_request_context(method="POST", json={"question": question, "grade": data.get("grade"), "api_key": data.get("api_key")}):
+            chat_resp = api_chat()
+            chat_data = chat_resp.get_json() if hasattr(chat_resp, "get_json") else {}
+        yield "event: status\ndata: " + json.dumps({"type": "status", "stage": "answering"}, ensure_ascii=False) + "\n\n"
+        answer = chat_data.get("answer") or "Chưa tìm thấy câu trả lời."
+        for w in answer.split(" "):
+            yield "event: answer_delta\ndata: " + json.dumps({"type": "answer_delta", "delta": w + " "}, ensure_ascii=False) + "\n\n"
+        yield "event: done\ndata: " + json.dumps({"type": "done", **chat_data}, ensure_ascii=False) + "\n\n"
+    return Response(generate_events(), mimetype="text/event-stream", headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
 @app.route("/api/chat/photo", methods=["POST", "OPTIONS"])
 @app.route("/chat/photo", methods=["POST", "OPTIONS"])

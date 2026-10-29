@@ -2,10 +2,18 @@
   "version": 2,
   "functions": {
     "api/*.py": {
-      "includeFiles": "api/data/**"
+      "includeFiles": "api/data/**,api/chat-moi.html"
     }
   },
   "rewrites": [
+    {
+      "source": "/chat-moi",
+      "destination": "/api/index.py?__route__=chat-moi"
+    },
+    {
+      "source": "/chat-moi.html",
+      "destination": "/api/index.py?__route__=chat-moi.html"
+    },
     {
       "source": "/api/(.*)",
       "destination": "/api/index.py?__route__=$1"
@@ -16,4 +24,3 @@
     }
   ]
 }
-
