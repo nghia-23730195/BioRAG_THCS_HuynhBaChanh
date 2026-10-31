@@ -1340,6 +1340,89 @@
             </div>
           </section>
 
+          <!-- PANE 3: TẢI LÊN ĐỀ THI (WORD / TEXT) -->
+          <section class="quiz-upload-pane" id="quizUploadPane" hidden aria-label="Tải lên đề thi">
+            <div class="quiz-upload-card">
+              <div class="quiz-upload-header">
+                <div>
+                  <strong style="font-size:14px;color:#184232;display:block">Tải lên hoặc dán đề thi trắc nghiệm</strong>
+                  <span style="font-size:12px;color:#597467">Hỗ trợ tệp Microsoft Word (.docx) hoặc Văn bản (.txt). Hệ thống tự động nhận diện câu hỏi, 4 phương án A-B-C-D, đáp án đúng và lời giải chi tiết.</span>
+                </div>
+              </div>
+              <div class="quiz-upload-meta-row">
+                <div class="quiz-field">
+                  <label for="uploadGrade">Khối lớp</label>
+                  <select id="uploadGrade">
+                    <option value="6">Lớp 6</option>
+                    <option value="7">Lớp 7</option>
+                    <option value="8">Lớp 8</option>
+                    <option value="9" selected>Lớp 9</option>
+                  </select>
+                </div>
+                <div class="quiz-field">
+                  <label for="uploadDuration">Thời gian thi</label>
+                  <select id="uploadDuration">
+                    <option value="15" selected>15 phút (Kiểm tra nhanh)</option>
+                    <option value="45">45 phút (Kiểm tra định kỳ)</option>
+                    <option value="60">60 phút (Giữa kỳ)</option>
+                    <option value="90">90 phút (Cuối kỳ)</option>
+                  </select>
+                </div>
+                <div class="quiz-field flex-1">
+                  <label for="uploadTitle">Tên đề thi (tùy chọn)</label>
+                  <input id="uploadTitle" placeholder="Ví dụ: Đề kiểm tra 15 phút - Sinh học 8 KHTN" autocomplete="off">
+                </div>
+              </div>
+
+              <div class="quiz-dropzone" id="quizDropzone">
+                <input type="file" id="quizFileInput" accept=".docx,.txt" style="display:none">
+                <div class="dropzone-icon">📄</div>
+                <div class="dropzone-text">
+                  <strong>Kéo thả tệp đề thi Word (.docx) hoặc Văn bản (.txt) vào đây</strong>
+                  <span>hoặc <button type="button" class="btn-browse-file" id="btnBrowseFile">chọn tệp từ máy tính</button></span>
+                </div>
+                <div class="dropzone-file-selected" id="dropzoneSelectedFile" style="display:none">
+                  <span class="file-name-tag" id="selectedFileName">exam.docx</span>
+                  <button type="button" class="btn-remove-file" id="btnRemoveFile" title="Hủy chọn tệp">✕ Gỡ bỏ</button>
+                </div>
+              </div>
+
+              <div class="quiz-upload-divider">
+                <span>HOẶC DÁN NỘI DUNG VĂN BẢN TRỰC TIẾP</span>
+              </div>
+
+              <div class="quiz-paste-area">
+                <textarea id="quizPasteText" rows="6" placeholder="Dán nội dung câu hỏi trắc nghiệm tại đây...&#10;&#10;Ví dụ định dạng hỗ trợ:&#10;Câu 1: Thành phần của máu gồm những gì?&#10;A. Huyết tương và các tế bào máu.&#10;B. Chỉ có hồng cầu.&#10;C. Chỉ có bạch cầu.&#10;D. Nước và chất khoáng.&#10;Đáp án: A&#10;Giải thích: Máu gồm 55% huyết tương và 45% tế bào máu (hồng cầu, bạch cầu, tiểu cầu)."></textarea>
+              </div>
+
+              <div class="quiz-upload-actions">
+                <button type="button" class="btn-parse-exam" id="btnParseExam">
+                  <span>⚡</span> Trích xuất &amp; Tải đề thi
+                </button>
+                <button type="button" class="btn-clear-exam" id="btnClearExam">
+                  🗑️ Xóa trắng
+                </button>
+              </div>
+            </div>
+
+            <!-- PREVIEW VÙNG CÂU HỎI ĐÃ TRÍCH XUẤT -->
+            <div class="quiz-upload-preview" id="quizUploadPreview" style="display:none">
+              <div class="preview-header-bar">
+                <div class="preview-stats">
+                  <span class="badge-success" id="previewTotalQuestions">Đã trích xuất: 0 câu hỏi</span>
+                  <span class="preview-note">Bạn có thể kiểm tra hoặc chỉnh sửa trực tiếp nội dung câu hỏi và đáp án bên dưới trước khi bắt đầu thi.</span>
+                </div>
+                <div class="preview-actions">
+                  <button type="button" class="btn-preview-add-q" id="btnAddQuestion">＋ Thêm câu hỏi</button>
+                  <button type="button" class="btn-preview-take" id="btnTakeExamNow">🚀 Làm bài thi ngay</button>
+                  <button type="button" class="btn-preview-save" id="btnSaveToBank">💾 Lưu đề thi</button>
+                  <button type="button" class="btn-preview-export" id="btnExportUploadedDocx">📝 Xuất ra Word</button>
+                </div>
+              </div>
+              <div class="preview-questions-list" id="previewQuestionsList"></div>
+            </div>
+          </section>
+
           <!-- EXAM ROOM BAR: COUNTDOWN TIMER & QUESTION PALETTE -->
           <section class="quiz-timer-bar" id="quizTimerBar" hidden aria-label="Bảng điều khiển phòng thi">
             <div class="quiz-timer-bar-top">
@@ -2969,6 +3052,372 @@
       }
     }
 
+    let uploadedFile=null;
+
+    function renderUploadedPreviewList(questions){
+      if(!previewQuestionsList)return;
+      previewQuestionsList.innerHTML="";
+      const labels=["A","B","C","D"];
+      questions.forEach((q,qIdx)=>{
+        const card=document.createElement("div");
+        card.className="preview-q-card";
+
+        const head=document.createElement("div");
+        head.className="preview-q-card-head";
+        head.innerHTML='<span class="preview-q-num">Câu '+(qIdx+1)+' ('+(q.difficulty||"Nhận biết")+')</span>';
+        const delBtn=document.createElement("button");
+        delBtn.type="button";
+        delBtn.className="btn-del-q";
+        delBtn.textContent="✕ Xóa";
+        delBtn.onclick=()=>{
+          questions.splice(qIdx,1);
+          if(previewTotalQuestions)previewTotalQuestions.textContent="Đã trích xuất: "+questions.length+" câu hỏi";
+          renderUploadedPreviewList(questions);
+        };
+        head.appendChild(delBtn);
+        card.appendChild(head);
+
+        const qInput=document.createElement("textarea");
+        qInput.className="preview-q-text-input";
+        qInput.rows=2;
+        qInput.value=q.question||"";
+        qInput.oninput=(e)=>{q.question=e.target.value};
+        card.appendChild(qInput);
+
+        const optsGrid=document.createElement("div");
+        optsGrid.className="preview-opts-grid";
+        const currentAnsIdx=(typeof q.answer_index==="number"&&q.answer_index>=0)?q.answer_index:0;
+
+        (q.options||[]).forEach((optText,oIdx)=>{
+          const optItem=document.createElement("div");
+          optItem.className="preview-opt-item"+(oIdx===currentAnsIdx?" is-correct":"");
+          const radio=document.createElement("input");
+          radio.type="radio";
+          radio.name="preview_q_ans_"+qIdx;
+          radio.className="preview-opt-radio";
+          radio.checked=(oIdx===currentAnsIdx);
+          radio.onchange=()=>{
+            q.answer_index=oIdx;
+            q.answer_key=labels[oIdx];
+            optsGrid.querySelectorAll(".preview-opt-item").forEach((it,idx)=>{
+              it.classList.toggle("is-correct",idx===oIdx);
+            });
+          };
+
+          const lbl=document.createElement("span");
+          lbl.className="preview-opt-label";
+          lbl.textContent=labels[oIdx]+".";
+
+          const optInput=document.createElement("input");
+          optInput.type="text";
+          optInput.className="preview-opt-input";
+          optInput.value=String(optText).replace(/^[A-D][\.\:\)]\s*/,"");
+          optInput.oninput=(e)=>{
+            q.options[oIdx]=e.target.value;
+          };
+
+          optItem.append(radio,lbl,optInput);
+          optsGrid.appendChild(optItem);
+        });
+        card.appendChild(optsGrid);
+
+        const explWrap=document.createElement("div");
+        explWrap.className="preview-expl-wrap";
+        explWrap.innerHTML="<label>Lời giải chi tiết:</label>";
+        const explInput=document.createElement("input");
+        explInput.type="text";
+        explInput.className="preview-expl-input";
+        explInput.value=q.explanation||"";
+        explInput.oninput=(e)=>{q.explanation=e.target.value};
+        explWrap.appendChild(explInput);
+        card.appendChild(explWrap);
+
+        previewQuestionsList.appendChild(card);
+      });
+    }
+
+    function initQuizUploadListeners(){
+      if(!btnBrowseFile||!quizFileInput)return;
+
+      btnBrowseFile.onclick=(e)=>{
+        e.preventDefault();
+        quizFileInput.click();
+      };
+
+      quizFileInput.onchange=(e)=>{
+        const file=e.target.files&&e.target.files[0];
+        if(file){
+          uploadedFile=file;
+          if(selectedFileName)selectedFileName.textContent=file.name;
+          if(dropzoneSelectedFile)dropzoneSelectedFile.style.display="inline-flex";
+          if(uploadTitle&&!uploadTitle.value.trim()){
+            uploadTitle.value=file.name.replace(/\.[^.]+$/,"");
+          }
+        }
+      };
+
+      if(btnRemoveFile){
+        btnRemoveFile.onclick=(e)=>{
+          e.stopPropagation();
+          uploadedFile=null;
+          quizFileInput.value="";
+          if(dropzoneSelectedFile)dropzoneSelectedFile.style.display="none";
+        };
+      }
+
+      if(quizDropzone){
+        quizDropzone.ondragover=(e)=>{
+          e.preventDefault();
+          quizDropzone.classList.add("dragover");
+        };
+        quizDropzone.ondragleave=()=>{
+          quizDropzone.classList.remove("dragover");
+        };
+        quizDropzone.ondrop=(e)=>{
+          e.preventDefault();
+          quizDropzone.classList.remove("dragover");
+          if(e.dataTransfer.files&&e.dataTransfer.files.length){
+            const file=e.dataTransfer.files[0];
+            uploadedFile=file;
+            if(selectedFileName)selectedFileName.textContent=file.name;
+            if(dropzoneSelectedFile)dropzoneSelectedFile.style.display="inline-flex";
+            if(uploadTitle&&!uploadTitle.value.trim()){
+              uploadTitle.value=file.name.replace(/\.[^.]+$/,"");
+            }
+          }
+        };
+      }
+
+      if(btnClearExam){
+        btnClearExam.onclick=()=>{
+          uploadedFile=null;
+          uploadedExamState=null;
+          if(quizFileInput)quizFileInput.value="";
+          if(dropzoneSelectedFile)dropzoneSelectedFile.style.display="none";
+          if(quizPasteText)quizPasteText.value="";
+          if(uploadTitle)uploadTitle.value="";
+          if(quizUploadPreview){
+            quizUploadPreview.style.display="none";
+            quizUploadPreview.hidden=true;
+          }
+          if(previewQuestionsList)previewQuestionsList.innerHTML="";
+        };
+      }
+
+      if(btnParseExam){
+        btnParseExam.onclick=async()=>{
+          const rawText=quizPasteText?quizPasteText.value.trim():"";
+          if(!uploadedFile&&!rawText){
+            alert("Vui lòng kéo thả/chọn tệp Word (.docx) hoặc dán văn bản câu hỏi đề thi vào ô bên dưới.");
+            return;
+          }
+          const origText=btnParseExam.textContent;
+          btnParseExam.disabled=true;
+          btnParseExam.textContent="⏳ Đang trích xuất...";
+          try{
+            const gradeVal=Number(uploadGrade.value)||7;
+            const durVal=Number(uploadDuration.value)||15;
+            const titleVal=uploadTitle.value.trim()||(uploadedFile?uploadedFile.name.replace(/\.[^.]+$/,""):("Đề kiểm tra KHTN "+gradeVal));
+            let res;
+            if(uploadedFile){
+              const fd=new FormData();
+              fd.append("file",uploadedFile);
+              fd.append("grade",gradeVal);
+              fd.append("duration",durVal);
+              fd.append("title",titleVal);
+              res=await fetch("/api/quiz/upload",{method:"POST",body:fd});
+            }else{
+              res=await fetch("/api/quiz/upload",{
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify({raw_text:rawText,grade:gradeVal,duration:durVal,title:titleVal})
+              });
+            }
+            if(!res.ok)throw new Error("HTTP "+res.status);
+            const data=await res.json();
+            const qs=data.questions||[];
+            if(!qs.length){
+              alert("Không trích xuất được câu hỏi trắc nghiệm nào. Vui lòng kiểm tra lại định dạng câu hỏi (Ví dụ: Câu 1: ... A. ... B. ... C. ... D. ... Đáp án: A).");
+              return;
+            }
+            uploadedExamState=data;
+            if(previewTotalQuestions)previewTotalQuestions.textContent="Đã trích xuất: "+qs.length+" câu hỏi";
+            renderUploadedPreviewList(qs);
+            if(quizUploadPreview){
+              quizUploadPreview.style.display="flex";
+              quizUploadPreview.hidden=false;
+              quizUploadPreview.scrollIntoView({behavior:"smooth",block:"start"});
+            }
+          }catch(err){
+            console.error("Quiz upload error:",err);
+            alert("Lỗi khi trích xuất đề thi: "+(err.message||err));
+          }finally{
+            btnParseExam.disabled=false;
+            btnParseExam.textContent=origText;
+          }
+        };
+      }
+
+      if(btnAddQuestion){
+        btnAddQuestion.onclick=()=>{
+          if(!uploadedExamState){
+            uploadedExamState={
+              title:uploadTitle.value.trim()||"Đề kiểm tra",
+              grade:Number(uploadGrade.value)||7,
+              duration_minutes:Number(uploadDuration.value)||15,
+              questions:[]
+            };
+          }
+          if(!Array.isArray(uploadedExamState.questions))uploadedExamState.questions=[];
+          uploadedExamState.questions.push({
+            id:uploadedExamState.questions.length+1,
+            difficulty:"Nhận biết",
+            question:"Câu hỏi "+(uploadedExamState.questions.length+1)+": ",
+            options:["Lựa chọn A","Lựa chọn B","Lựa chọn C","Lựa chọn D"],
+            answer_index:0,
+            answer_key:"A",
+            explanation:"Theo sách giáo khoa KHTN Kết nối tri thức."
+          });
+          if(previewTotalQuestions)previewTotalQuestions.textContent="Đã trích xuất: "+uploadedExamState.questions.length+" câu hỏi";
+          renderUploadedPreviewList(uploadedExamState.questions);
+          if(quizUploadPreview){
+            quizUploadPreview.style.display="flex";
+            quizUploadPreview.hidden=false;
+          }
+        };
+      }
+
+      if(btnTakeExamNow){
+        btnTakeExamNow.onclick=()=>{
+          if(!uploadedExamState||!uploadedExamState.questions||!uploadedExamState.questions.length){
+            alert("Chưa có câu hỏi nào để bắt đầu làm bài.");
+            return;
+          }
+          const qs=uploadedExamState.questions;
+          const g=Number(uploadGrade.value)||uploadedExamState.grade||7;
+          const dur=Number(uploadDuration.value)||uploadedExamState.duration_minutes||(qs.length<=10?15:45);
+          const t=uploadTitle.value.trim()||uploadedExamState.title||("Đề kiểm tra KHTN "+g);
+
+          stopQuizTimer();
+          quizQuestions=qs.map((q,idx)=>({
+            id:idx+1,
+            question:q.question,
+            options:(q.options||[]).map(o=>String(o).replace(/^[A-D][\.\:\)]\s*/,"")),
+            answer_index:(typeof q.answer_index==="number")?q.answer_index:0,
+            answer_key:["A","B","C","D"][q.answer_index||0]||"A",
+            difficulty:q.difficulty||"Nhận biết",
+            explanation:q.explanation||"Theo SGK KHTN KNTT.",
+            source:q.source||("KHTN "+g+" (Đề tải lên)"),
+            page:1
+          }));
+          quizAnswers={};
+          quizSubmitted=false;
+          quizError="";
+          resetQuizAnalysis();
+          quizMeta={topic:t,grade:g,type:dur<=20?"15p":"midterm",title:t,duration_minutes:dur,exam_code:"101"};
+          quizActiveExam={title:t,grade:g,duration_minutes:dur,questions:quizQuestions};
+
+          if(quizActiveTitle)quizActiveTitle.textContent=t;
+          if(quizActiveSubtitle)quizActiveSubtitle.innerHTML="Lớp "+g+" · "+quizQuestions.length+" câu hỏi · Thời gian: "+dur+' phút · <span style="display:inline-block;padding:2px 8px;background:#e0f2fe;color:#0369a1;border:1px solid #bae6fd;border-radius:6px;font-weight:800">ĐỀ TẢI LÊN</span>';
+
+          if(quizBankPane)quizBankPane.hidden=true;
+          if(quizGeneratePane)quizGeneratePane.hidden=true;
+          if(quizUploadPane)quizUploadPane.hidden=true;
+          if(quizTimerBar)quizTimerBar.hidden=false;
+
+          startQuizTimer(dur);
+          renderQuiz();
+          if(quizTimerBar)quizTimerBar.scrollIntoView({behavior:"smooth",block:"start"});
+        };
+      }
+
+      if(btnSaveToBank){
+        btnSaveToBank.onclick=()=>{
+          if(!uploadedExamState||!uploadedExamState.questions||!uploadedExamState.questions.length){
+            alert("Chưa có đề thi được trích xuất để lưu.");
+            return;
+          }
+          const g=Number(uploadGrade.value)||uploadedExamState.grade||7;
+          const dur=Number(uploadDuration.value)||uploadedExamState.duration_minutes||15;
+          const t=uploadTitle.value.trim()||uploadedExamState.title||("Đề tải lên Lớp "+g);
+          const examObj={
+            id:"user-upload-"+Date.now(),
+            grade:g,
+            type:dur<=20?"15p":"midterm",
+            type_label:"Đề tải lên ("+dur+"p)",
+            title:t,
+            topic:t,
+            duration_minutes:dur,
+            questions_count:uploadedExamState.questions.length,
+            badge:"👤 Đề tải lên",
+            user_uploaded:true,
+            questions:uploadedExamState.questions
+          };
+          if(!Array.isArray(quizBankCache))quizBankCache=[];
+          quizBankCache.unshift(examObj);
+          alert('✓ Đã lưu đề thi "'+t+'" vào Ngân hàng đề thi thành công!');
+          switchQuizTab("bank");
+          loadAndRenderQuizBank(quizBankGrade||"all");
+        };
+      }
+
+      if(btnExportUploadedDocx){
+        btnExportUploadedDocx.onclick=async()=>{
+          if(!uploadedExamState||!uploadedExamState.questions||!uploadedExamState.questions.length){
+            alert("Chưa có đề thi được trích xuất để xuất Word.");
+            return;
+          }
+          const orig=btnExportUploadedDocx.textContent;
+          btnExportUploadedDocx.disabled=true;
+          btnExportUploadedDocx.textContent="⏳ Đang xuất Word...";
+          try{
+            const g=Number(uploadGrade.value)||uploadedExamState.grade||7;
+            const dur=Number(uploadDuration.value)||uploadedExamState.duration_minutes||15;
+            const t=uploadTitle.value.trim()||uploadedExamState.title||("Đề kiểm tra KHTN "+g);
+            const payload={
+              title:t,
+              grade:g,
+              duration:dur,
+              topic:t,
+              multiple_choice:uploadedExamState.questions.map((q,idx)=>({
+                id:idx+1,
+                level:(q.difficulty==="Vận dụng")?"VD":((q.difficulty==="Thông hiểu")?"TH":"NB"),
+                question:q.question,
+                options:(q.options||[]).map((o,oi)=>{
+                  const clean=String(o).replace(/^[A-D][\.\:\)]\s*/,"");
+                  return ["A","B","C","D"][oi]+". "+clean;
+                }),
+                answer_key:["A","B","C","D"][q.answer_index||0]||"A",
+                score:0.25,
+                explanation:q.explanation||"Theo SGK KHTN KNTT."
+              }))
+            };
+            const res=await fetch("/api/exam/export-docx",{
+              method:"POST",
+              headers:{"Content-Type":"application/json"},
+              body:JSON.stringify(payload)
+            });
+            if(!res.ok)throw new Error("HTTP "+res.status);
+            const blob=await res.blob();
+            const url=URL.createObjectURL(blob);
+            const a=document.createElement("a");
+            a.href=url;
+            a.download="De_kiem_tra_KHTN_"+g+"_"+t.replace(/[^a-zA-Z0-9_-]/g,"_")+".docx";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+          }catch(err){
+            console.error("Export uploaded docx error:",err);
+            alert("Lỗi khi xuất Word: "+err.message);
+          }finally{
+            btnExportUploadedDocx.disabled=false;
+            btnExportUploadedDocx.textContent=orig;
+          }
+        };
+      }
+    }
+
     function startQuizTimer(minutes){
       stopQuizTimer();
       quizTotalSeconds=Math.max(1,Number(minutes)||15)*60;
@@ -3327,8 +3776,14 @@
       try{
         const count=Number(quizCount.value)||10;
         const grade=Number(quizGrade.value)||7;
-        const activeL=selectedLearningLesson();
-        const lesson_id=(activeL&&activeL.id)||"";
+        let lesson_id="";
+        const activeL=(typeof selectedLearningLesson==="function")?selectedLearningLesson():null;
+        if(activeL&&Number(activeL.grade)===grade){
+          const lText=(String(activeL.title||"")+" "+String(activeL.topic||"")).toLowerCase();
+          if(!topic||lText.includes(topic.toLowerCase().trim())){
+            lesson_id=activeL.id;
+          }
+        }
         const apiKey=getActiveApiKey();
         const response=await fetch(QUIZ_API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
           grade,topic,count,difficulty:quizDifficulty.value,lesson_id,api_key:apiKey})});
@@ -3536,6 +3991,7 @@
     quizGenerate.onclick=generateQuiz;
     if(quizTabBank)quizTabBank.onclick=()=>switchQuizTab("bank");
     if(quizTabGenerate)quizTabGenerate.onclick=()=>switchQuizTab("generate");
+    if(quizTabUpload)quizTabUpload.onclick=()=>switchQuizTab("upload");
     if(typeof initQuizUploadListeners==="function")initQuizUploadListeners();
     if(quizQuitExam)quizQuitExam.onclick=exitExamRoom;
     renderQuizBankGradeChips();

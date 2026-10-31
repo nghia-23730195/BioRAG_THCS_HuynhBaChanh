@@ -35604,6 +35604,58 @@
           ],
           "answer_index": 3,
           "explanation": "Các mảng xơ vữa cholesterol làm hẹp lòng mạch và cứng thành động mạch, cản trở dòng máu lưu thông làm tăng huyết áp và có nguy cơ tắc mạch máu não (đột quỵ) hoặc mạch vành tim."
+        },
+        {
+          "id": 9,
+          "level": "TH",
+          "question": "Đường đi của máu trong vòng tuần hoàn lớn (vòng tuần hoàn cơ thể) diễn ra theo trật tự nào sau đây?",
+          "options": [
+            "A. Tâm thất trái → Động mạch chủ → Các cơ quan → Tĩnh mạch chủ → Tâm nhĩ phải.",
+            "B. Tâm thất phải → Động mạch phổi → Phổi → Tĩnh mạch phổi → Tâm nhĩ trái.",
+            "C. Tâm nhĩ trái → Tâm thất trái → Động mạch phổi → Phổi → Tĩnh mạch phổi.",
+            "D. Tâm thất trái → Tĩnh mạch chủ → Các cơ quan → Động mạch chủ → Tâm nhĩ phải."
+          ],
+          "answer_index": 0,
+          "explanation": "Vòng tuần hoàn lớn xuất phát từ tâm thất trái, đẩy máu đỏ tươi giàu O2 vào động mạch chủ đến nuôi các cơ quan, trao đổi chất rồi máu đỏ thẫm theo tĩnh mạch chủ về tâm nhĩ phải."
+        },
+        {
+          "id": 10,
+          "level": "TH",
+          "question": "Đường đi của máu trong vòng tuần hoàn nhỏ (vòng tuần hoàn phổi) có vai trò chủ yếu là gì?",
+          "options": [
+            "A. Đưa máu đỏ thẫm nghèo O2 từ tâm thất phải lên phổi để trao đổi khí, lấy O2 và thải CO2, trở thành máu đỏ tươi về tâm nhĩ trái.",
+            "B. Cung cấp chất dinh dưỡng và O2 cho tất cả các tế bào trong cơ thể.",
+            "C. Vận chuyển các chất thải và khí cacbônic từ tế bào về tim.",
+            "D. Điều hòa lượng nước và nhiệt độ của toàn bộ cơ thể."
+          ],
+          "answer_index": 0,
+          "explanation": "Vòng tuần hoàn nhỏ bắt đầu từ tâm thất phải, đẩy máu đỏ thẫm vào động mạch phổi đến các phế nang để nhả CO2 và nhận O2, biến thành máu đỏ tươi rồi theo tĩnh mạch phổi về tâm nhĩ trái."
+        },
+        {
+          "id": 11,
+          "level": "VD",
+          "question": "Huyết áp được hiểu là gì và huyết áp tối đa (huyết áp tâm thu) được đo khi nào?",
+          "options": [
+            "A. Là áp lực của máu tác dụng lên thành mạch; huyết áp tối đa đạt được khi tâm thất co.",
+            "B. Là áp lực của máu tác dụng lên thành mạch; huyết áp tối đa đạt được khi tâm thất dãn.",
+            "C. Là vận tốc máu chảy trong lòng mạch; huyết áp tối đa đạt được khi cơ thể nghỉ ngơi.",
+            "D. Là lực cản của thành mạch đối với dòng máu; huyết áp tối đa đạt được khi tâm nhĩ co."
+          ],
+          "answer_index": 0,
+          "explanation": "Huyết áp là áp lực của dòng máu tác dụng lên thành mạch máu. Huyết áp tối đa (huyết áp tâm thu) ứng với giai đoạn tâm thất co bóp tống máu vào động mạch."
+        },
+        {
+          "id": 12,
+          "level": "VD",
+          "question": "Để phòng ngừa bệnh cao huyết áp và các bệnh lý tim mạch, chúng ta NÊN thực hiện biện pháp nào sau đây?",
+          "options": [
+            "A. Hạn chế ăn mặn, giảm thức ăn nhiều dầu mỡ mỡ động vật, tích cực tập thể dục thể thao điều độ và giữ tinh thần thoải mái.",
+            "B. Ăn thật nhiều muối và đồ hộp để tăng cường khoáng chất cho hệ tuần hoàn.",
+            "C. Uống nhiều rượu bia, hút thuốc lá và thức khuya để kích thích tim co bóp mạnh.",
+            "D. Ngồi một chỗ trong thời gian dài và không nên vận động để bảo tồn năng lượng cho tim."
+          ],
+          "answer_index": 0,
+          "explanation": "Chế độ ăn giảm muối, giảm cholesterol/mỡ xấu, tập luyện thể thao đều đặn và hạn chế các chất kích thích giúp giữ thành mạch đàn hồi tốt và ngăn ngừa cao huyết áp, xơ vữa động mạch."
         }
       ],
       "essay_prompts": [

@@ -1193,7 +1193,10 @@ def api_quiz_upload():
         title = d.get("title", "")
 
     if parse_exam_text:
-        questions = parse_exam_text(raw_text, default_grade=grade)
+        parsed = parse_exam_text(raw_text, default_grade=grade, default_duration=duration, custom_title=title)
+        if isinstance(parsed, dict) and "questions" in parsed:
+            return jsonify(parsed)
+        questions = parsed if isinstance(parsed, list) else []
     else:
         questions = []
 
@@ -1228,50 +1231,103 @@ def api_quiz_generate():
     # 1. Resolve exact lesson from catalog
     target_lesson = None
     if lesson_id:
-        target_lesson = get_lesson_by_id(lesson_id)
+        cand = get_lesson_by_id(lesson_id)
+        if cand and int(cand.get("grade") or 0) == grade:
+            c_text = (str(cand.get("title") or "") + " " + str(cand.get("topic") or "")).lower()
+            if not topic or (topic.lower().strip() in c_text):
+                target_lesson = cand
+
     if not target_lesson and topic:
         t_clean = topic.lower().strip()
-        for l in get_all_lessons(grade=grade):
+        all_grade_lessons = get_all_lessons(grade=grade)
+        for l in all_grade_lessons:
             l_title = str(l.get("title") or "").lower()
             l_topic = str(l.get("topic") or "").lower()
             l_num = str(l.get("number") or "").lower()
-            if t_clean in l_title or l_title in t_clean or t_clean in l_topic or (l_num and l_num in t_clean):
+            if t_clean in l_title or l_title in t_clean or t_clean in l_topic or (l_num and l_num == t_clean):
                 target_lesson = l
                 break
+        if not target_lesson:
+            # Keyword match (e.g., 'máu', 'tuần hoàn')
+            stop_words = {"khoa", "học", "tự", "nhiên", "bài", "lớp", "khtn", "của", "và", "cho", "các", "những"}
+            kws = [w for w in re.split(r'[\s,\.-]+', t_clean) if len(w) >= 3 and w not in stop_words]
+            if kws:
+                best_score = 0
+                for l in all_grade_lessons:
+                    l_text = (str(l.get("title") or "") + " " + str(l.get("topic") or "")).lower()
+                    score = sum(1 for kw in kws if kw in l_text)
+                    if score > best_score and score >= len(kws) * 0.4:
+                        best_score = score
+                        target_lesson = l
 
     # 2. Serve authentic curated quick_check questions directly if available
     if target_lesson and target_lesson.get("quick_check"):
         qc_available = target_lesson.get("quick_check") or []
-        if len(qc_available) >= count:
-            labels = ["A", "B", "C", "D"]
-            q_list = []
-            for idx, qc in enumerate(qc_available[:count], start=1):
-                a_idx = int(qc.get("answer_index", 0))
-                clean_opts = [re.sub(r'^[A-D][\.\:\)]\s*', '', str(o)) for o in qc.get("options", [])[:4]]
-                raw_lvl = str(qc.get("level") or "").strip().upper()
-                if raw_lvl == "NB":
-                    diff_label = "Nhận biết"
-                elif raw_lvl == "TH":
-                    diff_label = "Thông hiểu"
-                elif raw_lvl in ("VD", "VDC"):
-                    diff_label = "Vận dụng"
-                else:
-                    diff_label = "Vận dụng" if idx >= 7 else ("Thông hiểu" if idx >= 4 else "Nhận biết")
-                q_list.append({
-                    "id": idx,
-                    "question": qc.get("question"),
-                    "options": clean_opts,
-                    "answer_index": a_idx,
-                    "answer_key": labels[a_idx] if 0 <= a_idx < 4 else "A",
-                    "difficulty": diff_label,
-                    "explanation": qc.get("explanation") or f"Theo SGK KHTN {grade}.",
-                    "source": f"KHTN {grade} KNTT",
-                    "page": 1
-                })
-            return jsonify({
-                "questions": q_list,
-                "meta": {"topic": target_lesson.get("title", topic), "grade": grade, "exam_code": "101", "source": "Curated Textbook SGK"}
+        labels = ["A", "B", "C", "D"]
+        q_list = []
+        for idx, qc in enumerate(qc_available[:count], start=1):
+            a_idx = int(qc.get("answer_index", 0))
+            clean_opts = [re.sub(r'^[A-D][\.\:\)]\s*', '', str(o)) for o in qc.get("options", [])[:4]]
+            raw_lvl = str(qc.get("level") or "").strip().upper()
+            if raw_lvl == "NB":
+                diff_label = "Nhận biết"
+            elif raw_lvl == "TH":
+                diff_label = "Thông hiểu"
+            elif raw_lvl in ("VD", "VDC"):
+                diff_label = "Vận dụng"
+            else:
+                diff_label = "Vận dụng" if idx >= 7 else ("Thông hiểu" if idx >= 4 else "Nhận biết")
+            q_list.append({
+                "id": idx,
+                "question": qc.get("question"),
+                "options": clean_opts,
+                "answer_index": a_idx,
+                "answer_key": labels[a_idx] if 0 <= a_idx < 4 else "A",
+                "difficulty": diff_label,
+                "explanation": qc.get("explanation") or f"Theo SGK KHTN {grade}.",
+                "source": f"KHTN {grade} KNTT",
+                "page": 1
             })
+
+        # If more questions are needed than available in this lesson, pull strictly from neighboring lessons in same domain
+        if len(q_list) < count:
+            used_qs = set(q["question"] for q in q_list)
+            target_num_m = re.search(r'\d+', str(target_lesson.get("number") or ""))
+            target_num = int(target_num_m.group(0)) if target_num_m else 30
+            other_lessons = [l for l in get_all_lessons(grade=grade) if l.get("id") != target_lesson.get("id")]
+            def _dist(l):
+                nm = re.search(r'\d+', str(l.get("number") or ""))
+                return abs((int(nm.group(0)) if nm else 999) - target_num)
+            other_lessons.sort(key=_dist)
+
+            for rel_l in other_lessons:
+                if len(q_list) >= count:
+                    break
+                for qc in (rel_l.get("quick_check") or []):
+                    if len(q_list) >= count:
+                        break
+                    q_text = qc.get("question", "").strip()
+                    if not q_text or q_text in used_qs:
+                        continue
+                    used_qs.add(q_text)
+                    a_idx = int(qc.get("answer_index", 0))
+                    clean_opts = [re.sub(r'^[A-D][\.\:\)]\s*', '', str(o)) for o in qc.get("options", [])[:4]]
+                    q_list.append({
+                        "id": len(q_list) + 1,
+                        "question": q_text,
+                        "options": clean_opts,
+                        "answer_index": a_idx,
+                        "answer_key": labels[a_idx] if 0 <= a_idx < 4 else "A",
+                        "difficulty": "Vận dụng" if len(q_list) >= 7 else "Thông hiểu",
+                        "explanation": qc.get("explanation") or f"Theo SGK KHTN {grade}.",
+                        "source": f"KHTN {grade} KNTT",
+                        "page": 1
+                    })
+
+        return jsonify({
+            "questions": q_list,
+            "meta": {"topic": target_lesson.get("title", topic), "grade": grade, "exam_code": "101", "source": "Curated Textbook SGK"}
+        })
 
     # 3. Try Gemini AI generation if API key is present
     if api_key and callable(call_gemini_rest) and target_lesson:

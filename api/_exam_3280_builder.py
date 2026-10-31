@@ -926,21 +926,19 @@ def lesson_to_exam_data(
         curr_lesson_id = str(lesson.get("id") or "")
         curr_chapter = str(lesson.get("chapter") or "")
 
-        # Gather candidate lessons from the same grade: first same chapter, then other chapters of same grade
-        same_chapter_lessons = [
+        # Gather candidate lessons from the same grade sorted by domain proximity (lesson number closeness)
+        def _get_l_num(it):
+            m = re.search(r'\d+', str(it.get("number") or ""))
+            return int(m.group(0)) if m else 999
+        curr_num = _get_l_num(lesson)
+        candidate_lessons = [
             item for item in all_catalog_lessons
             if int(item.get("grade") or 0) == int(grade)
             and str(item.get("id") or "") != curr_lesson_id
-            and str(item.get("chapter") or "") == curr_chapter
         ]
-        other_grade_lessons = [
-            item for item in all_catalog_lessons
-            if int(item.get("grade") or 0) == int(grade)
-            and str(item.get("id") or "") != curr_lesson_id
-            and str(item.get("chapter") or "") != curr_chapter
-        ]
+        candidate_lessons.sort(key=lambda item: abs(_get_l_num(item) - curr_num))
 
-        for cand_lesson in (same_chapter_lessons + other_grade_lessons):
+        for cand_lesson in candidate_lessons:
             if curr_id > target_count:
                 break
             for qc in (cand_lesson.get("quick_check") or []):
